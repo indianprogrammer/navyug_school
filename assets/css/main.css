@@ -1,0 +1,19 @@
+ul li a
+{
+	text-decoration: none;
+}
+ul
+{
+	list-style: none;
+}
+ul li
+{
+	display: inline;
+}
+.main-menu
+{
+	height: 700px;
+	width:100%;
+	max-width: auto;
+	background-image:url('../images/office.png');
+}

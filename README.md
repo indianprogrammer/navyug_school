@@ -1,1 +1,0 @@
-# navyug_school

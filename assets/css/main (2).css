@@ -1,0 +1,81 @@
+body
+{
+	/*background-color: grey;*/
+	scroll-behavior: smooth;
+	overflow-x: none;
+
+}
+.sidenav
+{
+	/*background-color: #001;*/
+	background: url('../images/office.png');
+	background-position: center;
+	height: 650px;
+	width: auto;
+}
+.tab
+{
+	
+	/*background-color: black;*/
+
+}
+.designbox
+{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f85032+0,f16f5c+50,f6290c+51,f02f17+71,e73827+100;Red+Gloss+%231 */
+background: #f85032; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #f85032 0%, #f16f5c 50%, #f6290c 51%, #f02f17 71%, #e73827 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg, #f85032 0%,#f16f5c 50%,#f6290c 51%,#f02f17 71%,#e73827 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg, #f85032 0%,#f16f5c 50%,#f6290c 51%,#f02f17 71%,#e73827 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f85032', endColorstr='#e73827',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	/*margin-right: 0px;*/
+	padding: 10px;
+	margin-top: 10px;
+	width: 100%;
+	
+
+}
+.designbox a{
+	transition: 1s ;
+	text-decoration: none;
+	padding-left: 20px;
+
+
+}
+.designbox a:hover
+{
+	margin-left: 20px;
+
+	
+}
+.dropdowncontent
+{
+	display: none;
+	transition: 2s;
+}
+ul
+{
+	list-style: none;
+	/*border: 1px solid black;*/
+}
+ul:hover .dropdowncontent
+{
+	display:block;
+
+}
+.box
+{
+	height: 100px;
+
+	width:100px;
+	background-color: red;
+	border: 1px solid transparent;
+}
+.left
+{
+	float: left;
+}
+.right
+{
+	float:right;
+	right: 0;
+}
