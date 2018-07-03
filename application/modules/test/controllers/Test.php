@@ -20,7 +20,10 @@ class Test extends MX_Controller {
 	 */
 	public function index()
 	{
-		echo 'test';
-		
+		$this->load->view('index2');
+	}
+	public function form()
+	{
+		$this->load->view('form');
 	}
 }
