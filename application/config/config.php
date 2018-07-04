@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/navyug_school/';
+$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/';
 
 $config['modules_locations'] = array(APPPATH.'modules/' => '../modules/');
 
