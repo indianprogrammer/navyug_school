@@ -33,7 +33,7 @@
 <script src="<?= base_url() ;?>assets/admin/plugins/chartjs-old/Chart.min.js"></script>
 
 <!-- PAGE SCRIPTS -->
-<script src="<?= base_url() ;?>assets/admin/dist/js/pages/dashboard2.js"></script>
+<!--<script src="--><?//= base_url() ;?><!--assets/admin/dist/js/pages/dashboard2.js"></script>-->
 
 </body>
 </html>

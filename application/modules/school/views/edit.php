@@ -4,7 +4,7 @@
             <div class="box-header with-border">
               	<h3 class="box-title">School Edit</h3>
             </div>
-			<?php echo form_open('School/edit/'.$school['id']); ?>
+			<?php echo form_open('school/edit/'.$school['id']); ?>
 			<div class="box-body">
 				<div class="row clearfix">
 					<div class="col-md-6">
