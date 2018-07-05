@@ -19,7 +19,7 @@
 								{
 									
 
-									echo '<option value="'.$row->id.'">'.$row->name.'</option>';
+									echo '<option value="'.$row['id'].'">'.$row['name'].'</option>';
 									
 								} 
 								?>
@@ -32,7 +32,7 @@
 						<div class="form-group">
 							<select name="state" id="state" class="form-control">
 								<option value="">Select State</option>
-								<!--  -->
+								
 								
 							</select>
 							<span class="text-danger"><?php echo form_error('state');?></span>
@@ -128,14 +128,27 @@ $(document).ready(function(){
   {
   	// alert("hii");
    $.ajax({
-    url:"<?php echo base_url(); ?>School/fetch_state",
+    url:"<?php echo base_url(); ?>school/fetch_state",
     method:"POST",
-    async: false,
+  
     data:{country_id:country_id},
     success:function(data)
     {
-    	// console.log(data); 	
-     $('#state').html(data);
+    		
+    	  var obj=JSON.parse(data);
+    	
+    	
+    	 
+    	  var i;
+    	  var state;
+    	for ( i=0;i<obj.length;i++)
+    	{
+    		 
+   			 state += '<option value="'+ obj[i].id +'">'+ obj[i].name +'</option>';
+
+      		 $('#state').html(state); 	
+    	}
+						
 
      $('#city').html('<option value="">Select City</option>');
     }
@@ -144,7 +157,7 @@ $(document).ready(function(){
   else
   {
    $('#state').html('<option value="">Select State</option>');
-   $('#city').html('<option value="">Select City</option>');
+   $('#city').html('<option value="">Select  City</option>');
   }
  });
 
@@ -156,12 +169,22 @@ $(document).ready(function(){
   if(state_id != '')
   {
    $.ajax({
-    url:"<?php echo base_url(); ?>School/fetch_city",
+    url:"<?php echo base_url(); ?>school/fetch_city",
     method:"POST",
     data:{state_id:state_id},
     success:function(data)
     {
-     $('#city').html(data);
+    	var obj=JSON.parse(data);
+    	var i;
+    	 var city;
+    	for ( i=0;i<obj.length;i++)
+    	{
+    		 
+   			 city += '<option value="'+ obj[i].id +'">'+ obj[i].name +'</option>';
+
+      		 $('#city').html(city); 	
+    	}
+     
     }
    });
   }

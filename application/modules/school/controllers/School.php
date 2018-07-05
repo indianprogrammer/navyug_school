@@ -144,9 +144,9 @@ class School extends MX_Controller{
 
     function fetch_state()
          {
-          if($this->input->post('country_id'))
+          if($this->input->post('country_id'))  
           {
-           echo $this->School_model->fetch_state($this->input->post('country_id'));
+           echo json_encode( $this->School_model->fetch_state($this->input->post('country_id')));
             
             // $this->load->view('index',$data);
 
@@ -157,7 +157,7 @@ class School extends MX_Controller{
          {
           if($this->input->post('state_id'))
           {
-           echo $this->School_model->fetch_city($this->input->post('state_id'));
+           echo json_encode($this->School_model->fetch_city($this->input->post('state_id')));
           }
          }
 

@@ -55,7 +55,7 @@ class School_model extends CI_Model
        {
         
         $query = $this->db->get("master_country");
-        return $query->result();
+        return $query->result_array();
        }
 
    function fetch_state($country_id)
@@ -63,13 +63,13 @@ class School_model extends CI_Model
       $this->db->where('country_id', $country_id);
       // $this->db->order_by('name', 'ASC');
       $query = $this->db->get('master_state');
-      // return $query->result();
-      $output = '<option value="">Select State</option>';
-      foreach($query->result() as $row)
-      {
-       $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
-      }
-      return $output;
+      return $query->result_array();
+      // $output = '<option value="">Select State</option>';
+      // foreach($query->result() as $row)
+      // {
+      //  $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+      // }
+      // return $output;
      }
 
      function fetch_city($state_id)
@@ -77,12 +77,13 @@ class School_model extends CI_Model
       $this->db->where('state_id', $state_id);
       $this->db->order_by('name', 'ASC');
       $query = $this->db->get('master_cities');
-      $output = '<option value="">Select City</option>';
-      foreach($query->result() as $row)
-      {
-       $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
-      }
-      return $output;
+      return $query->result_array();
+      // $output = '<option value="">Select City</option>';
+      // foreach($query->result() as $row)
+      // {
+      //  $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+      // }
+      // return $output;
      }
 
 
