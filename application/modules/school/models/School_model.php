@@ -51,16 +51,23 @@ class School_model extends CI_Model
         return $this->db->delete('school',array('id'=>$id));
     }
 
+    function fetch_country()
+       {
+        
+        $query = $this->db->get("master_country");
+        return $query->result();
+       }
 
- function fetch_state($country_id)
+   function fetch_state($country_id)
      {
       $this->db->where('country_id', $country_id);
       // $this->db->order_by('name', 'ASC');
       $query = $this->db->get('master_state');
+      // return $query->result();
       $output = '<option value="">Select State</option>';
       foreach($query->result() as $row)
       {
-       $output .= '<option value="'.$row->state_id.'">'.$row->name.'</option>';
+       $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
       }
       return $output;
      }
@@ -73,7 +80,7 @@ class School_model extends CI_Model
       $output = '<option value="">Select City</option>';
       foreach($query->result() as $row)
       {
-       $output .= '<option value="'.$row->city_id.'">'.$row->name.'</option>';
+       $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
       }
       return $output;
      }

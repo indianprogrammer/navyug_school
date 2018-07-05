@@ -1,6 +1,6 @@
 <?php
 
- 
+ defined('BASEPATH') OR exit('No direct script access allowed');
 class School extends MX_Controller{
     function __construct()
     {
@@ -16,11 +16,14 @@ class School extends MX_Controller{
         $data['school'] = $this->School_model->get_all_school();
         
         $data['_view'] = 'schoollist';
+
         $this->load->view('index',$data);
     }
     function add_school()
     {
          $data['_view'] = 'add';
+        $data['country'] = $this->School_model->fetch_country();
+  
             $this->load->view('index',$data);
     }
     /*
@@ -144,6 +147,9 @@ class School extends MX_Controller{
           if($this->input->post('country_id'))
           {
            echo $this->School_model->fetch_state($this->input->post('country_id'));
+            
+            // $this->load->view('index',$data);
+
           }
          }
 

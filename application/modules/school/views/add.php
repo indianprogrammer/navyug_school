@@ -14,13 +14,12 @@
 								<option value="">select</option>
 								<?php 
 								
-								$country_id_values = $this->db->get('master_country')->result();
-
-								foreach($country_id_values as  $row)
+								
+								foreach($country as $row)
 								{
 									
 
-									echo '<option value="'.$row->country_id.'">'.$row->name.'</option>';
+									echo '<option value="'.$row->id.'">'.$row->name.'</option>';
 									
 								} 
 								?>
@@ -32,7 +31,8 @@
 						<label for="state_id" class="control-label"><span class="text-danger">*</span>State</label>
 						<div class="form-group">
 							<select name="state" id="state" class="form-control">
-								<option value="">select state</option>
+								<option value="">Select State</option>
+								<!--  -->
 								
 							</select>
 							<span class="text-danger"><?php echo form_error('state');?></span>
@@ -42,7 +42,7 @@
 						<label for="city_id" class="control-label"><span class="text-danger">*</span>City</label>
 						<div class="form-group">
 							<select name="city" id="city" class="form-control">
-								<option value="">select city</option>
+								<option value="">Select City</option>
 								
 							</select>
 							<span class="text-danger"><?php echo form_error('city');?></span>
@@ -126,15 +126,17 @@ $(document).ready(function(){
   console.log(country_id);
   if(country_id != '')
   {
-  	alert("hii");
+  	// alert("hii");
    $.ajax({
-    url:"<?php echo base_url(); ?>index.php/School/fetch_state",
+    url:"<?php echo base_url(); ?>School/fetch_state",
     method:"POST",
+    async: false,
     data:{country_id:country_id},
     success:function(data)
     {
-    	
+    	// console.log(data); 	
      $('#state').html(data);
+
      $('#city').html('<option value="">Select City</option>');
     }
    });
