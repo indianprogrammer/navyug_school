@@ -15,12 +15,19 @@ class School extends MX_Controller
      */
     function index()
     {
-        $data['school'] = $this->School_model->get_all_school();
-
-        $data['_view'] = 'schoollist';
+        
+        $data['_view'] = 'dashbord';
 
         $this->load->view('index', $data);
     }
+    
+     function school_list()
+     {
+        $data['school'] = $this->School_model->get_all_school();
+
+        $data['_view'] = 'schoollist';
+        $this->load->view('index', $data);
+     }
 
     function add_school()
     {

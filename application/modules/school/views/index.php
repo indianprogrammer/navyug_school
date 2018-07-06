@@ -26,7 +26,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
+         <!--  <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-dashboard"></i>
               <p>
@@ -34,30 +34,39 @@
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview"> -->
               <li class="nav-item">
-                <a href="./index.html" class="nav-link">
+                <a href="<?= site_url()?>school/index" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p>Dashboard</p>
                 </a>
               </li>
              
-            </ul>
-          </li>
+           <!--  </ul>
+          </li> -->
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="<?= site_url()?>school/add_school" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
-                Widgets
+                ADD SCHOOL
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= site_url()?>school/school_list" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                SCHOOL LIST
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+         <!--  <li class="nav-item has-treeview">
+            <a href="<?= site_url()?>school/add_school" class="nav-link">
               <i class="nav-icon fa fa-pie-chart"></i>
               <p>
-                Charts
+                SCHOOL LIST
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
@@ -81,7 +90,7 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tree"></i>
@@ -320,21 +329,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard v2</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v2</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
+    
     <!-- /.content-header -->
 
     <!-- Main content -->
