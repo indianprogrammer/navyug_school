@@ -16,9 +16,9 @@
                         <th>Email</th>
                         <th>Contact Primary</th>
                         <th>Contact Secondry</th>
-                        <th>Country Id</th>
-                        <th>State Id</th>
-                        <th>City Id</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>City</th>
                         <th>Latlong</th>
                         <th>Logo</th>
                         <th>Banner</th>
@@ -27,14 +27,14 @@
                     <?php foreach ($school as $s) { ?>
                         <tr>
                             <td><?php echo $s['id']; ?></td>
-                            <td><?php echo $s['name']; ?></td>
+                            <td><?php echo $s['school_name']; ?></td>
                             <td><?php echo $s['address']; ?></td>
                             <td><?php echo $s['email']; ?></td>
                             <td><?php echo $s['contact_pri']; ?></td>
                             <td><?php echo $s['contact_sec']; ?></td>
-                            <td><?php echo $s['country_id']; ?></td>
-                            <td><?php echo $s['state_id']; ?></td>
-                            <td><?php echo $s['city_id']; ?></td>
+                            <td><?php echo $s['country_name']; ?></td>
+                            <td><?php echo $s['state_name']; ?></td>
+                            <td><?php echo $s['city_name']; ?></td>
                             <td><?php echo $s['latlong']; ?></td>
                             <td><?php echo $s['logo']; ?></td>
                             <td><?php echo $s['banner']; ?></td>

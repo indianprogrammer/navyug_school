@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2018 at 09:34 AM
+-- Generation Time: Jul 06, 2018 at 12:59 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -56,14 +56,14 @@ CREATE TABLE `master_authorization` (
 CREATE TABLE `master_cities` (
   `id` int(11) NOT NULL,
   `state_id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL
+  `city_name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_cities`
 --
 
-INSERT INTO `master_cities` (`id`, `state_id`, `name`) VALUES
+INSERT INTO `master_cities` (`id`, `state_id`, `city_name`) VALUES
 (1, 7, 'durg'),
 (2, 7, 'raipur');
 
@@ -75,14 +75,14 @@ INSERT INTO `master_cities` (`id`, `state_id`, `name`) VALUES
 
 CREATE TABLE `master_country` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL
+  `country_name` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_country`
 --
 
-INSERT INTO `master_country` (`id`, `name`) VALUES
+INSERT INTO `master_country` (`id`, `country_name`) VALUES
 (101, 'india');
 
 -- --------------------------------------------------------
@@ -93,7 +93,7 @@ INSERT INTO `master_country` (`id`, `name`) VALUES
 
 CREATE TABLE `master_state` (
   `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
+  `state_name` varchar(30) NOT NULL,
   `country_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -101,7 +101,7 @@ CREATE TABLE `master_state` (
 -- Dumping data for table `master_state`
 --
 
-INSERT INTO `master_state` (`id`, `name`, `country_id`) VALUES
+INSERT INTO `master_state` (`id`, `state_name`, `country_id`) VALUES
 (1, 'Andaman and Nicobar Islands', 101),
 (2, 'Andhra Pradesh', 101),
 (3, 'Arunachal Pradesh', 101),
@@ -152,7 +152,7 @@ INSERT INTO `master_state` (`id`, `name`, `country_id`) VALUES
 
 CREATE TABLE `school` (
   `id` int(11) NOT NULL,
-  `name` varchar(300) NOT NULL,
+  `school_name` varchar(300) NOT NULL,
   `address` text NOT NULL,
   `latlong` varchar(20) DEFAULT NULL,
   `contact_pri` varchar(13) DEFAULT NULL,
@@ -169,9 +169,8 @@ CREATE TABLE `school` (
 -- Dumping data for table `school`
 --
 
-INSERT INTO `school` (`id`, `name`, `address`, `latlong`, `contact_pri`, `contact_sec`, `email`, `logo`, `banner`, `city_id`, `state_id`, `country_id`) VALUES
-(1, 'vivekanand', 'kolkata', '321', '1234567898', '1234567898', 'vivek.et19932gmail.com', 'ee', 'ewwe', 1, 2, 3),
-(2, 'umesh', 'treerte   retre t t', 'tret', '545435', '4534534', 'umesh132200@gmail.com', 'rter', 'tert', 1, 7, 101);
+INSERT INTO `school` (`id`, `school_name`, `address`, `latlong`, `contact_pri`, `contact_sec`, `email`, `logo`, `banner`, `city_id`, `state_id`, `country_id`) VALUES
+(6, 'sdf', 'sdfdfsdfs', '4234', '5545345345', '4534534', 'vivek.et1993@gmail.com', 'erw', 'rew', 2, 7, 101);
 
 --
 -- Indexes for dumped tables
@@ -239,7 +238,7 @@ ALTER TABLE `master_state`
 -- AUTO_INCREMENT for table `school`
 --
 ALTER TABLE `school`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

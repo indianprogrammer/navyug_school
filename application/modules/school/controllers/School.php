@@ -40,7 +40,7 @@ class School extends MX_Controller
     /*
      * Adding a new school
      */
-    function add_school_process()
+    function add()
     {
         $this->load->library('form_validation');
 
@@ -61,7 +61,7 @@ class School extends MX_Controller
                 'city_id' => $this->input->post('city'),
                 'state_id' => $this->input->post('state'),
                 'country_id' => $this->input->post('country'),
-                'name' => $this->input->post('name'),
+                'school_name' => $this->input->post('name'),
                 'latlong' => $this->input->post('latlong'),
                 'contact_pri' => $this->input->post('contact_pri'),
                 'contact_sec' => $this->input->post('contact_sec'),
@@ -86,6 +86,7 @@ class School extends MX_Controller
     {
         // check if the school exists before trying to edit it
         $data['school'] = $this->School_model->get_school($id);
+        $data['country'] = $this->School_model->fetch_country();
 
         if (isset($data['school']['id'])) {
             $this->load->library('form_validation');
@@ -104,10 +105,10 @@ class School extends MX_Controller
 
             if ($this->form_validation->run()) {
                 $params = array(
-                    'city_id' => $this->input->post('city_id'),
-                    'state_id' => $this->input->post('state_id'),
-                    'country_id' => $this->input->post('country_id'),
-                    'name' => $this->input->post('name'),
+                    'city_id' => $this->input->post('city'),
+                    'state_id' => $this->input->post('state'),
+                    'country_id' => $this->input->post('country'),
+                    'school_name' => $this->input->post('name'),
                     'latlong' => $this->input->post('latlong'),
                     'contact_pri' => $this->input->post('contact_pri'),
                     'contact_sec' => $this->input->post('contact_sec'),
@@ -137,7 +138,7 @@ class School extends MX_Controller
         // check if the school exists before trying to delete it
         if (isset($school['id'])) {
             $this->School_model->delete_school($id);
-            redirect('school/index');
+            redirect('school/school_list');
         } else
             show_error('The school you are trying to delete does not exist.');
     }

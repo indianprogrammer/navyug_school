@@ -12,8 +12,13 @@ class School_model extends CI_Model
      * Get school by id
      */
     function get_school($id)
-    {
-        return $this->db->get_where('school',array('id'=>$id))->row_array();
+    {   
+           $this->db->select('master_country.country_name,school.id, master_state.state_name,school_name,master_cities.city_name,address,latlong,contact_pri,contact_sec,email,logo,banner,master_country.id,master_cities.id,master_state.id');
+          $this->db->join('master_country', 'master_country.id = school.country_id');
+          $this->db->join('master_state', 'master_state.id = school.state_id');
+          $this->db->join('master_cities', 'master_cities.id = school.city_id');
+          // $this->db->from('school');
+        return $this->db->get_where('school',array('school.id'=>$id))->row_array();
     }
         
     /*
@@ -21,8 +26,16 @@ class School_model extends CI_Model
      */
     function get_all_school()
     {
-        $this->db->order_by('id', 'desc');
-        return $this->db->get('school')->result_array();
+         // $this->db->order_by('id', 'desc');
+      
+         $this->db->select('master_country.country_name,school.id, master_state.state_name,school_name,master_cities.city_name,address,latlong,contact_pri,contact_sec,email,logo,banner');
+    $this->db->join('master_country', 'master_country.id = school.country_id');
+    $this->db->join('master_state', 'master_state.id = school.state_id');
+     $this->db->join('master_cities', 'master_cities.id = school.city_id');
+    $this->db->from('school');
+    return $this->db->get()->result_array();
+
+        // return $this->db->get('school')->result_array();
     }
         
     /*
@@ -62,20 +75,15 @@ class School_model extends CI_Model
      {
       $this->db->where('country_id', $country_id);
       // $this->db->order_by('name', 'ASC');
-      $query = $this->db->get('master_state');
+      $query = $this->db->get('master_state');  
       return $query->result_array();
-      // $output = '<option value="">Select State</option>';
-      // foreach($query->result() as $row)
-      // {
-      //  $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
-      // }
-      // return $output;
+     
      }
 
      function fetch_city($state_id)
      {
       $this->db->where('state_id', $state_id);
-      $this->db->order_by('name', 'ASC');
+      // $this->db->order_by('state_name', 'ASC');
       $query = $this->db->get('master_cities');
       return $query->result_array();
       // $output = '<option value="">Select City</option>';

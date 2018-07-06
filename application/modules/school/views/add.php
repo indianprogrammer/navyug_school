@@ -4,10 +4,10 @@
             <div class="box-header with-border">
                 <h2 class="box-title">School Add</h2>
             </div>
-            <?= form_open('school/add_school_process') ?>
+            <?= form_open('school/add') ?>
             <div class="box-body">
                 <div class="row clearfix">
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="name" class="control-label"><span class="text-danger">*</span>Name</label>
                         <div class="form-group">
                             <input type="text" name="name" value="<?= $this->input->post('name') ?>"
@@ -15,7 +15,7 @@
                             <span class="text-danger"><?= form_error('name') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="address" class="control-label"><span class="text-danger">*</span>Address</label>
                         <div class="form-group">
                             <textarea name="address" class="form-control"
@@ -23,7 +23,7 @@
                             <span class="text-danger"><?= form_error('address') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="email" class="control-label"><span class="text-danger">*</span>Email</label>
                         <div class="form-group">
                             <input type="text" name="email" value="<?= $this->input->post('email') ?>"
@@ -31,7 +31,7 @@
                             <span class="text-danger"><?= form_error('email') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="contact_pri" class="control-label"><span class="text-danger">*</span>Contact Primary</label>
                         <div class="form-group">
                             <input type="text" name="contact_pri" value="<?= $this->input->post('contact_pri') ?>"
@@ -39,7 +39,7 @@
                             <span class="text-danger"><?= form_error('contact_pri') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="contact_sec" class="control-label">Contact Secondry</label>
                         <div class="form-group">
                             <input type="text" name="contact_sec" value="<?= $this->input->post('contact_sec') ?>"
@@ -47,19 +47,19 @@
                             <span class="text-danger"><?= form_error('contact_sec') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="country_id" class="control-label"><span class="text-danger">*</span>Country</label>
                         <div class="form-group">
                             <select name="country" id="country" class="form-control">
                                 <option value="">Select Country</option>
                                 <?php foreach ($country as $row) {
-                                    echo '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+                                    echo '<option value="' . $row['id'] . '">' . $row['country_name'] . '</option>';
                                 } ?>
                             </select>
                             <span class="text-danger"><?= form_error('country') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="state_id" class="control-label"><span class="text-danger">*</span>State</label>
                         <div class="form-group">
                             <select name="state" id="state" class="form-control">
@@ -69,7 +69,7 @@
                             <span class="text-danger"><?= form_error('state') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="city_id" class="control-label"><span class="text-danger">*</span>City</label>
                         <div class="form-group">
                             <select name="city" id="city" class="form-control">
@@ -79,7 +79,7 @@
                             <span class="text-danger"><?= form_error('city') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="latlong" class="control-label"><span class="text-danger">*</span>Latlong</label>
                         <div class="form-group">
                             <input type="text" name="latlong" value="<?= $this->input->post('latlong') ?>"
@@ -87,7 +87,7 @@
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="logo" class="control-label"><span class="text-danger">*</span> Upload Logo</label>
                         <div class="form-group">
                             <input type="text" name="logo" value="<?= $this->input->post('logo') ?>"
@@ -95,7 +95,7 @@
                             <span class="text-danger"><?= form_error('logo') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-7 col-sm-12">
                         <label for="banner" class="control-label"><span class="text-danger">*</span> Upload
                             Banner</label>
                         <div class="form-group">
@@ -116,6 +116,7 @@
         </div>
     </div>
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
     var selectState = '<option value="">Select State</option>';
@@ -130,11 +131,12 @@
                     method: "POST",
                     data: {country_id: country_id},
                     success: function (data) {
+                        console.log(data);
                         var obj = JSON.parse(data);
                         var i;
                         var state = selectState;
                         for (i = 0; i < obj.length; i++) {
-                            state += '<option value="' + obj[i].id + '">' + obj[i].name + '</option>';
+                            state += '<option value="' + obj[i].id + '">' + obj[i].state_name + '</option>';
                             $('#state').html(state);
                         }
                         $('#city').html(selectCity);
@@ -158,7 +160,7 @@
                         var i;
                         var city;
                         for (i = 0; i < obj.length; i++) {
-                            city += '<option value="' + obj[i].id + '">' + obj[i].name + '</option>';
+                            city += '<option value="' + obj[i].id + '">' + obj[i].city_name + '</option>';
                             $('#city').html(city);
                         }
                     }
