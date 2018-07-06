@@ -38,23 +38,22 @@
 					<div class="col-md-7">
 						<label for="contact_sec" class="control-label">Contact Secondry</label>
 						<div class="form-group">
-							<input type="text" name="contact_sec" value="<?= ($this->input->post('contact_sec') ? $this->input->post('contact_sec') : $school['contact_sec']); ?>" class="form-control" id="contact_sec" />
+							<input type="text" name="contact_sec" value="<?= ($this->input->post('contact_sec') ? $this->input->post('contact_sec') :$school['contact_sec'] ); ?>" class="form-control" id="contact_sec" />
 							<span class="text-danger"><?= form_error('contact_sec');?></span>
 						</div>
 					</div>
 					<div class="col-md-7">
 						<label for="country" class="control-label"><span class="text-danger">*</span>Country </label>
-						<div class="form-group">
-								<select name="country" id="country" class="form-control">
-							
-                               
-								    <option value='' <?php if($country == '0'){ echo 'selected';} ?>>--Select--</option>
+						<div class="form-group">	
+								<select name="country" id="country" class="form-control" onclick="showhide();" id="st">
+									 <option value="<?= $school['country_id'] ?> selected" id="gst" ><?= $school['country_name'] ?> </option> 
+                               	
 								    <?php foreach($country as $row) { ?>
-								        <option value="<?=$row->id?>" <?php if($row->id == $country->country_name){ echo 'selected';} ?>><?=$row->country_name?></option>
-								    <?php } ?>
+								     <option value='<?= $row['id'] ?>' id="ost"><?= $row['country_name'] ?> </option> 
+								       
+								    <?php } ?> 
 								</select>
-                            </select>
-							
+                          
 							<span class="text-danger"><?= form_error('country');?></span>
 						</div>
 					</div>
@@ -62,7 +61,7 @@
 						<label for="state" class="control-label"><span class="text-danger">*</span>State </label>
 						<div class="form-group">
 							<select name="state" class="form-control" id="state">
-								<option value=""> <?= $school['state_name']; ?></option>
+								<option value="" > <?= $school['state_name']; ?></option>
 								
 							</select>
 							<span class="text-danger"><?= form_error('state');?></span>
@@ -192,4 +191,14 @@ $(document).ready(function() {
         }
     });
 });
+</script>
+<script type="text/javascript">
+	function showhide()
+	{
+		 $(document).ready(function () {
+        $("#st").click(function(){
+    // $("#ost").show();
+    $("#gst").hide();
+        	
+	});
 </script>

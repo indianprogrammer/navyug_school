@@ -119,7 +119,7 @@ class School extends MX_Controller
                 );
 
                 $this->School_model->update_school($id, $params);
-                redirect('school/index');
+                // redirect('school/index');
             } else {
                 $data['_view'] = 'edit';
                 $this->load->view('index', $data);

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-sm-12">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">School Listing</h3>
@@ -7,8 +7,8 @@
                     <a href="<?php echo site_url('school/add_school'); ?>" class="btn btn-success btn-sm">Add</a>
                 </div>
             </div>
-            <div class="box-body">
-                <table class="table table-striped">
+            <div class="box-body table-responsive">
+                <table class="table table-striped ">
                     <tr>
                         <th>ID</th>
                         <th>Name</th>

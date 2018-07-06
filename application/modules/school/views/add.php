@@ -106,6 +106,7 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="" value="">
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-success">
