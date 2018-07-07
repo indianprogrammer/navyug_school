@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2018 at 12:59 PM
+-- Generation Time: Jul 07, 2018 at 12:36 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -65,7 +65,10 @@ CREATE TABLE `master_cities` (
 
 INSERT INTO `master_cities` (`id`, `state_id`, `city_name`) VALUES
 (1, 7, 'durg'),
-(2, 7, 'raipur');
+(2, 7, 'raipur'),
+(3, 8, 'bangalore'),
+(4, 9, 'hyd'),
+(5, 2, 'hyd');
 
 -- --------------------------------------------------------
 
@@ -83,7 +86,10 @@ CREATE TABLE `master_country` (
 --
 
 INSERT INTO `master_country` (`id`, `country_name`) VALUES
-(101, 'india');
+(101, 'india'),
+(102, 'aus'),
+(103, 'pak'),
+(104, 'nz');
 
 -- --------------------------------------------------------
 
@@ -142,7 +148,9 @@ INSERT INTO `master_state` (`id`, `state_name`, `country_id`) VALUES
 (38, 'Uttar Pradesh', 101),
 (39, 'Uttarakhand', 101),
 (40, 'Vaishali', 101),
-(41, 'West Bengal', 101);
+(41, 'West Bengal', 101),
+(42, 'xxx', 103),
+(43, 'yyy', 102);
 
 -- --------------------------------------------------------
 
@@ -170,7 +178,11 @@ CREATE TABLE `school` (
 --
 
 INSERT INTO `school` (`id`, `school_name`, `address`, `latlong`, `contact_pri`, `contact_sec`, `email`, `logo`, `banner`, `city_id`, `state_id`, `country_id`) VALUES
-(6, 'sdf', 'sdfdfsdfs', '4234', '5545345345', '4534534', 'vivek.et1993@gmail.com', 'erw', 'rew', 2, 7, 101);
+(6, 'vivek', 'sdfdfsdfs', '4234', '5545345345', '4534534', 'vivek.et1993@gmail.comg', 'erw', 'rew', 2, 7, 101),
+(7, 'holly cross high school', 'civil line ,kawardha', '34.44', '987654636', '', 'hchs@gmail.com', 'pic', 'picjj', 2, 101, 101),
+(8, 'vivekanand high school', 'kailash nagar ,kawardha', '34.55', '9293845754', '9832983932', 'viveknand@gmail.com', 'rr', 'ff', 2, 7, 101),
+(10, 'umesh', 'fdsf', 'fg', '5545345345', '4534534', 'vivek.et199e@gmail.com', 'fgdg', 'fdg', 1, 7, 101),
+(11, 'ssm', 'pensionbada', 'sdas', '+914983492343', '3123123123', 'ssm@gmail.com', 'das', 'efew', 5, 2, 101);
 
 --
 -- Indexes for dumped tables
@@ -220,25 +232,25 @@ ALTER TABLE `authentication`
 -- AUTO_INCREMENT for table `master_cities`
 --
 ALTER TABLE `master_cities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `master_country`
 --
 ALTER TABLE `master_country`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `master_state`
 --
 ALTER TABLE `master_state`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `school`
 --
 ALTER TABLE `school`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

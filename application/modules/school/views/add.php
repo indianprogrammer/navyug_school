@@ -4,6 +4,11 @@
             <div class="box-header with-border">
                 <h2 class="box-title">School Add</h2>
             </div>
+            <?php if($status=$this->session->flashdata('status')){?>
+                 <div class="alert alert-success">
+                    <?php echo $status ?>
+                 </div>                 
+                 <?php } ?> 
             <?= form_open('school/add') ?>
             <div class="box-body">
                 <div class="row clearfix">
@@ -11,7 +16,7 @@
                         <label for="name" class="control-label"><span class="text-danger">*</span>Name</label>
                         <div class="form-group">
                             <input type="text" name="name" value="<?= $this->input->post('name') ?>"
-                                   class="form-control" id="name"/>
+                            class="form-control" id="name"/>
                             <span class="text-danger"><?= form_error('name') ?></span>
                         </div>
                     </div>
@@ -19,7 +24,7 @@
                         <label for="address" class="control-label"><span class="text-danger">*</span>Address</label>
                         <div class="form-group">
                             <textarea name="address" class="form-control"
-                                      id="address"><?= $this->input->post('address') ?></textarea>
+                            id="address"><?= $this->input->post('address') ?></textarea>
                             <span class="text-danger"><?= form_error('address') ?></span>
                         </div>
                     </div>
@@ -27,7 +32,7 @@
                         <label for="email" class="control-label"><span class="text-danger">*</span>Email</label>
                         <div class="form-group">
                             <input type="text" name="email" value="<?= $this->input->post('email') ?>"
-                                   class="form-control" id="email"/>
+                            class="form-control" id="email"/>
                             <span class="text-danger"><?= form_error('email') ?></span>
                         </div>
                     </div>
@@ -35,7 +40,7 @@
                         <label for="contact_pri" class="control-label"><span class="text-danger">*</span>Contact Primary</label>
                         <div class="form-group">
                             <input type="text" name="contact_pri" value="<?= $this->input->post('contact_pri') ?>"
-                                   class="form-control" id="contact_pri"/>
+                            class="form-control" id="contact_pri"/>
                             <span class="text-danger"><?= form_error('contact_pri') ?></span>
                         </div>
                     </div>
@@ -43,7 +48,7 @@
                         <label for="contact_sec" class="control-label">Contact Secondry</label>
                         <div class="form-group">
                             <input type="text" name="contact_sec" value="<?= $this->input->post('contact_sec') ?>"
-                                   class="form-control" id="contact_sec"/>
+                            class="form-control" id="contact_sec"/>
                             <span class="text-danger"><?= form_error('contact_sec') ?></span>
                         </div>
                     </div>
@@ -83,7 +88,7 @@
                         <label for="latlong" class="control-label"><span class="text-danger">*</span>Latlong</label>
                         <div class="form-group">
                             <input type="text" name="latlong" value="<?= $this->input->post('latlong') ?>"
-                                   class="form-control" id="latlong"/>
+                            class="form-control" id="latlong"/>
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                         </div>
                     </div>
@@ -91,16 +96,16 @@
                         <label for="logo" class="control-label"><span class="text-danger">*</span> Upload Logo</label>
                         <div class="form-group">
                             <input type="text" name="logo" value="<?= $this->input->post('logo') ?>"
-                                   class="form-control" id="logo"/>
+                            class="form-control" id="logo"/>
                             <span class="text-danger"><?= form_error('logo') ?></span>
                         </div>
                     </div>
                     <div class="col-md-7 col-sm-12">
                         <label for="banner" class="control-label"><span class="text-danger">*</span> Upload
-                            Banner</label>
+                        Banner</label>
                         <div class="form-group">
                             <input type="text" name="banner" value="<?= $this->input->post('banner') ?>"
-                                   class="form-control" id="banner"/>
+                            class="form-control" id="banner"/>
                             <span class="text-danger"><?= form_error('banner') ?></span>
                         </div>
                     </div>
@@ -178,25 +183,25 @@
 
 <!-- only number allowed validation -->
 <script type="text/javascript">
-$(document).ready(function() {
-    $("#contact_pri,#contact_sec").keydown(function (e) {
+    $(document).ready(function() {
+        $("#contact_pri,#contact_sec").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
              // Allow: Ctrl/cmd+A
-            (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+             (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
              // Allow: Ctrl/cmd+C
-            (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+             (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
              // Allow: Ctrl/cmd+X
-            (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+             (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
              // Allow: home, end, left, right
-            (e.keyCode >= 35 && e.keyCode <= 39)) {
+             (e.keyCode >= 35 && e.keyCode <= 39)) {
                  // let it happen, don't do anything
-                 return;
-        }
+             return;
+         }
         // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 107)  ) {
             e.preventDefault();
         }
     });
-});
+    });
 </script>

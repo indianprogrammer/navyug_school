@@ -15,19 +15,19 @@ class School extends MX_Controller
      */
     function index()
     {
-        
+
         $data['_view'] = 'dashbord';
 
-        $this->load->view('index', $data);
+        $this->load->view('../index', $data);
     }
     
-     function school_list()
-     {
+    function school_list()
+    {
         $data['school'] = $this->School_model->get_all_school();
 
         $data['_view'] = 'schoollist';
         $this->load->view('index', $data);
-     }
+    }
 
     function add_school()
     {
@@ -48,9 +48,9 @@ class School extends MX_Controller
         $this->form_validation->set_rules('state', 'State', 'required');
         $this->form_validation->set_rules('country', 'Country', 'required');
         $this->form_validation->set_rules('name', 'Name', 'required|max_length[300]');
-        $this->form_validation->set_rules('contact_pri', 'Contact Pri', 'max_length[13]');
-        $this->form_validation->set_rules('contact_sec', 'Contact Sec', 'max_length[13]');
-        $this->form_validation->set_rules('email', 'Email', 'required|max_length[255]|valid_email');
+        $this->form_validation->set_rules('contact_pri', 'Primary Number', 'max_length[13]','min_length[10]');
+        $this->form_validation->set_rules('contact_sec', 'Secondry Number', 'max_length[13]','min_length[10]');
+        $this->form_validation->set_rules('email', 'Email', 'required|max_length[255]|valid_email|is_unique[school.email]');
         $this->form_validation->set_rules('logo', 'Logo', 'required');
         $this->form_validation->set_rules('banner', 'Banner', 'required');
         $this->form_validation->set_rules('address', 'Address', 'required');
@@ -72,10 +72,12 @@ class School extends MX_Controller
             );
 
             $school_id = $this->School_model->add_school($params);
-            redirect('school/index');
+            $this->session->set_flashdata('status','Successfully added');
+              $data['_view'] = 'add';
+             $this->load->view('index', $data);
         } else {
-            $data['_view'] = 'add';
-            $this->load->view('index', $data);
+            $this->session->set_flashdata('status','Failed to added');
+           
         }
     }
 
@@ -86,17 +88,23 @@ class School extends MX_Controller
     {
         // check if the school exists before trying to edit it
         $data['school'] = $this->School_model->get_school($id);
+        // var_dump($data['school']);
         $data['country'] = $this->School_model->fetch_country();
+        
+        $data['state'] = $this->School_model->fetchState($data['school']['country_id']);
+        $data['city'] = $this->School_model->fetchCity($data['school']['state_id']);
+          // var_dump($data['state']);
+         // die;
 
         if (isset($data['school']['id'])) {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('city', 'City Id', 'required');
-            $this->form_validation->set_rules('state', 'State Id', 'required');
-            $this->form_validation->set_rules('country', 'Country Id', 'required');
+            $this->form_validation->set_rules('city', 'City Name', 'required');
+            $this->form_validation->set_rules('state', 'State Name', 'required');
+            $this->form_validation->set_rules('country', 'Country Name', 'required');
             $this->form_validation->set_rules('name', 'Name', 'required|max_length[300]');
-            $this->form_validation->set_rules('contact_pri', 'Contact Pri', 'max_length[13]');
-            $this->form_validation->set_rules('contact_sec', 'Contact Sec', 'max_length[13]');
+            $this->form_validation->set_rules('contact_pri', 'Primary Number', 'max_length[13]','min_length[10]');
+            $this->form_validation->set_rules('contact_sec', 'Secondry Number', 'max_length[13]','min_length[10]');
             $this->form_validation->set_rules('email', 'Email', 'required|max_length[255]|valid_email');
             $this->form_validation->set_rules('logo', 'Logo', 'required');
             $this->form_validation->set_rules('banner', 'Banner', 'required');
@@ -105,6 +113,7 @@ class School extends MX_Controller
 
             if ($this->form_validation->run()) {
                 $params = array(
+                    // 'school_id' => $this->School_model->get_school($id),
                     'city_id' => $this->input->post('city'),
                     'state_id' => $this->input->post('state'),
                     'country_id' => $this->input->post('country'),
@@ -119,13 +128,14 @@ class School extends MX_Controller
                 );
 
                 $this->School_model->update_school($id, $params);
-                // redirect('school/index');
+                redirect('school/index');
             } else {
                 $data['_view'] = 'edit';
-                $this->load->view('index', $data);
+                //var_dump($data);
+                $this->load->view('../index', $data);
             }
         } else
-            show_error('The school you are trying to edit does not exist.');
+        show_error('The school you are trying to edit does not exist.');
     }
 
     /*
@@ -140,7 +150,7 @@ class School extends MX_Controller
             $this->School_model->delete_school($id);
             redirect('school/school_list');
         } else
-            show_error('The school you are trying to delete does not exist.');
+        show_error('The school you are trying to delete does not exist.');
     }
 
 
