@@ -124,61 +124,90 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript">
-    var selectState = '<option value="">Select State</option>';
-    var selectCity = '<option value="">Select City</option>';
-    $(document).ready(function () {
-        $('#country').change(function () {
-            var country_id = $('#country').val();
-            console.log(country_id);
-            if (country_id != '') {
-                $.ajax({
-                    url: "<?=base_url() ?>school/fetch_state",
-                    method: "POST",
-                    data: {country_id: country_id},
-                    success: function (data) {
-                        console.log(data);
-                        var obj = JSON.parse(data);
-                        var i;
-                        var state = selectState;
-                        for (i = 0; i < obj.length; i++) {
-                            state += '<option value="' + obj[i].id + '">' + obj[i].state_name + '</option>';
-                            $('#state').html(state);
+            <script type="text/javascript">
+                var selectState = '<option value="">Select State</option>';
+                var selectCity = '<option value="">Select City</option>';
+                $(document).ready(function () {
+                    $('#country').change(function () {
+                        var country_id = $('#country').val();
+                        console.log(country_id);
+                        if (country_id != '') {
+                            populateState(country_id);
+                        }else {
+                            $('#state').html(selectState);
+                            $('#city').html(selectCity);
                         }
-                        $('#city').html(selectCity);
-                    }
-                });
-            }else {
-                $('#state').html(selectState);
-                $('#city').html(selectCity);
-            }
-        });
-        $('#state').change(function () {
-            var state_id = $('#state').val();
-            console.log(state_id);
-            if (state_id != '') {
-                $.ajax({
-                    url: "<?=base_url() ?>school/fetch_city",
-                    method: "POST",
-                    data: {state_id: state_id},
-                    success: function (data) {
-                        var obj = JSON.parse(data);
-                        var i;
-                        var city;
-                        for (i = 0; i < obj.length; i++) {
-                            city += '<option value="' + obj[i].id + '">' + obj[i].city_name + '</option>';
-                            $('#city').html(city);
+                    });
+                    $('#state').change(function () {
+                        var state_id = $('#state').val();
+                        console.log(state_id);
+                        if (state_id != '') {
+                            populateCity(state_id);
                         }
-                    }
+                        else {
+                            $('#city').html(selectCity);
+                        }
+                    });
                 });
-            }
-            else {
-                $('#city').html(selectCity);
-            }
-        });
-    });
 
-</script>
+                function populateCity(state_id){
+                    console.log(state_id);
+                    $.ajax({
+                        url: "<?=base_url() ?>school/fetch_city",
+                        method: "POST",
+                        data: {state_id: state_id},
+                        success: function (data) {
+                                console.log(obj);
+                            var obj = JSON.parse(data);
+                            if(obj)
+                            {
+                                // console.log(obj);
+                            var i;
+                            var city;
+                            // console.log(obj);
+                            for (i = 0; i < obj.length; i++) {
+                                city += '<option value="' + obj[i].id + '">' + obj[i].city_name + '</option>';
+                                $('#city').html(city);
+                            }
+                        }
+                        else
+                        {
+                             $('#city').html('<option value="">city not available</option>');
+                        }
+                    } 
+                    });
+                }
+                function populateState(country_id)
+                {
+                    $.ajax({
+                        url: "<?=base_url() ?>school/fetch_state",
+                        method: "POST",
+                        data: {country_id: country_id},
+                        success: function (data) {
+                            console.log(data);
+                            // console.log(data);
+                            var obj = JSON.parse(data);
+                            if(obj)
+                            {
+                            var i;
+                            var state = selectState;
+                            for (i = 0; i < obj.length; i++) {
+                                state += '<option value="' + obj[i].id + '">' + obj[i].state_name + '</option>';
+                                $('#state').html(state);
+                            }
+                            $('#city').html(selectCity);
+                            }
+                            else
+                            {
+                                 $('#state').html('<option value="">state not available</option>');
+                                 $('#city').html('<option value="">city not  avilable</option>');
+                            }
+                        }
+                    });
+
+               }
+
+            </script>
 <!-- dropdown city and state ajax  end -->
 
 <!-- only number allowed validation -->

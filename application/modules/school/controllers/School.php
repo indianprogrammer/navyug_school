@@ -41,15 +41,15 @@ class School extends MX_Controller
      * Adding a new school
      */
     function add()
-    {
+    {   $data['country'] = $this->School_model->fetch_country();
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('city', 'City', 'required');
         $this->form_validation->set_rules('state', 'State', 'required');
         $this->form_validation->set_rules('country', 'Country', 'required');
         $this->form_validation->set_rules('name', 'Name', 'required|max_length[300]');
-        $this->form_validation->set_rules('contact_pri', 'Primary Number', 'max_length[13]','min_length[10]');
-        $this->form_validation->set_rules('contact_sec', 'Secondry Number', 'max_length[13]','min_length[10]');
+        $this->form_validation->set_rules('contact_pri', 'Primary Number', 'required|max_length[13]','min_length[10]');
+        $this->form_validation->set_rules('contact_sec', 'Secondry Number', 'max_length[13]|min_length[10]');
         $this->form_validation->set_rules('email', 'Email', 'required|max_length[255]|valid_email|is_unique[school.email]');
         $this->form_validation->set_rules('logo', 'Logo', 'required');
         $this->form_validation->set_rules('banner', 'Banner', 'required');
@@ -74,9 +74,11 @@ class School extends MX_Controller
             $school_id = $this->School_model->add_school($params);
             $this->session->set_flashdata('status','Successfully added');
               $data['_view'] = 'add';
-             $this->load->view('index', $data);
+             $this->load->view('../index', $data);
         } else {
-            $this->session->set_flashdata('status','Failed to added');
+            $data['_view'] = 'add';
+             $this->load->view('../index', $data);
+            // $this->session->set_flashdata('status','Failed to added');
            
         }
     }

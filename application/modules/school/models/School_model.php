@@ -76,7 +76,9 @@ class School_model extends CI_Model
       $this->db->where('country_id', $country_id);
       // $this->db->order_by('name', 'ASC');
       $query = $this->db->get('master_state');  
-      return $query->result_array();
+       return $result = ($query->num_rows() > 0)?$query->result_array():FALSE;
+
+       // return $query->result_array();
 
     }
 
@@ -85,8 +87,9 @@ class School_model extends CI_Model
       $this->db->where('state_id', $state_id);
       // $this->db->order_by('state_name', 'ASC');
       $query = $this->db->get('master_cities');
-      return $query->result_array();
-     }
+      return $result = ($query->num_rows() > 0)?$query->result_array():FALSE;
+       // return $query->result_array();
+    }
     function fetchState($countryId)
     { 
       $this->db->select('*');
