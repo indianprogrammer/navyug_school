@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2018 at 12:36 PM
+-- Generation Time: Jul 09, 2018 at 10:18 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -182,7 +182,59 @@ INSERT INTO `school` (`id`, `school_name`, `address`, `latlong`, `contact_pri`, 
 (7, 'holly cross high school', 'civil line ,kawardha', '34.44', '987654636', '', 'hchs@gmail.com', 'pic', 'picjj', 2, 101, 101),
 (8, 'vivekanand high school', 'kailash nagar ,kawardha', '34.55', '9293845754', '9832983932', 'viveknand@gmail.com', 'rr', 'ff', 2, 7, 101),
 (10, 'umesh', 'fdsf', 'fg', '5545345345', '4534534', 'vivek.et199e@gmail.com', 'fgdg', 'fdg', 1, 7, 101),
-(11, 'ssm', 'pensionbada', 'sdas', '+914983492343', '3123123123', 'ssm@gmail.com', 'das', 'efew', 5, 2, 101);
+(11, 'ssms', 'pensionbada', 'sdas', '+914983492343', '3123123123', 'ssm@gmail.com', 'das', 'efew', 5, 101, 101);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `id` int(12) NOT NULL,
+  `student_name` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `mobile` varchar(20) NOT NULL,
+  `address` text NOT NULL,
+  `profile_image` varchar(255) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`id`, `student_name`, `email`, `username`, `mobile`, `address`, `profile_image`, `password`) VALUES
+(2, 'vivek chourasiya', 'vivek.et1993@gmail.com', 'umesh', '123213132', 'fsdsdfds', 'http://xschool.9yug.net/uploads/controller6.png', 'grgre'),
+(3, 'vivek chourasiya', 'umesh13220@gmail.com', 'project', '1212133333', 'gfdgfdgfd', 'http://xschool.9yug.net/uploads/Tulips.jpg', '323213');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `trainers`
+--
+
+CREATE TABLE `trainers` (
+  `id` int(12) NOT NULL,
+  `trainer_Name` varchar(100) NOT NULL,
+  `qualification` varchar(50) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `mobile` varchar(15) NOT NULL,
+  `profile_image` varchar(255) NOT NULL,
+  `address` text NOT NULL,
+  `created_at` date NOT NULL,
+  `modified_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `trainers`
+--
+
+INSERT INTO `trainers` (`id`, `trainer_Name`, `qualification`, `email`, `password`, `mobile`, `profile_image`, `address`, `created_at`, `modified_at`) VALUES
+(1, 'ghf', 'ghf', 'vivek.et1993@gmail.com', 'gdfg', 'fgdfg', 'http://xschool.9yug.net/uploads/model1.png', 'gfdg', '0000-00-00', '0000-00-00'),
+(2, 'ghf', 'ghf', 'vivek.et1993@gmail.com', 'gdfg', 'fgdfg', 'http://xschool.9yug.net/uploads/model2.png', 'gfdg', '0000-00-00', '0000-00-00');
 
 --
 -- Indexes for dumped tables
@@ -219,6 +271,18 @@ ALTER TABLE `school`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `trainers`
+--
+ALTER TABLE `trainers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -251,6 +315,18 @@ ALTER TABLE `master_state`
 --
 ALTER TABLE `school`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `trainers`
+--
+ALTER TABLE `trainers`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
