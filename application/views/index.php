@@ -61,6 +61,42 @@
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
+          </li> 
+          <li class="nav-item">
+            <a href="<?= site_url()?>student/add_student" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                ADD STUDENT
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="<?= site_url()?>trainer/trainer_list" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                STUDENT LIST
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= site_url()?>trainer/add_trainer" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                ADD TRAINER
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="<?= site_url()?>trainer/trainer_list" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                TRAINER LIST
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
           </li>
          <!--  <li class="nav-item has-treeview">
             <a href="<?= site_url()?>school/add_school" class="nav-link">
