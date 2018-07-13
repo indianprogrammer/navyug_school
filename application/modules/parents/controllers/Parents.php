@@ -4,36 +4,36 @@
  * www.crudigniter.com
  */
  
-class Trainer extends BaseController{
+class Parents extends BaseController{
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Trainer_model');
+         $this->load->model('Parents_model');
     } 
 
     /*
-     * Listing of trainers
+     * Listing of parents
      */
-    function trainer_list()
+    function parent_list()
     {   $this->load->library('pagination');
          $params['limit'] = 100; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
         $config = $this->config->item('pagination');
-        $config['base_url'] = site_url('trainer/index?');
-        $config['total_rows'] = $this->Trainer_model->get_all_trainers_count();
+        $config['base_url'] = site_url('parent/index?');
+        $config['total_rows'] = $this->Parents_model->get_all_parents_count();
         $this->pagination->initialize($config);
 
-        $data['trainers'] = $this->Trainer_model->get_all_trainers($params);
+        $data['parents'] = $this->Parents_model->get_all_parents($params);
         
-        $data['_view'] = 'trainerList';
+        $data['_view'] = 'parentList';
         $this->load->view('../index',$data);
     }
 
     /*
-     * Adding a new trainer
+     * Adding a new parent
      */
-    function add_trainer()
+    function add_parent()
     {
         $data['_view'] = 'add';
         $this->load->view('../index',$data);
@@ -45,7 +45,7 @@ class Trainer extends BaseController{
        $config['allowed_types']        = 'gif|jpg|png';
        $this->load->library('upload', $config);
 		$this->form_validation->set_rules('password','Password','required');
-		$this->form_validation->set_rules('trainer_Name','Trainer Name','required|max_length[100]');
+		$this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
 		$this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
 		$this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
 		$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
@@ -56,8 +56,8 @@ class Trainer extends BaseController{
         {   
             $params = array(
 				'password' => $this->input->post('password'),
-				'trainer_Name' => $this->input->post('trainer_Name'),
-                'qualification' => $this->input->post('qualification'),
+				'parent_Name' => $this->input->post('parent_Name'),
+                // 'qualification' => $this->input->post('qualification'),
 				'username' => $this->input->post('username'),
 				'email' => $this->input->post('email'),
 				'mobile' => $this->input->post('mobile'),
@@ -72,33 +72,30 @@ class Trainer extends BaseController{
         $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
                // echo $image_path;die;
         $params['profile_image']=$image_path;
-            $trainer_id = $this->Trainer_model->add_trainer($params);
-            redirect('trainer/add/successmodal');
+            $parent_id = $this->Parents_model->add_parent($params);
+            redirect('Parents/add');
         }
         else
         {            
-            $data['_view'] = 'add_trainer';
+            $data['_view'] = 'add';
             $this->load->view('../index',$data);
         }
     }  
 
     /*
-     * Editing a trainer
+     * Editing a parent
      */
     function edit($id)
     {   
-        // check if the trainer exists before trying to edit it
-        $data['trainer'] = $this->Trainer_model->get_trainer($id);
-         $config['upload_path']          = './uploads/';
-       $config['allowed_types']        = 'gif|jpg|png';
-       $this->load->library('upload', $config);
+        // check if the parent exists before trying to edit it
+        $data['parent'] = $this->Parents_model->get_parent($id);
         
-        if(isset($data['trainer']['id']))
+        if(isset($data['parent']['id']))
         {
             $this->load->library('form_validation');
 
 			$this->form_validation->set_rules('password','Password','required');
-			$this->form_validation->set_rules('trainer_Name','Trainer Name','required|max_length[100]');
+			$this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
 			$this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
 			$this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
 			$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
@@ -109,7 +106,7 @@ class Trainer extends BaseController{
             {   
                 $params = array(
 					'password' => $this->input->post('password'),
-					'trainer_Name' => $this->input->post('trainer_Name'),
+					'parent_Name' => $this->input->post('parent_Name'),
                     'username' => $this->input->post('username'),
 					'qualification' => $this->input->post('qualification'),
 					'email' => $this->input->post('email'),
@@ -118,13 +115,9 @@ class Trainer extends BaseController{
 					'address' => $this->input->post('address'),
                     'modified_at'=>date('d-m-y/h-m'),
                 );
-                 $data['image'] =  $this->upload->data();
-              // var_dump($data);
-        $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
-               // echo $image_path;die;
-        $params['profile_image']=$image_path;
-                $this->Trainer_model->update_trainer($id,$params);            
-                redirect('trainer/trainer_list');
+
+                $this->Parents_model->update_parent($id,$params);            
+                redirect('parents/parent_list');
             }   
             else
             {
@@ -133,24 +126,24 @@ class Trainer extends BaseController{
             }
         }
         else
-            show_error('The trainer you are trying to edit does not exist.');
+            show_error('The parent you are trying to edit does not exist.');
     } 
 
     /*
-     * Deleting trainer
+     * Deleting parent
      */
     function remove($id)
     {
-        $trainer = $this->Trainer_model->get_trainer($id);
+        $parent = $this->Parents_model->get_parent($id);
 
-        // check if the trainer exists before trying to delete it
-        if(isset($trainer['id']))
+        // check if the parent exists before trying to delete it
+        if(isset($parent['id']))
         {
-            $this->Trainer_model->delete_trainer($id);
-            redirect('trainer/trainerlist');
+            $this->Parents_model->delete_parent($id);
+            redirect('parents/parent_list');
         }
         else
-            show_error('The trainer you are trying to delete does not exist.');
+            show_error('The parent you are trying to delete does not exist.');
     }
     
 }

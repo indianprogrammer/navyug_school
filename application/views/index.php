@@ -98,6 +98,24 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="<?= site_url()?>parents/add_parent" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                ADD PARENTS
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= site_url()?>parents/parent_list" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                PARENT LIST
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
          <!--  <li class="nav-item has-treeview">
             <a href="<?= site_url()?>school/add_school" class="nav-link">
               <i class="nav-icon fa fa-pie-chart"></i>

@@ -1,19 +1,13 @@
-<?php echo form_open_multipart('trainer/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open_multipart('parents/add',array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
-		<label for="trainer_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Trainer Name</label>
+		<label for="parent_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Name</label>
 		<div class="col-md-8">
-			<input type="text" name="trainer_Name" value="<?php echo $this->input->post('trainer_Name'); ?>" class="form-control" id="trainer_Name" />
-			<span class="text-danger"><?php echo form_error('trainer_Name');?></span>
+			<input type="text" name="parent_Name" value="<?php echo $this->input->post('parent_Name'); ?>" class="form-control" id="parent_Name" />
+			<span class="text-danger"><?php echo form_error('parent_Name');?></span>
 		</div>
 	</div>
-	<div class="form-group">
-		<label for="qualification" class="col-md-4 control-label"><span class="text-danger">*</span>Qualification</label>
-		<div class="col-md-8">
-			<input type="text" name="qualification" value="<?php echo $this->input->post('qualification'); ?>" class="form-control" id="qualification" />
-			<span class="text-danger"><?php echo form_error('qualification');?></span>
-		</div>
-	</div>
+	
 	<div class="form-group">
 		<label for="username" class="col-md-4 control-label"><span class="text-danger">*</span>UserName</label>
 		<div class="col-md-8">
@@ -42,13 +36,13 @@
 			<span class="text-danger"><?php echo form_error('mobile');?></span>
 		</div>
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label for="profile_image" class="col-md-4 control-label"><span class="text-danger">*</span>Profile Image</label>
 		<div class="col-md-8">
 			<input type="file" name="profile_image" value="<?php echo $this->input->post('profile_image'); ?>" class="form-control" id="profile_image" />
 			<span class="text-danger"><?php echo form_error('profile_image');?></span>
 		</div>
-	</div>
+	</div> -->
 	<div class="form-group">
 		<label for="address" class="col-md-4 control-label"><span class="text-danger">*</span>Address</label>
 		<div class="col-md-8">

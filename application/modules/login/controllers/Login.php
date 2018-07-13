@@ -8,7 +8,7 @@ class Trainer extends BaseController{
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Trainer_model');
+        // $this->load->model('Trainer_model');
     } 
 
     /*
@@ -73,7 +73,7 @@ class Trainer extends BaseController{
                // echo $image_path;die;
         $params['profile_image']=$image_path;
             $trainer_id = $this->Trainer_model->add_trainer($params);
-            redirect('trainer/add/successmodal');
+            redirect('trainer/add?successmodal');
         }
         else
         {            
@@ -147,7 +147,7 @@ class Trainer extends BaseController{
         if(isset($trainer['id']))
         {
             $this->Trainer_model->delete_trainer($id);
-            redirect('trainer/trainerlist');
+            redirect('trainer/index');
         }
         else
             show_error('The trainer you are trying to delete does not exist.');
