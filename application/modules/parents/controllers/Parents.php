@@ -4,7 +4,7 @@
  * www.crudigniter.com
  */
  
-class Parents extends BaseController{
+class Parents extends MY_Controller{
     function __construct()
     {
         parent::__construct();

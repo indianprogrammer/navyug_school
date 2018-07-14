@@ -72,7 +72,7 @@
             </a>
           </li>
            <li class="nav-item">
-            <a href="<?= site_url()?>trainer/trainer_list" class="nav-link">
+            <a href="<?= site_url()?>student/index" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
                 STUDENT LIST

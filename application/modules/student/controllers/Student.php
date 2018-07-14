@@ -1,7 +1,7 @@
 <?php
 
  
-class Student extends CI_Controller{
+class Student extends MY_Controller{
     function __construct()
     {
         parent::__construct();
@@ -15,26 +15,36 @@ class Student extends CI_Controller{
     {
         $data['student'] = $this->Student_model->get_all_student();
         
-        $data['_view'] = 'student/index';
-        $this->load->view('layouts/main',$data);
+        $data['_view'] = 'studentList';
+        $this->load->view('index',$data);
     }
 
     /*
      * Adding a new student
      */
+ function add_student()
+ {
+     $data['_view'] = 'add';
+        $this->load->view('index',$data);
+ }
+
+
     function add()
     {   
         $this->load->library('form_validation');
+          $config['upload_path']          = './uploads/';
+       $config['allowed_types']        = 'gif|jpg|png';
+       $this->load->library('upload', $config);
 
         $this->form_validation->set_rules('password','Password','required|max_length[20]');
         $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
         $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
         $this->form_validation->set_rules('username','Username','required|max_length[100]');
         $this->form_validation->set_rules('mobile','Mobile','required');
-        $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
+        // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
         $this->form_validation->set_rules('address','Address','required');
         
-        if($this->form_validation->run())     
+        if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
         {   
             $params = array(
                 'password' => $this->input->post('password'),
@@ -45,14 +55,19 @@ class Student extends CI_Controller{
                 'profile_image' => $this->input->post('profile_image'),
                 'address' => $this->input->post('address'),
             );
+             $data['image'] =  $this->upload->data();
+              // var_dump($data);
+            $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
+               // echo $image_path;die;
+            $params['profile_image']=$image_path;
             
             $student_id = $this->Student_model->add_student($params);
             redirect('student/index');
         }
         else
         {            
-            $data['_view'] = 'student/add';
-            $this->load->view('layouts/main',$data);
+            $data['_view'] = 'add';
+            $this->load->view('index',$data);
         }
     }  
 
@@ -63,6 +78,9 @@ class Student extends CI_Controller{
     {   
         // check if the student exists before trying to edit it
         $data['student'] = $this->Student_model->get_student($id);
+         $config['upload_path']          = './uploads/';
+       $config['allowed_types']        = 'gif|jpg|png';
+       $this->load->library('upload', $config);
         
         if(isset($data['student']['id']))
         {
@@ -76,7 +94,7 @@ class Student extends CI_Controller{
             $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
             $this->form_validation->set_rules('address','Address','required');
         
-            if($this->form_validation->run())     
+            if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
             {   
                 $params = array(
                     'password' => $this->input->post('password'),
@@ -87,14 +105,18 @@ class Student extends CI_Controller{
                     'profile_image' => $this->input->post('profile_image'),
                     'address' => $this->input->post('address'),
                 );
-
+                 $data['image'] =  $this->upload->data();
+              // var_dump($data);
+                 $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
+               // echo $image_path;die;
+                 $params['profile_image']=$image_path;
                 $this->Student_model->update_student($id,$params);            
                 redirect('student/index');
             }
             else
             {
-                $data['_view'] = 'student/edit';
-                $this->load->view('layouts/main',$data);
+                $data['_view'] = 'edit';
+                $this->load->view('index',$data);
             }
         }
         else

@@ -24,7 +24,7 @@
 	<div class="form-group">
 		<label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
 		<div class="col-md-8">
-			<input type="text" name="email" value="<?php echo ($this->input->post('email') ? $this->input->post('email') : $trainer['email']); ?>" class="form-control" id="email" />
+			<input type="text" name="email" maxlength="13" value="<?php echo ($this->input->post('email') ? $this->input->post('email') : $trainer['email']); ?>" class="form-control" id="email" />
 			<span class="text-danger"><?php echo form_error('email');?></span>
 		</div>
 	</div>

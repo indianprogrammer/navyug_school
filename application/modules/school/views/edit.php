@@ -31,14 +31,14 @@
 					<div class="col-md-7">
 						<label for="contact_pri" class="control-label"><span class="text-danger">*</span>Contact Primary</label>
 						<div class="form-group">
-							<input type="text" name="contact_pri" value="<?= ($this->input->post('contact_pri') ? $this->input->post('contact_pri') : $school['contact_pri']); ?>" class="form-control" id="contact_pri" />
+							<input type="text" name="contact_pri" maxlength="13" value="<?= ($this->input->post('contact_pri') ? $this->input->post('contact_pri') : $school['contact_pri']); ?>" class="form-control" id="contact_pri" />
 							<span class="text-danger"><?= form_error('contact_pri');?></span>
 						</div>
 					</div>
 					<div class="col-md-7">
 						<label for="contact_sec" class="control-label">Contact Secondry</label>
 						<div class="form-group">
-							<input type="text" name="contact_sec" value="<?= ($this->input->post('contact_sec') ? $this->input->post('contact_sec') :$school['contact_sec'] ); ?>" class="form-control" id="contact_sec" />
+							<input type="text" name="contact_sec"  maxlength="13" value="<?= ($this->input->post('contact_sec') ? $this->input->post('contact_sec') :$school['contact_sec'] ); ?>" class="form-control" id="contact_sec" />
 							<span class="text-danger"><?= form_error('contact_sec');?></span>
 						</div>
 					</div>
