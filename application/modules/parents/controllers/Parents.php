@@ -63,10 +63,10 @@ class Parents extends MY_Controller{
 				'mobile' => $this->input->post('mobile'),
 				// 'profile_image' => $this->input->post('profile_image'),
 				'address' => $this->input->post('address'),
-                'created_at'=>date('d-m-y/h-m'),
-                'modified_at'=>date('d-m-y/h-m'),
+                 'created_at'=>date(),
+                 'modified_at'=>date()
             );
-            // var_dump($params);
+            var_dump($params);
              $data['image'] =  $this->upload->data();
               // var_dump($data);
         $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];

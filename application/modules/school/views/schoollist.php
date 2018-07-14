@@ -41,7 +41,7 @@
                             <td>
                                 <a href="<?php echo site_url('school/edit/' . $s['id']); ?>"
                                  class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a>
-                                 <a onclick="myFunction();" class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a>
+                                 <a onclick="myFunction();" class="btn btn-danger btn-md delete-it"><span class="fa fa-trash"></span> Delete</a>
                              </td>
                          </tr>
                      <?php } ?>

@@ -105,11 +105,12 @@
 								</div>
 								<div class="col-md-7">
 									<label for="latlong" class="control-label"><span class="text-danger">*</span>Latlong</label>
-									<div class="form-group">
-										<input type="text" name="latlong" value="<?= ($this->input->post('latlong') ? $this->input->post('latlong') : $school['latlong']); ?>" class="form-control" id="latlong" />
+									<div class="form-group" id="showlat">
+										<input type="text" name="latlong" value="<?= ($this->input->post('latlong') ? $this->input->post('latlong') : $school['latlong']); ?>" class="form-control" id="latlong" onclick="latMap()" />
 										<span class="text-danger"><?= form_error('latlong');?></span>
 									</div>
 								</div>
+								<div class="col-md-5" id="dvMap" > </div><br>
 								<div class="col-md-7">
 									<label for="logo" class="control-label"><span class="text-danger">*</span>Logo</label>
 									<div class="form-group">
@@ -249,13 +250,29 @@
     });
 				});
 			</script>
-<!-- <script type="text/javascript">
-	function showhide()
-	{
-		 $(document).ready(function () {
-        $("#st").click(function(){
-    // $("#ost").show();
-    $("#gst").hide();
-        	
-	});
-</script> -->
+ <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <script type="text/javascript">
+       function latMap() {
+            $(document).ready(function()
+            {
+            var mapOptions = {
+                center: new google.maps.LatLng(18.9300, 72.8200),
+                zoom: 14,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var infoWindow = new google.maps.InfoWindow();
+            var latlngbounds = new google.maps.LatLngBounds();
+            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+            google.maps.event.addListener(map, 'click', function (e) {
+                // alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
+                var Latitude=e.latLng.lat();
+                var Longitude=e.latLng.lng();
+              var latlang='<input type="text" id="latlong" onclick="latMap()" class="form-control" name="latlong"  value="'+Latitude+' / '+Longitude+'" >';
+                    $('#showlat').html(latlang);
+                    // $("input:text").value(Latitude);
+                 // console.log(latlang);
+            });
+        });
+        }
+    </script>

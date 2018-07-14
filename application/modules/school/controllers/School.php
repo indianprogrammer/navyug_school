@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class School extends MX_Controller
+class School extends MY_Controller
 {
     function __construct()
     {
@@ -69,12 +69,16 @@ class School extends MX_Controller
                 'logo' => $this->input->post('logo'),
                 'banner' => $this->input->post('banner'),
                 'address' => $this->input->post('address'),
-            );
+                 'created_at'=>date('d-m-y/h:m'),
+                // 'modified_at'=>date('d-m-y/h:m')
 
+            );
+            // var_dump($params);die;
             $school_id = $this->School_model->add_school($params);
-            $this->session->set_flashdata('status','Successfully added');
+            // $data=$this->session->set_flashdata('status','Successfully added');
               $data['_view'] = 'add';
              $this->load->view('../index', $data);
+             // header('location:successmodal.php');
         } else {
             $data['_view'] = 'add';
              $this->load->view('../index', $data);
@@ -127,6 +131,7 @@ class School extends MX_Controller
                     'logo' => $this->input->post('logo'),
                     'banner' => $this->input->post('banner'),
                     'address' => $this->input->post('address'),
+                    'modified_at'=>date('d-m-y/h:m')
                 );
 
                 $this->School_model->update_school($id, $params);

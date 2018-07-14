@@ -6,7 +6,7 @@
             </div>
             <?php if($status=$this->session->flashdata('status')){?>
                  <div class="alert alert-success">
-                    <?php echo $status ?>
+                    <?php echo $status ;?>
                  </div>                 
                  <?php } ?> 
             <?= form_open('school/add') ?>
@@ -91,8 +91,8 @@
                             class="form-control" id="latlong" onclick="latMap();"  />
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                         </div>
-                      <div id="dvMap" style="width:300px; height: 300px;"> 
                     </div>
+                      <div class="col-md-5" id="dvMap" > </div><br>
                     <div class="col-md-7 col-sm-12">
                         <label for="logo" class="control-label"><span class="text-danger">*</span> Upload Logo</label>
                         <div class="form-group">
@@ -253,7 +253,7 @@
                 // alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
                 var Latitude=e.latLng.lat();
                 var Longitude=e.latLng.lng();
-              var latlang='<input type="text" id="guns latlong" onclick="latMap()" class="form-control"  value="'+Latitude+' / '+Longitude+'" >';
+              var latlang='<input type="text" id="latlong" onclick="latMap()" class="form-control" name="latlong"  value="'+Latitude+' / '+Longitude+'" >';
                     $('#showlat').html(latlang);
                     // $("input:text").value(Latitude);
                  // console.log(latlang);

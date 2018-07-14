@@ -31,7 +31,7 @@
 	<div class="form-group">
 		<label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Mobile</label>
 		<div class="col-md-8">
-			<input type="text" name="mobile" maxlength="13" value="<?php echo $this->input->post('mobile'); ?>" class="form-control" id="mobile" maxlength="13" />
+			<input type="text" name="mobile" maxlength="13"	 value="<?php echo $this->input->post('mobile'); ?>" class="form-control" id="mobile" maxlength="13" />
 			<span class="text-danger"><?php echo form_error('mobile');?></span>
 		</div>
 	</div>
