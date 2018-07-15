@@ -154,7 +154,7 @@
                     });
                     $('#state').change(function () {
                         var state_id = $('#state').val();
-                        console.log(state_id);
+                        // console.log(state_id);
                         if (state_id != '') {
                             populateCity(state_id);
                         }
@@ -171,7 +171,7 @@
                         method: "POST",
                         data: {state_id: state_id},
                         success: function (data) {
-                                console.log(obj);
+                                // console.log(obj);
                             var obj = JSON.parse(data);
                             if(obj)
                             {

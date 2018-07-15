@@ -44,4 +44,15 @@ class Login_model extends CI_Model{
         // then return false.
         return false;
     }
+    public function getResult($username,$password){
+            // $query = $this->db->get_where('authentication', array('username'=>$username, 'password'=>$password));
+          $this->db->where('username', $username);
+        $this->db->where('password', $password);
+        
+        // Run the query
+        $query = $this->db->get('authentication');
+        // var_dump($query->row());
+            return $query->row();
+        }
 }
+?>

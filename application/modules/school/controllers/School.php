@@ -69,20 +69,20 @@ class School extends MY_Controller
                 'logo' => $this->input->post('logo'),
                 'banner' => $this->input->post('banner'),
                 'address' => $this->input->post('address'),
-                 'created_at'=>date('d-m-y/h:m'),
-                // 'modified_at'=>date('d-m-y/h:m')
+                 'created_at'=>date('Y-m-d h:i:s'),
+                 'modified_at'=>date('Y-m-d h:i:s')
 
             );
             // var_dump($params);die;
             $school_id = $this->School_model->add_school($params);
-            // $data=$this->session->set_flashdata('status','Successfully added');
+             $data=$this->session->set_flashdata('status','Successfully added');
               $data['_view'] = 'add';
              $this->load->view('../index', $data);
              // header('location:successmodal.php');
         } else {
+             $this->session->set_flashdata('status','Failed to added');
             $data['_view'] = 'add';
              $this->load->view('../index', $data);
-            // $this->session->set_flashdata('status','Failed to added');
            
         }
     }
@@ -131,7 +131,7 @@ class School extends MY_Controller
                     'logo' => $this->input->post('logo'),
                     'banner' => $this->input->post('banner'),
                     'address' => $this->input->post('address'),
-                    'modified_at'=>date('d-m-y/h:m')
+                    'modified_at'=>date('Y-m-d h:i:s')
                 );
 
                 $this->School_model->update_school($id, $params);
