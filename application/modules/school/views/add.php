@@ -242,7 +242,7 @@
             $(document).ready(function()
             {
             var mapOptions = {
-                center: new google.maps.LatLng(18.9300, 72.8200),
+                center: new google.maps.LatLng(21.198548, 81.259178),
                 zoom: 14,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };

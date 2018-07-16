@@ -115,6 +115,24 @@
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
+          </li> 
+           <li class="nav-item">
+            <a href="<?= site_url()?>enquiry/add_enquiry" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Add ENQUIRY
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?= site_url()?>enquiry/enquiry_list" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                ENQUIRY LIST
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
           </li>
          <!--  <li class="nav-item has-treeview">
             <a href="<?= site_url()?>school/add_school" class="nav-link">
