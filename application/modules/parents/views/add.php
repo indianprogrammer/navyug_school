@@ -1,4 +1,4 @@
-<?php echo form_open_multipart('parents/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open('parents/add',array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
 		<label for="parent_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Name</label>

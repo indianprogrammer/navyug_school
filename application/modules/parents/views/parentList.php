@@ -19,7 +19,7 @@
     <tr>
 		<td><?php echo $t['id']; ?></td>
 		<!-- <td><?php echo $t['password']; ?></td> -->
-		<td><?php echo $t['parent_Name']; ?></td>
+		<td><?php echo $t['name']; ?></td>
 		<!-- <td><?php echo $t['qualification']; ?></td> -->
 		<td><?php echo $t['username']; ?></td>
 		<td><?php echo $t['email']; ?></td>
@@ -28,7 +28,7 @@
 		<!-- <td><img src="<?= $t['profile_image'];?>" height=5%; </td> -->
 		<td>
             <a href="<?php echo site_url('parents/edit/'.$t['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-            <a href="<?php echo site_url('parents/remove/'.$t['id']); ?>" class="btn btn-danger btn-xs">Delete</a>
+            <!--  -->
               <a onclick="myFunction();" class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a>
         </td>
     </tr>
