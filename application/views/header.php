@@ -24,14 +24,13 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+      <li class="nav-item d-none d-sm-inline-block" style="font-weight: 550;">
+         
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
-    </ul>
-
+      </li> -->
+    </ul> 
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
@@ -136,6 +135,8 @@
             class="fa fa-th-large"></i></a>
       </li>
     </ul>
+
+
   </nav>
   <!-- /.navbar -->
 

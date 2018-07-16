@@ -64,4 +64,9 @@ class Parents_model extends CI_Model
     {
         return $this->db->delete('parents',array('id'=>$id));
     }
+    function fetch_type()
+    {
+         $query = $this->db->get("parent_type");
+      return $query->result_array();
+    }
 }

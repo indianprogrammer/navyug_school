@@ -28,7 +28,7 @@
                         <tr>
                             <td><?php echo $s['id']; ?></td>
                             <td><?php echo $s['school_name']; ?></td>
-                            <td><?php echo $s['address']; ?></td>
+                            <td><?php echo substr($s['address'],1) ?></td>
                             <td><?php echo $s['email']; ?></td>
                             <td><?php echo $s['contact_pri']; ?></td>
                             <td><?php echo $s['contact_sec']; ?></td>

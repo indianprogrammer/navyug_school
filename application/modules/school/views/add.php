@@ -12,23 +12,15 @@
             <?= form_open('school/add') ?>
             <div class="box-body">
                 <div class="row clearfix">
-                    <div class="col-md-7 col-sm-12">
-                        <label for="name" class="control-label"><span class="text-danger">*</span>Name</label>
+                    <div class="col-md-5 col-sm-12">
+                        <label for="name" class="control-label"><span class="text-danger">*</span>School Name</label>
                         <div class="form-group">
                             <input type="text" name="name" value="<?= $this->input->post('name') ?>"
                             class="form-control" id="name"/>
                             <span class="text-danger"><?= form_error('name') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7 col-sm-12">
-                        <label for="address" class="control-label"><span class="text-danger">*</span>Address</label>
-                        <div class="form-group">
-                            <textarea name="address" class="form-control"
-                            id="address"><?= $this->input->post('address') ?></textarea>
-                            <span class="text-danger"><?= form_error('address') ?></span>
-                        </div>
-                    </div>
-                    <div class="col-md-7 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
                         <label for="email" class="control-label"><span class="text-danger">*</span>Email</label>
                         <div class="form-group">
                             <input type="text" name="email" value="<?= $this->input->post('email') ?>"
@@ -36,7 +28,7 @@
                             <span class="text-danger"><?= form_error('email') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
                         <label for="contact_pri" class="control-label"><span class="text-danger">*</span>Contact Primary</label>
                         <div class="form-group">
                             <input type="text" name="contact_pri" maxlength="13" value="<?= $this->input->post('contact_pri') ?>"
@@ -44,7 +36,7 @@
                             <span class="text-danger"><?= form_error('contact_pri') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
                         <label for="contact_sec" class="control-label">Contact Secondry</label>
                         <div class="form-group">
                             <input type="text" name="contact_sec"  maxlength="13" value="<?= $this->input->post('contact_sec') ?>"
@@ -52,7 +44,7 @@
                             <span class="text-danger"><?= form_error('contact_sec') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
                         <label for="country_id" class="control-label"><span class="text-danger">*</span>Country</label>
                         <div class="form-group">
                             <select name="country" id="country" class="form-control">
@@ -64,7 +56,7 @@
                             <span class="text-danger"><?= form_error('country') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
                         <label for="state_id" class="control-label"><span class="text-danger">*</span>State</label>
                         <div class="form-group">
                             <select name="state" id="state" class="form-control">
@@ -74,7 +66,7 @@
                             <span class="text-danger"><?= form_error('state') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
                         <label for="city_id" class="control-label"><span class="text-danger">*</span>City</label>
                         <div class="form-group">
                             <select name="city" id="city" class="form-control">
@@ -84,7 +76,16 @@
                             <span class="text-danger"><?= form_error('city') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
+                        <label for="address" class="control-label"><span class="text-danger">*</span>Address</label>
+                        <div class="form-group">
+                            <textarea name="address" class="form-control"
+                            id="address"><?= $this->input->post('address') ?></textarea>
+                            <span class="text-danger"><?= form_error('address') ?></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 col-sm-12">
                         <label for="latlong" class="control-label"><span class="text-danger">*</span>Latlong</label>
                         <div class="form-group" id="showlat">
                             <input type="text" name="latlong" 
@@ -92,20 +93,20 @@
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                         </div>
                     </div>
-                      <div class="col-md-5" id="dvMap" > </div><br>
-                    <div class="col-md-7 col-sm-12">
-                        <label for="logo" class="control-label"><span class="text-danger">*</span> Upload Logo</label>
+                      <div class="col-md-5" id="dvMap" > </div>
+                    <div class="col-md-5 col-sm-12">
+                        <label for="logo" class="control-label"> Upload Logo</label>
                         <div class="form-group">
-                            <input type="text" name="logo" value="<?= $this->input->post('logo') ?>"
+                            <input type="file" name="logo" value="<?= $this->input->post('logo') ?>"
                             class="form-control" id="logo"/>
                             <span class="text-danger"><?= form_error('logo') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-7 col-sm-12">
-                        <label for="banner" class="control-label"><span class="text-danger">*</span> Upload
+                    <div class="col-md-5 col-sm-12">
+                        <label for="banner" class="control-label"> Upload
                         Banner</label>
                         <div class="form-group">
-                            <input type="text" name="banner" value="<?= $this->input->post('banner') ?>"
+                            <input type="file" name="banner" value="<?= $this->input->post('banner') ?>"
                             class="form-control" id="banner"/>
                             <span class="text-danger"><?= form_error('banner') ?></span>
                         </div>
@@ -216,11 +217,11 @@
     $(document).ready(function() {
         $("#contact_pri,#contact_sec").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
-        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+        if ($.inArray(e.keyCode, [46, 8, 9, 25, 13, 110, 190]) !== -1 ||
              // Allow: Ctrl/cmd+A
              (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
              // Allow: Ctrl/cmd+C
-             (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+             (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
              // Allow: Ctrl/cmd+X
              (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
              // Allow: home, end, left, right
@@ -229,7 +230,7 @@
              return;
          }
         // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 107)  ) {
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 55)) && (e.keyCode < 96 || e.keyCode > 105)  ) {
             e.preventDefault();
         }
     });
@@ -242,7 +243,7 @@
             $(document).ready(function()
             {
             var mapOptions = {
-                center: new google.maps.LatLng(21.198548, 81.259178),
+                center: new google.maps.LatLng(21.198548, 81.259158),
                 zoom: 14,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };

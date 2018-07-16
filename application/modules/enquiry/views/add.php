@@ -1,4 +1,9 @@
 <?=form_open('enquiry/add',array("class"=>"form-horizontal")); ?>
+<ul class="breadcrumb">
+  <li class="breadcrumb-item"><a href="<?= base_url() ?>school/index">Home</a></li>
+  <li class="breadcrumb-item ">Enquiry</li>
+  <li class="breadcrumb-item active">Add Enquiry</li>
+</ul>
 <h2 > ENQUIRY FORM </h2>
 	<div class="form-group">
 		<label for="trainer_Name" class="col-md-4 control-label"><span class="text-danger">*</span> Name</label>

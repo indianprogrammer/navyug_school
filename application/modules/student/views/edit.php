@@ -38,7 +38,7 @@
 	<div class="form-group">
 		<label for="profile_image" class="col-md-4 control-label"><span class="text-danger">*</span>Profile Image</label>
 		<div class="col-md-8">
-			<input type="text" name="profile_image" value="<?php echo ($this->input->post('profile_image') ? $this->input->post('profile_image') : $student['profile_image']); ?>" class="form-control" id="profile_image" />
+			<input type="file" name="profile_image" value="<?php echo ($this->input->post('profile_image') ? $this->input->post('profile_image') : $student['profile_image']); ?>" class="form-control" id="profile_image" />
 			<span class="text-danger"><?php echo form_error('profile_image');?></span>
 		</div>
 	</div>

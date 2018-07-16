@@ -51,8 +51,8 @@ class School extends MY_Controller
         $this->form_validation->set_rules('contact_pri', 'Primary Number', 'required|max_length[13]','min_length[10]');
         $this->form_validation->set_rules('contact_sec', 'Secondry Number', 'max_length[13]|min_length[10]');
         $this->form_validation->set_rules('email', 'Email', 'required|max_length[255]|valid_email|is_unique[school.email]');
-        $this->form_validation->set_rules('logo', 'Logo', 'required');
-        $this->form_validation->set_rules('banner', 'Banner', 'required');
+        // $this->form_validation->set_rules('logo', 'Logo', 'required');
+        // $this->form_validation->set_rules('banner', 'Banner', 'required');
         $this->form_validation->set_rules('address', 'Address', 'required');
         $this->form_validation->set_rules('latlong', 'Latlong', 'required');
 
@@ -76,7 +76,7 @@ class School extends MY_Controller
             // var_dump($params);die;
             $school_id = $this->School_model->add_school($params);
              $data=$this->session->set_flashdata('status','Successfully added');
-              $data['_view'] = 'add';
+              $data['_view'] = 'schoollist';
              $this->load->view('../index', $data);
              // header('location:successmodal.php');
         } else {

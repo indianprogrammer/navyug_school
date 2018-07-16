@@ -31,7 +31,7 @@ class Parents extends MY_Controller{
      * Adding a new parent
      */
     function add_parent()
-    {
+    {   $data['ptype'] = $this->Parents_model->fetch_type();
         $data['_view'] = 'add';
         $this->load->view('../index',$data);
     }

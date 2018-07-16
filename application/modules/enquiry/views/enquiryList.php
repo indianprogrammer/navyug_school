@@ -1,4 +1,13 @@
-<div class="pull-right">
+<ul class="breadcrumb">
+  <li class="breadcrumb-item"><a href="<?= base_url() ?>school/index">Home</a></li>
+  <li class="breadcrumb-item ">Enquiry</li>
+  <li class="breadcrumb-item active">Enquiry List</li>
+</ul>
+
+
+
+
+<div class="pull-left">
 	<a href="<?php echo site_url('enquiry/add'); ?>" class="btn btn-success">Add</a> 
 </div>
 
@@ -39,7 +48,7 @@
 <div class="pull-right">
     <?php echo $this->pagination->create_links(); ?>    
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
 <script type="text/javascript">
     function myFunction()

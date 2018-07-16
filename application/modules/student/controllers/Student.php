@@ -36,7 +36,7 @@ class Student extends MY_Controller{
        $config['allowed_types']        = 'gif|jpg|png';
        $this->load->library('upload', $config);
 
-        $this->form_validation->set_rules('password','Password','required|max_length[20]');
+        // $this->form_validation->set_rules('password','Password','required|max_length[20]');
         $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
         $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
         $this->form_validation->set_rules('username','Username','required|max_length[100]');
@@ -47,13 +47,14 @@ class Student extends MY_Controller{
         if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
         {   
             $params = array(
-                'password' => $this->input->post('password'),
+                // 'password' => $this->input->post('password'),
                 'student_name' => $this->input->post('student_name'),
                 'email' => $this->input->post('email'),
                 'username' => $this->input->post('username'),
                 'mobile' => $this->input->post('mobile'),
                 'profile_image' => $this->input->post('profile_image'),
-                'address' => $this->input->post('address'),
+                'permanent_address' => $this->input->post('address'),
+                'temporary_address' => $this->input->post('address'),
                  'created_at'=>date(),
                 'modified_at'=>date()
             );
