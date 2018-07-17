@@ -18,7 +18,7 @@
 	<div class="form-group">
 		<label for="subject" class="col-md-4 control-label"><span class="text-danger">*</span>Subject</label>
 		<div class="col-md-8">
-			<select multiple name="subject">
+			<select multiple name="subject" class="selectpicker">
 				<option>SELECT SUBJECT</option>
 			<?php	foreach($subject as $row){ ?>
 				<option value="$row['id']" ><?= $row['name'] ?></option>
