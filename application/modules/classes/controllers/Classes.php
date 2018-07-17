@@ -13,6 +13,7 @@ class Classes extends MY_Controller{
      */
     function class_list()
     {
+        var_dump($school_id);die;
         $data['class'] = $this->classes_model->get_all_class();
         
         $data['_view'] = 'classList';
