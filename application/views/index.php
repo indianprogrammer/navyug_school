@@ -148,6 +148,7 @@
 
             </ul>
           </li>
+          
            <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tree"></i>
@@ -166,8 +167,7 @@
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
-          </li>
-          <li class="nav-item">
+             <li class="nav-item">
             <a href="<?= site_url()?>parents/parent_list" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
@@ -180,6 +180,71 @@
 
             </ul>
           </li> 
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-tree"></i>
+              <p>
+                SUBJECTS
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+            <a href="<?= site_url()?>subject/add_subject" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                ADD SUBJECT
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+               <li class="nav-item">
+            <a href="<?= site_url()?>subject_list" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                SUBJECT LIST
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-tree"></i>
+              <p>
+                CLASSESS
+                <i class="fa fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+            <a href="<?= site_url()?>classes/add_class" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                ADD CLASSES
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+               <li class="nav-item">
+            <a href="<?= site_url()?>classes/class_list" class="nav-link">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                CLASSES LIST
+                <!-- <span class="right badge badge-danger">New</span> -->
+              </p>
+            </a>
+          </li>
+
+
+            </ul>
+          </li>
+         
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tree"></i>
