@@ -40,6 +40,7 @@ class Trainer_model extends CI_Model
         }
         return $this->db->get('trainers')->result_array();
     }
+
         
     /*
      * function to add new trainer

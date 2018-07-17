@@ -53,7 +53,7 @@
     }
     ?>
             <!-- form action="#" method="post"> -->
-            <?= form_open('Login/process') ?>
+            <?= form_open('login/process') ?>
                 <div class="field-group">
                     <div class="wthree-field">
                         <input  id="text1" type="text" value="" placeholder="username" name="username" required>
