@@ -25,8 +25,8 @@ class Subject extends MY_Controller{
      */
  function add_subject()
  {
-    echo SchoolId;
-     echo $user_data['name'];
+    // echo SchoolId;
+     echo $_SESSION['$user_data['school_id']'];
      $data['_view'] = 'add';
         $this->load->view('index',$data);
  }

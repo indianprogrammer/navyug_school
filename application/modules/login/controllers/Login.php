@@ -48,7 +48,8 @@ class Login extends MX_Controller
                 case 1:
                     #got for admin user at employ table & check for authentication ID and get school id
                     $userData = $this->Login_model->getEmployDetails($authenticationData['id']);
-                    $this->session->SchoolId = $userData['school_id'];
+                   echo $this->session->SchoolId = $userData['school_id'];
+
                     break;
                 case 2:
                     #got for teacher
@@ -81,27 +82,6 @@ public function logout(){
 
 
 
-//// var_dump($data['authentication_id']);die;
-//        if (!$result) {
-//            $data = array(
-//                'error_message' => 'Invalid Username or Password'
-//            );
-//            $this->load->view('login', $data);
-//        } elseif ($data['authentication_id'] == "2")
-//            // If user did validate,
-//            // Send them to members area
-//
-//        {
-//            redirect('school/index');
-//        } elseif ($data['authentication_id'] == "3") {
-//            // redirect('trainer/index');
-//            echo "welcome" . $data['username'] . "teacher";
-//        } elseif ($data['authentication_id'] == "4") {
-//            // redirect('school/index');
-//            echo $data['username'];
-//        } elseif ($data['authentication_id'] == "5") {
-//            echo $data['username'];
-//        }
 
 
 }
