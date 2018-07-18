@@ -1,13 +1,13 @@
 <!-- <div class="pull-right">
-	<a href="<?= site_url('student/add'); ?>" class="btn btn-success">Add</a> 
+	<a href="<?= site_url('class/add'); ?>" class="btn btn-success">Add</a> 
 </div> -->
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Student Listing</h3>
+                <h3 class="box-title">class List</h3>
                 <div class="box-tools">
-                    <a href="<?= site_url('student/add'); ?>" class="btn btn-success ">Add</a>
+                    <a href="<?= site_url('classes/add_class'); ?>" class="btn btn-success ">Add</a>
                 </div>
             </div>
 
@@ -15,26 +15,23 @@
     <tr>
 		<th>ID</th>
 		<!-- <th>Password</th> -->
-		<th>Student Name</th>
-		<th>Email</th>
-		<th>Username</th>
-		<th>Mobile</th>
-		<th>Address</th>
-		<th>Profile Image</th>
+		<th>class Name</th>
+        <th>description</th>
+        <th>Start time</th>
+		<th>End time</th>
+		
 		<th>Actions</th>
     </tr>
-	<?php foreach($student as $s){ ?>
+	<?php foreach($class as $row){ ?>
     <tr>
-		<td><?= $s['id']; ?></td>
-		<!-- <td><?= $s['password']; ?></td> -->
-		<td><?= $s['student_name']; ?></td>
-		<td><?= $s['email']; ?></td>
-		<td><?= $s['username']; ?></td>
-		<td><?= $s['mobile']; ?></td>
-		<td><?= $s['address']; ?></td>
-		<td > <img src="<?= $s['profile_image']; ?>" height=5%; ></td>
+		<td><?= $row['id']; ?></td>
+		
+		<td><?= $row['name']; ?></td>
+        <td><?= $row['description']; ?></td>
+        <td><?= $row['start_time']; ?></td>
+		<td><?= $row['end_time']; ?></td>
 		<td>
-            <a href="<?= site_url('student/edit/'.$s['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
+            <a href="<?= site_url('classes/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
              <a onclick="myFunction();" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
 
         </td>
@@ -51,9 +48,9 @@
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure?", function(result) {
+    bootbox.confirm("Are you sure to delete <?= $row['name'] ?>", function(result) {
       if(result)
-          window.location.href = "<?php echo site_url('student/remove/'.$s['id']); ?>"
+          window.location.href = "<?php echo site_url('classes/remove/'.$row['id']); ?>"
    
   });
     }

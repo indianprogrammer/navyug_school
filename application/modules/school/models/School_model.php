@@ -115,8 +115,41 @@ class School_model extends CI_Model
 
     }
 
-
-
+   
+     function mapSubjects()
+    {
+        $this->db->select('school.*,map_school_subject.subject_id,subjects.name');
+        $this->db->from('map_school_subject');
+        $this->db->join('school', 'map_school_subject.school_id=school.id', 'Left');
+        $this->db->join('subjects', 'map_school_subject.subject_id=subjects.id', 'Left');
+        return $query = $this->db->get()->result();
+    }
+   function mapClasses()
+    {
+        $this->db->select('school.*,classes.name,classes.description');
+        $this->db->from('map_school_class');
+        $this->db->join('school', 'map_school_class.school_id=school.id','Left');
+        $this->db->join('classes', 'map_school_class.class_id=classes.id', 'Left');
+        return $query = $this->db->get()->result();
+    }
+    function mapStudents()
+    {
+        $this->db->select('school.*,student.*');
+        $this->db->from('map_school_student');
+        $this->db->join('school', 'map_school_student.school_id=school.id','Left');
+        $this->db->join('student', 'map_school_student.student_id=student.id', 'Left');
+        $this->db->where('school_id',6);
+        return $query = $this->db->get()->result();
+    }
+    function mapEmployees()
+    {
+        $this->db->select('school.*,employees.*');
+        $this->db->from('map_school_employee');
+        $this->db->join('school', 'map_school_employee.school_id=school.id','Left');
+        $this->db->join('employees', 'map_school_employee.employee_id=employees.id', 'Left');
+        $this->db->where('school_id',6);
+        return $query = $this->db->get()->result();
+    }
 
 
 

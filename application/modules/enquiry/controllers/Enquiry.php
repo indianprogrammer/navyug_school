@@ -6,6 +6,9 @@ class Enquiry extends MY_Controller{
     {
         parent::__construct();
         $this->load->model('Enquiry_model');
+        // if (!isset($_SESSION['username'])) {
+        //      redirect('login');
+        // }
     } 
 
     /*

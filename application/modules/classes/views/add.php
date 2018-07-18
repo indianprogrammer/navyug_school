@@ -18,13 +18,27 @@
 	<div class="form-group">
 		<label for="subject" class="col-md-4 control-label"><span class="text-danger">*</span>Subject</label>
 		<div class="col-md-8">
-			<select multiple name="subject" class="selectpicker">
+			<select  name="subject" class="selectpicker" multiple>
 				<option>SELECT SUBJECT</option>
 			<?php	foreach($subject as $row){ ?>
-				<option value="$row['id']" ><?= $row['name'] ?></option>
+				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
 			<?php } ?>
 			</select>
 			<span class="text-danger"><?php echo form_error('subject');?></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="start_time" class="col-md-4 control-label"><span class="text-danger">*</span>Start Time</label>
+		<div class="col-md-8">
+			<input type="text" name="start_time" value="<?php echo $this->input->post('start_time'); ?>" class="form-control" id="start_time" />
+			<span class="text-danger"><?php echo form_error('start_time');?></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="end_time" class="col-md-4 control-label"><span class="text-danger">*</span>End Time</label>
+		<div class="col-md-8">
+			<input type="text" name="end_time" value="<?php echo $this->input->post('end_time'); ?>" class="form-control" id="end_time" />
+			<span class="text-danger"><?php echo form_error('end_time');?></span>
 		</div>
 	</div>
 	

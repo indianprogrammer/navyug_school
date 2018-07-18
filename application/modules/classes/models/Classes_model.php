@@ -36,7 +36,12 @@ class Classes_model extends CI_Model
         $this->db->insert('classes',$params);
         return $this->db->insert_id();
     }
-    
+     
+    function add_mapping($ids)
+    {
+        $this->db->insert('map_school_class',$ids);
+        return $this->db->insert_id();
+    }
     /*
      * function to update class
      */

@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends MY_Controller
+class Login extends MX_Controller
 {
 
     function __construct()
@@ -26,7 +26,7 @@ class Login extends MY_Controller
         $password = $this->security->xss_clean($this->input->post('password'));
         // var_dump($username);die;
 
-        $authenticationData = $this->Login_model->getResult($username, $password);
+        $authenticationData = $this->Login_model->getResult($username,$password);
 
         var_dump($authenticationData);
 
@@ -63,9 +63,20 @@ class Login extends MY_Controller
             #redirect it to $autorizationData['home']
             echo 'redirect it to '. $autorizationData['home'];
             $this->output->enable_profiler(TRUE);
+            // echo $_SESSION['username'];
 
 
         }
+
+
+
+    }
+
+public function logout(){
+    $this->session->unset_userdata('username');
+    $this->session->sess_destroy();
+    redirect('login');
+}       
 
 
 
@@ -93,7 +104,6 @@ class Login extends MY_Controller
 //        }
 
 
-    }
 }
 
 // }

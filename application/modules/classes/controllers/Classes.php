@@ -6,6 +6,9 @@ class Classes extends MY_Controller{
     {
         parent::__construct();
         $this->load->model('classes_model');
+        if (!isset($_SESSION['username'])) {
+             redirect('login');
+        }
     } 
 
     /*
@@ -13,7 +16,7 @@ class Classes extends MY_Controller{
      */
     function class_list()
     {
-        var_dump($school_id);die;
+        // var_dump($school_id);die;
         $data['class'] = $this->classes_model->get_all_class();
         
         $data['_view'] = 'classList';
@@ -40,7 +43,7 @@ class Classes extends MY_Controller{
         // $this->form_validation->set_rules('password','Password','required|max_length[20]');
         $this->form_validation->set_rules('class_name','class Name','required|max_length[100]');
        
-        $this->form_validation->set_rules('address','Address','required');
+        // $this->form_validation->set_rules('address','Address','required');
         
         if($this->form_validation->run() )     
         {   
@@ -49,14 +52,23 @@ class Classes extends MY_Controller{
                 'name' => $this->input->post('class_name'),
                 
                 'description' => $this->input->post('description'),
-                'subject' => $this->input->post('subject')
+                'subject_id' => $this->input->post('subject'),
+                'start_time' => $this->input->post('start_time'),
+                'end_time' => $this->input->post('end_time')
                 //  'created_at'=>date(),
                 // 'modified_at'=>date()
             );
            
             
             $class_id = $this->classes_model->add_class($params);
-            redirect('class/class_list');
+             $ids=array(
+            
+                'class_id'=>$class_id,
+                'school_id'=>1
+
+          );  
+               $map = $this->classes_model->add_mapping($ids);
+            redirect('classes/class_list');
         }
         else
         {            

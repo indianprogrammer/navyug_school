@@ -6,6 +6,7 @@ class Subject extends MY_Controller{
     {
         parent::__construct();
         $this->load->model('Subject_model');
+
     } 
 
     /*
@@ -24,6 +25,8 @@ class Subject extends MY_Controller{
      */
  function add_subject()
  {
+    echo SchoolId;
+     echo $user_data['name'];
      $data['_view'] = 'add';
         $this->load->view('index',$data);
  }
@@ -50,6 +53,13 @@ class Subject extends MY_Controller{
             
             
             $subject_id = $this->Subject_model->add_subject($params);
+            $ids=array(
+            
+                'subject_id'=>$subject_id,
+                'school_id'=>$userData['school_id']
+
+          );  
+            $map = $this->Subject_model->add_mapping($ids);
             redirect('subject/subject_list');
         }
         else

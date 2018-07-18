@@ -8,6 +8,10 @@ class School extends MY_Controller
     {
         parent::__construct();
         $this->load->model('School_model');
+         if (!isset($_SESSION['username'])) {
+             redirect('login');
+        }
+         
     }
 
     /*
@@ -15,6 +19,8 @@ class School extends MY_Controller
      */
     function index()
     {
+       
+                                      
 
         $data['_view'] = 'dashbord';
 
@@ -61,7 +67,7 @@ class School extends MY_Controller
                 'city_id' => $this->input->post('city'),
                 'state_id' => $this->input->post('state'),
                 'country_id' => $this->input->post('country'),
-                'school_name' => $this->input->post('name'),
+                'organization_name' => $this->input->post('name'),
                 'latlong' => $this->input->post('latlong'),
                 'contact_pri' => $this->input->post('contact_pri'),
                 'contact_sec' => $this->input->post('contact_sec'),
@@ -123,7 +129,7 @@ class School extends MY_Controller
                     'city_id' => $this->input->post('city'),
                     'state_id' => $this->input->post('state'),
                     'country_id' => $this->input->post('country'),
-                    'school_name' => $this->input->post('name'),
+                    'organization_name' => $this->input->post('name'),
                     'latlong' => $this->input->post('latlong'),
                     'contact_pri' => $this->input->post('contact_pri'),
                     'contact_sec' => $this->input->post('contact_sec'),
@@ -177,6 +183,32 @@ class School extends MY_Controller
             echo json_encode($this->School_model->fetch_city($this->input->post('state_id')));
         }
     }
+
+    function fetch_subject()
+    {
+        $mapData=$this->School_model->mapSubjects();
+         $this->output->enable_profiler(TRUE);
+        var_dump($mapData);
+    }
+     function fetch_classes()
+    {
+        $mapData=$this->School_model->mapClasses();
+         $this->output->enable_profiler(TRUE);
+        var_dump($mapData);
+    }
+     function fetch_students()
+    {
+        $mapData=$this->School_model->mapStudents();
+         $this->output->enable_profiler(TRUE);
+        var_dump($mapData);
+    }
+     function fetch_employees()
+    {
+        $mapData=$this->School_model->mapEmployees();
+         $this->output->enable_profiler(TRUE);
+        var_dump($mapData);
+    }
+
 
 
 }

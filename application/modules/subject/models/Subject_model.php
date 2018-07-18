@@ -37,6 +37,12 @@ class Subject_model extends CI_Model
         return $this->db->insert_id();
     }
     
+    function add_mapping($ids)
+    {
+        $this->db->insert('map_school_subject',$ids);
+        return $this->db->insert_id();
+    }
+    
     /*
      * function to update subject
      */
