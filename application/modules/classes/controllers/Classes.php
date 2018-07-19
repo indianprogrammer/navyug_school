@@ -27,9 +27,10 @@ class Classes extends MY_Controller{
      * Adding a new class
      */
  function add_class()
- {
-        $data['subject'] = $this->Classes_model->fetch_subject();
-        $data['employee'] = $this->Classes_model->fetch_employee();
+ {              $school_id=$_SESSION['SchoolId'];
+        $data['subject'] = $this->Classes_model->fetch_subject($school_id);
+        // var_dump($data['subject']);die;
+        $data['employee'] = $this->Classes_model->fetch_employee($school_id);
         // var_dump($data['subject']);die;
      $data['_view'] = 'add';
         $this->load->view('index',$data);

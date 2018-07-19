@@ -21,7 +21,7 @@
 			<select  name="subject" class="selectpicker" multiple>
 				<option>SELECT SUBJECT</option>
 			<?php	foreach($subject as $row){ ?>
-				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
+				<option value="<?= $row->id ?>" ><?= $row->name ?></option>
 			<?php } ?>
 			</select>
 			<span class="text-danger"><?php echo form_error('subject');?></span>
@@ -33,7 +33,7 @@
 			<select  name="employee" class="selectpicker" multiple>
 				<option>SELECT EMPLOYEE</option>
 			<?php	foreach($employee as $row){ ?>
-				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
+				<option value="<?= $row->id ?>" ><?= $row->name ?></option>
 			<?php } ?>
 			</select>
 			<span class="text-danger"><?php echo form_error('employee');?></span>

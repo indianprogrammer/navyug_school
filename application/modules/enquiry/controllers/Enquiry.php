@@ -62,8 +62,8 @@ class Enquiry extends MY_Controller{
 				 'location' => $this->input->post('latlong'),
                 'address' => $this->input->post('address'),
 				'remarks' => $this->input->post('remarks'),
-                'created_at'=>date('d-m-y/h-m'),
-                'modified_at'=>date('d-m-y/h-m')
+                'created_at'=>date('d-m-y/h-m')
+                // 'modified_at'=>date('d-m-y/h-m')
             );
             // var_dump($params);
             $data=$this->session->set_flashdata('status','Successfully added');

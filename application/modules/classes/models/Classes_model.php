@@ -60,13 +60,22 @@ class Classes_model extends CI_Model
     }
     function fetch_subject($school_id)
     {
-         $this->db->order_by('id', 'desc');
-         $this->db->where('id', $school_id);
-        return $this->db->get('subjects')->result_array();
+   
+        $this->db->select('subjects.*');
+        $this->db->from('map_school_subject');
+        $this->db->join('school', 'map_school_subject.school_id=school.id', 'Left');
+        $this->db->join('subjects', 'map_school_subject.subject_id=subjects.id', 'Left');
+         $this->db->where('school_id',$school_id);
+        return $query = $this->db->get()->result();
     }
+    
      function fetch_employee($school_id)
     {
-         $this->db->order_by('id', 'desc');
-        return $this->db->get('employees')->result_array();
+          $this->db->select('employees.name,employees.id');
+        $this->db->from('map_school_employee');
+        $this->db->join('school', 'map_school_employee.school_id=school.id', 'Left');
+        $this->db->join('employees', 'map_school_employee.employee_id=employees.id', 'Left');
+         $this->db->where('school_id',$school_id);
+        return $query = $this->db->get()->result();
     }
 }
