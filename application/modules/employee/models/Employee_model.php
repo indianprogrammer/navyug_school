@@ -69,4 +69,16 @@ class Employee_model extends CI_Model
         $this->db->insert('map_school_employee',$ids);
         return $this->db->insert_id();
     }
+
+      function get_map_employee()
+    
+    {
+      $this->db->from('master_authorization');
+        return $this->db->get()->result();
+    }
+     function add_user($authentication)
+     {
+         $this->db->insert('authentication',$authentication);
+        return $this->db->insert_id();
+     }
 }

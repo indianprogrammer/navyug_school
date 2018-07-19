@@ -1,16 +1,16 @@
 <?php echo form_open('parents/add',array("class"=>"form-horizontal")); ?>
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                         <label for="ptype" class="control-label"><span class="text-danger">*</span>Parent Type</label>
 						<div class="col-md-5 col-sm-12">
                             <select name="ptype" id="ptype" class="form-control">
                                 <option value="">SELECT</option>
-                                <?php foreach ($ptype as $row) {
-                                    echo '<option value="' . $row['id'] . '">' . $row['type'] . '</option>';
-                                } ?>
+                                <?php foreach ($ptype as $row) { ?>
+                                   <option value="<?= $row->id ?>"> <?=  $row->type ?></option>
+                              <?php  } ?>
                             </select>
                             <span class="text-danger"><?= form_error('ptype') ?></span>
                         </div>
-                    </div> -->
+                    </div>
 	<div class="form-group">
 		<label for="parent_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Name</label>
 		<div class="col-md-5">

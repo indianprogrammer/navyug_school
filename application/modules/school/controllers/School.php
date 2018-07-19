@@ -19,7 +19,6 @@ class School extends MY_Controller
      */
     function index()
     {
-       
                                       
         $data['_view'] = 'dashbord';
 

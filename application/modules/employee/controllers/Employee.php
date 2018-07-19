@@ -12,7 +12,8 @@ class Employee extends MY_Controller{
      * Listing of employees
      */
     function employee_list()
-    {   $this->load->library('pagination');
+    {  
+     $this->load->library('pagination');
          $params['limit'] = 100; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
@@ -31,13 +32,15 @@ class Employee extends MY_Controller{
      * Adding a new employee
      */
     function add_employee()
-    {
+    {    $data['emptype'] = $this->Employee_model->get_map_employee();
+    // var_dump($data['emptype']);die;
         $data['_view'] = 'add';
         $this->load->view('../index',$data);
     }
     function add()
     {   
         $this->load->library('form_validation');
+         $data['emptype'] = $this->Employee_model->get_map_employee();
         $config['upload_path']          = './uploads/';
        $config['allowed_types']        = 'gif|jpg|png';
        $this->load->library('upload', $config);
@@ -54,7 +57,8 @@ class Employee extends MY_Controller{
         {   
             $params = array(
 				// 'password' => $this->input->post('password'),
-				'name' => $this->input->post('employee_Name'),
+                'name' => $this->input->post('employee_Name'),
+				'authentication_id' => $this->input->post('type'),
                 'qualification' => $this->input->post('qualification'),
 				'username' => $this->input->post('username'),
 				'email' => $this->input->post('email'),
@@ -75,10 +79,20 @@ class Employee extends MY_Controller{
              $ids=array(
             
                 'employee_id'=>$employee_id,
-                'school_id'=>$_SESSION['SchoolId']
+                'school_id'=>$this->session->SchoolId
 
           );  
             $map = $this->Employee_model->add_mapping($ids);
+            var_dump($params);
+            $authentication=array(
+               'username'=> $params['username'],
+               'email'=> $params['email'],
+                'autorization_id'=>$params['authentication_id'],
+                'password'=>rand(1,1000)
+
+            );
+            var_dump($authentication);
+               $map = $this->Employee_model->add_user($authentication);
             // redirect('subject/subject_list');
             redirect('employee/employee_list');
         }
@@ -95,6 +109,7 @@ class Employee extends MY_Controller{
     function edit($id)
     {   
         // check if the employee exists before trying to edit it
+        $data['subject'] = $this->Subject_model->get_all_subject();
         $data['employee'] = $this->Employee_model->get_employee($id);
          $config['upload_path']          = './uploads/';
        $config['allowed_types']        = 'gif|jpg|png';

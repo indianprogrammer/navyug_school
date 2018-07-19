@@ -32,36 +32,39 @@ class Parents extends MY_Controller{
      */
     function add_parent()
     {   $data['ptype'] = $this->Parents_model->fetch_type();
+        // var_dump( $data['ptype']);die;
         $data['_view'] = 'add';
         $this->load->view('../index',$data);
     }
     function add()
     {   
         $this->load->library('form_validation');
-        $config['upload_path']          = './uploads/';
-       $config['allowed_types']        = 'gif|jpg|png';
-       $this->load->library('upload', $config);
-		$this->form_validation->set_rules('password','Password','required');
+        // $config['upload_path']          = './uploads/';
+       // $config['allowed_types']        = 'gif|jpg|png';
+       // $this->load->library('upload', $config);
+		// $this->form_validation->set_rules('password','Password','required');
 		$this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
 		// $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
 		$this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
 		$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
 		// $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-		$this->form_validation->set_rules('address','Address','required');
+		// $this->form_validation->set_rules('address','Address','required');
 		
 		if($this->form_validation->run() )     
         {   
             $params = array(
-				'password' => $this->input->post('password'),
-				'name' => $this->input->post('parent_Name'),
+				// 'password' => $this->input->post('password'),
+                'name' => $this->input->post('parent_Name'),
+				'type' => $this->input->post('ptype'),
                 // 'qualification' => $this->input->post('qualification'),
 				'username' => $this->input->post('username'),
 				'email' => $this->input->post('email'),
 				'mobile' => $this->input->post('mobile'),
-				// 'profile_image' => $this->input->post('profile_image'),
-				 'address' => $this->input->post('address')
-                 // 'created_at'=>date('Y-m-d h:i:s'),
-                 // 'modified_at'=>date('Y-m-d h:i:s')
+				 // 'profile_image' => $this->input->post('profile_image'),
+                 'permanent_address' => $this->input->post('paddress'),
+				 'temporary_address' => $this->input->post('taddress'),
+                 'created_at'=>date('Y-m-d h:i:s'),
+                 'modified_at'=>date('Y-m-d h:i:s')
             );
             // var_dump($params);die;
              // $data['image'] =  $this->upload->data();
@@ -69,7 +72,25 @@ class Parents extends MY_Controller{
         // $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
                // echo $image_path;die;
         // $params['profile_image']=$image_path;
+
             $parent_id = $this->Parents_model->add_parent($params);
+             $ids=array(
+            
+                'parent_id'=>$parent_id,
+                'school_id'=>$this->session->SchoolId
+
+          );  
+            // $map = $this->Parents_model->add_mapping($ids);
+            var_dump($params);
+            $authentication=array(
+               'username'=> $params['username'],
+               'email'=> $params['email'],
+                'autorization_id'=>$params['authentication_id'],
+                'password'=>rand(1,1000)
+
+            );
+            var_dump($authentication);
+               $map = $this->Parents_model->add_user($authentication);
             redirect('Parents/add');
         }
         else
@@ -102,15 +123,15 @@ class Parents extends MY_Controller{
 			if($this->form_validation->run())     
             {   
                 $params = array(
-					'password' => $this->input->post('password'),
+					// 'password' => $this->input->post('password'),
 					'name' => $this->input->post('parent_Name'),
                     'username' => $this->input->post('username'),
 					// 'qualification' => $this->input->post('qualification'),
 					'email' => $this->input->post('email'),
 					'mobile' => $this->input->post('mobile'),
 					// 'profile_image' => $this->input->post('profile_image'),
-					 'address' => $this->input->post('address'),
-                     'modified_at'=>date('Y-m-d h:i:s')
+					 'address' => $this->input->post('address')
+                     // 'modified_at'=>date('Y-m-d h:i:s')
                 );
 
 

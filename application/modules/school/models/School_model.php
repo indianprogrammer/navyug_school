@@ -152,6 +152,8 @@ class School_model extends CI_Model
         $this->db->where('school_id',$school_id);
         return $query = $this->db->get()->result();
     }
+    
+
 
 
 

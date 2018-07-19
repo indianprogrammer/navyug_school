@@ -67,6 +67,16 @@ class Parents_model extends CI_Model
     function fetch_type()
     {
          $query = $this->db->get("parent_type");
-      return $query->result_array();
+      return $query->result();
     }
+    function add_mapping($ids)
+    {
+        $this->db->insert('map_school_parent',$ids);
+        return $this->db->insert_id();
+    }
+    function add_user($authentication)
+     {
+         $this->db->insert('authentication',$authentication);
+        return $this->db->insert_id();
+     }
 }
