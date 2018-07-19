@@ -15,7 +15,8 @@
         <th>UserName</th>
         <th>Email</th>
         <th>Mobile</th>
-        <th>Address</th>
+        <th>Permanent Address</th>
+        <th>Temperory Address</th>
         <th>Profile Image</th>
         <th>Actions</th>
     </tr>
@@ -30,7 +31,8 @@
         <td><?php echo $t['username']; ?></td>
         <td><?php echo $t['email']; ?></td>
         <td><?php echo $t['mobile']; ?></td>
-        <td><?php echo $t['address']; ?></td>
+        <td><?php echo $t['Permanent_address']; ?></td>
+        <td><?php echo $t['temporary_address']; ?></td>
         <td><img src="<?= $t['profile_image'];?>" height=5%; ></td>
         <td>
             <!-- <select onclick="myFunction();" name="choice" id="drop">

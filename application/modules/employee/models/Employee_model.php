@@ -64,4 +64,9 @@ class Employee_model extends CI_Model
     {
         return $this->db->delete('employees',array('id'=>$id));
     }
+     function add_mapping($ids)
+    {
+        $this->db->insert('map_school_employee',$ids);
+        return $this->db->insert_id();
+    }
 }

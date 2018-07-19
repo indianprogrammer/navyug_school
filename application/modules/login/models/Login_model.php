@@ -25,8 +25,8 @@ class Login_model extends CI_Model{
     function getEmployDetails($authenticationId){
         $this->db->select('*');
         $this->db->where('authentication_id', $authenticationId);
-        $this->db->from('trainers');
-        $this->db->join('map_school_trainer', 'map_school_trainer.trainer_id=trainers.id', 'Left');
+        $this->db->from('employees');
+        $this->db->join('map_school_employee', 'map_school_employee.employee_id=employees.id', 'Left');
         return $this->db->get()->row_array();
     }
 

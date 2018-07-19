@@ -25,8 +25,7 @@ class Subject extends MY_Controller{
      */
  function add_subject()
  {
-    // echo SchoolId;
-     echo $_SESSION['$user_data['school_id']'];
+    
      $data['_view'] = 'add';
         $this->load->view('index',$data);
  }
@@ -56,7 +55,7 @@ class Subject extends MY_Controller{
             $ids=array(
             
                 'subject_id'=>$subject_id,
-                'school_id'=>$userData['school_id']
+                'school_id'=>$_SESSION['SchoolId']
 
           );  
             $map = $this->Subject_model->add_mapping($ids);

@@ -1,36 +1,36 @@
 <?php
 
  
-class Trainer extends MY_Controller{
+class Employee extends MY_Controller{
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Trainer_model');
+        $this->load->model('Employee_model');
     } 
 
     /*
-     * Listing of trainers
+     * Listing of employees
      */
-    function trainer_list()
+    function employee_list()
     {   $this->load->library('pagination');
          $params['limit'] = 100; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
         
         $config = $this->config->item('pagination');
-        $config['base_url'] = site_url('trainer/index?');
-        $config['total_rows'] = $this->Trainer_model->get_all_trainers_count();
+        $config['base_url'] = site_url('employee/index?');
+        $config['total_rows'] = $this->Employee_model->get_all_employees_count();
         $this->pagination->initialize($config);
 
-        $data['trainers'] = $this->Trainer_model->get_all_trainers($params);
+        $data['employees'] = $this->Employee_model->get_all_employees($params);
         
-        $data['_view'] = 'trainerList';
+        $data['_view'] = 'employeeList';
         $this->load->view('../index',$data);
     }
 
     /*
-     * Adding a new trainer
+     * Adding a new employee
      */
-    function add_trainer()
+    function add_employee()
     {
         $data['_view'] = 'add';
         $this->load->view('../index',$data);
@@ -41,27 +41,29 @@ class Trainer extends MY_Controller{
         $config['upload_path']          = './uploads/';
        $config['allowed_types']        = 'gif|jpg|png';
        $this->load->library('upload', $config);
-		$this->form_validation->set_rules('password','Password','required');
-		$this->form_validation->set_rules('trainer_Name','Trainer Name','required|max_length[100]');
+		// $this->form_validation->set_rules('password','Password','required');
+		$this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
 		$this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
 		$this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
 		$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
 		// $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-		$this->form_validation->set_rules('address','Address','required');
+        $this->form_validation->set_rules('paddress','Address','required');
+		$this->form_validation->set_rules('taddress','Address','required');
 		
 		if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
         {   
             $params = array(
-				'password' => $this->input->post('password'),
-				'trainer_Name' => $this->input->post('trainer_Name'),
+				// 'password' => $this->input->post('password'),
+				'name' => $this->input->post('employee_Name'),
                 'qualification' => $this->input->post('qualification'),
 				'username' => $this->input->post('username'),
 				'email' => $this->input->post('email'),
 				'mobile' => $this->input->post('mobile'),
 				// 'profile_image' => $this->input->post('profile_image'),
-				'address' => $this->input->post('address'),
+                'Permanent_address' => $this->input->post('paddress'),
+				'temporary_address' => $this->input->post('taddress'),
                 'created_at'=>date('d-m-y/h-m'),
-                'modified_at'=>date('d-m-y/h-m'),
+                'modified_at'=>date('d-m-y/h-m')
             );
             // var_dump($params);
              $data['image'] =  $this->upload->data();
@@ -69,33 +71,41 @@ class Trainer extends MY_Controller{
         $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
                // echo $image_path;die;
         $params['profile_image']=$image_path;
-            $trainer_id = $this->Trainer_model->add_trainer($params);
-            redirect('trainer/add/successmodal');
+            $employee_id = $this->Employee_model->add_employee($params);
+             $ids=array(
+            
+                'employee_id'=>$employee_id,
+                'school_id'=>$_SESSION['SchoolId']
+
+          );  
+            $map = $this->Employee_model->add_mapping($ids);
+            // redirect('subject/subject_list');
+            redirect('employee/employee_list');
         }
         else
         {            
-            $data['_view'] = 'add_trainer';
+            $data['_view'] = 'add';
             $this->load->view('../index',$data);
         }
     }  
 
     /*
-     * Editing a trainer
+     * Editing a employee
      */
     function edit($id)
     {   
-        // check if the trainer exists before trying to edit it
-        $data['trainer'] = $this->Trainer_model->get_trainer($id);
+        // check if the employee exists before trying to edit it
+        $data['employee'] = $this->Employee_model->get_employee($id);
          $config['upload_path']          = './uploads/';
        $config['allowed_types']        = 'gif|jpg|png';
        $this->load->library('upload', $config);
         
-        if(isset($data['trainer']['id']))
+        if(isset($data['employee']['id']))
         {
             $this->load->library('form_validation');
 
 			$this->form_validation->set_rules('password','Password','required');
-			$this->form_validation->set_rules('trainer_Name','Trainer Name','required|max_length[100]');
+			$this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
 			$this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
 			$this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
 			$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
@@ -106,7 +116,7 @@ class Trainer extends MY_Controller{
             {   
                 $params = array(
 					'password' => $this->input->post('password'),
-					'trainer_Name' => $this->input->post('trainer_Name'),
+					'employee_Name' => $this->input->post('employee_Name'),
                     'username' => $this->input->post('username'),
 					'qualification' => $this->input->post('qualification'),
 					'email' => $this->input->post('email'),
@@ -120,8 +130,8 @@ class Trainer extends MY_Controller{
         $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
                // echo $image_path;die;
         $params['profile_image']=$image_path;
-                $this->Trainer_model->update_trainer($id,$params);            
-                redirect('trainer/trainer_list');
+                $this->Employee_model->update_employee($id,$params);            
+                redirect('employee/employee_list');
             }   
             else
             {
@@ -130,24 +140,24 @@ class Trainer extends MY_Controller{
             }
         }
         else
-            show_error('The trainer you are trying to edit does not exist.');
+            show_error('The employee you are trying to edit does not exist.');
     } 
 
     /*
-     * Deleting trainer
+     * Deleting employee
      */
     function remove($id)
     {
-        $trainer = $this->Trainer_model->get_trainer($id);
+        $employee = $this->Employee_model->get_employee($id);
 
-        // check if the trainer exists before trying to delete it
-        if(isset($trainer['id']))
+        // check if the employee exists before trying to delete it
+        if(isset($employee['id']))
         {
-            $this->Trainer_model->delete_trainer($id);
-            redirect('trainer/trainerlist');
+            $this->Employee_model->delete_employee($id);
+            redirect('employee/employeelist');
         }
         else
-            show_error('The trainer you are trying to delete does not exist.');
+            show_error('The employee you are trying to delete does not exist.');
     }
     
 }

@@ -64,7 +64,7 @@ class Classes extends MY_Controller{
              $ids=array(
             
                 'class_id'=>$class_id,
-                'school_id'=>1
+                'school_id'=>$_SESSION['SchoolId']
 
           );  
                $map = $this->classes_model->add_mapping($ids);

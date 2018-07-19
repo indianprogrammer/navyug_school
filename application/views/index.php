@@ -120,26 +120,26 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tree"></i>
               <p>
-                TRAINER
+                Employee
                 <i class="fa fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-            <a href="<?= site_url()?>trainer/add_trainer" class="nav-link">
+            <a href="<?= site_url()?>employee/add_employee" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
-                ADD TRAINER
+                ADD employee
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>
           </li>
                <li class="nav-item">
-            <a href="<?= site_url()?>trainer/trainer_list" class="nav-link">
+            <a href="<?= site_url()?>employee/employee_list" class="nav-link">
               <i class="nav-icon fa fa-th"></i>
               <p>
-                TRAINER LIST
+                employee LIST
                 <!-- <span class="right badge badge-danger">New</span> -->
               </p>
             </a>

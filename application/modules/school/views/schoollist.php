@@ -2,7 +2,7 @@
     <div class="col-md-12 col-sm-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">School Listing</h3>
+                <h3 class="box-title">School List</h3>
                 <div class="box-tools">
                     <a href="<?php echo site_url('school/add_school'); ?>" class="btn btn-success btn-sm">Add</a>
                 </div>
@@ -27,7 +27,7 @@
                     <?php foreach ($school as $s) { ?>
                         <tr>
                             <td><?php echo $s['id']; ?></td>
-                            <td><?php echo $s['school_name']; ?></td>
+                            <td><?php echo $s['organization_name']; ?></td>
                             <td><?php echo substr($s['address'],1) ?></td>
                             <td><?php echo $s['email']; ?></td>
                             <td><?php echo $s['contact_pri']; ?></td>

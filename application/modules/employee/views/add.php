@@ -1,10 +1,10 @@
-<?php echo form_open_multipart('trainer/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open_multipart('employee/add',array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
-		<label for="trainer_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Trainer Name</label>
+		<label for="employee_Name" class="col-md-4 control-label"><span class="text-danger">*</span>employee Name</label>
 		<div class="col-md-5">
-			<input type="text" name="trainer_Name" value="<?php echo $this->input->post('trainer_Name'); ?>" class="form-control" id="trainer_Name" />
-			<span class="text-danger"><?php echo form_error('trainer_Name');?></span>
+			<input type="text" name="employee_Name" value="<?php echo $this->input->post('employee_Name'); ?>" class="form-control" id="employee_Name" />
+			<span class="text-danger"><?php echo form_error('employee_Name');?></span>
 		</div>
 	</div>
 	<div class="form-group">
