@@ -14,6 +14,8 @@ class Subject extends MY_Controller{
      */
     function subject_list()
     {
+           
+
         $data['subject'] = $this->Subject_model->get_all_subject();
         
         $data['_view'] = 'subjectList';
@@ -55,7 +57,7 @@ class Subject extends MY_Controller{
             $ids=array(
             
                 'subject_id'=>$subject_id,
-                'school_id'=>$_SESSION['SchoolId']
+                'school_id'=>$this->session->SchoolId
 
           );  
             $map = $this->Subject_model->add_mapping($ids);

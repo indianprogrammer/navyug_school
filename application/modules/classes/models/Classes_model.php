@@ -58,9 +58,15 @@ class Classes_model extends CI_Model
     {
         return $this->db->delete('classes',array('id'=>$id));
     }
-    function fetch_subject()
+    function fetch_subject($school_id)
     {
          $this->db->order_by('id', 'desc');
+         $this->db->where('id', $school_id);
         return $this->db->get('subjects')->result_array();
+    }
+     function fetch_employee($school_id)
+    {
+         $this->db->order_by('id', 'desc');
+        return $this->db->get('employees')->result_array();
     }
 }

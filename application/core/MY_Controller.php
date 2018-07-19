@@ -9,6 +9,7 @@ class MY_Controller extends MX_Controller {
 		if (!isset($_SESSION['username'])) {
              redirect('login');
         }
+        $schoolId= $_SESSION['SchoolId'];
 	} 
 
 

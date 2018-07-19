@@ -28,6 +28,18 @@
 		</div>
 	</div>
 	<div class="form-group">
+		<label for="employee" class="col-md-4 control-label"><span class="text-danger">*</span>Employee</label>
+		<div class="col-md-8">
+			<select  name="employee" class="selectpicker" multiple>
+				<option>SELECT EMPLOYEE</option>
+			<?php	foreach($employee as $row){ ?>
+				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
+			<?php } ?>
+			</select>
+			<span class="text-danger"><?php echo form_error('employee');?></span>
+		</div>
+	</div>
+	<div class="form-group">
 		<label for="start_time" class="col-md-4 control-label"><span class="text-danger">*</span>Start Time</label>
 		<div class="col-md-8">
 			<input type="text" name="start_time" value="<?php echo $this->input->post('start_time'); ?>" class="form-control" id="start_time" />
