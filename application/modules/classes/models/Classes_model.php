@@ -16,7 +16,7 @@ class Classes_model extends CI_Model
      */
     function get_class($id)
     {
-        return $this->db->get_where('class',array('id'=>$id))->row_array();
+        return $this->db->get_where('classes',array('id'=>$id))->row_array();
     }
         
     /*

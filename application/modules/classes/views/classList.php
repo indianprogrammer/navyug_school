@@ -11,17 +11,20 @@
                 </div>
             </div>
 
-<table class="table table-striped table-bordered">
+<table id="class_table" class="table table-striped table-bordered table-responsive">
+    <thead>
     <tr>
 		<th>ID</th>
 		<!-- <th>Password</th> -->
-		<th>class Name</th>
-        <th>description</th>
+		<th>Class Name</th>
+        <th>Description</th>
         <th>Start time</th>
 		<th>End time</th>
 		
 		<th>Actions</th>
     </tr>
+    </thead>
+    <tbody>
 	<?php foreach($class as $row){ ?>
     <tr>
 		<td><?= $row['id']; ?></td>
@@ -37,12 +40,18 @@
         </td>
     </tr>
 	<?php } ?>
+</tbody>
 </table>
 </div>
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+ <script>
+    $(document).ready( function () {
+        $('#class_table').DataTable();
+    } );
+</script>
 <script type="text/javascript">
     function myFunction()
     {

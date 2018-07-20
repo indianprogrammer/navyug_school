@@ -28,7 +28,7 @@ class School_model extends CI_Model
     {
          // $this->db->order_by('id', 'desc');
 
-     $this->db->select('master_country.country_name,school.id, master_state.state_name,organization_name,master_cities.city_name,address,latlong,contact_pri,contact_sec,email,logo,banner');
+     $this->db->select('master_country.country_name,school.id, master_state.state_name,school.organization_name,master_cities.city_name,address,latlong,contact_pri,contact_sec,email,logo,banner');
      $this->db->join('master_country', 'master_country.id = school.country_id');
      $this->db->join('master_state', 'master_state.id = school.state_id');
      $this->db->join('master_cities', 'master_cities.id = school.city_id');

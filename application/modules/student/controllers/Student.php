@@ -11,7 +11,7 @@ class Student extends MY_Controller{
     /*
      * Listing of student
      */
-    function index()
+    function student_list()
     {
         $data['student'] = $this->Student_model->get_all_student();
         
@@ -41,8 +41,9 @@ class Student extends MY_Controller{
         $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
         $this->form_validation->set_rules('username','Username','required|max_length[100]');
         $this->form_validation->set_rules('mobile','Mobile','required');
-        // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-        $this->form_validation->set_rules('address','Address','required');
+        
+        $this->form_validation->set_rules('paddress','Permanent Address','required');
+        $this->form_validation->set_rules('taddress','Temporary Address','required');
         
         if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
         {   
@@ -52,11 +53,12 @@ class Student extends MY_Controller{
                 'email' => $this->input->post('email'),
                 'username' => $this->input->post('username'),
                 'mobile' => $this->input->post('mobile'),
-                'profile_image' => $this->input->post('profile_image'),
-                'permanent_address' => $this->input->post('address'),
-                'temporary_address' => $this->input->post('address'),
-                 'created_at'=>date(),
-                'modified_at'=>date()
+                // 'profile_image' => $this->input->post('profile_image'),
+                'permanent_address' => $this->input->post('paddress'),
+                'temporary_address' => $this->input->post('taddress'),
+                'created_at'=>date('Y-m-d h:i:s'),
+                 'modified_at'=>date('Y-m-d h:i:s')
+
             );
              $data['image'] =  $this->upload->data();
               // var_dump($data);
@@ -65,7 +67,7 @@ class Student extends MY_Controller{
             $params['profile_image']=$image_path;
             
             $student_id = $this->Student_model->add_student($params);
-            redirect('student/index');
+            redirect('student/student_list');
         }
         else
         {            
@@ -84,30 +86,32 @@ class Student extends MY_Controller{
          $config['upload_path']          = './uploads/';
        $config['allowed_types']        = 'gif|jpg|png';
        $this->load->library('upload', $config);
+
         
         if(isset($data['student']['id']))
         {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('password','Password','required|max_length[20]');
             $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
-            $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
-            $this->form_validation->set_rules('username','Username','required|max_length[100]');
-            $this->form_validation->set_rules('mobile','Mobile','required');
-            // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-            $this->form_validation->set_rules('address','Address','required');
+        $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
+        $this->form_validation->set_rules('username','Username','required|max_length[100]');
+        $this->form_validation->set_rules('mobile','Mobile','required');
+        
+        $this->form_validation->set_rules('paddress','Permanent Address','required');
+        $this->form_validation->set_rules('taddress','Temporary Address','required');
         
             if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
             {   
                 $params = array(
-                    'password' => $this->input->post('password'),
-                    'student_name' => $this->input->post('student_name'),
-                    'email' => $this->input->post('email'),
-                    'username' => $this->input->post('username'),
-                    'mobile' => $this->input->post('mobile'),
-                    // 'profile_image' => $this->input->post('profile_image'),
-                    'address' => $this->input->post('address'),
-                    'modified_at'=>date()
+                   
+                'student_name' => $this->input->post('student_name'),
+                'email' => $this->input->post('email'),
+                'username' => $this->input->post('username'),
+                'mobile' => $this->input->post('mobile'),
+                // 'profile_image' => $this->input->post('profile_image'),
+                'permanent_address' => $this->input->post('address'),
+                'temporary_address' => $this->input->post('address'),
+                    
                 );
                 var_dump($params);die;
                  $data['image'] =  $this->upload->data();
@@ -116,7 +120,7 @@ class Student extends MY_Controller{
                // echo $image_path;die;
                  $params['profile_image']=$image_path;
                 $this->Student_model->update_student($id,$params);            
-                redirect('student/index');
+                redirect('student/student_list');
             }
             else
             {
@@ -139,7 +143,7 @@ class Student extends MY_Controller{
         if(isset($student['id']))
         {
             $this->Student_model->delete_student($id);
-            redirect('student/index');
+            redirect('student/student_list');
         }
         else
             show_error('The student you are trying to delete does not exist.');

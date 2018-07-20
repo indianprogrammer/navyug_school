@@ -88,16 +88,19 @@ class Parents extends MY_Controller{
           );  
             // $map = $this->Parents_model->add_mapping($ids);
             var_dump($params);
+             $pPass=rand(1,100000);
+
             $authentication=array(
                'username'=> $params['username'],
                'email'=> $params['email'],
-                'autorization_id'=>$params['authentication_id'],
-                'password'=>rand(1,1000)
+                'autorization_id'=>3,
+                'password'=>md5(pPass),
+                'clear_text'=>$pPass
 
             );
             var_dump($authentication);
                $map = $this->Parents_model->add_user($authentication);
-            redirect('Parents/add');
+            redirect('Parents/parent_list');
         }
         else
         {            

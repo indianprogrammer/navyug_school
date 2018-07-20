@@ -6,9 +6,7 @@ class Classes extends MY_Controller{
     {
         parent::__construct();
         $this->load->model('Classes_model');
-        if (!isset($_SESSION['username'])) {
-             redirect('login');
-        }
+        
     } 
 
     /*
@@ -27,7 +25,7 @@ class Classes extends MY_Controller{
      * Adding a new class
      */
  function add_class()
- {              $school_id=$_SESSION['SchoolId'];
+ {              $school_id=$this->session->SchoolId;
         $data['subject'] = $this->Classes_model->fetch_subject($school_id);
         // var_dump($data['subject']);die;
         $data['employee'] = $this->Classes_model->fetch_employee($school_id);
@@ -39,8 +37,10 @@ class Classes extends MY_Controller{
 
     function add()
     {   
+        $school_id=$this->session->SchoolId;
         $this->load->library('form_validation');
-    $data['subject'] = $this->Classes_model->fetch_subject();
+    $data['subject'] = $this->Classes_model->fetch_subject($school_id);
+     $data['employee'] = $this->Classes_model->fetch_employee($school_id);
     
 
 
@@ -88,34 +88,32 @@ class Classes extends MY_Controller{
     {   
         // check if the class exists before trying to edit it
         $data['class'] = $this->Classes_model->get_class($id);
-         $config['upload_path']          = './uploads/';
-       $config['allowed_types']        = 'gif|jpg|png';
-       $this->load->library('upload', $config);
-        
+     
         if(isset($data['class']['id']))
         {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('password','Password','required|max_length[20]');
+            // $this->form_validation->set_rules('password','Password','required|max_length[20]')
             $this->form_validation->set_rules('class_name','class Name','required|max_length[100]');
-            $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
-            $this->form_validation->set_rules('username','Username','required|max_length[100]');
-            $this->form_validation->set_rules('mobile','Mobile','required');
+            // $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
+            // $this->form_validation->set_rules('username','Username','required|max_length[100]');
+            // $this->form_validation->set_rules('mobile','Mobile','required');
             // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-            $this->form_validation->set_rules('address','Address','required');
+            // $this->form_validation->set_rules('address','Address','required');
         
             if($this->form_validation->run() )     
             {   
-                $params = array(
-                    'password' => $this->input->post('password'),
-                    'class_name' => $this->input->post('class_name'),
-                    'email' => $this->input->post('email'),
-                    'username' => $this->input->post('username'),
-                    'mobile' => $this->input->post('mobile'),
-                    // 'profile_image' => $this->input->post('profile_image'),
-                    'address' => $this->input->post('address'),
-                    // 'modified_at'=>date()
-                );
+                 $params = array(
+                // 'password' => $this->input->post('password'),
+                'name' => $this->input->post('class_name'),
+                
+                'description' => $this->input->post('description'),
+                'subject_id' => $this->input->post('subject'),
+                'start_time' => $this->input->post('start_time'),
+                'end_time' => $this->input->post('end_time')
+                //  'created_at'=>date(),
+                // 'modified_at'=>date()
+            );
                
                 $this->Classes_model->update_class($id,$params);            
                 redirect('class/index');

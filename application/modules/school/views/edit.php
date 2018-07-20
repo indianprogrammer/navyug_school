@@ -10,7 +10,7 @@
 					<div class="col-md-5">
 						<label for="name" class="control-label"><span class="text-danger">*</span>School Name</label>
 						<div class="form-group">
-							<input type="text" name="name" value="<?= ($this->input->post('name') ? $this->input->post('name') : $school['school_name']); ?>" class="form-control" id="name" />
+							<input type="text" name="name" value="<?= ($this->input->post('name') ? $this->input->post('name') : $school['organization_name']); ?>" class="form-control" id="name" />
 							<span class="text-danger"><?= form_error('name');?></span>
 						</div>
 					</div>
@@ -104,7 +104,7 @@
 									</div>
 								</div>
 								<div class="col-md-5">
-									<label for="latlong" class="control-label"><span class="text-danger">*</span>Latlong</label>
+									<label for="latlong" class="control-label"><span class="text-danger">*</span>Location</label>
 									<div class="form-group" id="showlat">
 										<input type="text" name="latlong" value="<?= ($this->input->post('latlong') ? $this->input->post('latlong') : $school['latlong']); ?>" class="form-control" id="latlong" onclick="latMap()" />
 										<span class="text-danger"><?= form_error('latlong');?></span>
@@ -114,14 +114,14 @@
 								<div class="col-md-5">
 									<label for="logo" class="control-label"><span class="text-danger">*</span>Logo</label>
 									<div class="form-group">
-										<input type="text" name="logo" value="<?= ($this->input->post('logo') ? $this->input->post('logo') : $school['logo']); ?>" class="form-control" id="logo" />
+										<input type="file" name="logo" value="<?= ($this->input->post('logo') ? $this->input->post('logo') : $school['logo']); ?>" class="form-control" id="logo" disable />
 										<span class="text-danger"><?= form_error('logo');?></span>
 									</div>
 								</div>
 								<div class="col-md-5">
 									<label for="banner" class="control-label"><span class="text-danger">*</span>Banner</label>
 									<div class="form-group">
-										<input type="text" name="banner" value="<?= ($this->input->post('banner') ? $this->input->post('banner') : $school['banner']); ?>" class="form-control" id="banner" />
+										<input type="file" name="banner" value="<?= ($this->input->post('banner') ? $this->input->post('banner') : $school['banner']); ?>" class="form-control" id="banner" disable />
 										<span class="text-danger"><?= form_error('banner');?></span>
 									</div>
 								</div>

@@ -58,7 +58,7 @@ class School extends MY_Controller
         // $this->form_validation->set_rules('logo', 'Logo', 'required');
         // $this->form_validation->set_rules('banner', 'Banner', 'required');
         $this->form_validation->set_rules('address', 'Address', 'required');
-        $this->form_validation->set_rules('latlong', 'Latlong', 'required');
+        $this->form_validation->set_rules('latlong', 'Location', 'required');
 
         if ($this->form_validation->run()) {
             $params = array(
@@ -70,8 +70,8 @@ class School extends MY_Controller
                 'contact_pri' => $this->input->post('contact_pri'),
                 'contact_sec' => $this->input->post('contact_sec'),
                 'email' => $this->input->post('email'),
-                'logo' => $this->input->post('logo'),
-                'banner' => $this->input->post('banner'),
+                // 'logo' => $this->input->post('logo'),
+                // 'banner' => $this->input->post('banner'),
                 'address' => $this->input->post('address'),
                  'created_at'=>date('Y-m-d h:i:s'),
                  'modified_at'=>date('Y-m-d h:i:s')
@@ -84,7 +84,7 @@ class School extends MY_Controller
              $this->load->view('../index', $data);
              // header('location:successmodal.php');
         } else {
-             $this->session->set_flashdata('status','Failed to added');
+             // $this->session->set_flashdata('status','Failed to added');
             $data['_view'] = 'add';
              $this->load->view('../index', $data);
            
@@ -116,10 +116,8 @@ class School extends MY_Controller
             $this->form_validation->set_rules('contact_pri', 'Primary Number', 'max_length[13]','min_length[10]');
             $this->form_validation->set_rules('contact_sec', 'Secondry Number', 'max_length[13]','min_length[10]');
             $this->form_validation->set_rules('email', 'Email', 'required|max_length[255]|valid_email');
-            $this->form_validation->set_rules('logo', 'Logo', 'required');
-            $this->form_validation->set_rules('banner', 'Banner', 'required');
             $this->form_validation->set_rules('address', 'Address', 'required');
-            $this->form_validation->set_rules('latlong', 'Latlong', 'required');
+            $this->form_validation->set_rules('latlong', 'Location', 'required');
 
             if ($this->form_validation->run()) {
                 $params = array(
@@ -132,14 +130,13 @@ class School extends MY_Controller
                     'contact_pri' => $this->input->post('contact_pri'),
                     'contact_sec' => $this->input->post('contact_sec'),
                     'email' => $this->input->post('email'),
-                    'logo' => $this->input->post('logo'),
-                    'banner' => $this->input->post('banner'),
-                    'address' => $this->input->post('address'),
-                    'modified_at'=>date('Y-m-d h:i:s')
+                   
+                    'address' => $this->input->post('address')
+                    // 'modified_at'=>date('Y-m-d h:i:s')
                 );
 
                 $this->School_model->update_school($id, $params);
-                redirect('school/index');
+                redirect('school/school_list');
             } else {
                 $data['_view'] = 'edit';
                 //var_dump($data);

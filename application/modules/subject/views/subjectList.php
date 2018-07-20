@@ -3,13 +3,14 @@
     <div class="col-md-12 col-sm-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Subject Listing</h3>
+                <h3 class="box-title">Subject List</h3>
                 <div class="box-tools">
                     <a href="<?= site_url('student/add'); ?>" class="btn btn-success ">Add</a>
                 </div>
             </div>
 
-<table class="table table-striped table-bordered">
+<table id="subject_table" class="table table-striped table-bordered">
+    <thead>
     <tr>
 		<th>ID</th>
 		<!-- <th>Password</th> -->
@@ -17,6 +18,8 @@
 		
 		<th>Actions</th>
     </tr>
+</thead>
+<tbody>
 	<?php foreach($subject as $s){ ?>
     <tr>
 		<td><?= $s['id']; ?></td>
@@ -30,13 +33,20 @@
         </td>
     </tr>
 	<?php } ?>
+</tbody>
 </table>
 </div>
 </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+ <script>
+    $(document).ready( function () {
+        $('#subject_table').DataTable();
+    } );
+</script>
 <script type="text/javascript">
+
     function myFunction()
     {
      

@@ -32,7 +32,7 @@
                         <label for="contact_pri" class="control-label"><span class="text-danger">*</span>Contact Primary</label>
                         <div class="form-group">
                             <input type="text" name="contact_pri" maxlength="13" value="<?= $this->input->post('contact_pri') ?>"
-                            class="form-control" id="contact_pri"/>
+                            class="form-control" id="contact_pri" data-toggle="tooltip" data-placement="top" title="+919393939999 or 919393939999 "/>
                             <span class="text-danger"><?= form_error('contact_pri') ?></span>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <label for="contact_sec" class="control-label">Contact Secondry</label>
                         <div class="form-group">
                             <input type="text" name="contact_sec"  maxlength="13" value="<?= $this->input->post('contact_sec') ?>"
-                            class="form-control" id="contact_sec"/>
+                            class="form-control" id="contact_sec" data-toggle="tooltip" data-placement="top" title="+919393939999 or 919393939999 "/>
                             <span class="text-danger"><?= form_error('contact_sec') ?></span>
                         </div>
                     </div>
@@ -86,18 +86,18 @@
                     </div>
 
                     <div class="col-md-5 col-sm-12">
-                        <label for="latlong" class="control-label"><span class="text-danger">*</span>Latlong</label>
+                        <label for="latlong" class="control-label"><span class="text-danger">*</span>Location</label>
                         <div class="form-group" id="showlat">
                             <input type="text" name="latlong" 
-                            class="form-control" id="latlong" onclick="latMap();"  />
+                            class="form-control" id="latlong" onclick="latMap();" data-toggle="tooltip" data-placement="top" title="click on field and select your location in google map "  />
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                         </div>
                     </div>
-                      <div class="col-md-5" id="dvMap" > </div>
+                      <div class="col-md-5 col-sm-12 col-md-5" id="dvMap" > </div>
                     <div class="col-md-5 col-sm-12">
                         <label for="logo" class="control-label"> Upload Logo</label>
                         <div class="form-group">
-                            <input type="file" name="logo" value="<?= $this->input->post('logo') ?>"
+                            <input type="file" name="logo" value="<?= $this->input->post('logo') ?>" disable
                             class="form-control" id="logo"/>
                             <span class="text-danger"><?= form_error('logo') ?></span>
                         </div>
@@ -107,13 +107,13 @@
                         Banner</label>
                         <div class="form-group">
                             <input type="file" name="banner" value="<?= $this->input->post('banner') ?>"
-                            class="form-control" id="banner"/>
+                            class="form-control"  disable id="banner"/>
                             <span class="text-danger"><?= form_error('banner') ?></span>
                         </div>
                     </div>
                 </div>
             </div>
-            <input type="hidden" name="" value="">
+       
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-success">

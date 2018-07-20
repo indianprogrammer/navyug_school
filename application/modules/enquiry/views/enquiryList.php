@@ -1,8 +1,4 @@
-<ul class="breadcrumb">
-  <li class="breadcrumb-item"><a href="<?= base_url() ?>school/index">Home</a></li>
-  <li class="breadcrumb-item ">Enquiry</li>
-  <li class="breadcrumb-item active">Enquiry List</li>
-</ul>
+
 
 
 
@@ -11,8 +7,10 @@
 	<a href="<?php echo site_url('enquiry/add'); ?>" class="btn btn-success">Add</a> 
 </div>
 
-<table class="table table-striped table-bordered table-responsive">
-    <tr>
+<table id ="parent_table" class="table table-striped table-bordered table-responsive">
+    
+    <thead>
+    	<tr>
 		<th>ID</th>
 		<!-- <th>Password</th> -->
 		<th>Name</th>
@@ -25,6 +23,8 @@
 		<th>Remarks</th>
 		<th>Actions</th>
     </tr>
+</thead>
+<tbody>
 	<?php foreach($enquiry as $t){ ?>
     <tr>
 		<td><?php echo $t['id']; ?></td>
@@ -44,12 +44,20 @@
         </td>
     </tr>
 	<?php } ?>
+</tbody>
 </table>
 <div class="pull-right">
     <?php echo $this->pagination->create_links(); ?>    
 </div>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+<script src="<?= base_url() ;?>assets/admin/plugins/datatables/jquery.dataTables.js"></script>
+<script src="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#parent_table').DataTable();
+    } );
+</script>
 <script type="text/javascript">
     function myFunction()
     {
