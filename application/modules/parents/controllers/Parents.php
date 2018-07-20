@@ -11,7 +11,7 @@ class Parents extends MY_Controller{
     /*
      * Listing of parents
      */
-    function parent_list()
+    function parent_list_bkp()
     {   $this->load->library('pagination');
          $params['limit'] = 100; 
         $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
@@ -23,6 +23,12 @@ class Parents extends MY_Controller{
 
         $data['parents'] = $this->Parents_model->get_all_parents($params);
         
+        $data['_view'] = 'parentList';
+        $this->load->view('../index',$data);
+    }
+
+    function parent_list(){
+        $data['parents'] = $this->Parents_model->get_all_parents();
         $data['_view'] = 'parentList';
         $this->load->view('../index',$data);
     }
