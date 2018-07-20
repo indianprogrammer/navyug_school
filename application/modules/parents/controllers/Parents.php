@@ -44,12 +44,15 @@ class Parents extends MY_Controller{
     }
     function add()
     {   
+     $data['ptype'] = $this->Parents_model->fetch_type();
         $this->load->library('form_validation');
         // $config['upload_path']          = './uploads/';
        // $config['allowed_types']        = 'gif|jpg|png';
        // $this->load->library('upload', $config);
 		// $this->form_validation->set_rules('password','Password','required');
-		$this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
+        $this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
+        $this->form_validation->set_rules('ptype','parent type','required');
+		$this->form_validation->set_rules('username','username','required|max_length[100]');
 		// $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
 		$this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
 		$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
@@ -69,10 +72,10 @@ class Parents extends MY_Controller{
 				 // 'profile_image' => $this->input->post('profile_image'),
                  'permanent_address' => $this->input->post('paddress'),
 				 'temporary_address' => $this->input->post('taddress'),
-                 'created_at'=>date('Y-m-d h:i:s'),
-                 'modified_at'=>date('Y-m-d h:i:s')
+                 // 'created_at'=>date('Y-m-d h:i:s'),
+                 // 'modified_at'=>date('Y-m-d h:i:s')
             );
-            // var_dump($params);die;
+             // var_dump($params);die;
              // $data['image'] =  $this->upload->data();
               // var_dump($data);
         // $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
@@ -94,7 +97,7 @@ class Parents extends MY_Controller{
                'username'=> $params['username'],
                'email'=> $params['email'],
                 'autorization_id'=>3,
-                'password'=>md5(pPass),
+                'password'=>md5($pPass),
                 'clear_text'=>$pPass
 
             );
@@ -133,13 +136,16 @@ class Parents extends MY_Controller{
             {   
                 $params = array(
 					// 'password' => $this->input->post('password'),
-					'name' => $this->input->post('parent_Name'),
-                    'username' => $this->input->post('username'),
-					// 'qualification' => $this->input->post('qualification'),
-					'email' => $this->input->post('email'),
-					'mobile' => $this->input->post('mobile'),
-					// 'profile_image' => $this->input->post('profile_image'),
-					 'address' => $this->input->post('address')
+					 'name' => $this->input->post('parent_Name'),
+                // 'type' => $this->input->post('ptype'),
+                // 'qualification' => $this->input->post('qualification'),
+                'username' => $this->input->post('username'),
+                'email' => $this->input->post('email'),
+                'mobile' => $this->input->post('mobile'),
+                 // 'profile_image' => $this->input->post('profile_image'),
+                 'permanent_address' => $this->input->post('paddress'),
+                 'temporary_address' => $this->input->post('taddress')
+                  // 'modified_at'=>date('Y-m-d h:i:s')
                      // 'modified_at'=>date('Y-m-d h:i:s')
                 );
 

@@ -48,15 +48,17 @@ class Login extends MX_Controller
                 case 1:
                     #got for admin user at employ table & check for authentication ID and get school id
                     $userData = $this->Login_model->getEmployDetails($authenticationData['id']);
+                    // $this->Login_model->getSchoolId();
                     $this->session->SchoolId = $userData['school_id'];
+                    echo "admin  ". $this->session->username;
 
                     break;
                 case 2:
-                    echo "Welcome". $this->session->username;
+                    echo "Welcome  " . $this->session->username;
                     break;
                 case 3:
                     #got for parent
-                 echo "Welcome". $this->session->username;
+                 echo "Welcome  ". $this->session->username;
                     break;
                 case 4:
                     #got for student

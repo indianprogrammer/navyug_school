@@ -1,28 +1,28 @@
     <?php
 
 
-    class Student extends MY_Controller{
+    class Admin extends MY_Controller{
         function __construct()
         {
             parent::__construct();
-            $this->load->model('Student_model');
+            $this->load->model('Admin_model');
         } 
 
     /*
-     * Listing of student
+     * Listing of admin
      */
-    function student_list()
+    function dmin_list()
     {
-        $data['student'] = $this->Student_model->get_all_student();
+        $data['admin'] = $this->Admin_model->get_all_admin();
         
-        $data['_view'] = 'studentList';
+        $data['_view'] = 'adminList';
         $this->load->view('index',$data);
     }
 
     /*
-     * Adding a new student
+     * Adding a new admin
      */
-    function add_student()
+    function add_admin()
     {
        $data['_view'] = 'add';
        $this->load->view('index',$data);
@@ -37,7 +37,7 @@
     $this->load->library('upload', $config);
 
         // $this->form_validation->set_rules('password','Password','required|max_length[20]');
-    $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
+    $this->form_validation->set_rules('admin_name','admin Name','required|max_length[100]');
     $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
     $this->form_validation->set_rules('username','Username','required|max_length[100]');
     $this->form_validation->set_rules('mobile','Mobile','required');
@@ -49,7 +49,7 @@
     {   
         $params = array(
                 // 'password' => $this->input->post('password'),
-            'student_name' => $this->input->post('student_name'),
+            'admin_name' => $this->input->post('admin_name'),
             'email' => $this->input->post('email'),
             'username' => $this->input->post('username'),
             'mobile' => $this->input->post('mobile'),
@@ -66,8 +66,8 @@
                // echo $image_path;die;
         $params['profile_image']=$image_path;
 
-        $student_id = $this->Student_model->add_student($params);
-        redirect('student/student_list');
+        $admin_id = $this->Admin_model->add_admin($params);
+        redirect('admin/admin_list');
     }
     else
     {            
@@ -77,22 +77,22 @@
 }  
 
     /*
-     * Editing a student
+     * Editing a admin
      */
     function edit($id)
     {   
-        // check if the student exists before trying to edit it
-        $data['student'] = $this->Student_model->get_student($id);
+        // check if the admin exists before trying to edit it
+        $data['admin'] = $this->Admin_model->get_admin($id);
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'gif|jpg|png';
         $this->load->library('upload', $config);
 
         
-        if(isset($data['student']['id']))
+        if(isset($data['admin']['id']))
         {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
+            $this->form_validation->set_rules('admin_name','admin Name','required|max_length[100]');
             $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
             $this->form_validation->set_rules('username','Username','required|max_length[100]');
             $this->form_validation->set_rules('mobile','Mobile','required');
@@ -104,7 +104,7 @@
             {   
                 $params = array(
 
-                    'student_name' => $this->input->post('student_name'),
+                    'admin_name' => $this->input->post('admin_name'),
                     'email' => $this->input->post('email'),
                     'username' => $this->input->post('username'),
                     'mobile' => $this->input->post('mobile'),
@@ -119,8 +119,8 @@
                 $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
                // echo $image_path;die;
                 $params['profile_image']=$image_path;
-                $this->Student_model->update_student($id,$params);            
-                redirect('student/student_list');
+                $this->Admin_model->update_admin($id,$params);            
+                redirect('admin/admin_list');
             }
             else
             {
@@ -129,24 +129,24 @@
             }
         }
         else
-            show_error('The student you are trying to edit does not exist.');
+            show_error('The admin you are trying to edit does not exist.');
     } 
 
     /*
-     * Deleting student
+     * Deleting admin
      */
     function remove($id)
     {
-        $student = $this->Student_model->get_student($id);
+        $admin = $this->Admin_model->get_admin($id);
 
-        // check if the student exists before trying to delete it
-        if(isset($student['id']))
+        // check if the admin exists before trying to delete it
+        if(isset($admin['id']))
         {
-            $this->Student_model->delete_student($id);
-            redirect('student/student_list');
+            $this->Admin_model->delete_admin($id);
+            redirect('admin/admin_list');
         }
         else
-            show_error('The student you are trying to delete does not exist.');
+            show_error('The admin you are trying to delete does not exist.');
     }
     
 }

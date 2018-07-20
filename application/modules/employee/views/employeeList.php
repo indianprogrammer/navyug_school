@@ -4,12 +4,13 @@
     <a href="<?php echo site_url('employee/add'); ?>" class="btn btn-success">Add</a> 
 </div>
 
-<table id="employee_id" class="table display table-bordered table-striped">
+<table id="employee_id" class="table display table-bordered table-striped table-responsive">
     <thead>
     <tr>
         <th>ID</th>
         <!-- <th>Password</th> -->
         <th>Employee Name</th>
+        <th>Employee Type</th>
         <th>Qualification</th>
         <th>UserName</th>
         <th>Email</th>
@@ -24,8 +25,9 @@
     <?php foreach($employees as $t){ ?>
     <tr>
         <td><?php echo $t['id']; ?></td>
-       
         <td><?php echo $t['name']; ?></td>
+        <td><?php echo $t['authentication_id']; ?></td>
+       
         <td><?php echo $t['qualification']; ?></td>
         <td><?php echo $t['username']; ?></td>
         <td><?php echo $t['email']; ?></td>
@@ -42,8 +44,8 @@
     <span class="caret"></span></button>
     <ul class="dropdown-menu" style="width: 10px;">
       <li><a href="<?php echo site_url('employee/edit/'.$t['id']); ?>">EDIT</a></li>
-      <li><a href="#">CSS</a></li>
-      <li><a href="#">JavaScript</a></li>
+      <li><a href="#">DELETE</a></li>
+      <li><a href="#" data-toggle="modal" data-target="#myModal" onclick="view();">VIEW</a></li>
     </ul>
   </div>
         </td>
@@ -82,4 +84,33 @@
    
 
    }
+</script>
+<script type="text/javascript">
+function view()
+{
+    <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+}
 </script>

@@ -11,7 +11,7 @@ class Login_model extends CI_Model{
 
     function getResult($username, $password){
         $this->db->where('username', $username);
-        $this->db->where('password', md5($password));
+        $this->db->where('password', ($password));
         $query = $this->db->get('authentication');
         return $query->row_array();
     }
@@ -32,10 +32,11 @@ class Login_model extends CI_Model{
 
     function getSchoolId()
     {
-        $this->db->select('school.id');
+        $this->db->select('school.id'); 
         $this->db->from('school');
         $this->db->join('map_school_admin', 'school.id=map_school_admin.schoolid', 'Left');
         $query = $this->db->get();
+        // return $this->db->get()->row_array();
     }
 }
 

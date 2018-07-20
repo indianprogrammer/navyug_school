@@ -26,7 +26,7 @@ class School extends MY_Controller
     }
     
     function school_list()
-    {
+    {   $data['title']="School List";
         $data['school'] = $this->School_model->get_all_school();
 
         $data['_view'] = 'schoollist';
@@ -80,8 +80,7 @@ class School extends MY_Controller
             // var_dump($params);die;
             $school_id = $this->School_model->add_school($params);
              $data=$this->session->set_flashdata('status','Successfully added');
-              $data['_view'] = 'schoollist';
-             $this->load->view('../index', $data);
+              redirect('school/school_list');
              // header('location:successmodal.php');
         } else {
              // $this->session->set_flashdata('status','Failed to added');
