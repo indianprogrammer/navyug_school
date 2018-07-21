@@ -39,62 +39,86 @@ class Employee extends MY_Controller{
   }
   function add()
   {   
+    #validation part
     $this->load->library('form_validation');
     $data['emptype'] = $this->Employee_model->get_map_employee();
     $config['upload_path']          = './uploads/';
     $config['allowed_types']        = 'gif|jpg|png';
     $this->load->library('upload', $config);
-		// $this->form_validation->set_rules('password','Password','required');
     $this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
     $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
     $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
     $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
-		// $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
     $this->form_validation->set_rules('paddress','Address','required');
     $this->form_validation->set_rules('taddress','Address','required');
 
     if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
     {   
+      #employ information
       $params = array(
-				// 'password' => $this->input->post('password'),
-        'name' => $this->input->post('employee_Name'),
-        'authentication_id' => $this->input->post('type'),
+			  'name' => $this->input->post('employee_Name'),
         'qualification' => $this->input->post('qualification'),
-        'username' => $this->input->post('username'),
         'email' => $this->input->post('email'),
         'mobile' => $this->input->post('mobile'),
-				// 'profile_image' => $this->input->post('profile_image'),
-        'Permanent_address' => $this->input->post('paddress'),
+			  'Permanent_address' => $this->input->post('paddress'),
         'temporary_address' => $this->input->post('taddress'),
         'created_at'=>date('d-m-y/h-m'),
         'modified_at'=>date('d-m-y/h-m')
       );
-            // var_dump($params);
       $data['image'] =  $this->upload->data();
-              // var_dump($data);
       $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
-               // echo $image_path;die;
       $params['profile_image']=$image_path;
-      $employee_id = $this->Employee_model->add_employee($params);
-      $ids=array(
 
-        'employee_id'=>$employee_id,
-        'school_id'=>$this->session->SchoolId
+      #insert personal information (employees)
+      #get employ id from last insert
+      $employeeId = $this->Employee_model->add_employee($params);
 
-      );  
-      $map = $this->Employee_model->add_mapping($ids);
+
+      #authentication data
+      $username = 'emp'.$this->session->SchoolId.'_'.$employeeId; #emp+schoolid_employid
+      $password = rand(1,10000);
+      $email = $params['email'];
+      $autorizationId = $this->input->post('type');
+      $userId = $employeeId;
+
+      $authenticationData=array(
+       'username'=> $username,
+       'password'=> md5($password),
+       'email'=> $email,
+       'autorization_id'=> $autorizationId,
+       'clear_text'=> $password,
+       'user_id'=> $userId
+     );
+      #authentication table insert (username,password,email,autorizationid,userid)
+      //insertion code
+
+      $insertAuthentication = $this->Employee_model->add_user($authenticationData);
+      var_dump($insertAuthentication);
+
+      #create relation map (school->employ)
+      $schoolEmployMap = array(
+        'school_id' => $this->session->SchoolId,
+        'employee_id' => $employeeId,
+      );
+      //insertion code here
+      $map = $this->Employee_model->add_mapping($schoolEmployMap);
+      redirect('employee/employee_list');
+
+/*
+      
+     
       var_dump($params);
+      $password=rand(1,10000)
       $authentication=array(
-       'username'=> $params['username'],
+       'username'=> $params['username']
        'email'=> $params['email'],
        'autorization_id'=>$params['authentication_id'],
-       'password'=>rand(1,1000)
+       'password'=>md5($password)
 
      );
       var_dump($authentication);
-      $map = $this->Employee_model->add_user($authentication);
             // redirect('subject/subject_list');
-      redirect('employee/employee_list');
+  */
     }
     else
     {            
