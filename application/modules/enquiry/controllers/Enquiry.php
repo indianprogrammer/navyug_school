@@ -63,12 +63,11 @@ class Enquiry extends MY_Controller{
                 'address' => $this->input->post('address'),
 				'remarks' => $this->input->post('remarks'),
                 'created_at'=>date('d-m-y/h-m')
-                // 'modified_at'=>date('d-m-y/h-m')
+               
             );
-            // var_dump($params);
-            $data=$this->session->set_flashdata('status','Successfully added');
+            
             $enquiry_id = $this->Enquiry_model->add_enquiry($params);
-            redirect('enquiry/add_enquiry',$data);
+            redirect('enquiry/enquiry_list');
         }
         else
         {            

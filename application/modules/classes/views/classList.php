@@ -18,6 +18,8 @@
 		<!-- <th>Password</th> -->
 		<th>Class Name</th>
         <th>Description</th>
+        <th>subject</th>
+        <th>Employee</th>
         <th>Start time</th>
 		<th>End time</th>
 		
@@ -31,6 +33,8 @@
 		
 		<td><?= $row['name']; ?></td>
         <td><?= $row['description']; ?></td>
+        <!-- <td><?= $row['name']; ?></td> -->
+        <!-- <td><?= $row['description']; ?></td> -->
         <td><?= $row['start_time']; ?></td>
 		<td><?= $row['end_time']; ?></td>
 		<td>

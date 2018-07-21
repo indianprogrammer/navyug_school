@@ -1,6 +1,6 @@
 <?php
 
- 
+
 class Classes extends MY_Controller{
     function __construct()
     {
@@ -24,29 +24,29 @@ class Classes extends MY_Controller{
     /*
      * Adding a new class
      */
- function add_class()
- {              $school_id=$this->session->SchoolId;
+    function add_class()
+    {              $school_id=$this->session->SchoolId;
         $data['subject'] = $this->Classes_model->fetch_subject($school_id);
         // var_dump($data['subject']);die;
         $data['employee'] = $this->Classes_model->fetch_employee($school_id);
         // var_dump($data['subject']);die;
-     $data['_view'] = 'add';
+        $data['_view'] = 'add';
         $this->load->view('index',$data);
- }
+    }
 
 
     function add()
     {   
         $school_id=$this->session->SchoolId;
         $this->load->library('form_validation');
-    $data['subject'] = $this->Classes_model->fetch_subject($school_id);
-     $data['employee'] = $this->Classes_model->fetch_employee($school_id);
-    
+        $data['subject'] = $this->Classes_model->fetch_subject($school_id);
+        $data['employee'] = $this->Classes_model->fetch_employee($school_id);
+
 
 
         // $this->form_validation->set_rules('password','Password','required|max_length[20]');
-        $this->form_validation->set_rules('class_name','class Name','required|max_length[100]');
-       
+        $this->form_validation->set_rules('class_name','class Name','required|max_length[100]|is_unique[classes.name]');
+
         // $this->form_validation->set_rules('address','Address','required');
         
         if($this->form_validation->run() )     
@@ -56,22 +56,22 @@ class Classes extends MY_Controller{
                 'name' => $this->input->post('class_name'),
                 
                 'description' => $this->input->post('description'),
-                'subject_id' => $this->input->post('subject'),
+                'subject_id' => implode($this->input->post('subject')),
                 'start_time' => $this->input->post('start_time'),
                 'end_time' => $this->input->post('end_time')
                 //  'created_at'=>date(),
                 // 'modified_at'=>date()
             );
-           
+
             
             $class_id = $this->Classes_model->add_class($params);
-             $ids=array(
-            
+            $ids=array(
+
                 'class_id'=>$class_id,
                 'school_id'=>$_SESSION['SchoolId']
 
-          );  
-               $map = $this->Classes_model->add_mapping($ids);
+            );  
+            $map = $this->Classes_model->add_mapping($ids);
             redirect('classes/class_list');
         }
         else
@@ -88,7 +88,7 @@ class Classes extends MY_Controller{
     {   
         // check if the class exists before trying to edit it
         $data['class'] = $this->Classes_model->get_class($id);
-     
+
         if(isset($data['class']['id']))
         {
             $this->load->library('form_validation');
@@ -100,10 +100,10 @@ class Classes extends MY_Controller{
             // $this->form_validation->set_rules('mobile','Mobile','required');
             // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
             // $this->form_validation->set_rules('address','Address','required');
-        
+
             if($this->form_validation->run() )     
             {   
-                 $params = array(
+               $params = array(
                 // 'password' => $this->input->post('password'),
                 'name' => $this->input->post('class_name'),
                 
@@ -115,18 +115,18 @@ class Classes extends MY_Controller{
                 // 'modified_at'=>date()
             );
                
-                $this->Classes_model->update_class($id,$params);            
-                redirect('class/index');
-            }
-            else
-            {
-                $data['_view'] = 'edit';
-                $this->load->view('index',$data);
-            }
+               $this->Classes_model->update_class($id,$params);            
+               redirect('class/index');
+           }
+           else
+           {
+            $data['_view'] = 'edit';
+            $this->load->view('index',$data);
         }
-        else
-            show_error('The class you are trying to edit does not exist.');
-    } 
+    }
+    else
+        show_error('The class you are trying to edit does not exist.');
+} 
 
     /*
      * Deleting class
@@ -144,5 +144,5 @@ class Classes extends MY_Controller{
         else
             show_error('The class you are trying to delete does not exist.');
     }
-   
+
 }

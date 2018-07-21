@@ -28,7 +28,7 @@ class Login extends MX_Controller
 
         $authenticationData = $this->Login_model->getResult($username,$password);
 
-        var_dump($authenticationData);
+        
 
         if (is_null($authenticationData)) {
             $data = array(

@@ -1,6 +1,6 @@
 <?php
 
- 
+
 class Subject extends MY_Controller{
     function __construct()
     {
@@ -14,7 +14,7 @@ class Subject extends MY_Controller{
      */
     function subject_list()
     {
-           
+     
 
         $data['subject'] = $this->Subject_model->get_all_subject();
         
@@ -25,50 +25,50 @@ class Subject extends MY_Controller{
     /*
      * Adding a new subject
      */
- function add_subject()
- {
+    function add_subject()
+    {
+        
+       $data['_view'] = 'add';
+       $this->load->view('index',$data);
+   }
+
+
+   function add()
+   {   
+    $this->load->library('form_validation');
     
-     $data['_view'] = 'add';
-        $this->load->view('index',$data);
- }
-
-
-    function add()
-    {   
-        $this->load->library('form_validation');
-     
 
         // $this->form_validation->set_rules('password','Password','required|max_length[20]');
-        $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]');
-     
-        
-        if($this->form_validation->run() )     
-        {   
-            $params = array(
+    $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]|is_unique[subjects.name]');
+    
+    
+    if($this->form_validation->run() )     
+    {   
+        $params = array(
                 // 'password' => $this->input->post('password'),
-                'name' => $this->input->post('subject_name')
-                
+            'name' => $this->input->post('subject_name')
+            
                 //  'created_at'=>date(),
                 // 'modified_at'=>date()
-            );
+        );
+        
+        
+        $subject_id = $this->Subject_model->add_subject($params);
+        $ids=array(
             
-            
-            $subject_id = $this->Subject_model->add_subject($params);
-            $ids=array(
-            
-                'subject_id'=>$subject_id,
-                'school_id'=>$this->session->SchoolId
+            'subject_id'=>$subject_id,
+            'school_id'=>$this->session->SchoolId
 
-          );  
-            $map = $this->Subject_model->add_mapping($ids);
-            redirect('subject/subject_list');
-        }
-        else
-        {            
-            $data['_view'] = 'add';
-            $this->load->view('index',$data);
-        }
-    }  
+        );  
+        $map = $this->Subject_model->add_mapping($ids);
+        redirect('subject/subject_list');
+    }
+    else
+    {            
+        $data['_view'] = 'add';
+        $this->load->view('index',$data);
+    }
+}  
 
     /*
      * Editing a subject
@@ -77,25 +77,25 @@ class Subject extends MY_Controller{
     {   
         // check if the subject exists before trying to edit it
         $data['subject'] = $this->Subject_model->get_subject($id);
-       
+        
         
         if(isset($data['subject']['id']))
         {
             $this->load->library('form_validation');
 
-           
-            $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]');
-           
-        
+            
+            $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]|is_unique[subjects.name]');
+            
+            
             if($this->form_validation->run() )     
             {   
                 $params = array(
-                   
+                 
                     'name' => $this->input->post('subject_name')
-                   
+                    
                     // 'modified_at'=>date()
                 );
-               
+                
                 $this->Subject_model->update_subject($id,$params);            
                 redirect('subject/subject_list');
             }
