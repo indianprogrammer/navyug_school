@@ -42,14 +42,14 @@
 	<div class="form-group">
 		<label for="start_time" class="col-md-4 control-label"><span class="text-danger">*</span>Start Time</label>
 		<div class="col-md-8">
-			<input type="text" name="start_time" value="<?php echo $this->input->post('start_time'); ?>" class="form-control" id="start_time" />
+			<input type="text" name="start_time" value="<?php echo $this->input->post('start_time'); ?>" class="form-control" id="start_time" disable/>
 			<span class="text-danger"><?php echo form_error('start_time');?></span>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="end_time" class="col-md-4 control-label"><span class="text-danger">*</span>End Time</label>
 		<div class="col-md-8">
-			<input type="text" name="end_time" value="<?php echo $this->input->post('end_time'); ?>" class="form-control" id="end_time" />
+			<input type="text" name="end_time" value="<?php echo $this->input->post('end_time'); ?>" class="form-control" id="end_time" disable />
 			<span class="text-danger"><?php echo form_error('end_time');?></span>
 		</div>
 	</div>

@@ -5,7 +5,7 @@
             <div class="box-header">
                 <h3 class="box-title">Subject List</h3>
                 <div class="box-tools">
-                    <a href="<?= site_url('student/add'); ?>" class="btn btn-success ">Add</a>
+                    <a href="<?= site_url('subject/add'); ?>" class="btn btn-success ">Add</a>
                 </div>
             </div>
 

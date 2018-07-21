@@ -8,13 +8,7 @@
 		</div>
 	</div>
 	
-	<div class="form-group">
-		<label for="username" class="col-md-4 control-label"><span class="text-danger">*</span>UserName</label>
-		<div class="col-md-5">
-			<input type="text" name="username" value="<?= ($this->input->post('username') ? $this->input->post('username') : $parent['username']);  ?>" class="form-control" id="username" />
-			<span class="text-danger"><?= form_error('username');?></span>
-		</div>
-	</div>
+	
 	<div class="form-group">
 		<label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
 		<div class="col-md-5">

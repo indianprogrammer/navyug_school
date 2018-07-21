@@ -36,10 +36,9 @@
     $config['allowed_types']        = 'gif|jpg|png';
     $this->load->library('upload', $config);
 
-        // $this->form_validation->set_rules('password','Password','required|max_length[20]');
     $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
     $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
-    $this->form_validation->set_rules('username','Username','required|max_length[100]');
+   
     $this->form_validation->set_rules('mobile','Mobile','required');
 
     $this->form_validation->set_rules('paddress','Permanent Address','required');
@@ -51,9 +50,9 @@
                 // 'password' => $this->input->post('password'),
             'student_name' => $this->input->post('student_name'),
             'email' => $this->input->post('email'),
-            'username' => $this->input->post('username'),
+           
             'mobile' => $this->input->post('mobile'),
-                // 'profile_image' => $this->input->post('profile_image'),
+              
             'permanent_address' => $this->input->post('paddress'),
             'temporary_address' => $this->input->post('taddress'),
             'created_at'=>date('Y-m-d h:i:s'),
@@ -61,12 +60,39 @@
 
         );
         $data['image'] =  $this->upload->data();
-              // var_dump($data);
+       
         $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
-               // echo $image_path;die;
+        
         $params['profile_image']=$image_path;
+        #add student information
+        $studentId = $this->Student_model->add_student($params);
+         $username = 'stu'.$this->session->SchoolId.'_'.$studentId; #stu+schoolid_parentid
+             $password = rand(1,10000);
+             $email = $params['email'];
 
-        $student_id = $this->Student_model->add_student($params);
+             $userId = $studentId;
+             $password=rand(1,100000);
+                // $data['master_authorization'] = $this->Student_model->get_authentication_id();
+                var_dump($data['master_authorization']);
+             $authentication=array(
+               'username'=> $username,
+               'email'=> $email,
+               'autorization_id'=>4,
+               'password'=>md5($password),
+                'user_id'=> $studentId,
+               'clear_text'=>$password
+
+           );
+             // var_dump($authentication);
+             $insertStudentAuthentication  = $this->Student_model->add_user($authentication);
+             $schoolStudentMap=array(
+
+                'student_id'=>$studentId,
+                'school_id'=>$this->session->SchoolId
+
+            );  
+             $map  = $this->Student_model->add_mapping($schoolStudentMap);
+
         redirect('student/student_list');
     }
     else

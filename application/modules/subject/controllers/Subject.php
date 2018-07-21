@@ -120,7 +120,7 @@ class Subject extends MY_Controller{
         if(isset($subject['id']))
         {
             $this->Subject_model->delete_subject($id);
-            redirect('subject/index');
+            redirect('subject/subject_list');
         }
         else
             show_error('The subject you are trying to delete does not exist.');

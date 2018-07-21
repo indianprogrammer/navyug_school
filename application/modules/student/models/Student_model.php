@@ -53,4 +53,23 @@ class Student_model extends CI_Model
     {
         return $this->db->delete('student',array('id'=>$id));
     }
+
+      function add_mapping($ids)
+    {
+        $this->db->insert('map_school_student',$ids);
+        return $this->db->insert_id();
+    }
+
+      function get_authentication_id()
+    
+    {
+      $this->db->from('master_authorization');
+        return $this->db->get()->result();
+    }
+
+     function add_user($authentication)
+     {
+         $this->db->insert('authentication',$authentication);
+        return $this->db->insert_id();
+     }
 }

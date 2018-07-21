@@ -39,7 +39,7 @@
 						<label for="contact_sec" class="control-label">Contact Secondry</label>
 						<div class="form-group">
 							<input type="text" name="contact_sec"  maxlength="13" value="<?= ($this->input->post('contact_sec') ? $this->input->post('contact_sec') :$school['contact_sec'] ); ?>" class="form-control" id="contact_sec" />
-							<span class="text-danger"><?= form_error('contact_sec');?></span>
+							<span class="text-danger"><?= form_error('contact_sec');?></span> 
 						</div>
 					</div>
 					<div class="col-md-5">

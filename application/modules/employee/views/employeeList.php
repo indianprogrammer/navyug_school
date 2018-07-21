@@ -4,7 +4,7 @@
     <a href="<?= site_url('employee/add'); ?>" class="btn btn-success">Add</a> 
 </div>
 
-<table id="employee_id" class="table display table-bordered table-striped table-responsive">
+<table id="employee_table" class="table display table-bordered table-striped table-responsive">
     <thead>
     <tr>
         <th>ID</th>
@@ -51,38 +51,18 @@
     <?php } ?>
 </tbody>    
 </table>
-<div class="pull-right">
-    <?= $rowhis->pagination->create_links(); ?>    
-</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="<?= base_url() ;?>assets/admin/plugins/datatables/jquery.dataTables.js"></script>
-<script src="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<!-- <script src="<?= base_url() ;?>assets/admin/plugins/datatables/jquery.dataTables.js"></script> -->
+<!-- <script src="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.js"></script> -->
   
 <script>
     $(document).ready( function () {
-        $('#employee_id').DataTable();
+        $('#employee_table').DataTable();
     } );
 </script>
-<script type="text/javascript">
-    function myFunction()
-    {
-        $('#drop').on('change', function() {
-    var responseId = $(this).val();
-    console.log(responseId);
-     
 
-    // var id = $(this).data('id');
-//     bootbox.confirm("Are you sure?", function(result) {
-//       if(result)
-//           window.location.href = "<?= site_url('employee/remove/'.$row['id']); ?>"
-//  									 });
- });
-// // });
-   
-
-   }
-</script>
 <script type="text/javascript">
 function view()
 {

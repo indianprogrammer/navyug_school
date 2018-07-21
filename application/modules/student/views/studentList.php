@@ -18,7 +18,7 @@
 	
 		<th>Student Name</th>
 		<th>Email</th>
-		<th>Username</th>
+		
 		<th>Mobile</th>
         <th>Permanent Address</th>
 		<th>Corresponding Address</th>
@@ -33,7 +33,7 @@
 		
 		<td><?= $s['student_name']; ?></td>
 		<td><?= $s['email']; ?></td>
-		<td><?= $s['username']; ?></td>
+		
 		<td><?= $s['mobile']; ?></td>
 		
         <td data-toggle="tooltip" data-placement="top" title="<?= $s['permanent_address']?>" ><?php echo substr($s['permanent_address'],0,10).'....' ?></td>

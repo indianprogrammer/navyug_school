@@ -7,7 +7,6 @@
     <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>UserName</th>
         <th>Email</th>
         <th>Mobile</th>
         <th>Permanent Address</th>
@@ -20,7 +19,6 @@
         <tr>
             <td><?=$t['id']?></td>
             <td><?=$t['name']?></td>
-            <td><?=$t['username']?></td>
             <td><?=$t['email']?></td>
             <td><?=$t['mobile']?></td>
             <td data-toggle="tooltip" data-placement="top" title="<?=$t['permanent_address']?>"><?php echo substr($t['permanent_address'],0,10).'...' ?></td>

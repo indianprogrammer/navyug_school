@@ -36,7 +36,7 @@
             </a>
             <ul class="nav nav-treeview"> -->
               <li class="nav-item">
-                <a href="<?= site_url()?>school/index" class="nav-link">
+                <a href="<?= site_url()?>school/dashboard" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Dashboard</p>
                 </a>
@@ -48,11 +48,11 @@
 
 
 
-          
-         
-         
-         
-          <li class="nav-item has-treeview">
+
+
+
+
+           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tree"></i>
               <p>
@@ -93,7 +93,7 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              
+
               <li class="nav-item">
                 <a href="<?= site_url()?>student/add_student" class="nav-link">
                   <i class="nav-icon fa fa-th"></i>
@@ -127,29 +127,29 @@
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-            <a href="<?= site_url()?>employee/add_employee" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                ADD EMPLOYEE
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-               <li class="nav-item">
-            <a href="<?= site_url()?>employee/employee_list" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                EMPLOYEE LIST
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
+                <a href="<?= site_url()?>employee/add_employee" class="nav-link">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    ADD EMPLOYEE
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= site_url()?>employee/employee_list" class="nav-link">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    EMPLOYEE LIST
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
 
 
             </ul>
           </li>
           
-           <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tree"></i>
               <p>
@@ -159,23 +159,23 @@
             </a>
             <ul class="nav nav-treeview">
 
-               <li class="nav-item">
-            <a href="<?= site_url()?>parents/add_parent" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                ADD PARENTS
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
              <li class="nav-item">
-            <a href="<?= site_url()?>parents/parent_list" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                PARENT LIST
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li> 
+              <a href="<?= site_url()?>parents/add_parent" class="nav-link">
+                <i class="nav-icon fa fa-th"></i>
+                <p>
+                  ADD PARENTS
+                  <!-- <span class="right badge badge-danger">New</span> -->
+                </p>
+              </a>
+              <li class="nav-item">
+                <a href="<?= site_url()?>parents/parent_list" class="nav-link">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    PARENT LIST
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li> 
 
 
             </ul>
@@ -191,23 +191,23 @@
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-            <a href="<?= site_url()?>subject/add_subject" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                ADD SUBJECT
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-               <li class="nav-item">
-            <a href="<?= site_url()?>subject/subject_list" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                SUBJECT LIST
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
+                <a href="<?= site_url()?>subject/add_subject" class="nav-link">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    ADD SUBJECT
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= site_url()?>subject/subject_list" class="nav-link">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    SUBJECT LIST
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
 
 
             </ul>
@@ -223,115 +223,121 @@
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-            <a href="<?= site_url()?>classes/add_class" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                ADD CLASSES
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-               <li class="nav-item">
-            <a href="<?= site_url()?>classes/class_list" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                CLASSES LIST
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
+                <a href="<?= site_url()?>classes/add_class" class="nav-link">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    ADD CLASSES
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= site_url()?>classes/class_list" class="nav-link">
+                  <i class="nav-icon fa fa-th"></i>
+                  <p>
+                    CLASSES LIST
+                    <!-- <span class="right badge badge-danger">New</span> -->
+                  </p>
+                </a>
+              </li>
 
 
             </ul>
           </li>
-         
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-tree"></i>
               <p>
                ENQUIRY
-                <i class="fa fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
+               <i class="fa fa-angle-left right"></i>
+             </p>
+           </a>
+           <ul class="nav nav-treeview">
 
              <li class="nav-item">
-            <a href="<?= site_url()?>enquiry/add_enquiry" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                Add ENQUIRY
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= site_url()?>enquiry/enquiry_list" class="nav-link">
-              <i class="nav-icon fa fa-th"></i>
-              <p>
-                ENQUIRY LIST
-                <!-- <span class="right badge badge-danger">New</span> -->
-              </p>
-            </a>
-          </li>
+              <a href="<?= site_url()?>enquiry/add_enquiry" class="nav-link">
+                <i class="nav-icon fa fa-th"></i>
+                <p>
+                  Add ENQUIRY
+                  <!-- <span class="right badge badge-danger">New</span> -->
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= site_url()?>enquiry/enquiry_list" class="nav-link">
+                <i class="nav-icon fa fa-th"></i>
+                <p>
+                  ENQUIRY LIST
+                  <!-- <span class="right badge badge-danger">New</span> -->
+                </p>
+              </a>
+            </li>
+
+
+
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="<?= site_url()?>login/logout" class="nav-link">
+            <i class="fa fa-circle-o nav-icon"></i>
+            <p>Logout</p>
+          </a>
+        </li>
         
+      </div>
+      <!-- /.sidebar -->
+    </aside>
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
 
-            </ul>
-          </li>
-        
-    </div>
-    <!-- /.sidebar -->
-  </aside>
+      <!-- /.content-header -->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    
-    <!-- /.content-header -->
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Info boxes -->
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-12">
 
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Info boxes -->
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-12">
+              <ul class="breadcrumb">
 
-            <ul class="breadcrumb">
+                <!-- <li class="breadcrumb-item active">Add Enquiry</li> -->
+                <?php      
+                $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
 
-  <!-- <li class="breadcrumb-item active">Add Enquiry</li> -->
-            <?php      
-               $crumbs = explode("/",$_SERVER["REQUEST_URI"]);
- 
-        foreach($crumbs as $crumb){
-      ?>       
-  <li class="breadcrumb-item active"><?= ucwords(str_replace(array(".php","_"),array(" "," "),$crumb) . ' '); ?></li>
+                foreach($crumbs as $crumb){
+                  ?>       
+                  <li class="breadcrumb-item active"><?= ucwords(str_replace(array(".php","_"),array(" "," "),$crumb) . ' '); ?></li>
 
-    <?php      }  ?>
-           
-</ul>
-          <?php   if(isset($_view) && $_view)
+                <?php      }  ?>
+
+              </ul>
+              <?php   if(isset($_view) && $_view)
               $this->load->view($_view);
-            ?>                    
+              ?>                    
 
 
 
+            </div>
+            <!-- /.col -->
           </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div><!--/. container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+          <!-- /.row -->
+        </div><!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 
-  <!-- Main Footer -->
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <!-- Main Footer -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
-  <?php include_once "footer.php" ;?>
+    <?php include_once "footer.php" ;?>

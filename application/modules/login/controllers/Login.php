@@ -51,6 +51,7 @@ class Login extends MX_Controller
                     // $this->Login_model->getSchoolId();
                     $this->session->SchoolId = $userData['school_id'];
                     echo "admin  ". $this->session->username;
+                    redirect ('school/dashboard');
 
                     break;
                 case 2:
@@ -67,6 +68,7 @@ class Login extends MX_Controller
             #redirect it to $autorizationData['home']
             echo 'redirect it to '. $autorizationData['home'];
             $this->output->enable_profiler(TRUE);
+
             // echo $_SESSION['username'];
 
 

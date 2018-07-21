@@ -90,7 +90,7 @@ function add()
                'clear_text'=>$password
 
            );
-             var_dump($authentication);
+             // var_dump($authentication);
              $insertAuthentication  = $this->Parents_model->add_user($authentication);
              $schoolParentMap=array(
 
@@ -120,13 +120,11 @@ function add()
         {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('password','Password','required');
-            $this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
-        // $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
-            $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
-            $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
-        // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-            $this->form_validation->set_rules('address','Address','required');
+           
+           $this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
+             $this->form_validation->set_rules('ptype','parent type','required');
+             $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
+             $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
 
             if($this->form_validation->run())     
             {   
@@ -135,7 +133,7 @@ function add()
                   'name' => $this->input->post('parent_Name'),
                 // 'type' => $this->input->post('ptype'),
                 // 'qualification' => $this->input->post('qualification'),
-                  'username' => $this->input->post('username'),
+                 
                   'email' => $this->input->post('email'),
                   'mobile' => $this->input->post('mobile'),
                  // 'profile_image' => $this->input->post('profile_image'),
