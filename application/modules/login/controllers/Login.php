@@ -50,6 +50,7 @@ class Login extends MX_Controller
                     #got for admin user at employ table & check for authentication ID and get school id
                     $userData = $this->Login_model->getEmployDetails($authenticationData['id']);
                     $this->session->SchoolId = $userData['school_id'];
+                    $this->session->organizationName = $userData['organization_name'];
                     $this->session->name = $userData['name'];
                     $this->session->profileImage = $userData['profile_image'];
                     echo "admin  ". $this->session->username;

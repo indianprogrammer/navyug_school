@@ -7,7 +7,7 @@
         <img src="<?= base_url(); ?>assets/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">admin</span>
     </a>
 
     <!-- Sidebar -->
@@ -19,7 +19,7 @@
                      alt="<?= $this->session->name ?>">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?= $this->session->name ?> (<?= $this->session->username ?>)</a>
+                <a href="#" class="d-block"><?=  strtoupper($this->session->name) ?> (<?= $this->session->username ?>)</a>
             </div>
         </div>
 
@@ -326,9 +326,7 @@
 <!-- /.content-wrapper -->
 
 <!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
+
 <!-- /.control-sidebar -->
 
 <!-- Main Footer -->

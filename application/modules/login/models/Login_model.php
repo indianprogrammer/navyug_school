@@ -32,7 +32,7 @@ class Login_model extends CI_Model{
 
     function getSchoolId()
     {
-        $this->db->select('school.id'); 
+        $this->db->select('school.id,school.organization_name'); 
         $this->db->from('school');
         $this->db->join('map_school_admin', 'school.id=map_school_admin.schoolid', 'Left');
         // $query = $this->db->get();

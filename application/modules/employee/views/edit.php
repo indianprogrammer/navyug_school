@@ -3,7 +3,7 @@
 	<div class="form-group">
 		<label for="employee_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Employee Name</label>
 		<div class="col-md-5">
-			<input type="text" name="employee_Name" value="<?= ($this->input->post('employee_Name') ? $this->input->post('employee_Name') : $employee['name']); ?>" class="form-control" id="employee_Name" />
+			<input type="text" name="employee_Name" value="<?= ($this->input->post('employee_Name') ? $this->input->post('employee_Name') : $employee['name']); ?>" class="form-control" id="employee_Name"  autofocus />
 			<span class="text-danger"><?= form_error('employee_Name');?></span>
 		</div>
 	</div>

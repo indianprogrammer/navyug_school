@@ -49,7 +49,7 @@
 </div>
 </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
  <script>
     $(document).ready( function () {
@@ -61,7 +61,7 @@
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure to delete <?= $row['name'] ?>", function(result) {
+    bootbox.confirm("Are you sure to delete <?= $row['name']; ?>", function(result) {
       if(result)
           window.location.href = "<?php echo site_url('classes/remove/'.$row['id']); ?>"
    

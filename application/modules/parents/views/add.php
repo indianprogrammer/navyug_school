@@ -2,7 +2,7 @@
                         <div class="form-group">
                         <label for="ptype" class="control-label"><span class="text-danger">*</span>Parent Type</label>
 						<div class="col-md-5 col-sm-12">
-                            <select name="ptype" id="ptype" class="form-control">
+                            <select name="ptype" id="ptype" class="form-control"  autofocus>
                                 <option value="">SELECT</option>
                                 <?php foreach ($ptype as $row) { ?>
                                    <option value="<?= $row->id ?>"> <?=  $row->type ?></option>

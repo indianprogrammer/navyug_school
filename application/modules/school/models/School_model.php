@@ -92,7 +92,7 @@ class School_model extends CI_Model
     }
     function fetchState($countryId)
     { 
-      $this->db->select('*');
+      $this->db->select('master_state.*');
       $this->db->join('master_country', 'master_country.id = master_state.country_id');
       $this->db->where('country_id',$countryId);
       //$this->db->from('school');

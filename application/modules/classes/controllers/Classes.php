@@ -56,7 +56,7 @@ class Classes extends MY_Controller{
                 'name' => $this->input->post('class_name'),
                 
                 'description' => $this->input->post('description'),
-                'subject_id' => implode($this->input->post('subject')),
+                'subject_id' => implode(',', $this->input->post('subject')),
                 'start_time' => $this->input->post('start_time'),
                 'end_time' => $this->input->post('end_time')
                 //  'created_at'=>date(),

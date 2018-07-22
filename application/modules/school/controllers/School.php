@@ -97,14 +97,14 @@ class School extends MY_Controller
     {
         // check if the school exists before trying to edit it
         $data['school'] = $this->School_model->get_school($id);
-        // var_dump($data['school']);
+       
         $data['country'] = $this->School_model->fetch_country();
         
         $data['state'] = $this->School_model->fetchState($data['school']['country_id']);
-        $data['city'] = $this->School_model->fetchCity($data['school']['state_id']);
-          // var_dump($data['state']);
-         // die;
+        // var_dump($data['state']);
 
+        $data['city'] = $this->School_model->fetchCity($data['school']['state_id']);
+         
         if (isset($data['school']['id'])) {
             $this->load->library('form_validation');
 

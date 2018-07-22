@@ -56,7 +56,7 @@
             <?= form_open('login/process') ?>
                 <div class="field-group">
                     <div class="wthree-field">
-                        <input  id="text1" type="text" value="" placeholder="username" name="username" required>
+                        <input  id="text1" type="text" value="" placeholder="username" name="username" required  autofocus>
                     </div>
                     <span class="fa fa-user" aria-hidden="true"></span>
                     <div class="text-danger" style="color:red"><?php echo form_error('username'); ?></div>

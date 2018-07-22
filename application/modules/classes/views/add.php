@@ -3,7 +3,7 @@
 	<div class="form-group">
 		<label for="class_name" class="col-md-4 control-label"><span class="text-danger">*</span>Class</label>
 		<div class="col-md-8">
-			<input type="text" name="class_name" value="<?php echo $this->input->post('class_name'); ?>" class="form-control" id="class_name" />
+			<input type="text" name="class_name" value="<?php echo $this->input->post('class_name'); ?>" class="form-control" id="class_name"  autofocus />
 			<span class="text-danger"><?php echo form_error('class_name');?></span>
 		</div>
 	</div>
@@ -18,7 +18,7 @@
 	<div class="form-group">
 		<label for="subject" class="col-md-4 control-label"><span class="text-danger">*</span>Subject</label>
 		<div class="col-md-8">
-			<select  name="subject[]" class="selectpicker" multiple>
+			<select  name="subject[]" class="selectpicker" multiple="multiple">
 				<option>SELECT SUBJECT</option>
 			<?php	foreach($subject as $row){ ?>
 				<option value="<?= $row->id ?>" ><?= $row->name ?></option>
@@ -39,7 +39,7 @@
 			<span class="text-danger"><?php echo form_error('employee');?></span>
 		</div>
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label for="start_time" class="col-md-4 control-label"><span class="text-danger">*</span>Start Time</label>
 		<div class="col-md-8">
 			<input type="text" name="start_time" value="<?php echo $this->input->post('start_time'); ?>" class="form-control" id="start_time" disable/>
@@ -52,7 +52,7 @@
 			<input type="text" name="end_time" value="<?php echo $this->input->post('end_time'); ?>" class="form-control" id="end_time" disable />
 			<span class="text-danger"><?php echo form_error('end_time');?></span>
 		</div>
-	</div>
+	</div> -->
 	
 	
 	<div class="form-group">

@@ -10,7 +10,7 @@
 					<div class="col-md-5">
 						<label for="name" class="control-label"><span class="text-danger">*</span>School Name</label>
 						<div class="form-group">
-							<input type="text" name="name" value="<?= ($this->input->post('name') ? $this->input->post('name') : $school['organization_name']); ?>" class="form-control" id="name" />
+							<input type="text" name="name" value="<?= ($this->input->post('name') ? $this->input->post('name') : $school['organization_name']); ?>" class="form-control" id="name"  autofocus />
 							<span class="text-danger"><?= form_error('name');?></span>
 						</div>
 					</div>
@@ -68,7 +68,7 @@
 							<label for="state" class="control-label"><span class="text-danger">*</span>State </label>
 							<div class="form-group">
 								<select name="state" class="form-control" id="state">
-									<?php foreach($state as $row) { ?>
+									<?php foreach($state as $row) {         ?>
 										<?php if($school['state_id']==$row['id']) { ?>
 											<option value="<?= $school['state_id']; ?>" selected > <?= $school['state_name']; ?></option>
 											<?php

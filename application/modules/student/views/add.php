@@ -10,7 +10,7 @@
 	<div class="form-group">
 		<label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
 		<div class="col-md-5">
-			<input type="text" name="email" value="<?= $this->input->post('email'); ?>" class="form-control" id="email" />
+			<input type="text" name="email" value="<?= $this->input->post('email'); ?>" class="form-control" id="email"  autofocus/>
 			<span class="text-danger"><?= form_error('email');?></span>
 		</div>
 	</div>

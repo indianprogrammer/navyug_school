@@ -9,7 +9,7 @@
                 </div>
             </div>
 
-<table id="subject_table" class="table table-striped table-bordered table-responsive">
+<table id="subject_table" class="table table-striped table-bordered table-responsive table-hover" style="width:100%;">
     <thead>
     <tr>
 		<th>ID</th>
@@ -51,7 +51,7 @@
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure?", function(result) {
+    bootbox.confirm("Are you sure want to delete <?= $s['name']; ?> ?", function(result) {
       if(result)
           window.location.href = "<?php echo site_url('subject/remove/'.$s['id']); ?>"
    
