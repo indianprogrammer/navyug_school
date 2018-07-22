@@ -315,14 +315,13 @@
 
 
                     <?php if (isset($this->session->alerts)) {
-                        $alert = $this->session->alerts;
-                        unset($this->session->alerts); ?>
-                        <div class="alert alert-<?= $alert['severity'] ?> alert-dismissible">
+                        $alert = $this->session->alerts; ?>
+                        <div class="alert alert-<?= $this->session->alerts['severity'] ?> alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fa fa-check"></i> <?= $alert['title'] ?>!</h5>
-                            <?= $alert['description'] ?>
+                            <h5><i class="icon fa fa-check"></i> <?= $this->session->alerts['title'] ?>!</h5>
+                            <?= $this->session->alerts['description'] ?>
                         </div>
-                    <?php } ?>
+                    <?php $this->session->alerts = null; } ?>
 
 
                     <?php if (isset($_view) && $_view)
