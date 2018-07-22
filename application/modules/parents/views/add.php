@@ -50,16 +50,16 @@
 		</div>
 	</div>
 	<div class="form-group">
+		<div class="checkbox col-md-5 control-label">
+	      <label><input type="checkbox" name="optradio" id="check"><span style="font-weight: 13;">    If corresponding address is same as permanent address<span></label>
+	    </div>
+	</div>
+	<div class="form-group">
 		<label for="taddress" class="col-md-4 control-label"><span class="text-danger">*</span>Corresponding Address</label>
 		<div class="col-md-5">
 			<textarea name="taddress" class="form-control" id="taddress"><?php echo $this->input->post('taddress'); ?></textarea>
 			<span class="text-danger"><?php echo form_error('taddress');?></span>
 		</div>
-	</div>
-	<div class="form-group">
-		<div class="checkbox col-md-4 control-label">
-	      <label><input type="checkbox" name="optradio" id="check"><span style="font-weight: 13;">    If corresponding address is same as permanent address<span></label>
-	    </div>
 	</div>
 	
 	<div class="form-group">

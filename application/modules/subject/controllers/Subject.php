@@ -61,6 +61,14 @@ class Subject extends MY_Controller{
 
         );  
         $map = $this->Subject_model->add_mapping($ids);
+
+        #set notifications
+        $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'this is title',
+            'description'=> 'this is description'
+        );
+        //$this->output->enable_profiler(TRUE);
         redirect('subject/subject_list');
     }
     else

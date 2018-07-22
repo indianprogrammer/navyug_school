@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="address" class="col-md-4 control-label"><span class="text-danger">*</span>Temporary Address</label>
+		<label for="address" class="col-md-4 control-label"><span class="text-danger">*</span>Corresponding Address</label>
 		<div class="col-md-5">
 			<textarea name="taddress" class="form-control" id="taddress"><?php echo ($this->input->post('taddress') ? $this->input->post('taddress') : $student['temporary_address']); ?></textarea>
 			<span class="text-danger"><?php echo form_error('taddress');?></span>
