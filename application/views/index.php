@@ -1,288 +1,290 @@
 <?php include_once "header.php" ?>
 
-<!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-        <img src="<?= base_url(); ?>assets/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-             class="brand-image img-circle elevation-3"
-             style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </a>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="#" class="brand-link">
+            <img src="<?= base_url(); ?>assets/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                 class="brand-image img-circle elevation-3"
+                 style="opacity: .8">
+            <span class="brand-text font-weight-light">AdminLTE 3</span>
+        </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="<?= base_url('uploads/') . $this->session->profileImage; ?>" class="img-circle elevation-2"
-                     alt="<?= $this->session->name ?>">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="<?= base_url('uploads/') . $this->session->profileImage; ?>"
+                         class="img-circle elevation-2"
+                         alt="<?= $this->session->name ?>">
+                </div>
+                <div class="info">
+                    <a href="#" class="d-block"><?= $this->session->name ?> (<?= $this->session->username ?>)</a>
+                </div>
             </div>
-            <div class="info">
-                <a href="#" class="d-block"><?= $this->session->name ?> (<?= $this->session->username ?>)</a>
-            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                    <!--  <li class="nav-item has-treeview menu-open">
+                       <a href="#" class="nav-link active">
+                         <i class="nav-icon fa fa-dashboard"></i>
+                         <p>
+                           Dashboard
+                           <i class="right fa fa-angle-left"></i>
+                         </p>
+                       </a>
+                       <ul class="nav nav-treeview"> -->
+                    <li class="nav-item">
+                        <a href="<?= site_url() ?>school/dashboard" class="nav-link">
+                            <i class="fa fa-circle-o nav-icon"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+
+                    <!--  </ul>
+                    </li> -->
+
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                SCHOOL
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>school/add_school" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD SCHOOL
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>school/school_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        SCHOOL LIST
+
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                STUDENT
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>student/add_student" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD STUDENT
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>student/student_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        STUDENT LIST
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                EMPLOYEE
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>employee/add_employee" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD EMPLOYEE
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>employee/employee_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        EMPLOYEE LIST
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                PARENTS
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>parents/add_parent" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD PARENTS
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>parents/parent_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        PARENT LIST
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                SUBJECTS
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>subject/add_subject" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD SUBJECT
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>subject/subject_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        SUBJECT LIST
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                CLASSESS
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>classes/add_class" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD CLASSES
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>classes/class_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        CLASSES LIST
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                ENQUIRY
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>enquiry/add_enquiry" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        Add ENQUIRY
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>enquiry/enquiry_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ENQUIRY LIST
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= site_url() ?>login/logout" class="nav-link">
+                            <i class="fa fa-sign-out nav-icon"></i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
+
         </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
-                <!--  <li class="nav-item has-treeview menu-open">
-                   <a href="#" class="nav-link active">
-                     <i class="nav-icon fa fa-dashboard"></i>
-                     <p>
-                       Dashboard
-                       <i class="right fa fa-angle-left"></i>
-                     </p>
-                   </a>
-                   <ul class="nav nav-treeview"> -->
-                <li class="nav-item">
-                    <a href="<?= site_url() ?>school/dashboard" class="nav-link">
-                        <i class="fa fa-circle-o nav-icon"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-
-                <!--  </ul>
-                </li> -->
-
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-tree"></i>
-                        <p>
-                            SCHOOL
-                            <i class="fa fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>school/add_school" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    ADD SCHOOL
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>school/school_list" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    SCHOOL LIST
-
-                                </p>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-tree"></i>
-                        <p>
-                            STUDENT
-                            <i class="fa fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>student/add_student" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    ADD STUDENT
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>student/student_list" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    STUDENT LIST
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-tree"></i>
-                        <p>
-                            EMPLOYEE
-                            <i class="fa fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>employee/add_employee" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    ADD EMPLOYEE
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>employee/employee_list" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    EMPLOYEE LIST
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-tree"></i>
-                        <p>
-                            PARENTS
-                            <i class="fa fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>parents/add_parent" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    ADD PARENTS
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>parents/parent_list" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    PARENT LIST
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-tree"></i>
-                        <p>
-                            SUBJECTS
-                            <i class="fa fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>subject/add_subject" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    ADD SUBJECT
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>subject/subject_list" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    SUBJECT LIST
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-tree"></i>
-                        <p>
-                            CLASSESS
-                            <i class="fa fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>classes/add_class" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    ADD CLASSES
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>classes/class_list" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    CLASSES LIST
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-tree"></i>
-                        <p>
-                            ENQUIRY
-                            <i class="fa fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>enquiry/add_enquiry" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    Add ENQUIRY
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= site_url() ?>enquiry/enquiry_list" class="nav-link">
-                                <i class="nav-icon fa fa-th"></i>
-                                <p>
-                                    ENQUIRY LIST
-                                    <!-- <span class="right badge badge-danger">New</span> -->
-                                </p>
-                            </a>
-                        </li>
-
-
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= site_url() ?>login/logout" class="nav-link">
-                        <i class="fa fa-sign-out nav-icon"></i>
-                        <p>Logout</p>
-                    </a>
-                </li>
-
-    </div>
-    <!-- /.sidebar -->
-</aside>
+        <!-- /.sidebar -->
+    </aside>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -310,8 +312,21 @@
                         <?php } ?>
 
                     </ul>
+
+
+                    <?php if (isset($this->session->alerts)) {
+                        $alert = $this->session->alerts;
+                        unset($this->session->alerts); ?>
+                        <div class="alert alert-<?= $alert['severity'] ?> alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h5><i class="icon fa fa-check"></i> <?= $alert['title'] ?>!</h5>
+                            <?= $alert['description'] ?>
+                        </div>
+                    <?php } ?>
+
+
                     <?php if (isset($_view) && $_view)
-                        $this->load->view($_view);
+                    $this->load->view($_view);
                     ?>
 
 
@@ -326,9 +341,9 @@
 <!-- /.content-wrapper -->
 
 <!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-</aside>
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
 <!-- /.control-sidebar -->
 
 <!-- Main Footer -->

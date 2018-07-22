@@ -33,6 +33,7 @@
 <script src="<?= base_url() ;?>assets/admin/plugins/chartjs-old/Chart.min.js"></script>
 <script src="<?= base_url() ;?>assets/admin/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.js"></script>
+ <script src="<?= base_url() ;?>assets/js/common.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> --> 	
 
 <!-- PAGE SCRIPTS -->
