@@ -275,7 +275,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?= site_url() ?>login/logout" class="nav-link">
-                        <i class="fa fa-circle-o nav-icon"></i>
+                        <i class="fa fa-sign-out nav-icon"></i>
                         <p>Logout</p>
                     </a>
                 </li>
