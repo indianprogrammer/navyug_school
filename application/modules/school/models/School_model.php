@@ -153,12 +153,32 @@ class School_model extends CI_Model
         return $query = $this->db->get()->result();
     }
     
-
-
+    ##for counting row
+    function get_all_students_count()
+    {
+      $query=$this->db->get('student')->num_rows();
+      return $query;
+    }
+    function get_all_employees_count()
+    {
+      $query=$this->db->get('employees')->num_rows();
+      return $query;
+    }
+    function get_all_subject_count()
+    {
+      $query=$this->db->get('subjects')->num_rows();
+      return $query;
+    }
+    function get_all_class_count()
+    {
+      $query=$this->db->get('classes')->num_rows();
+      return $query;
+    }
 
 
 
 
 
   }
+
   ?>

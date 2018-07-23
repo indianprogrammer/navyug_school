@@ -78,4 +78,10 @@ class Classes_model extends CI_Model
          $this->db->where('school_id',$school_id);
         return $query = $this->db->get()->result();
     }
+     function get_student_count()
+     {
+      $this->db->where('class_id',3);
+     $query=$this->db->get('map_student_class')->num_rows();
+      return $query;
+      }
 }

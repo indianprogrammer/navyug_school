@@ -3,14 +3,14 @@
 	<div class="form-group">
 		<label for="student_name" class="col-md-4 control-label"><span class="text-danger">*</span>Student Name</label>
 		<div class="col-md-5">
-			<input type="text" name="student_name" value="<?= $this->input->post('student_name'); ?>" class="form-control" id="student_name" />
+			<input type="text" name="student_name" value="<?= $this->input->post('student_name'); ?>" class="form-control" id="student_name" autofocus />
 			<span class="text-danger"><?= form_error('student_name');?></span>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
 		<div class="col-md-5">
-			<input type="text" name="email" value="<?= $this->input->post('email'); ?>" class="form-control" id="email"  autofocus/>
+			<input type="text" name="email" value="<?= $this->input->post('email'); ?>" class="form-control" id="email"  />
 			<span class="text-danger"><?= form_error('email');?></span>
 		</div>
 	</div>
@@ -19,8 +19,19 @@
 	<div class="form-group">
 		<label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Mobile</label>
 		<div class="col-md-5">
-			<input type="text" name="mobile" maxlength="13"	 value="<?= $this->input->post('mobile'); ?>" class="form-control" id="mobile" maxlength="13" />
+			<input type="text" name="mobile" id="mobile" maxlength="13"	 value="<?= $this->input->post('mobile'); ?>" class="form-control" id="mobile" maxlength="13" />
 			<span class="text-danger"><?= form_error('mobile');?></span>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
+		<div class="col-md-5">
+			<select name="classes[]" id="assignClass" class="form-control"  multiple="multiple">
+			<?php	foreach($classes as $row){ ?>
+				<option value="<?= $row->id ?>"><?= $row->name ?></option>
+				<?php } ?>
+			</select>
+
 		</div>
 	</div>
 	<div class="form-group">
@@ -58,6 +69,15 @@
 
 <?= form_close(); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="<?= base_url()?>/assets/js/BsMultiSelect.js"></script>
+<script type="text/javascript">
+	
+
+  $("select").dashboardCodeBsMultiSelect();
+
+
+</script>
+
 <script>
 $(document).ready(function(e) {
        $('#check').click(function() {
@@ -69,4 +89,27 @@ $(document).ready(function(e) {
 });
 
 
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#mobile").keydown(function (e) {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 25, 13, 110, 190]) !== -1 ||
+             // Allow: Ctrl/cmd+A
+             (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+             // Allow: Ctrl/cmd+C
+             (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+             // Allow: Ctrl/cmd+X
+             (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+             // Allow: home, end, left, right
+             (e.keyCode >= 35 && e.keyCode <= 39)) {
+                 // let it happen, don't do anything
+             return;
+         }
+        // Ensure that it is a number and stop the keypress
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 55)) && (e.keyCode < 96 || e.keyCode > 105)  ) {
+            e.preventDefault();
+        }
+    });
+    });
 </script>

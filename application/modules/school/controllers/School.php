@@ -6,12 +6,9 @@ class School extends MY_Controller
 {
     function __construct()
     {
-        // parent::__construct();
+        parent::__construct();
         $this->load->model('School_model');
-        //  if (!isset($_SESSION['username'])) {
-        //      redirect('login');
-        // }
-       
+      
     }
 
     /*
@@ -19,7 +16,11 @@ class School extends MY_Controller
      */
     function dashboard()
     {
-                                      
+            // $data['school'] = $this->School_model->get_all_school_count();                           
+            $data['students'] = $this->School_model->get_all_students_count();                           
+            $data['employee'] = $this->School_model->get_all_employees_count();                           
+              $data['subject'] = $this->School_model->get_all_subject_count();                           
+             $data['class'] = $this->School_model->get_all_class_count();                           
         $data['_view'] = 'dashbord';
 
         $this->load->view('../index', $data);

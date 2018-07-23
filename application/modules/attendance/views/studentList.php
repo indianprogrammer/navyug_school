@@ -18,7 +18,7 @@
 	
 		<th>Student Name</th>
 		<th>Email</th>
-		
+		<th>Username</th>
 		<th>Mobile</th>
         <th>Permanent Address</th>
 		<th>Corresponding Address</th>
@@ -33,7 +33,7 @@
 		
 		<td><?= $s['student_name']; ?></td>
 		<td><?= $s['email']; ?></td>
-		
+		<td><?= $s['username']; ?></td>
 		<td><?= $s['mobile']; ?></td>
 		
         <td data-toggle="tooltip" data-placement="top" title="<?= $s['permanent_address']?>" ><?php echo substr($s['permanent_address'],0,10).'....' ?></td>
@@ -65,7 +65,7 @@
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure to delete <?= $row['student_name']; ?> record ?", function(result) {
+    bootbox.confirm("Are you sure?", function(result) {
       if(result)
           window.location.href = "<?php echo site_url('student/remove/'.$s['id']); ?>"
    

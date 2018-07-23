@@ -1,31 +1,31 @@
     <?php
 
 
-    class Student extends MY_Controller{
+    class Attendance extends MY_Controller{
         function __construct()
         {
             parent::__construct();
-            $this->load->model('Student_model');
+            $this->load->model('Attendance_model');
         } 
 
     /*
-     * Listing of student
+     * Listing of attendance
      */
-    function student_list()
+    function attendance_list()
     {
-        $data['student'] = $this->Student_model->get_all_student();
+        $data['attendance'] = $this->attendance_model->get_all_attendance();
         
-        $data['_view'] = 'studentList';
+        $data['_view'] = 'attendanceList';
         $this->load->view('index',$data);
     }
 
     /*
-     * Adding a new student
+     * Adding a new attendance
      */
-    function add_student()
-    {   
+    function take_attendance()
+    {
         $school_id=$this->session->SchoolId;
-        $data['classes'] = $this->Student_model->fetch_classes($school_id);
+        $data['classes'] = $this->Attendance_model->fetch_classes($school_id);
        $data['_view'] = 'add';
        $this->load->view('index',$data);
    }
@@ -37,12 +37,11 @@
     $config['upload_path']          = './uploads/';
     $config['allowed_types']        = 'gif|jpg|png';
     $this->load->library('upload', $config);
-    $school_id=$this->session->SchoolId;
-     $data['classes'] = $this->Student_model->fetch_classes($school_id);
 
-    $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
+        // $this->form_validation->set_rules('password','Password','required|max_length[20]');
+    $this->form_validation->set_rules('attendance_name','attendance Name','required|max_length[100]');
     $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
-   
+    $this->form_validation->set_rules('username','Username','required|max_length[100]');
     $this->form_validation->set_rules('mobile','Mobile','required');
 
     $this->form_validation->set_rules('paddress','Permanent Address','required');
@@ -52,12 +51,11 @@
     {   
         $params = array(
                 // 'password' => $this->input->post('password'),
-            'student_name' => $this->input->post('student_name'),
+            'attendance_name' => $this->input->post('attendance_name'),
             'email' => $this->input->post('email'),
-           
+            'username' => $this->input->post('username'),
             'mobile' => $this->input->post('mobile'),
-            'classes' => implode(",",$this->input->post('classes')),
-              
+                // 'profile_image' => $this->input->post('profile_image'),
             'permanent_address' => $this->input->post('paddress'),
             'temporary_address' => $this->input->post('taddress'),
             'created_at'=>date('Y-m-d h:i:s'),
@@ -65,46 +63,13 @@
 
         );
         $data['image'] =  $this->upload->data();
-       
+              // var_dump($data);
         $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
-        
+               // echo $image_path;die;
         $params['profile_image']=$image_path;
-        #add student information
-        $studentId = $this->Student_model->add_student($params);
-         $username = 'stu'.$this->session->SchoolId.'_'.$studentId; #stu+schoolid_parentid
-             $password = rand(1,10000);
-             $email = $params['email'];
 
-             $userId = $studentId;
-             $password=rand(1,100000);
-                // $data['master_authorization'] = $this->Student_model->get_authentication_id();
-                // var_dump($data['master_authorization']);
-             $authentication=array(
-               'username'=> $username,
-               'email'=> $email,
-               'autorization_id'=>4,
-               'password'=>md5($password),
-                'user_id'=> $studentId,
-               'clear_text'=>$password
-
-           );
-             // var_dump($authentication);
-             $insertStudentAuthentication  = $this->Student_model->add_user($authentication);
-             $schoolStudentMap=array(
-
-                'student_id'=>$studentId,
-                'school_id'=>$this->session->SchoolId
-
-            );  
-             $map  = $this->Student_model->add_mapping($schoolStudentMap);
-             ##student class mapping start
-             $studentClassMapping=array(
-                'student_id'=>$studentId,
-                'class_id' =>$params['classes']
-             );
-             $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
-
-        redirect('student/student_list');
+        $attendance_id = $this->attendance_model->add_attendance($params);
+        redirect('attendance/attendance_list');
     }
     else
     {            
@@ -114,22 +79,22 @@
 }  
 
     /*
-     * Editing a student
+     * Editing a attendance
      */
     function edit($id)
     {   
-        // check if the student exists before trying to edit it
-        $data['student'] = $this->Student_model->get_student($id);
+        // check if the attendance exists before trying to edit it
+        $data['attendance'] = $this->attendance_model->get_attendance($id);
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'gif|jpg|png';
         $this->load->library('upload', $config);
 
         
-        if(isset($data['student']['id']))
+        if(isset($data['attendance']['id']))
         {
             $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
+            $this->form_validation->set_rules('attendance_name','attendance Name','required|max_length[100]');
             $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
             $this->form_validation->set_rules('username','Username','required|max_length[100]');
             $this->form_validation->set_rules('mobile','Mobile','required');
@@ -141,7 +106,7 @@
             {   
                 $params = array(
 
-                    'student_name' => $this->input->post('student_name'),
+                    'attendance_name' => $this->input->post('attendance_name'),
                     'email' => $this->input->post('email'),
                     'username' => $this->input->post('username'),
                     'mobile' => $this->input->post('mobile'),
@@ -156,8 +121,8 @@
                 $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
                // echo $image_path;die;
                 $params['profile_image']=$image_path;
-                $this->Student_model->update_student($id,$params);            
-                redirect('student/student_list');
+                $this->attendance_model->update_attendance($id,$params);            
+                redirect('attendance/attendance_list');
             }
             else
             {
@@ -166,24 +131,24 @@
             }
         }
         else
-            show_error('The student you are trying to edit does not exist.');
+            show_error('The attendance you are trying to edit does not exist.');
     } 
 
     /*
-     * Deleting student
+     * Deleting attendance
      */
     function remove($id)
     {
-        $student = $this->Student_model->get_student($id);
+        $attendance = $this->attendance_model->get_attendance($id);
 
-        // check if the student exists before trying to delete it
-        if(isset($student['id']))
+        // check if the attendance exists before trying to delete it
+        if(isset($attendance['id']))
         {
-            $this->Student_model->delete_student($id);
-            redirect('student/student_list');
+            $this->attendance_model->delete_attendance($id);
+            redirect('attendance/attendance_list');
         }
         else
-            show_error('The student you are trying to delete does not exist.');
+            show_error('The attendance you are trying to delete does not exist.');
     }
     
 }
