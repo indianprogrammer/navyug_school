@@ -150,5 +150,10 @@
         else
             show_error('The attendance you are trying to delete does not exist.');
     }
+    function fetch_student()
+    {
+         
+            echo json_encode($this->Attendance_model->fetch_students($this->input->post('classes_id')));
+                                                }
     
 }
