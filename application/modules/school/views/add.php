@@ -89,7 +89,7 @@
                         <label for="latlong" class="control-label"><span class="text-danger">*</span>Location</label>
                         <div class="form-group" id="showlat">
                             <input type="text" name="latlong" 
-                            class="form-control" id="latlong" onclick="latMap();" data-toggle="tooltip" data-placement="top" title="click on field and select your location in google map "  />
+                            class="form-control" id="latlong" onclick="latMap();" data-toggle="tooltip" data-placement="top" title="click on field and select your location in google map "  /><a href="#myMapModal" data-toggle="modal">open map</a>
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                         </div>
                     </div>
@@ -124,7 +124,32 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="myMapModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                 <h4 class="modal-title">Modal title</h4>
 
+            </div>
+            <div class="modal-body"><div class="container"></div>
+                <div class="container">
+                    <div class="row">
+                      <input id="pac-input" class="search-controls" type="text" placeholder="Search Box">
+                        <div id="dvMap" class=""></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script type="text/javascript">
                 var selectState = '<option value="">Select State</option>';
@@ -160,17 +185,17 @@
                         data: {state_id: state_id},
                         success: function (data) {
                                 console.log(obj);
-                            var obj = JSON.parse(data);
-                            if(obj)
-                            {
-                                // console.log(obj);
-                            var i;
-                            var city;
-                            // console.log(obj);
-                            for (i = 0; i < obj.length; i++) {
-                                city += '<option value="' + obj[i].id + '">' + obj[i].city_name + '</option>';
-                                $('#city').html(city);
-                            }
+                                    var obj = JSON.parse(data);
+                                    if(obj)
+                                    {
+                                        // console.log(obj);
+                                    var i;
+                                    var city;
+                                    // console.log(obj);
+                                    for (i = 0; i < obj.length; i++) {
+                                        city += '<option value="' + obj[i].id + '">' + obj[i].city_name + '</option>';
+                                        $('#city').html(city);
+                                    }
                         }
                         else
                         {

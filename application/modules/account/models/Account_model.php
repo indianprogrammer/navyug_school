@@ -4,7 +4,7 @@
  * www.crudigniter.com
  */
  
-class Attendance_model extends CI_Model
+class Account_model extends CI_Model
 {
     function __construct()
     {
@@ -34,4 +34,14 @@ class Attendance_model extends CI_Model
          $this->db->where('class_id',$classes_id);
         return $query = $this->db->get()->result();
     }
+     function fetch_records($username)
+     {
+        $this->db->select('*');
+        $this->db->like('username');
+        $this->db->from('authentication');
+        // $this->db->join('student', 'map_student_class.student_id=student.id', 'Left');
+        // $this->db->join('classes', 'map_student_class.class_id=classes.id', 'Left');
+         $this->db->where('id',1);
+        return $query = $this->db->get()->result();
+     }
 }

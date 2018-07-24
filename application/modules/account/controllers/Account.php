@@ -5,7 +5,7 @@
         function __construct()
         {
             parent::__construct();
-            // $this->load->model('Account_model');
+            $this->load->model('Account_model');
         } 
 
     /*
@@ -115,6 +115,14 @@
     {
          
             echo json_encode($this->Attendance_model->fetch_students($this->input->post('classes_id')));
-                                                }
+    }
+    function fetchRecord()
+    {       
+        // echo "22";
+            if($this->input->post('username'))
+            {
+            echo json_encode($this->Account_model->fetch_records($this->input->post('username')));
+        }
+    }
     
 }

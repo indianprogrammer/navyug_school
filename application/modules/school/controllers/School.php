@@ -182,27 +182,27 @@ class School extends MY_Controller
     function fetch_subject()
     {   $schoolId= $_SESSION['SchoolId'];
         $mapData=$this->School_model->mapSubjects($schoolId);
-         $this->output->enable_profiler(TRUE);
-        var_dump($mapData);
+         // $this->output->enable_profiler(TRUE);
+        // var_dump($mapData);
     }
      function fetch_classes()
     {
         $mapData=$this->School_model->mapClasses($schoolId);
-         $this->output->enable_profiler(TRUE);
-        var_dump($mapData);
+         // $this->output->enable_profiler(TRUE);
+        // var_dump($mapData);
     }
      function fetch_students()
     {
         $mapData=$this->School_model->mapStudents($schoolId);
-         $this->output->enable_profiler(TRUE);
-        var_dump($mapData);
+         // $this->output->enable_profiler(TRUE);
+        // var_dump($mapData);
     }
      function fetch_employees()
      {  
       // $schoolId= $_SESSION['SchoolId'];
         $mapData=$this->School_model->mapEmployees($schoolId);
-         $this->output->enable_profiler(TRUE);
-        var_dump($mapData);
+         // $this->output->enable_profiler(TRUE);
+        // var_dump($mapData);/
     }
 
 
