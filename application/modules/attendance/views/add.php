@@ -1,5 +1,5 @@
 
-
+<div class="container">
 <div class="form-group">
 	<label for="class_name" class="col-md-4 control-label"><span class="text-danger">*</span>Select Class For Attendence </label>
 	<div class="col-md-8">
@@ -20,12 +20,33 @@
 		<button type="submit" class="btn btn-success">Attendance Start</button>
 	</div>
 </div>
-<form action="<?=base_url()?>attendance/add_attendance">
-<div id="showtable" style="height: 200px;width: 200px;"></div>	
+<div id="showtable"   class="form-group" style="height: 200px;width: 200px;">
+<form action="<?=base_url()?>attendance/add_attendance" method="post">
+	<table class="table table-responsive">
+		<tr>
+			<th>Student Name</th>
+			<th>Action</th>
+		</tr>
+		<tr>
+			<td>shubham</td>
+			<td><input type="checkbox" name="student[]" value="1">present</td>
+		</tr>
+		<tr>
+			<td>tarun</td>
+			<td><input type="checkbox" name="student[]" value="2">present</td>
+		</tr>
+		<!-- <tr>
+			<td>tarun</td>
+			<td><input type="checkbox" name="student" value="3">present</td>
+		</tr> -->
+		<input type="submit" name="">
+	</table>
+</div>	
 </form>
+</div>
 
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
 <script type="text/javascript">
 
@@ -50,11 +71,17 @@
                                     // console.log(obj);
                                     // for (var i = 0; i < obj.length; i++) 
                                     var i=0;
+                                    	 var checkbox = "<label><input type='checkbox' name='students[]' value='"+obj[i].student_id+"'>"+obj[i].student_name+"</label><input type='submit' value='submit'>";
                                     	while(i<obj.length)
                                     {
                                     	// var checkbox = ''<label><input type="checkbox" value="'+obj[i].id+">rtr</label>';
-                                    	 var checkbox = "<form action='<?=base_url()?>attendance/add_attendance'><label><input type='checkbox' name='students[]' value='"+obj[i].student_id+"'>"+obj[i].student_name+"</label><input type='submit' value='submit'></form>";
-                                    	 $('#showtable').html(checkbox);
+                                    		// $('#showtable').append('<table>');
+                                    		// $('#showtable').append('<tr><th>Student name</th><th>Action</th></tr>');
+                                    		// $('#showtable').append('<tr><th>Student name</th><th>Action</th></tr>');
+                                    		// $('#showtable').append('<tr><th>Student name</th><th>Action</th></tr>');
+
+                                    	  $('#showtable').html(checkbox);
+                                    		// $('#showtable').append('<table>');
                                     	 i++;
 										   
 										     

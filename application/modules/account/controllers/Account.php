@@ -1,11 +1,11 @@
     <?php
 
 
-    class Attendance extends MY_Controller{
+    class Account extends MY_Controller{
         function __construct()
         {
             parent::__construct();
-            $this->load->model('Attendance_model');
+            // $this->load->model('Account_model');
         } 
 
     /*
@@ -22,10 +22,10 @@
     /*
      * Adding a new attendance
      */
-    function take_attendance()
+    function accountForm()
     {
         $school_id=$this->session->SchoolId;
-        $data['classes'] = $this->Attendance_model->fetch_classes($school_id);
+        // $data['classes'] = $this->Attendance_model->fetch_classes($school_id);
        $data['_view'] = 'add';
        $this->load->view('index',$data);
    }

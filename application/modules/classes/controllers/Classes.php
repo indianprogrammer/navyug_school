@@ -16,7 +16,7 @@ class Classes extends MY_Controller{
     {
         // var_dump($school_id);die;
         $data['studentCount']=$this->Classes_model->get_student_count();
-        // var_dump($data['studentCount']);die;
+        // var_dump($data['studentCount']);die; 
         $data['class'] = $this->Classes_model->get_all_class();
         
         $data['_view'] = 'classList';
@@ -147,4 +147,15 @@ class Classes extends MY_Controller{
             show_error('The class you are trying to delete does not exist.');
     }
 
+    function pdf()
+{
+    $this->load->helper('pdf_helper');
+   $data['title']="invoice";
+   $data['school_id']=$this->session->SchoolId;
+    $this->load->view('pdfreport', $data);
 }
+
+
+
+}
+?>

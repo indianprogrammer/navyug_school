@@ -3,7 +3,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">School List</h3>
-                <div class="box-tools">
+                <div class="box-tools pull-right">
                     <a href="<?= site_url('school/add_school'); ?>" class="btn btn-success btn-sm right">Add</a>
                 </div>
             </div>
