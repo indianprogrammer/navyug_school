@@ -99,7 +99,7 @@ function add()
 
             );  
              $map  = $this->Parents_model->add_mapping($schoolParentMap);
-             redirect('Parents/parent_list');
+             redirect('parents/parent_list');
          }
          else
          {            

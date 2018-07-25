@@ -6,16 +6,17 @@
         {
             parent::__construct();
             $this->load->model('Account_model');
+             $this->load->helper('pdf_helper');
         } 
 
     /*
      * Listing of attendance
      */
-    function attendance_list()
+    function invoice_list()
     {
-        $data['attendance'] = $this->attendance_model->get_all_attendance();
-        
-        $data['_view'] = 'attendanceList';
+        $data['invoice'] = $this->Account_model->get_all_invoice();
+        // var_dump($data['invoice']);
+        $data['_view'] = 'invoiceList';
         $this->load->view('index',$data);
     }
 
@@ -23,106 +24,118 @@
      * Adding a new attendance
      */
     function accountForm()
-    {
+    {   
         $school_id=$this->session->SchoolId;
         // $data['classes'] = $this->Attendance_model->fetch_classes($school_id);
-       $data['_view'] = 'add';
-       $this->load->view('index',$data);
-   }
+        $data['_view'] = 'add';
+        $this->load->view('index',$data);
+    }
+    function add_invoice()
+    {
+        $data['_view'] = 'addInvoice';
+        $this->load->view('index',$data);
+    }
+    function generate_invoice()
+    {
+        ##get input from invoice form
+        $params=array(
+            'student_id'=>$this->input->post('id'),
+            'student_name'=>$this->input->post('stuName'),
+            'school_name'=>$this->input->post('name'),
+            'email'=>$this->input->post('email'),
+            'contact'=>$this->input->post('contact'),
+            'class'=>$this->input->post('class'),
+            'title'=>"invoice"
+        );
+        ##generate random invoice number
+        $invoiceId="inv".rand(1,1000).rand(1,100);
+        $invoiceprocess=array(
+            'invoice_id'=>$invoiceId
+        );
+        ##insert data to invoice table
+        $addInvoice = $this->Account_model->add_invoice($invoiceprocess);
+        ##get invoice id and send details to account_trensaction table
+        $accountTransaction=array(
+            'reference_id'=>$addInvoice,
+            'reference_type'=>'invoice',
+            'debit'=>1
 
-
-   function add_attendance()
-   {   
-             $school_id=$this->session->SchoolId;
-             $value=$this->input->post('student');
-             var_dump($value);die;
+        );
+        // var_dump($accountTransaction);
+        $transaction = $this->Account_model->add_transaction($accountTransaction);
        
-}  
 
-    /*
-     * Editing a attendance
-     */
-    function edit($id)
-    {   
-        // check if the attendance exists before trying to edit it
-        $data['attendance'] = $this->attendance_model->get_attendance($id);
-        $config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $this->load->library('upload', $config);
+        $this->load->view('pdfreport', $params);
 
+
+
+    }
+
+ ##get pdf by invoice id
+    function getPdf($invoice_id)
+    {
+        $getInvoice = $this->Account_model->get_invoice($invoice_id);
+        // var_dump($getInvoice);die;
+         $params=array(
+            
+            'student_name'=>$getInvoice->student_name,
+            'school_name'=>"dd",
+            'email'=>$getInvoice->email,
+            'contact'=>$getInvoice->mobile,
+            'class'=>$getInvoice->classes,
+            'title'=>"invoice",
+            'invoiceId'=>$getInvoice->invoice_id
+        );
+         // var_dump($params);die;
+         $this->load->view('pdfreport', $params);
+    }
+   
+
+
+    ##for receipt start
+ function add_reciept()
+    {
+        $data['_view'] = 'addReciept';
+        $this->load->view('index',$data);
+    }
+
+ function generate_reciept()
+    {
+        ##get input from invoice form
+        ##generate random invoice number
+        $recieptId="REC".rand(1,1000).rand(1,100);
+        $reciept=array(
+            'reciept_id'=>$recieptId
+        );
         
-        if(isset($data['attendance']['id']))
-        {
-            $this->load->library('form_validation');
+        ##insert data to invoice table
+        $addreciept=$this->Account_model->add_reciept($reciept);
+        ##get invoice id and send details to account_trensaction table
+        $accountTransaction=array(
+            'reference_id'=>$addreciept,
+            'reference_type'=>'reciept',
+            'credit'=>1
 
-            $this->form_validation->set_rules('attendance_name','attendance Name','required|max_length[100]');
-            $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
-            $this->form_validation->set_rules('username','Username','required|max_length[100]');
-            $this->form_validation->set_rules('mobile','Mobile','required');
+        );
+        // var_dump($accountTransaction);
+        $transaction = $this->Account_model->add_transaction_reciept($accountTransaction);
+       
 
-            $this->form_validation->set_rules('paddress','Permanent Address','required');
-            $this->form_validation->set_rules('taddress','Temporary Address','required');
+        $params=array(
+            'student_id'=>$this->input->post('id'),
+            'student_name'=>$this->input->post('stuName'),
+            'school_name'=>$this->input->post('name'),
+            'email'=>$this->input->post('email'),
+            'contact'=>$this->input->post('contact'),
+            'class'=>$this->input->post('class'),
+            'paid'=>$this->input->post('paid'),
+            'reciepteId'=>$recieptId,
+            'title'=>"reciept"
+        );
+        $this->load->view('recieptPdf', $params);
 
-            if($this->form_validation->run() )     
-            {   
-                $params = array(
 
-                    'attendance_name' => $this->input->post('attendance_name'),
-                    'email' => $this->input->post('email'),
-                    'username' => $this->input->post('username'),
-                    'mobile' => $this->input->post('mobile'),
-                // 'profile_image' => $this->input->post('profile_image'),
-                    'permanent_address' => $this->input->post('paddress'),
-                    'temporary_address' => $this->input->post('taddress'),
-                    
-                );
-                // var_dump($params);die;
-                $data['image'] =  $this->upload->data();
-              // var_dump($data);
-                $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
-               // echo $image_path;die;
-                $params['profile_image']=$image_path;
-                $this->attendance_model->update_attendance($id,$params);            
-                redirect('attendance/attendance_list');
-            }
-            else
-            {
-                $data['_view'] = 'edit';
-                $this->load->view('index',$data);
-            }
-        }
-        else
-            show_error('The attendance you are trying to edit does not exist.');
-    } 
 
-    /*
-     * Deleting attendance
-     */
-    function remove($id)
-    {
-        $attendance = $this->attendance_model->get_attendance($id);
-
-        // check if the attendance exists before trying to delete it
-        if(isset($attendance['id']))
-        {
-            $this->attendance_model->delete_attendance($id);
-            redirect('attendance/attendance_list');
-        }
-        else
-            show_error('The attendance you are trying to delete does not exist.');
     }
-    function fetch_student()
-    {
-         
-            echo json_encode($this->Attendance_model->fetch_students($this->input->post('classes_id')));
-    }
-    function fetchRecord()
-    {       
-        // echo "22";
-            if($this->input->post('username'))
-            {
-            echo json_encode($this->Account_model->fetch_records($this->input->post('username')));
-        }
-    }
-    
+
 }

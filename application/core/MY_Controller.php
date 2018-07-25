@@ -9,10 +9,13 @@ class MY_Controller extends MX_Controller {
 		if (!isset($_SESSION['username'])) {
              redirect('login');
         }
-        $schoolId= $_SESSION['SchoolId'];
 
 	} 
 
+         // public $company_email = 'test@email.com';
+        
+        // public $schoolId= $_SESSION['SchoolId'];
+	// public $school_id=$this->session->SchoolId;
 
 	
 }

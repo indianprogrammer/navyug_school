@@ -20,14 +20,14 @@
     </tr>
 </thead>
 <tbody>
-	<?php foreach($subject as $s){ ?>
+	<?php foreach($subject as $row){ ?>
     <tr>
-		<td><?= $s['id']; ?></td>
+		<td><?= $row['id']; ?></td>
 		
-		<td><?= $s['name']; ?></td>
+		<td><?= $row['name']; ?></td>
 		
 		<td>
-            <a href="<?= site_url('subject/edit/'.$s['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
+            <a href="<?= site_url('subject/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
              <a onclick="myFunction();" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
 
         </td>
@@ -51,9 +51,9 @@
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure want to delete <?= $s['name']; ?> ?", function(result) {
+    bootbox.confirm("Are you sure want to delete <?= $row['name']; ?> ?", function(result) {
       if(result)
-          window.location.href = "<?php echo site_url('subject/remove/'.$s['id']); ?>"
+          window.location.href = "<?php echo site_url('subject/remove/'.$row['id']); ?>"
    
   });
     }

@@ -115,12 +115,12 @@
             </div>
        
 
-            <div class="box-footer">
-                <button type="submit" class="btn btn-success">
-                    <i class="fa fa-check"></i> Save
-                </button>
-            </div>
-            <?= form_close() ?>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-check"></i> Save
+                    </button>
+                </div>
+                <?= form_close() ?>
         </div>
     </div>
 </div>

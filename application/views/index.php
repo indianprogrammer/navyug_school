@@ -307,6 +307,46 @@
 
                         </ul>
                     </li>
+                     <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                ACCOUNT
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>account/add_invoice" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD INVOICE
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>account/invoice_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        LIST INVOICE
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>account/add_reciept" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD RECIEPT
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a href="<?= site_url() ?>login/logout" class="nav-link">
                             <i class="fa fa-sign-out nav-icon"></i>
