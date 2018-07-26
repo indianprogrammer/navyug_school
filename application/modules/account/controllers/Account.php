@@ -108,7 +108,7 @@
             'reciept_id'=>$recieptId
         );
         
-        ##insert data to invoice table
+        ##insert data to reciept table
         $addreciept=$this->Account_model->add_reciept($reciept);
         ##get invoice id and send details to account_trensaction table
         $accountTransaction=array(
@@ -137,5 +137,38 @@
 
 
     }
-
+     function reciept_list()
+    {
+        $data['reciept'] = $this->Account_model->get_all_reciept();
+        // var_dump($data['invoice']);
+        $data['_view'] = 'recieptList';
+        $this->load->view('index',$data);
+    }
+ 
+ function getPdfReciept($reciept_id)
+    {
+        $getReciept = $this->Account_model->get_reciept($reciept_id);
+        // var_dump($getInvoice);die;
+         $params=array(
+            
+            // 'student_name'=>$getreciept->student_name,
+            // 'school_name'=>"dd",
+            // 'email'=>$getreciept->email,
+            // 'contact'=>$getreciept->mobile,
+            // 'class'=>$getreciept->classes,
+            // 'title'=>"reciept",
+            // 'invoiceId'=>$getreciept->invoice_id 
+            'student_name'=>'vivek',
+            'school_name'=>"dd",
+            'email'=>"vivek@gmail.com",
+            'contact'=>987654347647,
+            'class'=>12,
+            'title'=>"reciept",
+            'reciepteId'=>55,
+            'paid'=>200
+        );
+         // var_dump($params);die;
+         $this->load->view('recieptPdf', $params);
+    }
+   
 }

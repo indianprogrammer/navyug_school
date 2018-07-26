@@ -26,7 +26,7 @@ ob_start();
              
               <!-- info row -->
               <div class="row invoice-info">
-                <div class="col-sm-3 invoice-col">
+                <div class="col-sm-3 col-md-3 invoice-col">
                   From
                   <address>
                     <strong>' .$this->session->username.' .</strong><br>
@@ -37,7 +37,7 @@ ob_start();
                   </address>
                 </div>
                 <!-- /.col -->
-                <div class="col-sm-3 invoice-col" >
+                <div class="col-sm-3 col-md-3 invoice-col" >
                   To
                   <address>
                     <strong>'.$student_name.'</strong><br>
@@ -51,9 +51,9 @@ ob_start();
                 <div class="col-sm-4 invoice-col">
                   <b>Reciept '.$reciepteId.'</b><br>
                   <br>
-                  <b>Order ID:</b> 4F3S8J<br>
-                  <b>Payment Due:</b> 2/22/2014<br>
-                  <b>Account:</b> 968-34567
+                  // <b>Order ID:</b> 4F3S8J<br>
+                  // <b>Payment Due:</b> 2/22/2014<br>
+                  // <b>Account:</b> 968-34567
                 </div>
                 <!-- /.col -->
               </div>

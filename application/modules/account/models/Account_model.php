@@ -77,9 +77,27 @@ class Account_model extends CI_Model
     }
      function add_reciept($reciept)
      { 
-        echo "32232323";
+        
         $this->db->insert('reciept',$reciept);
         return $this->db->insert_id();
      }
+      function get_all_reciept()
+    {
+         $this->db->select('reciept.*,account_transection.*');
+        $this->db->from('reciept');
+        $this->db->join('account_transection', 'account_transection.reference_id=reciept.id', 'Left');
+       
+        // $this->db->where('class_id',$classes_id);
+        return $query = $this->db->get()->result_array();
+    }
+      function get_reciept($reciept_id)
+    {
+         $this->db->select(',reciept.reciept_id');
+        $this->db->from('reciept');
+        $this->db->join('account_transection', 'account_transection.reference_id=reciept.id', 'Left');
+        // $this->db->join('student', 'invoice.student_id=student.id', 'Left');
+        $this->db->where('reciept_id',$reciept_id);
+         return $query = $this->db->get()->row();
+    }
 }
 ?>

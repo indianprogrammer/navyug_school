@@ -2,11 +2,11 @@
     <a href="<?php echo site_url('parents/add'); ?>" class="btn btn-success">Add</a>
 </div>
 
-<table id="invoice_table" class="table table-bordered table-striped table-responsive">
+<table id="reciept_table" class="table table-bordered table-striped table-responsive">
     <thead>
     <tr>
         <th>ID</th>
-        <th>Invoice Number</th>
+        <th>reciept Number</th>
         <th>Date</th>
         <!-- <th>Mobile</th> -->
         <!-- <th>Permanent Address</th> -->
@@ -16,12 +16,12 @@
     </thead>
     <tbody>
      <?php   $count=1; ?>
-    <?php foreach ($invoice as $row) { ?>
+    <?php foreach ($reciept as $row) { ?>
         <tr>
             <td><?=$count++ ?></td>
-            <td><?=$row['invoice_id'] ?> </td>
+            <td><?=$row['reciept_id'] ?> </td>
              <td><?=$row['date'] ?></td>
-             <td><a href="<?= site_url('account/getPdf/'.$row['invoice_id']); ?>" class="btn btn-info btn-xs">Get Pdf</a> 
+             <td><a href="<?= site_url('account/getPdfreciept/'.$row['reciept_id']); ?>" class="btn btn-info btn-xs">Get Pdf</a> 
             </td>
         </tr>
     <?php } ?>
@@ -34,6 +34,6 @@
 
 <script>
     $(document).ready( function () {
-        $('#invoice_table').DataTable();
+        $('#reciept_table').DataTable();
     } );
 </script>

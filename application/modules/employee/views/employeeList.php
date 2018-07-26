@@ -43,7 +43,7 @@
     <ul class="dropdown-menu" style="width: 10px;">
       <li><a href="<?= site_url('employee/edit/'.$row['id']); ?>">EDIT</a></li>
       <li><a href="#">DELETE</a></li>
-      <li><a href="#" data-toggle="modal" data-target="#myModal" onclick="view();">VIEW</a></li>
+      <li><a href="#myModal" data-toggle="modal" data-target="#myModal" >VIEW</a></li>
     </ul>
   </div>
         </td>
@@ -51,7 +51,29 @@
     <?php } ?>
 </tbody>    
 </table>
-
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <!-- <script src="<?= base_url() ;?>assets/admin/plugins/datatables/jquery.dataTables.js"></script> -->
