@@ -7,6 +7,7 @@
     <tr>
         <th>ID</th>
         <th>Invoice Number</th>
+        <th>Student Name</th>
         <th>Date</th>
         <!-- <th>Mobile</th> -->
         <!-- <th>Permanent Address</th> -->
@@ -20,6 +21,7 @@
         <tr>
             <td><?=$count++ ?></td>
             <td><?=$row['invoice_id'] ?> </td>
+            <td><?=$row['student_name'] ?> </td>
              <td><?=$row['date'] ?></td>
              <td><a href="<?= site_url('account/getPdf/'.$row['invoice_id']); ?>" class="btn btn-info btn-xs">Get Pdf</a> 
             </td>

@@ -30,30 +30,48 @@
         $data['_view'] = 'add';
         $this->load->view('index',$data);
     }
+
     function add_invoice()
     {
         $data['_view'] = 'addInvoice';
         $this->load->view('index',$data);
     }
+
     function generate_invoice()
-    {
+    {   
+
+        ##get school information
+        $schoolId=$this->session->SchoolId;
+        $getSchoolInformation = $this->Account_model->get_school_information($schoolId);
+        // var_dump($getSchoolInformation);die;
+        ##generate random invoice number
+        $invoiceId=1134;
+        $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
+        // var_dump($checkInvoiceId);die;
+      $incrementedUniqueInvoiceId=$checkInvoiceId;
+       
         ##get input from invoice form
         $params=array(
             'student_id'=>$this->input->post('id'),
             'student_name'=>$this->input->post('stuName'),
-            'school_name'=>$this->input->post('name'),
+            'total'=>$this->input->post('total'),
             'email'=>$this->input->post('email'),
             'contact'=>$this->input->post('contact'),
             'class'=>$this->input->post('class'),
-            'title'=>"invoice"
+            'title'=>"invoice",
+            'invoice_id'=>$incrementedUniqueInvoiceId,
+            'school_name'=>$getSchoolInformation->organization_name
         );
-        ##generate random invoice number
-        $invoiceId="inv".rand(1,1000).rand(1,100);
         $invoiceprocess=array(
-            'invoice_id'=>$invoiceId
+            'invoice_id'=>$incrementedUniqueInvoiceId,
+            'school_id'=>$this->session->SchoolId,
+            'school_name'=>$getSchoolInformation->organization_name,
+            'total'=>$this->input->post('total')
+
         );
         ##insert data to invoice table
         $addInvoice = $this->Account_model->add_invoice($invoiceprocess);
+
         ##get invoice id and send details to account_trensaction table
         $accountTransaction=array(
             'reference_id'=>$addInvoice,
@@ -75,18 +93,19 @@
     function getPdf($invoice_id)
     {
         $getInvoice = $this->Account_model->get_invoice($invoice_id);
-        // var_dump($getInvoice);die;
+          var_dump($getInvoice);
          $params=array(
             
             'student_name'=>$getInvoice->student_name,
-            'school_name'=>"dd",
+            'school_name'=>$getInvoice->school_name,
             'email'=>$getInvoice->email,
             'contact'=>$getInvoice->mobile,
             'class'=>$getInvoice->classes,
             'title'=>"invoice",
-            'invoiceId'=>$getInvoice->invoice_id
+            'total'=>$getInvoice->total,
+            'invoice_id'=>$getInvoice->invoice_id
         );
-         // var_dump($params);die;
+          // var_dump($params);die;
          $this->load->view('pdfreport', $params);
     }
    
@@ -101,8 +120,7 @@
 
  function generate_reciept()
     {
-        ##get input from invoice form
-        ##generate random invoice number
+        ##generate random reciept number
         $recieptId="REC".rand(1,1000).rand(1,100);
         $reciept=array(
             'reciept_id'=>$recieptId
@@ -121,6 +139,7 @@
         $transaction = $this->Account_model->add_transaction_reciept($accountTransaction);
        
 
+        ##get input from reciept form
         $params=array(
             'student_id'=>$this->input->post('id'),
             'student_name'=>$this->input->post('stuName'),
@@ -170,5 +189,20 @@
          // var_dump($params);die;
          $this->load->view('recieptPdf', $params);
     }
+
+    function fetchRecordStudent()
+    {   
+        $school_id=$this->session->SchoolId;
+
+        echo json_encode($this->Account_model->fetchRecordStudents($this->input->post('keyword')));
+    }
+
+
+
+
+
+
+
    
 }
+?>
