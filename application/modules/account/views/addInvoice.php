@@ -7,7 +7,7 @@
                         <label for="uname" class="control-label"><span class="text-danger">*</span>Enter Username</label>
                         <div class="form-group">
                             <input type="text" name="uname" value="<?= $this->input->post('uname') ?>"
-                            class="form-control" id="uname" onkeyup="getStudentDetails()" autofocus/>
+                            class="form-control" id="uname" onkeyup="getStudentDetails()" autofocus  autocomplete="off" />
                             <span class="text-danger"><?= form_error('uname') ?></span>
                         </div>
                     </div>
@@ -65,13 +65,13 @@
                         <div class="table-responsive">
     <table class="table table-bordered" id="crud_table">
      <tr>
-      <th width="10%">Item Name</th>
-      <th width="10%">Item price</th>
+      <th width="10%">Particular</th>
+      <th width="10%">amount</th>
      
       <th width="5%"></th>
      </tr>
      <tr>
-      <td contenteditable="true" class="item_name"></td>
+      <td contenteditable="true" class="item_name" placeholder="Enter name"></td>
       
       <td contenteditable="true" class="item_price"></td>
       <td></td>
@@ -117,7 +117,7 @@
                  // console.log(responseObject);
                 var data=JSON.parse(responseObject);
                 //  var d=data[].email;
-                 console.log(data);
+                 // console.log(data);
                 $('#email').val(data.email);
                 $('#stuname').val(data.student_name);
                 // $('#stuname').val(data.student_name);
@@ -151,6 +151,7 @@
 <script>
 $(document).ready(function(){
  var count = 1;
+
  $('#add').click(function(){
   count = count + 1;
   var html_code = "<tr id='row"+count+"'>";
@@ -185,12 +186,13 @@ $(document).ready(function(){
    data:{item_name:item_name,item_price:item_price,keyword:keyword},
    success:function(data){
     // alert(data);
-    // console.log(data);
+     // console.log(data);
     $("td[contentEditable='true']").text("");
     for(var i=2; i<= count; i++)
     {
      $('tr#'+i+'').remove();
     }
+    window.location = "<?= base_url() ?>account/invoice_list";
     // fetch_item_data();
    }
   });

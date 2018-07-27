@@ -15,16 +15,16 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($parents as $t) { ?>
+    <?php foreach ($parents as $row) { ?>
         <tr>
-            <td><?=$t['id']?></td>
-            <td><?=$t['name']?></td>
-            <td><?=$t['email']?></td>
-            <td><?=$t['mobile']?></td>
-            <td data-toggle="tooltip" data-placement="top" title="<?=$t['permanent_address']?>"><?php echo substr($t['permanent_address'],0,10).'...' ?></td>
-            <td data-toggle="tooltip" data-placement="top" title="<?=$t['temporary_address']?>"><?php echo substr($t['temporary_address'],0,10).'...' ?></td>
+            <td><?=$row['id']?></td>
+            <td><?=$row['name']?></td>
+            <td><?=$row['email']?></td>
+            <td><?=$row['mobile']?></td>
+            <td data-toggle="tooltip" data-placement="top" title="<?=$row['permanent_address']?>"><?php echo substr($row['permanent_address'],0,10).'...' ?></td>
+            <td data-toggle="tooltip" data-placement="top" title="<?=$row['temporary_address']?>"><?php echo substr($row['temporary_address'],0,10).'...' ?></td>
             <td>
-                <a href="<?php echo site_url('parents/edit/' . $t['id']); ?>" class="btn btn-info btn-xs">Edit</a>
+                <a href="<?php echo site_url('parents/edit/' . $row['id']); ?>" class="btn btn-info btn-xs">Edit</a>
                 <a onclick="myFunction();" class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span>
                     Delete</a>
             </td>
@@ -49,10 +49,10 @@
     function myFunction() {
 
         // var id = $(this).data('id');
-        bootbox.confirm("Are you sure?", function (result) {
+        bootbox.confirm("Are you sure want to delete <?= $row['name']; ?> from list", function (result) {
             if (result)
-                window.location.href = "<?php echo site_url('parents/remove/' . $t['id']) ?>"
+                window.location.href = "<?php echo site_url('parents/remove/' . $row['id']) ?>"
 
         });
     }
-</script>
+</script> 

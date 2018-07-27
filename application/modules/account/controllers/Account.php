@@ -6,7 +6,7 @@
         {
             parent::__construct();
             $this->load->model('Account_model');
-             $this->load->helper('pdf_helper');
+            $this->load->helper('pdf_helper');
         } 
 
     /*
@@ -48,9 +48,9 @@
         $invoiceId=1134;
         $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
         // var_dump($checkInvoiceId);die;
-      $incrementedUniqueInvoiceId=$checkInvoiceId;
+        $incrementedUniqueInvoiceId=$checkInvoiceId;
         
-     
+
         // var_dump($entries);die;
         $data=$this->db->insert_batch('master_invoice',$entries);
 
@@ -92,7 +92,7 @@
         );
         // var_dump($accountTransaction);
         $transaction = $this->Account_model->add_transaction($accountTransaction);
-       
+
 
         $this->load->view('pdfreport', $params);
 
@@ -104,32 +104,67 @@
     function getPdf($invoice_id)
     {
         $getInvoice = $this->Account_model->get_invoice($invoice_id);
-          var_dump($getInvoice);
-         $params=array(
-            
+         // var_dump($getInvoice);die;
+        $get_row_type['params']= $this->Account_model->get_invoiceRow($invoice_id);
+          //var_dump($get_row_type['params']);
+          //$v='<td></td>';
+         
+           $v = "";
+           $no =1;
+           $subtotal=0;
+           
+          foreach ($get_row_type['params'] as $row) {
+                
+
+                $name = $row["name"];
+                $price = $row["price"];
+                $subtotal = $subtotal + $price;
+                $percentage=0.18;
+                $tax=$total*$percentage;
+                $total=$subtotal+$tax;
+                if($name!=""){
+                $v = $v."<tr><td>".$no."</td><td>".$name."</td><td>".$price."</td></tr>";
+                            }
+               $no++;
+               
+              
+          }
+          //echo $v;
+
+          
+        $params=array(
+
             'student_name'=>$getInvoice->student_name,
             'school_name'=>$getInvoice->school_name,
             'email'=>$getInvoice->email,
             'contact'=>$getInvoice->mobile,
             'class'=>$getInvoice->classes,
             'title'=>"invoice",
-            'total'=>$getInvoice->total,
-            'invoice_id'=>$getInvoice->invoice_id
+            // 'total'=>$getInvoice->total,
+            'invoice_id'=>$getInvoice->inv,
+            'name'=>$getInvoice->name,
+            'price'=>$getInvoice->price,
+            'permanent_address'=>$getInvoice->permanent_address,
+            'v'=>$v,
+            'subtotal'=>$subtotal,
+            'tax'=>$tax,
+            'total'=>$total
+
         );
           // var_dump($params);die;
-         $this->load->view('pdfreport', $params);
+        $this->load->view('pdfreport', $params);
     }
-   
+
 
 
     ##for receipt start
- function add_reciept()
+    function add_reciept()
     {
         $data['_view'] = 'addReciept';
         $this->load->view('index',$data);
     }
 
- function generate_reciept()
+    function generate_reciept()
     {
         ##generate random reciept number
         $recieptId="REC".rand(1,1000).rand(1,100);
@@ -148,7 +183,7 @@
         );
         // var_dump($accountTransaction);
         $transaction = $this->Account_model->add_transaction_reciept($accountTransaction);
-       
+
 
         ##get input from reciept form
         $params=array(
@@ -167,20 +202,20 @@
 
 
     }
-     function reciept_list()
+    function reciept_list()
     {
         $data['reciept'] = $this->Account_model->get_all_reciept();
         // var_dump($data['invoice']);
         $data['_view'] = 'recieptList';
         $this->load->view('index',$data);
     }
- 
- function getPdfReciept($reciept_id)
+
+    function getPdfReciept($reciept_id)
     {
         $getReciept = $this->Account_model->get_reciept($reciept_id);
         // var_dump($getInvoice);die;
-         $params=array(
-            
+        $params=array(
+
             // 'student_name'=>$getreciept->student_name,
             // 'school_name'=>"dd",
             // 'email'=>$getreciept->email,
@@ -198,7 +233,7 @@
             'paid'=>200
         );
          // var_dump($params);die;
-         $this->load->view('recieptPdf', $params);
+        $this->load->view('recieptPdf', $params);
     }
 
     function fetchRecordStudent()
@@ -212,55 +247,69 @@
     {   
 
         $studentData=$this->Account_model->fetchRecordStudents($this->input->post('keyword'));
-         $schoolId=$this->session->SchoolId;
+
+        $schoolId=$this->session->SchoolId;
         $getSchoolInformation = $this->Account_model->get_school_information($schoolId);
-        // var_dump($getSchoolInformation);die;
+        
         ##generate random invoice number
         $invoiceId=1134;
         $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
         // var_dump($checkInvoiceId);die;
-      $incrementedUniqueInvoiceId=$checkInvoiceId;
-       $item_name=$this->input->post('item_name');
-       
+        $incrementedUniqueInvoiceId=$checkInvoiceId;
+        $item_name=$this->input->post('item_name');
+
         $item_price=$this->input->post('item_price');
 
         for($count = 0; $count<count($item_name); $count++)
         {
-           $entries[]=array(
+         $entries[]=array(
             'name'=>$item_name[$count],
-            'price'=>$item_price[$count]
+            'price'=>$item_price[$count],
+            'invoice_id_mul'=>$incrementedUniqueInvoiceId
         );
-        }
+     }
         // var_dump($entries);die;
-        $data=$this->Account_model->insertMultiple($entries);
-         $invoiceprocess=array(
-            'invoice_id'=>$incrementedUniqueInvoiceId,
-            'school_id'=>$this->session->SchoolId,
-            'school_name'=>$getSchoolInformation->organization_name,
-            'total'=>$this->input->post('total')
+     $data=$this->Account_model->insertMultiple($entries);
+     $invoiceprocess=array(
+        'invoice_id'=>$incrementedUniqueInvoiceId,
+        'school_id'=>$this->session->SchoolId,
+        'school_name'=>$getSchoolInformation->organization_name,
+        'student_id'=>$studentData->id
 
-        );
+
+    );
         ##insert data to invoice table
-        $addInvoice = $this->Account_model->add_invoice($invoiceprocess);
+     $addInvoice = $this->Account_model->add_invoice($invoiceprocess);
 
         ##get invoice id and send details to account_trensaction table
-        $accountTransaction=array(
-            'reference_id'=>$addInvoice,
-            'reference_type'=>'invoice',
-            'debit'=>1
+     $accountTransaction=array(
+        'reference_id'=>$addInvoice,
+        'reference_type'=>'invoice',
+        'debit'=>1
 
-        );
+    );
+     $params=array(
+
+        'student_name'=>$studentData->student_name,
+            // 'total'=>$this->input->post('total'),
+        'email'=>$studentData->email,
+        'contact'=>$this->input->post('contact'),
+        'class'=>$this->input->post('class'),
+        'title'=>"invoice",
+        'invoice_id'=>$incrementedUniqueInvoiceId,
+        'school_name'=>$getSchoolInformation->organization_name
+    );
         // var_dump($accountTransaction);
-        $transaction = $this->Account_model->add_transaction($accountTransaction);
-       
+     $transaction = $this->Account_model->add_transaction($accountTransaction);
 
-        $this->load->view('pdfreport', $params);
-    }
-
-
+     redirect('school/add_school');
+     // $this->load->view('pdfreport', $params);
+ }
 
 
 
-   
+
+
+
 }
 ?>

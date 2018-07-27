@@ -39,12 +39,11 @@ ob_start();
                   </address>
                 </div>
                 <!-- /.col -->
-                <div class="col-sm-3 invoice-col" >
+                <div class="col-sm-3 invoice-col" style="float:right;margin-left:200px" >
                   To
                   <address>
                     <strong>'.$student_name.'</strong><br>
-                    // 795 Folsom Ave, Suite 600<br>
-                    // San Francisco, CA 94107<br>
+                    '.$permanent_address.'<br>
                     Phone: '.$contact.'<br>
                     Email:'.$email.'
                   </address>
@@ -74,12 +73,11 @@ ob_start();
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>'.$class.'</td>
+                    
+                   
+                     '.$v.'
                      
-                      <td>'.$total.'</td>
-                    </tr>
+                    
                    
                    
                    
@@ -101,11 +99,15 @@ ob_start();
                     <table class="table">
                       <tr>
                         <th style="width:50%">Subtotal:</th>
-                        <td>$250.30</td>
+                        <td>'.$subtotal.'</td>
                       </tr>
                       <tr>
-                        <th>Tax (9.3%)</th>
-                        <td>$10.34</td>
+                        <th>Tax (18.3%)</th>
+                        <td>'.$tax.'</td>
+                      </tr>
+                      <tr>
+                     <td> Total</td>
+                     <td> '.$total.'</td>
                       </tr>
                      
                     </table>
