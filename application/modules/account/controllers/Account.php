@@ -253,6 +253,7 @@
         
         ##generate random invoice number
         $invoiceId=1134;
+        // var_dump($invoiceId);
         $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
         // var_dump($checkInvoiceId);die;
         $incrementedUniqueInvoiceId=$checkInvoiceId;
@@ -265,16 +266,23 @@
          $entries[]=array(
             'name'=>$item_name[$count],
             'price'=>$item_price[$count],
-            'invoice_id_mul'=>$incrementedUniqueInvoiceId
+            'invoice_id_mul'=>$incrementedUniqueInvoiceId,
+
+
         );
      }
+
+
         // var_dump($entries);die;
      $data=$this->Account_model->insertMultiple($entries);
+    $totalamount= $this->Account_model->get_total_amount_invoice($incrementedUniqueInvoiceId);
+     // $this->output->enable_profiler(TRUE);
      $invoiceprocess=array(
         'invoice_id'=>$incrementedUniqueInvoiceId,
         'school_id'=>$this->session->SchoolId,
         'school_name'=>$getSchoolInformation->organization_name,
-        'student_id'=>$studentData->id
+        'student_id'=>$studentData->id,
+        'total_amount'=>$totalamount
 
 
     );

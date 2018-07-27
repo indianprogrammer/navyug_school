@@ -89,11 +89,7 @@
            
        
                 </div>
-                    <div class="box-footer">
-                <button type="submit" class="btn btn-success" name="save" id="save">
-                    <i class="fa fa-check"></i> Save
-                </button>
-            </div>
+                    
             <?= form_close() ?>
 
           
@@ -192,7 +188,7 @@ $(document).ready(function(){
     {
      $('tr#'+i+'').remove();
     }
-    window.location = "<?= base_url() ?>account/invoice_list";
+    // window.location = "<?= base_url() ?>account/invoice_list";
     // fetch_item_data();
    }
   });
