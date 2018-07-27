@@ -133,7 +133,10 @@ class Account_model extends CI_Model
         return  $query = $this->db->get()->row();
 
         }
-
+        function insertMultiple($entries)
+        {
+                $this->db->insert_batch('master_invoice',$entries);
+        }
 
 
 

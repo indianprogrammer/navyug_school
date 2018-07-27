@@ -49,7 +49,18 @@
         $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
         // var_dump($checkInvoiceId);die;
       $incrementedUniqueInvoiceId=$checkInvoiceId;
-       
+        
+     
+        // var_dump($entries);die;
+        $data=$this->db->insert_batch('master_invoice',$entries);
+
+
+
+
+
+
+
+
         ##get input from invoice form
         $params=array(
             'student_id'=>$this->input->post('id'),
@@ -197,7 +208,54 @@
         echo json_encode($this->Account_model->fetchRecordStudents($this->input->post('keyword')));
     }
 
+    function addMultiple()
+    {   
 
+        $studentData=$this->Account_model->fetchRecordStudents($this->input->post('keyword'));
+         $schoolId=$this->session->SchoolId;
+        $getSchoolInformation = $this->Account_model->get_school_information($schoolId);
+        // var_dump($getSchoolInformation);die;
+        ##generate random invoice number
+        $invoiceId=1134;
+        $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
+        // var_dump($checkInvoiceId);die;
+      $incrementedUniqueInvoiceId=$checkInvoiceId;
+       $item_name=$this->input->post('item_name');
+       
+        $item_price=$this->input->post('item_price');
+
+        for($count = 0; $count<count($item_name); $count++)
+        {
+           $entries[]=array(
+            'name'=>$item_name[$count],
+            'price'=>$item_price[$count]
+        );
+        }
+        // var_dump($entries);die;
+        $data=$this->Account_model->insertMultiple($entries);
+         $invoiceprocess=array(
+            'invoice_id'=>$incrementedUniqueInvoiceId,
+            'school_id'=>$this->session->SchoolId,
+            'school_name'=>$getSchoolInformation->organization_name,
+            'total'=>$this->input->post('total')
+
+        );
+        ##insert data to invoice table
+        $addInvoice = $this->Account_model->add_invoice($invoiceprocess);
+
+        ##get invoice id and send details to account_trensaction table
+        $accountTransaction=array(
+            'reference_id'=>$addInvoice,
+            'reference_type'=>'invoice',
+            'debit'=>1
+
+        );
+        // var_dump($accountTransaction);
+        $transaction = $this->Account_model->add_transaction($accountTransaction);
+       
+
+        $this->load->view('pdfreport', $params);
+    }
 
 
 
