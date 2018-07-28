@@ -149,7 +149,39 @@ function fetchRecordStudents($keyword)
 }
 
 
+function get_information_invoice($invoiceId)
+{
 
+
+$this->db->select('invoices.*');
+   $this->db->from('invoices');
+   $this->db->where('invoice_id',$invoiceId);  
+        // $this->db->join('master_invoice', 'master_invoice.invoice_id_mul=invoices.invoice_id');
+        // $this->db->join('student', 'invoice.student_id=student.id', 'Left');
+   // $this->db->join('student', 'authentication.user_id=student.id', 'Left');
+        // $this->db->where('school_id',$school_id);
+   return  $query = $this->db->get()->row();
+
+}
+function get_information_invoice_payment($invoiceId)
+{
+$this->db->select('master_invoice.*');
+   $this->db->from('invoices');
+   $this->db->where('invoice_id',$invoiceId);  
+         $this->db->join('master_invoice', 'master_invoice.invoice_id_mul=invoices.invoice_id');
+       
+   return  $query = $this->db->get()->result_array();
+}
+
+function get_information_student($studentId)
+{
+    $this->db->select('student.*');
+   $this->db->from('invoices');
+   $this->db->where('student_id',$studentId);  
+         $this->db->join('student', 'student.id=invoices.student_id');
+       
+   return  $query = $this->db->get()->row();
+}
 
 
 

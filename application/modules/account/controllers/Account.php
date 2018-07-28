@@ -109,7 +109,7 @@
           //var_dump($get_row_type['params']);
           //$v='<td></td>';
          
-           $v = "";
+           $rows = "";
            $no =1;
            $subtotal=0;
            
@@ -123,7 +123,7 @@
                 $tax=$total*$percentage;
                 $total=$subtotal+$tax;
                 if($name!=""){
-                $v = $v."<tr><td>".$no."</td><td>".$name."</td><td>".$price."</td></tr>";
+                $rows = $rows."<tr><td>".$no."</td><td>".$name."</td><td>".$price."</td></tr>";
                             }
                $no++;
                
@@ -166,8 +166,45 @@
 
     function generate_reciept()
     {
+
+        ##getting information of invoice
+        $invoiceId=$this->input->post('invoice');
+        $payment_method=$this->input->post('method');
+        $getInformationInvoice=$this->Account_model->get_information_invoice($invoiceId);
+        // var_dump($getInformationInvoice->school_name);
+        ##get student details by student_id
+        $getStudentDetails=$this->Account_model->get_information_student($getInformationInvoice->student_id);
+        // var_dump($getStudentDetails->student_name);die;
+        ##getting information of invoice payment
+        $getInformationInvoicePayment['params']=$this->Account_model->get_information_invoice_payment($invoiceId);
+        // var_dump($getInformationInvoicePayment);
+        $rows = "";
+           $no =1;
+           $subtotal=0;
+           
+          foreach ($getInformationInvoicePayment['params'] as $row) {
+                
+
+                $name = $row["name"];
+                $price = $row["price"];
+               $subtotal = $subtotal + $price;
+                $percentage=0.18;
+                $tax=$subtotal*$percentage;
+                 $total=$subtotal+$tax;
+                if($name!=""){
+             $rows = $rows."<tr><td>".$no."</td><td>".$name."</td><td>".$price."</td></tr>";
+                            }
+               $no++;
+               
+              
+          }
+
+
+
+
+
         ##generate random reciept number
-        $recieptId="REC".rand(1,1000).rand(1,100);
+        $recieptId=rand(1,1000).rand(1,100);
         $reciept=array(
             'reciept_id'=>$recieptId
         );
@@ -187,15 +224,20 @@
 
         ##get input from reciept form
         $params=array(
-            'student_id'=>$this->input->post('id'),
-            'student_name'=>$this->input->post('stuName'),
-            'school_name'=>$this->input->post('name'),
-            'email'=>$this->input->post('email'),
-            'contact'=>$this->input->post('contact'),
-            'class'=>$this->input->post('class'),
-            'paid'=>$this->input->post('paid'),
+            
+            'student_name'=>$getStudentDetails->student_name,
+            'school_name'=>$getInformationInvoice->school_name,
+             'email'=>$getStudentDetails->email,
+             'contact'=>$getStudentDetails->mobile,
+            // 'class'=>$this->input->post('class'),
+         'paid'=>$total,
             'reciepteId'=>$recieptId,
-            'title'=>"reciept"
+            'title'=>"reciept",
+            'payment_method'=>$payment_method,
+            'tax'=>$tax,
+            'subtotal'=>$subtotal,
+            'total'=>$total,
+            'rows_bill'=>$rows
         );
         $this->load->view('recieptPdf', $params);
 

@@ -3,8 +3,8 @@
 $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 // $obj_pdf->SetCreator(PDF_CREATOR);
 // $title = "PDF Report";
-$obj_pdf->SetTitle($title);
-$obj_pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, $title, PDF_HEADER_STRING);
+$obj_pdf->SetTitle("reciept");
+$obj_pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, $school_name, PDF_HEADER_STRING);
 $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 $obj_pdf->SetDefaultMonospacedFont('helvetica');
@@ -72,12 +72,7 @@ ob_start();
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>'.$class.'</td>
-                     
-                      <td>'.$paid.'</td>
-                    </tr>
+                    '.$rows_bill.'
                     
                    
                    
@@ -92,6 +87,7 @@ ob_start();
                 <!-- accepted payments column -->
                 <div class="col-6">
                   <p class="lead">Payment Methods:</p>
+                  <p>'.$payment_method.'</p>
                   
 
                  
@@ -104,19 +100,16 @@ ob_start();
                     <table class="table">
                       <tr>
                         <th style="width:50%">Subtotal:</th>
-                        <td>$250.30</td>
+                        <td>'.$subtotal.'</td>
                       </tr>
                       <tr>
                         <th>Tax (9.3%)</th>
-                        <td>$10.34</td>
+                        <td>'.$tax.'</td>
                       </tr>
-                      <tr>
-                        <th>Shipping:</th>
-                        <td>$5.80</td>
-                      </tr>
+                      
                       <tr>
                         <th>Total:</th>
-                        <td>$265.24</td>
+                        <td>'.$total.'</td>
                       </tr>
                     </table>
                   </div>
