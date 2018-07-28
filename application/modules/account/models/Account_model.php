@@ -203,27 +203,24 @@ function get_student_school($student_id)
 
 function searchBalInformatiion($studentId)
 {
-     $this->db->select('invoices.invoice_id,invoices.id as refId');
-   $this->db->from('invoices');
-   // $parameter="student_id=$studentId and school_id=1";
+     $this->db->select_sum('debit');
+   $this->db->from('account_transaction');
+  
    $this->db->where('student_id',$studentId);  
-    $this->db->join('student', 'student.id=invoices.student_id');
-     // $this->db->join('reciepts', 'reciepts.student_id=invoices.student_id');
-    // $this->db->join('student', 'student.id=invoices.student_id');
-
-       
-   return  $query = $this->db->get()->result_array();
+    $this->db->join('invoices', 'account_transaction.reference_id=invoices.id');
    
-}
+       
+   return  $query = $this->db->get()->row();
+   }
 
 function gettingTransactionInfo($keyword)
 {
 
-     $this->db->select('account_transaction.debit,account_transaction.credit');
+     $this->db->select_sum('account_transaction.credit');
      $this->db->from('account_transaction');
    // $parameter="student_id=$studentId and school_id=1";
-   $this->db->where('reference_id',$keyword);  
-    $this->db->join('invoices', 'account_transaction.reference_id=invoices.id');
+   $this->db->where('student_id',$keyword);  
+    $this->db->join('reciepts', 'account_transaction.reference_id=reciepts.id');
     return  $query = $this->db->get()->row();
 
 

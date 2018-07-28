@@ -383,25 +383,12 @@ $total=$subtotal+$subtotal*0.18;
 function checkBalance()
 {
     $student_info=$this->Account_model->searchBalInformatiion($this->input->post('keyword'));
-  // $credit_info=$this->Account_model->searchCreditBalInformation($this->input->post('keyword'));
-    
-    // echo json_encode($student_info);die;
-     $data  = array( );
-     foreach ( $student_info as $row) {
-    
-       
-    array_push($data,$this->Account_model->gettingTransactionInfo($row['refId']));
-   ## for getting transaction information
-   
-   
-     }
-    //  foreach ( $credit_info as $row) {
-    
-       
-    // array_push($data,$this->Account_model->gettingTransactionInfoCredit($row['recieptId']));
-    // }
-
-   echo  json_encode($data);
+   $credit_info=$this->Account_model->gettingTransactionInfo($this->input->post('keyword'));
+   $total_debit=$student_info->debit;
+    $total_credit=$credit_info->credit;
+     $balance=$total_debit-$total_credit;
+    echo $balance;
 }
+
 }
 ?>

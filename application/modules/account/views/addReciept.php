@@ -63,27 +63,17 @@
                 keyword: keyword
             },
             success: function( responseObject ) {
-                           console.log(responseObject);
-                         var obj=JSON.parse(responseObject);
+                           // console.log(responseObject);
+                         
                             // console.log(obj);
-                         var debit=0;
-                         var credit=0;
-                          for(var i=0;i<1;i++)
-                          {
-                                 debit=debit+parseInt(obj[i].debit);
-                          }
-                          console.log(debit);
-                          for(var i=0;i<1;i++)
-                          {
-                                 credit=credit+parseInt(obj[i].credit);
-                          }
-                         var balance=debit-credit;
+                       
+                         
                            // console.log(balance);
                      // var s=JSON.stringify(responseObject);
                       // var obj=JSON.parse(JSON.stringify(responseObject));
                      // console.log(obj.debit);
 
-                        $("#showBalance").html("your balance = "+balance);
+                        $("#showBalance").html("your balance = "+responseObject);
                        // for(var i=1;i<obj.length;i++)
                        // {
 

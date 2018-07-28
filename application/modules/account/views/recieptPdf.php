@@ -72,7 +72,7 @@ ob_start();
                     </tr>
                     </thead>
                     <tbody>
-                    '.$rows_bill.'
+                   
                     
                    
                    
@@ -100,11 +100,11 @@ ob_start();
                     <table class="table">
                       <tr>
                         <th style="width:50%">Subtotal:</th>
-                        <td>'.$subtotal.'</td>
+                        <td></td>
                       </tr>
                       <tr>
                         <th>Tax (9.3%)</th>
-                        <td>'.$tax.'</td>
+                        <td></td>
                       </tr>
                       
                       <tr>
