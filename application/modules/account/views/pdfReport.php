@@ -75,7 +75,7 @@ ob_start();
                     <tbody>
                     
                    
-                     '.$v.'
+                     '.$price.'
                      
                     
                    

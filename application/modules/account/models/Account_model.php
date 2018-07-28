@@ -46,14 +46,14 @@ class Account_model extends CI_Model
     }
     function  add_transaction($accountTransaction)
     {
-       $this->db->insert('account_transection',$accountTransaction);
+       $this->db->insert('account_transaction',$accountTransaction);
        return $this->db->insert_id();
    }
    function get_all_invoice()
    {
-       $this->db->select('invoices.*,account_transection.*,student.student_name');
+       $this->db->select('invoices.*,account_transaction.*,student.student_name');
        $this->db->from('invoices');
-       $this->db->join('account_transection', 'account_transection.reference_id=invoices.id', 'Left');
+       $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
        $this->db->join('student', 'student.id=invoices.student_id', 'Left');
        
         // $this->db->where('class_id',$classes_id);
@@ -63,7 +63,7 @@ class Account_model extends CI_Model
    {
        $this->db->select('student.*,invoices.invoice_id as inv,invoices.school_name,master_invoice.name,master_invoice.price');
        $this->db->from('invoices');
-       $this->db->join('account_transection', 'account_transection.reference_id=invoices.id', 'Left');
+       $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
        $this->db->join('master_invoice','master_invoice.invoice_id_mul=invoices.invoice_id', 'Left');
        $this->db->join('student', 'invoices.student_id=student.id', 'Left');
        $this->db->where('invoice_id',$invoice_id);
@@ -90,6 +90,7 @@ class Account_model extends CI_Model
 function insertMultiple($entries)
 {
   $this->db->insert_batch('master_invoice',$entries);
+
 }
 
 
@@ -106,30 +107,30 @@ function get_school_information($school_id)
 
 function add_transaction_reciept($accountTransaction)
 {
-   $this->db->insert('account_transection',$accountTransaction);
+   $this->db->insert('account_transaction',$accountTransaction);
    return $this->db->insert_id();
 }
 function add_reciept($reciept)
 { 
 
-    $this->db->insert('reciept',$reciept);
+    $this->db->insert('reciepts',$reciept);
     return $this->db->insert_id();
 }
 function get_all_reciept()
 {
-   $this->db->select('reciepts.*,account_transection.*');
+   $this->db->select('reciepts.*,account_transaction.*');
    $this->db->from('reciepts');
-   $this->db->join('account_transection', 'account_transection.reference_id=reciepts.id', 'Left');
+   $this->db->join('account_transaction', 'account_transaction.reference_id=reciepts.id', 'Left');
 
         // $this->db->where('class_id',$classes_id);
    return $query = $this->db->get()->result_array();
-}
+}   
 function get_reciept($reciept_id)
 {
-   $this->db->select('reciepts.reciept_id');
+   $this->db->select('reciepts.*,student.*');
    $this->db->from('reciepts');
-   $this->db->join('account_transection', 'account_transection.reference_id=reciepts.id', 'Left');
-            // $this->db->join('student', 'invoice.student_id=student.id', 'Left');
+   $this->db->join('account_transaction', 'account_transaction.reference_id=reciepts.id', 'Left');
+$this->db->join('student', 'reciepts.student_id=student.id', 'Left');
    $this->db->where('reciept_id',$reciept_id);
    return $query = $this->db->get()->row();
 }
@@ -147,12 +148,8 @@ function fetchRecordStudents($keyword)
    return  $query = $this->db->get()->row();
 
 }
-
-
 function get_information_invoice($invoiceId)
 {
-
-
 $this->db->select('invoices.*');
    $this->db->from('invoices');
    $this->db->where('invoice_id',$invoiceId);  
@@ -161,6 +158,27 @@ $this->db->select('invoices.*');
    // $this->db->join('student', 'authentication.user_id=student.id', 'Left');
         // $this->db->where('school_id',$school_id);
    return  $query = $this->db->get()->row();
+}
+function get_information_student($studentId)
+{
+    $this->db->select('student.*');
+   $this->db->from('invoices');
+   $this->db->where('student_id',$studentId);  
+         $this->db->join('student', 'student.id=invoices.student_id');
+       
+   return  $query = $this->db->get()->row();
+}
+function get_total_amount_invoice($invoice_id)
+
+{
+ $this->db->select('price');
+ $this->db->from('master_invoice');
+ $this->db->where('invoice_id_mul',$invoice_id);
+ $query = $this->db->get()->result();
+ 
+
+
+
 
 }
 function get_information_invoice_payment($invoiceId)
@@ -172,20 +190,71 @@ $this->db->select('master_invoice.*');
        
    return  $query = $this->db->get()->result_array();
 }
-
-function get_information_student($studentId)
+function get_student_school($student_id)
 {
-    $this->db->select('student.*');
-   $this->db->from('invoices');
-   $this->db->where('student_id',$studentId);  
-         $this->db->join('student', 'student.id=invoices.student_id');
+    $this->db->select('organization_name');
+   $this->db->from('student');
+   $this->db->where('id',$student_id);  
+         $this->db->join('school', 'school.=invoices.invoice_id');
        
-   return  $query = $this->db->get()->row();
+   return  $query = $this->db->get()->result_array();
 }
 
 
+function searchBalInformatiion($studentId)
+{
+     $this->db->select('invoices.invoice_id,invoices.id as refId');
+   $this->db->from('invoices');
+   // $parameter="student_id=$studentId and school_id=1";
+   $this->db->where('student_id',$studentId);  
+    $this->db->join('student', 'student.id=invoices.student_id');
+     // $this->db->join('reciepts', 'reciepts.student_id=invoices.student_id');
+    // $this->db->join('student', 'student.id=invoices.student_id');
+
+       
+   return  $query = $this->db->get()->result_array();
+   
+}
+
+function gettingTransactionInfo($keyword)
+{
+
+     $this->db->select('account_transaction.debit,account_transaction.credit');
+     $this->db->from('account_transaction');
+   // $parameter="student_id=$studentId and school_id=1";
+   $this->db->where('reference_id',$keyword);  
+    $this->db->join('invoices', 'account_transaction.reference_id=invoices.id');
+    return  $query = $this->db->get()->row();
 
 
+}
+##for get credit information
+function searchCreditBalInformation($studentId)
+{
+     $this->db->select('reciepts.id as recieptId');
+   $this->db->from('reciepts');
+   // $parameter="student_id=$studentId and school_id=1";
+   $this->db->where('student_id',$studentId);  
+    // $this->db->join('student', 'student.id=invoices.student_id');
+    // $this->db->join('student', 'student.id=invoices.student_id');
+
+       
+   return  $query = $this->db->get()->result_array();
+   
+}
+
+function gettingTransactionInfoCredit($keyword)
+{
+    
+     $this->db->select('account_transaction.credit');
+     $this->db->from('account_transaction');
+   // $parameter="student_id=$studentId and school_id=1";
+   $this->db->where('reference_id',$keyword);  
+    $this->db->join('reciepts', 'account_transaction.reference_id=reciepts.id');
+    return  $query = $this->db->get()->row();
+
+
+}
 
 
 

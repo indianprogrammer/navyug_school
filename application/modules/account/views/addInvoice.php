@@ -188,8 +188,8 @@ $(document).ready(function(){
     {
      $('tr#'+i+'').remove();
     }
-    // window.location = "<?= base_url() ?>account/invoice_list";
-    // fetch_item_data();
+    window.location = "<?= base_url() ?>account/invoice_list";
+  
    }
   });
  });

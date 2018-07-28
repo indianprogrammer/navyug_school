@@ -45,14 +45,4 @@
         $('#parent_table').DataTable();
     } );
 </script>
-<script type="text/javascript">
-    function myFunction() {
-
-        // var id = $(this).data('id');
-        bootbox.confirm("Are you sure want to delete <?= $row['name']; ?> from list", function (result) {
-            if (result)
-                window.location.href = "<?php echo site_url('parents/remove/' . $row['id']) ?>"
-
-        });
-    }
-</script> 
+        

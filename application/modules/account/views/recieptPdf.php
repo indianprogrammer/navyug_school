@@ -109,7 +109,7 @@ ob_start();
                       
                       <tr>
                         <th>Total:</th>
-                        <td>'.$total.'</td>
+                        <td>'.$paid.'</td>
                       </tr>
                     </table>
                   </div>
