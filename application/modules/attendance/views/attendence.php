@@ -8,7 +8,7 @@
 
 			<?php } ?>
 		</select>
-	<?php	var_dump($row->id );die; ?>
+	
 
 		<span class="text-danger"><?php echo form_error('attendance');?></span>
 	</div>

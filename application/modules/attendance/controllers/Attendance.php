@@ -57,6 +57,7 @@ function insertAttendance()
        ##change in future, (temporary code)
         $this->db->query("insert into attendance_record (student_name,attendance_status) value ('$studentName','$status') ");
     }
+    redirect("attendance/attendance_list");
 
 }
 
