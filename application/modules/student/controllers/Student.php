@@ -44,6 +44,7 @@
     $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
    
     $this->form_validation->set_rules('mobile','Mobile','required');
+    $this->form_validation->set_rules('classes','class','required');
 
     $this->form_validation->set_rules('paddress','Permanent Address','required');
     $this->form_validation->set_rules('taddress','Temporary Address','required');
@@ -103,6 +104,11 @@
                 'class_id' =>$params['classes']
              );
              $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
+              $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added',
+         'description'=> ''
+     );
 
         redirect('student/student_list');
     }
@@ -156,7 +162,11 @@
                 $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
                // echo $image_path;die;
                 $params['profile_image']=$image_path;
-                $this->Student_model->update_student($id,$params);            
+                $this->Student_model->update_student($id,$params);      
+                 $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully edited',
+         'description'=> ''      );
                 redirect('student/student_list');
             }
             else

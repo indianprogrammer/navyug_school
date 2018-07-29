@@ -74,6 +74,11 @@ class Classes extends MY_Controller{
 
             );  
             $map = $this->Classes_model->add_mapping($ids);
+             $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added',
+         'description'=> ''
+     );
             redirect('classes/class_list');
         }
         else

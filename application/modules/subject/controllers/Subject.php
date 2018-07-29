@@ -65,8 +65,8 @@ class Subject extends MY_Controller{
         #set notifications
         $this->session->alerts = array(
             'severity'=> 'success',
-            'title'=> 'this is title',
-            'description'=> 'this is description'
+            'title'=> 'successfully added',
+         'description'=> ''
         );
         //$this->output->enable_profiler(TRUE);
         redirect('subject/subject_list');

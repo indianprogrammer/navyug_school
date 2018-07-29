@@ -26,19 +26,10 @@ ob_start();
              
               <!-- info row -->
               <div class="row invoice-info">
-                <div class="col-sm-3 col-md-3 invoice-col">
-                  From
-                  <address>
-                    <strong>' .$this->session->username.' .</strong><br>
-                    795 Folsom Ave, Suite 600<br>
-                    San Francisco, CA 94107<br>
-                    Phone: (804) 123-5432<br>
-                    Email: info@almasaeedstudio.com
-                  </address>
-                </div>
+                
                 <!-- /.col -->
                 <div class="col-sm-3 col-md-3 invoice-col" >
-                  To
+                  RECIEVED BY
                   <address>
                     <strong>'.$student_name.'</strong><br>
                     795 Folsom Ave, Suite 600<br>
@@ -51,8 +42,8 @@ ob_start();
                 <div class="col-sm-4 invoice-col">
                   <b>Reciept '.$reciepteId.'</b><br>
                   <br>
-                  // <b>Order ID:</b> 4F3S8J<br>
-                  // <b>Payment Due:</b> 2/22/2014<br>
+                
+                  // <b>Payment Due:</b> '.$date.'<br>
                   // <b>Account:</b> 968-34567
                 </div>
                 <!-- /.col -->
@@ -60,27 +51,7 @@ ob_start();
               <!-- /.row -->
 
               <!-- Table row -->
-              <div class="row">
-                <div class="col-12 table-responsive">
-                  <table class="table table-striped">
-                    <thead>
-                    <tr>
-                      <th>Qty</th>
-                      <th>classes</th>
-                      
-                      <th>Subtotal</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                   
-                    
-                   
-                   
-                    </tbody>
-                  </table>
-                </div>
-                <!-- /.col -->
-              </div>
+             
               <!-- /.row -->
 
               <div class="row">

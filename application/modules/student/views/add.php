@@ -24,13 +24,14 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
+		<label for="class" class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
 		<div class="col-md-5">
 			<select name="classes[]" id="assignClass" class="form-control"  multiple="multiple">
 			<?php	foreach($classes as $row){ ?>
 				<option value="<?= $row->id ?>"><?= $row->name ?></option>
 				<?php } ?>
 			</select>
+			<span class="text-danger"><?= form_error('classes');?></span>
 
 		</div>
 	</div>

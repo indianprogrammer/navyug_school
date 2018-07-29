@@ -79,7 +79,7 @@
         ##get invoice id and send details to account_trensaction table
         $accountTransaction=array(
             'reference_id'=>$addInvoice,
-            'reference_type'=>'invoice',
+            'reference_type'=>1,
             'debit'=>1
 
         );
@@ -168,7 +168,7 @@
          // var_dump($student_info);die;
         ##get student details by student_id
         $getStudentDetails=$this->Account_model->get_information_student($studId);
-         var_dump($getStudentDetails);
+         // var_dump($getStudentDetails);
         ##getting information of invoice payment
        //  $getInformationInvoicePayment['params']=$this->Account_model->get_information_invoice_payment($invoiceId);
      
@@ -209,10 +209,11 @@
 
         ##insert data to reciept table
        $addreciept=$this->Account_model->add_reciept($reciept);
-        ##get invoice id and send details to account_trensaction table
+        ##get  and send details to account_trensaction db2_tables(connection)
+// var_dump($addreciept);die;
        $accountTransaction=array(
         'reference_id'=>$addreciept,
-        'reference_type'=>'reciept',
+        'reference_type'=>2,
         'credit'=>$paid
 
     );
@@ -227,15 +228,13 @@
         'school_name'=>"ssm",
         'email'=>$getStudentDetails->email,
         'contact'=>$getStudentDetails->mobile,
-            // 'class'=>$this->input->post('class'),
+           
         'paid'=>$paid,
         'reciepteId'=>$recieptId,
         'title'=>"reciept",
         'payment_method'=>$payment_method,
-        // 'tax'=>$tax,
-        // 'subtotal'=>$subtotal,
-        // 'total'=>$total,
-        // 'rows_bill'=>$rows
+        'date'=>date('y:m:d')
+       
     );
        $this->load->view('recieptPdf', $params);
 
@@ -346,8 +345,8 @@ $total=$subtotal+$subtotal*0.18;
     'invoice_id'=>$incrementedUniqueInvoiceId,
     'school_id'=>$this->session->SchoolId,
     'school_name'=>$getSchoolInformation->organization_name,
-    'student_id'=>$studentData->id
-    // 'total_amount'=>$totalamount
+    'student_id'=>$studentData->id,
+     'total_amount'=>$total
 
 
 );
@@ -357,7 +356,7 @@ $total=$subtotal+$subtotal*0.18;
         ##get invoice id and send details to account_trensaction table
    $accountTransaction=array(
     'reference_id'=>$addInvoice,
-    'reference_type'=>'invoice',
+    'reference_type'=>1,
     'debit'=>$total
 
 );

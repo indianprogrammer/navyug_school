@@ -21,9 +21,10 @@
     </tr>
     </thead>
         <tbody>
+          <?php $count=1; ?>
     <?php foreach($employees as $row){ ?>
     <tr>
-        <td><?= $row['id']; ?></td>
+        <td><?= $count++ ?></td>
         <td><?= $row['name']; ?></td>
         <!-- <td><?= $row['authentication_id']; ?></td> -->
        
@@ -32,12 +33,12 @@
         <td><?= $row['mobile']; ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?=$row['Permanent_address']?>"><?= substr($row['Permanent_address'],0,10).'...' ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?=$row['temporary_address']?>"><?= substr($row['temporary_address'],0,10).'...' ?></td>
-        <td><img src="<?= $row['profile_image'];?>" height=5%; ></td>
+        <td><img src="<?= $row['profile_image'];?>" hstyle="width:50px;height:50px" ></td>
         <td>
           
                 <a href="<?= site_url('employee/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-                 <!-- <a onclick="myFunction();" class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a><div class="btn-group"> -->
-                               <div class="dropdown">
+                 <a onclick="delFunction();" class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a>
+                              <!--  <div class="dropdown">
     <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Action
     <span class="caret"></span></button>
     <ul class="dropdown-menu" style="width: 10px;">
@@ -45,13 +46,13 @@
       <li><a href="#">DELETE</a></li>
       <li><a href="#myModal" data-toggle="modal" data-target="#myModal" >VIEW</a></li>
     </ul>
-  </div>
+  </div> -->
         </td>
     </tr>
     <?php } ?>
 </tbody>    
 </table>
-<div class="modal" id="myModal">
+<div class="modal fade" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
       
@@ -113,4 +114,16 @@ function view()
   </div>
   
 }
+</script>
+<script type="text/javascript">
+    function delFunction()
+    {
+     
+    // var id = $(this).data('id');
+    bootbox.confirm("Are you sure to delete <?= $row['name']; ?> record ?", function(result) {
+      if(result)
+          window.location.href = "<?php echo site_url('employee/remove/'.$row['id']); ?>"
+   
+  });
+    }
 </script>

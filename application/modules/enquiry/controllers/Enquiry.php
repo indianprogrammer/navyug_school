@@ -67,6 +67,11 @@ class Enquiry extends MY_Controller{
             );
             
             $enquiry_id = $this->Enquiry_model->add_enquiry($params);
+            $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added',
+         'description'=> ''
+        );
             redirect('enquiry/enquiry_list');
         }
         else

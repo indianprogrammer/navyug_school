@@ -102,6 +102,11 @@ class Employee extends MY_Controller{
       );
       //insertion code here
       $map = $this->Employee_model->add_mapping($schoolEmployMap);
+       $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added',
+         'description'=> ''
+       );
       redirect('employee/employee_list');
 
 /*

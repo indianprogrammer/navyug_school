@@ -81,6 +81,11 @@ class School extends MY_Controller
             // var_dump($params);die;
             $school_id = $this->School_model->add_school($params);
              $data=$this->session->set_flashdata('status','Successfully added');
+             $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added',
+         'description'=> ''
+        );
               redirect('school/school_list');
              // header('location:successmodal.php');
         } else {

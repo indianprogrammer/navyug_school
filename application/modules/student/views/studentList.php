@@ -6,7 +6,7 @@
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">Student List</h3>
-                <div class="box-tools">
+                <div class="box-tools pull-right">
                     <a href="<?= site_url('student/add'); ?>" class="btn btn-success ">Add</a>
                 </div>
             </div>
@@ -27,9 +27,10 @@
     </tr>
 </thead>
 <tbody>
+    <?php $count=1; ?>
 	<?php foreach($student as $s){ ?>
     <tr>
-		<td><?= $s['id']; ?></td>
+		<td><?= $count++  ?></td>
 		
 		<td><?= $s['student_name']; ?></td>
 		<td><?= $s['email']; ?></td>
@@ -39,7 +40,7 @@
         <td data-toggle="tooltip" data-placement="top" title="<?= $s['permanent_address']?>" ><?php echo substr($s['permanent_address'],0,10).'....' ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?= $s['temporary_address']?>" ><?php echo substr($s['temporary_address'],0,10).'....' ?></td>
 
-		<td > <img src="<?= $s['profile_image']; ?>" height=5%; ></td>
+		<td > <img src="<?= $s['profile_image']; ?>" style="width:50px;height:50px" ></td>
 		<td>
             <a href="<?= site_url('student/edit/'.$s['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
              <a onclick="myFunction();" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>

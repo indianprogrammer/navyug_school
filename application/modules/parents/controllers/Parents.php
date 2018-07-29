@@ -99,6 +99,11 @@ function add()
 
             );  
              $map  = $this->Parents_model->add_mapping($schoolParentMap);
+              $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added',
+         'description'=> ''
+     );
              redirect('parents/parent_list');
          }
          else
