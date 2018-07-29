@@ -32,6 +32,14 @@ class Attendance_model extends CI_Model
         $this->db->join('student', 'map_student_class.student_id=student.id', 'Left');
         $this->db->join('classes', 'map_student_class.class_id=classes.id', 'Left');
          $this->db->where('class_id',$classes_id);
-        return $query = $this->db->get()->result();
+        return $query = $this->db->get()->result_array();
+    }
+    function get_all_attendance()
+    {
+         $this->db->select('*');
+         $this->db->from('attendance_record');
+            
+         
+        return $query = $this->db->get()->result_array();
     }
 }

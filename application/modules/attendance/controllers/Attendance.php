@@ -13,7 +13,7 @@
      */
     function attendance_list()
     {
-        $data['attendance'] = $this->attendance_model->get_all_attendance();
+        $data['attendance'] = $this->Attendance_model->get_all_attendance();
         
         $data['_view'] = 'attendanceList';
         $this->load->view('index',$data);
@@ -23,10 +23,10 @@
      * Adding a new attendance
      */
     function take_attendance()
-    {
+     { 
         $school_id=$this->session->SchoolId;
         $data['classes'] = $this->Attendance_model->fetch_classes($school_id);
-       $data['_view'] = 'add';
+       $data['_view'] = 'attendence';
        $this->load->view('index',$data);
    }
 
@@ -35,9 +35,30 @@
    {   
              $school_id=$this->session->SchoolId;
              $value=$this->input->post('student');
-             var_dump($value);die;
+             var_dump($value);
        
 }  
+function fetchStudent()
+{   
+    $classID=$this->input->post('attendance');
+    $data['students'] = $this->Attendance_model->fetch_students($classID);
+     $data['_view'] = 'add';
+       $this->load->view('index',$data);
+}
+function insertAttendance()
+{   
+
+    $attendenceData = $this->input->post();
+     
+
+     
+    foreach ($attendenceData as $studentName => $status) {
+    
+       ##change in future, (temporary code)
+        $this->db->query("insert into attendance_record (student_name,attendance_status) value ('$studentName','$status') ");
+    }
+
+}
 
     /*
      * Editing a attendance
