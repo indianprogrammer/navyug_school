@@ -33,14 +33,14 @@
 			<span class="text-danger"><?=form_error('address');?></span>
 		</div>
 	</div>
-            <div class="form-group" >
+           <!--  <div class="form-group" >
 	               <label for="latlong" class="control-label col-md-4 col-sm-12"><span class="text-danger">*</span>Location</label>
 	                     <div class="col-md-5 col-lg-4" id="showlat">
                             <input type="text" name="latlong" class="form-control" id="latlong" onclick="latMap();"  />
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                          <div class="col-md-2" id="dvMap" style="height: 100px;" > </div>
                         </div>
-            </div>
+            </div> -->
 		      <div class="form-group">
 				<label for="remarks" class="col-md-4 control-label"><span class="text-danger">*</span>Remarks</label>
 				<div class="col-md-5 col-lg-4">

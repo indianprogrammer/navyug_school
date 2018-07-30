@@ -59,8 +59,8 @@ class Classes extends MY_Controller{
                 
                 'description' => $this->input->post('description'),
                 'subject_id' => implode(',', $this->input->post('subject')),
-                'start_time' => $this->input->post('start_time'),
-                'end_time' => $this->input->post('end_time')
+                // 'start_time' => $this->input->post('start_time'),
+                // 'end_time' => $this->input->post('end_time')
                 //  'created_at'=>date(),
                 // 'modified_at'=>date()
             );
@@ -70,10 +70,21 @@ class Classes extends MY_Controller{
             $ids=array(
 
                 'class_id'=>$class_id,
-                'school_id'=>$_SESSION['SchoolId']
+                'school_id'=>$this->session->SchoolId
 
             );  
             $map = $this->Classes_model->add_mapping($ids);
+            ##map class and subject
+            $subjectId=$this->input->post('subject');
+            foreach ($subjectId as $row) {
+                $mapping=array(
+                        'class_id'=>$class_id,
+                        'subject_id'=>$row
+
+                );
+                 $map = $this->Classes_model->add_mapping_subject($mapping);
+            }
+
              $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added',
@@ -94,7 +105,10 @@ class Classes extends MY_Controller{
     function edit($id)
     {   
         // check if the class exists before trying to edit it
+         $school_id=$this->session->SchoolId;
         $data['class'] = $this->Classes_model->get_class($id);
+         $data['subject'] = $this->Classes_model->fetch_subject($school_id);
+        $data['employee'] = $this->Classes_model->fetch_employee($school_id);
 
         if(isset($data['class']['id']))
         {
@@ -122,8 +136,13 @@ class Classes extends MY_Controller{
                 // 'modified_at'=>date()
             );
                
-               $this->Classes_model->update_class($id,$params);            
-               redirect('class/index');
+               $this->Classes_model->update_class($id,$params);     
+                $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully edited',
+         'description'=> ''
+     );       
+               redirect('classes/index');
            }
            else
            {

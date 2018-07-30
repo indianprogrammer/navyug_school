@@ -80,8 +80,14 @@ class Classes_model extends CI_Model
     }
      function get_student_count()
      {
+
+        ##will improve
       $this->db->where('class_id',3);
      $query=$this->db->get('map_student_class')->num_rows();
       return $query;
       }
+     function add_mapping_subject($ids)
+     {
+         $this->db->insert('map_class_subject',$ids);
+     }
 }

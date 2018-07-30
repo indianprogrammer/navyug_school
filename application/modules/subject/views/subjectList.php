@@ -29,23 +29,10 @@
 		
 		<td>
             <a href="<?= site_url('subject/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-             <a onclick="myFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
+             <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
 
         </td>
     </tr>
-<script type="text/javascript">
-    var url="<?php echo base_url();?>";
-    function myFunction(id)
-    {
-     
-    // var id = $(this).data('id');
-    bootbox.confirm("Are you sure want to delete <?= $row['name']; ?> ?", function(result) {
-      if(result)
-          window.location = url+'subject/remove/'+id ;
-   
-  });
-    }
-</script>
     <?php } ?>
 </tbody>
 </table>
@@ -58,4 +45,17 @@
     $(document).ready( function () {
         $('#subject_table').DataTable();
     } );
+</script>
+<script type="text/javascript">
+    var url="<?php echo base_url();?>";
+    function delFunction(id)
+    {
+     
+    // var id = $(this).data('id');
+    bootbox.confirm("Are you sure want to delete <?= $row['name']; ?> ?", function(result) {
+      if(result)
+          window.location = url+'subject/remove/'+id ;
+   
+  });
+    }
 </script>

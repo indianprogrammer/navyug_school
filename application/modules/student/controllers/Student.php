@@ -71,7 +71,7 @@
         // var_dump($params);die;
         $data['image'] =  $this->upload->data();
        
-        $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
+        $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
         
         $params['profile_image']=$image_path;
         #add student information

@@ -41,7 +41,7 @@
         <td data-toggle="tooltip" data-placement="top" title="<?= $row['permanent_address']?>" ><?php echo substr($row['permanent_address'],0,10).'....' ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?= $row['temporary_address']?>" ><?php echo substr($row['temporary_address'],0,10).'....' ?></td>
 
-		<td > <img src="<?= $row['profile_image']; ?>" style="width:50px;height:50px" ></td>
+		<td > <img src="<?=base_url()."uploads/". $row['profile_image']; ?>" style="width:50px;height:50px" ></td>
 		<td>
             <a href="<?= site_url('student/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
              <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>

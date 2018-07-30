@@ -31,14 +31,14 @@
 			<span class="text-danger"><?php echo form_error('address');?></span>
 		</div>
 	</div>
-	<div class="form-group" id="showlat">
+	<!-- <div class="form-group" id="showlat">
 	               <label for="latlong" class="control-label col-md-4 col-sm-12"><span class="text-danger">*</span>Location</label>
 	                     <div class="col-md-5">
                             <input type="text" name="latlong" class="form-control" id="latlong" value="<?php echo ($this->input->post('location') ? $this->input->post('location') : $enquiry['location']); ?>" onclick="latMap();"  />
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                          <div class="col-md-3" id="dvMap" > </div>
                         </div>
-     </div>
+     </div> -->
 	<div class="form-group">
 		<label for="enquiry_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Remarks</label>
 		<div class="col-md-5">

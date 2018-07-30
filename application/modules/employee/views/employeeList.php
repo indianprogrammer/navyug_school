@@ -33,7 +33,7 @@
         <td><?= $row['mobile']; ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?=$row['Permanent_address']?>"><?= substr($row['Permanent_address'],0,10).'...' ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?=$row['temporary_address']?>"><?= substr($row['temporary_address'],0,10).'...' ?></td>
-        <td><img src="<?= $row['profile_image'];?>" style="width:50px;height:50px" ></td>
+        <td><img src="<?= base_url()."uploads/". $row['profile_image'];?>" style="width:50px;height:50px" ></td>
         <td>
           
                 <a href="<?= site_url('employee/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
