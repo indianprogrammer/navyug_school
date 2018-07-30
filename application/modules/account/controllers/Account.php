@@ -219,21 +219,22 @@
     );
         // var_dump($accountTransaction);
        $transaction = $this->Account_model->add_transaction_reciept($accountTransaction);
-
+      $schoolName= $this->Account_model->getSchoolName($this->session->SchoolId) ;
 
         ##get input from reciept form
        $params=array(
 
         'student_name'=>$getStudentDetails->student_name,
-        'school_name'=>"ssm",
+        'school_name'=>$schoolName->organization_name,
         'email'=>$getStudentDetails->email,
+        'address'=>$getStudentDetails->temporary_address,
         'contact'=>$getStudentDetails->mobile,
            
         'paid'=>$paid,
         'reciepteId'=>$recieptId,
         'title'=>"reciept",
         'payment_method'=>$payment_method,
-        'date'=>date('y:m:d')
+        'date'=>date('y/m/d')
        
     );
        $this->load->view('recieptPdf', $params);
@@ -252,48 +253,28 @@
 function getPdfReciept($reciept_id)
 {
     $getReciept = $this->Account_model->get_reciept($reciept_id);
-    $getInformationInvoicePayment['params']=$this->Account_model->get_information_invoice_payment($getReciept->invoice_id);
+     // var_dump($getReciept);
+   // $getInformationReciept['params']=$this->Account_model->get_information_reciept_payment($getReciept->id);
     // $getStudentSchool=$this->Account_model->get_student_school($getReciept->student_id);
-        // var_dump($getReciept->invoice_id);die;
+      //var_dump( $getInformationReciept['params']);die;
         // var_dump($getInformationInvoicePayment);
-    $rows = "";
-    $no =1;
-    $subtotal=0;
+   $schoolName= $this->Account_model->getSchoolName($this->session->SchoolId) ;
+     $params=array(
 
-    foreach ($getInformationInvoicePayment['params'] as $row) {
+        'student_name'=>$getReciept->student_name,
+        'school_name'=>$schoolName->organization_name,
+        'email'=>$getReciept->email,
+        'address'=>$getReciept->temporary_address,
+        'contact'=>$getReciept->mobile,
+           
+        'paid'=>$getReciept->total_amount,
+        'reciepteId'=>$reciept_id,
+        'title'=>"reciept",
+        'payment_method'=>$getReciept->payment_method,
+        'date'=>$getReciept->date
+       
+    );
 
-
-        $name = $row["name"];
-        $price = $row["price"];
-        $subtotal = $subtotal + $price;
-        $percentage=0.18;
-        $tax=$subtotal*$percentage;
-        $total=$subtotal+$tax;
-        if($name!=""){
-           $rows = $rows."<tr><td>".$no."</td><td>".$name."</td><td>".$price."</td></tr>";
-       }
-       $no++;
-
-
-   }
-        // var_dump($getReciept);die;
-   $params=array(
-
-
-    'student_name'=>$getReciept->student_name,
-    'school_name'=>"saraswati shishu mandir",
-    'email'=>$getReciept->email,
-    'contact'=>$getReciept->mobile,
-            // 'class'=>12,
-    'title'=>"reciept",
-    'reciepteId'=>$getReciept->reciept_id,
-    'paid'=>$getReciept->total_amount,
-    'tax'=>$tax,
-    'subtotal'=>$subtotal,
-    "payment_method"=>$getReciept->payment_method,
-    'rows_bill'=>$rows
-);
-         // var_dump($params);die;
    $this->load->view('recieptPdf', $params);
 }
 

@@ -253,9 +253,21 @@ function gettingTransactionInfoCredit($keyword)
 
 
 }
+function getSchoolName($id)
+{
+     $this->db->select('school.organization_name');
+     $this->db->from('school');
+      $this->db->where('id',$id);  
+       return  $query = $this->db->get()->row();
+}
 
-
-
+function get_information_reciept_payment($id)
+{
+    $this->db->select('reciepts.*');
+     $this->db->from('reciepts');
+      $this->db->where('reciept_id',$id);  
+       return  $query = $this->db->get()->row();
+}
 
 
 
