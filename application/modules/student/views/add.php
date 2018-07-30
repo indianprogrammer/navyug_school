@@ -1,3 +1,5 @@
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
 <?= form_open_multipart('student/add',array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
@@ -26,7 +28,7 @@
 	<div class="form-group">
 		<label for="class" class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
 		<div class="col-md-5">
-			<select name="classes[]" id="assignClass" class="form-control"  multiple="multiple">
+			<select name="classes[]" id="multiselect" class="form-control"  multiple="multiple">
 			<?php	foreach($classes as $row){ ?>
 				<option value="<?= $row->id ?>"><?= $row->name ?></option>
 				<?php } ?>
@@ -70,14 +72,7 @@
 
 <?= form_close(); ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="<?= base_url()?>/assets/js/BsMultiSelect.js"></script>
-<script type="text/javascript">
-	
-
-  $("select").dashboardCodeBsMultiSelect();
-
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
 <script>
 $(document).ready(function(e) {
@@ -113,4 +108,14 @@ $(document).ready(function(e) {
         }
     });
     });
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){
+ $('#multiselect').multiselect({
+  nonSelectedText: 'Select Classes',
+  enableFiltering: true,
+  enableCaseInsensitiveFiltering: true,
+  buttonWidth:'500px'
+ });
+});
 </script>

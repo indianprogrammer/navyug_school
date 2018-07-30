@@ -26,18 +26,18 @@
     <tr>
         <td><?= $count++ ?></td>
         <td><?= $row['name']; ?></td>
-        <!-- <td><?= $row['authentication_id']; ?></td> -->
+        
        
         <td><?= $row['qualification']; ?></td>
         <td><?= $row['email']; ?></td>
         <td><?= $row['mobile']; ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?=$row['Permanent_address']?>"><?= substr($row['Permanent_address'],0,10).'...' ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?=$row['temporary_address']?>"><?= substr($row['temporary_address'],0,10).'...' ?></td>
-        <td><img src="<?= $row['profile_image'];?>" hstyle="width:50px;height:50px" ></td>
+        <td><img src="<?= $row['profile_image'];?>" style="width:50px;height:50px" ></td>
         <td>
           
                 <a href="<?= site_url('employee/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-                 <a onclick="delFunction();" class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a>
+                 <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a>
                               <!--  <div class="dropdown">
     <button class="btn  dropdown-toggle" type="button" data-toggle="dropdown">Action
     <span class="caret"></span></button>
@@ -52,33 +52,9 @@
     <?php } ?>
 </tbody>    
 </table>
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          Modal body..
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-<!-- <script src="<?= base_url() ;?>assets/admin/plugins/datatables/jquery.dataTables.js"></script> -->
-<!-- <script src="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.js"></script> -->
+>
   
 <script>
     $(document).ready( function () {
@@ -86,43 +62,17 @@
     } );
 </script>
 
+
 <script type="text/javascript">
-function view()
-{
-    <div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          Modal body..
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  
-}
-</script>
-<script type="text/javascript">
-    function delFunction()
+   var url="<?php echo base_url();?>";
+    function delFunction(id)
     {
      
     // var id = $(this).data('id');
     bootbox.confirm("Are you sure to delete <?= $row['name']; ?> record ?", function(result) {
       if(result)
-          window.location.href = "<?php echo site_url('employee/remove/'.$row['id']); ?>"
+         
+        window.location = url+'employee/remove/'+id ;
    
   });
     }

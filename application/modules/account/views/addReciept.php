@@ -11,7 +11,7 @@
                             <span class="text-danger"><?= form_error('name') ?></span>
                         </div>
                     </div>
-                    <div class="col-md-5 col-sm-12 form-group" id="showBalance">
+                    <div class="col-md-5 col-sm-12 form-group" id="showBalance" style="font-size: 25;">
                      </div>
                     <div class="col-md-5 col-sm-12 ">
                         <label for="method" class="control-label"><span class="text-danger">*</span>Select payment method </label>
@@ -35,6 +35,22 @@
                             <span class="text-danger"><?= form_error('pay') ?></span>
                         </div>
                     </div>
+                    <div class="col-md-5 col-sm-12">
+                        <label for="contact_sec" class="control-label">Payer Name</label>
+                        <div class="form-group">
+                            <input type="text" name="contact_sec"  maxlength="13" value="<?= $this->input->post('contact_sec') ?>"
+                            class="form-control" id="payer_name" data-toggle="tooltip" data-placement="top" title="+919393939999 or 919393939999 "/>
+                            <span class="text-danger"><?= form_error('contact_sec') ?></span>
+                        </div>
+                    </div>
+                     <div class="col-md-5 col-sm-12">
+                        <label for="contact_sec" class="control-label">Payer Mobile</label>
+                        <div class="form-group">
+                            <input type="text" name="contact_sec"  maxlength="13" value="<?= $this->input->post('contact_sec') ?>"
+                            class="form-control" id="payer_mobile" data-toggle="tooltip" data-placement="top" title="+919393939999 or 919393939999 "/>
+                            <span class="text-danger"><?= form_error('contact_sec') ?></span>
+                        </div>
+                    </div>
                   
                     
                    
@@ -42,7 +58,7 @@
                    </div>
                     <div class="box-footer">
                 <button type="submit" class="btn btn-success">
-                    <i class="fa fa-check"></i> Save
+                    <i class="fa fa-check"></i> Generate Reciept
                 </button>
             </div>
             <?= form_close() ?>

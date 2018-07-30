@@ -25,7 +25,7 @@
             <td data-toggle="tooltip" data-placement="top" title="<?=$row['temporary_address']?>"><?php echo substr($row['temporary_address'],0,10).'...' ?></td>
             <td>
                 <a href="<?php echo site_url('parents/edit/' . $row['id']); ?>" class="btn btn-info btn-xs">Edit</a>
-                <a onclick="myFunction();" class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span>
+                <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span>
                     Delete</a>
             </td>
         </tr>
@@ -44,5 +44,18 @@
     $(document).ready( function () {
         $('#parent_table').DataTable();
     } );
+</script>
+<script type="text/javascript">
+    var url="<?php echo base_url();?>";
+    function delFunction(id)
+    {
+     
+    // var id = $(this).data('id');
+    bootbox.confirm("Are you sure want to delete  ?", function(result) {
+      if(result)
+          window.location = url+'parents/remove/'+id ;
+   
+  });
+    }
 </script>
         

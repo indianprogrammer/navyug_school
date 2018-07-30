@@ -146,7 +146,7 @@ class Classes extends MY_Controller{
         if(isset($class['id']))
         {
             $this->Classes_model->delete_class($id);
-            redirect('class/class_list');
+            redirect('classes/class_list');
         }
         else
             show_error('The class you are trying to delete does not exist.');

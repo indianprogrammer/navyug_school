@@ -21,7 +21,7 @@
             <td><?=$count++ ?></td>
             <td><?=$row['reciept_id'] ?> </td>
              <td><?=$row['date'] ?></td>
-             <td><a href="<?= site_url('account/getPdfreciept/'.$row['reciept_id']); ?>" class="btn btn-info btn-xs">Get Pdf</a> 
+             <td><a href="<?= site_url('account/getPdfreciept/'.$row['reciept_id']); ?>" class="btn btn-info btn-xs" target="_blank">Get Pdf</a> 
             </td>
         </tr>
     <?php } ?>

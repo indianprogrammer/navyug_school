@@ -1,13 +1,13 @@
-<!-- <div class="pull-right">
-	<a href="<?= site_url('class/add'); ?>" class="btn btn-success">Add</a> 
-</div> -->
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title">class List</h3>
                 <div class="box-tools">
-                    <a href="<?= site_url('classes/add_class'); ?>" class="btn btn-success ">Add</a>
+ <div class="pull-right">
+	<a href="<?= site_url('classes/add_class'); ?>" class="btn btn-success">Add</a> 
+</div> 
+                   
                 </div>
             </div>
 
@@ -19,10 +19,10 @@
 		<th>Class Name</th>
         <th>Description</th>
         <th>No. of Student</th>
-        <th>subject</th>
-        <th>Employee</th>
-        <th>Start time</th>
-		<th>End time</th>
+        <!-- <th>subject</th> -->
+        <!-- <th>Employee</th> -->
+        <!-- <th>Start time</th> -->
+		<!-- <th>End time</th> -->
 		
 		<th>Actions</th>
     </tr>
@@ -36,11 +36,11 @@
         <td><?= $row['description']; ?></td>
         <td><?=  $studentCount ?></td>
       
-        <td><?= $row['start_time']; ?></td>
-		<td><?= $row['end_time']; ?></td>
+        <!-- <td><?= $row['start_time']; ?></td> -->
+		<!-- <td><?= $row['end_time']; ?></td> -->
 		<td>
             <a href="<?= site_url('classes/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-             <a onclick="myFunction();" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
+             <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
 
         </td>
     </tr>
@@ -58,13 +58,15 @@
     } );
 </script>
 <script type="text/javascript">
-    function myFunction()
+     var url="<?php echo base_url();?>";
+    function delFunction(id)
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure to delete <?= $row['name']; ?>", function(result) {
+    bootbox.confirm("Are you sure to delete  ", function(result) {
       if(result)
-          window.location.href = "<?php echo site_url('classes/remove/'.$row['id']); ?>"
+          
+      window.location = url+'classes/remove/'+id ;
    
   });
     }

@@ -40,7 +40,7 @@
 		
 		<td>
             <a href="<?php echo site_url('enquiry/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-             <a onclick="myFunction();" class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a>
+             <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a>
         </td>
     </tr>
 	<?php } ?>
@@ -57,13 +57,15 @@
     } );
 </script>
 <script type="text/javascript">
+	 var url="<?php echo base_url();?>";
     function myFunction()
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure?Are you sure to delete <?= $row['name'] ?> enquiry", function(result) {
+    bootbox.confirm("Are you sure?Are you sure to delete  enquiry", function(result) {
       if(result)
-          window.location.href = "<?php echo site_url('enquiry/remove/'.$row['id']); ?>"
+   
+      window.location = url+'enquiry/remove/'+id ;
    
   });
     }

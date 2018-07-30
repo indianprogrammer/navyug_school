@@ -18,7 +18,7 @@
 	
 		<th>Student Name</th>
 		<th>Email</th>
-		
+		<th>classes</th>
 		<th>Mobile</th>
         <th>Permanent Address</th>
 		<th>Corresponding Address</th>
@@ -28,22 +28,23 @@
 </thead>
 <tbody>
     <?php $count=1; ?>
-	<?php foreach($student as $s){ ?>
+	<?php foreach($student as $row){ ?>
     <tr>
 		<td><?= $count++  ?></td>
 		
-		<td><?= $s['student_name']; ?></td>
-		<td><?= $s['email']; ?></td>
+		<td><?= $row['student_name']; ?></td>
+        <td><?= $row['email']; ?></td>
+        <td><?= $row['classes']; ?></td>
 		
-		<td><?= $s['mobile']; ?></td>
+		<td><?= $row['mobile']; ?></td>
 		
-        <td data-toggle="tooltip" data-placement="top" title="<?= $s['permanent_address']?>" ><?php echo substr($s['permanent_address'],0,10).'....' ?></td>
-        <td data-toggle="tooltip" data-placement="top" title="<?= $s['temporary_address']?>" ><?php echo substr($s['temporary_address'],0,10).'....' ?></td>
+        <td data-toggle="tooltip" data-placement="top" title="<?= $row['permanent_address']?>" ><?php echo substr($row['permanent_address'],0,10).'....' ?></td>
+        <td data-toggle="tooltip" data-placement="top" title="<?= $row['temporary_address']?>" ><?php echo substr($row['temporary_address'],0,10).'....' ?></td>
 
-		<td > <img src="<?= $s['profile_image']; ?>" style="width:50px;height:50px" ></td>
+		<td > <img src="<?= $row['profile_image']; ?>" style="width:50px;height:50px" ></td>
 		<td>
-            <a href="<?= site_url('student/edit/'.$s['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-             <a onclick="myFunction();" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
+            <a href="<?= site_url('student/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
+             <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
 
         </td>
     </tr>
@@ -62,13 +63,15 @@
 </script>
 
 <script type="text/javascript">
-    function myFunction()
+    var url="<?php echo base_url();?>";
+    function delFunction(id)
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure to delete <?= $row['student_name']; ?> record ?", function(result) {
+    bootbox.confirm("Are you sure to delete  record ?", function(result) {
       if(result)
-          window.location.href = "<?php echo site_url('student/remove/'.$s['id']); ?>"
+         
+          window.location.href = url+'student/remove/'+id
    
   });
     }

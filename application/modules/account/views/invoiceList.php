@@ -23,7 +23,7 @@
             <td><?=$row['student_name'] ?> </td>
              <td><?=$row['total_amount'] ?></td>
              <td><?=$row['date'] ?></td>
-             <td><a href="<?= site_url('account/getPdf/'.$row['invoice_id']); ?>" class="btn btn-info btn-xs">Get Pdf</a> 
+             <td><a href="<?= site_url('account/getPdf/'.$row['invoice_id']); ?>" class="btn btn-info btn-xs" target="_blank">Get Pdf</a> 
             </td>
         </tr>
     <?php } ?>

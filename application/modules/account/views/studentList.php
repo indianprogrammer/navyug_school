@@ -18,8 +18,9 @@
 	
 		<th>Student Name</th>
 		<th>Email</th>
-		<th>Username</th>
+
 		<th>Mobile</th>
+        <th>classes</th>
         <th>Permanent Address</th>
 		<th>Corresponding Address</th>
 		<th>Profile Image</th>
@@ -27,21 +28,23 @@
     </tr>
 </thead>
 <tbody>
-	<?php foreach($student as $s){ ?>
+    <?php $count=1 ?>
+	<?php foreach($student as $row){ ?>
     <tr>
-		<td><?= $s['id']; ?></td>
+		<td><?= $count++ ?></td>
 		
-		<td><?= $s['student_name']; ?></td>
-		<td><?= $s['email']; ?></td>
-		<td><?= $s['username']; ?></td>
-		<td><?= $s['mobile']; ?></td>
+		<td><?= $row['student_name']; ?></td>
+        <td><?= $row['email']; ?></td>
+		<td><?= $row['classes']; ?></td>
+		<td><?= $row['username']; ?></td>
+		<td><?= $row['mobile']; ?></td>
 		
-        <td data-toggle="tooltip" data-placement="top" title="<?= $s['permanent_address']?>" ><?php echo substr($s['permanent_address'],0,10).'....' ?></td>
-        <td data-toggle="tooltip" data-placement="top" title="<?= $s['temporary_address']?>" ><?php echo substr($s['temporary_address'],0,10).'....' ?></td>
+        <td data-toggle="tooltip" data-placement="top" title="<?= $row['permanent_address']?>" ><?php echo substr($row['permanent_address'],0,10).'....' ?></td>
+        <td data-toggle="tooltip" data-placement="top" title="<?= $row['temporary_address']?>" ><?php echo substr($row['temporary_address'],0,10).'....' ?></td>
 
-		<td > <img src="<?= $s['profile_image']; ?>" height=5%; ></td>
+		<td > <img src="<?= $row['profile_image']; ?>" height=5%; ></td>
 		<td>
-            <a href="<?= site_url('student/edit/'.$s['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
+            <a href="<?= site_url('student/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
              <a onclick="myFunction();" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
 
         </td>
@@ -67,7 +70,7 @@
     // var id = $(this).data('id');
     bootbox.confirm("Are you sure?", function(result) {
       if(result)
-          window.location.href = "<?php echo site_url('student/remove/'.$s['id']); ?>"
+          window.location.href = "<?php echo site_url('student/remove/'.$row['id']); ?>"
    
   });
     }

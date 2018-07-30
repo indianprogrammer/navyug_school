@@ -87,7 +87,15 @@ class Student_model extends CI_Model
          $this->db->insert('map_student_class',$studentClassMapping);
         return $this->db->insert_id();
     }
-    
+    // function get_class_name()
+    // {
+    //     $this->db->select('classes.name,classes.id');
+    //     $this->db->from('map_school_class');
+    //     $this->db->join('school', 'map_school_class.school_id=school.id', 'Left');
+    //     $this->db->join('classes', 'map_school_class.class_id=classes.id', 'Left');
+    //      $this->db->where('school_id',$school_id);
+    //     return $query = $this->db->get()->result();
+    // }
    
 }
 ?>

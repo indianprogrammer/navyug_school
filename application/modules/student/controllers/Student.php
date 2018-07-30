@@ -12,7 +12,8 @@
      * Listing of student
      */
     function student_list()
-    {
+     {   
+        // $data['claasesName']=$this->Student_model->get_class_name();
         $data['student'] = $this->Student_model->get_all_student();
         
         $data['_view'] = 'studentList';
@@ -33,6 +34,8 @@
 
    function add()
    {   
+          
+    
     $this->load->library('form_validation');
     $config['upload_path']          = './uploads/';
     $config['allowed_types']        = 'gif|jpg|png';
@@ -43,28 +46,29 @@
     $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
     $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
    
-    $this->form_validation->set_rules('mobile','Mobile','required');
-    $this->form_validation->set_rules('classes','class','required');
+     $this->form_validation->set_rules('mobile','Mobile','required');
+    // $this->form_validation->set_rules('classes','class','required');
 
     $this->form_validation->set_rules('paddress','Permanent Address','required');
     $this->form_validation->set_rules('taddress','Temporary Address','required');
 
     if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
     {   
+     $classes=implode(",",$this->input->post('classes'));
         $params = array(
                 // 'password' => $this->input->post('password'),
             'student_name' => $this->input->post('student_name'),
             'email' => $this->input->post('email'),
            
             'mobile' => $this->input->post('mobile'),
-            'classes' => implode(",",$this->input->post('classes')),
+            'classes' => $classes,
               
             'permanent_address' => $this->input->post('paddress'),
-            'temporary_address' => $this->input->post('taddress'),
-            'created_at'=>date('Y-m-d h:i:s'),
-            'modified_at'=>date('Y-m-d h:i:s')
+            'temporary_address' => $this->input->post('taddress')
+           
 
         );
+        // var_dump($params);die;
         $data['image'] =  $this->upload->data();
        
         $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
@@ -83,6 +87,7 @@
              $authentication=array(
                'username'=> $username,
                'email'=> $email,
+               ##temporary
                'autorization_id'=>4,
                'password'=>md5($password),
                 'user_id'=> $studentId,
@@ -99,11 +104,17 @@
             );  
              $map  = $this->Student_model->add_mapping($schoolStudentMap);
              ##student class mapping start
+             $classArray=$this->input->post('classes');
+             foreach ($classArray as $row) {
+                 # code...
+             
              $studentClassMapping=array(
                 'student_id'=>$studentId,
-                'class_id' =>$params['classes']
+                'class_id' =>$row
              );
+             ##temporary purpose
              $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
+         }
               $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added',

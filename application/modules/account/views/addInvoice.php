@@ -41,26 +41,7 @@
                             <span class="text-danger"><?= form_error('contact_pri') ?></span>
                         </div>
                     </div>
-                   <!--  <div class="col-md-5 col-sm-12">
-                        <label for="contact_pri" class="control-label"><span class="text-danger">*</span></label>
-                        <div class="form-group">
-                            <input type="text" name="contact" maxlength="13" value="<?= $this->input->post('contact_pri') ?>"
-                            class="form-control" id="contact_pri" data-toggle="tooltip" data-placement="top" title="+919393939999 or 919393939999 "/>
-                            <span class="text-danger"><?= form_error('contact_pri') ?></span>
-                        </div>
-                    </div> -->
                   
-                    
-                   
-                  
-                    <!--  <div class="col-md-5 col-sm-12">
-                        <label for="class" class="control-label"><span class="text-danger">*</span>class assign</label>
-                        <div class="form-group">
-                            <input type="text" name="class" value="<?= $this->input->post('class') ?>"
-                            class="form-control" id="class"/>
-                            <span class="text-danger"><?= form_error('class') ?></span>
-                        </div>
-                    </div> -->
                      <tr>
                         <div class="table-responsive">
     <table class="table table-bordered" id="crud_table">
@@ -81,7 +62,7 @@
      <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
     </div>
     <div align="center">
-     <button type="button" name="save" id="save" class="btn btn-info">Save</button>
+     <button type="button" name="save" id="save" class="btn btn-info">Generate Invoice</button>
     </div>
     <br />
     <div id="inserted_item_data"></div>
