@@ -245,7 +245,8 @@
    }
    function reciept_list()
    {
-    $data['reciept'] = $this->Account_model->get_all_reciept();
+     $schoolId=$this->session->SchoolId;
+    $data['reciept'] = $this->Account_model->get_all_reciept($schoolId);
         // var_dump($data['invoice']);
     $data['_view'] = 'recieptList';
     $this->load->view('index',$data);
