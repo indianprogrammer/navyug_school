@@ -14,7 +14,8 @@
     function student_list()
      {   
         // $data['claasesName']=$this->Student_model->get_class_name();
-        $data['student'] = $this->Student_model->get_all_student();
+        $schoolId=$this->session->SchoolId;
+        $data['student'] = $this->Student_model->get_all_student($schoolId);
         
         $data['_view'] = 'studentList';
         $this->load->view('index',$data);

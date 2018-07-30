@@ -22,10 +22,17 @@ class Classes_model extends CI_Model
     /*
      * Get all class
      */
-    function get_all_class()
+    function get_all_class($schoolId)
     {
+         $this->db->select('classes.*');
         $this->db->order_by('id', 'desc');
-        return $this->db->get('classes')->result_array();
+       
+        $this->db->order_by('id', 'desc');
+        $this->db->from('map_school_class');
+         $this->db->where('school_id',$schoolId);
+        $this->db->join('school', 'map_school_class.school_id=school.id', 'Left');
+        $this->db->join('classes', 'map_school_class.class_id=classes.id', 'Left');
+        return $this->db->get()->result_array();
     }
         
     /*

@@ -24,7 +24,7 @@
             <td> 
 
             
-                <input type="checkbox" name="<?= $value["student_name"]; ?>">Present
+                <input type="checkbox" name="<?= $value["student_id"]; ?>">Present
              </td>
 
 

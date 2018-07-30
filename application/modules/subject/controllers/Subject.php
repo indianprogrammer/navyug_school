@@ -15,8 +15,8 @@ class Subject extends MY_Controller{
     function subject_list()
     {
      
-
-        $data['subject'] = $this->Subject_model->get_all_subject();
+        $schoolId=$this->session->SchoolId;
+        $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
         
         $data['_view'] = 'subjectList';
         $this->load->view('index',$data);

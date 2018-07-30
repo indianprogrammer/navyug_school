@@ -89,7 +89,8 @@
                         <label for="latlong" class="control-label"><span class="text-danger">*</span>Location</label>
                         <div class="form-group" id="showlat">
                             <input type="text" name="latlong" 
-                            class="form-control" id="latlong" onclick="latMap();" data-toggle="tooltip" data-placement="top" title="click on field and select your location in google map "  /><a href="#myMapModal" data-toggle="modal">open map</a>
+                            class="form-control" id="latlong" onclick="latMap();" data-toggle="tooltip" data-placement="top" title="click on field and select your location in google map "  />
+                            <!-- <a href="#myMapModal" data-toggle="modal">open map</a> -->
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                         </div>
                     </div>

@@ -36,6 +36,7 @@ class Enquiry_model extends CI_Model
             $this->db->limit($params['limit'], $params['offset']);
         }
         return $this->db->get('enquiry')->result_array();
+        
     }
         
     /*

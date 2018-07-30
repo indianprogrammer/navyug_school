@@ -54,7 +54,7 @@
 </table>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
->
+
   
 <script>
     $(document).ready( function () {
@@ -69,7 +69,7 @@
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure to delete <?= $row['name']; ?> record ?", function(result) {
+    bootbox.confirm("Are you sure to delete  record ?", function(result) {
       if(result)
          
         window.location = url+'employee/remove/'+id ;

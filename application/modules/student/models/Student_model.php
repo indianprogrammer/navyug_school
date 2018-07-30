@@ -22,10 +22,18 @@ class Student_model extends CI_Model
     /*
      * Get all student
      */
-    function get_all_student()
+    function get_all_student($schoolId)
     {
+       
+      
+         $this->db->select('student.*');
         $this->db->order_by('id', 'desc');
-        return $this->db->get('student')->result_array();
+       
+        $this->db->from('map_school_student');
+         $this->db->where('school_id',$schoolId);
+        $this->db->join('school', 'map_school_student.school_id=school.id', 'Left');
+        $this->db->join('student', 'map_school_student.student_id=student.id', 'Left');
+        return $this->db->get()->result_array();
     }
         
     /*

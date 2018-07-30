@@ -1,7 +1,7 @@
 <table id="student_table" class="table table-striped table-bordered table-responsive">
     <thead>
     <tr>
-		<th>ID</th>
+		<th>Serial Number</th>
 	
 		<th>Student Name</th>
 		<th>status</th>

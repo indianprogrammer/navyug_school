@@ -22,10 +22,14 @@ class Subject_model extends CI_Model
     /*
      * Get all subject
      */
-    function get_all_subject()
-    {
+    function get_all_subject($schoolId)
+    {   $this->db->select('subjects.*');
         $this->db->order_by('id', 'desc');
-        return $this->db->get('subjects')->result_array();
+        $this->db->from('map_school_subject');
+         $this->db->where('school_id',$schoolId);
+        $this->db->join('school', 'map_school_subject.school_id=school.id', 'Left');
+        $this->db->join('subjects', 'map_school_subject.subject_id=subjects.id', 'Left');
+        return $this->db->get()->result_array();
     }
         
     /*

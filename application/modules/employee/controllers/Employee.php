@@ -13,16 +13,14 @@ class Employee extends MY_Controller{
      */
     function employee_list()
     {  
-     $this->load->library('pagination');
-     $params['limit'] = 100; 
-     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+     
 
-     $config = $this->config->item('pagination');
-     $config['base_url'] = site_url('employee/index?');
-     $config['total_rows'] = $this->Employee_model->get_all_employees_count();
-     $this->pagination->initialize($config);
+    
+     $schoolId=$this->session->SchoolId;
+     $config['total_rows'] = $this->Employee_model->get_all_employees_count($schoolId);
+   
 
-     $data['employees'] = $this->Employee_model->get_all_employees($params);
+     $data['employees'] = $this->Employee_model->get_all_employees($schoolId);
 
      $data['_view'] = 'employeeList';
      $this->load->view('../index',$data);

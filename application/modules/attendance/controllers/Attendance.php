@@ -35,13 +35,14 @@
    {   
              $school_id=$this->session->SchoolId;
              $value=$this->input->post('student');
-             var_dump($value);
+             // var_dump($value);
        
 }  
 function fetchStudent()
 {   
-    $classID=$this->input->post('attendance');
+    $classID=$this->input->get('attendance');
     $data['students'] = $this->Attendance_model->fetch_students($classID);
+    // var_dump( $data['students'] );die;
      $data['_view'] = 'add';
        $this->load->view('index',$data);
 }
@@ -49,13 +50,19 @@ function insertAttendance()
 {   
 
     $attendenceData = $this->input->post();
-     
+     // var_dump($attendenceData);die;
 
      
     foreach ($attendenceData as $studentName => $status) {
     
        ##change in future, (temporary code)
-        $this->db->query("insert into attendance_record (student_name,attendance_status) value ('$studentName','$status') ");
+      $data=array(
+        'student_name'=>$studentName,
+        'attendance_status'=>$status
+
+      );
+
+        $this->Attendance_model->insert_attendance($data);
     }
     redirect("attendance/attendance_list");
 

@@ -6,11 +6,11 @@
     <thead>
     <tr>
         <th>ID</th>
-        <th>reciept Number</th>
+        <th>Reciept Number</th>
+        <th>Customer id</th>
+        <th>Paid</th>
         <th>Date</th>
-        <!-- <th>Mobile</th> -->
-        <!-- <th>Permanent Address</th> -->
-        <!-- <th>Temporary Address</th> -->
+       
         <th>Actions</th>
     </tr>
     </thead>
@@ -20,6 +20,8 @@
         <tr>
             <td><?=$count++ ?></td>
             <td><?=$row['reciept_id'] ?> </td>
+            <td><?=$row['student_id'] ?> </td>
+            <td><?=$row['total_amount'] ?> </td>
              <td><?=$row['date'] ?></td>
              <td><a href="<?= site_url('account/getPdfreciept/'.$row['reciept_id']); ?>" class="btn btn-info btn-xs" target="_blank">Get Pdf</a> 
             </td>

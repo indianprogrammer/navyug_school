@@ -19,23 +19,28 @@ class Employee_model extends CI_Model
     /*
      * Get all employees count
      */
-    function get_all_employees_count()
+    function get_all_employees_count($schoolId)
     {
-        $this->db->from('employees');
+        $this->db->from('map_school_employee');
+         $this->db->where('school_id',3);
+        // $this->db->join('school', 'map_school_employee.school_id=school.id', 'Left');
+        // $this->db->join('employees', 'map_school_employee.employee_id=employees.id', 'Left');
         return $this->db->count_all_results();
     }
         
     /*
      * Get all employees
      */
-    function get_all_employees($params = array())
+    function get_all_employees($schoolId)
     {
+        $this->db->select('employees.*');
         $this->db->order_by('id', 'desc');
-        if(isset($params) && !empty($params))
-        {
-            $this->db->limit($params['limit'], $params['offset']);
-        }
-        return $this->db->get('employees')->result_array();
+       
+        $this->db->from('map_school_employee');
+         $this->db->where('school_id',$schoolId);
+        $this->db->join('school', 'map_school_employee.school_id=school.id', 'Left');
+        $this->db->join('employees', 'map_school_employee.employee_id=employees.id', 'Left');
+        return $this->db->get()->result_array();
     }
 
         

@@ -14,10 +14,10 @@ class Classes extends MY_Controller{
      */
     function class_list()
     {
-        // var_dump($school_id);die;
+        $school_id=$this->session->SchoolId;
         $data['studentCount']=$this->Classes_model->get_student_count();
         // var_dump($data['studentCount']);die; 
-        $data['class'] = $this->Classes_model->get_all_class();
+        $data['class'] = $this->Classes_model->get_all_class($school_id);
         
         $data['_view'] = 'classList';
         $this->load->view('index',$data);
@@ -61,8 +61,7 @@ class Classes extends MY_Controller{
                 'subject_id' => implode(',', $this->input->post('subject')),
                 // 'start_time' => $this->input->post('start_time'),
                 // 'end_time' => $this->input->post('end_time')
-                //  'created_at'=>date(),
-                // 'modified_at'=>date()
+
             );
 
             
@@ -78,18 +77,18 @@ class Classes extends MY_Controller{
             $subjectId=$this->input->post('subject');
             foreach ($subjectId as $row) {
                 $mapping=array(
-                        'class_id'=>$class_id,
-                        'subject_id'=>$row
+                    'class_id'=>$class_id,
+                    'subject_id'=>$row
 
                 );
-                 $map = $this->Classes_model->add_mapping_subject($mapping);
+                $map = $this->Classes_model->add_mapping_subject($mapping);
             }
 
-             $this->session->alerts = array(
-            'severity'=> 'success',
-            'title'=> 'successfully added',
-         'description'=> ''
-     );
+            $this->session->alerts = array(
+                'severity'=> 'success',
+                'title'=> 'successfully added',
+                'description'=> ''
+            );
             redirect('classes/class_list');
         }
         else
@@ -105,53 +104,53 @@ class Classes extends MY_Controller{
     function edit($id)
     {   
         // check if the class exists before trying to edit it
-         $school_id=$this->session->SchoolId;
-        $data['class'] = $this->Classes_model->get_class($id);
-         $data['subject'] = $this->Classes_model->fetch_subject($school_id);
-        $data['employee'] = $this->Classes_model->fetch_employee($school_id);
+       $school_id=$this->session->SchoolId;
+       $data['class'] = $this->Classes_model->get_class($id);
+       $data['subject'] = $this->Classes_model->fetch_subject($school_id);
+       $data['employee'] = $this->Classes_model->fetch_employee($school_id);
 
-        if(isset($data['class']['id']))
-        {
-            $this->load->library('form_validation');
+       if(isset($data['class']['id']))
+       {
+        $this->load->library('form_validation');
 
             // $this->form_validation->set_rules('password','Password','required|max_length[20]')
-            $this->form_validation->set_rules('class_name','class Name','required|max_length[100]');
+        $this->form_validation->set_rules('class_name','class Name','required|max_length[100]');
             // $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
             // $this->form_validation->set_rules('username','Username','required|max_length[100]');
             // $this->form_validation->set_rules('mobile','Mobile','required');
             // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
             // $this->form_validation->set_rules('address','Address','required');
 
-            if($this->form_validation->run() )     
-            {   
-               $params = array(
+        if($this->form_validation->run() )     
+        {   
+         $params = array(
                 // 'password' => $this->input->post('password'),
-                'name' => $this->input->post('class_name'),
-                
-                'description' => $this->input->post('description'),
-                'subject_id' => $this->input->post('subject'),
-                'start_time' => $this->input->post('start_time'),
-                'end_time' => $this->input->post('end_time')
+            'name' => $this->input->post('class_name'),
+
+            'description' => $this->input->post('description'),
+            'subject_id' => $this->input->post('subject'),
+            // 'start_time' => $this->input->post('start_time'),
+            // 'end_time' => $this->input->post('end_time')
                 //  'created_at'=>date(),
                 // 'modified_at'=>date()
-            );
-               
-               $this->Classes_model->update_class($id,$params);     
-                $this->session->alerts = array(
+        );
+
+         $this->Classes_model->update_class($id,$params);     
+         $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully edited',
-         'description'=> ''
-     );       
-               redirect('classes/index');
-           }
-           else
-           {
-            $data['_view'] = 'edit';
-            $this->load->view('index',$data);
-        }
+            'description'=> ''
+        );       
+         redirect('classes/index');
+     }
+     else
+     {
+        $data['_view'] = 'edit';
+        $this->load->view('index',$data);
     }
-    else
-        show_error('The class you are trying to edit does not exist.');
+}
+else
+    show_error('The class you are trying to edit does not exist.');
 } 
 
     /*
@@ -172,12 +171,12 @@ class Classes extends MY_Controller{
     }
 
     function pdf()
-{
-    $this->load->helper('pdf_helper');
-   $data['title']="invoice";
-   $data['school_id']=$this->session->SchoolId;
-    $this->load->view('pdfreport', $data);
-}
+    {
+        $this->load->helper('pdf_helper');
+        $data['title']="invoice";
+        $data['school_id']=$this->session->SchoolId;
+        $this->load->view('pdfreport', $data);
+    }
 
 
 

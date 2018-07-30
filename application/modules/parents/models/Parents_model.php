@@ -29,14 +29,16 @@ class Parents_model extends CI_Model
     /*
      * Get all parents
      */
-    function get_all_parents($params = array())
+    function get_all_parents($schoolId)
     {
+         $this->db->select('parents.*');
         $this->db->order_by('id', 'desc');
-        if(isset($params) && !empty($params))
-        {
-            $this->db->limit($params['limit'], $params['offset']);
-        }
-        return $this->db->get('parents')->result_array();
+       
+        $this->db->from('map_school_parent');
+         $this->db->where('school_id',$schoolId);
+        $this->db->join('school', 'map_school_parent.school_id=school.id', 'Left');
+        $this->db->join('parents', 'map_school_parent.parent_id=parents.id', 'Left');
+        return $this->db->get()->result_array();
     }
         
     /*

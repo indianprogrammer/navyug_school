@@ -1,4 +1,5 @@
-<?= form_open('attendance/fetchStudent',array("class"=>"form-horizontal")); ?>
+
+<form action="<?= base_url()?>attendance/fetchStudent" class="form-horizontal" method="get">
 <div class="form-group">
 	<label for="class_name" class="col-md-4 control-label"><span class="text-danger">*</span>Select Class For Attendence </label>
 	<div class="col-md-8">
@@ -20,4 +21,4 @@
 		<button type="submit" class="btn btn-success">Attendance Start</button>
 	</div>
 </div>
-<?= form_close(); ?>
+</form>

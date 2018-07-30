@@ -13,8 +13,9 @@
      * Listing of attendance
      */
     function invoice_list()
-    {
-        $data['invoice'] = $this->Account_model->get_all_invoice();
+    {   
+        $schoolId=$this->session->SchoolId;
+        $data['invoice'] = $this->Account_model->get_all_invoice($schoolId);
         // var_dump($data['invoice']);
         $data['_view'] = 'invoiceList';
         $this->load->view('index',$data);
@@ -112,9 +113,9 @@
             $name = $row["name"];
             $price = $row["price"];
             $subtotal = $subtotal + $price;
-            $percentage=0.18;
-            $tax=$total*$percentage;
-            $total=$subtotal+$tax;
+            // $percentage=;
+            $tax=$subtotal*0.18;
+             $total=$subtotal+$tax;
             if($name!=""){
                 $rows = $rows."<tr><td>".$no."</td><td>".$name."</td><td>".$price."</td></tr>";
             }
@@ -341,6 +342,12 @@ $total=$subtotal+$subtotal*0.18;
     'debit'=>$total
 
 );
+   ## map invoice school
+   // $map_invoice=array(
+   //  'invoice_id'=>$incrementedUniqueInvoiceId,
+   //  'school_id'=>$this->session->SchoolId
+   // );
+   // $schoolInvoice=$this->Account_model->map_invoice($map_invoice);
    $params=array(
 
     'student_name'=>$studentData->student_name,
