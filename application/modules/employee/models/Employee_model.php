@@ -86,9 +86,11 @@ class Employee_model extends CI_Model
          $this->db->insert('authentication',$authentication);
         return $this->db->insert_id();
      }
-     function delete_EmployeeSchoolMap()
+     function delete_EmployeeSchoolMap($id,$school_id)
      {
 
-     }
+        $this->db->delete('map_school_employee',array('employee_id'=>$id,'school_id'=>$school_id));
+    }
+     
 
 }

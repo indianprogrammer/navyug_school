@@ -204,7 +204,7 @@ class Employee extends MY_Controller{
       {
         $this->Employee_model->delete_employee($id);
  // $this->Employee_model->delete_EmployeeSchoolMap($id,$schoolId);
-        redirect('employee/employeelist');
+        redirect('employee/employee_list');
       }
       else
         show_error('The employee you are trying to delete does not exist.');
