@@ -81,13 +81,20 @@ class Account_model extends CI_Model
 
 
    }
-   function get_max_invoiceno()
+   function get_max_invoiceno($school_id)
    {
     $this->db->select_max('invoice_id');
     $this->db->from('invoices');
+    $this->db->where('school_id',$school_id);       
 
     $query = $this->db->get()->row();
-    return $query->invoice_id+1;
+  //   if(is_null($query))
+  //   {
+  //   return $query=1;
+  // }
+  // else{
+  //  return 1;
+  }
 
 }
 function insertMultiple($entries)
@@ -123,7 +130,7 @@ function get_all_reciept($id)
 {
    $this->db->select('reciepts.*,account_transaction.*');
    $this->db->from('reciepts');
-$this->db->where('school_id',$school_id);
+$this->db->where('school_id',$id);
    $this->db->join('account_transaction', 'account_transaction.reference_id=reciepts.id', 'Left');
 
         // $this->db->where('class_id',$classes_id);

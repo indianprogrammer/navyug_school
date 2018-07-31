@@ -28,9 +28,10 @@
     </tr>
     </thead>
     <tbody>
+        <?php $count=1 ?>
 	<?php foreach($class as $row){ ?>
     <tr>
-		<td><?= $row['id']; ?></td>
+		<td><?= $count++ ?></td>
 		
 		<td><?= $row['name']; ?></td>
         <td><?= $row['description']; ?></td>

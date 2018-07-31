@@ -57,8 +57,8 @@ class Classes extends MY_Controller{
                 // 'password' => $this->input->post('password'),
                 'name' => $this->input->post('class_name'),
                 
-                'description' => $this->input->post('description'),
-                'subject_id' => implode(',', $this->input->post('subject')),
+                'description' => $this->input->post('description')
+                // 'subject_id' => implode(',', $this->input->post('subject')),
                 // 'start_time' => $this->input->post('start_time'),
                 // 'end_time' => $this->input->post('end_time')
 

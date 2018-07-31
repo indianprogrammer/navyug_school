@@ -296,10 +296,13 @@ function addMultiple()
     $getSchoolInformation = $this->Account_model->get_school_information($schoolId);
 
         ##generate random invoice number
-    $invoiceId=1134;
+    // $invoiceId=1134;
         // var_dump($invoiceId);
-    $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
+    $school_id=$this->session->SchoolId;
+    $checkInvoiceId=$this->Account_model->get_max_invoiceno($school_id);
         // var_dump($checkInvoiceId);die;
+   
+
     $incrementedUniqueInvoiceId=$checkInvoiceId;
     $item_name=$this->input->post('item_name');
 
@@ -343,12 +346,7 @@ $total=$subtotal+$subtotal*0.18;
     'debit'=>$total
 
 );
-   ## map invoice school
-   // $map_invoice=array(
-   //  'invoice_id'=>$incrementedUniqueInvoiceId,
-   //  'school_id'=>$this->session->SchoolId
-   // );
-   // $schoolInvoice=$this->Account_model->map_invoice($map_invoice);
+   
    $params=array(
 
     'student_name'=>$studentData->student_name,
