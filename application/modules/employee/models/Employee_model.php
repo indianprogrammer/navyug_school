@@ -22,7 +22,7 @@ class Employee_model extends CI_Model
     function get_all_employees_count($schoolId)
     {
         $this->db->from('map_school_employee');
-         $this->db->where('school_id',3);
+         $this->db->where('school_id',$schoolId);
         // $this->db->join('school', 'map_school_employee.school_id=school.id', 'Left');
         // $this->db->join('employees', 'map_school_employee.employee_id=employees.id', 'Left');
         return $this->db->count_all_results();
@@ -78,7 +78,7 @@ class Employee_model extends CI_Model
       function get_map_employee()
     
     {
-      $this->db->from('master_authorization');
+      $this->db->from('employee_type');
         return $this->db->get()->result();
     }
      function add_user($authentication)
@@ -86,4 +86,9 @@ class Employee_model extends CI_Model
          $this->db->insert('authentication',$authentication);
         return $this->db->insert_id();
      }
+     function delete_EmployeeSchoolMap()
+     {
+
+     }
+
 }

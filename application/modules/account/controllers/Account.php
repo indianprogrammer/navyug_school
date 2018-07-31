@@ -46,9 +46,9 @@
         $getSchoolInformation = $this->Account_model->get_school_information($schoolId);
         // var_dump($getSchoolInformation);die;
         ##generate random invoice number
-        $invoiceId=1134;
-        $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
-        // var_dump($checkInvoiceId);die;
+        // $invoiceId=1134;
+        $checkInvoiceId=$this->Account_model->get_max();
+         var_dump($checkInvoiceId);die;
         $incrementedUniqueInvoiceId=$checkInvoiceId;
         
 

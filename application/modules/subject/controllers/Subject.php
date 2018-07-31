@@ -123,11 +123,12 @@ class Subject extends MY_Controller{
     function remove($id)
     {
         $subject = $this->Subject_model->get_subject($id);
-
+        $schoolId=$this->session->SchoolId;
         // check if the subject exists before trying to delete it
         if(isset($subject['id']))
         {
             $this->Subject_model->delete_subject($id);
+            $this->Subject_model->delete_subjectSchoolMap($id,$schoolId);
             redirect('subject/subject_list');
         }
         else

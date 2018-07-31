@@ -97,4 +97,8 @@ class Classes_model extends CI_Model
      {
          $this->db->insert('map_class_subject',$ids);
      }
+     function delete_classSchoolMap($id,$school_id)
+    {
+        $this->db->delete('map_school_class',array('class_id'=>$id,'school_id'=>$school_id));
+    }
 }

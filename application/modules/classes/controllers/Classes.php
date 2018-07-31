@@ -160,24 +160,19 @@ else
     {
         $class = $this->Classes_model->get_class($id);
 
+             $schoolId=$this->session->SchoolId;
         // check if the class exists before trying to delete it
         if(isset($class['id']))
         {
             $this->Classes_model->delete_class($id);
+        $this->Classes_model->delete_classSchoolMap($id,$schoolId);
             redirect('classes/class_list');
         }
         else
             show_error('The class you are trying to delete does not exist.');
     }
 
-    function pdf()
-    {
-        $this->load->helper('pdf_helper');
-        $data['title']="invoice";
-        $data['school_id']=$this->session->SchoolId;
-        $this->load->view('pdfreport', $data);
-    }
-
+  
 
 
 }

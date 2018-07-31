@@ -10,11 +10,11 @@
 </thead>
 <tbody>
 	<?php $count=1; ?>
-	<?php foreach($attendance as $row){ ?>
+	<?php foreach($report as $row){ ?>
     <tr>
 		<td><?= $count++ ?></td>
 		
-		<td><?= $row['student_name']; ?></td>
+		<td><?= $row['student_id']; ?></td>
 		<td><?= $row['attendance_status']; ?></td>
 		
 		

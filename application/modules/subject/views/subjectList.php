@@ -52,7 +52,7 @@
     {
      
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure want to delete <?= $row['name']; ?> ?", function(result) {
+    bootbox.confirm("Are you sure want to delete ?", function(result) {
       if(result)
           window.location = url+'subject/remove/'+id ;
    

@@ -1,3 +1,5 @@
+ <?php  $classid= $this->input->post('attendance')  ;   ?> 
+
 <div class="panel panel-default">
     <div class="panel panel-heading">
         
@@ -24,7 +26,7 @@
             <td> 
 
             
-                <input type="checkbox" name="<?= $value["student_id"]; ?>">Present
+                <input type="checkbox" name="<?= $value["student_id"]; ?>" value="present">Present
              </td>
 
 
@@ -38,6 +40,7 @@
 
 
 
+        <input type="text" name="classid" value="<?= $classid  ?>" style="display:none">
         </table>
         <?= form_close(); ?>
 

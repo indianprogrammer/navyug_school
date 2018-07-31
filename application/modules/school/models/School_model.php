@@ -154,24 +154,28 @@ class School_model extends CI_Model
     }
     
     ##for counting row
-    function get_all_students_count()
+    function get_all_students_count($school_id)
     {
-      $query=$this->db->get('student')->num_rows();
+       $this->db->where('school_id',$school_id);
+    $query =$this->db->get('map_school_student')->num_rows();
       return $query;
     }
-    function get_all_employees_count()
+    function get_all_employees_count($school_id)
     {
-      $query=$this->db->get('employees')->num_rows();
+      $this->db->where('school_id',$school_id);
+      $query=$this->db->get('map_school_employee')->num_rows();
       return $query;
     }
-    function get_all_subject_count()
+    function get_all_subject_count($school_id)
     {
-      $query=$this->db->get('subjects')->num_rows();
+      $this->db->where('school_id',$school_id);
+      $query=$this->db->get('map_school_subject')->num_rows();
       return $query;
     }
-    function get_all_class_count()
+    function get_all_class_count($school_id)
     {
-      $query=$this->db->get('classes')->num_rows();
+      $this->db->where('school_id',$school_id);
+      $query=$this->db->get('map_school_class')->num_rows();
       return $query;
     }
 

@@ -48,13 +48,13 @@ class Login extends MX_Controller
             switch ($authenticationData['autorization_id']){
                 case 1:
                     #got for admin user at employ table & check for authentication ID and get school id
-                    $userData = $this->Login_model->getEmployDetails($authenticationData['id']);
+                    $userData = $this->Login_model->getEmployDetails($authenticationData['user_id']);
                     $this->session->SchoolId = $userData['school_id'];
-                    $this->session->organizationName = $userData['organization_name'];
+                    // $this->session->organizationName = $userData['organization_name'];
                     $this->session->name = $userData['name'];
                     $this->session->profileImage = $userData['profile_image'];
                     echo "admin  ". $this->session->username;
-                    // redirect ('school/dashboard');
+                    redirect ('school/dashboard');
 
                     break;
                 case 2:

@@ -198,10 +198,15 @@
     {
         $student = $this->Student_model->get_student($id);
 
+                    $schoolId=$this->session->SchoolId;
         // check if the student exists before trying to delete it
         if(isset($student['id']))
         {
             $this->Student_model->delete_student($id);
+
+            $this->Subject_model->delete_studentSchoolMap($id,$schoolId);
+
+            
             redirect('student/student_list');
         }
         else

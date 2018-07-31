@@ -1,5 +1,5 @@
 <div class="pull-right">
-    <a href="<?php echo site_url('parents/add'); ?>" class="btn btn-success">Add</a>
+    <a href="<?php echo site_url('account/add_reciept'); ?>" class="btn btn-success">Add</a>
 </div>
 
 <table id="reciept_table" class="table table-bordered table-striped table-responsive">

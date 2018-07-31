@@ -11,13 +11,13 @@
     /*
      * Listing of attendance
      */
-    function attendance_list()
-    {
-        $data['attendance'] = $this->Attendance_model->get_all_attendance();
+    // function attendance_list()
+    // {
+    //     $data['attendance'] = $this->Attendance_model->get_all_attendance();
         
-        $data['_view'] = 'attendanceList';
-        $this->load->view('index',$data);
-    }
+    //     $data['_view'] = 'attendanceList';
+    //     $this->load->view('index',$data);
+    // }
 
     /*
      * Adding a new attendance
@@ -38,27 +38,33 @@
              // var_dump($value);
        
 }  
-function fetchStudent()
+function fetchStudent() 
 {   
-    $classID=$this->input->get('attendance');
-    $data['students'] = $this->Attendance_model->fetch_students($classID);
+
+     $data['classID']=$this->input->post('attendance');
+    $data['students'] = $this->Attendance_model->fetch_students($data['classID']);
+
     // var_dump( $data['students'] );die;
      $data['_view'] = 'add';
        $this->load->view('index',$data);
 }
 function insertAttendance()
 {   
+     $class_id= $this->input->post('classid');
+    $attendenceData = $this->input->post('student_id');
+      // var_dump($attendenceData);die;
 
-    $attendenceData = $this->input->post();
-     // var_dump($attendenceData);die;
-
-     
+   
     foreach ($attendenceData as $studentName => $status) {
     
        ##change in future, (temporary code)
       $data=array(
         'student_name'=>$studentName,
-        'attendance_status'=>$status
+        'attendance_status'=>$status,
+        'class_id'=>$class_id,
+        'school_id'=>$this->session->SchoolId,
+         'date'=>date('y/m/d')
+
 
       );
 
@@ -67,63 +73,42 @@ function insertAttendance()
     redirect("attendance/attendance_list");
 
 }
+function attendance_list()
+{
 
-    /*
-     * Editing a attendance
-     */
-    function edit($id)
-    {   
-        // check if the attendance exists before trying to edit it
-        $data['attendance'] = $this->attendance_model->get_attendance($id);
-        $config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $this->load->library('upload', $config);
+   $school_id=$this->session->SchoolId;
+    $data['classes'] = $this->Attendance_model->fetch_classes($school_id);
+    // var_dump($data['classes'] );die;
+    $data['_view'] = 'selectList';
+       $this->load->view('index',$data);
 
-        
-        if(isset($data['attendance']['id']))
-        {
-            $this->load->library('form_validation');
+}
+    
+function show_report()
+{
+    $school_id=$this->session->SchoolId;
+    $classId= $this->input->post('classId');
+  
 
-            $this->form_validation->set_rules('attendance_name','attendance Name','required|max_length[100]');
-            $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
-            $this->form_validation->set_rules('username','Username','required|max_length[100]');
-            $this->form_validation->set_rules('mobile','Mobile','required');
+  $data['report'] = $this->Attendance_model->fetch_report($school_id,$classId);
+  // $data['student']=$this->Attendance_model->fetch_student_name();
+  // foreach($data['student'] as $row)
+  // {
+  //   var_dump($row['student_id']);die;
+  // }
+  // var_dump($data['report'] );die;
+   $data['_view'] = 'attendanceList';
+       $this->load->view('index',$data);
+}
 
-            $this->form_validation->set_rules('paddress','Permanent Address','required');
-            $this->form_validation->set_rules('taddress','Temporary Address','required');
 
-            if($this->form_validation->run() )     
-            {   
-                $params = array(
 
-                    'attendance_name' => $this->input->post('attendance_name'),
-                    'email' => $this->input->post('email'),
-                    'username' => $this->input->post('username'),
-                    'mobile' => $this->input->post('mobile'),
-                // 'profile_image' => $this->input->post('profile_image'),
-                    'permanent_address' => $this->input->post('paddress'),
-                    'temporary_address' => $this->input->post('taddress'),
-                    
-                );
-                // var_dump($params);die;
-                $data['image'] =  $this->upload->data();
-              // var_dump($data);
-                $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
-               // echo $image_path;die;
-                $params['profile_image']=$image_path;
-                $this->attendance_model->update_attendance($id,$params);            
-                redirect('attendance/attendance_list');
-            }
-            else
-            {
-                $data['_view'] = 'edit';
-                $this->load->view('index',$data);
-            }
-        }
-        else
-            show_error('The attendance you are trying to edit does not exist.');
-    } 
 
+
+
+
+
+ 
     /*
      * Deleting attendance
      */

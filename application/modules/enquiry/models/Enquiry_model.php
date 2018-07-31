@@ -28,13 +28,10 @@ class Enquiry_model extends CI_Model
     /*
      * Get all enquirys
      */
-    function get_all_enquirys($params = array())
+    function get_all_enquirys($id)
     {
         $this->db->order_by('id', 'desc');
-        if(isset($params) && !empty($params))
-        {
-            $this->db->limit($params['limit'], $params['offset']);
-        }
+      $this->db->where('school_id',$id);
         return $this->db->get('enquiry')->result_array();
         
     }

@@ -25,6 +25,13 @@
 			<span class="text-danger"><?=form_error('email');?></span>
 		</div>
 	</div>
+    <div class="form-group">
+        <label for="purpose" class="col-md-4 control-label"><span class="text-danger">*</span>Enquiry Purpose</label>
+        <div class="col-md-5 col-lg-4">
+            <input type="text" name="purpose" maxlength="13" value="<?=$this->input->post('purpose'); ?>" class="form-control" id="purpose" />
+            <span class="text-danger"><?=form_error('purpose');?></span>
+        </div>
+    </div>
 	
 	<div class="form-group">
 		<label for="address" class="col-md-4 control-label"><span class="text-danger">*</span>Address</label>

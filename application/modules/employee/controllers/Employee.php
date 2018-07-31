@@ -198,10 +198,12 @@ class Employee extends MY_Controller{
     {
       $employee = $this->Employee_model->get_employee($id);
 
+         $schoolId=$this->session->SchoolId;
         // check if the employee exists before trying to delete it
       if(isset($employee['id']))
       {
         $this->Employee_model->delete_employee($id);
+ // $this->Employee_model->delete_EmployeeSchoolMap($id,$schoolId);
         redirect('employee/employeelist');
       }
       else

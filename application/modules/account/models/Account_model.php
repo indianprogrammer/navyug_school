@@ -96,7 +96,7 @@ class Account_model extends CI_Model
   //  return 1;
   }
 
-}
+
 function insertMultiple($entries)
 {
   $this->db->insert_batch('master_invoice',$entries);
@@ -280,12 +280,24 @@ function get_information_reciept_payment($id)
        return  $query = $this->db->get()->row();
 }
 
+function get_max(){
 
 
 
 
+ $this->db->select_max('invoice_id');
+    $this->db->from('intt');
+    // $this->db->where('school_id',1);       
 
+    $query = $this->db->get()->row();
+    if(is_null($query))
+    {
+    return $query=1;
+  }
+  else{
+   return $query+1;
 
-
+}
+}
 }
 ?>

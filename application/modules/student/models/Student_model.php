@@ -33,6 +33,7 @@ class Student_model extends CI_Model
          $this->db->where('school_id',$schoolId);
         $this->db->join('school', 'map_school_student.school_id=school.id', 'Left');
         $this->db->join('student', 'map_school_student.student_id=student.id', 'Left');
+        // $this->db->join('authentication', 'authentication.student_id=student.id', 'Left');
         return $this->db->get()->result_array();
     }
         
@@ -104,6 +105,9 @@ class Student_model extends CI_Model
     //      $this->db->where('school_id',$school_id);
     //     return $query = $this->db->get()->result();
     // }
-   
+   function delete_studentSchoolMap($id,$school_id)
+    {
+        $this->db->delete('map_school_student',array('student_id'=>$id,'school_id'=>$school_id));
+    }
 }
 ?>

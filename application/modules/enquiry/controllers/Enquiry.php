@@ -15,16 +15,9 @@ class Enquiry extends MY_Controller{
      * Listing of enquirys
      */
     function enquiry_list()
-    {   $this->load->library('pagination');
-         $params['limit'] = 100; 
-        $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
-        
-        $config = $this->config->item('pagination');
-        $config['base_url'] = site_url('enquiry/index?');
-        $config['total_rows'] = $this->Enquiry_model->get_all_enquirys_count();
-        $this->pagination->initialize($config);
-
-        $data['enquiry'] = $this->Enquiry_model->get_all_enquirys($params);
+    {   
+            $schoolId=$this->session->SchoolId;
+        $data['enquiry'] = $this->Enquiry_model->get_all_enquirys($schoolId);
         
         $data['_view'] = 'enquiryList';
         $this->load->view('../index',$data);
@@ -41,7 +34,7 @@ class Enquiry extends MY_Controller{
     function add()
     {   
         $this->load->library('form_validation');
-      
+       
 		
 		$this->form_validation->set_rules('name','enquiry Name','required|max_length[100]');
 		$this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
@@ -55,14 +48,15 @@ class Enquiry extends MY_Controller{
             $params = array(
 				
 				'name' => $this->input->post('name'),
-               
+                'purpose'=>$this->input->post('purpose'),
 				
 				'email' => $this->input->post('email'),
 				'mobile' => $this->input->post('mobile'),
 				 'location' => $this->input->post('latlong'),
                 'address' => $this->input->post('address'),
 				'remarks' => $this->input->post('remarks'),
-                'created_at'=>date('d-m-y/h-m')
+                'school_id'=>$this->session->SchoolId
+                // 'created_at'=>date('d-m-y/h-m')
                
             );
             
@@ -111,9 +105,8 @@ class Enquiry extends MY_Controller{
                 'mobile' => $this->input->post('mobile'),
                  'location' => $this->input->post('latlong'),
                 'address' => $this->input->post('address'),
-                'remarks' => $this->input->post('remarks'),
-                'created_at'=>date('d-m-y/h-m'),
-                'modified_at'=>date('d-m-y/h-m')
+                'remarks' => $this->input->post('remarks')
+                
             );
                 
                 $this->eEquiry_model->update_enquiry($id,$params);            

@@ -16,11 +16,12 @@ class School extends MY_Controller
      */
     function dashboard()
     {
-            // $data['school'] = $this->School_model->get_all_school_count();                           
-            $data['students'] = $this->School_model->get_all_students_count();                           
-            $data['employee'] = $this->School_model->get_all_employees_count();                           
-              $data['subject'] = $this->School_model->get_all_subject_count();                           
-             $data['class'] = $this->School_model->get_all_class_count();                           
+            // $data['school'] = $this->School_model->get_all_school_count();  
+            $schoolId=$this->session->SchoolId;                         
+            $data['students'] = $this->School_model->get_all_students_count($schoolId);                           
+            $data['employee'] = $this->School_model->get_all_employees_count($schoolId);                           
+              $data['subject'] = $this->School_model->get_all_subject_count($schoolId);                           
+             $data['class'] = $this->School_model->get_all_class_count($schoolId);                           
         $data['_view'] = 'dashbord';
 
         $this->load->view('../index', $data);
