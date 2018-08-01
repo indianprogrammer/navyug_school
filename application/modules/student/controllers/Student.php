@@ -207,7 +207,7 @@
         {
             $this->Student_model->delete_student($id);
 
-            $this->Subject_model->delete_studentSchoolMap($id,$schoolId);
+            $this->Student_model->delete_studentSchoolMap($id,$schoolId);
 
             
             redirect('student/student_list');
@@ -215,5 +215,10 @@
         else
             show_error('The student you are trying to delete does not exist.');
     }
-    
+    function fetchStudentView()
+    {
+         echo json_encode($student_view= $this->Student_model->get_student($this->input->post('id')));
+    }
+
 }
+?>

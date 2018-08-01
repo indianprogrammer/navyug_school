@@ -44,7 +44,7 @@ function fetchStudent()
      $data['classID']=$this->input->post('attendance');
     $data['students'] = $this->Attendance_model->fetch_students($data['classID']);
 
-    // var_dump( $data['students'] );die;
+     // var_dump( $data['students'] );die;
      $data['_view'] = 'add';
        $this->load->view('index',$data);
 }
@@ -98,12 +98,8 @@ function show_report()
 
   $data['report'] = $this->Attendance_model->fetch_report($school_id,$classId);
 
-  $data['student']=$this->Attendance_model->fetch_student_name();
-  // foreach($data['student'] as $row)
-  // {
-  //   var_dump($row['student_id']);die;
-  // }
-  // var_dump($data['student'] );
+  $data['student']=$this->Attendance_model->fetch_student_name($school_id);
+ 
    $data['_view'] = 'attendanceList';
        $this->load->view('index',$data);
 }

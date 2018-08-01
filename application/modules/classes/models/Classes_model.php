@@ -89,8 +89,9 @@ class Classes_model extends CI_Model
      {
 
         ##will improve
-      $this->db->where('class_id',3);
-     $query=$this->db->get('map_student_class')->num_rows();
+        $this->db->select('*');
+      // $this->db->where('class_id',3);
+     $query=$this->db->get('map_student_class')->result_array();
       return $query;
       }
      function add_mapping_subject($ids)

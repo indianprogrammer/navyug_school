@@ -15,14 +15,17 @@
 		<td><?= $count++ ?></td>
 		
 		<td><?php  
-		$studentClasses =  $row['student_id'];
-    // var_dump($studentClasses);die;
-		foreach ($student as $s) {
-        echo $s[$studentClasses-1]['student_name'];
-			# code...
-		}
-        // echo ($student[$studentClasses]['student_name']);
-       
+	  $studentId =  $row['student_id'];
+	    // var_dump($student);die;
+	    for( $i=0;$i<count($student);$i++)
+	    {
+	  if($row['student_id']==$student[$i]['id'])
+	  {
+	  	echo $student[$i]['student_name'];
+	  }
+	    	
+	    }
+     	
 
 
 		?></td>

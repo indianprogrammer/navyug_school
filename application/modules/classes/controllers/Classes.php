@@ -16,7 +16,7 @@ class Classes extends MY_Controller{
     {
         $school_id=$this->session->SchoolId;
         $data['studentCount']=$this->Classes_model->get_student_count();
-        // var_dump($data['studentCount']);die; 
+         // var_dump($data['studentCount']);die; 
         $data['class'] = $this->Classes_model->get_all_class($school_id);
         
         $data['_view'] = 'classList';

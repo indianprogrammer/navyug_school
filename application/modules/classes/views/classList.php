@@ -35,8 +35,16 @@
 		
 		<td><?= $row['name']; ?></td>
         <td><?= $row['description']; ?></td>
-   
-        <td><?=  $studentCount ?></td>
+        
+        <td><?php 
+
+      for($i=1;$i<count($studentCount);$i++)
+      {
+        if($row['id']==$studentCount[$i]['class_id'])
+            echo ($studentCount[$i]['student_id']);
+      }
+
+         ?></td>
         <td><?=  $studentCount ?></td>
       
         <!-- <td><?= $row['start_time']; ?></td> -->
