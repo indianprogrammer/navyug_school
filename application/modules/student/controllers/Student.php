@@ -16,7 +16,10 @@
         // $data['claasesName']=$this->Student_model->get_class_name();
         $schoolId=$this->session->SchoolId;
         $data['student'] = $this->Student_model->get_all_student($schoolId);
+        $data['classes'] = $this->Student_model->getAllClasses($schoolId);
         
+        // print_r($data['classes']);
+
         $data['_view'] = 'studentList';
         $this->load->view('index',$data);
     }

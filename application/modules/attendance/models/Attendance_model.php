@@ -54,5 +54,15 @@ class Attendance_model extends CI_Model
         
 
     }
+
+    function fetch_student_name()
+    {
+        $this->db->select('student.student_name,student.id');
+        $this->db->from('attendance_record');
+        // $this->db->where('school_id',$schoolId);
+        $this->db->join('student', 'student.id=attendance_record.student_id', 'Left');
+        return $this->db->get()->result_array();
+    }
 }
+
 ?>

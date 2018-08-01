@@ -14,7 +14,18 @@
     <tr>
 		<td><?= $count++ ?></td>
 		
-		<td><?= $row['student_id']; ?></td>
+		<td><?php  
+		$studentClasses =  $row['student_id'];
+    // var_dump($studentClasses);die;
+		foreach ($student as $s) {
+        echo $s[$studentClasses-1]['student_name'];
+			# code...
+		}
+        // echo ($student[$studentClasses]['student_name']);
+       
+
+
+		?></td>
 		<td><?= $row['attendance_status']; ?></td>
 		
 		

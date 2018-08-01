@@ -34,7 +34,16 @@
 		
 		<td><?= $row['student_name']; ?></td>
         <td><?= $row['email']; ?></td>
-        <td><?= $row['classes']; ?></td>
+        <td><?php 
+        //var_dump($row['classes']);
+       $studentClasses = explode(',', $row['classes']);
+    // var_dump($studentClasses);die;
+        foreach ($studentClasses as $studentClass) {
+         echo ($classes[$studentClass-1]['name'].',');
+        } 
+        //var_dump($classes);
+
+        ?></td>
 		
 		<td><?= $row['mobile']; ?></td>
 		

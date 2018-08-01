@@ -1,4 +1,7 @@
- <?php  $classid= $this->input->post('attendance')  ;   ?> 
+ <?php  $classid= $this->input->post('attendance')  ;  
+$this->session->classID=$classid;
+
+  ?> 
 
 <div class="panel panel-default">
     <div class="panel panel-heading">
@@ -40,7 +43,7 @@
 
 
 
-        <input type="text" name="classid" value="<?= $classid  ?>" style="display:none">
+        
         </table>
         <?= form_close(); ?>
 

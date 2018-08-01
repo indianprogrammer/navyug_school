@@ -50,16 +50,20 @@ function fetchStudent()
 }
 function insertAttendance()
 {   
-     $class_id= $this->input->post('classid');
-    $attendenceData = $this->input->post('student_id');
+
+ $class_id= $this->session->classID;
+    $attendenceData = $this->input->post();
       // var_dump($attendenceData);die;
 
+
+#collect data for insertion into insertionData
+    $insertionData = array();
    
     foreach ($attendenceData as $studentName => $status) {
     
        ##change in future, (temporary code)
       $data=array(
-        'student_name'=>$studentName,
+        'student_id'=>$studentName,
         'attendance_status'=>$status,
         'class_id'=>$class_id,
         'school_id'=>$this->session->SchoolId,
@@ -67,6 +71,8 @@ function insertAttendance()
 
 
       );
+
+
 
         $this->Attendance_model->insert_attendance($data);
     }
@@ -91,12 +97,13 @@ function show_report()
   
 
   $data['report'] = $this->Attendance_model->fetch_report($school_id,$classId);
-  // $data['student']=$this->Attendance_model->fetch_student_name();
+
+  $data['student']=$this->Attendance_model->fetch_student_name();
   // foreach($data['student'] as $row)
   // {
   //   var_dump($row['student_id']);die;
   // }
-  // var_dump($data['report'] );die;
+  // var_dump($data['student'] );
    $data['_view'] = 'attendanceList';
        $this->load->view('index',$data);
 }
