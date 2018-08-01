@@ -79,21 +79,8 @@
                 keyword: keyword
             },
             success: function( responseObject ) {
-                           // console.log(responseObject);
-                         
-                            // console.log(obj);
-                       
-                         
-                           // console.log(balance);
-                     // var s=JSON.stringify(responseObject);
-                      // var obj=JSON.parse(JSON.stringify(responseObject));
-                     // console.log(obj.debit);
-
+                          
                         $("#showBalance").html("your balance = "+responseObject);
-                       // for(var i=1;i<obj.length;i++)
-                       // {
-
-                       // }
                      
 
             }

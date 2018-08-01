@@ -39,20 +39,20 @@
                             $studentClasses = explode(',', $row['classes']);
 
                             foreach ($studentClasses as $studentClass) {
-                             $subject=($classes[$studentClass-1]['name']. "&nbsp&nbsp&nbsp");
-                             echo rtrim($subject);
-                         } 
+                               $subject=($classes[$studentClass-1]['name']. "&nbsp&nbsp&nbsp");
+                               echo rtrim($subject);
+                           } 
 
 
-                         ?></td>
+                           ?></td>
 
-                         <td><?= $row['mobile']; ?></td>
+                           <td><?= $row['mobile']; ?></td>
 
-                         <td data-toggle="tooltip" data-placement="top" title="<?= $row['permanent_address']?>" ><?php echo substr($row['permanent_address'],0,10).'....' ?></td>
-                         <td data-toggle="tooltip" data-placement="top" title="<?= $row['temporary_address']?>" ><?php echo substr($row['temporary_address'],0,10).'....' ?></td>
+                           <td data-toggle="tooltip" data-placement="top" title="<?= $row['permanent_address']?>" ><?php echo substr($row['permanent_address'],0,10).'....' ?></td>
+                           <td data-toggle="tooltip" data-placement="top" title="<?= $row['temporary_address']?>" ><?php echo substr($row['temporary_address'],0,10).'....' ?></td>
 
-                         <td> <img src="<?=base_url()."uploads/". $row['profile_image']; ?>" style="width:50px;height:50px" ></td>
-                         <td>
+                           <td> <img src="<?=base_url()."uploads/". $row['profile_image']; ?>" style="width:50px;height:50px" ></td>
+                           <td>
 
 
 
@@ -84,9 +84,9 @@
                                 <!-- <h4 class="modal-title">Modal Header</h4> -->
                             </div>
                             <div class="modal-body" id="student_detail">
-                              <div class="detail"><button class="btn btm-info">Full Details</button>
-                              </div>
-                              <div class="modal-footer">
+
+                            </div>
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
@@ -126,9 +126,9 @@
 </script>
 
 <script>   
-   $(document).ready(function(){  
-      $('.view_data').click(function(){  
-         var student_id = $(this).attr("id");  
+ $(document).ready(function(){  
+  $('.view_data').click(function(){  
+   var student_id = $(this).attr("id");  
            // console.log(employee_id);
            $.ajax({  
             url:"<?= base_url()?>student/fetchStudentView",  
@@ -137,11 +137,38 @@
             success:function(data){  
                 var obj=JSON.parse(data);
                 
-                       $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button class="btn btn-info center">GET FULL DETAILS</button>');  
-                     
-                       $('#dataModal').modal("show");  
-                   }  
-               });  
-       });  
-  });  
+                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info center full_details" >GET FULL DETAILS</button>');  
+
+                $('#dataModal').modal("show");  
+            }  
+        });  
+           $(document).ready(function(){
+            $(".full_details").on('click', function(){
+                 console.log(student_id);
+                $.ajax({
+                    method: "POST",
+                    url:" <?= base_url() ?>subject/checkBalance", 
+                    data: {
+                        keyword: 18 
+                    },
+                    success: function( responseObject ) {
+                        console.log(responseObject);
+                        // $("#showBalance").html("your balance = "+responseObject);
+
+
+                    }
+                });
+            });
+
+           
+            
+
+        }); 
+      
+   });  
+});
+</script>
+<script>
+
+
 </script>

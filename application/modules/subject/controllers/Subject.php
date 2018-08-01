@@ -134,5 +134,8 @@ class Subject extends MY_Controller{
         else
             show_error('The subject you are trying to delete does not exist.');
     }
-    
+    function checkBalance()
+    {
+        echo "dasda";
+    }
 }

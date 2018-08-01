@@ -219,6 +219,6 @@
     {
          echo json_encode($student_view= $this->Student_model->get_student($this->input->post('id')));
     }
-
+   
 }
 ?>
