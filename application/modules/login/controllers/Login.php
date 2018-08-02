@@ -27,9 +27,14 @@ class Login extends MX_Controller
         // var_dump($username);die;
 
         $authenticationData = $this->Login_model->getResult($username,$password);
-
-        
-
+        ##generating logs
+        $logsData=array(
+            'username'=>($authenticationData['username'])?$authenticationData['username']:$username,
+            'ip_address'=>getHostByName(getHostName()),
+            'status'=>($authenticationData)?1:0
+         );
+        $log=$this->Login_model->insertLogs($logsData);
+            ##--##
         if (is_null($authenticationData)) {
             $data = array(
                 'error_message' => 'Invalid Username or Password'

@@ -179,6 +179,18 @@ class School_model extends CI_Model
       return $query;
     }
 
+    function getAcocountInformationDebit()
+    {
+       $this->db->select_sum('debit');
+   $this->db->from('account_transaction');
+    return  $query = $this->db->get()->row();
+    }
+     function getAcocountInformationCredit()
+    {
+       $this->db->select_sum('credit');
+   $this->db->from('account_transaction');
+    return  $query = $this->db->get()->row();
+    }
 
 
 

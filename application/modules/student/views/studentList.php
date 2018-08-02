@@ -57,7 +57,7 @@
 
 
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-flat">Action</button>
+                                <button type="button" class="btn btn-info btn-flat">Action</button>
                                 <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">
                                   <span class="caret"></span>
                                   <span class="sr-only">Toggle Dropdown</span>
@@ -126,10 +126,10 @@
 </script>
 
 <script>   
- $(document).ready(function(){  
+ 
   $('.view_data').click(function(){  
    var student_id = $(this).attr("id");  
-           // console.log(employee_id);
+            console.log(student_id);
            $.ajax({  
             url:"<?= base_url()?>student/fetchStudentView",  
             method:"post",  
@@ -142,31 +142,31 @@
                 $('#dataModal').modal("show");  
             }  
         });  
-           $(document).ready(function(){
+           
             $(".full_details").on('click', function(){
-                 console.log(student_id);
-                $.ajax({
-                    method: "POST",
-                    url:" <?= base_url() ?>subject/checkBalance", 
-                    data: {
-                        keyword: 18 
-                    },
-                    success: function( responseObject ) {
-                        console.log(responseObject);
-                        // $("#showBalance").html("your balance = "+responseObject);
+                 console.log("uuu");
+                // $.ajax({
+                //     method: "POST",
+                //     url:" <?= base_url() ?>account/checkBalance", 
+                //     data: {
+                //         keyword: 18 
+                //     },
+                //     success: function( responseObject ) {
+                //         console.log(responseObject);
+                //         // $("#showBalance").html("your balance = "+responseObject);
 
 
-                    }
-                });
+                //     }
+                // });
             });
 
            
             
 
-        }); 
+       
       
    });  
-});
+
 </script>
 <script>
 

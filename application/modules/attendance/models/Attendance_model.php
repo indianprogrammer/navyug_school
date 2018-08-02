@@ -44,16 +44,26 @@ class Attendance_model extends CI_Model
         $this->db->insert('attendance_record',$data);
         return $this->db->insert_id();
     }
-    function fetch_report($school_id,$class_id)
+    function fetch_report($school_id,$class_id,$date)
     {
         $this->db->select('attendance_record.*');
         $this->db->from('attendance_record');
-        $this->db->where(array('school_id'=>$school_id,'class_id'=>$class_id));
+        $this->db->where(array('school_id'=>$school_id,'class_id'=>$class_id,'date'=>$date));
         // $this->dv->join('student','student.id=attendance_record.student_id','Left');
         return $query = $this->db->get()->result_array();
         
 
     }
+    //  function fetch_reports($date)
+    // {
+    //     $this->db->select('attendance_record.*');
+    //     $this->db->from('attendance_record');
+    //     $this->db->where(array('date'=>$date));
+    //     // $this->dv->join('student','student.id=attendance_record.student_id','Left');
+    //     return $query = $this->db->get()->result_array();
+        
+
+    // }
 
     function fetch_student_name($schoolId)
     {

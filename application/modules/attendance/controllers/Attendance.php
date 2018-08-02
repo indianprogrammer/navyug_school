@@ -72,10 +72,12 @@ function insertAttendance()
 
       );
 
+      array_push($insertionData,$data);
 
-
-        $this->Attendance_model->insert_attendance($data);
     }
+    // var_dump($insertionData);die;
+        // $this->Attendance_model->insert_attendance($insertionData);
+        $this->db->insert_batch('attendance_record',$insertionData);
     redirect("attendance/attendance_list");
 
 }
@@ -94,9 +96,13 @@ function show_report()
 {
     $school_id=$this->session->SchoolId;
     $classId= $this->input->post('classId');
+    $date= $this->input->post('date_select');
+     // var_dump($date);die;
   
 
-  $data['report'] = $this->Attendance_model->fetch_report($school_id,$classId);
+  $data['report'] = $this->Attendance_model->fetch_report($school_id,$classId,$date);
+  // $data['report'] = $this->Attendance_model->fetch_reports($date);
+  // var_dump($data['report']);die;
 
   $data['student']=$this->Attendance_model->fetch_student_name($school_id);
  

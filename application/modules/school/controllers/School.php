@@ -17,16 +17,22 @@ class School extends MY_Controller
     function dashboard()
     {
             // $data['school'] = $this->School_model->get_all_school_count();  
-            $schoolId=$this->session->SchoolId;                         
-            $data['students'] = $this->School_model->get_all_students_count($schoolId);                           
-            $data['employee'] = $this->School_model->get_all_employees_count($schoolId);                           
-              $data['subject'] = $this->School_model->get_all_subject_count($schoolId);                           
-             $data['class'] = $this->School_model->get_all_class_count($schoolId);                           
+                                  
         $data['_view'] = 'dashbord';
 
         $this->load->view('../index', $data);
     }
-    
+    function dashboardCounting()
+    {
+
+         $schoolId=$this->session->SchoolId;                         
+      $data['students'] = $this->School_model->get_all_students_count($schoolId); 
+
+         $data['employee'] = $this->School_model->get_all_employees_count($schoolId);                           
+            $data['subject'] = $this->School_model->get_all_subject_count($schoolId);                           
+           $data['class'] = $this->School_model->get_all_class_count($schoolId);  
+           echo json_encode ($data);
+    }
     function school_list()
     {   $data['title']="School List";
         $data['school'] = $this->School_model->get_all_school();
@@ -194,23 +200,32 @@ class School extends MY_Controller
      function fetch_classes()
     {
         $mapData=$this->School_model->mapClasses($schoolId);
-         // $this->output->enable_profiler(TRUE);
-        // var_dump($mapData);
+        
     }
      function fetch_students()
     {
         $mapData=$this->School_model->mapStudents($schoolId);
-         // $this->output->enable_profiler(TRUE);
-        // var_dump($mapData);
+        
     }
      function fetch_employees()
      {  
-      // $schoolId= $_SESSION['SchoolId'];
+     
         $mapData=$this->School_model->mapEmployees($schoolId);
-         // $this->output->enable_profiler(TRUE);
-        // var_dump($mapData);/
+         
     }
-
+    function total_debit_credit_school()
+    {
+       $debitTotal=$this->School_model->getAcocountInformationDebit();
+       $creditTotal=$this->School_model->getAcocountInformationCredit();
+       var_dump($debitTotal);
+       var_dump($creditTotal);
+    }
+    function  totalDateRange()
+    {
+        $date1="28/7/2018";
+        $date2="29/7/2018";
+        $debitTotal=$this->School_model->getAcocountInformationDebit($date);
+    }
 
 
 }

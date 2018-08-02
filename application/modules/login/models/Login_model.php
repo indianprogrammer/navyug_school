@@ -36,6 +36,11 @@ class Login_model extends CI_Model{
         // $query = $this->db->get();
         return $this->db->get()->row_array();
     }
+    function insertLogs($data)
+    {
+        $this->db->insert('log_login',$data);
+        return $this->db->insert_id();
+    }
 }
 
 ?>
