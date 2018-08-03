@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark">Dashboard </h1>
                 </div><!-- /.col -->
-              
+
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -23,83 +23,134 @@
             <!-- Info boxes -->
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
-                     <a href="<?= base_url() ?>subject/subject_list">  
+                 <a href="<?= base_url() ?>subject/subject_list">  
                     <div class="info-box">
                         <span class="info-box-icon bg-info elevation-1"><i class="fa fa-gear"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text ">Subject</span>
                             <span class="info-box-number subject">
-                
-                  <!-- <small>%</small> -->
-                </span>
-                        </div>
-                        <!-- /.info-box-content -->
+                                <div class="ajax_loading">         
+                                    <div class="col-md-3">
+                                       
+                                       
+                                      <!-- Loading (remove the following to stop the loading)-->
+                                      <div class="overlay">
+                                        <i class="fa fa-refresh fa-spin"></i>
+                                    </div>
+                                    <!-- end loading -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- <small>%</small> -->
+                        </span>
                     </div>
-                </a>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-              <a href="<?= base_url() ?>student/student_list">  
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-google-plus"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text ">Student</span>
-                            <span class="info-box-number student"></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-            </a>
-                </div>
-                <!-- /.col -->
-
-                <!-- fix for small devices only -->
-                <div class="clearfix hidden-md-up"></div>
-
-                <div class="col-12 col-sm-6 col-md-3">
-                     <a href="<?= base_url() ?>classes/class_list">  
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fa fa-shopping-cart"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">Classes</span>
-                            <span class="info-box-number class"></span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
+                    <!-- /.info-box-content -->
                 </div>
             </a>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-                     <a href="<?= base_url() ?>employee/employee_list">  
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-users"></i></span>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <a href="<?= base_url() ?>student/student_list">  
+            <div class="info-box mb-3">
+                <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-google-plus"></i></span>
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">Employee</span>
-                            <span class="info-box-number employee"></span>
+                <div class="info-box-content">
+                    <span class="info-box-text ">Student</span>
+                    <span class="info-box-number student">
+                        <div class="ajax_loading">         
+                            <div class="col-md-3">
+                               
+                               
+                              <!-- Loading (remove the following to stop the loading)-->
+                              <div class="overlay">
+                                <i class="fa fa-refresh fa-spin"></i>
+                            </div>
+                            <!-- end loading -->
                         </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                </a>
-                    <!-- /.info-box -->
+                        <!-- /.card -->
+                    </div></span>
                 </div>
-                <!-- /.col -->
+                <!-- /.info-box-content -->
             </div>
-            <!-- /.row -->
+            <!-- /.info-box -->
+        </a>
+    </div>
+    <!-- /.col -->
 
-            
-                <!-- /.col -->
-           </div>
-            <!-- /.row -->
-       <!--/. container-fluid -->
-    </section>
-    <!-- /.content -->
+    <!-- fix for small devices only -->
+    <div class="clearfix hidden-md-up"></div>
+
+    <div class="col-12 col-sm-6 col-md-3">
+     <a href="<?= base_url() ?>classes/class_list">  
+        <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1"><i class="fa fa-shopping-cart"></i></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">Classes</span>
+                <span class="info-box-number class">
+                    <div class="ajax_loading">         
+                        <div class="col-md-3">
+                           
+                           
+                          <!-- Loading (remove the following to stop the loading)-->
+                          <div class="overlay">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
+                        <!-- end loading -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </span>
+        </div>
+        <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+</a>
 </div>
+<!-- /.col -->
+<div class="col-12 col-sm-6 col-md-3">
+ <a href="<?= base_url() ?>employee/employee_list">  
+    <div class="info-box mb-3">
+        <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-users"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Employee</span>
+            <span class="info-box-number employee">
+                <div class="ajax_loading">         
+                    <div class="col-md-3">
+                       
+                       
+                      <!-- Loading (remove the following to stop the loading)-->
+                      <div class="overlay">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                    <!-- end loading -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </span>
+    </div>
+    <!-- /.info-box-content -->
+</div>
+</a>
+<!-- /.info-box -->
+</div>
+<!-- /.col -->
+</div>
+<!-- /.row -->
+
+
+<!-- /.col -->
+</div>
+<!-- /.row -->
+<!--/. container-fluid -->
+</section>
+<!-- /.content -->
+
+
+
 <!-- /.content-wrapper -->
 
 
@@ -109,17 +160,16 @@
 
 <script type="text/javascript">
    $(document).ready(function(){
-    
-        $.ajax({url: "<?= base_url()?>school/dashboardCounting", success: function(result){
-            // $("#div1").html(result);
-    // console.log(result);
-    var obj=JSON.parse(result);
-    // console.log(obj);
-    $('.subject').html(obj.subject);
-    $('.employee').html(obj.employee);
-    $('.class').html(obj.class);
-    $('.student').html(obj.students);
-        }});
-   
-});
+     $('.ajax_loading').show();
+     $.ajax({url: "<?= base_url()?>school/dashboardCounting",method:"get", success: function(result){
+       $('.ajax_loading').hide();
+       var obj=JSON.parse(result);
+
+       $('.subject').html(obj.subject);
+       $('.employee').html(obj.employee);
+       $('.class').html(obj.class);
+       $('.student').html(obj.students);
+   }});
+     
+ });
 </script>

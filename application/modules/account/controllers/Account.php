@@ -100,7 +100,7 @@
     }
 
  ##get pdf by invoice id
-    function getPdf($invoice_id)
+    function getpdf($invoice_id)
     {
         $getInvoice = $this->Account_model->get_invoice($invoice_id);
          // var_dump($getInvoice);die;

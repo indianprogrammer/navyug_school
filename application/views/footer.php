@@ -6,7 +6,7 @@
     <!-- Default to the left -->
     <strong>Copyright &copy; 2014-2018 <a href="https://9yug.net">9YUG.NET</a>.</strong> All rights reserved.
   </footer>
-</div>
+
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
@@ -40,6 +40,5 @@
 
 <!-- PAGE SCRIPTS -->
  <!-- <script src="<?= base_url() ;?><assets/admin/dist/js/pages/dashboard2.js"></script> -->
-
 </body>
 </html>

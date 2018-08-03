@@ -7,7 +7,7 @@
     <a href="#" class="brand-link">
         <img src="<?= base_url(); ?>assets/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3" 
-             style="opacity: .8">
+             style="opacity: .8" >
         <span class="brand-text font-weight-light">admin</span>
     </a>
 
@@ -39,8 +39,8 @@
                          </p>
                        </a>
                        <ul class="nav nav-treeview"> -->
-                    <li class="nav-item">
-                        <a href="<?= site_url() ?>school/dashboard" class="nav-link">
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="<?= site_url() ?>school/dashboard" class="nav-link actives">
                             <i class="fa fa-circle-o nav-icon"></i>
                             <p>Dashboard</p>
                         </a>
@@ -165,6 +165,7 @@
                                         <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>parents/parent_list" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
@@ -325,6 +326,7 @@
                                         <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>account/invoice_list" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
@@ -362,6 +364,9 @@
                             <p>Logout</p>
                         </a>
                     </li>
+
+</ul>
+</nav>
 
         </div>
         <!-- /.sidebar -->
