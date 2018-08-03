@@ -14,7 +14,7 @@ class Enquiry extends MY_Controller{
     /*
      * Listing of enquirys
      */
-    function enquiry_list()
+    function index()
     {   
             $schoolId=$this->session->SchoolId;
         $data['enquiry'] = $this->Enquiry_model->get_all_enquirys($schoolId);

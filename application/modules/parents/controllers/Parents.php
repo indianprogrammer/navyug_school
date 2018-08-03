@@ -27,7 +27,7 @@ class Parents extends MY_Controller{
     $this->load->view('../index',$data);
 }
 
-function parent_list(){
+function index(){
     $schoolId=$this->session->SchoolId;
     $data['parents'] = $this->Parents_model->get_all_parents($schoolId);
     $data['_view'] = 'parentList';

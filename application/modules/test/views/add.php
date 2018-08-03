@@ -1,5 +1,7 @@
-<div id="chart_container">
-<canvas id="myCanvas">
+
+
+<div id="chart_container" width="400" height="500">
+<canvas id="myCanvas" width="400" height="500">
 </canvas>
 </div>
 <script type="text/javascript">
@@ -24,17 +26,17 @@
 						datasets:[
 						{
 							label:'ids debit',
-							backgroundColor: 'rgba(200,200,200,.75)',
-							borderColor:'rgba(200,200,200,0.75)',
-							hoverBackgroundColor:'rgba(200,200,200,1)',
-							hoverBorderColor:'rgba(200,200,200,1)',
+							backgroundColor: 'rgba(200, 200, 200, 0.75)',
+						borderColor: 'rgba(200, 200, 200, 0.75)',
+						hoverBackgroundColor: 'rgba(200, 200, 200, 1)',
+						hoverBorderColor: 'rgba(200, 200, 200, 1)',
 							data:debit
 						}
 						]
 					};
 					var ctx=$('#myCanvas');
 					var barGraph=new Chart(ctx,{
-						tyoe:'bar',
+						type:'bar',
 						data:chartdata
 					});
 

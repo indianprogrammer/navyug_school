@@ -10,7 +10,7 @@
                     <a href="<?= site_url('student/add'); ?>" class="btn btn-success ">Add</a>
                 </div>
             </div>
-
+        <div id="page">
             <table id="student_table" class="table table-striped table-bordered table-responsive">
                 <thead>
                     <tr>
@@ -103,6 +103,7 @@
 </div>
 </div>
 </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
 <script>
     $(document).ready( function () {
@@ -137,13 +138,14 @@
             success:function(data){  
                 var obj=JSON.parse(data);
                 
-                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info center full_details" >GET FULL DETAILS</button>');  
+                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info center full_details" onclick="getFullDetails(student_id)" >GET FULL DETAILS</button>');  
 
                 $('#dataModal').modal("show");  
             }  
         });  
-           
-            $(".full_details").on('click', function(){
+           function getFullDetails()
+           {
+            
                  console.log("uuu");
                 // $.ajax({
                 //     method: "POST",
@@ -158,9 +160,9 @@
 
                 //     }
                 // });
-            });
+        
 
-           
+           }
             
 
        
@@ -170,5 +172,22 @@
 </script>
 <script>
 
+ $(document).ready( function () {
 
+        var url = window.location.search;
+url = url.replace("?id=", ''); // remove the ?
+// console.log(url);
+ $.ajax({  
+            url:"<?= base_url()?>student/filterStudent",  
+            method:"post",  
+            data:{id:url},  
+            success:function(data){  
+                console.log(data);
+                var obj=JSON.parse(data);
+                // $('#page').hide();
+                 $('#page').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>'); 
+            }
+
+    });
+});
 </script>

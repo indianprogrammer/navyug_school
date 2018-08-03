@@ -11,7 +11,7 @@
     /*
      * Listing of student
      */
-    function student_list()
+    function index()
      {   
         // $data['claasesName']=$this->Student_model->get_class_name();
         $schoolId=$this->session->SchoolId;
@@ -218,6 +218,10 @@
     function fetchStudentView()
     {
          echo json_encode($student_view= $this->Student_model->get_student($this->input->post('id')));
+    }
+    function filterStudent()
+    {
+         echo json_encode($student_view= $this->Student_model->filter_student($this->input->post('id')));
     }
    
 }

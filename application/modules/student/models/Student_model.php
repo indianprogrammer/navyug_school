@@ -130,5 +130,17 @@ function delete_studentSchoolMap($id,$school_id)
 {
     $this->db->delete('map_school_student',array('student_id'=>$id,'school_id'=>$school_id));
 }
+
+function filter_student($id)
+{
+    $this->db->select('*');
+    $this->db->from('student');
+    $this->db->where('id',$id);
+   return $this->db->get()->row();
+}
+
+
+
+
 }
 ?>

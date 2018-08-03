@@ -23,6 +23,17 @@ function index()
    {
     $q=$this->test_model->get_student_count();
      // var_dump($q);
-    echo json_encode($q);
+    print_r(json_encode($q)); 
    }
+   function bar()
+    {
+         $data['_view'] = 'bar';
+        $this->load->view('index',$data);
+    }
+    function line()
+    {
+         $data['_view'] = 'line';
+        $this->load->view('index',$data);
+    }
+
 }

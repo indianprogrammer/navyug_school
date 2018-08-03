@@ -33,7 +33,7 @@ class School extends MY_Controller
            $data['class'] = $this->School_model->get_all_class_count($schoolId);  
            echo json_encode ($data);
     }
-    function school_list()
+    function index()
     {   $data['title']="School List";
         $data['school'] = $this->School_model->get_all_school();
 

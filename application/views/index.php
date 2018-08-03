@@ -70,7 +70,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>school/school_list" class="nav-link">
+                                <a href="<?= site_url() ?>school" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         SCHOOL LIST
@@ -102,7 +102,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>student/student_list" class="nav-link">
+                                <a href="<?= site_url() ?>student" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         STUDENT LIST
@@ -134,7 +134,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>employee/employee_list" class="nav-link">
+                                <a href="<?= site_url() ?>employee" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         EMPLOYEE LIST
@@ -167,7 +167,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>parents/parent_list" class="nav-link">
+                                <a href="<?= site_url() ?>parents" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         PARENT LIST
@@ -199,7 +199,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>subject/subject_list" class="nav-link">
+                                <a href="<?= site_url() ?>subject" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         SUBJECT LIST
@@ -231,7 +231,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>classes/class_list" class="nav-link">
+                                <a href="<?= site_url() ?>classes" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         CLASSES LIST
@@ -264,7 +264,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>enquiry/enquiry_list" class="nav-link">
+                                <a href="<?= site_url() ?>enquiry" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         ENQUIRY LIST

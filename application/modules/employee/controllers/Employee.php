@@ -11,7 +11,7 @@ class Employee extends MY_Controller{
     /*
      * Listing of employees
      */
-    function employee_list()
+    function index()
     {  
      
 

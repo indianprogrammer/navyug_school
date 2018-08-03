@@ -59,7 +59,7 @@ class Login extends MX_Controller
                     $this->session->name = $userData['name'];
                     $this->session->profileImage = $userData['profile_image'];
                     echo "admin  ". $this->session->username;
-                    redirect ('school/dashboard');
+                    redirect ('admin');
 
                     break;
                 case 2:

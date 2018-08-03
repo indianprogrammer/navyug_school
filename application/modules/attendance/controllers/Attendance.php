@@ -95,8 +95,8 @@ function attendance_list()
 function show_report()
 {
     $school_id=$this->session->SchoolId;
-    $classId= $this->input->post('classId');
-    $date= $this->input->post('date_select');
+    $classId= $this->input->post('id');
+    $date= $this->input->post('date');
      // var_dump($date);die;
   
 
@@ -105,9 +105,9 @@ function show_report()
   // var_dump($data['report']);die;
 
   $data['student']=$this->Attendance_model->fetch_student_name($school_id);
- 
-   $data['_view'] = 'attendanceList';
-       $this->load->view('index',$data);
+ echo json_encode($data);
+   // $data['_view'] = 'attendanceList';
+   //     $this->load->view('index',$data);
 }
 
 

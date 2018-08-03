@@ -12,7 +12,7 @@ class Subject extends MY_Controller{
     /*
      * Listing of subject
      */
-    function subject_list()
+    function index()
     {
      
         $schoolId=$this->session->SchoolId;

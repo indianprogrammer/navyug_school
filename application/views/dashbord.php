@@ -25,7 +25,7 @@
                 <div class="col-12 col-sm-6 col-md-3">
                  <a href="<?= base_url() ?>subject/subject_list">  
                     <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fa fa-gear"></i></span>
+                        <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text ">Subject</span>
@@ -54,7 +54,7 @@
         <div class="col-12 col-sm-6 col-md-3">
           <a href="<?= base_url() ?>student/student_list">  
             <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-google-plus"></i></span>
+                <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-child"></i></span>
 
                 <div class="info-box-content">
                     <span class="info-box-text ">Student</span>
@@ -161,7 +161,7 @@
 <script type="text/javascript">
    $(document).ready(function(){
      $('.ajax_loading').show();
-     $.ajax({url: "<?= base_url()?>school/dashboardCounting",method:"get", success: function(result){
+     $.ajax({url: "<?= base_url()?>admin/dashboardCounting",method:"get", success: function(result){
        $('.ajax_loading').hide();
        var obj=JSON.parse(result);
 

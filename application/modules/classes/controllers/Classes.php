@@ -12,7 +12,7 @@ class Classes extends MY_Controller{
     /*
      * Listing of class
      */
-    function class_list()
+    function index()
     {
         $school_id=$this->session->SchoolId;
         $data['studentCount']=$this->Classes_model->get_student_count();
