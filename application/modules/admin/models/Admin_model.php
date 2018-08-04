@@ -9,48 +9,8 @@ class Admin_model extends CI_Model
         parent::__construct();
     }
     
-    /*
-     * Get student by id
-     */
-    function get_student($id)
-    {
-        return $this->db->get_where('student',array('id'=>$id))->row_array();
-    }
-        
-    /*
-     * Get all student
-     */
-    function get_all_student()
-    {
-        $this->db->order_by('id', 'desc');
-        return $this->db->get('student')->result_array();
-    }
-        
-    /*
-     * function to add new student
-     */
-    function add_student($params)
-    {
-        $this->db->insert('student',$params);
-        return $this->db->insert_id();
-    }
-    
-    /*
-     * function to update student
-     */
-    function update_student($id,$params)
-    {
-        $this->db->where('id',$id);
-        return $this->db->update('student',$params);
-    }
-    
-    /*
-     * function to delete student
-     */
-    function delete_student($id)
-    {
-        return $this->db->delete('student',array('id'=>$id));
-    }
+  
+   
   ##for counting row
     function get_all_students_count($school_id)
     {
@@ -76,9 +36,33 @@ class Admin_model extends CI_Model
       $query=$this->db->get('map_school_class')->num_rows();
       return $query;
     }
+    function get_amount_count_debit()
+    {
+        $this->db->select_sum('debit');
+       // $this->db->where('class_id',);
+     $query=$this->db->get('account_transaction')->row();
+      return $query;
+
+    }
+     function get_amount_count_credit()
+    {
+        $this->db->select_sum('credit');
+       // $this->db->where('class_id',);
+    return $this->db->get('account_transaction')->row();
+      
+
+    }
 
 
+function get_student_details_date()
+{
 
+  $this->db->select('*');
+  $this->db->from('student');
+  $this->db->where('DATE(created_at)>=','2018-07-28');
+ $this->db->where('DATE(created_at) <=', '2018-07-30');
+return $this->db->get()->result();
+}
 
 
 

@@ -385,9 +385,9 @@
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-12">
 
-                    <ul class="breadcrumb">
+                  <!--   <ul class="breadcrumb">
 
-                        <!-- <li class="breadcrumb-item active">Add Enquiry</li> -->
+                       
                         <?php
                         $crumbs = explode("/", $_SERVER["REQUEST_URI"]);
 
@@ -397,7 +397,7 @@
 
                         <?php } ?>
 
-                    </ul>
+                    </ul> -->
 
 
                     <?php if (isset($this->session->alerts)) {

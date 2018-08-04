@@ -131,6 +131,8 @@
   $('.view_data').click(function(){  
    var student_id = $(this).attr("id");  
             console.log(student_id);
+            viewStudent();
+      function viewStudent() {     
            $.ajax({  
             url:"<?= base_url()?>student/fetchStudentView",  
             method:"post",  
@@ -138,11 +140,23 @@
             success:function(data){  
                 var obj=JSON.parse(data);
                 
-                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info center full_details" onclick="getFullDetails(student_id)" >GET FULL DETAILS</button>');  
+                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info full_details"  >GET FULL DETAILS</button>');  
 
                 $('#dataModal').modal("show");  
             }  
         });  
+         }
+
+            
+
+       
+      
+   });  
+ </script><script>
+         $('.full_details').click(function()
+         {
+          alert("alert");
+         });
            function getFullDetails()
            {
             
@@ -163,11 +177,6 @@
         
 
            }
-            
-
-       
-      
-   });  
 
 </script>
 <script>

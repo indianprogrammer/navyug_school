@@ -14,7 +14,7 @@ class Login extends MX_Controller
         // Load our view to be displayed
         // to the user
         $data['msg'] = $msg;
-        $this->load->view('login', $data);
+        $this->load->view('login2', $data);
     }
 
 

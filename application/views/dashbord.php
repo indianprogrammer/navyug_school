@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Dashboard </h1>
+                    <!-- <h1 class="m-0 text-dark">Dashboard </h1> -->
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
@@ -32,8 +32,8 @@
                             <span class="info-box-number subject">
                                 <div class="ajax_loading">         
                                     <div class="col-md-3">
-                                       
-                                       
+
+
                                       <!-- Loading (remove the following to stop the loading)-->
                                       <div class="overlay">
                                         <i class="fa fa-refresh fa-spin"></i>
@@ -61,8 +61,8 @@
                     <span class="info-box-number student">
                         <div class="ajax_loading">         
                             <div class="col-md-3">
-                               
-                               
+
+
                               <!-- Loading (remove the following to stop the loading)-->
                               <div class="overlay">
                                 <i class="fa fa-refresh fa-spin"></i>
@@ -92,8 +92,8 @@
                 <span class="info-box-number class">
                     <div class="ajax_loading">         
                         <div class="col-md-3">
-                           
-                           
+
+
                           <!-- Loading (remove the following to stop the loading)-->
                           <div class="overlay">
                             <i class="fa fa-refresh fa-spin"></i>
@@ -120,9 +120,9 @@
             <span class="info-box-number employee">
                 <div class="ajax_loading">         
                     <div class="col-md-3">
-                       
-                       
-                      <!-- Loading (remove the following to stop the loading)-->
+
+
+
                       <div class="overlay">
                         <i class="fa fa-refresh fa-spin"></i>
                     </div>
@@ -138,7 +138,95 @@
 <!-- /.info-box -->
 </div>
 <!-- /.col -->
+<div class="card card-success">
+  <div class="card-header">
+    <h3 class="card-title">Total Income</h3>
+
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+  </div>
 </div>
+<div class="ajax_loading">         
+    <div class="col-md-3">
+
+
+
+      <div class="overlay">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <!-- end loading -->
+</div>
+<!-- /.card -->
+</div>
+<div class="card-body">
+    <div class="chart">
+      <canvas id="myChart" width="400" height="300" style="width:400px;height: 300px"></canvas>
+     <span>Remaning <div id="amount_remaning"></div></span>
+  </div>
+</div>
+<!-- /.card-body -->
+</div>
+
+<!-- <div class="col-md-6">
+           
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fa fa-bar-chart-o"></i>
+                  Bar Chart
+                </h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                  <button type="button" class="btn btn-tool" data-widget="remove">
+                    <i class="fa fa-times"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="bar-chart" style="height: 300px;"></div>
+
+              </div>
+            
+            </div>
+</div> -->
+<!-- <div class="card-footer">
+                <div class="row">
+                  <div class="col-sm-4 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 17%</span>
+                      <h5 class="description-header">$35,210.43</h5>
+                      <span class="description-text">TOTAL REVENUE</span>
+                    </div>
+                   
+                  </div>
+                 
+                  <div class="col-sm-4 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-warning"><i class="fa fa-caret-left"></i> 0%</span>
+                      <h5 class="description-header">$10,390.90</h5>
+                      <span class="description-text">TOTAL COST</span>
+                    </div>
+                  
+                  </div>
+                 
+                  <div class="col-sm-4 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 20%</span>
+                      <h5 class="description-header">$24,813.53</h5>
+                      <span class="description-text">TOTAL PROFIT</span>
+                    </div>
+                                     </div>
+              
+                  
+                </div>
+              
+              </div> -->
+           
 <!-- /.row -->
 
 
@@ -148,6 +236,7 @@
 <!--/. container-fluid -->
 </section>
 <!-- /.content -->
+
 
 
 
@@ -170,6 +259,65 @@
        $('.class').html(obj.class);
        $('.student').html(obj.students);
    }});
-     
+
  });
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+      $('.ajax_loading').show();
+      $.ajax({url: "<?= base_url()?>admin/totalAmount",method:"get", success: function(result){
+         $('.ajax_loading').hide();
+         var obj=JSON.parse(result);
+
+         $loss=obj.debit-obj.credit;
+         console.log($loss);
+         $('#amount_remaning').html($loss);
+
+    // console.log(debit);
+    var canvas = document.getElementById('myChart');
+    var data = {
+        labels: ["DEBIT","CREDIT"],
+        datasets: [
+        {
+            label: "Amount",
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            borderWidth: 1,
+            // xAxisID:"10",
+            hoverBackgroundColor: "rgba(255,99,132,0.4)",
+            hoverBorderColor: "rgba(255,99,132,1)",
+            data: [obj.debit,obj.credit],
+            backgroundColor:[
+            "rgba(255,99,132,0.2)","rgba(255,99,116,0.2)"
+            ]
+        }
+        ]
+    };
+    var option = {
+        animation: {
+            duration:2000
+        }
+    }
+    var myBarChart = Chart.Bar(canvas,{
+        data:data,
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }],
+                  xAxes: [{
+                  barPercentage:.3 }]
+            }
+        }
+
+    });
+}
+});
+  });
+
+
+
 </script>
