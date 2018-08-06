@@ -66,7 +66,7 @@ class Enquiry extends MY_Controller{
             'title'=> 'successfully added',
          'description'=> ''
         );
-            redirect('enquiry/enquiry_list');
+            redirect('enquiry');
         }
         else
         {            
@@ -110,7 +110,7 @@ class Enquiry extends MY_Controller{
             );
                 
                 $this->eEquiry_model->update_enquiry($id,$params);            
-                redirect('enquiry/enquiry_list');
+                redirect('enquiry');
             }   
             else
             {
@@ -133,7 +133,7 @@ class Enquiry extends MY_Controller{
         if(isset($enquiry['id']))
         {
             $this->Enquiry_model->delete_enquiry($id);
-            redirect('enquiry/enquiry_list');
+            redirect('enquiry');
         }
         else
             show_error('The enquiry you are trying to delete does not exist.');

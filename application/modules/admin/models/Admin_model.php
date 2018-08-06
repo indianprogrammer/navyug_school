@@ -57,14 +57,30 @@ class Admin_model extends CI_Model
 function get_student_details_date()
 {
 
-  $this->db->select('*');
-  $this->db->from('student');
-  $this->db->where('DATE(created_at)>=','2018-07-28');
- $this->db->where('DATE(created_at) <=', '2018-07-30');
-return $this->db->get()->result();
+  // $this->db->select('id');
+ 
+//   $this->db->from('student');
+//    $this->db->order_by('created_at','desc');
+//   $this->db->group_by('MONTH(created_at)');
+
+// return $this->db->count_all_results('id');
+  $query = $this->db->query("select MONTHNAME(created_at) as month,count(id) as count from student  group by MONTH(created_at) order by MONTH(created_at) asc");
+   return $query->result_array();
+   // return result();
 }
+function get_invoice_details_date($school_id)
+{
+$query = $this->db->query("select MONTHNAME(date) as month,sum(total_amount) as total,count(id) as count from invoices where school_id='$school_id' group by MONTH(date) order by MONTH(date) asc ");
+   return $query->result_array();
 
 
+}
+function get_sales_details_date()
+{
+$query = $this->db->query("select MONTHNAME(date) as month,sum(debit) as debit,sum(credit) as credit,count(id) as count from account_transaction  group by MONTH(date) order by MONTH(date) asc ");
+   return $query->result_array();
+
+}
 
 
 

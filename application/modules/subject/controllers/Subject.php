@@ -69,7 +69,7 @@ class Subject extends MY_Controller{
          'description'=> ''
         );
         //$this->output->enable_profiler(TRUE);
-        redirect('subject/subject_list');
+        redirect('subject');
     }
     else
     {            
@@ -105,7 +105,7 @@ class Subject extends MY_Controller{
                 );
                 
                 $this->Subject_model->update_subject($id,$params);            
-                redirect('subject/subject_list');
+                redirect('subject');
             }
             else
             {
@@ -129,7 +129,7 @@ class Subject extends MY_Controller{
         {
             $this->Subject_model->delete_subject($id);
             $this->Subject_model->delete_subjectSchoolMap($id,$schoolId);
-            redirect('subject/subject_list');
+            redirect('subject');
         }
         else
             show_error('The subject you are trying to delete does not exist.');

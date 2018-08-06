@@ -66,9 +66,8 @@ function add()
         'mobile' => $this->input->post('mobile'),
 
         'permanent_address' => $this->input->post('paddress'),
-        'temporary_address' => $this->input->post('taddress'),
-        'created_at'=>date('Y-m-d h:i:s'),
-        'modified_at'=>date('Y-m-d h:i:s')
+        'temporary_address' => $this->input->post('taddress')
+       
     );
 
 
@@ -105,7 +104,7 @@ function add()
             'title'=> 'successfully added',
          'description'=> ''
      );
-             redirect('parents/parent_list');
+             redirect('parents');
          }
          else
          {            
@@ -151,7 +150,7 @@ function add()
 
 
                 $this->Parents_model->update_parent($id,$params);            
-                redirect('parents/parent_list');
+                redirect('parents');
             }   
             else
             {
@@ -174,7 +173,7 @@ function add()
         if(isset($parent['id']))
         {
             $this->Parents_model->delete_parent($id);
-            redirect('parents/parent_list');
+            redirect('parents');
         }
         else
             show_error('The parent you are trying to delete does not exist.');

@@ -1,6 +1,6 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
-<?= form_open_multipart('student/add',array("class"=>"form-horizontal",'method'=>"get")); ?>
+<?= form_open_multipart('student/add',array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
 		<label for="student_name" class="col-md-4 control-label"><span class="text-danger">*</span>Student Name</label>

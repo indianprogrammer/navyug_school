@@ -93,7 +93,7 @@ class School extends MY_Controller
             'title'=> 'successfully added',
          'description'=> ''
         );
-              redirect('school/school_list');
+              redirect('school');
              // header('location:successmodal.php');
         } else {
              // $this->session->set_flashdata('status','Failed to added');
@@ -148,7 +148,7 @@ class School extends MY_Controller
                 );
 
                 $this->School_model->update_school($id, $params);
-                redirect('school/school_list');
+                redirect('school');
             } else {
                 $data['_view'] = 'edit';
                 //var_dump($data);

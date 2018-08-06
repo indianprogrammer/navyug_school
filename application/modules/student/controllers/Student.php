@@ -17,7 +17,9 @@
         $schoolId=$this->session->SchoolId;
         $data['student'] = $this->Student_model->get_all_student($schoolId);
         $data['classes'] = $this->Student_model->getAllClasses($schoolId);
-        
+        // var_dump($data['student']);
+        // var_dump($data['classes']);
+        // die;
         // print_r($data['classes']);
 
         $data['_view'] = 'studentList';
@@ -125,7 +127,7 @@
          'description'=> ''
      );
 
-        redirect('student/student_list');
+        redirect('student');
     }
     else
     {            
@@ -182,7 +184,7 @@
             'severity'=> 'success',
             'title'=> 'successfully edited',
          'description'=> ''      );
-                redirect('student/student_list');
+                redirect('student');
             }
             else
             {
@@ -210,7 +212,7 @@
             $this->Student_model->delete_studentSchoolMap($id,$schoolId);
 
             
-            redirect('student/student_list');
+            redirect('student');
         }
         else
             show_error('The student you are trying to delete does not exist.');

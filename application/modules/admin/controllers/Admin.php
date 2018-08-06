@@ -46,9 +46,22 @@
       // $dateto=$this->input->post('dateto');
      // $datefrom= $this->input->post('datefrom');
       $data=$this->Admin_model->get_student_details_date();
-      var_dump($data);die;
+      echo json_encode($data);
     }
+    function invoiceReport()
+    {
+       $schoolId=$this->session->SchoolId;
+      $data=$this->Admin_model->get_invoice_details_date($schoolId);
+      echo json_encode($data);
 
+    }
+    function salesChart()
+    {
+
+      $schoolId=$this->session->SchoolId;
+      $data=$this->Admin_model->get_sales_details_date();
+      echo json_encode($data);
+    }
 
 
 

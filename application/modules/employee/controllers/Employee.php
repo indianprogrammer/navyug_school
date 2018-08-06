@@ -105,7 +105,7 @@ class Employee extends MY_Controller{
             'title'=> 'successfully added',
          'description'=> ''
        );
-      redirect('employee/employee_list');
+      redirect('employee');
 
 /*
       
@@ -179,7 +179,7 @@ class Employee extends MY_Controller{
                // echo $image_path;die;
           $params['profile_image']=$image_path;
           $this->Employee_model->update_employee($id,$params);            
-          redirect('employee/employee_list');
+          redirect('employee');
         }   
         else
         {
@@ -203,8 +203,8 @@ class Employee extends MY_Controller{
       if(isset($employee['id']))
       {
         $this->Employee_model->delete_employee($id);
- // $this->Employee_model->delete_EmployeeSchoolMap($id,$schoolId);
-        redirect('employee/employee_list');
+ $this->Employee_model->delete_EmployeeSchoolMap($id,$schoolId);
+        redirect('employee');
       }
       else
         show_error('The employee you are trying to delete does not exist.');
