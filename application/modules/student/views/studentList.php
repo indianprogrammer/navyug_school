@@ -19,7 +19,7 @@
                         <th>Student Name</th>
                         <th>Email</th>
                         <th>classes</th>
-                        <th>Mobile</th>
+                        <th >Mobile</th>
                         <th>Permanent Address</th>
                         <th>Corresponding Address</th>
                         <th>Profile Image</th>
@@ -32,7 +32,7 @@
                         <tr>
                             <td><?= $count++  ?></td>
 
-                            <td><?= $row['student_name']; ?></td>
+                            <td ><?= $row['student_name']; ?></td>
                             <td ><?= $row['email']; ?></td>
                             <td width="1%" ><?php 
 
@@ -57,8 +57,8 @@
 
 
                             <div class="btn-group">
-                                <button type="button" class="btn btn-info btn-flat">Action</button>
-                                <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">
+                                <button type="button" class="btn btn-info ">Action</button>
+                                <button type="button" class="btn btn-default  dropdown-toggle" data-toggle="dropdown">
                                   <span class="caret"></span>
                                   <span class="sr-only">Toggle Dropdown</span>
                               </button>
@@ -95,11 +95,31 @@
                 </div>
                 <!-- </div> -->
                 <!-- modal class end -->
-            </td>
-        </tr>
+                 <div id="dataModalinvoice" class="modal fade" role="dialog">
+                          <div class="modal-dialog modal-lg" >
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <!-- <h4 class="modal-title">Invoice Information</h4> -->
+                            </div>
+                            <div class="modal-body" id="invoice_information">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+       </tr>
+
     <?php } ?>
 </tbody>
 </table>
+<div class="invoice_information"></div>
 </div>
 </div>
 </div>
@@ -130,7 +150,7 @@
  
   $('.view_data').click(function(){  
    var student_id = $(this).attr("id");  
-            console.log(student_id);
+            // console.log(student_id);
             viewStudent();
       function viewStudent() {     
            $.ajax({  
@@ -140,7 +160,7 @@
             success:function(data){  
                 var obj=JSON.parse(data);
                 
-                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info full_details"  >GET FULL DETAILS</button>');  
+                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info full_details" onclick="getFullDetails('+student_id+')"  >GET FULL DETAILS</button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getFullDetailsReciept('+student_id+')"  >GET All RECIEPTS DETAILS </button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getBalence('+student_id+')"  >Check Balance </button>');  
 
                 $('#dataModal').modal("show");  
             }  
@@ -152,31 +172,92 @@
        
       
    });  
- </script><script>
-         $('.full_details').click(function()
-         {
-          alert("alert");
-         });
-           function getFullDetails()
+ </script>
+ <script>
+  
+           function getFullDetails($id)
            {
             
-                 console.log("uuu");
-                // $.ajax({
-                //     method: "POST",
-                //     url:" <?= base_url() ?>account/checkBalance", 
-                //     data: {
-                //         keyword: 18 
-                //     },
-                //     success: function( responseObject ) {
-                //         console.log(responseObject);
-                //         // $("#showBalance").html("your balance = "+responseObject);
+                
+                $.ajax({
+                    method: "POST",
+                    url:" <?= base_url() ?>student/studentCompleteInformationInvoice", 
+                    data: {
+                        id: $id
+                    },
+                    success: function( responseObject ) {
+                        // console.log(responseObject);
+                        var obj=JSON.parse(responseObject);
+                        // $("#showBalance").html("your balance = "+responseObject);
+                         // console.log(obj);
+                          var maintable,i;
+                           for (i = 0; i < obj.length; i++) {
+                      
+                        maintable+='<tr><td>'+obj[i].invoice_id+'</td><td>'+obj[i].invoice_total+'</td><td>'+obj[i].invoice_date+'</td></tr>';
+                        // finaltable=table+maintable+'</table>';
+                        // console.log( finaltable)
+                        $('#invoice_information').html('<table class="table table-striped table-bordered table-responsive"><tr><th>invoice id</th><th>amount</th><th>date</th></tr>'+maintable+'</table>');
+                        $('#dataModalinvoice').modal("show");  
 
-
-                //     }
-                // });
+                    }
+                  }
+                });
         
 
-           }
+            }
+             function getFullDetailsReciept($id)
+           {
+            
+                
+                $.ajax({
+                    method: "POST",
+                    url:" <?= base_url() ?>student/studentCompleteInformationReciept", 
+                    data: {
+                        id: $id
+                    },
+                    success: function( responseObject ) {
+                         console.log(responseObject);
+                        var obj=JSON.parse(responseObject);
+                        // $("#showBalance").html("your balance = "+responseObject);
+                         // console.log(obj);
+                          var maintable,i;
+                           for (i = 0; i < obj.length; i++) {
+                      
+                        maintable+='<tr><td>'+obj[i].reciept_id+'</td><td>'+obj[i].reciept_amount+'</td><td>'+obj[i].reciept_date+'</td></tr>';
+                        // finaltable=table+maintable+'</table>';
+                        // console.log( finaltable)
+                        $('#invoice_information').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Reciept id</th><th>amount</th><th>date</th></tr>'+maintable+'</table>');
+                        $('#dataModalinvoice').modal("show");  
+
+                    }
+                  }
+                });
+        
+
+            }
+         function getBalence($id)
+           {
+            
+                
+                $.ajax({
+                    method: "POST",
+                    url:" <?= base_url() ?>account/checkBalance", 
+                    data: {
+                        keyword: $id
+                    },
+                    success: function( responseObject ) {
+                         console.log(responseObject);
+                      
+                        $('#invoice_information').html('<h4>Your Current Balance Is '+responseObject+'' );
+                        $('#dataModalinvoice').modal("show");  
+
+                    }
+                  
+                });
+        
+
+            }
+      
 
 </script>
 <script>

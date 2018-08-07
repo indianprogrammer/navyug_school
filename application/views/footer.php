@@ -4,7 +4,7 @@
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2018 <a href="https://9yug.net">9YUG.NET</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2017-2018 <a href="https://9yug.net">9YUG.NET</a>.</strong> All rights reserved.
   </footer>
 
 <!-- ./wrapper -->
@@ -16,7 +16,7 @@
 <script src="<?= base_url() ;?>assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url() ;?>assets/admin/plugins/bootstrap/js/bootstrap.js"></script>
 <!-- AdminLTE App -->
-<script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.js"></script>
+<script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="<?= base_url() ;?>assets/admin/dist/js/demo.js"></script>

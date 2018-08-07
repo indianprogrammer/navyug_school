@@ -138,7 +138,30 @@ function filter_student($id)
     $this->db->where('id',$id);
    return $this->db->get()->row();
 }
+function student_complete_info_invoice($id)
+{
 
+
+    $this->db->select('invoices.invoice_id,invoices.total_amount as invoice_total,invoices.date as invoice_date,');
+    $this->db->from('invoices');
+    $this->db->where('invoices.student_id',$id);
+    // $this->db->join('reciepts', 'reciepts.student_id =invoices.student_id ');
+
+   return $this->db->get()->result_array();
+
+}
+function student_complete_info_reciepts($id)
+{
+
+
+    $this->db->select('reciepts.total_amount as reciept_amount,reciepts.reciept_id,reciepts.date as reciept_date');
+    $this->db->from('reciepts');
+    $this->db->where('reciepts.student_id',18);
+    // $this->db->join('reciepts', 'reciepts.student_id =invoices.student_id ');
+
+   return $this->db->get()->result_array();
+
+}
 
 
 

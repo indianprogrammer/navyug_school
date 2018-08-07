@@ -1,5 +1,16 @@
 
+ <style type="text/css">
+     /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    canvas #line-chart {height:100%;}
+}
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  canvas  #line-chart {height:100%;}
+}
+
+   </style>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -163,10 +174,10 @@
                   <!-- <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong> -->
                 </p>
 
-                <div class="chart">
+                <div class="chart ">
                   <!-- Sales Chart Canvas -->
                   <!--  <canvas id="salesChart" height="180" style="height: 180px;"></canvas> -->
-                  <canvas id="line-chart" height="60" style="width:300px;height: 200px"></canvas>
+                  <canvas id="line-chart" width="400" height="110" style="width:300px;height: 60px;"></canvas>
                 </div>
                 <!-- /.chart-responsive -->
               </div>
@@ -325,7 +336,7 @@
 
  });
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
   $(document).ready(function(){
     $('.ajax_loading').show();
@@ -383,17 +394,20 @@
 
 
 
-</script>
+</script> -->
 <script type="text/javascript">
 
   $(document).ready(function(){
+
     $('.ajax_loading').show();
+    studentAdd();
+    function studentAdd(){
     $.ajax({url: "<?= base_url()?>admin/studentAdd",method:"get", success: function(result){
      $('.ajax_loading').hide();
      var obj=JSON.parse(result);
 
 
-     console.log(obj);
+     // console.log(obj);
      var count=[];
      var month =[];
      for (var i in obj)
@@ -402,7 +416,7 @@
       month.push(obj[i].month);
 
     }
-    console.log(count);
+    // console.log(count);
         Chart.defaults.global.defaultFontFamily = "Lato";
     Chart.defaults.global.defaultFontSize = 18;
     var canvas = document.getElementById('myChartStudent');
@@ -446,6 +460,7 @@
           });
       }
     });
+  }
   });
 
 
@@ -455,12 +470,14 @@
 <!-- /* for invoice */ -->
 <script type="text/javascript">
   $(document).ready(function(){
+    invoiceReport();
+    function invoiceReport(){
     $.ajax({url: "<?= base_url()?>admin/invoiceReport",method:"get", success: function(result){
      $('.ajax_loading').hide();
      var obj=JSON.parse(result);
 
 
-     console.log(obj);
+     // console.log(obj);
      var count=[];
      var month =[];
      var total =[];
@@ -472,6 +489,7 @@
 
     }
     var densityCanvas = document.getElementById("densityChart");
+
 
     Chart.defaults.global.defaultFontFamily = "Lato";
     Chart.defaults.global.defaultFontSize = 18;
@@ -518,10 +536,14 @@
     });
   }
 });
+  }
   });
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
+    salesChart();
+    function salesChart()
+    {
     $.ajax({url: "<?= base_url()?>admin/salesChart",method:"get", success: function(result){
      $('.ajax_loading').hide();
      var obj=JSON.parse(result);
@@ -564,5 +586,6 @@
     });
   }
 });
+  }
   });
 </script>

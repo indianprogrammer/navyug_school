@@ -40,7 +40,7 @@
                        </a>
                        <ul class="nav nav-treeview"> -->
                     <li class="nav-item has-treeview menu-open">
-                        <a href="<?= site_url() ?>school/dashboard" class="nav-link actives">
+                        <a href="<?= site_url() ?>school/dashboard" class="nav-link">
                             <i class="fa fa-circle-o nav-icon"></i>
                             <p>Dashboard</p>
                         </a>

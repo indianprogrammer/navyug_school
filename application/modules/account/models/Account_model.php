@@ -299,5 +299,22 @@ function get_max(){
 
 }
 }
+function generate_reciept_num()
+{
+
+  $this->db->select_max('reciept_id');
+  $this->db->from('reciepts');
+  $id= $this->db->get()->row();
+   // var_dump($id);die;
+  // echo $id->reciept_id;
+  if(isset($id))
+  {
+    return $id->reciept_id+1;
+  }
+  else
+  {
+    return 1;
+  }
+}
 }
 ?>

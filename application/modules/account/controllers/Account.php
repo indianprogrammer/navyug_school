@@ -174,7 +174,7 @@
          // var_dump($student_info);die;
         ##get student details by student_id
         $getStudentDetails=$this->Account_model->get_information_student($studId);
-         // var_dump($getStudentDetails);
+          // var_dump($getStudentDetails);die;
         ##getting information of invoice payment
        //  $getInformationInvoicePayment['params']=$this->Account_model->get_information_invoice_payment($invoiceId);
      
@@ -198,19 +198,21 @@
 
 
        // }
-
+        
 
 
 
 
         ##generate random reciept number
-       $recieptId=rand(1,1000).rand(1,100);
+       // $recieptId=rand(1,1000).rand(1,100);
+        $recieptId=$this->Account_model->generate_reciept_num();
+     // echo( $invoice_id);die;
        $reciept=array(
         'reciept_id'=>$recieptId,
         'student_id'=>$getStudentDetails->id,
         'total_amount'=>$paid,
-        'payment_method'=>$payment_method
-        // 'invoice_id'=>$invoiceId
+        'payment_method'=>$payment_method,
+        'school_id'=>$this->session->SchoolId
     );
 
         ##insert data to reciept table

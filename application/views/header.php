@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/bootstrap/css/bootstrap.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/dist/css/adminlte.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
 
 
     <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.css">
@@ -20,8 +21,61 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
    <style type="text/css">
-     
+     /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    canvas  {height:1000px;}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+   canvas  {height:1000px;}
+}
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
+  color: #ffffff;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover, .navbar-dark .navbar-nav .nav-link:focus {
+  color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link.disabled {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.navbar-dark .navbar-nav .show > .nav-link,
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #ffffff;
+}
+
+
    </style>
+   <script type="text/javascript">
+     $(document).ready(function(){
+  $('.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link').click(function(){
+    $('.nav-item>.nav-link').removeClass("active");
+    $(this).addClass("active");
+});
+});
+   </script>
+   <script type="text/javascript">
+     $(document).ready(function(){
+  $('.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-treeview>.nav-link').click(function(){
+    $('.nav-item>.nav-link').removeClass("active");
+    $(this).addClass("active");
+});
+});
+   </script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

@@ -58,7 +58,7 @@
     $this->form_validation->set_rules('paddress','Permanent Address','required');
     $this->form_validation->set_rules('taddress','Temporary Address','required');
 
-    if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
+    if($this->form_validation->run() || $this->upload->do_upload('profile_image'))     
     {   
      $classes=implode(",",$this->input->post('classes'));
         $params = array(
@@ -225,6 +225,23 @@
     {
          echo json_encode($student_view= $this->Student_model->filter_student($this->input->post('id')));
     }
-   
+   function studentCompleteInformationInvoice()
+   {
+
+    $stuInfo=$this->Student_model->student_complete_info_invoice($this->input->post('id'));
+   echo json_encode($stuInfo);
+
+
+
+   }
+    function studentCompleteInformationReciept()
+   {
+
+    $stuInfo=$this->Student_model->student_complete_info_reciepts($this->input->post('id'));
+   echo json_encode($stuInfo);
+
+
+
+   }
 }
 ?>
