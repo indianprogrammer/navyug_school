@@ -53,3 +53,4 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 // $route['student/:num'] = 'student/edit/18';
 $route['translate_uri_dashes'] = FALSE;
+$route['email/run']= 'email/email/email.php/run';

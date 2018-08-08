@@ -162,6 +162,21 @@ function student_complete_info_reciepts($id)
    return $this->db->get()->result_array();
 
 }
+function select_uname_password($id)
+{
+  $this->db->select('username,clear_text');
+    $this->db->from('authentication');
+    $this->db->where('id',$id);
+    return $this->db->get()->row();
+
+}
+
+function insert_info($data)
+{
+ $this->db->insert('sms',$data);
+        return $this->db->insert_id();
+    }
+
 
 
 

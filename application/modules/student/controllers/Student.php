@@ -57,7 +57,7 @@
     $this->form_validation->set_rules('paddress','Permanent Address','required');
     $this->form_validation->set_rules('taddress','Temporary Address','required');
 
-    if($this->form_validation->run() || $this->upload->do_upload('profile_image'))     
+    if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
     {   
      $classes=implode(",",$this->input->post('classes'));
         $params = array(
@@ -101,6 +101,24 @@
            );
              // var_dump($authentication);
              $insertStudentAuthentication  = $this->Student_model->add_user($authentication);
+
+             ##for sms and email
+             $userdata=$this->Student_model->select_uname_password($insertStudentAuthentication);
+         
+          $msg='Your Username='.$userdata->username.' and Password='.$userdata->clear_text.'';
+          $smsinfo= array('msg'=>$msg,
+             'mobile_to'=>$this->input->post('mobile'),
+             'school_id'=>$this->session->SchoolId,
+             'module'=>'student'
+        );
+          // var_dump($smsinfo);die;
+          $insertInfo=$this->Student_model->insert_info($smsinfo);
+
+
+           // $this->session->set_userdata($smsinfo);
+            
+
+
              $schoolStudentMap=array(
 
                 'student_id'=>$studentId,

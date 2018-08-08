@@ -5,17 +5,18 @@ class Test extends MY_Controller{
     function __construct()
     {
         parent::__construct();
-        $this->load->model('test_model');
+        // $this->load->model('test_model');
 
     } 
 
-    /*
-     * Listing of test
-     */
 function index()
     {
-         $data['_view'] = 'add';
-        $this->load->view('index',$data);
+      // $data=array('usrname'=>'vivek','pw'=>12345);
+       // $this->load->controller('email/run', $data, $return = true);
+      // modules::run('email/run', $data);
+      // $this->session->set_userdata($datas);
+    // echo  $this->session->userdata('message');
+        bar();
     }
 
 
@@ -37,3 +38,4 @@ function index()
     }
 
 }
+?>

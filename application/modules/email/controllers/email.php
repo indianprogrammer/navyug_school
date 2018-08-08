@@ -1,22 +1,27 @@
 <?php
-class Email extends MX_Controller {
+class Email extends MY_Controller {
     function __construct() {
         parent::__construct();
+        // $this->load->modules('test');
        
     }
-    
+    function run($data)
+    {
+        var_dump($data);
+         // var_dump($this->session->userdata($datas));
+    }
     public function send_mail() {
-    	// $config=array(
-    	// 	'protocol'=>'smtp',
-    	// 	'smtp_host'=>'ssl://smtp.googleemail.com',
-    	// 	'smtp_port'=>465,
-    	// 	'smtp_user'=>'vivek.et1993@gmail.com',
-    	// 	 'smtp_pass'=>'fsdfs@43'
+    	$config=array(
+    		'protocol'=>'smtp',
+    		'smtp_host'=>'mail.9yug.net',
+    		'smtp_port'=>25,
+    		'smtp_user'=>'test@9yug.net',
+    		 'smtp_pass'=>'test5432@1'
 
 
-    	// );
-        // $this->load->library('email');
-        $from_email = "email@example.com";
+    	);
+        $this->load->library('email',$config);
+        $from_email = "mail.9yug.net";
         $to_email = "vivek.et1993@gmail.com";
         //Load email library
         $this->email->from($from_email, 'Identification');
