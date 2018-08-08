@@ -33,7 +33,7 @@
         <td><?= $row['mobile']; ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?=$row['Permanent_address']?>"><?= substr($row['Permanent_address'],0,10).'...' ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?=$row['temporary_address']?>"><?= substr($row['temporary_address'],0,10).'...' ?></td>
-        <td><img src="<?= base_url()."uploads/". $row['profile_image'];?>" style="width:50px;height:50px" ></td>
+        <td><img src="<?= base_url()."uploads/". $row['profile_image'];?>" alt="" style="width:50px;height:50px" ></td>
         <td>
           
                 <a href="<?= site_url('employee/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
@@ -53,6 +53,7 @@
 </tbody>    
 </table>
 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
 
   

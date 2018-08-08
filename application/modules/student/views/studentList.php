@@ -23,6 +23,7 @@
                         <th>Permanent Address</th>
                         <th>Corresponding Address</th>
                         <th>Profile Image</th>
+                        <th>Balance</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -50,8 +51,13 @@
 
                            <td data-toggle="tooltip" data-placement="top" title="<?= $row['permanent_address']?>" ><?php echo substr($row['permanent_address'],0,10).'....' ?></td>
                            <td data-toggle="tooltip" data-placement="top" title="<?= $row['temporary_address']?>" ><?php echo substr($row['temporary_address'],0,10).'....' ?></td>
+                          
+                     
+                          
 
-                           <td> <img src="<?=base_url()."uploads/". $row['profile_image']; ?>" style="width:50px;height:50px" ></td>
+                           <td> <img src="<?=base_url()."uploads/".$row['profile_image']; ?>" alt="" style="width:50px;height:50px";></td>
+                      
+                           <td id="balance"></td>
                            <td>
 
 
@@ -160,7 +166,7 @@
             success:function(data){  
                 var obj=JSON.parse(data);
                 
-                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info full_details" onclick="getFullDetails('+student_id+')"  >GET FULL DETAILS</button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getFullDetailsReciept('+student_id+')"  >GET All RECIEPTS DETAILS </button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getBalence('+student_id+')"  >Check Balance </button>');  
+                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info full_details" onclick="getFullDetails('+student_id+')"  >GET INVOICE FULL DETAILS</button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getFullDetailsReciept('+student_id+')"  >GET All RECIEPTS DETAILS </button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getBalence('+student_id+')"  >Check Balance </button>');  
 
                 $('#dataModal').modal("show");  
             }  
@@ -249,6 +255,7 @@
                          console.log(responseObject);
                       
                         $('#invoice_information').html('<h4>Your Current Balance Is '+responseObject+'' );
+                        $('#balance').html(responseObject);
                         $('#dataModalinvoice').modal("show");  
 
                     }
