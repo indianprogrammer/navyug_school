@@ -57,7 +57,10 @@
 .navbar-dark .navbar-nav .nav-link.active {
   color: #ffffff;
 }
-
+.fa-trash,.fa-eye,.fa-pencil
+{
+  color:white;
+}
 
    </style>
    <script type="text/javascript">

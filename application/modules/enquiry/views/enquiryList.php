@@ -21,7 +21,7 @@
 		<th>Address</th>
 		<th>purpose</th>
 
-		<th>Location</th>
+		<!-- <th>Location</th> -->
 		<th>Remarks</th>
 		<th>Actions</th>
     </tr>
@@ -38,7 +38,7 @@
 		<td><?php echo $row['mobile']; ?></td>
 		<td><?php echo $row['address']; ?></td>
 		<td><?php echo $row['purpose']; ?></td>
-		<td><?php echo $row['location']; ?></td>
+		<!-- <td><?php echo $row['location']; ?></td> -->
 		<td><?php echo $row['remarks']; ?></td>
 		
 		<td>

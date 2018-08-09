@@ -6,6 +6,7 @@ class Employee extends MY_Controller{
   {
     parent::__construct();
     $this->load->model('Employee_model');
+    $this->load->model('student/Student_model');
   } 
 
     /*
@@ -44,7 +45,7 @@ class Employee extends MY_Controller{
     $config['allowed_types']        = 'gif|jpg|png';
     $this->load->library('upload', $config);
     $this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
-    $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
+    // $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
     $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
     $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
     $this->form_validation->set_rules('paddress','Address','required');
@@ -59,9 +60,8 @@ class Employee extends MY_Controller{
         'email' => $this->input->post('email'),
         'mobile' => $this->input->post('mobile'),
 			  'Permanent_address' => $this->input->post('paddress'),
-        'temporary_address' => $this->input->post('taddress'),
-        'created_at'=>date('d-m-y/h-m'),
-        'modified_at'=>date('d-m-y/h-m')
+        'temporary_address' => $this->input->post('taddress')
+       
       );
       $data['image'] =  $this->upload->data();
       $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
@@ -91,7 +91,26 @@ class Employee extends MY_Controller{
       //insertion code
 
       $insertAuthentication = $this->Employee_model->add_user($authenticationData);
-      var_dump($insertAuthentication);
+      // var_dump($insertAuthentication);
+      $userdata=$this->Student_model->select_uname_password($insertAuthentication);
+         // var_dump($userdata);
+          $msg='Your Username='.$userdata->username.' and Password='.$userdata->clear_text.'';
+          $smsinfo= array('msg'=>$msg,
+             'mobile'=>$this->input->post('mobile'),
+             'school_id'=>$this->session->SchoolId,
+             'module'=>'employee add'
+        );
+          // var_dump($smsinfo);die;
+          // $insertInfo=$this->Student_model->insert_info($smsinfo);
+         modules::run('sms/sms/send_sms',$smsinfo);
+
+
+          ## for email info
+         $emailinfo=array('msg'=>$msg,'email'=>$userdata->email,'subject'=>"credential of user",'student_id'=>$employeeId,'module'=>'employee add','school_id'=>$this->session->SchoolId);
+         // var_dump($emailinfo);
+          // $insertInfoEmail=$this->Student_model->insert_info_email($emailinfo);
+          modules::run('email/email/send_email',$emailinfo);
+
 
       #create relation map (school->employ)
       $schoolEmployMap = array(
@@ -107,21 +126,7 @@ class Employee extends MY_Controller{
        );
       redirect('employee');
 
-/*
-      
-     
-      var_dump($params);
-      $password=rand(1,10000)
-      $authentication=array(
-       'username'=> $params['username']
-       'email'=> $params['email'],
-       'autorization_id'=>$params['authentication_id'],
-       'password'=>md5($password)
 
-     );
-      var_dump($authentication);
-            // redirect('subject/subject_list');
-  */
     }
     else
     {            
@@ -151,34 +156,36 @@ class Employee extends MY_Controller{
         $this->load->library('form_validation');
 
          $this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
-    $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
+    // $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
     $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
     $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
     // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-    $this->form_validation->set_rules('paddress','Address','required');
-    $this->form_validation->set_rules('taddress','Address','required');
+    $this->form_validation->set_rules('paddress','Permanent Address','required');
+    $this->form_validation->set_rules('taddress','Corresponding Address','required');
 
         if($this->form_validation->run())     
         {   
           $params = array(
 
-        'name' => $this->input->post('employee_Name'),
-        'authentication_id' => $this->input->post('type'),
+         'name' => $this->input->post('employee_Name'),
         'qualification' => $this->input->post('qualification'),
-        'username' => $this->input->post('username'),
         'email' => $this->input->post('email'),
         'mobile' => $this->input->post('mobile'),
-        // 'profile_image' => $this->input->post('profile_image'),
         'Permanent_address' => $this->input->post('paddress'),
-        'temporary_address' => $this->input->post('taddress'),
+        'temporary_address' => $this->input->post('taddress')
                     // 'modified_at'=>date('d-m-y/h-m'),
          );
-          $data['image'] =  $this->upload->data();
+          $data['image'] = $this->upload->data();
               // var_dump($data);
-          $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
+          $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
                // echo $image_path;die;
           $params['profile_image']=$image_path;
-          $this->Employee_model->update_employee($id,$params);            
+         $updated_data= $this->Employee_model->update_employee($id,$params);      
+          ##
+
+          $this->Employee_model->update_employe
+
+
           redirect('employee');
         }   
         else

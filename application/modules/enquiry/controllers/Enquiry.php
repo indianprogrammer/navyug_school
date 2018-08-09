@@ -52,15 +52,30 @@ class Enquiry extends MY_Controller{
 				
 				'email' => $this->input->post('email'),
 				'mobile' => $this->input->post('mobile'),
-				 'location' => $this->input->post('latlong'),
+				 // 'location' => $this->input->post('latlong'),
                 'address' => $this->input->post('address'),
 				'remarks' => $this->input->post('remarks'),
                 'school_id'=>$this->session->SchoolId
                 // 'created_at'=>date('d-m-y/h-m')
                
             );
+            $enquiryInfoSms= array(
+             'mobile'=>$this->input->post('mobile'),
+             'school_id'=>$this->session->SchoolId,
+             'module'=>'enqiry',
+             'msg'=>'Thanks'.$params['name'].' for visit here'
+                     );
+            $enquiryInfoEmail=array(
+           
+             'school_id'=>$this->session->SchoolId,
+             'module'=>'enqiry',
+             'msg'=>'Thanks'.$params['name'].' for visit here',
+             'email'=>$params['email']
+        );
             
             $enquiry_id = $this->Enquiry_model->add_enquiry($params);
+            modules::run('sms/sms/send_sms',$enquiryInfoSms);
+            modules::run('email/email/send_email',$enquiryInfoEmail);
             $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added',

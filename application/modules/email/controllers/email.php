@@ -2,7 +2,7 @@
 class Email extends MY_Controller {
     function __construct() {
         parent::__construct();
-        // $this->load->modules('test');
+        $this->load->model('Email_model');
        
     }
     function run($data)
@@ -11,6 +11,19 @@ class Email extends MY_Controller {
          // var_dump($this->session->userdata($datas));
     }
     public function send_email($emailinfo) {
+        if(is_null($emailinfo['email']))
+        {
+        $insertInfo=$this->Email_model->insertEmailLog($emailinfo);
+        // var_dump($insertInfo);die;
+
+    }
+    else
+    {
+       $insertInfo=$this->Email_model->insertEmailLog($emailinfo);
+
+        $to=$emailinfo['email'];
+        $subject=$emailinfo['subject'];
+        $body=$emailinfo['msg'];
     	$config=array(
     		'protocol'=>'smtp',
     		'smtp_host'=>'mail.9yug.net',
@@ -20,13 +33,9 @@ class Email extends MY_Controller {
 
 
     	);
-        $to=$emailinfo['email'];
-        $subject=$emailinfo['subject'];
-        $body=$emailinfo['msg'];
 
         $this->load->library('email',$config);
         $from_email = "mail.9yug.net";
-        $to_email = "vivek.et1993@gmail.com";
         //Load email library
         $this->email->from($from_email, 'Identification');
         $this->email->to($to);
@@ -40,6 +49,7 @@ class Email extends MY_Controller {
             echo "not send";
         // $this->load->view('contact_email_form');
     }
+}
 public function send()
 {
 	$to = "vivek.et1993@gmail.com";

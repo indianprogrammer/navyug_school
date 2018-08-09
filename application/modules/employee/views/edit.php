@@ -55,7 +55,7 @@
 		<div class="col-md-5">
 			<input type="file" name="profile_image" value="<?= ($this->input->post('profile_image') ? $this->input->post('profile_image') : $employee['profile_image']); ?>" class="form-control" id="profile_image" />
 			<span class="text-danger"><?= form_error('profile_image');?></span>
-			<img src="<?= $employee['profile_image'] ?>" height="50px;">
+			<!-- <img src="<?= $employee['profile_image'] ?>" height="50px;"> -->
 		</div>
 	</div>
 	<div class="form-group">

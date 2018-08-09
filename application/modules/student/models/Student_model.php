@@ -177,12 +177,6 @@ function insert_info($data)
  return $this->db->insert_id();
 }
 
-function insert_info_email($data)
-
-{
-  $this->db->insert('email',$data);
-  return $this->db->insert_id();
-}
 
 
 }

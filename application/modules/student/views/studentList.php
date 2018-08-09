@@ -57,26 +57,31 @@
 
                            <td> <img src="<?=base_url()."uploads/".$row['profile_image']; ?>" alt="" style="width:50px;height:50px";></td>
                       
-                           <td id="balance"></td>
+                           <td onload="getBalence(<?= $row['id'] ?>) "id="balance"></td>
                            <td>
 
 
 
-                            <div class="btn-group">
+                            <!-- <div class="btn-group">
                                 <button type="button" class="btn btn-info ">Action</button>
                                 <button type="button" class="btn btn-default  dropdown-toggle" data-toggle="dropdown">
                                   <span class="caret"></span>
                                   <span class="sr-only">Toggle Dropdown</span>
                               </button>
                               <ul class="dropdown-menu" role="menu">
-                                  <!-- <li><a href="#">Action</a></li> -->
+                                 
                                   <li><a href="<?= site_url('student/edit/'.$row['id']); ?>" >Edit</a> </li>
                                   <li><a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="delete-it"> Delete</a></li>
                                   <li class="divider"></li>
                                   <li><a href="#" id="<?= $row['id']?>" class="view_data">View</a></li>
 
                               </ul>
-                          </div>
+                          </div> -->
+                           <div class="btn-group" >
+                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></a></i></button>
+                        <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
+                      </div>
                       </td>
                       <!-- modal class start -->
                       <!-- <div class="container"> -->
@@ -252,11 +257,11 @@
                         keyword: $id
                     },
                     success: function( responseObject ) {
-                         console.log(responseObject);
+                         // console.log(responseObject);
                       
-                        $('#invoice_information').html('<h4>Your Current Balance Is '+responseObject+'' );
+                        // $('#invoice_information').html('<h4>Your Current Balance Is '+responseObject+'' );
                         $('#balance').html(responseObject);
-                        $('#dataModalinvoice').modal("show");  
+                        // $('#dataModalinvoice').modal("show");  
 
                     }
                   

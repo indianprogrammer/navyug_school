@@ -13,6 +13,9 @@ class Login extends MX_Controller
     public function index($msg = NULL)
     {
         // Load our view to be displayed
+        if (isset($_SESSION['username'])) {
+             redirect('admin');
+         }
         // to the user
         $data['msg'] = $msg;
         $this->load->view('login2', $data);
@@ -72,6 +75,7 @@ class Login extends MX_Controller
                     break;
                 case 4:
                     #got for student
+                 echo "Welcome  ". $this->session->username;
                     break;
             }
             #redirect it to $autorizationData['home']

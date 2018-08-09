@@ -104,22 +104,23 @@
 
              ##for sms info 
              $userdata=$this->Student_model->select_uname_password($insertStudentAuthentication);
-         var_dump($userdata);
+         // var_dump($userdata);
           $msg='Your Username='.$userdata->username.' and Password='.$userdata->clear_text.'';
           $smsinfo= array('msg'=>$msg,
-             'mobile_to'=>$this->input->post('mobile'),
+             'mobile'=>$this->input->post('mobile'),
              'school_id'=>$this->session->SchoolId,
-             'module'=>'student'
+             'module'=>'student add',
+             'msg'=>$msg
         );
           // var_dump($smsinfo);die;
-          $insertInfo=$this->Student_model->insert_info($smsinfo);
+          // $insertInfo=$this->Student_model->insert_info($smsinfo);
          modules::run('sms/sms/send_sms',$smsinfo);
 
 
           ## for email info
          $emailinfo=array('msg'=>$msg,'email'=>$userdata->email,'subject'=>"admission",'student_id'=>$studentId,'module'=>'student','school_id'=>$this->session->SchoolId);
-         var_dump($emailinfo);
-          $insertInfoEmail=$this->Student_model->insert_info_email($emailinfo);
+         // var_dump($emailinfo);
+          // $insertInfoEmail=$this->Student_model->insert_info_email($emailinfo);
           modules::run('email/email/send_email',$emailinfo);
 
 
@@ -181,7 +182,7 @@
 
             $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
             $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
-            $this->form_validation->set_rules('username','Username','required|max_length[100]');
+            
             $this->form_validation->set_rules('mobile','Mobile','required');
 
             $this->form_validation->set_rules('paddress','Permanent Address','required');
@@ -193,7 +194,7 @@
 
                     'student_name' => $this->input->post('student_name'),
                     'email' => $this->input->post('email'),
-                    'username' => $this->input->post('username'),
+                   
                     'mobile' => $this->input->post('mobile'),
                 // 'profile_image' => $this->input->post('profile_image'),
                     'permanent_address' => $this->input->post('paddress'),
@@ -203,7 +204,7 @@
                 // var_dump($params);die;
                 $data['image'] =  $this->upload->data();
               // var_dump($data);
-                $image_path=base_url()."uploads/".$data['image']['raw_name'].$data['image']['file_ext'];
+                $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
                // echo $image_path;die;
                 $params['profile_image']=$image_path;
                 $this->Student_model->update_student($id,$params);      

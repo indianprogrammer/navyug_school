@@ -7,9 +7,9 @@ class Sms_model extends CI_Model
     {
         parent::__construct();
     }
-function insert_info($data)
+function insertLogInfo($data)
 {
- $this->db->insert('sms',$data);
+ $this->db->insert('log_outgoing_sms',$data);
         return $this->db->insert_id();
     }
 
