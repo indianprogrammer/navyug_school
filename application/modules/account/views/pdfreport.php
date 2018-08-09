@@ -5,7 +5,7 @@ $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 // $title = "PDF Report";
 $obj_pdf->SetTitle($school_name);
 $obj_pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, $school_name, PDF_HEADER_STRING);
- // $obj_pdf->SetHeaderData($title);
+// $obj_pdf->SetHeaderData($title);
 $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 $obj_pdf->SetDefaultMonospacedFont('helvetica');
@@ -17,9 +17,9 @@ $obj_pdf->SetFont('helvetica', '', 9);
 $obj_pdf->setFontSubsetting(false);
 $obj_pdf->AddPage();
 ob_start();
-   
-    
-   echo ' <section class="content">
+
+
+echo ' <section class="content">
       <div class="container-fluid">
         
           
@@ -122,10 +122,10 @@ ob_start();
             
       </div><!-- /.container-fluid -->
     </section>';
- 
 
-  $content = ob_get_contents();
+
+$content = ob_get_contents();
 ob_end_clean();
-$obj_pdf->writeHTML($content, true, false, true, false, '');
+@$obj_pdf->writeHTML($content, true, false, true, false, '');
 $obj_pdf->Output('output.pdf', 'I');
 ?>
