@@ -260,5 +260,9 @@
 
 
    }
+
+   function crossmoduleadd($param1 =5 ,$param2 = 10){
+        return $param1+$param2;
+   }
 }
 ?>

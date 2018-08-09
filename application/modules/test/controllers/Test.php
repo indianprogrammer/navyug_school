@@ -7,7 +7,14 @@ class Test extends MY_Controller{
         parent::__construct();
         // $this->load->model('test_model');
 
-    } 
+    }
+
+    function studentcross(){
+        #cross controller function
+      echo   modules::run('student/Student/crossmoduleadd');   //without argument default value
+      echo   modules::run('student/Student/crossmoduleadd',2,5);   //with argument
+      echo   modules::run('student/Student/crossmoduleadd',20);   //with argument
+    }
 
 function index()
     {
@@ -16,7 +23,7 @@ function index()
       // modules::run('email/run', $data);
       // $this->session->set_userdata($datas);
     // echo  $this->session->userdata('message');
-        bar();
+       // bar();
     }
 
 
