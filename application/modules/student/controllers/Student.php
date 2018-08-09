@@ -102,9 +102,9 @@
              // var_dump($authentication);
              $insertStudentAuthentication  = $this->Student_model->add_user($authentication);
 
-             ##for sms and email
+             ##for sms info 
              $userdata=$this->Student_model->select_uname_password($insertStudentAuthentication);
-         
+         var_dump($userdata);
           $msg='Your Username='.$userdata->username.' and Password='.$userdata->clear_text.'';
           $smsinfo= array('msg'=>$msg,
              'mobile_to'=>$this->input->post('mobile'),
@@ -113,6 +113,16 @@
         );
           // var_dump($smsinfo);die;
           $insertInfo=$this->Student_model->insert_info($smsinfo);
+         modules::run('sms/sms/send_sms',$smsinfo);
+
+
+          ## for email info
+         $emailinfo=array('msg'=>$msg,'email'=>$userdata->email,'subject'=>"admission",'student_id'=>$studentId,'module'=>'student','school_id'=>$this->session->SchoolId);
+         var_dump($emailinfo);
+          $insertInfoEmail=$this->Student_model->insert_info_email($emailinfo);
+          modules::run('email/email/send_email',$emailinfo);
+
+
 
 
            // $this->session->set_userdata($smsinfo);

@@ -32,5 +32,11 @@ function index()
 
 
     }
+    function send_sms($smsinfo)
+    {
+        $mobile=$smsinfo['mobile_to'];
+        $message=$smsinfo['msg'];
+
+    }
 }
 ?>

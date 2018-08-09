@@ -11,8 +11,8 @@ class Test extends MY_Controller{
 
     function studentcross(){
         #cross controller function
-      echo   modules::run('student/Student/crossmoduleadd');   //without argument default value
-      echo   modules::run('student/Student/crossmoduleadd',2,5);   //with argument
+      // echo   modules::run('student/Student/crossmoduleadd');   //without argument default value
+      // echo   modules::run('student/Student/crossmoduleadd',2,5);   //with argument
       echo   modules::run('student/Student/crossmoduleadd',20);   //with argument
     }
 
@@ -44,5 +44,11 @@ function index()
         $this->load->view('index',$data);
     }
 
+
+function sendarray()
+{   
+    $f=array('a'=>3,'b'=>5,'c'=>"tret");
+    echo modules::run('email/email/sendarray',$f);
+}
 }
 ?>

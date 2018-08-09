@@ -7,6 +7,7 @@ class Login extends MX_Controller
     {
         parent::__construct();
         $this->load->model('Login_model');
+    
     }
 
     public function index($msg = NULL)
