@@ -5,37 +5,54 @@ class Email extends MY_Controller {
         $this->load->model('Email_model');
        
     }
-    function run($data)
-    {
-        var_dump($data);
-         // var_dump($this->session->userdata($datas));
-    }
+  
     public function send_email($emailinfo) {
+         ##fetch data from template
+
+    $school_id=$emailinfo['school_id'];
+    $schoolName= modules::run('admin/admin/getSchoolName',$school_id);
+    $module=$emailinfo['module'];
+    $fetchTemplateData=$this->Email_model->fetch_template_data($school_id,$module);
+    $context=$fetchTemplateData->context;
+    $username=$emailinfo['user_name'];
+    $password=$emailinfo['password'];
+    $student_name=$emailinfo['student_name'];
+    $school_name=$schoolName->organization_name;
+    $contextString=array('{school_name','{username','{password','{student_name','}');
+    $ReplaceString=array($school_name,$username,$password,$student_name,'');
+    $msg=str_replace($contextString,$ReplaceString,$context);
+     // echo $msg;die;
+    $emaillog=array('msg'=>$msg,'email'=>$emailinfo['email'],'module'=>$module,'school_id'=>$school_id,'student_id'=>$emailinfo['student_id'],
+        'subject'=>$emailinfo['subject']);
         if(is_null($emailinfo['email']))
         {
-        $insertInfo=$this->Email_model->insertEmailLog($emailinfo);
-        // var_dump($insertInfo);die;
-
+         $insertInfo=$this->Email_model->insertEmailLog($emaillog);
+      
     }
     else
     {
-       $insertInfo=$this->Email_model->insertEmailLog($emailinfo);
+       $insertInfo=$this->Email_model->insertEmailLog($emaillog);
 
         $to=$emailinfo['email'];
         $subject=$emailinfo['subject'];
-        $body=$emailinfo['msg'];
+        $body=$msg;
+        ## get information of email gateway
+ $schoolId=$this->session->SchoolId;       
+
+ $getInfoEmailGateway=$this->Email_model->get_info_email($schoolId);
+// var_dump($getInfoEmailGateway);
     	$config=array(
-    		'protocol'=>'smtp',
-    		'smtp_host'=>'mail.9yug.net',
-    		'smtp_port'=>25,
-    		'smtp_user'=>'test@9yug.net',
-    		 'smtp_pass'=>'test5432@1'
+    		'protocol'=>$getInfoEmailGateway->protocol,
+    		'smtp_host'=>$getInfoEmailGateway->smtp_host,
+    		'smtp_port'=>$getInfoEmailGateway->smtp_port,
+    		'smtp_user'=>$getInfoEmailGateway->smtp_user,
+    		 'smtp_pass'=>$getInfoEmailGateway->smtp_password
 
 
     	);
 
         $this->load->library('email',$config);
-        $from_email = "mail.9yug.net";
+        $from_email = $getInfoEmailGateway->smtp_host;
         //Load email library
         $this->email->from($from_email, 'Identification');
         $this->email->to($to);
@@ -48,18 +65,9 @@ class Email extends MY_Controller {
             // $this->session->set_flashdata("email_sent","You have encountered an error");
             echo "not send";
         // $this->load->view('contact_email_form');
-    }
+     }
 }
-public function send()
-{
-	$to = "vivek.et1993@gmail.com";
-$subject = "My subject";
-$txt = "Hello world!";
-$headers = "From: vivek.et1993@gmail.com" . "\r\n" .
-"CC: somebodyelse@example.com";
 
-mail($to,$subject,$txt,$headers);
-}
 function sendarray($data)
 {
    return $data['a']+$data['b'];

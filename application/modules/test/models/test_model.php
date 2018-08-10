@@ -25,5 +25,14 @@ class test_model extends CI_Model
       return $query;
 
 }
+
+function templatetest($school_id,$module)
+{
+  $this->db->select('*');
+  $this->db->from('template_email');
+  $this->db->where(array('school_id'=>1,'module'=>'student edit'));
+  return $this->db->get()->row();
+
+}
 }
 ?>

@@ -2,7 +2,7 @@
 
 
 
-
+<h4>Enquiry List</h4>
 <div class="pull-right">
 	<a href="<?php echo site_url('enquiry/add'); ?>" class="btn btn-success">Add</a> 
 </div>
@@ -27,9 +27,11 @@
     </tr>
 </thead>
 <tbody>
+	<?php  
+	$count=1 ?>
 	<?php foreach($enquiry as $row){ ?>
     <tr>
-		<td><?php echo $row['id']; ?></td>
+		<td><?= $count++ ?></td>
 	
 		<td><?php echo $row['name']; ?></td>
 	

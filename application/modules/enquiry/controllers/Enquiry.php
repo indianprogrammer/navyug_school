@@ -62,15 +62,16 @@ class Enquiry extends MY_Controller{
             $enquiryInfoSms= array(
              'mobile'=>$this->input->post('mobile'),
              'school_id'=>$this->session->SchoolId,
-             'module'=>'enqiry',
-             'msg'=>'Thanks'.$params['name'].' for visit here'
+             'module'=>'enquiry',
+             'student_name'=>$params['name']
                      );
             $enquiryInfoEmail=array(
            
              'school_id'=>$this->session->SchoolId,
-             'module'=>'enqiry',
-             'msg'=>'Thanks'.$params['name'].' for visit here',
-             'email'=>$params['email']
+             'module'=>'enquiry',
+             'student_name'=>$params['name'],
+             'email'=>$params['email'],
+             'subject'=>"Enquiry"
         );
             
             $enquiry_id = $this->Enquiry_model->add_enquiry($params);

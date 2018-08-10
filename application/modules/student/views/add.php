@@ -10,7 +10,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
+		<label for="email" class="col-md-4 control-label">Email</label>
 		<div class="col-md-5">
 			<input type="text" name="email" value="<?= $this->input->post('email'); ?>" class="form-control" id="email"  />
 			<span class="text-danger"><?= form_error('email');?></span>
@@ -19,7 +19,7 @@
 	
 	
 	<div class="form-group">
-		<label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Mobile</label>
+		<label for="mobile" class="col-md-4 control-label">Mobile</label>
 		<div class="col-md-5">
 			<input type="text" name="mobile" id="mobile" maxlength="13"	 value="<?= $this->input->post('mobile'); ?>" class="form-control" id="mobile" maxlength="13" />
 			<span class="text-danger"><?= form_error('mobile');?></span>

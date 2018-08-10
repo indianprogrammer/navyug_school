@@ -98,7 +98,16 @@ class Employee extends MY_Controller{
           $smsinfo= array('msg'=>$msg,
              'mobile'=>$this->input->post('mobile'),
              'school_id'=>$this->session->SchoolId,
-             'module'=>'employee add'
+             'module'=>'employee add',
+
+         
+         
+           
+           'user_name'=>$userdata->username,
+           'password'=>$userdata->clear_text,
+           'student_name'=>$this->input->post('employee_Name'),
+           'student_id'=>$employeeId
+
         );
           // var_dump($smsinfo);die;
           // $insertInfo=$this->Student_model->insert_info($smsinfo);
@@ -106,7 +115,8 @@ class Employee extends MY_Controller{
 
 
           ## for email info
-         $emailinfo=array('msg'=>$msg,'email'=>$userdata->email,'subject'=>"credential of user",'student_id'=>$employeeId,'module'=>'employee add','school_id'=>$this->session->SchoolId);
+         $emailinfo=array('subject'=>'credential of user','module'=>'employee add','school_id'=>$this->session->SchoolId,'email'=>$userdata->email,'student_id'=>$employeeId,'school_id'=>$this->session->SchoolId, 'user_name'=>$userdata->username,
+           'password'=>$userdata->clear_text,'student_name'=>$this->input->post('employee_Name'));
          // var_dump($emailinfo);
           // $insertInfoEmail=$this->Student_model->insert_info_email($emailinfo);
           modules::run('email/email/send_email',$emailinfo);

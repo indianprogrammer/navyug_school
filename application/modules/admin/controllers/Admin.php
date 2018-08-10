@@ -62,6 +62,11 @@
       $data=$this->Admin_model->get_sales_details_date();
       echo json_encode($data);
     }
+    function getSchoolName($school_id)
+    {
+     return $this->Admin_model->get_school_name($school_id);
+
+    }
 
 
 

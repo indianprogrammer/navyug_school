@@ -81,6 +81,13 @@
                         <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></a></i></button>
                         <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                         <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="javascript:void(0)" onclick="getFullDetails(<?= $row['id'] ?>)" >Invoice Report</a>
+                            <a class="dropdown-item" href="#">Reciept Report</a>
+                          </div>
                       </div>
                       </td>
                       <!-- modal class start -->
@@ -191,13 +198,13 @@
             
                 
                 $.ajax({
-                    method: "POST",
+                    method: "post",
                     url:" <?= base_url() ?>student/studentCompleteInformationInvoice", 
                     data: {
                         id: $id
                     },
                     success: function( responseObject ) {
-                        // console.log(responseObject);
+                        console.log(responseObject);
                         var obj=JSON.parse(responseObject);
                         // $("#showBalance").html("your balance = "+responseObject);
                          // console.log(obj);
@@ -207,8 +214,8 @@
                         maintable+='<tr><td>'+obj[i].invoice_id+'</td><td>'+obj[i].invoice_total+'</td><td>'+obj[i].invoice_date+'</td></tr>';
                         // finaltable=table+maintable+'</table>';
                         // console.log( finaltable)
-                        $('#invoice_information').html('<table class="table table-striped table-bordered table-responsive"><tr><th>invoice id</th><th>amount</th><th>date</th></tr>'+maintable+'</table>');
-                        $('#dataModalinvoice').modal("show");  
+                        $('#page').html('<table class="table table-striped table-bordered table-responsive"><tr><th>invoice id</th><th>amount</th><th>date</th></tr>'+maintable+'</table>');
+                        // $('#dataModalinvoice').modal("show");  
 
                     }
                   }

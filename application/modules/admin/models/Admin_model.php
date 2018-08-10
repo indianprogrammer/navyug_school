@@ -81,7 +81,13 @@ $query = $this->db->query("select MONTHNAME(date) as month,sum(debit) as debit,s
    return $query->result_array();
 
 }
-
+function get_school_name($school_id)
+{
+  $this->db->select('organization_name');
+  $this->db->from('school');
+  $this->db->where('id',$school_id);
+  return $this->db->get()->row();
+}
 
 
 

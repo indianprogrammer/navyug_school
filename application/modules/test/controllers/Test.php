@@ -5,7 +5,7 @@ class Test extends MY_Controller{
     function __construct()
     {
         parent::__construct();
-        // $this->load->model('test_model');
+         $this->load->model('test_model');
 
     }
 
@@ -57,8 +57,32 @@ function tests()
 }
 function smstest()
 {
-     $smsinfo=array('msg'=>'hii sdf sd fsdsdsdsdsdsdsdsdsdsdfsdfds  sfdfsd fd sd fd fsd fds fsdf sdffds fs dfsd f fsd fsd ','mobile'=>9148725074,'student_id'=>2,'module'=>'student','school_id'=>$this->session->SchoolId);
+     $smsinfo=array('user_name'=>'vivek123','password'=>12345,'student_name'=>'vivek','mobile'=>9148725074,'student_id'=>2,'module'=>'student add','school_id'=>$this->session->SchoolId);
      echo modules::run('sms/sms/send_sms',$smsinfo);
+}
+function templatetests()
+{
+ $test=$this->test_model->templatetest(1,"student");
+ $r=$test->context;
+ // echo $r.'<br>';
+ $user="vivek";
+ $school_name="ssm";
+ $password=12345;
+ $templatemsg=array('{school_name','{username','{password','}','email');
+ $phpmsg=array( $school_name,$user,$password,'','email');
+ echo $withoutparam =str_replace($templatemsg, $phpmsg, $r);
+ // echo str_replace('%username',  $user, $withoutparam );
+
+}
+function testschool()
+{
+  $schoolName= modules::run('admin/admin/getSchoolName',$school_id);
+  var_dump($var);
+}
+function ipadd()
+{
+  echo $IP = $_SERVER['REMOTE_ADDR'];        // Obtains the IP address
+// echo $computerName = gethostbyaddr($IP); 
 }
 }
 ?>

@@ -63,6 +63,7 @@
 }
 
    </style>
+
    <script type="text/javascript">
      $(document).ready(function(){
   $('.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link').click(function(){
@@ -79,6 +80,7 @@
 });
 });
    </script>
+    
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

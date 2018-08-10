@@ -156,7 +156,7 @@ function student_complete_info_reciepts($id)
 
   $this->db->select('reciepts.total_amount as reciept_amount,reciepts.reciept_id,reciepts.date as reciept_date');
   $this->db->from('reciepts');
-  $this->db->where('reciepts.student_id',18);
+  $this->db->where('reciepts.student_id',$id);
     // $this->db->join('reciepts', 'reciepts.student_id =invoices.student_id ');
 
   return $this->db->get()->result_array();
@@ -177,7 +177,15 @@ function insert_info($data)
  return $this->db->insert_id();
 }
 
+function update_sms_info($id,$school_id)
+{
+  $this->db->select('msg');
+  $this->db->from('log_outgoing_sms');
+  $this->db->where(array('student_id'=>$id ,'school_id'=>$school_id));
+   return $this->db->get()->row();
 
+
+}
 
 }
 ?>

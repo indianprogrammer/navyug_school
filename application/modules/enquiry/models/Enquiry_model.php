@@ -30,9 +30,12 @@ class Enquiry_model extends CI_Model
      */
     function get_all_enquirys($id)
     {
-        $this->db->order_by('id', 'desc');
+
+        $this->db->select('*');
+        $this->db->from('enquiry');
+        $this->db->order_by('id','desc');
       $this->db->where('school_id',$id);
-        return $this->db->get('enquiry')->result_array();
+        return $this->db->get()->result_array();
         
     }
         
