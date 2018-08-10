@@ -183,7 +183,7 @@ class Employee extends MY_Controller{
          $updated_data= $this->Employee_model->update_employee($id,$params);      
           ##
 
-          $this->Employee_model->update_employe
+          // $this->Employee_model->update_employe
 
 
           redirect('employee');
