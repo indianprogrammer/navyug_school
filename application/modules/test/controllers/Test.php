@@ -5,7 +5,7 @@ class Test extends MY_Controller{
     function __construct()
     {
         parent::__construct();
-         $this->load->model('test_model');
+         $this->load->model('Test_model');
 
     }
 
@@ -29,7 +29,7 @@ function index()
 
    function graph()
    {
-    $q=$this->test_model->get_student_count();
+    $q=$this->Test_model->get_student_count();
      // var_dump($q);
     print_r(json_encode($q)); 
    }
@@ -62,7 +62,7 @@ function smstest()
 }
 function templatetests()
 {
- $test=$this->test_model->templatetest(1,"student");
+ $test=$this->Test_model->templatetest(1,"student");
  $r=$test->context;
  // echo $r.'<br>';
  $user="vivek";
