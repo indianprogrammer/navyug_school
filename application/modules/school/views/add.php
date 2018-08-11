@@ -185,7 +185,7 @@
                         method: "POST",
                         data: {state_id: state_id},
                         success: function (data) {
-                                console.log(obj);
+                                // console.log(obj);
                                     var obj = JSON.parse(data);
                                     if(obj)
                                     {

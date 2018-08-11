@@ -84,13 +84,23 @@ class Classes extends MY_Controller{
                 );
                 $map = $this->Classes_model->add_mapping_subject($mapping);
             }
+            ##map employee class
+            $employeeId=$this->input->post('employee');
+            foreach ($employeeId as $row) {
+                $mapping=array(
+                    'class_id'=>$class_id,
+                    'employee_id'=>$row
+
+                );
+                $map = $this->Classes_model->add_mapping_employee($mapping);
+            }
 
             $this->session->alerts = array(
                 'severity'=> 'success',
                 'title'=> 'successfully added',
                 'description'=> ''
             );
-            redirect('classes/class_list');
+            redirect('classes');
         }
         else
         {            
@@ -167,7 +177,7 @@ else
         {
             $this->Classes_model->delete_class($id);
         $this->Classes_model->delete_classSchoolMap($id,$schoolId);
-            redirect('classes/class_list');
+            redirect('classes');
         }
         else
             show_error('The class you are trying to delete does not exist.');

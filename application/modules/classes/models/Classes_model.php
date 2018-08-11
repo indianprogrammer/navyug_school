@@ -111,4 +111,10 @@ class Classes_model extends CI_Model
     {
         $this->db->delete('map_school_class',array('class_id'=>$id,'school_id'=>$school_id));
     }
+   function add_mapping_employee($ids)
+   {
+    $this->db->insert('map_class_employee',$ids);
+        return $this->db->insert_id();
+   }
 }
+?>

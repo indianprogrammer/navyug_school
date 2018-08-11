@@ -4,7 +4,7 @@
  * www.crudigniter.com
  */
  
-class test_model extends CI_Model
+class Test_model extends CI_Model
 {
     function __construct()
     {
