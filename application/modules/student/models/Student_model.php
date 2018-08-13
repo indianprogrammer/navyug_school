@@ -186,6 +186,9 @@ function update_sms_info($id,$school_id)
 
 
 }
-
+function delete_studentClassMap($id)
+{
+  $this->db->delete('map_student_class',array('student_id'=>$id));
+}
 }
 ?>

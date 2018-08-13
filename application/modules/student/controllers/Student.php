@@ -262,6 +262,7 @@
             $this->Student_model->delete_student($id);
 
             $this->Student_model->delete_studentSchoolMap($id,$schoolId);
+            $this->Student_model->delete_studentClassMap($id);
 
             
             redirect('student');
