@@ -1,4 +1,4 @@
-<!-- <?= form_open("notification/sendNotification") ?> -->
+ <?= form_open('notification/sendNotification') ?> 
 <div class="form-group">
 	<label for="notification" class="col-md-4 control-label">Message</label>
 	<div class="col-md-5">
@@ -12,44 +12,44 @@
 }  ?> -->
 <div class="row">
 	
-<div class="col-md-6">
+ <div class="col-md-6">
 <div class="form-group">
 	<label for="student" class="col-md-6 control-label"><span class="text-danger">*</span>Select Student</label>
-	<div class="col-md-4">
+	<div class="col-md-4"> 
 
-		<select name="student" class="form-control" id="student">
+		 <select name="student" class="form-control" id="student">
 			<option value="">--select--</option>
 			<option value="all">All</option>
 			<option value="class">Class Wise</option>
 
-		</select>
-		<span class="text-danger"><?php echo form_error('type');?></span>
+		</select> 
+	 	<span class="text-danger"><?php echo form_error('type');?></span>
 	</div>
-</div>
-<div class="form-group">
+</div> 
+ <div class="form-group">
 	
 	<div class="col-md-4" id="classtype">
 
 
 		
 	</div>
-</div>
-<div id="student_detail"></div>
-</div>
+</div> 
+ <div id="student_detail"></div>
+</div> 
 
-<div class="col-md-6">
+ <div class="col-md-6">
 <div class="form-group">
 	<label for="employee" class="col-md-6 control-label"><span class="text-danger">*</span>Select Employee</label>
 	<div class="col-md-4">
 
-		<select name="employee" class="form-control" id="employee">
+		 <select name="employee" class="form-control" id="employee">
 			<option value="">--select--</option>
 			<option value="all">All</option>
 			<option value="class">Class Wise</option>
 
-		</select>
-		
-	</div>
+		</select> 
+            
+	 </div>
 </div>
 <div class="form-group">
 	
@@ -58,12 +58,13 @@
 
 		
 	</div>
-</div>
+ </div> 
 <div id="employee_detail"></div>
+ </div> 
+<!-- <button id="submit">send</button> -->
+<button type="submit">submit</button>
 </div>
-<button id="submit">send</button>
-</div>
-<!-- <?= form_close(); ?> -->
+ <?= form_close(); ?> 
 
 <script type="text/javascript">
 	$('#student').change(function () {
@@ -89,13 +90,15 @@
 				method:"get",  
             // data:{id:student_id},  
             success:function(data){  
-            	var obj=JSON.parse(data);
-            	// console.log(obj[4]);
+
+                  var obj=JSON.parse(data);
+            	  // console.log(obj['id']);
+                   // console.log(Object.values(obj[1]));
 
             	var student_data,i;
             	var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox">select all </tr>';
             	for (i = 0; i < obj.length; i++) {
-            		student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+[obj[i]]+'" id="student" name="'+[obj[i]]+'" ></td></tr>';
+            		student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" id="student" name="student_details[]" ></td></tr>';
             		
             	}
             	var student_final=student_detail+student_data+'</table>';
@@ -152,7 +155,7 @@
             					var i,student_data;
             					var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox">select all </tr>';
             				for (i = 0; i < obj.length; i++) {
-            				student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]+'" name="'+obj[i]+'" > </td></tr>';
+            				student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="student_details[]" > </td></tr>';
             		
             					}
             					var student_final=student_detail+student_data+'</table>';
@@ -202,7 +205,7 @@ $('#employee').change(function () {
             	var employee_data,i;
             	var employee_detail='<table class="table table-striped  table-responsive"><tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox">select all </tr>';
             	for (i = 0; i < obj.length; i++) {
-            		employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i].id+'" ></td></tr>';
+            		employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" name="employee_id[]" ></td></tr>';
             		
             	}
             	var employee_final=employee_detail+employee_data+'</table>';
@@ -257,7 +260,7 @@ $('#employee').change(function () {
             					var i,employee_data;
             					var employee_detail='<table class="table table-striped table-responsive"><tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox">select all </tr>';
             				for (i = 0; i < obj.length; i++) {
-            				employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i].id+'"></td></tr>';
+            				employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="employee_id[]"></td></tr>';
             		
             					}
             					var employee_final=employee_detail+employee_data+'</table>';

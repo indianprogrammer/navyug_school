@@ -369,7 +369,7 @@
                         <ul class="nav nav-treeview">
 
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>notification" class="nav-link">
+                                <a href="<?= site_url() ?>notification/index" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         ADD NOTIFICATION

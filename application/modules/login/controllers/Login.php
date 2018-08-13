@@ -31,10 +31,31 @@ class Login extends MX_Controller
         // var_dump($username);die;
 
         $authenticationData = $this->Login_model->getResult($username,$password);
+
+        ##function for ip address
+        $ipaddress = '';
+ 
+    if(isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+ 
+    // echo $ipaddress;
         ##generating logs
+
         $logsData=array(
             'username'=>($authenticationData['username'])?$authenticationData['username']:$username,
-            'ip_address'=>getHostByName(getHostName()),
+            'ip_address'=>$ipaddress,
             'status'=>($authenticationData)?1:0
          );
         $log=$this->Login_model->insertLogs($logsData);

@@ -31,6 +31,40 @@ $this->db->select('context');
 
 
 }
+function get_all_students($ids)
+    {
+
+
+     $this->db->select('student.email,student.mobile,student.id');
+     // $this->db->order_by('id', 'desc');
+
+     $this->db->from('student');
+     $this->db->where('student.id',$ids);
+     // $this->db->join('school', 'map_school_student.school_id=school.id', 'Left');
+     // $this->db->join('student', 'map_school_student.student_id=student.id', 'Left');
+        // $this->db->join('authentication', 'authentication.student_id=student.id', 'Left');
+     return $this->db->get()->result_array();
+   }
+function data_sms($data)
+{
+   $this->db->insert('log_outgoing_sms',$data);
+      return $this->db->insert_id();
+}
+
+function get_all_employees($ids)
+    {
+
+
+     $this->db->select('*');
+     // $this->db->order_by('id', 'desc');
+
+     $this->db->from('employees');
+     $this->db->where('employees.id',$ids);
+     // $this->db->join('school', 'map_school_student.school_id=school.id', 'Left');
+     // $this->db->join('student', 'map_school_student.student_id=student.id', 'Left');
+        // $this->db->join('authentication', 'authentication.student_id=student.id', 'Left');
+     return $this->db->get()->result_array();
+   }
 
 
 

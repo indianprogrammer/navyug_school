@@ -10,28 +10,116 @@ class Sms extends MY_Controller{
     } 
 
 
-    function index()
-    {
-     // $data=array(
-     // 	'mobile_to'=>$this->input->post('mobile'),
-     // 	'school_id'=>$this->session->SchoolId,
-     // 	'msg'=>'hii you got admission',
-     // 	'module'=>$this->input->post('module')
-
-     // );
-       $data=array(
-          'mobile_to'=>654646456,
-          'school_id'=>$this->session->SchoolId,
-          'msg'=>'hii you got admission',
-          'module'=>'student'
-
-      );
-       $insertInfo=$this->Sms_model->insert_info($data);
-
+   function send_notification_sms($notification,$notificationStudent,$notificationEmployee)
+   {
+$notificationMsg= $notification;
+$school_id=$this->session->SchoolId;
+ $getInfoSmsGateway=$this->Sms_model->get_info_sms($school_id);
+// var_dump($getInfoSmsGateway);die;
+ $senderId = $getInfoSmsGateway->sender_id;
+ $authKey = $getInfoSmsGateway->auth_key;
+ $url=$getInfoSmsGateway->url;
+ $route = $getInfoSmsGateway->route;
+ $stu=[];
+ 
+        if($notificationStudent!=0)
+        {
+             for ($i=0;$i<count($notificationStudent);$i++)
+             {
 
 
+               array_push($stu,$this->Sms_model->get_all_students($notificationStudent[$i]));
+             }
+             // return $st[0][0]['mobile'];die;
+             
+                     for($j=0;$j<count($stu);$j++)
+                     {
+                      $data=array
+                      (
+                        'mobile'=>$stu[$j][0]['mobile'],
+                        'msg'=>$notificationMsg,
+                        'module'=>'notification student',
+                        'student_id'=>$stu[$j][0]['id'],
+                        'school_id'=>$school_id
+                      );
+                       $data['student'] =$this->Sms_model->data_sms($data);
+                      
+                      $postData = array(
+                        'authkey' => $authKey,
+                        'mobiles' => $stu[$j][0]['mobile'],
+                        'message' => $notificationMsg,
+                        'sender' => $senderId,
+                        'route' => $route
+                      );
 
-   }
+                      $ch = curl_init();
+                      curl_setopt_array($ch, array(
+                        CURLOPT_URL => $url,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_POST => true,
+                        CURLOPT_POSTFIELDS => $postData
+                        //,CURLOPT_FOLLOWLOCATION => true
+                      ));
+                     $output = curl_exec($ch);
+                      curl_close($ch);
+
+                    }
+                  }
+                    ##for employee
+                     if($notificationEmployee!=0)
+        {   
+          $emp=[];
+          // return $notificationEmployee[0];die;
+             for ($i=0;$i<count($notificationEmployee);$i++)
+             {
+
+
+               array_push($emp,$this->Sms_model->get_all_employees($notificationEmployee[$i]));
+               // return $emp;die;
+             }
+             
+                     for($j=0;$j<count($emp);$j++)
+                     {
+                      $data=array
+                      (
+                        'mobile'=>$emp[$j][0]['mobile'],
+                        'msg'=>$notificationMsg,
+                        'module'=>'notification employee',
+                        'student_id'=>$emp[$j][0]['id'],
+                        'school_id'=>$school_id
+                      );
+                       $data['student'] =$this->Sms_model->data_sms($data);
+                      
+                      $postData = array(
+                        'authkey' => $authKey,
+                        'mobiles' => $emp[$j][0]['mobile'],
+                        'message' => $notificationMsg,
+                        'sender' => $senderId,
+                        'route' => $route
+                      );
+
+                      $ch = curl_init();
+                      curl_setopt_array($ch, array(
+                        CURLOPT_URL => $url,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_POST => true,
+                        CURLOPT_POSTFIELDS => $postData
+                        //,CURLOPT_FOLLOWLOCATION => true
+                      ));
+                     $output = curl_exec($ch);
+                      curl_close($ch);
+
+                    }
+        }
+echo "fsd";
+}
+
+
+
+
+   
+
+
    function send_sms($smsinfo)
    {   
         ##fetch data from template
@@ -43,7 +131,7 @@ class Sms extends MY_Controller{
     // var_dump($fetchTemplateData);
     $context=$fetchTemplateData->context;
 $username=$smsinfo['user_name'];
-$password=$smsinfo['password'];
+$password=$smsinfo['password']; 
     $student_name=$smsinfo['student_name'];
     $school_name=$schoolName->organization_name;
     $contextString=array('{school_name','{username','{password','{student_name','}');

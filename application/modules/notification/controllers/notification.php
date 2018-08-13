@@ -31,6 +31,7 @@ class Notification extends MY_Controller
  {
   $school_id=$this->session->SchoolId;
   $Student=$this->Student_model->get_all_student($school_id);
+  // print_r(($Student));
   echo json_encode($Student);
 }
 
@@ -56,10 +57,25 @@ function fetchEmployeeClassWise()
 function sendNotification()
 
 {
-  // echo $notification=$this->input->post("notification");
+  $notification=$this->input->post("notification");
   // var_dump(expression)
-  $notificationData=$this->input->post();
-  print_r($notificationData);
+  $notificationStudent=$this->input->post('student_details');
+  $notificationEmployee=$this->input->post('employee_id');
+  // $notification=$this->input->post();
+  // var_dump($notification);die;
+  if(is_null($notificationEmployee))
+  {
+    $notificationEmployee=0;
+  }
+  if(is_null($notificationStudent))
+  {
+    $notificationStudent=0;
+  }
+ 
+   modules::run('sms/sms/send_notification_sms',$notification,$notificationStudent,$notificationEmployee);
+   modules::run('email/email/send_notification_email',$notification,$notificationStudent,$notificationEmployee);
+  
+
 
 
 }
