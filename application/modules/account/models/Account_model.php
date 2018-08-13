@@ -86,14 +86,15 @@ class Account_model extends CI_Model
     $this->db->select_max('invoice_id');
     $this->db->from('invoices');
     $this->db->where('school_id',$school_id);       
-     $query = $this->db->get()->row();
-    return $query->invoice_id+1;
-  //   if(is_null($query))
-  //   {
-  //   return $query=1;
-  // }
-  // else{
-  //  return 1;
+     $id = $this->db->get()->row();
+    if(isset($id))
+  {
+    return $id->invoice_id+1;
+  }
+  else
+  {
+    return 1;
+  }
   }
 
 
