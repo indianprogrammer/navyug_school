@@ -6,7 +6,7 @@ class Notification extends MY_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('Notification_model');
+    $this->load->model('notification/Notification_model');
     $this->load->model('student/Student_model');
     $this->load->model('employee/Employee_model');
     $this->load->model('classes/Classes_model');
