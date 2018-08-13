@@ -45,6 +45,7 @@ var data = {
             pointRadius: 5,
             pointHitRadius: 10,
             data: debit,
+            
         }
     ]
 };
