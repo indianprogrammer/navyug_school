@@ -54,7 +54,7 @@ class Admin_model extends CI_Model
     }
 
 
-function get_student_details_date()
+function get_student_details_date($school_id)
 {
 
   // $this->db->select('id');
@@ -64,20 +64,20 @@ function get_student_details_date()
 //   $this->db->group_by('MONTH(created_at)');
 
 // return $this->db->count_all_results('id');
-  $query = $this->db->query("select MONTHNAME(created_at) as month,count(id) as count from student  group by MONTH(created_at),MONTHNAME(created_at) order by MONTH(created_at) asc");
+  $query = $this->db->query("select MONTHNAME(created_at) as month,count(id) as count from student LEFT JOIN  map_school_student ON map_school_student.student_id = student.id where school_id='$school_id' group by MONTH(created_at),MONTHNAME(created_at) order by MONTH(created_at) asc");
    return $query->result_array();
    // return result();
 }
 function get_invoice_details_date($school_id)
 {
-$query = $this->db->query("select MONTHNAME(date) as month,sum(total_amount) as total,count(id) as count from invoices where school_id='$school_id' group by MONTH(date),MONTHNAME(date) order by MONTH(date) asc ");
+$query = $this->db->query("select MONTHNAME(date) as month,sum(total_amount) as total,count(id) as count from invoices where school_id='$school_id' group by MONTH(date),MONTHNAME(date) order by MONTH(date) asc");
    return $query->result_array();
 
 
 }
-function get_sales_details_date()
+function get_sales_details_date($school_id)
 {
-$query = $this->db->query("select MONTHNAME(date) as month,sum(debit) as debit,sum(credit) as credit,count(id) as count from account_transaction  group by MONTH(date),MONTHNAME(date) order by MONTH(date) asc ");
+$query = $this->db->query("select MONTHNAME(date) as month,sum(debit) as debit,sum(credit) as credit,count(id) as count from account_transaction where school_id='$school_id' group by MONTH(date),MONTHNAME(date) order by MONTH(date) asc ");
    return $query->result_array();
 
 }

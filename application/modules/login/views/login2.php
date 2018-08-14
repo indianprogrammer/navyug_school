@@ -27,7 +27,16 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
-
+<?php  if (isset($message_display)) {
+    echo "<div class='message' style='color:green'>";
+    echo $message_display;
+    echo "</div>";
+    }
+    if (isset($error_message)) {
+        echo "<div class='error_message' style='color:red;''>";
+    echo $error_message;
+    }
+    ?>
        <?= form_open('login/process') ?>
         <div class="form-group has-feedback">
           <input type="text" class="form-control" name="username" placeholder="username">

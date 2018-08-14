@@ -271,6 +271,7 @@ function countSchool()
       $adminSchoolMap=array( 'school_id'=>$this->input->post('school_id'),
       	'employee_id'=>$employeeId  );
       $mapping = $this->Super_model->map_school_admin($adminSchoolMap);
+      $mapping = $this->Super_model->map_school_employee($adminSchoolMap);
 
           // var_dump($smsinfo);die;
           // $insertInfo=$this->Student_model->insert_info($smsinfo);
@@ -330,5 +331,16 @@ public function logout(){
 	$this->session->sess_destroy();
 	redirect('login');
 }    
+function getCredentialAdmin()
+{
+$adminId=$this->Super_model->getAdminId($this->input->post('schoolid'));
+ $adminid=$adminId->employee_id;
+$this->Super_model->getCredential($adminid);
+
+
+
+}
+
+
 }
 ?>

@@ -180,8 +180,27 @@ function map_school_admin($params)
     $query =$this->db->get('school')->num_rows();
       return $query;
     }
+function getAdminId($school_id)
+{
+$this->db->select('employee_id');
+$this->db->from('map_school_admin');
+$this->db->where('school_id',1);
 
-
+// $this->db->join('authentication','authentication.user_id=map_school_admin');
+ return $this->db->get()->row();
+}
+function getCredential($user_id)
+{
+  $this->db->select('authentication.username,authentication.clear_text,authentication.password');
+$this->db->from('authentication');
+$this->db->where(array('user_id'=>$user_id,'autorization_id'=>1));
+ return $this->db->get()->result_array();
+}
+function map_school_employee()
+{
+  $this->db->insert('map_school_employee',$params);
+      return $this->db->insert_id();
+}
 
 
   }

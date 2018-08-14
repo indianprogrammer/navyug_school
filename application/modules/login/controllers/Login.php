@@ -81,6 +81,9 @@ class Login extends MX_Controller
                     $userData = $this->Login_model->getEmployDetails($authenticationData['user_id']);
                     $this->session->SchoolId = $userData['school_id'];
                     // $this->session->organizationName = $userData['organization_name'];
+                     $school_name= modules::run('admin/admin/getSchoolName',$this->session->SchoolId);
+                    $this->session->SchoolName =$school_name->organization_name;
+                     
                     $this->session->name = $userData['name'];
                     $this->session->profileImage = $userData['profile_image'];
                     echo "admin  ". $this->session->username;
