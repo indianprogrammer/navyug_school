@@ -13,9 +13,9 @@ class Login extends MX_Controller
     public function index($msg = NULL)
     {
         // Load our view to be displayed
-        if (isset($_SESSION['username'])) {
-             redirect('admin');
-         }
+        // if (isset($_SESSION['username'])) {
+        //      redirect('admin');
+        //  }
         // to the user
         $data['msg'] = $msg;
         $this->load->view('login2', $data);
@@ -70,7 +70,7 @@ class Login extends MX_Controller
 
             #set session data
             $this->session->user_id = $authenticationData['id'];
-            $this->session->username = $authenticationData['username'];
+            $this->session->username = $authenticationData['username']; 
             $this->session->autorization_id = $autorizationData['type'];
             $this->session->name = ''; #default value
             $this->session->profileImage = ''; #default value

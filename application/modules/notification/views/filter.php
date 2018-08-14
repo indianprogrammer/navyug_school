@@ -96,7 +96,7 @@
                    // console.log(Object.values(obj[1]));
 
             	var student_data,i;
-            	var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox">select all </tr>';
+            	var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" class="selectall">select all </tr>';
             	for (i = 0; i < obj.length; i++) {
             		student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" id="student" name="student_details[]" ></td></tr>';
             		
@@ -287,3 +287,16 @@ $('#employee').change(function () {
 			console.log(name);
 		});
 	</script>
+
+
+      <script>
+
+
+$('.selectall').click(function() {
+    if ($(this).is(':checked')) {
+        $('input').attr('checked', true);
+    } else {
+        $('input').attr('checked', false);
+    }
+});
+</script>

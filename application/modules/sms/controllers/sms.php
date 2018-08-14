@@ -111,7 +111,7 @@ $school_id=$this->session->SchoolId;
 
                     }
         }
-echo "fsd";
+
 }
 
 
