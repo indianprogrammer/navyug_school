@@ -42,7 +42,7 @@
                     <li class="nav-item has-treeview menu-open">
                         <a href="<?= site_url() ?>school/dashboard" class="nav-link">
                             <i class="fa fa-circle-o nav-icon"></i>
-                            <p>Dashboard</p>
+                            <p>DASHBOARD</p>
                         </a>
                     </li>
 
@@ -84,7 +84,7 @@
                     </li> -->
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon fa fa-mortar-board"></i>
                             <p>
                                 STUDENT
                                 <i class="fa fa-angle-left right"></i>
@@ -116,7 +116,7 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon fa fa-male"></i>
                             <p>
                                 EMPLOYEE
                                 <i class="fa fa-angle-left right"></i>
@@ -149,7 +149,7 @@
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon fa fa-group"></i>
                             <p>
                                 PARENTS
                                 <i class="fa fa-angle-left right"></i>
@@ -181,7 +181,7 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon fa fa-book"></i>
                             <p>
                                 SUBJECTS
                                 <i class="fa fa-angle-left right"></i>
@@ -213,7 +213,7 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon fa  fa-sticky-note-o"></i>
                             <p>
                                 CLASSESS
                                 <i class="fa fa-angle-left right"></i>
@@ -246,7 +246,7 @@
 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon  fa fa-pencil-square-o"></i>
                             <p>
                                 ENQUIRY
                                 <i class="fa fa-angle-left right"></i>
@@ -258,7 +258,7 @@
                                 <a href="<?= site_url() ?>enquiry/add_enquiry" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
-                                        Add ENQUIRY
+                                        ADD ENQUIRY
                                         <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
@@ -278,7 +278,7 @@
                     </li> 
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon fa fa-check-square-o"></i>
                             <p>
                                ATTENDANCE
                                 <i class="fa fa-angle-left right"></i>
@@ -310,7 +310,7 @@
                     </li>
                      <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon fa fa-money"></i>
                             <p>
                                 ACCOUNT
                                 <i class="fa fa-angle-left right"></i>
@@ -360,7 +360,7 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
+                            <i class="nav-icon fa fa-envelope"></i>
                             <p>
                                 NOTIFICATION
                                 <i class="fa fa-angle-left right"></i>

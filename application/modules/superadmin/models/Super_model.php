@@ -184,7 +184,7 @@ function getAdminId($school_id)
 {
 $this->db->select('employee_id');
 $this->db->from('map_school_admin');
-$this->db->where('school_id',1);
+$this->db->where('school_id',$school_id);
 
 // $this->db->join('authentication','authentication.user_id=map_school_admin');
  return $this->db->get()->row();
@@ -196,7 +196,7 @@ $this->db->from('authentication');
 $this->db->where(array('user_id'=>$user_id,'autorization_id'=>1));
  return $this->db->get()->result_array();
 }
-function map_school_employee()
+function map_school_employee($params)
 {
   $this->db->insert('map_school_employee',$params);
       return $this->db->insert_id();

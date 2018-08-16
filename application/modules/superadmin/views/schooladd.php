@@ -89,7 +89,7 @@
                         <label for="latlong" class="control-label"><span class="text-danger">*</span>Location</label>
                         <div class="form-group" id="showlat">
                             <input type="text" name="latlong" 
-                            class="form-control" id="latlong" onclick="latMap();" data-toggle="tooltip" data-placement="top" title="click on field and select your location in google map "  />
+                            class="form-control" id="latlong" onclick="latMap();" data-toggle="tooltip" data-placement="top" title="click on field and select your location in google map " autocomplete="off" />
                             <!-- <a href="#myMapModal" data-toggle="modal">open map</a> -->
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                         </div>
@@ -130,20 +130,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                 <h4 class="modal-title">Modal title</h4>
+                
 
             </div>
-            <div class="modal-body"><div class="container"></div>
-                <div class="container">
-                    <div class="row">
-                      <input id="pac-input" class="search-controls" type="text" placeholder="Search Box">
-                        <div id="dvMap" class=""></div>
-                    </div>
-                </div>
+            <div class="modal-body " id="showMap" style="height: 600px">
+               
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+               
             </div>
         </div>
         <!-- /.modal-content -->
@@ -275,7 +270,8 @@
             };
             var infoWindow = new google.maps.InfoWindow();
             var latlngbounds = new google.maps.LatLngBounds();
-            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+            var map = new google.maps.Map(document.getElementById("showMap"), mapOptions);
+            $('#myMapModal').modal("show");
             google.maps.event.addListener(map, 'click', function (e) {
                 // alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
                 var Latitude=e.latLng.lat();

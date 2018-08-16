@@ -74,6 +74,13 @@ function sendNotification()
  
    modules::run('sms/sms/send_notification_sms',$notification,$notificationStudent,$notificationEmployee);
    modules::run('email/email/send_notification_email',$notification,$notificationStudent,$notificationEmployee);
+   $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully sent',
+         'description'=> ''
+       );
+      redirect('notification');
+
   
 
 

@@ -39,7 +39,7 @@ class Subject extends MY_Controller{
     
 
         // $this->form_validation->set_rules('password','Password','required|max_length[20]');
-    $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]|is_unique[subjects.name]');
+    $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]');
     
     
     if($this->form_validation->run() )     

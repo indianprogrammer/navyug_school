@@ -12,14 +12,14 @@
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/bootstrap/css/bootstrap.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/dist/css/adminlte.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
+<!-- <script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script> -->
 
 
     <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
    <style type="text/css">
      /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -64,22 +64,7 @@
 
    </style>
 
-   <script type="text/javascript">
-     $(document).ready(function(){
-  $('.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link').click(function(){
-    $('.nav-item>.nav-link').removeClass("active");
-    $(this).addClass("active");
-});
-});
-   </script>
-   <script type="text/javascript">
-     $(document).ready(function(){
-  $('.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-treeview>.nav-link').click(function(){
-    $('.nav-item>.nav-link').removeClass("active");
-    $(this).addClass("active");
-});
-});
-   </script>
+  
     
 </head>
 <body class="hold-transition sidebar-mini">

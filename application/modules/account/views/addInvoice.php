@@ -44,10 +44,10 @@
                   
                      <tr>
                         <div class="table-responsive">
-    <table class="table table-bordered" id="crud_table">
+    <table class="table table-bordered  table-responsive" id="crud_table">
      <tr>
       <th width="10%">Particular</th>
-      <th width="10%">amount</th>
+      <th width="10%">Amount</th>
      
       <th width="5%"></th>
      </tr>
@@ -58,7 +58,7 @@
       <td></td>
      </tr>
     </table>
-    <div align="right">
+    <div align="left">
      <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
     </div>
     <div align="center">
@@ -94,11 +94,20 @@
                  // console.log(responseObject);
                 var data=JSON.parse(responseObject);
                 //  var d=data[].email;
-                 // console.log(data);
+                  if(data)
+                {
                 $('#email').val(data.email);
                 $('#stuname').val(data.student_name);
-                // $('#stuname').val(data.student_name);
-                 $('#contact').val(data.mobile);
+                $('#contact').val(data.mobile);
+              }
+              else
+              {
+                 $('#email').val("");
+                $('#stuname').val("");
+                $('#contact').val("");
+              }
+
+                
                if (data.length > 0) {
                     $('#DropdownCountry').empty();
                     $('#stuname').attr("data-toggle", "dropdown");

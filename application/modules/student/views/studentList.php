@@ -18,7 +18,7 @@
 
                         <th>Student Name</th>
                         <th>Email</th>
-                        <th>classes</th>
+                        <!-- <th>classes</th> -->
                         <th >Mobile</th>
                         <th>Permanent Address</th>
                         <th>Corresponding Address</th>
@@ -35,7 +35,7 @@
 
                             <td ><?= $row['student_name']; ?></td>
                             <td ><?= $row['email']; ?></td>
-                            <td width="1%" ><?php 
+                           <!--  <td width="1%" ><?php 
 
                             $studentClasses = explode(',', $row['classes']);
 
@@ -45,7 +45,7 @@
                            } 
 
 
-                           ?></td>
+                           ?></td> -->
 
                            <td><?= $row['mobile']; ?></td>
 
@@ -163,7 +163,7 @@
             success:function(data){  
                 var obj=JSON.parse(data);
                 
-                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info full_details" onclick="getFullDetails('+student_id+')"  >GET INVOICE FULL DETAILS</button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getFullDetailsReciept('+student_id+')"  >GET All RECIEPTS DETAILS </button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getBalence('+student_id+')"  >Check Balance </button>');  
+                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>');  
 
                 $('#dataModal').modal("show");  
             }  
@@ -273,6 +273,26 @@
                 });
         
 
+            }
+            function ledger()
+            {
+               $.ajax({
+                    method: "POST",
+                    url:" <?= base_url() ?>account/ledger", 
+                    data: {
+                        keyword: $id
+                    },
+                    success: function( responseObject ) {
+                          console.log(responseObject);
+                      
+                        // $('#invoice_information').html('<h4>Your Current Balance Is '+responseObject+'' );
+                        $('#balance').html(responseObject);
+                        // $('#dataModalinvoice').modal("show");  
+
+                    }
+                  
+                });
+        
             }
       
 

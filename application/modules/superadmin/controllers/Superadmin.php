@@ -1,7 +1,7 @@
 <?php
 
 
-class Superadmin extends MX_Controller{
+class Superadmin extends Super_Controller{
 	function __construct()
 	{
 		parent::__construct();
@@ -250,37 +250,38 @@ function countSchool()
 
       $insertAuthentication = $this->Employee_model->add_user($authenticationData);
       // var_dump($insertAuthentication);
-      // $userdata=$this->Student_model->select_uname_password($insertAuthentication);
+      $this->load->model('student/Student_model');
+       $userdata=$this->Student_model->select_uname_password($insertAuthentication);
       
       //     $msg='Your Username='.$userdata->username.' and Password='.$userdata->clear_text.'';
-      //     $smsinfo= array('msg'=>$msg,
-      //        'mobile'=>$this->input->post('mobile'),
-      //        'school_id'=>$this->session->SchoolId,
-      //        'module'=>'employee add',
+          $smsinfo= array(
+             'mobile'=>$this->input->post('mobile'),
+             'school_id'=>$this->input->post('school_id'),
+             'module'=>'admin add',
 
       
       
       
-      //      'user_name'=>$userdata->username,
-      //      'password'=>$userdata->clear_text,
-      //      'student_name'=>$this->input->post('employee_Name'),
-      //      'student_id'=>$employeeId
+           'user_name'=>$userdata->username,
+           'password'=>$userdata->clear_text,
+           'student_name'=>$this->input->post('employee_Name'),
+           'student_id'=>$employeeId
 
-      //   );
+        );
           ##map school admin
       $adminSchoolMap=array( 'school_id'=>$this->input->post('school_id'),
       	'employee_id'=>$employeeId  );
       $mapping = $this->Super_model->map_school_admin($adminSchoolMap);
-      $mapping = $this->Super_model->map_school_employee($adminSchoolMap);
+      $mapping2 = $this->Super_model->map_school_employee($adminSchoolMap);
 
           // var_dump($smsinfo);die;
-          // $insertInfo=$this->Student_model->insert_info($smsinfo);
-         // modules::run('sms/sms/send_sms',$smsinfo);
+         
+          // modules::run('sms/sms/send_sms',$smsinfo);
 
 
           ## for email info
-      $emailinfo=array('subject'=>'credential of user','module'=>'employee add','school_id'=>$this->session->SchoolId,'email'=>$userdata->email,'student_id'=>$employeeId,'school_id'=>$this->session->SchoolId, 'user_name'=>$userdata->username,
-      	'password'=>$userdata->clear_text,'student_name'=>$this->input->post('employee_Name'));
+      $emailinfo=array('subject'=>'credential of admin','module'=>'admin add','school_id'=>$this->input->post('school_id'),'email'=>$userdata->email,'student_id'=>$employeeId,'user_name'=>$userdata->username,
+        'password'=>$userdata->clear_text,'student_name'=>$this->input->post('name'));
          // var_dump($emailinfo);
           // $insertInfoEmail=$this->Student_model->insert_info_email($emailinfo);
           // modules::run('email/email/send_email',$emailinfo);
@@ -288,15 +289,15 @@ function countSchool()
 
       #create relation map (school->employ)
       $schoolEmployMap = array(
-      	'school_id' => $this->session->SchoolId,
-      	'employee_id' => $employeeId,
+        'school_id' => $this->session->SchoolId,
+        'employee_id' => $employeeId,
       );
       //insertion code here
       $map = $this->Employee_model->add_mapping($schoolEmployMap);
       $this->session->alerts = array(
-      	'severity'=> 'success',
-      	'title'=> 'successfully added',
-      	'description'=> ''
+        'severity'=> 'success',
+        'title'=> 'successfully added',
+        'description'=> ''
       );
       redirect('superadmin/school_list');
 
@@ -304,42 +305,98 @@ function countSchool()
   }
   else
   {            
-  	$data['_view'] = 'addAdmin';
-  	$this->load->view('index',$data);
+    $data['_view'] = 'addAdmin';
+    $this->load->view('index',$data);
   }
 }
 function fetch_state()
 {
-	if ($this->input->post('country_id')) {
-		echo json_encode($this->Super_model->fetch_state($this->input->post('country_id')));
+  if ($this->input->post('country_id')) {
+    echo json_encode($this->Super_model->fetch_state($this->input->post('country_id')));
 
             // $this->load->view('index',$data);
 
-	}
+  }
 }
 
 function fetch_city()
 {
-	if ($this->input->post('state_id')) {
-		echo json_encode($this->Super_model->fetch_city($this->input->post('state_id')));
-	}
+  if ($this->input->post('state_id')) {
+    echo json_encode($this->Super_model->fetch_city($this->input->post('state_id')));
+  }
 }
 
-
-public function logout(){
-	$this->session->unset_userdata('superusername');
-	$this->session->sess_destroy();
-	redirect('login');
-}    
-function getCredentialAdmin()
+function fetchschoolView()
 {
-$adminId=$this->Super_model->getAdminId($this->input->post('schoolid'));
- $adminid=$adminId->employee_id;
-$this->Super_model->getCredential($adminid);
+ echo json_encode($this->Super_model->get_school($this->input->post("id"))) ;
+  // echo "dsas";
+}
 
+ function logout(){
+  $this->session->unset_userdata('superusername');
+  $this->session->sess_destroy();
+  redirect('login');
+}    
+
+
+
+function getCredentialAdmin($id)
+{
+$adminId=$this->Super_model->getAdminId($id);
+// var_dump($adminId);
+ $adminid=$adminId->employee_id;
+$credential=$this->Super_model->getCredential($adminid);
+ // var_dump($credential);
+ $username=$credential[0]['username'];
+ $password=$credential[0]['password'];
+  ##function for ip address
+        $ipaddress = '';
+ 
+    if(isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+ 
+    // echo $ipaddress;
+        ##generating logs
+
+        // $logsData=array(
+        //     'username'=>($username)?$authenticationData['username']:$username,
+        //     'ip_address'=>$ipaddress,
+        //     'status'=>($authenticationData)?1:0
+        //  );
+         $this->load->model('login/Login_model');
+        // $log=$this->Login_model->insertLogs($logsData);
+       $userData = $this->Login_model->getEmployDetails($adminid);
+       // var_dump($userData );
+                 echo   $this->session->SchoolId = $userData['school_id'];
+                    // $this->session->organizationName = $userData['organization_name'];
+                     $school_name= modules::run('admin/admin/getSchoolName',$this->session->SchoolId);
+                   echo $this->session->SchoolName =$school_name->organization_name;
+                     
+                 echo  $this->session->name = $userData['name'];
+                echo $this->session->username =$username;
+                 echo   $this->session->profileImage = $userData['profile_image'];
+                  $this->output->enable_profiler(TRUE);
+                  
+                    // redirect ('admin');
 
 
 }
+
+
+
+    
 
 
 }

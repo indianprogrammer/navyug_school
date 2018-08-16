@@ -306,7 +306,7 @@ function addMultiple()
         ##generate random invoice number
     // $invoiceId=1134;
         // var_dump($invoiceId);
-    $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
+    $checkInvoiceId=$this->Account_model->get_max_invoiceno($schoolId);
         // var_dump($checkInvoiceId);die;
     $incrementedUniqueInvoiceId=$checkInvoiceId;
     $item_name=$this->input->post('item_name');
@@ -386,6 +386,10 @@ function checkBalance()
      $balance=$total_debit-$total_credit;
     echo $balance;
 }
-
+function test()
+{
+    // echo $this->Account_model->get_max_invoiceno(2);
+    $this->load->view('templates/invoice_template/one');
+}
 }
 ?>

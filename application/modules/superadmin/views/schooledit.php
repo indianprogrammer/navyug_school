@@ -136,6 +136,28 @@
 					</div>
 				</div>
 			</div>
+			 <!-- modal for map  -->
+			<div class="modal fade" id="myMapModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                
+
+            </div>
+            <div class="modal-body " id="showMap" style="height: 600px">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 			<!-- script for dropdown ajax -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script type="text/javascript">
@@ -252,18 +274,19 @@
 			</script>
  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
-    <script type="text/javascript">
+   <script type="text/javascript">
        function latMap() {
             $(document).ready(function()
             {
             var mapOptions = {
-                center: new google.maps.LatLng(18.9300, 52.8200),
+                center: new google.maps.LatLng(21.198548, 81.259158),
                 zoom: 14,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var infoWindow = new google.maps.InfoWindow();
             var latlngbounds = new google.maps.LatLngBounds();
-            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+            var map = new google.maps.Map(document.getElementById("showMap"), mapOptions);
+            $('#myMapModal').modal("show");
             google.maps.event.addListener(map, 'click', function (e) {
                 // alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
                 var Latitude=e.latLng.lat();

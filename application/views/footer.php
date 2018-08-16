@@ -13,9 +13,11 @@
 <!-- jQuery -->
 <!-- <script src="<?= base_url() ;?>assets/admin/plugins/jquery/jquery.min.js"></script> -->
 <!-- Bootstrap -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
 <script src="<?= base_url() ;?>assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url() ;?>assets/admin/plugins/bootstrap/js/bootstrap.js"></script>
 <!-- AdminLTE App -->
+
 <script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
 
 <!-- OPTIONAL SCRIPTS -->
@@ -39,7 +41,22 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script> 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script> -->
 
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 	 -->
+<!--  <script type="text/javascript">
+     $(document).ready(function(){
+  $('.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link').click(function(){
+    $('.nav-item>.nav-link').removeClass("active");
+    $(this).addClass("active");
+});
+});
+   </script>
+   <script type="text/javascript">
+     $(document).ready(function(){
+  $('.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-treeview>.nav-link').click(function(){
+    $('.nav-item>.nav-link').removeClass("active");
+    $(this).addClass("active");
+});
+});
+   </script>	 -->
 
 <!-- PAGE SCRIPTS -->
  <!-- <script src="<?= base_url() ;?><assets/admin/dist/js/pages/dashboard2.js"></script> -->

@@ -39,13 +39,24 @@
                             <td><?= $row['state_name']; ?></td>
                             <td><?= $row['city_name']; ?></td>
                             <td data-toggle="tooltip" data-placement="top" title="<?=$row['address']?>"><?= substr($row['address'],0,10).'....' ?></td>
-                            <td data-toggle="tooltip" data-placement="top" title="<?=$row['address']?>"><?= substr($row['latlong'],0,10).'....'; ?></td>
+                            <td data-toggle="tooltip" data-placement="top" title="<?=$row['latlong']?>"><?= substr($row['latlong'],0,10).'....'; ?></td>
                             <td><?= $row['logo']; ?></td>
                             <td><?= $row['banner']; ?></td>
                             <td>
-                                <a href="<?= site_url('superadmin/edit/' . $row['id']); ?>"
-                                 class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a>
-                                 <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger btn-md delete-it"><span class="fa fa-trash"></span> Delete</a>
+                               
+                                
+                                  <div class="btn-group">
+                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?=  site_url('superadmin/edit/' . $row['id']); ?>" ><i class="fa fa-pencil"></a></i></button>
+                        <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
+                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                          </button>
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="<?= site_url('superadmin/getCredentialAdmin/' . $row['id']); ?>" >Enter Admin Panel</a>
+                           
+                          </div>
+                      </div>
                              </td>
                          </tr>
                      <?php } ?>
@@ -56,6 +67,28 @@
          </div>
      </div>
  </div>
+  <!-- modal class start -->
+                      <!-- <div class="container"> -->
+                        <div id="dataModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog modal-lg" >
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <!-- <h4 class="modal-title">Modal Header</h4> -->
+                            </div>
+                            <div class="modal-body" id="school_detail">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- </div> -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
  <script>
@@ -78,3 +111,33 @@
   });
 }
 </script>
+
+<script>   
+ 
+  $('.view_data').click(function(){  
+   var school_id = $(this).attr("id");  
+           
+            viewSchool();
+      function viewSchool() {     
+           $.ajax({  
+            url:"<?= base_url()?>superadmin/fetchschoolView",  
+            method:"post",  
+            data:{id:school_id},  
+            success:function(data){  
+
+               
+                var obj=JSON.parse(data);
+                console.log(obj);
+                $('#school_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>school name</th><th>Email</th><th>country</th><th>state</th><th>city</th><th>Primary contact</th><th>Secondry Contact</th><th> Address</th></tr><tr><td>'+obj.organization_name+'</td><td>'+obj.email+'</td><td>'+obj.country_name+'</td><td>'+obj.state_name+'</td><td>'+obj.city_name+'</td><td>'+obj.contact_pri+'</td><td>'+obj.contact_sec+'</td><td>'+obj.address+'</td><table>');  
+
+                $('#dataModal').modal("show");  
+            }  
+        });  
+         }
+
+            
+
+       
+      
+   });  
+ </script>

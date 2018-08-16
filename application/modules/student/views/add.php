@@ -25,9 +25,9 @@
 			<span class="text-danger"><?= form_error('mobile');?></span>
 		</div>
 	</div>
-	<div class="form-group">
+	<div class="form-group" style="width:600px">
 		<label for="class" class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
-		<div class="col-md-6">
+		<div class="col-md-5">
 			<select name="classes[]" id="multiselect" class="form-control"  multiple="multiple">
 			<?php	foreach($classes as $row){ ?>
 				<option value="<?= $row->id ?>"><?= $row->name ?></option>
@@ -115,7 +115,7 @@ $(document).ready(function(e) {
   nonSelectedText: 'Select Classes',
   enableFiltering: true,
   enableCaseInsensitiveFiltering: true,
-  buttonWidth:'500px'
+  buttonWidth:'660px'
  });
 });
 </script>
