@@ -384,6 +384,9 @@ function checkBalance()
      $balance=$total_debit-$total_credit;
     echo $balance;
 }
-
+function test()
+{
+     $this->load->view('new');
+}
 }
 ?>
