@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a5a872-8f0d-4f1c-a1d1-d022441093c2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/modules/account/views/pdfReport.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/account/views/pdfreport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/notification/controllers/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/notification/controllers/Notification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/notification/models/notification_model_bkp.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/notification/models/Notification_model.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,21 +34,12 @@
     <favorites_list name="navyug_school" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="225">
-      <file leaf-file-name="Account.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/account/controllers/Account.php">
+    <leaf>
+      <file leaf-file-name="Notification.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/modules/notification/controllers/Notification.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pdfreport.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/modules/account/views/pdfreport.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="130" selection-start-line="130" selection-end-line="130" />
+            <state relative-caret-position="120">
+              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -105,6 +96,7 @@
         <option value="$PROJECT_DIR$/application/modules/test/controllers/Test.php" />
         <option value="$PROJECT_DIR$/application/modules/account/controllers/Account.php" />
         <option value="$PROJECT_DIR$/application/modules/account/views/pdfreport.php" />
+        <option value="$PROJECT_DIR$/application/modules/notification/controllers/Notification.php" />
       </list>
     </option>
   </component>
@@ -128,7 +120,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -152,14 +143,14 @@
               <item name="navyug_school" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="account" type="462c0819:PsiDirectoryNode" />
+              <item name="notification" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="navyug_school" type="b2602c69:ProjectViewProjectNode" />
               <item name="navyug_school" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="account" type="462c0819:PsiDirectoryNode" />
+              <item name="notification" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -167,30 +158,7 @@
               <item name="navyug_school" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="account" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="navyug_school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="navyug_school" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="email" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="navyug_school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="navyug_school" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="email" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="navyug_school" type="b2602c69:ProjectViewProjectNode" />
-              <item name="navyug_school" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="modules" type="462c0819:PsiDirectoryNode" />
-              <item name="email" type="462c0819:PsiDirectoryNode" />
+              <item name="notification" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -242,6 +210,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -311,28 +280,30 @@
       <workItem from="1533698218598" duration="1073000" />
       <workItem from="1533791862257" duration="2282000" />
       <workItem from="1533839772216" duration="1625000" />
+      <workItem from="1534177243693" duration="1546000" />
+      <workItem from="1534225460008" duration="359000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73303000" />
+    <option name="totallyTimeSpent" value="75208000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-10" width="1366" height="778" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.59970456" visible="true" weight="0.28477305" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5967504" visible="true" weight="0.28477305" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32977098" />
       <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.340458" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="2" sideWeight="0.36030534" side_tool="true" weight="0.2118003" />
-      <window_info x="229" y="251" width="280" height="327" id="Terminal" order="1" sideWeight="0.4002954" side_tool="true" visible="true" weight="0.28477305" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info x="229" y="251" width="280" height="327" id="Terminal" order="1" sideWeight="0.40324962" side_tool="true" visible="true" weight="0.28477305" />
       <window_info id="Favorites" order="3" sideWeight="0.38778627" side_tool="true" weight="0.28517398" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -376,20 +347,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/modules/school/views/schoollist.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="43" column="63" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/school/controllers/School.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="uml://PHP//var/www/html/navyug_school">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -637,17 +594,27 @@
     <entry file="file://$PROJECT_DIR$/application/modules/sms/controllers/sms.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/notification/controllers/notification.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/account/views/pdfreport.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="130" selection-start-line="130" selection-end-line="130" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/account/controllers/Account.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
+        <state>
           <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/account/views/pdfreport.php">
+    <entry file="file://$PROJECT_DIR$/application/modules/notification/controllers/Notification.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="130" selection-start-line="130" selection-end-line="130" />
+        <state relative-caret-position="120">
+          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
         </state>
       </provider>
     </entry>

@@ -14,7 +14,7 @@
 	
  <div class="col-md-6">
 <div class="form-group">
-	<label for="student" class="col-md-6 control-label"><span class="text-danger">*</span>Select Student</label>
+	<label for="student" class="col-md-6 control-label">Select Student</label>
 	<div class="col-md-4"> 
 
 		 <select name="student" class="form-control" id="student">
@@ -39,7 +39,7 @@
 
  <div class="col-md-6">
 <div class="form-group">
-	<label for="employee" class="col-md-6 control-label"><span class="text-danger">*</span>Select Employee</label>
+	<label for="employee" class="col-md-6 control-label">Select Employee</label>
 	<div class="col-md-4">
 
 		 <select name="employee" class="form-control" id="employee">
@@ -62,7 +62,7 @@
 <div id="employee_detail"></div>
  </div> 
 <!-- <button id="submit">send</button> -->
-<button type="submit">submit</button>
+<button type="submit" class="btn btn-primary" id="buttonsbm">Send</button>
 </div>
  <?= form_close(); ?> 
 
@@ -72,8 +72,8 @@
 		// console.log(list_type);
 		if(list_type == 'all') {
 			$('#classtype').hide();
-			showAllStudent();
 			$('#student_detail').show();  
+                  showAllStudent();
 		}
 		else if(list_type=='class')
 		{
@@ -92,11 +92,11 @@
             success:function(data){  
 
                   var obj=JSON.parse(data);
-            	  // console.log(obj['id']);
+            	   console.log(obj);
                    // console.log(Object.values(obj[1]));
 
             	var student_data,i;
-            	var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox">select all </tr>';
+            	var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" class="selectall">select all </tr>';
             	for (i = 0; i < obj.length; i++) {
             		student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" id="student" name="student_details[]" ></td></tr>';
             		
@@ -147,7 +147,8 @@
             					 if(obj.length==0)
             					{
             					$('#student_detail').show();
-            					$('#student_detail').html("No records found in databse"); 
+                                          $('#student_detail').html("No records found in databse"); 
+            					$('#buttonsbm').hide(); 
             					}
             				else
             				{
@@ -161,6 +162,7 @@
             					var student_final=student_detail+student_data+'</table>';
             					$('#student_detail').show();
             					$('#student_detail').html(student_final);  
+                                          
             			}
             			}
             			});
@@ -287,3 +289,16 @@ $('#employee').change(function () {
 			console.log(name);
 		});
 	</script>
+
+
+      <script>
+
+
+$('.selectall').click(function() {
+    if ($(this).is(':checked')) {
+        $('input').attr('checked', true);
+    } else {
+        $('input').attr('checked', false);
+    }
+});
+</script>

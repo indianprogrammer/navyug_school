@@ -226,5 +226,19 @@ class Employee extends MY_Controller{
       else
         show_error('The employee you are trying to delete does not exist.');
     }
-    
+   
+
+
+function fetchEmployeeView()
+{
+
+  echo json_encode($employee_view= $this->Employee_model->get_employee($this->input->post('id')));
+}
+
+
+
+
+
+
   }
+?>

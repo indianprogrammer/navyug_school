@@ -54,7 +54,7 @@ class Account_model extends CI_Model
        $this->db->select('invoices.*,account_transaction.*,student.student_name');
        $this->db->from('invoices');
        $this->db->order_by('invoices.id', 'DESC');
-       $this->db->where('school_id', $id);
+       $this->db->where('invoices.school_id', $id);
 
        $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
        $this->db->join('student', 'student.id=invoices.student_id', 'Left');

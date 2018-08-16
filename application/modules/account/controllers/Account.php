@@ -222,7 +222,8 @@
        $accountTransaction=array(
         'reference_id'=>$addreciept,
         'reference_type'=>2,
-        'credit'=>$paid
+        'credit'=>$paid,
+        'school_id'=>$this->session->SchoolId
 
     );
         // var_dump($accountTransaction);
@@ -303,9 +304,9 @@ function addMultiple()
     $getSchoolInformation = $this->Account_model->get_school_information($schoolId);
 
         ##generate random invoice number
-    $invoiceId=1134;
+    // $invoiceId=1134;
         // var_dump($invoiceId);
-    $checkInvoiceId=$this->Account_model->get_max_invoiceno($invoiceId);
+    $checkInvoiceId=$this->Account_model->get_max_invoiceno($schoolId);
         // var_dump($checkInvoiceId);die;
     $incrementedUniqueInvoiceId=$checkInvoiceId;
     $item_name=$this->input->post('item_name');
@@ -347,7 +348,8 @@ $total=$subtotal+$subtotal*0.18;
    $accountTransaction=array(
     'reference_id'=>$addInvoice,
     'reference_type'=>1,
-    'debit'=>$total
+    'debit'=>$total,
+    'school_id'=>$this->session->SchoolId
 
 );
    ## map invoice school
@@ -384,9 +386,6 @@ function checkBalance()
      $balance=$total_debit-$total_credit;
     echo $balance;
 }
-function test()
-{
-     $this->load->view('new');
-}
+
 }
 ?>

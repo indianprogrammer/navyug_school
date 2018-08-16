@@ -48,7 +48,7 @@ class Classes extends MY_Controller{
 
 
         // $this->form_validation->set_rules('password','Password','required|max_length[20]');
-        $this->form_validation->set_rules('class_name','class Name','required|max_length[100]|is_unique[classes.name]');
+        $this->form_validation->set_rules('class_name','class Name','required|max_length[100]');
 
         // $this->form_validation->set_rules('address','Address','required');
         

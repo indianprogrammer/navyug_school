@@ -62,9 +62,7 @@
                 </button>
             </div>
             <?= form_close() ?>
-            <script type="text/javascript">
-                
-            </script>
+           
             <script>
              function  getStudentDetails(){
    $(document).ready(function() {

@@ -53,7 +53,7 @@ echo ' <section class="content">
                   <b>Invoice '.$invoice_id.'</b><br>
                   <br>
                   <b>Order ID:</b> 4F3S8J<br>
-                  <b>Payment Due:</b> 2/22/2014<br>
+                  
                   <b>Account:</b> 968-34567
                 </div>
                 <!-- /.col -->

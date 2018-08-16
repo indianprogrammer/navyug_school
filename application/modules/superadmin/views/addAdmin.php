@@ -1,32 +1,26 @@
-<?php echo form_open_multipart('employee/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open_multipart('superadmin/adminAdd',array("class"=>"form-horizontal")); ?>
 	
 	<div class="form-group">
-		<label for="employee_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Employee Name</label>
-		<div class="col-md-4">
-			<input type="text" name="employee_Name" value="<?php echo $this->input->post('employee_Name'); ?>" class="form-control" id="employee_Name"  autofocus />
-			<span class="text-danger"><?php echo form_error('employee_Name');?></span>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="type" class="col-md-4 control-label"><span class="text-danger">*</span>Employee type</label>
+		<label for="type" class="col-md-4 control-label"><span class="text-danger">*</span>For School</label>
 		<div class="col-md-4">
 			<!-- <input type="text" name="type" value="<?php echo $this->input->post('type'); ?>" class="form-control" id="type" /> -->
-			<select name="type" class="form-control" id="type">
+			<select name="school_id" class="form-control" id="type" autofocus>
 				<option>--select--</option>
-				<?php foreach($emptype as $row)  {     ?>
-				<option value="<?= $row->id ?>"><?=  $row->type     ?></option>
+				<?php foreach($school as $row)  {     ?>
+				<option value="<?= $row['id'] ?>"><?=  $row['organization_name']     ?></option>
 			<?php } ?>
 		</select>
 			<span class="text-danger"><?php echo form_error('type');?></span>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="qualification" class="col-md-4 control-label"><span class="text-danger">*</span>Qualification</label>
+		<label for="employee_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Admin Name</label>
 		<div class="col-md-4">
-			<input type="text" name="qualification" value="<?php echo $this->input->post('qualification'); ?>" class="form-control" id="qualification" />
-			<span class="text-danger"><?php echo form_error('qualification');?></span>
+			<input type="text" name="name" value="<?php echo $this->input->post('name'); ?>" class="form-control" id="name"   />
+			<span class="text-danger"><?php echo form_error('employee_Name');?></span>
 		</div>
 	</div>
+	
 	
 	<div class="form-group">
 		<label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
@@ -76,7 +70,7 @@
 	</div>
 
 <?php echo form_close(); ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <!-- script for checkbox -->
 <script>
 $(document).ready(function(e) {

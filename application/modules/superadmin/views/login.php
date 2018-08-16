@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Super Admin| Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,23 +21,14 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>LOGIN PAGE</b></a>
+    <b>SUPER ADMIN LOGIN PAGE</b>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
-<?php  if (isset($message_display)) {
-    echo "<div class='message' style='color:green'>";
-    echo $message_display;
-    echo "</div>";
-    }
-    if (isset($error_message)) {
-        echo "<div class='error_message' style='color:red;''>";
-    echo $error_message;
-    }
-    ?>
-       <?= form_open('login/process') ?>
+
+       <?= form_open('superadmin/loginProcess') ?>
         <div class="form-group has-feedback">
           <input type="text" class="form-control" name="username" placeholder="username">
           <span class="fa fa-envelope form-control-feedback"></span>

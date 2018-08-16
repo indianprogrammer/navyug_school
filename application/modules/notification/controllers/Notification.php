@@ -6,7 +6,7 @@ class Notification extends MY_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('notification/Notification_model');
+    $this->load->model('Notification_model');
     $this->load->model('student/Student_model');
     $this->load->model('employee/Employee_model');
     $this->load->model('classes/Classes_model');
@@ -74,6 +74,13 @@ function sendNotification()
  
    modules::run('sms/sms/send_notification_sms',$notification,$notificationStudent,$notificationEmployee);
    modules::run('email/email/send_notification_email',$notification,$notificationStudent,$notificationEmployee);
+   $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully sent',
+         'description'=> ''
+       );
+      redirect('notification');
+
   
 
 
