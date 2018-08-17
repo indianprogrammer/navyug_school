@@ -103,7 +103,7 @@ $(document).ready(function(e) {
              return;
          }
         // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 55)) && (e.keyCode < 96 || e.keyCode > 105)  ) {
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)  ) {
             e.preventDefault();
         }
     });
@@ -115,7 +115,7 @@ $(document).ready(function(e) {
   nonSelectedText: 'Select Classes',
   enableFiltering: true,
   enableCaseInsensitiveFiltering: true,
-  buttonWidth:'660px'
+  buttonWidth:'430px'
  });
 });
 </script>

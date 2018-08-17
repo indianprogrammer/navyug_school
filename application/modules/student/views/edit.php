@@ -28,7 +28,7 @@
 		<div class="col-md-3">
 			<input type="file" name="profile_image" value="<?php echo ($this->input->post('profile_image') ? $this->input->post('profile_image') : $student['profile_image']); ?>" class="form-control" id="profile_image" />
 			<span class="text-danger"><?php echo form_error('profile_image');?></span>
-			<img src="<?= $student['profile_image'] ?>" height="50px;">
+			<!-- <img src="<?= $student['profile_image'] ?>" height="50px;"> -->
 		</div>
 	</div>
 	<div class="form-group">
@@ -70,7 +70,7 @@
              return;
          }
         // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 55)) && (e.keyCode < 96 || e.keyCode > 105)  ) {
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)  ) {
             e.preventDefault();
         }
     });

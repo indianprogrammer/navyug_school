@@ -70,7 +70,7 @@
   nonSelectedText: 'Select Subject',
   enableFiltering: true,
   enableCaseInsensitiveFiltering: true,
-  buttonWidth:'520px'
+  buttonWidth:'350px'
  });
 });
 </script>
@@ -80,7 +80,7 @@
   nonSelectedText: 'Select Employee',
   enableFiltering: true,
   enableCaseInsensitiveFiltering: true,
-  buttonWidth:'520px'
+  buttonWidth:'350px'
  });
 });
 </script>
