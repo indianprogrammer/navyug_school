@@ -23,7 +23,7 @@
       <!-- Info boxes -->
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
-         <a href="<?= base_url() ?>subject" data-toggle="tooltip" data-placement="top" title="click here for more information">  
+         <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
           <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
 
@@ -56,6 +56,42 @@
   </div>
 </div>
   </section>  
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card ">
+        <div class="card-header">
+          <h3 class="card-title">Student Addmission per month</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <div class="ajax_loading">         
+          <div class="col-md-3">
+
+
+
+            <div class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <!-- end loading -->
+          </div>
+          <!-- /.card -->
+        </div>
+        <div class="card-body">
+          <div class="chart">
+            <!-- <canvas id="myChartStudent" width="400" height="200" style="width:400px;height: 300px"></canvas> -->
+            <!-- <span>Remaning <div id="amount_remaning"></div></span> -->
+          </div>
+        </div>
+
+        <!-- /.card-body -->
+      </div>
+    </div>
+    </div>
+  </div>
 
 
 
@@ -78,4 +114,75 @@
    }});
 
  });
+</script>
+<script type="text/javascript">
+
+  $(document).ready(function(){
+
+    $('.ajax_loading').show();
+    school_details();
+    function school_details(){
+    $.ajax({url: "<?= base_url()?>superadmin/fetchInstituteByDate",method:"get", success: function(result){
+     $('.ajax_loading').hide();
+     var obj=JSON.parse(result);
+
+
+     // console.log(obj);
+     var date=[];
+     var organization_name  =[];
+     for (var i in obj)
+     {
+      date.push(obj[i].date);
+      organization_name.push(obj[i].organization_name);
+
+    }
+     console.log(organization_name);
+        Chart.defaults.global.defaultFontFamily = "Lato";
+    Chart.defaults.global.defaultFontSize = 18;
+    var canvas = document.getElementById('myChartStudent');
+    var data = {
+      labels: date,
+      datasets: [
+      {
+        label: "Institute Add Date Wise",
+        backgroundColor: "#3c8dbc",
+        // borderColor: "rgba(255,99,132,1)",
+        borderWidth: 1,
+            // xAxisID:"10",
+            hoverBackgroundColor: "black",
+            hoverBorderColor: "black",
+            data: ["5","8"]
+            // backgroundColor:[
+            // "rgba(255,99,132,0.2)","rgba(255,99,116,0.2)"
+            // ]
+          }
+          ]
+        };
+        var option = {
+          animation: {
+            duration:2000
+          }
+        }
+        var myBarChart = Chart.Bar(canvas,{
+          data:data,
+          options: {
+            scales: {
+              yAxes: [{
+                ticks: {
+                  beginAtZero:true
+                }
+              }],
+              xAxes: [{
+                barPercentage:.7 }]
+              }
+            }
+
+          });
+      }
+    });
+  }
+  });
+
+
+
 </script>

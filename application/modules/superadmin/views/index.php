@@ -81,6 +81,38 @@
 
 
                         </ul>
+                    </li> 
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-tree"></i>
+                            <p>
+                                ACCOUNT
+                                <i class="fa fa-angle-left right"></i>
+                            </p>    
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>superadmin/invoice" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD INVOICE
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>superadmin/reciept" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD RECIEPT
+
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a href="<?= site_url() ?>superadmin/createAdmin" class="nav-link">

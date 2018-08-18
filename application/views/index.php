@@ -40,7 +40,7 @@
                        </a>
                        <ul class="nav nav-treeview"> -->
                     <li class="nav-item has-treeview menu-open">
-                        <a href="<?= site_url() ?>school/dashboard" class="nav-link">
+                        <a href="<?= site_url() ?>admin" class="nav-link">
                             <i class="fa fa-circle-o nav-icon"></i>
                             <p>DASHBOARD</p>
                         </a>
@@ -393,7 +393,7 @@
                     <li class="nav-item">
                         <a href="<?= site_url() ?>login/logout" class="nav-link">
                             <i class="fa fa-sign-out nav-icon"></i>
-                            <p>Logout</p>
+                            <p>LOGOUT</p>
                         </a>
                     </li>
 
@@ -414,8 +414,8 @@
     <section class="content">
         <div class="container-fluid">
             <!-- Info boxes -->
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-12">
+            <!-- <div class="row"> -->
+                <!-- <div class="col-12 col-sm-6 col-md-12"> -->
 
                   <!--   <ul class="breadcrumb">
 
@@ -447,9 +447,9 @@
                     ?>
 
 
-                </div>
+                <!-- </div> -->
                 <!-- /.col -->
-            </div>
+            <!-- </div> -->
             <!-- /.row -->
         </div><!--/. container-fluid -->
     </section>

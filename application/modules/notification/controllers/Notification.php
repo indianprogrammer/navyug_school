@@ -46,7 +46,7 @@ function fetchAllClasses()
   $school_id=$this->session->SchoolId;
   $data['class'] = $this->Classes_model->get_all_class($school_id);
   echo json_encode($data['class']);
-}
+}/**/
 function fetchEmployeeClassWise()
 {
 

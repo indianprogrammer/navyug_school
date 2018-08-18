@@ -22,14 +22,14 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
    <style type="text/css">
      /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    canvas  {height:1000px;}
-}
+/*@media only screen and (max-width: 600px) {*/
+    /*canvas  {height:1000px;}*/
+/*}*/
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-   canvas  {height:1000px;}
-}
+/*@media only screen and (min-width: 600px) {*/
+   /*canvas  {height:1000px;}*/
+/*}*/
 .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
     color: #fff;
     background-color: #007bff;
@@ -62,6 +62,9 @@
   color:white;
 }
 
+  @media only screen and (max-width: 800px) {
+    #line_charts  {height:400px;position:relative;}
+}
    </style>
 
   

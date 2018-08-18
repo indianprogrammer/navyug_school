@@ -201,6 +201,92 @@ function map_school_employee($params)
   $this->db->insert('map_school_employee',$params);
       return $this->db->insert_id();
 }
+function fetch_institute_by_date()
+
+{
+$query =$this->db->select("date(created_at) as date,organization_name ");
+$query =$this->db->from("school");
+   return $query->get()->result_array();
+
+}
+function get_invoice_id()
+{
+  $this->db->select_max('invoice_id');
+  $this->db->from('super_admin_invoice');
+  $id=$this->db->get()->row();
+  if($id->invoice_id=="")
+  {
+    $id=1;
+  }
+  else
+  {
+    $id=$id->invoice_id+1;
+  }
+  return $id;
+}
+
+function insert_invoice_info($params)
+{
+  $this->db->insert('super_admin_invoice',$params);
+      return $this->db->insert_id();
+}
+
+function insert_account_info($params)
+{
+   $this->db->insert('super_admin_account_transaction',$params);
+    return $this->db->insert_id();
+}
+function get_reciept_id()
+{
+  $this->db->select_max('reciept_id');
+  $this->db->from('super_admin_reciept');
+  $id=$this->db->get()->row();
+  if($id->reciept_id=="")
+  {
+    $id='9yug'.'1';
+  }
+  else
+  {
+  $id= ++$id->reciept_id;
+  }
+  return $id;
+}
+function insert_reciept_info($params)
+{
+  $this->db->insert('super_admin_reciept',$params);
+      return $this->db->insert_id();
+}
+function get_sales_details_date()
+{
+$query = $this->db->query("select MONTHNAME(date) as month,sum(debit) as debit,sum(credit) as credit,count(id) as count from super_admin_account_transaction  group by MONTH(date),MONTHNAME(date) order by MONTH(date) asc ");
+   return $query->result_array();
+
+}
+function searchBalInformatiion($school_id)
+{
+     $this->db->select_sum('debit');
+   $this->db->from('super_admin_account_transaction');
+  
+   $this->db->where('school_id',$school_id);  
+   
+   
+       
+   return  $query = $this->db->get()->row();
+   }
+
+function gettingTransactionInfo($school_id)
+{
+
+     $this->db->select_sum('credit');
+     $this->db->from('super_admin_account_transaction');
+   // $parameter="student_id=$studentId and school_id=1";
+   $this->db->where('school_id',$school_id);  
+   
+    return  $query = $this->db->get()->row();
+
+
+}
+
 
 
   }

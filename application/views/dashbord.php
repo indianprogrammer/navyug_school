@@ -1,16 +1,5 @@
 
- <style type="text/css">
-     /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    canvas #line-chart {height:100%;}
-}
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  canvas  #line-chart {height:100%;}
-}
-
-   </style>
 
 
 <!-- Content Wrapper. Contains page content -->
@@ -29,8 +18,8 @@
   <!-- /.content-header -->
 
   <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
+ 
+    <!-- <div class="container-fluid"> -->
       <!-- Info boxes -->
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
@@ -151,7 +140,7 @@
   </div>
     <!-- /.col -->
     <div class="row">
-      <div class="col-md-8 col-sm-12 col-lg-12">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header">
             <h5 class="card-title">Monthly Recap Report</h5>
@@ -160,7 +149,18 @@
               <button type="button" class="btn btn-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
               </button>
-              
+              <div class="btn-group">
+                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-wrench"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                      <a href="#" onclick="" class="dropdown-item">Previous One Month</a>
+                      <a href="#" class="dropdown-item">Another action</a>
+                      <a href="#" class="dropdown-item">Something else here</a>
+                      <a class="dropdown-divider"></a>
+                      <a href="#" class="dropdown-item">Separated link</a>
+                    </div>
+                  </div>
               <button type="button" class="btn btn-tool" data-widget="remove">
                 <i class="fa fa-times"></i>
               </button>
@@ -168,29 +168,29 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <div class="row">
-              <div class="col-md-10 col-sm-12">
-                <p class="text-center">
-                  <!-- <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong> -->
+             <!-- <div class="row">  -->
+              <!-- <div class="col-sm-12 col-12"> -->
+               <!--  <p class="text-center">
+                  <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
                 </p>
-
-                <div class="chart ">
+ -->
+                <div class="chart res">
                   <!-- Sales Chart Canvas -->
                   <!--  <canvas id="salesChart" height="180" style="height: 180px;"></canvas> -->
-                  <canvas id="line-chart" width="400" height="110" style="width:300px;height: 60px;"></canvas>
+                  <canvas id="line-charts" height="130" style="height:200px;" ></canvas>
                 </div>
                 <!-- /.chart-responsive -->
-              </div>
+              <!-- </div> -->
               <!-- /.col -->
 
               <!-- /.col -->
-            </div>
+             <!-- </div>  -->
             <!-- /.row -->
           </div>
           <!-- ./card-body -->
           <div class="card-footer">
             <div class="row">
-              <div class="col-sm-3 col-6">
+              <div class="col-sm-4 col-4">
                 <div class="description-block border-right">
                   <!-- <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 17%</span> -->
                   <h5 class="description-header">30,210.43</h5>
@@ -199,7 +199,7 @@
                 
               </div>
               
-              <div class="col-sm-3 col-6">
+              <div class="col-sm-4 col-4">
                 <div class="description-block border-right">
                   <!-- <span class="description-percentage text-warning"><i class="fa fa-caret-left"></i> 0%</span> -->
                   <h5 class="description-header">10,390.90</h5>
@@ -208,7 +208,7 @@
                 
               </div>
 
-              <div class="col-sm-3 col-6">
+              <div class="col-sm-4 col-4">
                 <div class="description-block border-right">
                   <!-- <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 20%</span> -->
                   <h5 class="description-header">10,813.53</h5>
@@ -244,6 +244,18 @@
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
               </button>
+               <div class="btn-group">
+                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                      <i class="fa fa-wrench"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                      <a href="java:void(0)" onclick="invoiceByMonth()" class="dropdown-item">Previous One Month</a>
+                      <!-- <a href="#" class="dropdown-item">Another action</a> -->
+                      <!-- <a href="#" class="dropdown-item">Something else here</a> -->
+                      <!-- <a class="dropdown-divider"></a> -->
+                      <!-- <a href="#" class="dropdown-item">Separated link</a> -->
+                    </div>
+                  </div>
               <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </div>
           </div>
@@ -261,7 +273,7 @@
           </div>
           <div class="card-body">
             <div class="chart">
-              <canvas id="densityChart" width="400" height="200" style="width:400px;height: 300px"></canvas>
+              <canvas id="densityChart"  style="height: 250px"></canvas>
               <!-- <span>Remaning <div id="amount_remaning"></div></span> -->
             </div>
           </div>
@@ -280,7 +292,7 @@
             <button type="button" class="btn btn-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
-        <div class="ajax_loading">         
+       <!--  <div class="ajax_loading">         
           <div class="col-md-3">
 
 
@@ -288,13 +300,13 @@
             <div class="overlay">
               <i class="fa fa-refresh fa-spin"></i>
             </div>
-            <!-- end loading -->
+            
           </div>
-          <!-- /.card -->
-        </div>
+         
+        </div> -->
         <div class="card-body">
           <div class="chart">
-            <canvas id="myChartStudent" width="400" height="200" style="width:400px;height: 300px"></canvas>
+            <canvas id="myChartStudent"   style="height: 250px"></canvas>
             <!-- <span>Remaning <div id="amount_remaning"></div></span> -->
           </div>
         </div>
@@ -305,10 +317,10 @@
     </div>
 
 
-  </div>
+  <!-- </div> -->
   <!-- /.row -->
   <!--/. container-fluid -->
-</section>
+
 <!-- /.content -->
 
 
@@ -418,7 +430,7 @@
     }
     // console.log(count);
         Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontSize = 16;
     var canvas = document.getElementById('myChartStudent');
     var data = {
       labels: month,
@@ -538,6 +550,74 @@
 });
   }
   });
+  function invoiceByMonth()
+  {
+     $.ajax({url: "<?= base_url()?>admin/getDataPreviousMonth",method:"get", success: function(result){
+     $('.ajax_loading').hide();
+     var obj=JSON.parse(result);
+
+
+     console.log(obj);
+     var count=[];
+     var date =[];
+     var total =[];
+     for (var i in obj)
+     {
+      count.push(obj[i].count);
+      date.push(obj[i].date);
+      total.push(obj[i].total);
+
+    }
+    var densityCanvas = document.getElementById("densityChart");
+
+
+    Chart.defaults.global.defaultFontFamily = "Lato";
+    Chart.defaults.global.defaultFontSize = 18;
+
+    var densityData = {
+      label: 'Amount in month',
+      data: total,
+      backgroundColor: 'rgba(0, 99, 132, 0.6)',
+      borderWidth: 0,
+      yAxisID: "y-axis-density"
+    };
+
+    var gravityData = {
+      label: 'No of invoice generated',
+      data:count,
+      backgroundColor: 'rgba(99, 132, 0, 0.6)',
+      borderWidth: 0,
+      yAxisID: "y-axis-gravity"
+    };
+
+    var planetData = { 
+
+      labels: date,
+      datasets: [densityData, gravityData]
+    };
+
+    var chartOptions = {
+      scales: {
+        xAxes: [{
+          barPercentage: 1,
+          categoryPercentage: 0.6
+        }],
+        yAxes: [{
+          id: "y-axis-density"
+        }, {
+          id: "y-axis-gravity"
+        }]
+      }
+    };
+
+    var barChart = new Chart(densityCanvas, {
+      type: 'bar',
+      data: planetData,
+      options: chartOptions
+    });
+  }
+});
+  }
 </script>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -560,7 +640,7 @@
       credit.push(obj[i].credit);
 
     }
-    new Chart(document.getElementById("line-chart"), {
+    new Chart(document.getElementById("line-charts"), {
       type: 'line',
       data: {
         labels: month,

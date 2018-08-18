@@ -89,7 +89,16 @@ function get_school_name($school_id)
   return $this->db->get()->row();
 }
 
-
+function get_data_bymonth()
+{
+  $query =$this->db->query("SELECT date(date) as date,sum(total_amount) as total,count(id) as count FROM invoices WHERE date BETWEEN (CURRENT_DATE() - INTERVAL 1 MONTH) AND CURRENT_DATE() group by date(date)");
+   return $query->result_array();
+}
+function get_data_bymonth_student($school_id)
+{
+  $query = $this->db->query("select * from student LEFT JOIN  map_school_student ON map_school_student.student_id = student.id  WHERE created_at BETWEEN (CURRENT_DATE() - INTERVAL 1 MONTH) ");
+   return $query->result_array();
+}
 
 }
 ?>  

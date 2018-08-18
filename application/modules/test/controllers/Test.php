@@ -205,9 +205,9 @@ function real_ip()
 }
 function check()
 {
-  // $data['_view'] = 'checkbox';
-     // $this->load->view('index',$data);
-  calling(1,2);
+  $data['_view'] = 'checkbox';
+     $this->load->view('index',$data);
+  // calling(1,2);
 }
 function calling($a,$b)
 {

@@ -1,4 +1,4 @@
-<label><input type="checkbox" name="sample" class="selectall"/> Select all</label>
+<label><input type="checkbox" name="sample" class="selectalls"/> Select all</label>
 
 
 
@@ -16,5 +16,11 @@ $('.selectall').click(function() {
     } else {
         $('input').attr('checked', false);
     }
+});
+</script>
+<script>
+
+$('.selectalls').click(function() {
+    console.log("ff");
 });
 </script>

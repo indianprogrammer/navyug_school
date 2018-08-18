@@ -69,6 +69,15 @@
 
     }
 
+function getDataPreviousMonth()
+{
+  $schoolId=$this->session->SchoolId;
+  echo json_encode(($this->Admin_model->get_data_bymonth()));
+
+}
+function getDataStudentMonth()
+{
+var_dump($this->Admin_model->get_data_bymonth_student(1));
 
 
 
@@ -78,7 +87,6 @@
 
 
 
-
-
+}
 }
   ?>

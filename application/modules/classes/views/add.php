@@ -29,7 +29,7 @@
 	</div>
 	<div class="form-group">
 		<label for="employee" class="col-md-4 control-label"><span class="text-danger">*</span>Employee</label>
-		<div class="col-md-5 sol-sm-10">
+		<div class="col-md-5 col-sm-10">
 			<select  name="employee[]" class="selectpicker" multiple="multiple" id="multiselectEmployee">
 				<!-- <option>SELECT EMPLOYEE</option> -->
 			<?php	foreach($employee as $row){ ?>
@@ -80,7 +80,9 @@
   nonSelectedText: 'Select Employee',
   enableFiltering: true,
   enableCaseInsensitiveFiltering: true,
-  buttonWidth:'350px'
+  buttonWidth:'350px',
+  buttonContainer: '<div class="col-md-5 col-sm-12" />',
+
  });
 });
 </script>

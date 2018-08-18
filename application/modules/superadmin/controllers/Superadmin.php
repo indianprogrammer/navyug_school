@@ -46,7 +46,8 @@ class Superadmin extends Super_Controller{
 		}
 	}
 	function school_list()
-	{   $data['title']="School List";
+	{   
+    $data['title']="School List";
 	$data['school'] = $this->Super_model->get_all_school();
 
 	$data['_view'] = 'schoollist';
@@ -395,9 +396,102 @@ $credential=$this->Super_model->getCredential($adminid);
 }
 
 
+function fetchInstituteByDate()
+{
 
-    
+echo json_encode($this->Super_model->fetch_institute_by_date());
+}
+function invoice()
+{
+  $data['school']=$this->Super_model->get_all_school_name();
+ $data['_view'] = 'addInvoice';
+    $this->load->view('index',$data);
+}
+
+function invoiceAdd()
+{
+  $school_id=$this->input->post('school_id');
+  $amount=$this->input->post('amount');
+ $invoiceId=$this->Super_model->get_invoice_id();
+ $invoiceInfo=array(
+
+'school_id'=>$school_id,
+'amount'=>$amount,
+'invoice_id'=>$invoiceId
 
 
+ );
+ ## 
+$insertInvoice=$this->Super_model->insert_invoice_info($invoiceInfo);
+$accountInfo=array(
+
+'school_id'=>$school_id,
+'debit'=>$amount,
+'refrence_type'=>1
+
+
+ );
+
+$inserAccountInfo=$this->Super_model->insert_account_info($accountInfo);
+
+}
+function reciept()
+{
+  $data['school']=$this->Super_model->get_all_school_name();
+ $data['_view'] = 'addReciept';
+    $this->load->view('index',$data);
+}
+
+function recieptAdd()
+{
+  $school_id=$this->input->post('school_id');
+  $amount=$this->input->post('amount');
+  $payer_name=$this->input->post('payer_name');
+  $payer_mobile=$this->input->post('payer_mobile');
+  $method=$this->input->post('method');
+
+ $recieptId=$this->Super_model->get_reciept_id();
+ $recieptInfo=array(
+
+'school_id'=>$school_id,
+'amount'=>$amount,
+'reciept_id'=>$recieptId,
+'payer_name'=>$payer_name,
+'payer_mobile'=>$payer_mobile,
+'method'=>''
+
+
+
+ );
+ ## 
+$insertReciept=$this->Super_model->insert_reciept_info($recieptInfo);
+$accountInfo=array(
+
+'school_id'=>$school_id,
+'credit'=>$amount,
+'refrence_type'=>2
+
+
+ );
+
+$inserAccountInfo=$this->Super_model->insert_account_info($accountInfo);
+
+}
+function salesChart()
+    {
+
+   
+      $data=$this->Super_model->get_sales_details_date();
+      echo json_encode($data);
+    }
+  function balanceSchool()
+  {
+     $student_info=$this->Super_model->searchBalInformatiion(1);
+   $credit_info=$this->Super_model->gettingTransactionInfo(1);
+   $total_debit=$student_info->debit;
+    $total_credit=$credit_info->credit;
+     $balance=$total_debit-$total_credit;
+    echo $balance;
+  }  
 }
 ?>

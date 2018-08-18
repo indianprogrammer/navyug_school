@@ -87,14 +87,15 @@ class Account_model extends CI_Model
     $this->db->from('invoices');
     $this->db->where('school_id',$school_id);       
      $id = $this->db->get()->row();
-    if(isset($id))
+    if($id=="")
   {
-    return $id->invoice_id+1;
+   $id=1;
   }
   else
   {
-    return 1;
+     $id= $id->invoice_id+1;
   }
+  return $id;
   }
 
 

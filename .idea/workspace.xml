@@ -2,12 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6a5a872-8f0d-4f1c-a1d1-d022441093c2" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/account/models/Account_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/account/models/Account_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/admin/controllers/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/controllers/Admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/admin/models/Admin_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/models/Admin_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/classes/views/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/classes/views/add.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/modules/notification/controllers/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/notification/controllers/Notification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/modules/notification/models/notification_model_bkp.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/notification/models/Notification_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/superadmin/controllers/Superadmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/superadmin/controllers/Superadmin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/superadmin/models/Super_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/superadmin/models/Super_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/superadmin/views/dashbord.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/superadmin/views/dashbord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/superadmin/views/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/superadmin/views/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/dashbord.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/dashbord.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/index.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,16 +39,28 @@
     <expand />
     <select />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-362725431">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.31" value="1" />
+          <entry key="project.open.time.73" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="navyug_school" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Notification.php" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/modules/notification/controllers/Notification.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+            <state relative-caret-position="263">
+              <caret line="62" column="58" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -105,9 +126,6 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="NodePackageJsonFileManager">
-    <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="47" />
@@ -216,7 +234,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dabba_scripts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -235,12 +253,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JavaScript Debug.Notification.php">
+    <configuration name="Notification.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/navyug_school/application/modules/notification/controllers/Notification.php">
+      <method v="2" />
+    </configuration>
     <configuration name="navyug_school" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner directory="$PROJECT_DIR$" />
+      <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="PHPUnit.navyug_school" />
+      <item itemvalue="JavaScript Debug.Notification.php" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.Notification.php" />
         <item itemvalue="PHPUnit.navyug_school" />
       </list>
     </recent_temporary>
@@ -282,57 +309,58 @@
       <workItem from="1533839772216" duration="1625000" />
       <workItem from="1534177243693" duration="1546000" />
       <workItem from="1534225460008" duration="359000" />
+      <workItem from="1534581096524" duration="748000" />
+      <workItem from="1534589167256" duration="228000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75208000" />
+    <option name="totallyTimeSpent" value="76184000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-10" width="1366" height="778" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5967504" visible="true" weight="0.28477305" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5947996" visible="true" weight="0.28464818" />
+      <window_info x="229" y="251" width="280" height="327" id="Terminal" order="1" sideWeight="0.40520042" side_tool="true" visible="true" weight="0.28464818" />
+      <window_info id="Structure" order="2" sideWeight="0.36030534" side_tool="true" weight="0.2118003" />
+      <window_info id="Favorites" order="3" sideWeight="0.38778627" side_tool="true" weight="0.28517398" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32977098" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32977098" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.340458" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info id="Structure" order="2" sideWeight="0.36030534" side_tool="true" weight="0.2118003" />
-      <window_info x="229" y="251" width="280" height="327" id="Terminal" order="1" sideWeight="0.40324962" side_tool="true" visible="true" weight="0.28477305" />
-      <window_info id="Favorites" order="3" sideWeight="0.38778627" side_tool="true" weight="0.28517398" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="REST Client" order="11" weight="0.43969464" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32977098" />
-      <window_info active="true" anchor="bottom" id="REST Client" order="11" weight="0.43969464" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6381679" visible="true" weight="0.2118003" />
-      <window_info id="Structure" order="2" sideWeight="0.36030534" side_tool="true" weight="0.2118003" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
       <window_info active="true" x="229" y="251" width="280" height="327" id="Terminal" order="1" sideWeight="0.36183205" side_tool="true" visible="true" weight="0.2118003" />
+      <window_info id="Structure" order="2" sideWeight="0.36030534" side_tool="true" weight="0.2118003" />
+      <window_info id="Favorites" order="3" sideWeight="0.50076336" side_tool="true" weight="0.2118003" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.340458" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Favorites" order="3" sideWeight="0.50076336" side_tool="true" weight="0.2118003" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32980332" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,11 +368,6 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="uml://PHP//var/www/html/navyug_school">
@@ -501,13 +524,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/rest-api.http">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="23" selection-start-column="23" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/rest-api.http" />
     <entry file="file://$PROJECT_DIR$/application/views/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -578,7 +595,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/email/controllers/email.php">
+    <entry file="file://$PROJECT_DIR$/application/modules/email/controllers/Email.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/student/controllers/Student.php">
@@ -591,10 +608,7 @@
     <entry file="file://$PROJECT_DIR$/application/modules/email/models/Email_model.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/sms/controllers/sms.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/notification/controllers/notification.php">
+    <entry file="file://$PROJECT_DIR$/application/modules/sms/controllers/Sms.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/account/views/pdfreport.php">
@@ -613,8 +627,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/notification/controllers/Notification.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="24" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
+        <state relative-caret-position="263">
+          <caret line="62" column="58" lean-forward="true" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
         </state>
       </provider>
     </entry>
