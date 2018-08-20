@@ -21,7 +21,9 @@
  
     <!-- <div class="container-fluid"> -->
       <!-- Info boxes -->
+     <div class="container-fluid"> 
       <div class="row">
+
         <div class="col-12 col-sm-6 col-md-3">
          <a href="<?= base_url() ?>subject" data-toggle="tooltip" data-placement="top" title="click here for more information">  
           <div class="info-box">
@@ -139,8 +141,9 @@
     </div>
   </div>
     <!-- /.col -->
+    
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 col-sm-12">
         <div class="card">
           <div class="card-header">
             <h5 class="card-title">Monthly Recap Report</h5>
@@ -168,72 +171,30 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-             <!-- <div class="row">  -->
-              <!-- <div class="col-sm-12 col-12"> -->
+             <div class="row"> 
+              <div class="col-sm-12 col-12">
                <!--  <p class="text-center">
                   <strong>Sales: 1 Jan, 2014 - 30 Jul, 2014</strong>
                 </p>
  -->
-                <div class="chart res">
+                <div class="chart res" >
                   <!-- Sales Chart Canvas -->
                   <!--  <canvas id="salesChart" height="180" style="height: 180px;"></canvas> -->
-                  <canvas id="line-charts" height="130" style="height:200px;" ></canvas>
+                  <canvas id="line-charts" width="600" height="320" style="min-height: 110px;"></canvas>
                 </div>
                 <!-- /.chart-responsive -->
-              <!-- </div> -->
+              </div>
               <!-- /.col -->
 
               <!-- /.col -->
-             <!-- </div>  -->
+             </div> 
             <!-- /.row -->
           </div>
           <!-- ./card-body -->
-          <div class="card-footer">
-            <div class="row">
-              <div class="col-sm-4 col-4">
-                <div class="description-block border-right">
-                  <!-- <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 17%</span> -->
-                  <h5 class="description-header">30,210.43</h5>
-                  <span class="description-text">TOTAL REVENUE</span>
-                </div>
-                
-              </div>
-              
-              <div class="col-sm-4 col-4">
-                <div class="description-block border-right">
-                  <!-- <span class="description-percentage text-warning"><i class="fa fa-caret-left"></i> 0%</span> -->
-                  <h5 class="description-header">10,390.90</h5>
-                  <span class="description-text">TOTAL COST</span>
-                </div>
-                
-              </div>
-
-              <div class="col-sm-4 col-4">
-                <div class="description-block border-right">
-                  <!-- <span class="description-percentage text-success"><i class="fa fa-caret-up"></i> 20%</span> -->
-                  <h5 class="description-header">10,813.53</h5>
-                  <span class="description-text">TOTAL PROFIT</span>
-                </div>
-                
-              </div>
-
-              <!-- <div class="col-sm-3 col-6">
-                <div class="description-block">
-                  <span class="description-percentage text-danger"><i class="fa fa-caret-down"></i> 18%</span>
-                  <h5 class="description-header">1200</h5>
-                  <span class="description-text">GOAL COMPLETIONS</span>
-                </div>
-                
-              </div> -->
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- /.card-footer -->
-        </div>
-        <!-- /.card -->
-      </div>
-      <!-- /.col -->
-    </div>
+         </div>
+       </div>
+     </div>
+  
     <!-- /.row -->
     <div class="row">
       <div class="col-md-6">
@@ -260,7 +221,7 @@
             </div>
           </div>
           <div class="ajax_loading">         
-            <div class="col-md-3">
+            <!-- <div class="col-md-3"> -->
 
 
 
@@ -268,12 +229,13 @@
                 <i class="fa fa-refresh fa-spin"></i>
               </div>
               <!-- end loading -->
-            </div>
+            <!-- </div> -->
             <!-- /.card -->
           </div>
           <div class="card-body">
-            <div class="chart">
-              <canvas id="densityChart"  style="height: 250px"></canvas>
+            <div class="chart" style="position: relative;
+  margin: auto;">
+              <canvas id="densityChart"  height="auto" style="min-height: 140px"></canvas>
               <!-- <span>Remaning <div id="amount_remaning"></div></span> -->
             </div>
           </div>
@@ -306,7 +268,7 @@
         </div> -->
         <div class="card-body">
           <div class="chart">
-            <canvas id="myChartStudent"   style="height: 250px"></canvas>
+            <canvas id="myChartStudent"  height="auto" style="min-height: 120px"></canvas>
             <!-- <span>Remaning <div id="amount_remaning"></div></span> -->
           </div>
         </div>
@@ -316,22 +278,17 @@
     </div>
     </div>
 
-
+ </div>
   <!-- </div> -->
   <!-- /.row -->
   <!--/. container-fluid -->
 
-<!-- /.content -->
 
-
-
-
-<!-- /.content-wrapper -->
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<!-- /.control-sidebar -->
+
 
 <script type="text/javascript">
  $(document).ready(function(){
@@ -451,6 +408,8 @@
           ]
         };
         var option = {
+          responsive:true,
+          maintainAspectRatio:true,
           animation: {
             duration:2000
           }
@@ -528,6 +487,7 @@
     };
 
     var chartOptions = {
+      responsive:true,
       scales: {
         xAxes: [{
           barPercentage: 1,

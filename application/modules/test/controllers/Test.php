@@ -208,12 +208,22 @@ function check()
   $data['_view'] = 'checkbox';
      $this->load->view('index',$data);
   // calling(1,2);
-}
+}   
 function calling($a,$b)
 {
   echo $a;
   echo $b;
 
+}
+function sales()
+{
+  $data['_view'] = 'sales';
+     $this->load->view('index',$data);
+}
+function sales2()
+{
+  $data['_view'] = 'sales2';
+     $this->load->view('index',$data);
 }
 }
 ?>
