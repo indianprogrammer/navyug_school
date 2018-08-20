@@ -22,7 +22,7 @@
     <div class="container-fluid">
       <!-- Info boxes -->
       <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
+        <div class="col-12 col-sm-6 col-md-2">
          <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
           <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
@@ -51,8 +51,92 @@
         <!-- /.info-box -->
       </div>
       <!-- /.col -->
-      
+             <div class="col-12 col-sm-6 col-md-2">
+         <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text ">SALES</span>
+              <span class="info-box-number sales">
+                <div class="ajax_loading">         
+                  <div class="col-md-3">
+
+
+                    <!-- Loading (remove the following to stop the loading)-->
+                    <div class="overlay">
+                      <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                    <!-- end loading -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+                <!-- <small>%</small> -->
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </a>
+        <!-- /.info-box -->
+      </div>
     <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-2">
+         <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text ">ORDER</span>
+              <span class="info-box-number order">
+                <div class="ajax_loading">         
+                  <div class="col-md-2">
+
+
+                    <!-- Loading (remove the following to stop the loading)-->
+                    <div class="overlay">
+                      <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                    <!-- end loading -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+                <!-- <small>%</small> -->
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </a>
+        <!-- /.info-box -->
+      </div>
+
+      <div class="col-12 col-sm-6 col-md-2">
+         <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text ">ENQUIRY</span>
+              <span class="info-box-number enquiry">
+                <div class="ajax_loading">         
+                  <div class="col-md-3">
+
+
+                    <!-- Loading (remove the following to stop the loading)-->
+                    <div class="overlay">
+                      <i class="fa fa-refresh fa-spin"></i>
+                    </div>
+                    <!-- end loading -->
+                  </div>
+                  <!-- /.card -->
+                </div>
+                <!-- <small>%</small> -->
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+        </a>
+        <!-- /.info-box -->
+      </div>
   </div>
 </div>
   </section>  
@@ -60,7 +144,7 @@
     <div class="col-md-6">
       <div class="card ">
         <div class="card-header">
-          <h3 class="card-title">Student Addmission per month</h3>
+          <h3 class="card-title">Institute Add per month</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -136,51 +220,31 @@
       organization_name.push(obj[i].organization_name);
 
     }
-     console.log(organization_name);
-        Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 18;
-    var canvas = document.getElementById('myChartStudent');
-    var data = {
-      labels: date,
-      datasets: [
-      {
-        label: "Institute Add Date Wise",
-        backgroundColor: "#3c8dbc",
-        // borderColor: "rgba(255,99,132,1)",
-        borderWidth: 1,
-            // xAxisID:"10",
-            hoverBackgroundColor: "black",
-            hoverBorderColor: "black",
-            data: ["5","8"]
-            // backgroundColor:[
-            // "rgba(255,99,132,0.2)","rgba(255,99,116,0.2)"
-            // ]
-          }
-          ]
-        };
-        var option = {
-          animation: {
-            duration:2000
-          }
-        }
-        var myBarChart = Chart.Bar(canvas,{
-          data:data,
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero:true
-                }
-              }],
-              xAxes: [{
-                barPercentage:.7 }]
-              }
-            }
-
-          });
-      }
-    });
+     // console.log(organization_name);
+        
   }
+  });
+  }
+ $.ajax({url: "<?= base_url()?>superadmin/salesChart",method:"get", success: function(result){
+     $('.ajax_loading').hide();
+     var obj=JSON.parse(result);
+
+
+     console.log(obj);
+     var date=[];
+     var organization_name  =[];
+     for (var i in obj)
+     {
+      date.push(obj[i].date);
+      organization_name.push(obj[i].organization_name);
+
+    }
+     // console.log(organization_name);
+        
+  }
+  });
+
+
   });
 
 

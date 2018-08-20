@@ -225,5 +225,15 @@ function sales2()
   $data['_view'] = 'sales2';
      $this->load->view('index',$data);
 }
+function chartall()
+{
+  $data['_view'] = 'chartall';
+     $this->load->view('index',$data);
+}
+function barchart()
+{
+  $data['_view'] = 'barchart';
+     $this->load->view('index',$data);
+}
 }
 ?>
