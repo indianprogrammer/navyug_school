@@ -57,7 +57,7 @@
         $this->form_validation->set_rules('paddress','Permanent Address','required');
         $this->form_validation->set_rules('taddress','Temporary Address','required');
 
-        if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
+        if($this->form_validation->run() )     
         {   
            $classes=implode(",",$this->input->post('classes'));
            $params = array(
@@ -74,11 +74,13 @@
 
         );
         // var_dump($params);die;
-           $data['image'] =  $this->upload->data();
-
-           $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
-
-           $params['profile_image']=$image_path;
+          
+           if($this->upload->do_upload('profile_image'))
+      {
+      $data['image'] =  $this->upload->data();
+      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+      $params['profile_image']=$image_path;
+    }
         #add student information
            $studentId = $this->Student_model->add_student($params);
          $username = 'stu'.$this->session->SchoolId.'_'.$studentId; #stu+schoolid_parentid
@@ -209,11 +211,12 @@
                     
                 );
                 // var_dump($params);die;
-                $data['image'] =  $this->upload->data();
-              // var_dump($data);
-                $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
-               // echo $image_path;die;
-                $params['profile_image']=$image_path;
+              if($this->upload->do_upload('profile_image'))
+      {
+      $data['image'] =  $this->upload->data();
+      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+      $params['profile_image']=$image_path;
+    }
                 $this->Student_model->update_student($id,$params);      
                 $smsdata=$this->Student_model->update_sms_info($id,$school_id);      
               // var_dump($smsdata);die;

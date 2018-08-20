@@ -9,7 +9,7 @@
                     <?php echo $status ;?>
                  </div>                 
                  <?php } ?> 
-            <?= form_open('superadmin/add') ?>
+            <?= form_open_multipart('superadmin/add') ?>
             <div class="box-body">
                 <div class="row clearfix">
                     <div class="col-md-5 col-sm-12">
@@ -98,7 +98,7 @@
                     <div class="col-md-5 col-sm-12">
                         <label for="logo" class="control-label"> Upload Logo</label>
                         <div class="form-group">
-                            <input type="file" name="logo" value="<?= $this->input->post('logo') ?>" disable
+                            <input type="file" name="logo" value="<?= $this->input->post('logo') ?>" 
                             class="form-control" id="logo"/>
                             <span class="text-danger"><?= form_error('logo') ?></span>
                         </div>
@@ -108,7 +108,7 @@
                         Banner</label>
                         <div class="form-group">
                             <input type="file" name="banner" value="<?= $this->input->post('banner') ?>"
-                            class="form-control"  disable id="banner"/>
+                            class="form-control"   id="banner"/>
                             <span class="text-danger"><?= form_error('banner') ?></span>
                         </div>
                     </div>

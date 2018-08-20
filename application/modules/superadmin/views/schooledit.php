@@ -4,7 +4,7 @@
 			<div class="box-header with-border">
 				<h3 class="box-title">School Edit</h3>
 			</div>
-			<?= form_open('school/edit/'.$school['school_id']); ?>
+			<?= form_open_multipart('superadmin/edit/'.$school['school_id']); ?>
 			<div class="box-body">
 				<div class="row clearfix">
 					<div class="col-md-5">
@@ -112,16 +112,16 @@
 								</div>
 								<div class="col-md-5" id="dvMap" > </div><br>
 								<div class="col-md-5">
-									<label for="logo" class="control-label"><span class="text-danger">*</span>Logo</label>
+									<label for="logo" class="control-label">Logo</label>
 									<div class="form-group">
-										<input type="file" name="logo" value="<?= ($this->input->post('logo') ? $this->input->post('logo') : $school['logo']); ?>" class="form-control" id="logo" disable />
+										<input type="file" name="logo"  class="form-control" id="logo" />
 										<span class="text-danger"><?= form_error('logo');?></span>
 									</div>
 								</div>
 								<div class="col-md-5">
-									<label for="banner" class="control-label"><span class="text-danger">*</span>Banner</label>
+									<label for="banner" class="control-label">Banner</label>
 									<div class="form-group">
-										<input type="file" name="banner" value="<?= ($this->input->post('banner') ? $this->input->post('banner') : $school['banner']); ?>" class="form-control" id="banner" disable />
+										<input type="file" name="banner"  class="form-control" id="banner"  />
 										<span class="text-danger"><?= form_error('banner');?></span>
 									</div>
 								</div>

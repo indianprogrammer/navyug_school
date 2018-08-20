@@ -306,332 +306,11 @@
 
  });
 </script>
-<!-- <script type="text/javascript">
 
-  $(document).ready(function(){
-    $('.ajax_loading').show();
-    $.ajax({url: "<?= base_url()?>admin/totalAmount",method:"get", success: function(result){
-     $('.ajax_loading').hide();
-     var obj=JSON.parse(result);
-
-     $loss=obj.debit-obj.credit;
-     console.log($loss);
-     $('#amount_remaning').html($loss);
-
-
-     var canvas = document.getElementById('myChart');
-     var data = {
-      labels: ["DEBIT","CREDIT"],
-      datasets: [
-      {
-        label: "Amount",
-        backgroundColor: "rgba(255,99,132,0.2)",
-        borderColor: "rgba(255,99,132,1)",
-        borderWidth: 1,
-            // xAxisID:"10",
-            hoverBackgroundColor: "rgba(255,99,132,0.4)",
-            hoverBorderColor: "rgba(255,99,132,1)",
-            data: [obj.debit,obj.credit],
-            backgroundColor:[
-            "rgba(255,99,132,0.2)","rgba(255,99,116,0.2)"
-            ]
-          }
-          ]
-        };
-        var option = {
-          animation: {
-            duration:2000
-          }
-        }
-        var myBarChart = Chart.Bar(canvas,{
-          data:data,
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero:true
-                }
-              }],
-              xAxes: [{
-                barPercentage:.3 }]
-              }
-            }
-
-          });
-      }
-    });
-  });
-
-
-
-</script> -->
 <script src="<?= base_url() ;?>assets/admin/plugins/chartjs-old/Chart.min.js"></script>
-<script type="text/javascript">
 
-  $(document).ready(function(){
-
-    $('.ajax_loading').show();
-    studentAdd();
-    function studentAdd(){
-    $.ajax({url: "<?= base_url()?>admin/studentAdd",method:"get", success: function(result){
-     $('.ajax_loading').hide();
-     var obj=JSON.parse(result);
-
-
-     // console.log(obj);
-     var count=[];
-     var month =[];
-     for (var i in obj)
-     {
-      count.push(obj[i].count);
-      month.push(obj[i].month);
-
-    }
-    // console.log(count);
-        Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 16;
-    var canvas = document.getElementById('myChartStudent');
-    var data = {
-      labels: month,
-      datasets: [
-      {
-        label: "Student Admission in month",
-        backgroundColor: "#3c8dbc",
-        // borderColor: "rgba(255,99,132,1)",
-        borderWidth: 1,
-            // xAxisID:"10",
-            hoverBackgroundColor: "black",
-            hoverBorderColor: "black",
-            data: count,
-            // backgroundColor:[
-            // "rgba(255,99,132,0.2)","rgba(255,99,116,0.2)"
-            // ]
-          }
-          ]
-        };
-        var option = {
-          responsive:true,
-          maintainAspectRatio:true,
-          animation: {
-            duration:2000
-          }
-        }
-        var myBarChart = Chart.Bar(canvas,{
-          data:data,
-          options: {
-            scales: {
-              yAxes: [{
-                ticks: {
-                  beginAtZero:true
-                }
-              }],
-              xAxes: [{
-                barPercentage:.7 }]
-              }
-            }
-
-          });
-      }
-    });
-  }
-  });
-
-
-
-</script>
-
-<!-- /* for invoice */ -->
-<script type="text/javascript">
-  $(document).ready(function(){
-    invoiceReport();
-    function invoiceReport(){
-    $.ajax({url: "<?= base_url()?>admin/invoiceReport",method:"get", success: function(result){
-     $('.ajax_loading').hide();
-     var obj=JSON.parse(result);
-
-
-     // console.log(obj);
-     var count=[];
-     var month =[];
-     var total =[];
-     for (var i in obj)
-     {
-      count.push(obj[i].count);
-      month.push(obj[i].month);
-      total.push(obj[i].total);
-
-    }
-    var densityCanvas = document.getElementById("densityChart");
-
-
-    Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 18;
-
-    var densityData = {
-      label: 'Amount in month',
-      data: total,
-      backgroundColor: 'rgba(0, 99, 132, 0.6)',
-      borderWidth: 0,
-      yAxisID: "y-axis-density"
-    };
-
-    var gravityData = {
-      label: 'No of invoice generated',
-      data:count,
-      backgroundColor: 'rgba(99, 132, 0, 0.6)',
-      borderWidth: 0,
-      yAxisID: "y-axis-gravity"
-    };
-
-    var planetData = {
-      labels: month,
-      datasets: [densityData, gravityData]
-    };
-
-    var chartOptions = {
-      responsive:true,
-      scales: {
-        xAxes: [{
-          barPercentage: 1,
-          categoryPercentage: 0.6
-        }],
-        yAxes: [{
-          id: "y-axis-density"
-        }, {
-          id: "y-axis-gravity"
-        }]
-      }
-    };
-
-    var barChart = new Chart(densityCanvas, {
-      type: 'bar',
-      data: planetData,
-      options: chartOptions
-    });
-  }
-});
-  }
-  });
-  function invoiceByMonth()
-  {
-     $.ajax({url: "<?= base_url()?>admin/getDataPreviousMonth",method:"get", success: function(result){
-     $('.ajax_loading').hide();
-     var obj=JSON.parse(result);
-
-
-     console.log(obj);
-     var count=[];
-     var date =[];
-     var total =[];
-     for (var i in obj)
-     {
-      count.push(obj[i].count);
-      date.push(obj[i].date);
-      total.push(obj[i].total);
-
-    }
-    var densityCanvas = document.getElementById("densityChart");
-
-
-    Chart.defaults.global.defaultFontFamily = "Lato";
-    Chart.defaults.global.defaultFontSize = 18;
-
-    var densityData = {
-      label: 'Amount in month',
-      data: total,
-      backgroundColor: 'rgba(0, 99, 132, 0.6)',
-      borderWidth: 0,
-      yAxisID: "y-axis-density"
-    };
-
-    var gravityData = {
-      label: 'No of invoice generated',
-      data:count,
-      backgroundColor: 'rgba(99, 132, 0, 0.6)',
-      borderWidth: 0,
-      yAxisID: "y-axis-gravity"
-    };
-
-    var planetData = { 
-
-      labels: date,
-      datasets: [densityData, gravityData]
-    };
-
-    var chartOptions = {
-      scales: {
-        xAxes: [{
-          barPercentage: 1,
-          categoryPercentage: 0.6
-        }],
-        yAxes: [{
-          id: "y-axis-density"
-        }, {
-          id: "y-axis-gravity"
-        }]
-      }
-    };
-
-    var barChart = new Chart(densityCanvas, {
-      type: 'bar',
-      data: planetData,
-      options: chartOptions
-    });
-  }
-});
-  }
-</script>
-<script type="text/javascript">
-  $(document).ready(function(){
-    salesChart();
-    function salesChart()
-    {
-    $.ajax({url: "<?= base_url()?>admin/salesChart",method:"get", success: function(result){
-     $('.ajax_loading').hide();
-     var obj=JSON.parse(result);
-
-
-     console.log(obj);
-     var credit=[];
-     var month =[];
-     var debit =[];
-     for (var i in obj)
-     {
-      debit.push(obj[i].debit);
-      month.push(obj[i].month);
-      credit.push(obj[i].credit);
-
-    }
-    new Chart(document.getElementById("line-charts"), {
-      type: 'line',
-      data: {
-        labels: month,
-        datasets: [{ 
-          data: debit,
-          label: "spend",
-          borderColor: "#3e95cd",
-          fill: false
-        }, { 
-          data: credit,
-          label: "recieve",
-          borderColor: "#8e5ea2",
-          fill: false
-        }, 
-        ]
-      },
-      options: {
-        title: {
-          display: true,
-          text: 'Sales month wise'
-        }
-      }
-    });
-  }
-});
-  }
-  });
-</script>
  <script>
+  
   $.ajax({url: "<?= base_url()?>admin/studentAdd",method:"get", success: function(result){
      $('.ajax_loading').hide();
      var obj=JSON.parse(result);
@@ -797,7 +476,9 @@ $.ajax({url: "<?= base_url()?>admin/salesChart",method:"get", success: function(
       credit.push(obj[i].credit);
 
     }
-
+console.log(debit);
+console.log(month);
+console.log(credit);
     var areaChartCanvas = $('#line-charts').get(0).getContext('2d')
     // This will get the first returned node in the jQuery collection.
     var areaChart       = new Chart(areaChartCanvas)
@@ -806,7 +487,7 @@ $.ajax({url: "<?= base_url()?>admin/salesChart",method:"get", success: function(
       labels  : month,
       datasets: [
         {
-          label               : 'Electronics',
+          label               : 'Debit',
           fillColor           : 'rgba(210, 214, 222, 1)',
           strokeColor         : 'rgba(210, 214, 222, 1)',
           pointColor          : 'rgba(210, 214, 222, 1)',
@@ -816,7 +497,7 @@ $.ajax({url: "<?= base_url()?>admin/salesChart",method:"get", success: function(
           data                : debit
         },
         {
-          label               : 'Digital Goods',
+          label               : 'Credit',
           fillColor           : 'rgba(60,141,188,0.9)',
           strokeColor         : 'rgba(60,141,188,0.8)',
           pointColor          : '#3b8bba',

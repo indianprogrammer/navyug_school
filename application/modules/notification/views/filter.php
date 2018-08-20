@@ -96,16 +96,20 @@
                    // console.log(Object.values(obj[1]));
 
             	var student_data,i;
-            	var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" class="selectall">select all </tr>';
+            	var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_all" >select all </tr>';
             	for (i = 0; i < obj.length; i++) {
-            		student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" id="student" name="student_details[]" ></td></tr>';
+            		student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" id="student" name="student_details[]" class="checkbox" ></td></tr>';
             		
             	}
             	var student_final=student_detail+student_data+'</table>';
             	$('#student_detail').html(student_final);  
+                  checkall();
 
-                // $('#dataModal').modal("show");  
+
+                 
+                          // $('#dataModal').modal("show");  
             }  
+            
         });  
 
 
@@ -154,31 +158,45 @@
             				{
             				
             					var i,student_data;
-            					var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox">select all </tr>';
+            					var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_all">select all </tr>';
             				for (i = 0; i < obj.length; i++) {
-            				student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="student_details[]" > </td></tr>';
+            				student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="student_details[]" class="checkbox" > </td></tr>';
             		
             					}
             					var student_final=student_detail+student_data+'</table>';
             					$('#student_detail').show();
             					$('#student_detail').html(student_final);  
+                                           checkall();
                                           
             			}
             			}
             			});
 
             		}
-$('.selectall').click(function() {
-    if ($(this).is(':checked')) {
-        $('input').attr('checked', true);
-    } else {
-        $('input').attr('checked', false);
-    }
-});
+                       
+
             });  
             } 
          });
 		}
+             function checkall()
+                        {
+                               $("#select_all").change(function(){  //"select all" change 
+                               $(".checkbox").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+                                                      });
+
+                        //".checkbox" change 
+                                $('.checkbox').change(function(){ 
+                            //uncheck "select all", if one of the listed checkbox item is unchecked
+                            if(false == $(this).prop("checked")){ //if this item is unchecked
+                                $("#select_all").prop('checked', false); //change "select all" checked status to false
+                            }
+                            //check "select all" if all checkbox items are checked
+                            if ($('.checkbox:checked').length == $('.checkbox').length ){
+                                $("#select_all").prop('checked', true);
+                            }
+                        });
+                        }
 });
 	</script>	
 <!-- for employee -->
@@ -211,13 +229,14 @@ $('#employee').change(function () {
             	var obj=JSON.parse(data);
             	console.log(obj);
             	var employee_data,i;
-            	var employee_detail='<table class="table table-striped  table-responsive"><tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox">select all </tr>';
+            	var employee_detail='<table class="table table-striped  table-responsive"><tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_alls">select all </tr>';
             	for (i = 0; i < obj.length; i++) {
-            		employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" name="employee_id[]" ></td></tr>';
+            		employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" name="employee_id[]" class="checkboxe"></td></tr>';
             		
             	}
             	var employee_final=employee_detail+employee_data+'</table>';
             	$('#employee_detail').html(employee_final);  
+                  checkall();
 
                 // $('#dataModal').modal("show");  
             }  
@@ -266,14 +285,15 @@ $('#employee').change(function () {
             				else
             				{
             					var i,employee_data;
-            					var employee_detail='<table class="table table-striped table-responsive"><tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox">select all </tr>';
+            					var employee_detail='<table class="table table-striped table-responsive"><tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_alls">select all </tr>';
             				for (i = 0; i < obj.length; i++) {
-            				employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="employee_id[]"></td></tr>';
+            				employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="employee_id[]" class="checkboxe"></td></tr>';
             		
             					}
             					var employee_final=employee_detail+employee_data+'</table>';
             					$('#employee_detail').show();
             					$('#employee_detail').html(employee_final); 
+                                          checkall();
             			}
             			}
             			});
@@ -284,17 +304,29 @@ $('#employee').change(function () {
             } 
          });
 		}
+             function checkall()
+                        {
+                               $("#select_alls").change(function(){  //"select all" change 
+                               $(".checkboxe").prop('checked', $(this).prop("checked")); //change all ".checkbox" checked status
+                                                      });
+
+                        //".checkbox" change 
+                                $('.checkboxe').change(function(){ 
+                            //uncheck "select all", if one of the listed checkbox item is unchecked
+                            if(false == $(this).prop("checked")){ //if this item is unchecked
+                                $("#select_alls").prop('checked', false); //change "select all" checked status to false
+                            }
+                            //check "select all" if all checkbox items are checked
+                            if ($('.checkboxe:checked').length == $('.checkboxe').length ){
+                                $("#select_alls").prop('checked', true);
+                            }
+                        });
+                        }
 });
 
 
 	</script>
-	<script>
-		$("#submit").click(function(){
-
-			var name = $("#student").val();
-			console.log(name);
-		});
-	</script>
+	
 
 
       <script>

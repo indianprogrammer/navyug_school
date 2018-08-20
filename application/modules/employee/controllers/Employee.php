@@ -51,7 +51,7 @@ class Employee extends MY_Controller{
     $this->form_validation->set_rules('paddress','Address','required');
     $this->form_validation->set_rules('taddress','Address','required');
 
-    if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
+    if($this->form_validation->run() )     
     {   
       #employ information
       $params = array(
@@ -63,9 +63,13 @@ class Employee extends MY_Controller{
         'temporary_address' => $this->input->post('taddress')
        
       );
+       if($this->upload->do_upload('profile_image'))
+      {
       $data['image'] =  $this->upload->data();
       $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
       $params['profile_image']=$image_path;
+    }
+     
 
       #insert personal information (employees)
       #get employ id from last insert
@@ -94,8 +98,8 @@ class Employee extends MY_Controller{
       // var_dump($insertAuthentication);
       $userdata=$this->Student_model->select_uname_password($insertAuthentication);
          // var_dump($userdata);
-          $msg='Your Username='.$userdata->username.' and Password='.$userdata->clear_text.'';
-          $smsinfo= array('msg'=>$msg,
+          
+          $smsinfo= array(
              'mobile'=>$this->input->post('mobile'),
              'school_id'=>$this->session->SchoolId,
              'module'=>'employee add',
@@ -185,11 +189,20 @@ class Employee extends MY_Controller{
         'temporary_address' => $this->input->post('taddress')
                     // 'modified_at'=>date('d-m-y/h-m'),
          );
-          $data['image'] = $this->upload->data();
-              // var_dump($data);
-          $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
-               // echo $image_path;die;
-          $params['profile_image']=$image_path;
+           if($this->upload->do_upload('profile_image'))
+      {
+      $data['image'] =  $this->upload->data();
+      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+      $params['profile_image']=$image_path;
+    }
+    else
+    {
+      $data['error'] = $this->upload->display_errors();
+                        $data['_view'] = 'edit';
+          $this->load->view('../index',$data);
+                        
+    }
+       // var_dump($params);die;  
          $updated_data= $this->Employee_model->update_employee($id,$params);      
           ##
 
