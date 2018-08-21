@@ -179,7 +179,7 @@
       </li>
 
 
-<!--        user section-->
+<!--  user section-->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fa fa-user-o"></i>
@@ -198,6 +198,8 @@
 
 
   </nav>
+</div>
+
   <!-- /.navbar -->
 
  

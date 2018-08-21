@@ -28,6 +28,7 @@ class Enquiry extends MY_Controller{
      */
     function add_enquiry()
     {
+      $data['type']= $this->Enquiry_model->enquiry_type();
         $data['_view'] = 'add';
         $this->load->view('../index',$data);
     }
@@ -48,7 +49,7 @@ class Enquiry extends MY_Controller{
             $params = array(
 				
 				'name' => $this->input->post('name'),
-                'purpose'=>$this->input->post('purpose'),
+                'type'=>$this->input->post('type'),
 				
 				'email' => $this->input->post('email'),
 				'mobile' => $this->input->post('mobile'),
@@ -91,56 +92,7 @@ class Enquiry extends MY_Controller{
         }
     }  
 
-    /*
-     * Editing a enquiry
-     */
-    function edit($id)
-    {   
-        // check if the enquiry exists before trying to edit it
-        $data['enquiry'] = $this->Enquiry_model->get_enquiry($id);
-       
-        
-        if(isset($data['enquiry']['id']))
-        {
-            $this->load->library('form_validation');
-
-			$this->form_validation->set_rules('password','Password','required');
-			$this->form_validation->set_rules('enquiry_Name','enquiry Name','required|max_length[100]');
-			$this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
-			$this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
-			$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
-			$this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-			$this->form_validation->set_rules('address','Address','required');
-		
-			if($this->form_validation->run())     
-            {   
-                $params = array(
-                
-                'name' => $this->input->post('enquiry_Name'),
-                'email' => $this->input->post('email'),
-                'mobile' => $this->input->post('mobile'),
-                 'location' => $this->input->post('latlong'),
-                'address' => $this->input->post('address'),
-                'remarks' => $this->input->post('remarks')
-                
-            );
-                
-                $this->eEquiry_model->update_enquiry($id,$params);            
-                redirect('enquiry');
-            }   
-            else
-            {
-                $data['_view'] = 'edit';
-                $this->load->view('../index',$data);
-            }
-        }
-        else
-            show_error('The enquiry you are trying to edit does not exist.');
-    } 
-
-    /*
-     * Deleting enquiry
-     */
+  
     function remove($id)
     {
         $enquiry = $this->Enquiry_model->get_enquiry($id);
@@ -153,6 +105,18 @@ class Enquiry extends MY_Controller{
         }
         else
             show_error('The enquiry you are trying to delete does not exist.');
+    }
+    function callEnquiry($mobile,$port)
+    {
+
+
+        $params=array('mobile_no'=>$mobile,
+                        'port'=>$port
+
+
+    );
+         $enquiry_id = $this->Enquiry_model->add_enquiry_order($params);
+
     }
     
 }

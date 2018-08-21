@@ -275,7 +275,7 @@
     }
     function fetchStudentView()
     {
-       echo json_encode($student_view= $this->Student_model->get_student($this->input->post('id')));
+       echo json_encode($student_view= $this->Student_model->get_student(18));
    }
    function filterStudent()
    {

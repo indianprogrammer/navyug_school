@@ -64,4 +64,19 @@ class Enquiry_model extends CI_Model
     {
         return $this->db->delete('enquiry',array('id'=>$id));
     }
+
+    function add_enquiry_order()
+    {
+        $this->db->insert('super_admin_order',$params);
+        return $this->db->insert_id();
+    }
+    function enquiry_type()
+    {
+        $this->db->select('*');
+        $this->db->from('master_enquiry');
+        return $this->db->get()->result();
+
+    }
+
 }
+?>

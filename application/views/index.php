@@ -46,42 +46,7 @@
                         </a>
                     </li>
 
-                    <!--  </ul>
-                    </li> -->
-
-
-                   <!--  <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-tree"></i>
-                            <p>
-                                SCHOOL
-                                <i class="fa fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-
-                            <li class="nav-item">
-                                <a href="<?= site_url() ?>school/add_school" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
-                                    <p>
-                                        ADD SCHOOL
-                                        
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?= site_url() ?>school" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
-                                    <p>
-                                        SCHOOL LIST
-
-                                    </p>
-                                </a>
-                            </li>
-
-
-                        </ul>
-                    </li> -->
+                  
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-mortar-board"></i>
@@ -400,7 +365,7 @@
 </ul>
 </nav>
 
-        </div>
+        <!-- </div> -->
         <!-- /.sidebar -->
     </aside>
 
@@ -413,25 +378,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Info boxes -->
-            <!-- <div class="row"> -->
-                <!-- <div class="col-12 col-sm-6 col-md-12"> -->
-
-                  <!--   <ul class="breadcrumb">
-
-                       
-                        <?php
-                        $crumbs = explode("/", $_SERVER["REQUEST_URI"]);
-
-                        foreach ($crumbs as $crumb) {
-                            ?>
-                            <li class="breadcrumb-item active"><?= ucwords(str_replace(array(".php", "_"), array(" ", " "), $crumb) . ' '); ?></li>
-
-                        <?php } ?>
-
-                    </ul> -->
-
-
+          
                     <?php if (isset($this->session->alerts)) {
                         $alert = $this->session->alerts; ?>
                         <div class="alert alert-<?= $this->session->alerts['severity'] ?> alert-dismissible">

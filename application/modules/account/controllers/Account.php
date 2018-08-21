@@ -386,6 +386,14 @@ function checkBalance()
      $balance=$total_debit-$total_credit;
     echo $balance;
 }
+function testtemplate()
+{
+    $data=array(
+'name'=>'vivek chourasiya',
+'email'=>'vivek.et1993@gmail.com'
 
+    );
+    $this->load->view('templates/invoice_template/two',$data);
+}
 }
 ?>

@@ -181,6 +181,15 @@
                   <!-- Sales Chart Canvas -->
                   <!--  <canvas id="salesChart" height="180" style="height: 180px;"></canvas> -->
                   <canvas id="line-charts" style="height:250px"></canvas>
+                   <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fa fa-square text-primary"></i> Credit
+                  </span>
+
+                  <span>
+                    <i class="fa fa-square text-secondary"></i> Debit
+                  </span>
+                </div>
                 </div>
                 <!-- /.chart-responsive -->
               <!-- </div> -->
@@ -235,6 +244,15 @@
           <div class="card-body">
             <div class="chart">
               <canvas id="invoiceChart"  height="auto" style="min-height: 140px"></canvas>
+               <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fa fa-square text-secondary"></i> Invoice 
+                  </span>
+
+                  <span>
+                    <i class="fa fa-square text-success"></i> Count
+                  </span>
+                </div>
               <!-- <span>Remaning <div id="amount_remaning"></div></span> -->
             </div>
           </div>

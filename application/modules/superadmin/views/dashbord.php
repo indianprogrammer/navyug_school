@@ -25,7 +25,7 @@
         <div class="col-12 col-sm-6 col-md-2">
          <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
           <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
+            <span class="info-box-icon bg-success elevation-1"><i class="fa fa-institution"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text ">SCHOOL</span>
@@ -54,7 +54,7 @@
              <div class="col-12 col-sm-6 col-md-2">
          <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
           <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
+            <span class="info-box-icon bg-info elevation-1"><i class="fa fa-money"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text ">SALES</span>
@@ -83,7 +83,7 @@
     <div class="col-12 col-sm-6 col-md-2">
          <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
           <div class="info-box">
-            <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
+            <span class="info-box-icon bg-info elevation-1"><i class="fa fa-shopping-cart"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text ">ORDER</span>
@@ -167,6 +167,15 @@
         <div class="card-body">
           <div class="chart">
             <canvas id="salesChart" style="height:230px"  ></canvas> 
+            <div class="d-flex flex-row justify-content-end">
+                  <span class="mr-2">
+                    <i class="fa fa-square text-primary"></i> Credit
+                  </span>
+
+                  <span>
+                    <i class="fa fa-square text-secondary"></i> Debit
+                  </span>
+                </div>
             <!-- <span>Remaning <div id="amount_remaning"></div></span> -->
           </div>
         </div>
@@ -226,9 +235,10 @@
    $.ajax({url: "<?= base_url()?>superadmin/countSchool",method:"get", success: function(result){
      $('.ajax_loading').hide();
      var obj=JSON.parse(result);
-     // console.log(obj.sales.credit);
+      console.log(obj);
      $('.school').html(obj.school);
      $('.sales').html(obj.sales.credit);
+     $('.order').html(obj.order);
     
    }});
 
@@ -397,7 +407,7 @@
       barValueSpacing         : 5,
       //Number - Spacing between data sets within X values
       barDatasetSpacing       : 1,
-      barPercentage: 0.1,
+      barPercentage: 10,
       barThickness:0.5,
       //String - A legend template
       legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',

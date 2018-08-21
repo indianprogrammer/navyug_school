@@ -72,8 +72,9 @@ class Superadmin extends Super_Controller{
  }
  function countSchool()
  {
-   ($data['school']=$this->Super_model->get_all_schools_count());
-   ($data['sales']=$this->Super_model->get_sales());
+   $data['school']=$this->Super_model->get_all_schools_count();
+   $data['sales']=$this->Super_model->get_sales();
+   $data['order']=$this->Super_model->get_order();
    echo json_encode($data);
  }
     /*

@@ -338,6 +338,18 @@ $this->db->select_sum('credit');
 
 
 }
+function get_order()
+{
+    $query =$this->db->get('enquiry')->num_rows();
+    $query =$this->db->where(array('school_id'=>NULL,'type'=>2));
+      return $query;
+}
+function get_enquiry()
+{
+    $query =$this->db->get('enquiry')->num_rows();
+    $query =$this->db->where('school_id',NULL);
+      return $query;
+}
 
 
 

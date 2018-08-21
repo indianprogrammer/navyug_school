@@ -116,7 +116,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="<?= site_url() ?>superadmin/createAdmin" class="nav-link">
-                            <i class="fa fa-sign-out nav-icon"></i>
+                            <i class="fa fa-male nav-icon"></i>
                             <p>CREATE ADMIN</p>
                         </a>
                     </li>
@@ -124,7 +124,7 @@
                     <li class="nav-item">
                         <a href="<?= site_url() ?>login/logout" class="nav-link">
                             <i class="fa fa-sign-out nav-icon"></i>
-                            <p>Logout</p>
+                            <p>LOGOUT</p>
                         </a>
                     </li>
 
