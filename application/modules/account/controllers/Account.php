@@ -392,12 +392,10 @@ function testtemplate()
 'name'=>'vivek chourasiya',
 'email'=>'vivek.et1993@gmail.com'
 
-<<<<<<< HEAD
 
-=======
     );
     $this->load->view('templates/invoice_template/two',$data);
 }
->>>>>>> bba20effa4491f12edda37e376e64628b9739c6e
+
 }
 ?>
