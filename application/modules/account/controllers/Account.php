@@ -387,5 +387,6 @@ function checkBalance()
     echo $balance;
 }
 
+
 }
 ?>
