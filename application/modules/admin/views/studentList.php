@@ -39,7 +39,7 @@
         <td data-toggle="tooltip" data-placement="top" title="<?= $s['permanent_address']?>" ><?php echo substr($s['permanent_address'],0,10).'....' ?></td>
         <td data-toggle="tooltip" data-placement="top" title="<?= $s['temporary_address']?>" ><?php echo substr($s['temporary_address'],0,10).'....' ?></td>
 
-		<td > <img src="<?= $s['profile_image']; ?>" height=5%; ></td>
+		<td > <img src="<?= $s['profile_image']; ?>" alt="" style="width:50px;height:50px" ></td>
 		<td>
             <a href="<?= site_url('student/edit/'.$s['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
              <a onclick="myFunction();" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>

@@ -28,8 +28,16 @@
     <div class="form-group">
         <label for="purpose" class="col-md-4 control-label"><span class="text-danger">*</span>Enquiry Purpose</label>
         <div class="col-md-5 col-lg-4">
-            <input type="text" name="purpose" maxlength="13" value="<?=$this->input->post('purpose'); ?>" class="form-control" id="purpose" />
-            <span class="text-danger"><?=form_error('purpose');?></span>
+          
+            <select name="type" id="type" class="form-control" >
+                <option value="">---select---</option>
+            <?php   foreach($type as $row){ ?>
+                <option value="<?= $row->id ?>"><?= $row->name ?></option>
+                <?php } ?>
+            </select>
+            <span class="text-danger"><?= form_error('type');?></span>
+
+        
         </div>
     </div>
 	

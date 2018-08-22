@@ -40,8 +40,9 @@
                             <td><?= $row['city_name']; ?></td>
                             <td data-toggle="tooltip" data-placement="top" title="<?=$row['address']?>"><?= substr($row['address'],0,10).'....' ?></td>
                             <td data-toggle="tooltip" data-placement="top" title="<?=$row['latlong']?>"><?= substr($row['latlong'],0,10).'....'; ?></td>
-                            <td><?= $row['logo']; ?></td>
-                            <td><?= $row['banner']; ?></td>
+                            <td><img src="<?= base_url()."uploads/".$row['logo']; ?>" alt="" style="width:50px;height:50px"></td>
+                            <td><img src="<?= base_url()."uploads/".$row['banner']; ?>" alt="" style="width:50px;height:50px"></td>
+                         
                             <td>
                                
                                 
@@ -53,7 +54,9 @@
                             <span class="caret"></span>
                           </button>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="<?= site_url('superadmin/getCredentialAdmin/' . $row['id']); ?>" >Enter Admin Panel</a>
+                            <a class="dropdown-item" href="<?= site_url('superadmin/getCredentialAdmin/'.$row['id']); ?>" >Enter Admin Panel</a>
+                            <a class="dropdown-item" href="javascript:void(0)" class="view_ledger" onclick="ledger(<?= $row['id']?>)" id="<?= $row['id']?>" >Ledger</a>
+                            <a class="dropdown-item" href="" >Disable</a>
                            
                           </div>
                       </div>
@@ -89,7 +92,7 @@
                     </div>
                 </div>
                 <!-- </div> -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
  <script>
     $(document).ready( function () {
@@ -140,4 +143,31 @@
        
       
    });  
+  function ledger($id)
+  {
+
+    $.ajax({  
+            url:"<?= base_url()?>superadmin/getLedgerSchool",  
+            method:"post",  
+            data:{id:$id},  
+            success:function(data){  
+
+               
+                var obj=JSON.parse(data);
+                console.log(obj);
+
+                $('#school_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Debit</th><th>Credit</th><th>Date</th><th>state</th><th>city</th><th>Primary contact</th><th>Secondry Contact</th><th> Address</th></tr><tr><td>'+obj.organization_name+'</td><td>'+obj.email+'</td><td>'+obj.country_name+'</td><td>'+obj.state_name+'</td><td>'+obj.city_name+'</td><td>'+obj.contact_pri+'</td><td>'+obj.contact_sec+'</td><td>'+obj.address+'</td><table>');  
+
+                // $('#dataModal').modal("show");  
+            }  
+        });  
+  }
+ 
+ </script>
+ <script type="text/javascript">
+   $('.view_ledger').click(function(){  
+   var school_id = $(this).attr("id");  
+// var school_id = $(this).attr("id"); 
+console.log("ff");
+ });
  </script>

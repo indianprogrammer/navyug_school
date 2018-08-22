@@ -38,7 +38,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="profile_image" class="col-md-4 control-label"><span class="text-danger">*</span>Profile Image</label>
+		<label for="profile_image" class="col-md-4 control-label">Profile Image</label>
 		<div class="col-md-5">
 			<input type="file" name="profile_image" value="<?= $this->input->post('profile_image'); ?>" class="form-control" id="profile_image" />
 			<span class="text-danger"><?= form_error('profile_image');?></span>

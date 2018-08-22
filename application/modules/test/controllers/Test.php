@@ -225,5 +225,57 @@ function sales2()
   $data['_view'] = 'sales2';
      $this->load->view('index',$data);
 }
+function chartall()
+{
+  $data['_view'] = 'chartall';
+     $this->load->view('index',$data);
+}
+function barchart()
+{
+  $data['_view'] = 'barchart';
+     $this->load->view('index',$data);
+}
+
+
+function upload()
+{
+  $data['_view'] = 'upload';
+     $this->load->view('index',$data);
+}
+function add ()
+{
+
+ $this->load->library('form_validation');
+  $config['upload_path']          = './uploads/';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $this->load->library('upload', $config);
+    $this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
+   if($this->form_validation->run())     
+    {   
+      #employ information
+      $params = array(
+        'name' => $this->input->post('employee_Name'),
+       
+       
+      );
+      if($this->upload->do_upload('profile_image'))
+      {
+      $data['image'] =  $this->upload->data();
+      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+      $params['profile_image']=$image_path;
+    }
+    if($this->upload->do_upload('profile'))
+      {
+      $data['images'] =  $this->upload->data();
+      $image_path=$data['images']['raw_name'].$data['images']['file_ext'];
+      $params['profile']=$image_path;
+    }
+  var_dump($params);
+  }
+else
+{
+  echo "dd";
+}
+}
 }
 ?>

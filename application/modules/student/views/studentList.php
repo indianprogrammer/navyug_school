@@ -1,4 +1,3 @@
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <div class="row">
@@ -36,15 +35,11 @@
                             <td ><?= $row['student_name']; ?></td>
                             <td ><?= $row['email']; ?></td>
                            <!--  <td width="1%" ><?php 
-
                             $studentClasses = explode(',', $row['classes']);
-
                             foreach ($studentClasses as $studentClass) {
                                $subject=($classes[$studentClass-1]['name']. "&nbsp&nbsp&nbsp");
                                echo rtrim($subject);
                            } 
-
-
                            ?></td> -->
 
                            <td><?= $row['mobile']; ?></td>
@@ -57,11 +52,25 @@
 
                            <td> <img src="<?=base_url()."uploads/".$row['profile_image']; ?>" alt="" style="width:50px;height:50px";></td>
                       
-                           <!-- <td onload="getBalence(<?= $row['id'] ?>)" id="balance"></td> -->
+                           <!-- <td onload="getBalence(<?= $row['id'] ?>) "id="balance"></td> -->
                            <td>
 
 
 
+                            <!-- <div class="btn-group">
+                                <button type="button" class="btn btn-info ">Action</button>
+                                <button type="button" class="btn btn-default  dropdown-toggle" data-toggle="dropdown">
+                                  <span class="caret"></span>
+                                  <span class="sr-only">Toggle Dropdown</span>
+                              </button>
+                              <ul class="dropdown-menu" role="menu">
+                                 
+                                  <li><a href="<?= site_url('student/edit/'.$row['id']); ?>" >Edit</a> </li>
+                                  <li><a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="delete-it"> Delete</a></li>
+                                  <li class="divider"></li>
+                                  <li><a href="#" id="<?= $row['id']?>" class="view_data">View</a></li>
+                              </ul>
+                          </div> -->
                            <div class="btn-group" >
                         <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></a></i></button>
                         <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
@@ -71,7 +80,7 @@
                           </button>
                           <div class="dropdown-menu">
                             <a class="dropdown-item" href="javascript:void(0)" onclick="getFullDetails(<?= $row['id'] ?>)" >Invoice Report</a>
-                            <a class="dropdown-item" href="javascript:void(0)" onclick="getFullDetailsReciept(<?= $row['id'] ?>)">Reciept Report</a>
+                            <a class="dropdown-item" href="#">Reciept Report</a>
                           </div>
                       </div>
                       </td>
@@ -138,13 +147,10 @@
     var url="<?php echo base_url();?>";
     function delFunction(id)
     {
-
     // var id = $(this).data('id');
     bootbox.confirm("Are you sure to delete  record ?", function(result) {
       if(result)
-
           window.location.href = url+'student/remove/'+id
-
   });
 }
 </script>
@@ -153,7 +159,7 @@
  
   $('.view_data').click(function(){  
    var student_id = $(this).attr("id");  
-            // console.log(student_id);
+             console.log(student_id);
             viewStudent();
       function viewStudent() {     
            $.ajax({  
@@ -161,17 +167,15 @@
             method:"post",  
             data:{id:student_id},  
             success:function(data){  
+              console.log(data);
                 var obj=JSON.parse(data);
                 
-                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>');  
-
+                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info full_details" onclick="getFullDetails('+student_id+')"  >GET INVOICE FULL DETAILS</button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getFullDetailsReciept('+student_id+')"  >GET All RECIEPTS DETAILS </button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getBalence('+student_id+')"  >Check Balance </button>');  
                 $('#dataModal').modal("show");  
             }  
         });  
          }
-
             
-
        
       
    });  
@@ -191,29 +195,20 @@
                     success: function( responseObject ) {
                         console.log(responseObject);
                         var obj=JSON.parse(responseObject);
-                        if(obj.length==0)
-                        {
-                          $('#invoice_information').html("No Invoice Details Of this Student");
-                        $('#dataModalinvoice').modal("show");  
-                        }
-                        else
-                        {
                         // $("#showBalance").html("your balance = "+responseObject);
                          // console.log(obj);
                           var maintable,i;
                            for (i = 0; i < obj.length; i++) {
                       
-                        maintable+='<tr><td>'+obj[i].invoice_id+'</td><td>'+obj[i].invoice_total+'</td><td>'+obj[i].invoice_date+'</td><td><button><a href="<?= base_url() ?>account/getpdf/'+obj[i].invoice_id+'">Get Pdf</a></button></td></tr>';
+                        maintable+='<tr><td>'+obj[i].invoice_id+'</td><td>'+obj[i].invoice_total+'</td><td>'+obj[i].invoice_date+'</td></tr>';
                         // finaltable=table+maintable+'</table>';
                         // console.log( finaltable)
-                        $('#invoice_information').html('<table class="table table-striped table-bordered table-responsive"><tr><th>invoice id</th><th>amount</th><th>date</th><th>pdf</th></tr>'+maintable+'</table>');
-                         $('#dataModalinvoice').modal("show");  
-                      }
+                        $('#page').html('<table class="table table-striped table-bordered table-responsive"><tr><th>invoice id</th><th>amount</th><th>date</th></tr>'+maintable+'</table>');
+                        // $('#dataModalinvoice').modal("show");  
                     }
                   }
                 });
         
-
             }
              function getFullDetailsReciept($id)
            {
@@ -228,28 +223,20 @@
                     success: function( responseObject ) {
                          console.log(responseObject);
                         var obj=JSON.parse(responseObject);
-                        if(obj.length==0)
-                        {
-                          $('#invoice_information').html("No Invoice Details Of this Student");
-                        $('#dataModalinvoice').modal("show");  
-                        }
-                        else
-                        {
+                        // $("#showBalance").html("your balance = "+responseObject);
+                         // console.log(obj);
                           var maintable,i;
                            for (i = 0; i < obj.length; i++) {
-                        
                       
-                        maintable+='<tr><td>'+obj[i].reciept_id+'</td><td>'+obj[i].reciept_amount+'</td><td>'+obj[i].reciept_date+'</td><td><button><a href="<?= base_url()?>account/getPdfreciept/'+obj[i].reciept_id+'" >Get Reciept</button></td></tr>';
+                        maintable+='<tr><td>'+obj[i].reciept_id+'</td><td>'+obj[i].reciept_amount+'</td><td>'+obj[i].reciept_date+'</td></tr>';
                         // finaltable=table+maintable+'</table>';
                         // console.log( finaltable)
-                        $('#invoice_information').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Reciept id</th><th>amount</th><th>date</th><th>pdf</th></tr>'+maintable+'</table>');
+                        $('#invoice_information').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Reciept id</th><th>amount</th><th>date</th></tr>'+maintable+'</table>');
                         $('#dataModalinvoice').modal("show");  
-                      }
                     }
                   }
                 });
         
-
             }
          function getBalence($id)
            {
@@ -262,45 +249,20 @@
                         keyword: $id
                     },
                     success: function( responseObject ) {
-                          console.log(responseObject);
+                         // console.log(responseObject);
                       
                         // $('#invoice_information').html('<h4>Your Current Balance Is '+responseObject+'' );
                         $('#balance').html(responseObject);
                         // $('#dataModalinvoice').modal("show");  
-
-                    }
-                  
-                });
-        
-
-            }
-            function ledger()
-            {
-               $.ajax({
-                    method: "POST",
-                    url:" <?= base_url() ?>account/ledger", 
-                    data: {
-                        keyword: $id
-                    },
-                    success: function( responseObject ) {
-                          console.log(responseObject);
-                      
-                        // $('#invoice_information').html('<h4>Your Current Balance Is '+responseObject+'' );
-                        $('#balance').html(responseObject);
-                        // $('#dataModalinvoice').modal("show");  
-
                     }
                   
                 });
         
             }
       
-
 </script>
 <script>
-
  $(document).ready( function () {
-
         var url = window.location.search;
 url = url.replace("?id=", ''); // remove the ?
 // console.log(url);
@@ -314,7 +276,6 @@ url = url.replace("?id=", ''); // remove the ?
                 // $('#page').hide();
                  $('#page').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>'); 
             }
-
     });
 });
 </script>

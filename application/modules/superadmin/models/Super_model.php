@@ -209,6 +209,14 @@ $query =$this->db->from("school");
    return $query->get()->result_array();
 
 }
+function fetch_institute_by_month()
+
+{
+$query = $this->db->query("select MONTHNAME(created_at) as month,count(id) as count from school  group by MONTH(created_at),MONTHNAME(created_at) order by MONTH(created_at) asc");
+   return $query->result_array();
+
+
+}
 function get_invoice_id()
 {
   $this->db->select_max('invoice_id');
@@ -286,6 +294,70 @@ function gettingTransactionInfo($school_id)
 
 
 }
+function getEmployDetails($authenticationId){
+        $this->db->select('*');
+        $this->db->where('id', $authenticationId);
+        $this->db->from('employees');
+        $this->db->join('map_school_employee', 'map_school_employee.employee_id=employees.id', 'Left');
+        return $this->db->get()->row_array();
+    }
+
+function get_school_name($school_id)
+{
+  $this->db->select('organization_name');
+  $this->db->from('school');
+  $this->db->where('id',$school_id);
+  return $this->db->get()->row();
+}
+
+function select_uname_password($id)
+{
+  $this->db->select('username,clear_text,email');
+  $this->db->from('authentication');
+  $this->db->where('id',$id);
+  return $this->db->get()->row();
+
+}
+function get_ledger_details($school_id)
+{
+ $this->db->select('debit,credit,date');
+
+  $this->db->from('super_admin_account_transaction');
+  $this->db->where('school_id',1);
+  return $this->db->get()->result_array();
+}
+
+function get_sales()
+{
+
+$this->db->select_sum('credit');
+
+  $this->db->from('super_admin_account_transaction');
+  
+  return $this->db->get()->row();
+
+
+}
+function get_order()
+{
+    $query =$this->db->get('enquiry')->num_rows();
+    $query =$this->db->where(array('school_id'=>NULL,'type'=>2));
+      return $query;
+}
+function get_enquiry()
+{
+    $query =$this->db->get('enquiry')->num_rows();
+    $query =$this->db->where('school_id',NULL);
+      return $query;
+}
+
+
+
+
+
+
+
+
 
 
 

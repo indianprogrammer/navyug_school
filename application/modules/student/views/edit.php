@@ -1,4 +1,4 @@
-<?php echo form_open('student/edit/'.$student['id'],array("class"=>"form-horizontal")); ?>
+<?php echo form_open_multipart('student/edit/'.$student['id'],array("class"=>"form-horizontal")); ?>
 
 	
 	<div class="form-group">
@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="profile_image" class="col-md-4 control-label"><span class="text-danger">*</span>Profile Image</label>
+		<label for="profile_image" class="col-md-4 control-label">Profile Image</label>
 		<div class="col-md-3">
 			<input type="file" name="profile_image" value="<?php echo ($this->input->post('profile_image') ? $this->input->post('profile_image') : $student['profile_image']); ?>" class="form-control" id="profile_image" />
 			<span class="text-danger"><?php echo form_error('profile_image');?></span>

@@ -1,4 +1,4 @@
-<?= form_open('employee/edit/'.$employee['id'],array("class"=>"form-horizontal")); ?>
+<?= form_open_multipart('employee/edit/'.$employee['id'],array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
 		<label for="employee_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Employee Name</label>
@@ -51,11 +51,14 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="profile_image" class="col-md-4 control-label"><span class="text-danger">*</span>Profile Image</label>
+		<label for="profile_image" class="col-md-4 control-label">Profile Image</label>
 		<div class="col-md-5">
-			<input type="file" name="profile_image" value="<?= ($this->input->post('profile_image') ? $this->input->post('profile_image') : $employee['profile_image']); ?>" class="form-control" id="profile_image" />
+			<input type="file" name="profile_image"  class="form-control" id="profile_image" />
 			<span class="text-danger"><?= form_error('profile_image');?></span>
-			<!-- <img src="<?= $employee['profile_image'] ?>" height="50px;"> -->
+		<?php	if (isset($error)) { ?>
+		<span class="text-danger"><?= $error ?></span>
+
+	<?php }	 ?>
 		</div>
 	</div>
 	<div class="form-group">

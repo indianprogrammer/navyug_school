@@ -14,7 +14,15 @@ class Superadmin extends Super_Controller{
         // $data['school'] = $this->Super_model->get_all_school();
 
         // $data['_view'] = 'login';
+    if(isset($this->session->superuser))
+    {
+      $data['_view'] = 'dashbord';
+    $this->load->view('index', $data);
+    }
+    else
+    {
 		$this->load->view('login');
+  }
 	}
 
 	function admin_index()
@@ -48,30 +56,36 @@ class Superadmin extends Super_Controller{
 	function school_list()
 	{   
     $data['title']="School List";
-	$data['school'] = $this->Super_model->get_all_school();
+    $data['school'] = $this->Super_model->get_all_school();
 
-	$data['_view'] = 'schoollist';
-	$this->load->view('index', $data);
-}
+    $data['_view'] = 'schoollist';
+    $this->load->view('index', $data);
+  }
 
-function add_school()
-{
-	$data['_view'] = 'schooladd';
-	$data['country'] = $this->Super_model->fetch_country();
+  function add_school()
+  {
+   $data['_view'] = 'schooladd';
+   $data['country'] = $this->Super_model->fetch_country();
 
-	$this->load->view('index', $data);
+   $this->load->view('index', $data);
         // echo "Dsd";
-}
-function countSchool()
-{
-	echo json_encode($data['school']=$this->Super_model->get_all_schools_count());
-}
+ }
+ function countSchool()
+ {
+   $data['school']=$this->Super_model->get_all_schools_count();
+   $data['sales']=$this->Super_model->get_sales();
+   $data['order']=$this->Super_model->get_order();
+   echo json_encode($data);
+ }
     /*
      * Adding a new school
      */
     function add()
     {   $data['country'] = $this->Super_model->fetch_country();
     $this->load->library('form_validation');
+      $config['upload_path']          = './uploads/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $this->load->library('upload', $config);
 
     $this->form_validation->set_rules('city', 'City', 'required');
     $this->form_validation->set_rules('state', 'State', 'required');
@@ -102,6 +116,18 @@ function countSchool()
     		'modified_at'=>date('Y-m-d h:i:s')
 
     	);
+      if($this->upload->do_upload('logo'))
+      {
+      $data['image'] =  $this->upload->data();
+      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+      $params['logo']=$image_path;
+    }
+    if($this->upload->do_upload('banner'))
+      {
+      $data['images'] =  $this->upload->data();
+      $image_path=$data['images']['raw_name'].$data['images']['file_ext'];
+      $params['banner']=$image_path;
+    }
             // var_dump($params);die;
     	$school_id = $this->Super_model->add_school($params);
     	$data=$this->session->set_flashdata('status','Successfully added');
@@ -110,7 +136,7 @@ function countSchool()
     		'title'=> 'successfully added',
     		'description'=> ''
     	);
-    	redirect('superadmin');
+    	redirect('superadmin/school_list');
              // header('location:successmodal.php');
     } else {
              // $this->session->set_flashdata('status','Failed to added');
@@ -118,7 +144,7 @@ function countSchool()
     	$this->load->view('index', $data);
     	
     }
-}
+  }
 
     /*
      * Editing a school
@@ -126,6 +152,9 @@ function countSchool()
     function edit($id)
     {
         // check if the school exists before trying to edit it
+        $config['upload_path']          = './uploads/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $this->load->library('upload', $config);
     	$data['school'] = $this->Super_model->get_school($id);
     	
     	$data['country'] = $this->Super_model->fetch_country();
@@ -163,9 +192,21 @@ function countSchool()
     				'address' => $this->input->post('address')
                     // 'modified_at'=>date('Y-m-d h:i:s')
     			);
-
+             if($this->upload->do_upload('logo'))
+      {
+      $data['image'] =  $this->upload->data();
+      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+      $params['logo']=$image_path;
+    }
+    if($this->upload->do_upload('banner'))
+      {
+      $data['images'] =  $this->upload->data();
+      $image_path=$data['images']['raw_name'].$data['images']['file_ext'];
+      $params['banner']=$image_path;
+    }
+    var_dump($params);
     			$this->Super_model->update_school($id, $params);
-    			redirect('school');
+    			redirect('superadmin/');
     		} else {
     			$data['_view'] = 'schooledit';
                 //var_dump($data);
@@ -252,31 +293,31 @@ function countSchool()
       $insertAuthentication = $this->Employee_model->add_user($authenticationData);
       // var_dump($insertAuthentication);
       $this->load->model('student/Student_model');
-       $userdata=$this->Student_model->select_uname_password($insertAuthentication);
+      $userdata=$this->Student_model->select_uname_password($insertAuthentication);
       
       //     $msg='Your Username='.$userdata->username.' and Password='.$userdata->clear_text.'';
-          $smsinfo= array(
-             'mobile'=>$this->input->post('mobile'),
-             'school_id'=>$this->input->post('school_id'),
-             'module'=>'admin add',
+      $smsinfo= array(
+       'mobile'=>$this->input->post('mobile'),
+       'school_id'=>$this->input->post('school_id'),
+       'module'=>'admin add',
 
-      
-      
-      
-           'user_name'=>$userdata->username,
-           'password'=>$userdata->clear_text,
-           'student_name'=>$this->input->post('employee_Name'),
-           'student_id'=>$employeeId
 
-        );
+
+
+       'user_name'=>$userdata->username,
+       'password'=>$userdata->clear_text,
+       'student_name'=>$this->input->post('employee_Name'),
+       'student_id'=>$employeeId
+
+     );
           ##map school admin
-      $adminSchoolMap=array( 'school_id'=>$this->input->post('school_id'),
+      $adminSchoolMap=array('school_id'=>$this->input->post('school_id'),
       	'employee_id'=>$employeeId  );
       $mapping = $this->Super_model->map_school_admin($adminSchoolMap);
       $mapping2 = $this->Super_model->map_school_employee($adminSchoolMap);
 
           // var_dump($smsinfo);die;
-         
+
           // modules::run('sms/sms/send_sms',$smsinfo);
 
 
@@ -303,71 +344,71 @@ function countSchool()
       redirect('superadmin/school_list');
 
 
+    }
+    else
+    {            
+      $data['_view'] = 'addAdmin';
+      $this->load->view('index',$data);
+    }
   }
-  else
-  {            
-    $data['_view'] = 'addAdmin';
-    $this->load->view('index',$data);
-  }
-}
-function fetch_state()
-{
-  if ($this->input->post('country_id')) {
-    echo json_encode($this->Super_model->fetch_state($this->input->post('country_id')));
+  function fetch_state()
+  {
+    if ($this->input->post('country_id')) {
+      echo json_encode($this->Super_model->fetch_state($this->input->post('country_id')));
 
             // $this->load->view('index',$data);
 
+    }
   }
-}
 
-function fetch_city()
-{
-  if ($this->input->post('state_id')) {
-    echo json_encode($this->Super_model->fetch_city($this->input->post('state_id')));
+  function fetch_city()
+  {
+    if ($this->input->post('state_id')) {
+      echo json_encode($this->Super_model->fetch_city($this->input->post('state_id')));
+    }
   }
-}
 
-function fetchschoolView()
-{
- echo json_encode($this->Super_model->get_school($this->input->post("id"))) ;
+  function fetchschoolView()
+  {
+   echo json_encode($this->Super_model->get_school($this->input->post("id"))) ;
   // echo "dsas";
-}
+ }
 
  function logout(){
   $this->session->unset_userdata('superusername');
   $this->session->sess_destroy();
-  redirect('login');
+  redirect('superadmin');
 }    
 
 
 
 function getCredentialAdmin($id)
 {
-$adminId=$this->Super_model->getAdminId($id);
-// var_dump($adminId);
- $adminid=$adminId->employee_id;
-$credential=$this->Super_model->getCredential($adminid);
- // var_dump($credential);
- $username=$credential[0]['username'];
- $password=$credential[0]['password'];
+  $adminId=$this->Super_model->getAdminId($id);
+ // var_dump($adminId);
+  $adminid=$adminId->employee_id;
+  $credential=$this->Super_model->getCredential($adminid);
+  // var_dump($credential);
+  $username=$credential[0]['username'];
+  $password=$credential[0]['password'];
   ##function for ip address
-        $ipaddress = '';
- 
-    if(isset($_SERVER['HTTP_CLIENT_IP']))
-        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    else if(isset($_SERVER['HTTP_X_FORWARDED']))
-        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
-        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    else if(isset($_SERVER['HTTP_FORWARDED']))
-        $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    else if(isset($_SERVER['REMOTE_ADDR']))
-        $ipaddress = $_SERVER['REMOTE_ADDR'];
-    else
-        $ipaddress = 'UNKNOWN';
- 
+  $ipaddress = '';
+
+  if(isset($_SERVER['HTTP_CLIENT_IP']))
+    $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+  else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+    $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+  else if(isset($_SERVER['HTTP_X_FORWARDED']))
+    $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+  else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+    $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+  else if(isset($_SERVER['HTTP_FORWARDED']))
+    $ipaddress = $_SERVER['HTTP_FORWARDED'];
+  else if(isset($_SERVER['REMOTE_ADDR']))
+    $ipaddress = $_SERVER['REMOTE_ADDR'];
+  else
+    $ipaddress = 'UNKNOWN';
+
     // echo $ipaddress;
         ##generating logs
 
@@ -376,21 +417,21 @@ $credential=$this->Super_model->getCredential($adminid);
         //     'ip_address'=>$ipaddress,
         //     'status'=>($authenticationData)?1:0
         //  );
-         $this->load->model('login/Login_model');
+  // $this->load->model('login/Login_model');
         // $log=$this->Login_model->insertLogs($logsData);
-       $userData = $this->Login_model->getEmployDetails($adminid);
-       // var_dump($userData );
-                 echo   $this->session->SchoolId = $userData['school_id'];
+  $userData = $this->Super_model->getEmployDetails($adminid);
+         // var_dump($userData );
+     $school_id=$this->session->SchoolId = $userData['school_id'];
                     // $this->session->organizationName = $userData['organization_name'];
-                     $school_name= modules::run('admin/admin/getSchoolName',$this->session->SchoolId);
-                   echo $this->session->SchoolName =$school_name->organization_name;
-                     
-                 echo  $this->session->name = $userData['name'];
-                echo $this->session->username =$username;
-                 echo   $this->session->profileImage = $userData['profile_image'];
-                  $this->output->enable_profiler(TRUE);
-                  
-                    // redirect ('admin');
+   $school_name= $this->Super_model->get_school_name($school_id);
+   echo $this->session->SchoolName =$school_name->organization_name;
+
+  echo  $this->session->name = $userData['name'];
+  echo $this->session->username =$username;
+  echo   $this->session->profileImage = $userData['profile_image'];
+  $this->output->enable_profiler(TRUE);
+
+                    redirect ('admin');
 
 
 }
@@ -399,47 +440,52 @@ $credential=$this->Super_model->getCredential($adminid);
 function fetchInstituteByDate()
 {
 
-echo json_encode($this->Super_model->fetch_institute_by_date());
+  echo json_encode($this->Super_model->fetch_institute_by_date());
+}
+function fetchInstituteByMonth()
+{
+
+  echo json_encode($this->Super_model->fetch_institute_by_month());
 }
 function invoice()
 {
   $data['school']=$this->Super_model->get_all_school_name();
- $data['_view'] = 'addInvoice';
-    $this->load->view('index',$data);
+  $data['_view'] = 'addInvoice';
+  $this->load->view('index',$data);
 }
 
 function invoiceAdd()
 {
   $school_id=$this->input->post('school_id');
   $amount=$this->input->post('amount');
- $invoiceId=$this->Super_model->get_invoice_id();
- $invoiceInfo=array(
+  $invoiceId=$this->Super_model->get_invoice_id();
+  $invoiceInfo=array(
 
-'school_id'=>$school_id,
-'amount'=>$amount,
-'invoice_id'=>$invoiceId
+    'school_id'=>$school_id,
+    'amount'=>$amount,
+    'invoice_id'=>$invoiceId
 
 
- );
+  );
  ## 
-$insertInvoice=$this->Super_model->insert_invoice_info($invoiceInfo);
-$accountInfo=array(
+  $insertInvoice=$this->Super_model->insert_invoice_info($invoiceInfo);
+  $accountInfo=array(
 
-'school_id'=>$school_id,
-'debit'=>$amount,
-'refrence_type'=>1
+    'school_id'=>$school_id,
+    'debit'=>$amount,
+    'refrence_type'=>1
 
 
- );
+  );
 
-$inserAccountInfo=$this->Super_model->insert_account_info($accountInfo);
+  $inserAccountInfo=$this->Super_model->insert_account_info($accountInfo);
 
 }
 function reciept()
 {
   $data['school']=$this->Super_model->get_all_school_name();
- $data['_view'] = 'addReciept';
-    $this->load->view('index',$data);
+  $data['_view'] = 'addReciept';
+  $this->load->view('index',$data);
 }
 
 function recieptAdd()
@@ -450,48 +496,57 @@ function recieptAdd()
   $payer_mobile=$this->input->post('payer_mobile');
   $method=$this->input->post('method');
 
- $recieptId=$this->Super_model->get_reciept_id();
- $recieptInfo=array(
+  $recieptId=$this->Super_model->get_reciept_id();
+  $recieptInfo=array(
 
-'school_id'=>$school_id,
-'amount'=>$amount,
-'reciept_id'=>$recieptId,
-'payer_name'=>$payer_name,
-'payer_mobile'=>$payer_mobile,
-'method'=>''
+    'school_id'=>$school_id,
+    'amount'=>$amount,
+    'reciept_id'=>$recieptId,
+    'payer_name'=>$payer_name,
+    'payer_mobile'=>$payer_mobile,
+    'method'=>''
 
 
 
- );
+  );
  ## 
-$insertReciept=$this->Super_model->insert_reciept_info($recieptInfo);
-$accountInfo=array(
+  $insertReciept=$this->Super_model->insert_reciept_info($recieptInfo);
+  $accountInfo=array(
 
-'school_id'=>$school_id,
-'credit'=>$amount,
-'refrence_type'=>2
+    'school_id'=>$school_id,
+    'credit'=>$amount,
+    'refrence_type'=>2
 
 
- );
+  );
 
-$inserAccountInfo=$this->Super_model->insert_account_info($accountInfo);
+  $inserAccountInfo=$this->Super_model->insert_account_info($accountInfo);
 
 }
+##for graph 
 function salesChart()
-    {
+{
 
-   
-      $data=$this->Super_model->get_sales_details_date();
-      echo json_encode($data);
-    }
-  function balanceSchool()
-  {
-     $student_info=$this->Super_model->searchBalInformatiion(1);
-   $credit_info=$this->Super_model->gettingTransactionInfo(1);
-   $total_debit=$student_info->debit;
-    $total_credit=$credit_info->credit;
-     $balance=$total_debit-$total_credit;
-    echo $balance;
-  }  
+
+  $data=$this->Super_model->get_sales_details_date();
+  echo json_encode($data);
+}
+
+function balanceSchool()
+{
+ $debit_info=$this->Super_model->searchBalInformatiion(1);
+ $credit_info=$this->Super_model->gettingTransactionInfo(1);
+ $total_debit=$debit_info->debit;
+ $total_credit=$credit_info->credit;
+ $balance=$total_debit-$total_credit;
+ echo $balance;
+}  
+function getLedgerSchool()
+{
+$ledgerData=$this->Super_model->get_ledger_details($this->input->post('school_id'));
+  echo json_encode($ledgerData);
+}
+
+
 }
 ?>
