@@ -74,8 +74,22 @@ class Superadmin extends Super_Controller{
  {
    $data['school']=$this->Super_model->get_all_schools_count();
    $data['sales']=$this->Super_model->get_sales();
-   $data['order']=$this->Super_model->get_order();
+  $data['order']=$this->Super_model->get_order();
+  $data['enquiry']=$this->Super_model->get_enquiry();
+
    echo json_encode($data);
+ }
+ function orderList()
+ {
+  $data['order']=$this->Super_model->order_list();
+   $data['_view'] = 'order';
+    $this->load->view('index', $data);
+ }
+ function enquiryList()
+ {
+  $data['enquiry']=$this->Super_model->enquiry_list();
+   $data['_view'] = 'enquiryList';
+    $this->load->view('index', $data);
  }
     /*
      * Adding a new school

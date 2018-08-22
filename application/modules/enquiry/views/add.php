@@ -1,6 +1,13 @@
 <?=form_open('enquiry/add',array("class"=>"form-horizontal")); ?>
 
-<h2 > ENQUIRY FORM </h2>
+<h3> ENQUIRY FORM </h3>
+<div class="form-group">
+        <label for="username" class="col-md-4 control-label"><span class="text-danger">*</span> User Name</label>
+        <div class="col-md-5 col-lg-4">
+            <input type="text" name="username" value="<?=$this->input->post('username'); ?>" class="form-control" id="username"  autofocus />
+            <span class="text-danger"><?=form_error('username');?></span>
+        </div>
+    </div>
 	<div class="form-group">
 		<label for="trainer_Name" class="col-md-4 control-label"><span class="text-danger">*</span> Name</label>
 		<div class="col-md-5 col-lg-4">
@@ -19,7 +26,7 @@
 	</div>
 	
 	<div class="form-group">
-		<label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
+		<label for="email" class="col-md-4 control-label">Email</label>
 		<div class="col-md-5 col-lg-4">
 			<input type="text" name="email" value="<?=$this->input->post('email'); ?>" class="form-control" id="email" />
 			<span class="text-danger"><?=form_error('email');?></span>
@@ -42,10 +49,17 @@
     </div>
 	
 	<div class="form-group">
-		<label for="address" class="col-md-4 control-label"><span class="text-danger">*</span>Address</label>
+        <label for="address" class="col-md-4 control-label">Address</label>
+        <div class="col-md-5 col-lg-4">
+            <textarea name="address" class="form-control" id="address"><?=$this->input->post('address'); ?></textarea>
+            <span class="text-danger"><?=form_error('address');?></span>
+        </div>
+    </div>
+    <div class="form-group">
+		<label for="comments" class="col-md-4 control-label"><span class="text-danger">*</span>comments</label>
 		<div class="col-md-5 col-lg-4">
-			<textarea name="address" class="form-control" id="address"><?=$this->input->post('address'); ?></textarea>
-			<span class="text-danger"><?=form_error('address');?></span>
+			<textarea name="comments" class="form-control" id="comments"><?=$this->input->post('comments'); ?></textarea>
+			<span class="text-danger"><?=form_error('comments');?></span>
 		</div>
 	</div>
            <!--  <div class="form-group" >
@@ -57,13 +71,28 @@
                         </div>
             </div> -->
 		      <div class="form-group">
-				<label for="remarks" class="col-md-4 control-label"><span class="text-danger">*</span>Remarks</label>
+				<label for="remarks" class="col-md-4 control-label">Remarks</label>
 				<div class="col-md-5 col-lg-4">
 					<input type="text" name="remarks" value="<?=$this->input->post('remarks'); ?>" class="form-control" id="remarks" />
 					<span class="text-danger"><?=form_error('remarks');?></span>
 				</div>
 			</div>      
-		                    
+		  <div class="form-group">
+        <label for="assign" class="col-md-4 control-label">Assign to</label>
+        <div class="col-md-5 col-lg-4">
+          
+            <select name="assign" id="assign" class="form-control" >
+                <option value="">---select---</option>
+                <option value="0">No one</option>
+            <?php   foreach($assign as $row){ ?>
+                <option value="<?= $row->id ?>" > <?= $row->type ?></option>
+                <?php } ?>
+            </select>
+            <span class="text-danger"><?= form_error('type');?></span>
+
+        
+        </div>
+    </div>                    
 	
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-5">

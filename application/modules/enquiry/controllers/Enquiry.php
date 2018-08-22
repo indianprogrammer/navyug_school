@@ -29,8 +29,23 @@ class Enquiry extends MY_Controller{
     function add_enquiry()
     {
       $data['type']= $this->Enquiry_model->enquiry_type();
+      $data['assign']= $this->Enquiry_model->assign_type();
+      // var_dump($data);
         $data['_view'] = 'add';
         $this->load->view('../index',$data);
+    }
+    function assignIndivisual()
+    {
+        $params = array(
+       'comment'=> $this->input->post('comment');
+       'user_name'=> $this->input->post('user_name');
+        $data['type']= $this->Enquiry_model->assign_indivisual($params);
+    );
+    }
+    function statusUpdate()
+    {       
+    
+         $data['type']= $this->Enquiry_model->update_status($this->input->get('id'));
     }
     function add()
     {   
@@ -41,7 +56,7 @@ class Enquiry extends MY_Controller{
 		$this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
 		// $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
 		// $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-        $this->form_validation->set_rules('address','Address','required');
+        // $this->form_validation->set_rules('address','Address','required');
 		// $this->form_validation->set_rules('latlong','latitude & longitude','required');
 		
 		if($this->form_validation->run() )     
@@ -50,14 +65,15 @@ class Enquiry extends MY_Controller{
 				
 				'name' => $this->input->post('name'),
                 'type'=>$this->input->post('type'),
-				
+				'username'=>$this->input->post('username'),
 				'email' => $this->input->post('email'),
 				'mobile' => $this->input->post('mobile'),
 				 // 'location' => $this->input->post('latlong'),
                 'address' => $this->input->post('address'),
 				'remarks' => $this->input->post('remarks'),
-                'school_id'=>$this->session->SchoolId
-                // 'created_at'=>date('d-m-y/h-m')
+                'assign'=>$this->input->post('assign')
+                // 'school_id'=>$this->session->SchoolId
+             // 'date'=>date('d-m-y/h-m')
                
             );
             $enquiryInfoSms= array(
@@ -74,10 +90,23 @@ class Enquiry extends MY_Controller{
              'email'=>$params['email'],
              'subject'=>"Enquiry"
         );
-            
+            $checkUserName=$this->Enquiry_model->check_user_avilability($this->input->post('username'));
+            if($checkUserName->username)
+            {
+            $ticketParams=array('ticket_id'=>$checkUserName->id,'comment'=>$this->input->post('comments'),'assign'=>$this->input->post('assign'),'status'=>1);
+            $ticket_id = $this->Enquiry_model->add_ticket($ticketParams);
+        }
+        else
+        {
             $enquiry_id = $this->Enquiry_model->add_enquiry($params);
-            modules::run('sms/sms/send_sms',$enquiryInfoSms);
-            modules::run('email/email/send_email',$enquiryInfoEmail);
+            $ticketParams=array('ticket_id'=>$enquiry_id,'comment'=>$this->input->post('comments'),'assign'=>$this->input->post('assign'),'status'=>1);
+            $ticket_id = $this->Enquiry_model->add_ticket($ticketParams);
+            
+        }
+            // checkUserName
+
+            // modules::run('sms/sms/send_sms',$enquiryInfoSms);
+            // modules::run('email/email/send_email',$enquiryInfoEmail);
             $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added',

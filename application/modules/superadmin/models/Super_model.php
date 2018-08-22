@@ -339,16 +339,36 @@ $this->db->select_sum('credit');
 
 }
 function get_order()
-{
-    $query =$this->db->get('enquiry')->num_rows();
-    $query =$this->db->where(array('school_id'=>NULL,'type'=>2));
-      return $query;
+{   
+    $this->db->from('enquiry');
+    $this->db->where(array('school_id'=>NULL,'type'=>2));
+    return $this->db->get()->num_rows();
+      
 }
 function get_enquiry()
+{   
+  $this->db->from('enquiry');
+    $this->db->where(array('school_id'=>NULL,'assign_to'=>1));
+    $this->db->where_not_in('type',2);
+  return   $this->db->get()->num_rows();
+     
+}
+function order_list()
 {
-    $query =$this->db->get('enquiry')->num_rows();
-    $query =$this->db->where('school_id',NULL);
-      return $query;
+  $this->db->select('*');
+  $this->db->from('enquiry');
+   $this->db->where(array('school_id'=>NULL,'type'=>2));
+   return $this->db->get()->result_array();
+}
+function enquiry_list()
+{   
+  $this->db->select('*');
+  $this->db->from('enquiry');
+    $this->db->where(array('school_id'=>NULL,'assign_to'=>1));
+    $this->db->join('ticket_generate','ticket_generate.ticket_id=enquiry.id');
+     $this->db->where_not_in('type',2);
+  return  $this->db->get()->result_array();
+     
 }
 
 

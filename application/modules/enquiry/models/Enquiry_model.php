@@ -77,6 +77,30 @@ class Enquiry_model extends CI_Model
         return $this->db->get()->result();
 
     }
+   function assign_type()
+   {
+    $this->db->select('*');
+        $this->db->from('assign');
+        return $this->db->get()->result();
+   }
+   function add_ticket($params)
+   {
+     $this->db->insert('ticket_generate',$params);
+        return $this->db->insert_id();
+   }
+   function update_status($id)
+   {
+     $this->db->where('ticket_id',$id);
+        return $this->db->update('ticket_generate',array('status'=>0));
+   }
+   function check_user_avilability($username)
+   {
+     $this->db->select('username,id');
+        $this->db->from('enquiry');
+        ##may be douthful for future perpose
+        $this->db->where('username',$username);
+        return $this->db->get()->row();
 
+   }
 }
 ?>

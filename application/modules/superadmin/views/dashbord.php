@@ -81,7 +81,7 @@
       </div>
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-2">
-         <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
+         <a href="<?= base_url() ?>superadmin/orderList" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
           <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fa fa-shopping-cart"></i></span>
 
@@ -110,7 +110,7 @@
       </div>
 
       <div class="col-12 col-sm-6 col-md-2">
-         <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
+         <a href="<?= base_url() ?>superadmin/enquiryList" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
           <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fa fa-book"></i></span>
 
@@ -239,6 +239,7 @@
      $('.school').html(obj.school);
      $('.sales').html(obj.sales.credit);
      $('.order').html(obj.order);
+     $('.enquiry').html(obj.enquiry);
     
    }});
 
