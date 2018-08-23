@@ -86,25 +86,25 @@
                       </td>
                       <!-- modal class start -->
                       <!-- <div class="container"> -->
-                        <div id="dataModal" class="modal fade" role="dialog">
-                          <div class="modal-dialog modal-lg" >
+                          <div id="dataModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-lg" >
 
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <!-- <h4 class="modal-title">Modal Header</h4> -->
-                            </div>
-                            <div class="modal-body" id="student_detail">
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <!-- <h4 class="modal-title">Modal Header</h4> -->
+                              </div>
+                              <div class="modal-body" id="student_detail">
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                          </div>
 
-                    </div>
-                </div>
+                      </div>
+                  </div>
                 <!-- </div> -->
                 <!-- modal class end -->
                  <div id="dataModalinvoice" class="modal fade" role="dialog">
@@ -170,7 +170,7 @@
               console.log(data);
                 var obj=JSON.parse(data);
                 
-                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table><button type="button" class="btn btn-info full_details" onclick="getFullDetails('+student_id+')"  >GET INVOICE FULL DETAILS</button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getFullDetailsReciept('+student_id+')"  >GET All RECIEPTS DETAILS </button>&nbsp&nbsp&nbsp<button type="button" class="btn btn-info full_details" onclick="getBalence('+student_id+')"  >Check Balance </button>');  
+                $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>');  
                 $('#dataModal').modal("show");  
             }  
         });  

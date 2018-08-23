@@ -28,14 +28,10 @@
 		<?php  
 		$count=1 ?>
 		<?php foreach($enquiry as $row){ ?>
-			<?php if($row['status']==0)
-			{ ?>	
-				<tr >
-				<?php  }	
-				else 
-					{ ?>
+			
+			
 						<tr>
-						<?php   } ?>
+						
 						<td><?= $count++ ?></td>
 
 						<td><?php echo $row['ticket_id']; ?></td>
@@ -59,50 +55,40 @@
 								</button>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="javascript:void(0)" onclick="" >Assign to Group</a>
-									<a class="dropdown-item" href="javascript:void(0)"data-toggle="modal" data-target="#dataModal">Assign to indivisual</a>
+									<a class="dropdown-item" href="javascript:void(0)" onclick="assignIndivisual(<?= $row['ticket_id'] ?>)" >Assign to indivisual</a>
 									<a class="dropdown-item" href="javascript:void(0)" onclick="statusUpdate(<?= $row['id'] ?>)">Close Request</a>
 								</div>
 
 							</div>
 						</td>
+							
+		<div id="assignModal" class="modal fade" role="dialog">
+                          <div class="modal-dialog modal-lg" >
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <!-- <h4 class="modal-title">Invoice Information</h4> -->
+                            </div>
+                            <div class="modal-body" id="assigning">
+                          
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 					</tr>
+
 				<?php } ?>
 			</tbody>
 		</table>
-		<div id="dataModal" class="modal fade" role="dialog">
-			<div class="modal-dialog modal-lg" >
-
-				<!-- Modal content-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<!-- <h4 class="modal-title">Modal Header</h4> -->
-					</div>
-					<div class="modal-body" id="student_detail">
-						<form action="enquiry/assignIndivisual" method="post">
-							<input type="checkbox" name="user_id" value="id">vivek chourasiya
-							<div class="form-group">
-								<label for="comments" class="col-md-4 control-label"><span class="text-danger">*</span>comments</label>
-								<div class="col-md-5 col-lg-4">
-									<textarea name="comments" class="form-control" id="comments"><?=$this->input->post('comments'); ?></textarea>
-									<span class="text-danger"><?=form_error('comments');?></span>
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-4 col-sm-5">
-									<button type="submit" class="btn btn-success">Assign</button>
-								</div>
-							</div>
-						</form>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
-				</div>
-
-			</div>
-		</div>
+		
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
@@ -114,7 +100,7 @@
 		</script>
 		<script type="text/javascript">
 			var url="<?php echo base_url();?>";
-			function delFunction()
+			function delFunction($id)
 			{
 
     // var id = $(this).data('id');
@@ -127,6 +113,7 @@
 }
 function statusUpdate($id)
 {
+	console.log($id);
     	// console.log($id);
     	$.ajax({
     		method: "GET",
@@ -139,23 +126,27 @@ function statusUpdate($id)
     			console.log("dd");
     		}
     	});
-    }
+    }	
     function assignIndivisual($id)
     {
+    	var id= $id;
+    	console.log(id);
+
+    	$('#assigning').html('<form action="../<?php base_url() ?>enquiry/assignIndivisual" method="post"><input type="checkbox" name="user_name" value="id">vivek chourasiya<br><input type="hidden" name="ticket_id" value="'+id+'" ><div class="form-group"><label>message</label><textarea name="comment" class="form-control"></textarea><button type="submit" class="btn btn-info">Assign</button></form>');
+    	$('#assignModal').modal('show');
 
 
+    // 	$.ajax({
+    // 		method: "GET",
+    // 		url:" <?= base_url() ?>enquiry/assign_to_other", 
+    // 		data: {
+    // 			id: $id
+    // 		},
 
-
-    	$.ajax({
-    		method: "GET",
-    		url:" <?= base_url() ?>enquiry/assign_to_other", 
-    		data: {
-    			id: $id
-    		},
-
-    		success: function( responseObject ) {
-    			console.log("dd");
-    		}
-    	});
-    }
+    // 		success: function( responseObject ) {
+    // 			console.log("dd");
+    // 		}
+    // 	});
+    // }
+}
 </script>

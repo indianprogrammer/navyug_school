@@ -37,10 +37,13 @@ class Enquiry extends MY_Controller{
     function assignIndivisual()
     {
         $params = array(
-       'comment'=> $this->input->post('comment');
-       'user_name'=> $this->input->post('user_name');
-        $data['type']= $this->Enquiry_model->assign_indivisual($params);
-    );
+       'comment'=> $this->input->post('comment'),
+       'user_name'=> $this->input->post('user_name'),
+       'ticket_id'=> $this->input->post('ticket_id')
+   );
+        var_dump($params);
+        // $data['type']= $this->Enquiry_model->assign_indivisual($params);
+
     }
     function statusUpdate()
     {       
