@@ -90,8 +90,8 @@ class Enquiry_model extends CI_Model
    }
    function update_status($id)
    {
-     $this->db->where('ticket_id',$id);
-        return $this->db->update('ticket_generate',array('status'=>0));
+     $this->db->where('id',$id);
+        return $this->db->update('ticket_generate',array('status'=>'disable'));
    }
    function check_user_avilability($username)
    {
@@ -101,6 +101,11 @@ class Enquiry_model extends CI_Model
         $this->db->where('username',$username);
         return $this->db->get()->row();
 
+   }
+   function assign_indivisual($params)
+   {
+    $this->db->insert('ticket_generate',$params);
+        return $this->db->insert_id();
    }
 }
 ?>

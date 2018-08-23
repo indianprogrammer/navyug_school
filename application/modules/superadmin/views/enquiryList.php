@@ -48,10 +48,10 @@
 						<td>
 							<div class="btn-group" >
 								<!-- <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></a></i></button> -->
-								<button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+								<!-- <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button> -->
 								<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
 								<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span>
+									<span class="caret">Action</span>
 								</button>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="javascript:void(0)" onclick="" >Assign to Group</a>
@@ -132,7 +132,7 @@ function statusUpdate($id)
     	var id= $id;
     	console.log(id);
 
-    	$('#assigning').html('<form action="../<?php base_url() ?>enquiry/assignIndivisual" method="post"><input type="checkbox" name="user_name" value="id">vivek chourasiya<br><input type="hidden" name="ticket_id" value="'+id+'" ><div class="form-group"><label>message</label><textarea name="comment" class="form-control"></textarea><button type="submit" class="btn btn-info">Assign</button></form>');
+    	$('#assigning').html('<form action="../<?php base_url() ?>enquiry/assignIndivisual" method="post"><input type="checkbox" name="assign"  value="4">vivek chourasiya<br><input type="hidden" name="ticket_id" value="'+id+'" ><div class="form-group col-md-6"><label>message</label><textarea name="comment" class="form-control"></textarea><br><button type="submit" class="btn btn-info">Assign</button></form>');
     	$('#assignModal').modal('show');
 
 

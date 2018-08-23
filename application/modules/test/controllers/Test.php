@@ -277,5 +277,14 @@ else
   echo "dd";
 }
 }
+function form()
+{
+   $data['_view'] = 'form';
+     $this->load->view('index',$data);
+}
+function e()
+{
+  var_dump($this->input->post());
+}
 }
 ?>

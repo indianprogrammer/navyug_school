@@ -349,6 +349,7 @@ function get_enquiry()
 {   
   $this->db->from('enquiry');
     $this->db->where(array('school_id'=>NULL,'assign_to'=>1));
+    $this->db->join('ticket_generate','ticket_generate.ticket_id=enquiry.id');
     $this->db->where_not_in('type',2);
   return   $this->db->get()->num_rows();
      

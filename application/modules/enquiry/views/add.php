@@ -1,136 +1,144 @@
-<?=form_open('enquiry/add',array("class"=>"form-horizontal")); ?>
+
+<form id="formEnquiry" class="horizontal-form" method="post">
 
 <h3> ENQUIRY FORM </h3>
-<div class="form-group">
+<div class="row">
+    <div class="col-md-5 col-lg-4">
         <label for="username" class="col-md-4 control-label"><span class="text-danger">*</span> User Name</label>
-        <div class="col-md-5 col-lg-4">
+        <div class="form-group">
             <input type="text" name="username" value="<?=$this->input->post('username'); ?>" class="form-control" id="username"  autofocus />
             <span class="text-danger"><?=form_error('username');?></span>
         </div>
     </div>
-	<div class="form-group">
-		<label for="trainer_Name" class="col-md-4 control-label"><span class="text-danger">*</span> Name</label>
-		<div class="col-md-5 col-lg-4">
-			<input type="text" name="name" value="<?=$this->input->post('name'); ?>" class="form-control" id="Name"  autofocus />
-			<span class="text-danger"><?=form_error('name');?></span>
-		</div>
-	</div>
-	
-	
-	<div class="form-group">
-		<label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Mobile</label>
-		<div class="col-md-5 col-lg-4">
-			<input type="text" name="mobile" maxlength="13" value="<?=$this->input->post('mobile'); ?>" class="form-control" id="mobile" />
-			<span class="text-danger"><?=form_error('mobile');?></span>
-		</div>
-	</div>
-	
-	<div class="form-group">
-		<label for="email" class="col-md-4 control-label">Email</label>
-		<div class="col-md-5 col-lg-4">
-			<input type="text" name="email" value="<?=$this->input->post('email'); ?>" class="form-control" id="email" />
-			<span class="text-danger"><?=form_error('email');?></span>
-		</div>
-	</div>
+    <div class="col-md-5 col-lg-4">
+        <label for="trainer_Name" class="col-md-4 control-label"><span class="text-danger">*</span> Name</label>
+        <div class="form-group">
+         <input type="text" name="name" value="<?=$this->input->post('name'); ?>" class="form-control" id="Name"  autofocus />
+         <span class="text-danger"><?=form_error('name');?></span>
+     </div>
+ </div>
+
+
+ <div class="col-md-5 col-lg-4">
     <div class="form-group">
-        <label for="purpose" class="col-md-4 control-label"><span class="text-danger">*</span>Enquiry Purpose</label>
-        <div class="col-md-5 col-lg-4">
-          
-            <select name="type" id="type" class="form-control" >
-                <option value="">---select---</option>
+        <label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Mobile</label>
+        <input type="text" name="mobile" maxlength="13" value="<?=$this->input->post('mobile'); ?>" class="form-control" id="mobile" />
+        <span class="text-danger"><?=form_error('mobile');?></span>
+    </div>
+</div>
+
+<div class="col-md-5 col-lg-4">
+    <label for="email" class="col-md-4 control-label">Email</label>
+    <div class="form-group">
+     <input type="text" name="email" value="<?=$this->input->post('email'); ?>" class="form-control" id="email" />
+     <span class="text-danger"><?=form_error('email');?></span>
+ </div>
+</div>
+<div class="col-md-5 col-lg-4">
+    <label for="purpose" class="col-md-4 control-label"><span class="text-danger">*</span>Purpose</label>
+    <div class="form-group">
+
+        <select name="type" id="type" class="form-control" >
+            <option value="">---select---</option>
             <?php   foreach($type as $row){ ?>
                 <option value="<?= $row->id ?>"><?= $row->name ?></option>
+            <?php } ?>
+        </select>
+        <span class="text-danger"><?= form_error('type');?></span>
+
+        
+    </div>
+</div>
+
+               <!--  <div class="col-md-5 col-lg-4">
+                <label for="remarks" class="col-md-4 control-label">Remarks</label>
+		      <div class="form-group">
+					<input type="text" name="remarks" value="<?=$this->input->post('remarks'); ?>" class="form-control" id="remarks" />
+					<span class="text-danger"><?=form_error('remarks');?></span>
+				</div>
+			</div>   -->    
+      <!--   <div class="col-md-5 col-lg-4"> 
+        <label for="address" class="col-md-4 control-label">Address</label>
+    <div class="form-group">
+            <textarea name="address" class="form-control" id="address"><?=$this->input->post('address'); ?></textarea>
+            <span class="text-danger"><?=form_error('address');?></span>
+        </div>
+    </div> -->
+    <div class="col-md-5 col-lg-4">
+        <label for="assign" class="col-md-4 control-label">Assign to</label>
+        <div class="form-group">
+
+            <select name="assign" id="assign" class="form-control" >
+                <option value="">---select---</option>
+                <option value="0">No one</option>
+                <?php   foreach($assign as $row){ ?>
+                    <option value="<?= $row->id ?>" > <?= $row->type ?></option>
                 <?php } ?>
             </select>
             <span class="text-danger"><?= form_error('type');?></span>
 
-        
+
+        </div>
+    </div>     
+    <div class="col-md-5 col-lg-4">
+        <label for="purpose" class="col-md-4 control-label"><span class="text-danger">*</span>Attend Type</label>
+        <div class="form-group">
+
+            <select name="attend_type" id="type" class="form-control" >
+                <option value="">---select---</option>
+
+                    <option value="sms">Sms</option>
+                    <option value="call">Call</option>
+                    <option value="email">Email</option>
+                    <option value="office">Office</option>
+               
+            </select>
+            <span class="text-danger"><?= form_error('attend_type');?></span>
+
+
+        </div>
+    </div>               
+    <div class="col-md-5 col-lg-4">
+        <label for="comments" class="col-md-4 control-label"><span class="text-danger">*</span>comments</label>
+        <div class="form-group">
+            <textarea name="comments" class="form-control" id="comments"><?=$this->input->post('comments'); ?></textarea>
+            <span class="text-danger"><?=form_error('comments');?></span>
         </div>
     </div>
-	
-	<div class="form-group">
-        <label for="address" class="col-md-4 control-label">Address</label>
-        <div class="col-md-5 col-lg-4">
-            <textarea name="address" class="form-control" id="address"><?=$this->input->post('address'); ?></textarea>
-            <span class="text-danger"><?=form_error('address');?></span>
-        </div>
-    </div>
-    <div class="form-group">
-		<label for="comments" class="col-md-4 control-label"><span class="text-danger">*</span>comments</label>
-		<div class="col-md-5 col-lg-4">
-			<textarea name="comments" class="form-control" id="comments"><?=$this->input->post('comments'); ?></textarea>
-			<span class="text-danger"><?=form_error('comments');?></span>
-		</div>
-	</div>
            <!--  <div class="form-group" >
-	               <label for="latlong" class="control-label col-md-4 col-sm-12"><span class="text-danger">*</span>Location</label>
-	                     <div class="col-md-5 col-lg-4" id="showlat">
+                   <label for="latlong" class="control-label col-md-4 col-sm-12"><span class="text-danger">*</span>Location</label>
+                         <div class="col-md-5 col-lg-4" id="showlat">
                             <input type="text" name="latlong" class="form-control" id="latlong" onclick="latMap();"  />
                             <span class="text-danger"><?= form_error('latlong') ?></span>
                          <div class="col-md-2" id="dvMap" style="height: 100px;" > </div>
                         </div>
-            </div> -->
-		      <div class="form-group">
-				<label for="remarks" class="col-md-4 control-label">Remarks</label>
-				<div class="col-md-5 col-lg-4">
-					<input type="text" name="remarks" value="<?=$this->input->post('remarks'); ?>" class="form-control" id="remarks" />
-					<span class="text-danger"><?=form_error('remarks');?></span>
-				</div>
-			</div>      
-		  <div class="form-group">
-        <label for="assign" class="col-md-4 control-label">Assign to</label>
-        <div class="col-md-5 col-lg-4">
-          
-            <select name="assign" id="assign" class="form-control" >
-                <option value="">---select---</option>
-                <option value="0">No one</option>
-            <?php   foreach($assign as $row){ ?>
-                <option value="<?= $row->id ?>" > <?= $row->type ?></option>
-                <?php } ?>
-            </select>
-            <span class="text-danger"><?= form_error('type');?></span>
+                    </div> -->
 
-        
-        </div>
-    </div>                    
-	
-	<div class="form-group">
-		<div class="col-sm-offset-4 col-sm-5">
-			<button type="submit" class="btn btn-success">Save</button>
-        </div>
-	</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-5">
+                        <button type="submit" class="btn btn-success"  onclick="submitForm('<?= base_url() ?>enquiry/add')">Add New</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-5">
+                        <button type="submit" class="btn btn-success"  onclick="submitForm('<?= base_url() ?>enquiry/existing_add')">Update Existing</button>
+                    </div>
+                </div>
+               </form>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
-<?=form_close(); ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
-    <script type="text/javascript">
-       function latMap() {
-            $(document).ready(function()
-            {
-            var mapOptions = {
-                center: new google.maps.LatLng(21.195545, 51.259175),
-                zoom: 14,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var infoWindow = new google.maps.InfoWindow();
-            var latlngbounds = new google.maps.LatLngBounds();
-            var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
-            google.maps.event.addListener(map, 'click', function (e) {
-                // alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
-                var Latitude=e.latLng.lat();
-                var Longitude=e.latLng.lng();
-              var latlang='<input type="text" id="latlong" onclick="latMap()" class="form-control" name="latlong"  value="'+Latitude+' / '+Longitude+'" >';
-                    $('#showlat').html(latlang);
-                    // $("input:text").value(Latitude);
-                 // console.log(latlang);
-            });
-        });
-        }
-    </script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $("#mobile").keydown(function (e) {
+             <script type="text/javascript">
+              function submitForm(action) {
+                var form = document.getElementById('formEnquiry');
+                form.action = action;
+                form.submit();
+              }
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#mobile").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [45, 5, 9, 27, 13, 110, 190]) !== -1 ||
              // Allow: Ctrl/cmd+A
@@ -149,5 +157,5 @@
             e.preventDefault();
         }
     });
-    });
-</script>
+                });
+            </script>
