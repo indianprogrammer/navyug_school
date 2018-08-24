@@ -16,7 +16,10 @@
                 
                     <label class="control-lable" style="color: #fff;">Country Name</label>
                     <input style="height:70px" type="text" id="country" autocomplete="off" name="country" class="form-control" placeholder="Type to get an Ajax call of Countries" onkeypress="return enterEvent(event)">        
-                    <ul class="dropdown-menu txtcountry" style="margin-left:15px;margin-right:0px;" role="menu" aria-labelledby="dropdownMenu"  id="DropdownCountry"></ul>
+                    <!-- 
+                     -->
+                     <!-- <div id="tabled"></div> -->
+                     <table id="tabled" class="table  table-bordered table-responsive"></table>
                     <input type="text" name="sname" id="sname">
 </div>
         </div>
@@ -33,22 +36,18 @@
             data: {
                 keyword: $("#country").val()
             },
-            dataType: "json",
+            // dataType: "json",
             success: function (data) {
-                if (data.length > 0) {
-                    $('#DropdownCountry').empty();
-                    $('#country').attr("data-toggle", "dropdown");
-                    $('#DropdownCountry').dropdown('toggle');
-                }
-                else if (data.length == 0) {
-                    $('#country').attr("data-toggle", "");
-                }
-                $.each(data, function (key,value) {
-                    if (data.length > 0)
-                        $('#DropdownCountry').append('<li role="displayCountries" ><a role="menuitem dropdownCountryli" class="dropdownlivalue">' + value['student_name'] + ' &nbsp ' + value['username'] + '</a></li>');
-                    console.log(value['student_name']);
-                        $('#sname').val(value['student_name']);
-                });
+              // console.log(data);
+              var obj=JSON.parse(data);
+              var i,tabledata;
+              console.log(obj[0].student_name);
+              for(i=0;i<obj.length;i++)
+              {
+                tabledata+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].username+'</td></tr>'
+              }
+              $('#tabled').show();
+              $('#tabled').html(tabledata);
             }
         });
     }
