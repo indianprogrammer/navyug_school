@@ -19,6 +19,7 @@ class Account_model extends CI_Model
         $this->db->where('school_id',$school_id);
         return $query = $this->db->get()->result();
     } 
+   
     function fetch_students($classes_id)
     {
 
@@ -49,13 +50,15 @@ class Account_model extends CI_Model
        $this->db->insert('account_transaction',$accountTransaction);
        return $this->db->insert_id();
    }
-   function get_all_invoice($id)
+   function get_all_invoice($id,$student_id)
    {
        $this->db->select('invoices.*,account_transaction.*,student.student_name');
        $this->db->from('invoices');
        $this->db->order_by('invoices.id', 'DESC');
        $this->db->where('invoices.school_id', $id);
-
+       if($student_id){
+       $this->db->where('invoices.student_id', $student_id);
+        }
        $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
        $this->db->join('student', 'student.id=invoices.student_id', 'Left');
        
@@ -128,11 +131,16 @@ function add_reciept($reciept)
     $this->db->insert('reciepts',$reciept);
     return $this->db->insert_id();
 }
-function get_all_reciept($id)
+function get_all_reciept($id,$student_id)
 {
    $this->db->select('reciepts.*,account_transaction.*');
    $this->db->from('reciepts');
-$this->db->where('school_id',$id);
+$this->db->where('reciepts.school_id',$id);
+if($student_id)
+{
+    
+$this->db->where('student_id',$student_id);
+}
    $this->db->join('account_transaction', 'account_transaction.reference_id=reciepts.id', 'Left');
 
         // $this->db->where('class_id',$classes_id);

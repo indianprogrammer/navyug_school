@@ -15,11 +15,20 @@
     function invoice_list()
     {   
         $schoolId=$this->session->SchoolId;
-        $data['invoice'] = $this->Account_model->get_all_invoice($schoolId);
+       if($this->input->get('student_id'))
+       {
+        $student_id=$this->input->get('student_id');
+        $data['invoice'] = $this->Account_model->get_all_invoice($schoolId,$student_id);
+       }
+       else
+       {    $student_id='';
+         $data['invoice'] = $this->Account_model->get_all_invoice($schoolId,$student_id);
+       }
         // var_dump($data['invoice']);
         $data['_view'] = 'invoiceList';
         $this->load->view('index',$data);
     }
+
 
     /*
      * Adding a new attendance
@@ -254,7 +263,16 @@
    function reciept_list()
    {
      $schoolId=$this->session->SchoolId;
-    $data['reciept'] = $this->Account_model->get_all_reciept($schoolId);
+      if($this->input->get('student_id'))
+       {
+        $student_id=$this->input->get('student_id');
+    $data['reciept'] = $this->Account_model->get_all_reciept($schoolId,$student_id);
+       }
+       else
+       {   
+        $student_id='';
+        $data['reciept'] = $this->Account_model->get_all_reciept($schoolId,$student_id);
+       }
         // var_dump($data['invoice']);
     $data['_view'] = 'recieptList';
     $this->load->view('index',$data);

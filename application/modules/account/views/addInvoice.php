@@ -1,13 +1,23 @@
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <?= form_open('account/generate_invoice') ?>
 
 <div class="box-body">
                 <div class="row clearfix">
+                   <div class="col-md-10 col-sm-12">
+                        <label for="serch" class="control-label"><span class="text-danger">*</span>Search</label>
+                        <div class="form-group">
+                            <input type="text" name="search" 
+                            class="form-control" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" />
+                           
+                        </div>
+                        <ul class="dropdown-menu txtcountry dropdown-menu col-md-4"  role="menu" aria-labelledby="dropdownMenu"  id="Dropdown"></ul>
+                    </div>
                     <div class="col-md-5 col-sm-12">
                         <label for="uname" class="control-label"><span class="text-danger">*</span>Enter Username</label>
                         <div class="form-group">
                             <input type="text" name="uname" value="<?= $this->input->post('uname') ?>"
-                            class="form-control" id="uname" onkeyup="getStudentDetails()" autofocus  autocomplete="off" />
+                            class="form-control" id="uname"  autofocus  autocomplete="off" />
                             <span class="text-danger"><?= form_error('uname') ?></span>
                         </div>
                     </div>
@@ -20,9 +30,9 @@
                         <label for="email" class="control-label"><span class="text-danger">*</span>Student Name</label>
                         <div class="form-group">
                             <input type="text" name="stuName" value="<?= $this->input->post('stuName') ?>"
-                            class="form-control" id="stuname"  onkeyup=getStudentDetails() />
+                            class="form-control" id="stuname" >
                             <span class="text-danger"><?= form_error('stuName') ?></span>
-                             <ul class="dropdown-menu txtcountry" style="margin-left:15px;margin-right:0px;" role="menu" aria-labelledby="dropdownMenu"  id="DropdownCountry"></ul>
+                            
                         </div>
                     </div>
                     <div class="col-md-5 col-sm-12">
@@ -77,59 +87,92 @@
   
 
 <script type="text/javascript">
-  function  getStudentDetails(){
-   $(document).ready(function() {
-     // var min_length = 3;
-        var keyword = $('#uname').val();
-         console.log(keyword);
+  // function  getStudentDetails(){
+  //  $(document).ready(function() {
     
-        $.ajax({
-            method: "POST",
-            url:" <?= base_url() ?>account/fetchRecordStudent", 
-            data: {
-                keyword: keyword
-            },
-            success: function( responseObject ) {
-                // alert('success');
-                 // console.log(responseObject);
-                var data=JSON.parse(responseObject);
-                //  var d=data[].email;
-                  if(data)
-                {
-                $('#email').val(data.email);
-                $('#stuname').val(data.student_name);
-                $('#contact').val(data.mobile);
-              }
-              else
-              {
-                 $('#email').val("");
-                $('#stuname').val("");
-                $('#contact').val("");
-              }
+  //       var keyword = $('#uname').val();
+  //        console.log(keyword);
+    
+  //       $.ajax({
+  //           method: "POST",
+  //           url:" <?= base_url() ?>account/fetchRecordStudent", 
+  //           data: {
+  //               keyword: keyword
+  //           },
+  //           success: function( responseObject ) {
+               
+  //               var data=JSON.parse(responseObject);
+               
+  //                 if(data)
+  //               {
+  //               $('#email').val(data.email);
+  //               $('#stuname').val(data.student_name);
+  //               $('#contact').val(data.mobile);
+  //             }
+  //             else
+  //             {
+  //                $('#email').val("");
+  //               $('#stuname').val("");
+  //               $('#contact').val("");
+  //             }
 
                 
-               if (data.length > 0) {
-                    $('#DropdownCountry').empty();
-                    $('#stuname').attr("data-toggle", "dropdown");
-                    $('#DropdownCountry').dropdown('toggle');
+  //              if (data.length > 0) {
+  //                   $('#Dropdown').empty();
+  //                   $('#stuname').attr("data-toggle", "dropdown");
+  //                   $('#Dropdown').dropdown('toggle');
+  //               }
+  //               else if (data.length == 0) {
+  //                   $('#stuname').attr("data-toggle", "");
+  //               }
+  //               $.each(data, function (key,value) {
+  //                   if (data.length >= 0)
+  //                       $('#Dropdown').append('<li role="displayCountries" ><a role="menuitem Dropdownli" class="dropdownlivalue">' + value['name'] + '</a></li>');
+  //               });
+  //           }
+  //       });
+    
+  //   });
+
+  //   $('ul.txtcountry').on('click', 'li a', function () {
+  //       $('#stuname').val($(this).text());
+  //   });
+        
+  //           }
+            function enterEvent(e) {
+    // $("#country").keyup(function () {
+         var keyword = $('#search').val();
+         console.log(keyword);
+         if (e.keyCode == 13) {
+        $.ajax({
+            type: "POST",
+            url: "<?= base_url() ?>test/autocomplete",
+            data: {
+                // keyword: $("#country").val()
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#Dropdown').empty();
+                    $('#search').attr("data-toggle", "dropdown");
+                    $('#Dropdown').dropdown('toggle');
                 }
                 else if (data.length == 0) {
-                    $('#stuname').attr("data-toggle", "");
+                    $('#search').attr("data-toggle", "");
                 }
                 $.each(data, function (key,value) {
-                    if (data.length >= 0)
-                        $('#DropdownCountry').append('<li role="displayCountries" ><a role="menuitem dropdownCountryli" class="dropdownlivalue">' + value['name'] + '</a></li>');
+                    if (data.length > 0)
+                        $('#Dropdown').append('<li role="displayCountries" ><a role="menuitem Dropdownli" class="dropdownlivalue col-md-8">' + value['student_name'] + ' &nbsp ' + value['username'] + '</a></li>');
+                    console.log(value['student_name']);
+                        $('#stuname').val(value['student_name']);
                 });
             }
         });
-    
-    });
-
+    }
+    }
     $('ul.txtcountry').on('click', 'li a', function () {
-        $('#stuname').val($(this).text());
+        // $('#country').val($(this).text());
     });
-        
-            }
           
   
 </script>
