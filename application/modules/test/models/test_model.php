@@ -110,7 +110,11 @@ function get_all_employees($ids)
  }
    function GetRow($query) {        
         // $this->db->order_by('id', 'DESC');
+<<<<<<< HEAD
      $this->db->select('student.student_name,student.mobile,authentication.username');
+=======
+     $this->db->select('student.student_name,student.email,authentication.username');
+>>>>>>> d0af92394e308f939b359ae8e26fe610e85e0f03
      $this->db->from('student');
      $this->db->join('authentication','student.id=authentication.user_id');
       $this->db->where("student_name like '%$query%'");

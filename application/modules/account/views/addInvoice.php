@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script> -->
+=======
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+>>>>>>> d0af92394e308f939b359ae8e26fe610e85e0f03
 <?= form_open('account/generate_invoice') ?>
 
 <div class="box-body">
@@ -11,9 +15,14 @@
                             class="form-control" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" />
                            
                         </div>
+<<<<<<< HEAD
                         
                     </div>
                      <table id="table_dropdown" class="table table-bordered table-responsive tableRow" ></table>
+=======
+                        <ul class="dropdown-menu txtcountry dropdown-menu col-md-4"  role="menu" aria-labelledby="dropdownMenu"  id="Dropdown"></ul>
+                    </div>
+>>>>>>> d0af92394e308f939b359ae8e26fe610e85e0f03
                     <div class="col-md-5 col-sm-12">
                         <label for="uname" class="control-label"><span class="text-danger">*</span>Enter Username</label>
                         <div class="form-group">
@@ -90,10 +99,17 @@
 <script type="text/javascript">
   // function  getStudentDetails(){
   //  $(document).ready(function() {
+<<<<<<< HEAD
     
   //       var keyword = $('#uname').val();
   //        console.log(keyword);
     
+=======
+    
+  //       var keyword = $('#uname').val();
+  //        console.log(keyword);
+    
+>>>>>>> d0af92394e308f939b359ae8e26fe610e85e0f03
   //       $.ajax({
   //           method: "POST",
   //           url:" <?= base_url() ?>account/fetchRecordStudent", 
@@ -142,13 +158,19 @@
   //           }
             function enterEvent(e) {
     // $("#country").keyup(function () {
+<<<<<<< HEAD
           var seachkeyword = $('#search').val();
          // console.log(keyword);
+=======
+         var keyword = $('#search').val();
+         console.log(keyword);
+>>>>>>> d0af92394e308f939b359ae8e26fe610e85e0f03
          if (e.keyCode == 13) {
         $.ajax({
             type: "POST",
             url: "<?= base_url() ?>test/autocomplete",
             data: {
+<<<<<<< HEAD
                  keyword: seachkeyword
             },
            
@@ -177,6 +199,34 @@
          $('#contact').val( $(this).find('td:nth-child(3)').html() );
     });
  
+=======
+                // keyword: $("#country").val()
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#Dropdown').empty();
+                    $('#search').attr("data-toggle", "dropdown");
+                    $('#Dropdown').dropdown('toggle');
+                }
+                else if (data.length == 0) {
+                    $('#search').attr("data-toggle", "");
+                }
+                $.each(data, function (key,value) {
+                    if (data.length > 0)
+                        $('#Dropdown').append('<li role="displayCountries" ><a role="menuitem Dropdownli" class="dropdownlivalue col-md-8">' + value['student_name'] + ' &nbsp ' + value['username'] + '</a></li>');
+                    console.log(value['student_name']);
+                        $('#stuname').val(value['student_name']);
+                });
+            }
+        });
+    }
+    }
+    $('ul.txtcountry').on('click', 'li a', function () {
+        // $('#country').val($(this).text());
+    });
+          
+>>>>>>> d0af92394e308f939b359ae8e26fe610e85e0f03
   
 </script>
 

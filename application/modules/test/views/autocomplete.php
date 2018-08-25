@@ -19,8 +19,13 @@
                     <!-- 
                      -->
                      <!-- <div id="tabled"></div> -->
+<<<<<<< HEAD
                      <table id="tabled" class="table  table-bordered table-responsive tableRow"></table>
                     <input type="text" name="sname" id="city">
+=======
+                     <table id="tabled" class="table  table-bordered table-responsive"></table>
+                    <input type="text" name="sname" id="sname">
+>>>>>>> d0af92394e308f939b359ae8e26fe610e85e0f03
 </div>
         </div>
     </body>
@@ -56,6 +61,7 @@
         $('#country').val($(this).text());
     });
 
+<<<<<<< HEAD
 </script>
 <script>
 $(document).ready(function() {
@@ -65,4 +71,6 @@ $(document).ready(function() {
         // $('#postalCode').val( $(this).find('td:nth-child(3)').html() );
     });
  });
+=======
+>>>>>>> d0af92394e308f939b359ae8e26fe610e85e0f03
 </script>
