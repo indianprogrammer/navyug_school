@@ -87,5 +87,41 @@ function get_all_employees($ids)
         // $this->db->join('authentication', 'authentication.student_id=student.id', 'Left');
      return $this->db->get()->result_array();
    }
+   function fetch_data($query)
+ {
+  // $this->db->like('student_name', $query);
+  // $this->db->where("mobile like '%$query%'");
+  $this->db->where("student_name like '%$query%'");
+  $this->db->or_where("mobile like '%$query%'");
+  $query = $this->db->get('student');
+  if($query->num_rows() > 0)
+  {
+   foreach($query->result_array() as $row)
+   {
+    $output[] = array(
+     'name'  => $row["student_name"],
+     'email'  => $row["email"],
+     'mobile'  => $row["mobile"]
+     // 'image'  => $row["image"]
+    );
+   }
+   echo json_encode($output);
+  }
+ }
+   function GetRow($query) {        
+        // $this->db->order_by('id', 'DESC');
+     $this->db->select('student.student_name,student.mobile,authentication.username');
+     $this->db->from('student');
+     $this->db->join('authentication','student.id=authentication.user_id');
+      $this->db->where("student_name like '%$query%'");
+  $this->db->or_where("mobile like '%$query%'");
+  $this->db->or_where("username like '%$query%'");
+    // $query=$this->db->query("select * from student where email like '%$keyword'");
+  return $this->db->get()->result_array();
+
+        // $this->db->like("student_name", $keyword);
+   // $this->db->where("student_name like '%$keyword%'");
+        // return $query->result_array();
+    }
 }
 ?>

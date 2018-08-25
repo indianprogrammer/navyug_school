@@ -286,5 +286,31 @@ function e()
 {
   var_dump($this->input->post());
 }
+function edit()
+{
+   // $data['_view'] = 'search';
+     // $this->load->view('index',$data);
+     $this->load->view('edit');
+}function search()
+{
+   // $data['_view'] = 'search';
+     // $this->load->view('index',$data);
+     $this->load->view('search');
+}
+function search2()
+{
+   // $data['_view'] = 'search';
+     // $this->load->view('index',$data);
+     $this->load->view('autocomplete');
+}
+function fetch()
+{
+   echo $this->Test_model->fetch_data($this->uri->segment(3));
+}
+ function autocomplete(){
+        $keyword=$this->input->post('keyword');
+        $data=$this->Test_model->GetRow($keyword);        
+        echo json_encode($data);
+    }
 }
 ?>

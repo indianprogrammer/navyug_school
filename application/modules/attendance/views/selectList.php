@@ -29,7 +29,7 @@
 	</div>
 </div>
 </div>
-<div id="displayReport"></div>
+<table id="displayReport" class="table table-striped  table-responsive"></table>
  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
 <script>
 	$(document).ready(function(){
@@ -72,9 +72,9 @@ for(var i=0;i<obj.report.length;i++)
 		if(obj.report[i].student_id==obj.student[j].ids)
 		{	
 			
-			tablehead='<table class="table table-striped table-bordered table-responsive"><tr><th>Serial</th><th>Student Name</th><th>Attendance Status</th></tr>';
+			tablehead='<tr><th>Serial</th><th>Student Name</th><th>Attendance Status</th></tr>';
 			 table+='<tr><td>'+counter +'</td><td>'+obj.student[j].student_name+'</td><td>'+obj.report[i].attendance_status+'</td></tr>';
-			  final=tablehead+table+'<table>';
+			  final=tablehead+table;
 			counter++;
 		}
 		

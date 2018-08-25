@@ -1,4 +1,4 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <div class="row">
     <div class="col-md-12 col-sm-12">
@@ -17,7 +17,7 @@
 
                         <th>Student Name</th>
                         <th>Email</th>
-                        <!-- <th>classes</th> -->
+                        <th>classes</th>
                         <th >Mobile</th>
                         <th>Permanent Address</th>
                         <th>Corresponding Address</th>
@@ -34,13 +34,13 @@
 
                             <td ><?= $row['student_name']; ?></td>
                             <td ><?= $row['email']; ?></td>
-                           <!--  <td width="1%" ><?php 
+                             <td width="1%" ><?php 
                             $studentClasses = explode(',', $row['classes']);
                             foreach ($studentClasses as $studentClass) {
-                               $subject=($classes[$studentClass-1]['name']. "&nbsp&nbsp&nbsp");
+                               $subject=($classes[$studentClass]['name']. "&nbsp&nbsp&nbsp");
                                echo rtrim($subject);
                            } 
-                           ?></td> -->
+                           ?></td> 
 
                            <td><?= $row['mobile']; ?></td>
 
@@ -57,20 +57,6 @@
 
 
 
-                            <!-- <div class="btn-group">
-                                <button type="button" class="btn btn-info ">Action</button>
-                                <button type="button" class="btn btn-default  dropdown-toggle" data-toggle="dropdown">
-                                  <span class="caret"></span>
-                                  <span class="sr-only">Toggle Dropdown</span>
-                              </button>
-                              <ul class="dropdown-menu" role="menu">
-                                 
-                                  <li><a href="<?= site_url('student/edit/'.$row['id']); ?>" >Edit</a> </li>
-                                  <li><a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="delete-it"> Delete</a></li>
-                                  <li class="divider"></li>
-                                  <li><a href="#" id="<?= $row['id']?>" class="view_data">View</a></li>
-                              </ul>
-                          </div> -->
                            <div class="btn-group" >
                         <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></a></i></button>
                         <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
@@ -79,8 +65,8 @@
                             <span class="caret"></span>
                           </button>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="javascript:void(0)" onclick="getFullDetails(<?= $row['id'] ?>)" >Invoice Report</a>
-                            <a class="dropdown-item" href="#">Reciept Report</a>
+                            <a class="dropdown-item" href="<?=base_url() ?>account/invoice_list?student_id=<?= $row['id'] ?>" >Invoice Report</a>
+                            <a class="dropdown-item" href="<?=base_url() ?>account/reciept_list?student_id=<?= $row['id'] ?>">Reciept Report</a>
                           </div>
                       </div>
                       </td>

@@ -34,7 +34,7 @@
 		
 	</div>
 </div> 
- <div id="student_detail"></div>
+ <table id="student_detail" class="table table-striped  table-responsive"></table>
 </div> 
 
  <div class="col-md-6">
@@ -59,7 +59,7 @@
 		
 	</div>
  </div> 
-<div id="employee_detail"></div>
+<table id="employee_detail" class="table table-striped  table-responsive"></table>
  </div> 
 <!-- <button id="submit">send</button> -->
 <button type="submit" class="btn btn-primary" id="buttonsbm">Send</button>
@@ -96,12 +96,12 @@
                    // console.log(Object.values(obj[1]));
 
             	var student_data,i;
-            	var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_all" >select all </tr>';
+            	var student_detail='<tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_all" >select all </tr>';
             	for (i = 0; i < obj.length; i++) {
             		student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" id="student" name="student_details[]" class="checkbox" ></td></tr>';
             		
             	}
-            	var student_final=student_detail+student_data+'</table>';
+            	var student_final=student_detail+student_data;
             	$('#student_detail').html(student_final);  
                   checkall();
 
@@ -151,19 +151,19 @@
             					 if(obj.length==0)
             					{
             					$('#student_detail').show();
-                                          $('#student_detail').html("No records found in databse"); 
+                                          $('#student_detail').html("No records found in database"); 
             					$('#buttonsbm').hide(); 
             					}
             				else
             				{
             				
             					var i,student_data;
-            					var student_detail='<table class="table table-striped  table-responsive"><tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_all">select all </tr>';
+            					var student_detail='<tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_all">select all </tr>';
             				for (i = 0; i < obj.length; i++) {
             				student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="student_details[]" class="checkbox" > </td></tr>';
             		
             					}
-            					var student_final=student_detail+student_data+'</table>';
+            					var student_final=student_detail+student_data;
             					$('#student_detail').show();
             					$('#student_detail').html(student_final);  
                                            checkall();
@@ -229,12 +229,12 @@ $('#employee').change(function () {
             	var obj=JSON.parse(data);
             	console.log(obj);
             	var employee_data,i;
-            	var employee_detail='<table class="table table-striped  table-responsive"><tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_alls">select all </tr>';
+            	var employee_detail='<tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_alls">select all </tr>';
             	for (i = 0; i < obj.length; i++) {
             		employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" name="employee_id[]" class="checkboxe"></td></tr>';
             		
             	}
-            	var employee_final=employee_detail+employee_data+'</table>';
+            	var employee_final=employee_detail+employee_data;
             	$('#employee_detail').html(employee_final);  
                   checkall();
 
@@ -280,17 +280,17 @@ $('#employee').change(function () {
             					if(obj.length==0)
             					{
             					$('#employee_detail').show();
-            					$('#employee_detail').html("No records found in databse"); 
+            					$('#employee_detail').html("No records found in database"); 
             					}
             				else
             				{
             					var i,employee_data;
-            					var employee_detail='<table class="table table-striped table-responsive"><tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_alls">select all </tr>';
+            					var employee_detail='<tr><th>name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_alls">select all </tr>';
             				for (i = 0; i < obj.length; i++) {
             				employee_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="employee_id[]" class="checkboxe"></td></tr>';
             		
             					}
-            					var employee_final=employee_detail+employee_data+'</table>';
+            					var employee_final=employee_detail+employee_data;
             					$('#employee_detail').show();
             					$('#employee_detail').html(employee_final); 
                                           checkall();
@@ -329,14 +329,4 @@ $('#employee').change(function () {
 	
 
 
-      <script>
-
-
-$('.selectall').click(function() {
-    if ($(this).is(':checked')) {
-        $('input').attr('checked', true);
-    } else {
-        $('input').attr('checked', false);
-    }
-});
-</script>
+      
