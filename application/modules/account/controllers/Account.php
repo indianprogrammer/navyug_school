@@ -232,7 +232,9 @@
         'reference_id'=>$addreciept,
         'reference_type'=>2,
         'credit'=>$paid,
-        'school_id'=>$this->session->SchoolId
+        'school_id'=>$this->session->SchoolId,
+        'reciept_id'=>$recieptId,
+        'student_id'=>$getStudentDetails->id
 
     );
         // var_dump($accountTransaction);
@@ -367,7 +369,9 @@ $total=$subtotal+$subtotal*0.18;
     'reference_id'=>$addInvoice,
     'reference_type'=>1,
     'debit'=>$total,
-    'school_id'=>$this->session->SchoolId
+    'school_id'=>$this->session->SchoolId,
+    'invoice_id'=>$incrementedUniqueInvoiceId,
+    'student_id'=>$studentData->id
 
 );
    ## map invoice school
@@ -412,7 +416,25 @@ function testtemplate()
 
 
     );
-    $this->load->view('templates/invoice_template/two',$data);
+    $this->load->view('templates/invoice_template/five',$data);
+}
+
+function getledger()
+{
+  $student_id=$this->input->get('student_id');
+$data['ledger']=$this->Account_model->get_ledger($student_id);
+$data['_view'] = 'ledger';
+    $this->load->view('index',$data);
+
+}
+function autosuggest(){
+        $keyword=$this->input->post('keyword');
+        $data=$this->Account_model->GetRow($keyword);        
+        echo json_encode($data);
+ }
+function autofill()
+{
+  echo json_encode($this->Account_model->get_autofill_value($this->input->post("id")));
 }
 
 }

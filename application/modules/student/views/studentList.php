@@ -1,4 +1,4 @@
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
 <div class="row">
     <div class="col-md-12 col-sm-12">
@@ -34,7 +34,7 @@
 
                             <td ><?= $row['student_name']; ?></td>
                             <td ><?= $row['email']; ?></td>
-                             <td width="1%" ><?php 
+                             <td  ><?php 
                             $studentClasses = explode(',', $row['classes']);
                             foreach ($studentClasses as $studentClass) {
                                $subject=($classes[$studentClass]['name']. "&nbsp&nbsp&nbsp");
@@ -67,6 +67,7 @@
                           <div class="dropdown-menu">
                             <a class="dropdown-item" href="<?=base_url() ?>account/invoice_list?student_id=<?= $row['id'] ?>" >Invoice Report</a>
                             <a class="dropdown-item" href="<?=base_url() ?>account/reciept_list?student_id=<?= $row['id'] ?>">Reciept Report</a>
+                            <a class="dropdown-item" href="<?=base_url() ?>account/getLedger?student_id=<?= $row['id'] ?>">Ledger Report</a>
                           </div>
                       </div>
                       </td>

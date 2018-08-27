@@ -312,5 +312,11 @@ function fetch()
         $data=$this->Test_model->GetRow($keyword);        
         echo json_encode($data);
     }
+ function button()
+ {
+  // $this->load->view('button');
+   $data['_view'] = 'button';
+     $this->load->view('index',$data);
+ }   
 }
 ?>

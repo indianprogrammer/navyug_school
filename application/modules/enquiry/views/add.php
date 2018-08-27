@@ -1,7 +1,7 @@
 
 <form id="formEnquiry" class="horizontal-form" method="post">
 
-<h3> ENQUIRY FORM </h3>
+<h3 align="center"> ENQUIRY FORM </h3>
 <div class="row">
     <div class="col-md-5 col-lg-4">
         <label for="username" class="col-md-4 control-label"><span class="text-danger">*</span> User Name</label>

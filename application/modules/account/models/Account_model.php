@@ -52,14 +52,14 @@ class Account_model extends CI_Model
    }
    function get_all_invoice($id,$student_id)
    {
-       $this->db->select('invoices.*,account_transaction.*,student.student_name');
+       $this->db->select('invoices.*,student.student_name');
        $this->db->from('invoices');
        $this->db->order_by('invoices.id', 'DESC');
        $this->db->where('invoices.school_id', $id);
        if($student_id){
        $this->db->where('invoices.student_id', $student_id);
         }
-       $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
+       // $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
        $this->db->join('student', 'student.id=invoices.student_id', 'Left');
        
         // $this->db->where('class_id',$classes_id);
@@ -72,7 +72,7 @@ class Account_model extends CI_Model
        $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
        $this->db->join('master_invoice','master_invoice.invoice_id_mul=invoices.invoice_id', 'Left');
        $this->db->join('student', 'invoices.student_id=student.id', 'Left');
-       $this->db->where('invoice_id',$invoice_id);
+       $this->db->where('invoices.invoice_id',$invoice_id);
        return $query = $this->db->get()->row();
    }
    function get_invoiceRow($invoice_id)
@@ -325,6 +325,48 @@ function generate_reciept_num()
   {
     return 1;
   }
+}
+function get_ledger($id)
+{
+  $this->db->select('*');
+  $this->db->from('account_transaction');
+ // $this->db->join('invoices','invoices.id=account_transaction.reference_id');
+   $this->db->where('student_id',$id);
+ 
+  // $this->db->join('reciepts','reciepts.id=account_transaction.reference_id');
+    // $this->db->where('student_id',18);
+   return  $this->db->get()->result_array();
+
+}
+ function GetRow($query) {        
+        // $this->db->order_by('id', 'DESC');
+
+     $this->db->select('student.student_name,student.mobile,authentication.username,student.id as student_id');
+
+    
+
+     $this->db->from('student');
+     $this->db->join('authentication','student.id=authentication.user_id');
+      $this->db->where("student_name like '%$query%'");
+      // $this->db->where("student_name like '%$query%'");
+  $this->db->or_where("mobile like '%$query%'");
+  $this->db->or_where("username like '%$query%'");
+    // $query=$this->db->query("select * from student where email like '%$keyword'");
+  return $this->db->get()->result_array();
+
+    
+    }
+function get_autofill_value($id)
+{
+
+  $this->db->select('student.student_name,student.mobile,authentication.username,student.id as student_id');
+ $this->db->from('student');
+     $this->db->join('authentication','student.id=authentication.user_id');
+      $this->db->where("student.id",$id);
+  
+    // $query=$this->db->query("select * from student where email like '%$keyword'");
+  return $this->db->get()->row();
+
 }
 }
 ?>
