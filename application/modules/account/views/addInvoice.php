@@ -2,7 +2,7 @@
 
 
 
-<?= form_open('account/generate_invoice') ?>
+
 
 <div class="box-body">
   <div class="row clearfix">
@@ -89,7 +89,7 @@
 
 </div>
 
-<?= form_close() ?>
+
 
 
 

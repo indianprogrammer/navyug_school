@@ -133,15 +133,17 @@ function add_reciept($reciept)
 }
 function get_all_reciept($id,$student_id)
 {
-   $this->db->select('reciepts.*,account_transaction.*');
+   $this->db->select('reciepts.*,account_transaction.credit,student.student_name');
    $this->db->from('reciepts');
+   $this->db->order_by('reciept_id','desc');
 $this->db->where('reciepts.school_id',$id);
 if($student_id)
 {
     
-$this->db->where('student_id',$student_id);
+$this->db->where('reciepts.student_id',$student_id);
 }
    $this->db->join('account_transaction', 'account_transaction.reference_id=reciepts.id', 'Left');
+   $this->db->join('student', 'student.id=reciepts.student_id', 'Left');
 
         // $this->db->where('class_id',$classes_id);
    return $query = $this->db->get()->result_array();
@@ -152,7 +154,7 @@ function get_reciept($reciept_id)
    $this->db->from('reciepts');
    $this->db->join('account_transaction', 'account_transaction.reference_id=reciepts.id', 'Left');
 $this->db->join('student', 'reciepts.student_id=student.id', 'Left');
-   $this->db->where('reciept_id',$reciept_id);
+   $this->db->where('reciepts.reciept_id',$reciept_id);
 
    return $query = $this->db->get()->row();
 }
@@ -228,7 +230,7 @@ function searchBalInformatiion($studentId)
      $this->db->select_sum('debit');
    $this->db->from('account_transaction');
   
-   $this->db->where('student_id',$studentId);  
+   $this->db->where('account_transaction.student_id',$studentId);  
     $this->db->join('invoices', 'account_transaction.reference_id=invoices.id');
    
        
@@ -241,7 +243,7 @@ function gettingTransactionInfo($keyword)
      $this->db->select_sum('account_transaction.credit');
      $this->db->from('account_transaction');
    // $parameter="student_id=$studentId and school_id=1";
-   $this->db->where('student_id',$keyword);  
+   $this->db->where('account_transaction.student_id',$keyword);  
     $this->db->join('reciepts', 'account_transaction.reference_id=reciepts.id');
     return  $query = $this->db->get()->row();
 

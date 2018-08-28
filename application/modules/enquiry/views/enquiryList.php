@@ -22,7 +22,7 @@
 		<th>purpose</th>
 
 		<!-- <th>Location</th> -->
-		<th>Remarks</th>
+		<th>Comments</th>
 		<th>Actions</th>
     </tr>
 </thead>
@@ -41,7 +41,7 @@
 		<td><?php echo $row['address']; ?></td>
 		<td><?php echo $row['type']; ?></td>
 		<!-- <td><?php echo $row['location']; ?></td> -->
-		<td><?php echo $row['remarks']; ?></td>
+		<td><?php echo $row['comments']; ?></td>
 		
 		<td>
             <div class="btn-group" >

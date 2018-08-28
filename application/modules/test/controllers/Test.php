@@ -279,8 +279,10 @@ else
 }
 function form()
 {
-   $data['_view'] = 'form';
-     $this->load->view('index',$data);
+  $this->load->view('index4');
+     $this->load->view('form');
+   // $data['_view'] = 'form';
+    $this->load->view('footer');
 }
 function e()
 {
@@ -295,7 +297,9 @@ function edit()
 {
    // $data['_view'] = 'search';
      // $this->load->view('index',$data);
+
      $this->load->view('search');
+    
 }
 function search2()
 {
@@ -317,6 +321,13 @@ function fetch()
   // $this->load->view('button');
    $data['_view'] = 'button';
      $this->load->view('index',$data);
+ }   
+ function templatemain()
+ {
+  // $this->load->view('button');
+   // $data['_view'] = 'button';
+     $this->load->view('index4');
+     $this->load->view('footer');
  }   
 }
 ?>

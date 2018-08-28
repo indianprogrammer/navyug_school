@@ -17,8 +17,9 @@
         $schoolId=$this->session->SchoolId;
         $data['student'] = $this->Student_model->get_all_student($schoolId);
         $data['classes'] = $this->Student_model->getAllClasses($schoolId);
-     // var_dump($data['student']);die();
+      // var_dump($data['student']);
         // var_dump($data['classes']);
+        // die();
 
 
         $data['_view'] = 'studentList';

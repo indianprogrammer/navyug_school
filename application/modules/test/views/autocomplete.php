@@ -15,7 +15,7 @@
             <div class="col-md-4 col-md-offset-4" style="margin-top: 200px;">
                 
                     <label class="control-lable" style="color: #fff;">Country Name</label>
-                    <input style="height:70px" type="text" id="country" autocomplete="off" name="country" class="form-control" placeholder="Type to get an Ajax call of Countries" onkeypress="return enterEvent(event)">        
+                    <input style="height:70px" type="text" id="country" autocomplete="off" name="country" class="form-control dropdown-toggle" placeholder="Type to get an Ajax call of Countries" onkeypress="return enterEvent(event)"   data-toggle="dropdown">        
                     <!-- 
                      -->
                      <!-- <div id="tabled"></div> -->

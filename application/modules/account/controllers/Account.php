@@ -175,14 +175,18 @@
     {
 
         ##getting information of student
-        $studId=$this->input->post('stuid');
+        $studId=$this->input->post('username');
         $payment_method=$this->input->post('method');
+        $payer_name=$this->input->post('payer_name');
+        $payer_mobile=$this->input->post('payer_mobile');
         $paid=$this->input->post('pay');
         // $getInformationInvoice=$this->Account_model->get_information_invoice($invoiceId);
         // $student_info=$this->Account_model->searchBalInformatiion($studId);
          // var_dump($student_info);die;
         ##get student details by student_id
-        $getStudentDetails=$this->Account_model->get_information_student($studId);
+        
+        $studentData=$this->Account_model->fetchRecordStudents($studId);
+        $getStudentDetails=$this->Account_model->get_information_student($studentData->id);
           // var_dump($getStudentDetails);die;
         ##getting information of invoice payment
        //  $getInformationInvoicePayment['params']=$this->Account_model->get_information_invoice_payment($invoiceId);
@@ -218,7 +222,7 @@
      // echo( $invoice_id);die;
        $reciept=array(
         'reciept_id'=>$recieptId,
-        'student_id'=>$getStudentDetails->id,
+        'student_id'=> $studentData->id,
         'total_amount'=>$paid,
         'payment_method'=>$payment_method,
         'school_id'=>$this->session->SchoolId
@@ -227,14 +231,14 @@
         ##insert data to reciept table
        $addreciept=$this->Account_model->add_reciept($reciept);
         ##get  and send details to account_trensaction db2_tables(connection)
-// var_dump($addreciept);die;
+
        $accountTransaction=array(
         'reference_id'=>$addreciept,
         'reference_type'=>2,
         'credit'=>$paid,
         'school_id'=>$this->session->SchoolId,
         'reciept_id'=>$recieptId,
-        'student_id'=>$getStudentDetails->id
+        'student_id'=>$studentData->id
 
     );
         // var_dump($accountTransaction);
@@ -257,7 +261,7 @@
         'date'=>date('y/m/d')
        
     );
-       $this->load->view('recieptPdf', $params);
+       // $this->load->view('recieptPdf', $params);
 
 
 

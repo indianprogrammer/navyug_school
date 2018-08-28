@@ -17,7 +17,7 @@
 
                         <th>Student Name</th>
                         <th>Email</th>
-                        <th>classes</th>
+                        <!-- <th>classes</th> -->
                         <th >Mobile</th>
                         <th>Permanent Address</th>
                         <th>Corresponding Address</th>
@@ -34,13 +34,14 @@
 
                             <td ><?= $row['student_name']; ?></td>
                             <td ><?= $row['email']; ?></td>
-                             <td  ><?php 
+                           <!--   <td  ><?php 
                             $studentClasses = explode(',', $row['classes']);
+
                             foreach ($studentClasses as $studentClass) {
                                $subject=($classes[$studentClass]['name']. "&nbsp&nbsp&nbsp");
                                echo rtrim($subject);
                            } 
-                           ?></td> 
+                           ?></td> --> 
 
                            <td><?= $row['mobile']; ?></td>
 
@@ -58,9 +59,10 @@
 
 
                            <div class="btn-group" >
-                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></a></i></button>
+                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></i></a></button>
                         <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                         <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
+
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                             <span class="caret"></span>
                           </button>

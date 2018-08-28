@@ -107,5 +107,39 @@ class Enquiry_model extends CI_Model
     $this->db->insert('ticket_generate',$params);
         return $this->db->insert_id();
    }
+    function GetRow($query) {        
+        // $this->db->order_by('id', 'DESC');
+
+     $this->db->select('enquiry.name as customer_name,enquiry.id as enquiry_id,enquiry.mobile,enquiry.username,enquiry.comments');
+
+    
+
+     $this->db->from('enquiry');
+     // $this->db->join('authentication','student.id=authentication.user_id');
+     // if($school_id)
+     // {
+     //    $this->db->where("school_id",null);
+     // }
+      $this->db->where("name like '%$query%'");
+      // $this->db->where("student_name like '%$query%'");
+  $this->db->or_where("mobile like '%$query%'");
+  $this->db->or_where("username like '%$query%'");
+    // $query=$this->db->query("select * from student where email like '%$keyword'");
+  return $this->db->get()->result_array();
+
+    
+    }
+    function get_autofill_value($id)
+        {
+
+  $this->db->select('enquiry.name as customer_name,enquiry.mobile,enquiry.username');
+ $this->db->from('enquiry');
+     // $this->db->join('authentication','student.id=authentication.user_id');
+      $this->db->where("id",$id);
+  
+    // $query=$this->db->query("select * from student where email like '%$keyword'");
+  return $this->db->get()->row();
+
+    }
 }
 ?>

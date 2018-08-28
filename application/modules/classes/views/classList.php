@@ -2,7 +2,7 @@
     <div class="col-md-12 col-sm-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">class List</h3>
+                <h3 class="box-title">Classes List</h3>
                 <div class="box-tools">
                    <div class="pull-right">
                        <a href="<?= site_url('classes/add_class'); ?>" class="btn btn-success">Add</a> 
@@ -60,8 +60,14 @@
                 <!-- <td><?= $row['start_time']; ?></td> -->
                 <!-- <td><?= $row['end_time']; ?></td> -->
                 <td>
-                    <a href="<?= site_url('classes/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-                    <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
+                   
+                     <div class="btn-group" >
+                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('classes/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></i></a></button>
+                        <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="take attendance"><a href="<?= site_url('attendance/take_attendance') ?>"  ><i class="fa fa-building-o"></i></a></button>
+                       
+                        </div>
+
 
                 </td>
             </tr>

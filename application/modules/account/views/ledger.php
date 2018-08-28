@@ -38,11 +38,11 @@
     <?php } ?>
     </tbody>
 </table>
-<?php
+<!-- <?php
  $balance=$debit-$credit;
 echo $balance ?>
-
-<button onclick="printPage()">Print </button>
+ -->
+<!-- <button onclick="printPage()">Print </button> -->
 
 
 

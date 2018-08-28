@@ -217,7 +217,16 @@ $this->load->library('form_validation');
          $enquiry_id = $this->Enquiry_model->add_enquiry_order($params);
 
     }
-
+    function autosuggest(){
+        $keyword=$this->input->post('keyword');
+        $school_id=$this->session->SchoolId;
+        $data=$this->Enquiry_model->GetRow($keyword);        
+        echo json_encode($data);
+ }
+function autofill()
+{
+  echo json_encode($this->Enquiry_model->get_autofill_value($this->input->post("id")));
+}
     
 }
 ?>

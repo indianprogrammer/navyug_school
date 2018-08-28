@@ -1,8 +1,73 @@
+<style type="text/css">
+  .TFtable{
+    width:100%; 
+    border-collapse:collapse; 
+        
+  }
+  .TFtable td{ 
+    padding:17px; border:#e5e5e5 1px solid;
+  }
+  /* provide some minimal visual accomodation for IE8 and below */
+  .TFtable tr{
+    background: #f8f8f8;
+    
 
+  }
+  /*  Define the background color for all the ODD background rows  */
+  .TFtable tr:nth-child(odd){ 
+    background: #f8f8f8;
+    
+  }
+  /*  Define the background color for all the EVEN background rows  */
+  .TFtable tr:nth-child(even){
+    background: #ffffff;
+    
+
+  }
+
+    .TFtable1{
+        width:100%; 
+        border-collapse:collapse; 
+        position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 99;
+    }
+    .TFtable1 td{ 
+        padding:7px; border:#e5e5e5 1px solid;
+    }
+    /* provide some minimal visual accomodation for IE8 and below */
+    .TFtable1 tr{
+        background: #f8f8f8;
+        
+
+    }
+    /*  Define the background color for all the ODD background rows  */
+    .TFtable1 tr:nth-child(odd){ 
+        background: #f8f8f8;
+        
+    }
+    /*  Define the background color for all the EVEN background rows  */
+    .TFtable1 tr:nth-child(even){
+        background: #ffffff;
+        
+
+    }
+
+</style>
 <form id="formEnquiry" class="horizontal-form" method="post">
 
 <h3 align="center"> ENQUIRY FORM </h3>
 <div class="row">
+   <div class="col-md-7 col-lg-10">
+        <label for="search" class="col-md-4 control-label"> Search</label>
+        <div class="form-group">
+            <input type="text" name="search" value="<?=$this->input->post('search'); ?>" onkeypress="enterEvent()" class="form-control" id="search"  autofocus   autocomplete="off"/>
+            <span class="text-danger"><?=form_error('search');?></span>
+     <table id="table_dropdown" class="Tftable" ></table> 
+        </div>
+    </div>
     <div class="col-md-5 col-lg-4">
         <label for="username" class="col-md-4 control-label"><span class="text-danger">*</span> User Name</label>
         <div class="form-group">
@@ -13,7 +78,7 @@
     <div class="col-md-5 col-lg-4">
         <label for="trainer_Name" class="col-md-4 control-label"><span class="text-danger">*</span> Name</label>
         <div class="form-group">
-         <input type="text" name="name" value="<?=$this->input->post('name'); ?>" class="form-control" id="Name"  autofocus />
+         <input type="text" name="name" value="<?=$this->input->post('name'); ?>" class="form-control" id="name"  autofocus />
          <span class="text-danger"><?=form_error('name');?></span>
      </div>
  </div>
@@ -126,8 +191,8 @@
                     </div>
                 </div>
                </form>
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-                <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+                <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+                <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 
              <script type="text/javascript">
               function submitForm(action) {
@@ -158,4 +223,57 @@
         }
     });
                 });
+                 function enterEvent() {
+    // $("#country").keyup(function () {
+      var seachkeyword = $('#search').val();
+         // console.log(keyword);
+         // var keyword = $('#search').val();
+         // console.log(keyword);
+         // if (e.keyCode == 13) {
+          $.ajax({
+            type: "POST",
+            url: "<?= base_url() ?>enquiry/autosuggest",
+            data: {
+             keyword: seachkeyword
+           },
+           
+           success: function (data) {
+              // console.log()
+
+              var obj=JSON.parse(data);
+              var i,tabledata;
+              // console.log(obj[0].student_name);
+              for(i=0;i<obj.length;i++)
+              {
+                tabledata+='<tr onclick="getRow('+obj[i].enquiry_id+')"><td>'+obj[i].customer_name+'</td><td>'+obj[i].username+'</td><td>'+obj[i].mobile+'</td><td>'+obj[i].comments+'</td></tr>'
+              }
+              $('#table_dropdown').show();
+              $('#table_dropdown').html(tabledata);
+              
+
+
+             }
+          });
+        }
+              function getRow($id) {
+       $.ajax({
+        type: "POST",
+        url: "<?= base_url() ?>enquiry/autofill",
+        data: {
+          id: $id
+        },
+
+        success: function (data) {
+          var obj=JSON.parse(data);
+         
+        $('#name').val( obj.customer_name );
+          $('#username').val( obj.username );
+          $('#mobile').val( obj.mobile );
+          $('#email').val( obj.email );
+          $('#search').val( " " );
+          $('#table_dropdown').hide();
+        }
+
+      });
+     }
             </script>
