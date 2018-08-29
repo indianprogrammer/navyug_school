@@ -2,6 +2,8 @@
   .TFtable{
     width:100%; 
     border-collapse:collapse; 
+    position: relative;
+    z-index:1000;
         
   }
   .TFtable td{ 
@@ -65,8 +67,8 @@
         <div class="form-group">
             <input type="text" name="search" value="<?=$this->input->post('search'); ?>" onkeypress="enterEvent()" class="form-control" id="search"  autofocus   autocomplete="off"/>
             <span class="text-danger"><?=form_error('search');?></span>
-     <table id="table_dropdown" class="Tftable" ></table> 
         </div>
+     <table id="table_dropdown" class="Tftable" ></table> 
     </div>
     <div class="col-md-5 col-lg-4">
         <label for="username" class="col-md-4 control-label"><span class="text-danger">*</span> User Name</label>

@@ -241,13 +241,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url() ?>test/form" class="nav-link">
+                <a href="<?= base_url() ?>test/templatemain2" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>General</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
+                <a href="view/dashbord.php" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Icons</p>
                 </a>

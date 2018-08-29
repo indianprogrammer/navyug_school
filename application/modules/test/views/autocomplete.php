@@ -19,8 +19,8 @@
                     <!-- 
                      -->
                      <!-- <div id="tabled"></div> -->
-
-                     <table id="tabled" class="table  table-bordered table-responsive tableRow"></table>
+                   <table class="dropdown-menu tableRow table  table-bordered table-responsive" id="tabled">
+                     <!-- <table id="tabled" class="table  table-bordered table-responsive tableRow"></table> -->
                     <input type="text" name="sname" id="city">
 
                      <table id="tabled" class="table  table-bordered table-responsive"></table>
