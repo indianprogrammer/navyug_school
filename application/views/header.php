@@ -63,9 +63,33 @@
   color:white;
 }
 
-  @media only screen and (max-width: 800px) {
-    #line_charts  {height:400px;position:relative;}
-}
+  
+.customtable
+ {
+width:100%;
+max-width: 700px;
+min-width: 300px;
+ border-collapse:collapse; 
+  background-color: #f8f8f8;
+   overflow-y: scroll;
+  /*background-color:red;*/
+ } 
+ .customtable td
+ {
+/*background-color:red;*/
+padding:7px; 
+/*border:#e5e5e5 1px solid;*/
+ }
+  /* Extra small devices (phones, 600px and down) */
+/*@media only screen and (max-width: 600px) {
+    .customtable
+ {
+width:300px;
+ border-collapse:collapse; 
+  background-color: #f8f8f8;
+   
+ } 
+}*/
    </style>
 
   
@@ -168,7 +192,8 @@
       </li>
 
 
-<!--        user section-->
+<!-- user section-->
+
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="fa fa-user-o"></i>

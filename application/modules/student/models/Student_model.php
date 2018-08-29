@@ -70,11 +70,11 @@ class Student_model extends CI_Model
     /*
      * function to update student
      */
-    function update_student($id,$params)
-    {
-      $this->db->where('id',$id);
-      return $this->db->update('student',$params);
-    }
+      function update_student($id,$params)
+      {
+        $this->db->where('id',$id);
+        return $this->db->update('student',$params);
+      }
     
     /*
      * function to delete student

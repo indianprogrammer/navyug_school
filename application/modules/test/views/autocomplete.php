@@ -19,11 +19,11 @@
                     <!-- 
                      -->
                      <!-- <div id="tabled"></div> -->
-                   <table class="dropdown-menu tableRow table  table-bordered table-responsive" id="tabled">
+                   <table class="dropdown-menu tableRow table  table-bordered table-responsive" id="tabled" style="overflow: hidden;display:flex">
                      <!-- <table id="tabled" class="table  table-bordered table-responsive tableRow"></table> -->
                     <input type="text" name="sname" id="city">
 
-                     <table id="tabled" class="table  table-bordered table-responsive"></table>
+                     <!-- <table id="tabled" class="table  table-bordered table-responsive"></table> -->
                     <input type="text" name="sname" id="sname">
 
 </div>

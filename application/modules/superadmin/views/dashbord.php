@@ -57,7 +57,7 @@
             <span class="info-box-icon bg-info elevation-1"><i class="fa fa-money"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text ">SALES</span>
+              <span class="info-box-text ">Credit</span>
               <span class="info-box-number sales">
                 <div class="ajax_loading">         
                   <div class="col-md-3">

@@ -150,7 +150,7 @@ class Superadmin extends Super_Controller{
     		'title'=> 'successfully added',
     		'description'=> ''
     	);
-    	redirect('superadmin/school_list');
+    	redirect('superadmin/createAdmin');
              // header('location:successmodal.php');
     } else {
              // $this->session->set_flashdata('status','Failed to added');

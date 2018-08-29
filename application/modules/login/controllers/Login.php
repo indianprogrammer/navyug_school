@@ -92,14 +92,22 @@ class Login extends MX_Controller
                     break;
                 case 2:
                     echo "Welcome  " . $this->session->username;
+                     $this->session->authenticationId=$authenticationData['autorization_id'];
+                 redirect('profile'); 
+
                     break;
                 case 3:
                     #got for parent
                  echo "Welcome  ". $this->session->username;
+                  $this->session->authenticationId=$authenticationData['autorization_id'];
+                 redirect('profile');
                     break;
                 case 4:
                     #got for student
-                 echo "Welcome  ". $this->session->username;
+                 $this->session->username;
+                                    // $this->session->username
+                 $this->session->authenticationId=$authenticationData['autorization_id'];
+                 redirect('profile');
                     break;
             }
             #redirect it to $autorizationData['home']

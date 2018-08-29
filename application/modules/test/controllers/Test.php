@@ -327,7 +327,7 @@ function fetch()
   // $this->load->view('button');
    // $data['_view'] = 'button';
      $this->load->view('index4');
-     // $this->load->view('footer');
+     $this->load->view('footer');
  }  
   function templatemain2()
  {

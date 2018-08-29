@@ -253,7 +253,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/buttons.html" class="nav-link">
+                <a href="<?= base_url() ?>test/form" class="nav-link">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Buttons</p>
                 </a>
@@ -465,7 +465,4 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-   <?php if (isset($_view) && $_view)
-                        $this->load->view($_view);
-                        ?>
-  <!-- <?php include('footer.php') ?> -->
+  

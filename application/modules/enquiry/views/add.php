@@ -1,77 +1,18 @@
-<style type="text/css">
-  .TFtable{
-    width:100%; 
-    border-collapse:collapse; 
-    position: relative;
-    z-index:1000;
-        
-  }
-  .TFtable td{ 
-    padding:17px; border:#e5e5e5 1px solid;
-  }
-  /* provide some minimal visual accomodation for IE8 and below */
-  .TFtable tr{
-    background: #f8f8f8;
-    
 
-  }
-  /*  Define the background color for all the ODD background rows  */
-  .TFtable tr:nth-child(odd){ 
-    background: #f8f8f8;
-    
-  }
-  /*  Define the background color for all the EVEN background rows  */
-  .TFtable tr:nth-child(even){
-    background: #ffffff;
-    
-
-  }
-
-    .TFtable1{
-        width:100%; 
-        border-collapse:collapse; 
-        position: absolute;
-  border: 1px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-    }
-    .TFtable1 td{ 
-        padding:7px; border:#e5e5e5 1px solid;
-    }
-    /* provide some minimal visual accomodation for IE8 and below */
-    .TFtable1 tr{
-        background: #f8f8f8;
-        
-
-    }
-    /*  Define the background color for all the ODD background rows  */
-    .TFtable1 tr:nth-child(odd){ 
-        background: #f8f8f8;
-        
-    }
-    /*  Define the background color for all the EVEN background rows  */
-    .TFtable1 tr:nth-child(even){
-        background: #ffffff;
-        
-
-    }
-
-</style>
 <form id="formEnquiry" class="horizontal-form" method="post">
 
 <h3 align="center"> ENQUIRY FORM </h3>
 <div class="row">
-   <div class="col-md-7 col-lg-10">
+   <div class="col-md-7 col-lg-10" >
         <label for="search" class="col-md-4 control-label"> Search</label>
-        <div class="form-group">
-            <input type="text" name="search" value="<?=$this->input->post('search'); ?>" onkeypress="enterEvent()" class="form-control" id="search"  autofocus   autocomplete="off"/>
+        <div class="form-group" >
+            <input type="text" name="search"  onkeyup="enterEvent()" class="form-control dropdown-toggle" id="search"  autofocus   autocomplete="off"  data-toggle="dropdown"/>
             <span class="text-danger"><?=form_error('search');?></span>
+     <div id="table_dropdown" class=" dropdown-menu customtable" style="height:500px;"></div> 
         </div>
-     <table id="table_dropdown" class="Tftable" ></table> 
     </div>
-    <div class="col-md-5 col-lg-4">
-        <label for="username" class="col-md-4 control-label"><span class="text-danger">*</span> User Name</label>
+    <div class="col-md-5 col-lg-4" >
+        <label for="username" class="col-md-5 control-label"><span class="text-danger">*</span> User Name</label>
         <div class="form-group">
             <input type="text" name="username" value="<?=$this->input->post('username'); ?>" class="form-control" id="username"  autofocus />
             <span class="text-danger"><?=form_error('username');?></span>
@@ -227,22 +168,34 @@
                 });
                  function enterEvent() {
     // $("#country").keyup(function () {
-      var seachkeyword = $('#search').val();
+      var searchkeyword = $('#search').val();
+        var min_length = 1;
+                
+                if (searchkeyword.length >= min_length) {
          // console.log(keyword);
          // var keyword = $('#search').val();
          // console.log(keyword);
          // if (e.keyCode == 13) {
+         
           $.ajax({
             type: "POST",
             url: "<?= base_url() ?>enquiry/autosuggest",
             data: {
-             keyword: seachkeyword
+             keyword: searchkeyword
            },
            
            success: function (data) {
-              // console.log()
+               // console.log(data);
 
               var obj=JSON.parse(data);
+               console.log(obj.length);
+              if(obj.length==0)
+              {
+                 $('#table_dropdown').hide();
+              }
+              
+              else
+              {
               var i,tabledata;
               // console.log(obj[0].student_name);
               for(i=0;i<obj.length;i++)
@@ -252,10 +205,11 @@
               $('#table_dropdown').show();
               $('#table_dropdown').html(tabledata);
               
-
+            }
 
              }
           });
+        }
         }
               function getRow($id) {
        $.ajax({

@@ -54,7 +54,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-tree"></i>
                             <p>
-                                SCHOOL
+                                ORGANIZATION
                                 <i class="fa fa-angle-left right"></i>
                             </p>
                         </a>
@@ -64,7 +64,7 @@
                                 <a href="<?= site_url() ?>superadmin/add_school" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
-                                        ADD SCHOOL
+                                        ADD ORGANIZATION
                                         <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
@@ -73,7 +73,7 @@
                                 <a href="<?= site_url() ?>superadmin/school_list" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
-                                        SCHOOL LIST
+                                        ORGANIZATION LIST
 
                                     </p>
                                 </a>
