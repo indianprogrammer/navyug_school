@@ -77,10 +77,10 @@ $db['default'] = array(
 	'dsn'	=> '',
      'hostname' => 'localhost',
 
-	 'username' => 'school',
-	// 'username' => 'root',
-	  'password' => 'school99',
-	// 'password' => '',
+	 // 'username' => 'school',
+	'username' => 'root',
+	  // 'password' => 'school99',
+	'password' => '',
 
 	 
 

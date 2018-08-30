@@ -59,7 +59,7 @@ class Employee extends MY_Controller{
         'qualification' => $this->input->post('qualification'),
         'email' => $this->input->post('email'),
         'mobile' => $this->input->post('mobile'),
-			  'Permanent_address' => $this->input->post('paddress'),
+			  'permanent_address' => $this->input->post('paddress'),
         'temporary_address' => $this->input->post('taddress')
        
       );
@@ -185,7 +185,7 @@ class Employee extends MY_Controller{
         'qualification' => $this->input->post('qualification'),
         'email' => $this->input->post('email'),
         'mobile' => $this->input->post('mobile'),
-        'Permanent_address' => $this->input->post('paddress'),
+        'permanent_address' => $this->input->post('paddress'),
         'temporary_address' => $this->input->post('taddress')
                     // 'modified_at'=>date('d-m-y/h-m'),
          );

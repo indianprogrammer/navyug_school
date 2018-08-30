@@ -64,7 +64,7 @@
 	<div class="form-group">
 		<label for="address" class="col-md-4 control-label"><span class="text-danger">*</span>Permanent Address</label>
 		<div class="col-md-5">
-			<textarea name="paddress" class="form-control" id="address"><?= ($this->input->post('paddress') ? $this->input->post('paddress') : $employee['Permanent_address']); ?></textarea>
+			<textarea name="paddress" class="form-control" id="address"><?= ($this->input->post('paddress') ? $this->input->post('paddress') : $employee['permanent_address']); ?></textarea>
 			<span class="text-danger"><?= form_error('paddress');?></span>
 		</div>
 	</div>

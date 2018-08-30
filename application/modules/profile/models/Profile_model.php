@@ -46,6 +46,30 @@ function get_user_info($username,$authenticationId)
     	$this->db->where('auth_id',$id);
       return $this->db->update('authentication',$data);
     }
+    function check_password($pass)
+    {
+    	$this->db->select('password,clear_text');
+    	$this->db->from('authentication');
+    	$this->db->where('clear_text',$pass);
+      return $this->db->get()->row();
+    }
+    function update_profile($params,$user_id,$authorization_id)
+    {
+    	  $this->db->where('id',$user_id);
+    	  switch($authorization_id)
+			{
+			case 2:	
+			return $this->db->update('employees',$params);
+			break;
+			case 3:	
+			return $this->db->update('parents',$params);
+			break;
+			case 4:	
+			return $this->db->update('student',$params);
+			break;
+			}
+        
+    }
 
 
 

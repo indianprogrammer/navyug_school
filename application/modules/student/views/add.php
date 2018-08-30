@@ -5,7 +5,7 @@
 	<div class="form-group">
 		<label for="student_name" class="col-md-4 control-label"><span class="text-danger">*</span>Student Name</label>
 		<div class="col-md-5">
-			<input type="text" name="student_name" value="<?= $this->input->post('student_name'); ?>" class="form-control" id="student_name"  autofocus />
+			<input type="text" name="student_name" value="<?= $this->input->post('student_name'); ?>" class="form-control" id="student_name" required autofocus />
 			<span id="error" class="text-danger"><?= form_error('student_name');?></span>
 		</div>
 	</div>

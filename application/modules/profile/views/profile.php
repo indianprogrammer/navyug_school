@@ -2,7 +2,7 @@
  <!-- Theme style -->
  <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/dist/css/adminlte.min.css">
  <script src="<?= base_url() ;?>assets/admin/plugins/jquery/jquery.min.js"></script>
- <?php $this->session->auth_id=$userdata->auth_id ?>
+  <?php $this->session->auth_id=$userdata->auth_id ?> 
  <section class="content">
   <div class="container-fluid">
     <div class="row">
@@ -120,7 +120,8 @@
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Change Password</a></li>
                   <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Change Username</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Edit Profile</a></li>
+                  <li class="nav-item"><a class="nav-link" href="<?= base_url() ?>profile/logout">logout</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -129,23 +130,23 @@
                     <!-- Post -->
                     <div class="post">
 <!-- action="<?= base_url() ?>profile/changePassword" -->
-                      <form role="form"  id="form" onsubmit="return changePassword()">
+                      <form >
                         <div class="card-body">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Enter Password</label>
-                            <input type="password" class="form-control" id="password"  placeholder="Enter current password" >
+                            <input type="password" class="form-control" id="password"  placeholder="Enter current password" required >
                           </div>
-                          <div id="error"></div>
+                          <div id="error_dbmatch" style="color:red"></div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">New Password</label>
-                            <input type="text" class="form-control" id="newpassword" name="newpassword" placeholder="New Password">
+                            <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="New Password" required>
                           </div>
-                          <div id="error"></div>
+                          <div id="error" style="color:red"></div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">Confirm Password</label>
-                            <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password">
+                            <input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" required>
                           </div>
-                          <div id="error"></div>
+                          <div id="error_match" style="color:red"></div>
                           <!-- <input type="hidden" name="user_id" value="<?= $userdata->auth_id ?>"> -->
                           
                           
@@ -153,9 +154,10 @@
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <button type="submit" class="btn btn-primary submitpassword">Submit</button>
                         </div>
                       </form>
+                       <div id="successpw" style="color:green"></div>
 
 
                       
@@ -175,17 +177,17 @@
                         <div class="card-body">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Enter Username</label>
-                            <input type="text" class="form-control" id="username"  placeholder="Enter current Username" >
+                            <input type="text" class="form-control" id="username"  placeholder="Enter current Username" required >
                           </div>
                           <div id="error_username" style="color:red"></div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">New Username</label>
-                            <input type="text" class="form-control" id="newusername" name="newpassword" placeholder="New Username">
+                            <input type="text" class="form-control" id="newusername" name="newpassword" placeholder="New Username" required>
                           </div>
                           <div id="error"></div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">Confirm Username</label>
-                            <input type="ctext" class="form-control" id="cusername" placeholder="Confirm Username">
+                            <input type="ctext" class="form-control" id="cusername" placeholder="Confirm Username" required>
                           </div>
                           <div id="error_match" style="color:red"></div>
                           <!-- <input type="hidden" name="user_id" value="<?= $userdata->auth_id ?>"> -->
@@ -207,7 +209,64 @@
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="settings">
-                  
+                    <!-- <form action="<?= base_url() ?>profile/updateProfile" method="post" > -->
+                      <?= form_open_multipart('profile/updateProfile',array("class"=>"form-horizontal")); ?>
+                  <div class="form-group">
+    <label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Name</label>
+    <div class="col-md-5">
+      <input type="text" name="name" maxlength="13" value="<?= ($this->input->post('name') ? $this->input->post('name') : $userdata->student_name); ?>" class="form-control" id="name" />
+      <span class="text-danger"><?= form_error('email');?></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
+    <div class="col-md-5">
+      <input type="text" name="email" maxlength="13" value="<?= ($this->input->post('email') ? $this->input->post('email') : $userdata->email); ?>" class="form-control" id="email" />
+      <span class="text-danger"><?= form_error('email');?></span>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Mobile</label>
+    <div class="col-md-5">
+      <input type="text" name="mobile" value="<?= ($this->input->post('mobile') ? $this->input->post('mobile') : $userdata->mobile); ?>" class="form-control" id="mobile" />
+      <span class="text-danger"><?= form_error('mobile');?></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="profile_image" class="col-md-4 control-label">Profile Image</label>
+    <div class="col-md-5">
+      <input type="file" name="profile_image"  class="form-control" id="profile_image" />
+      <span class="text-danger"><?= form_error('profile_image');?></span>
+    <?php if (isset($error)) { ?>
+    <span class="text-danger"><?= $error ?></span>
+
+  <?php }  ?>
+    </div>
+  </div>
+  <input type="hidden" name="authentication_id" value="<?= $this->session->authenticationId ?>" >
+  <input type="hidden" name="user_id" value="<?= $userdata->user_id ?>" >
+  <div class="form-group">
+    <label for="address" class="col-md-4 control-label"><span class="text-danger">*</span>Permanent Address</label>
+    <div class="col-md-5">
+      <textarea name="paddress" class="form-control" id="address"><?= ($this->input->post('paddress') ? $this->input->post('paddress') : $userdata->permanent_address); ?></textarea>
+      <span class="text-danger"><?= form_error('paddress');?></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="address" class="col-md-4 control-label"><span class="text-danger">*</span>Corresponding Address</label>
+    <div class="col-md-5">
+      <textarea name="taddress" class="form-control" id="taddress"><?= ($this->input->post('taddress') ? $this->input->post('taddress') : $userdata->temporary_address); ?></textarea>
+      <span class="text-danger"><?= form_error('taddress');?></span>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-4 col-sm-5">
+      <button type="submit" class="btn btn-success">Save</button>
+        </div>
+  </div>
+<?= form_close(); ?>
                   </div>
                   <!-- /.tab-pane -->
                 </div>
@@ -227,28 +286,58 @@
 
     <script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
     <script type="text/javascript">
-      function changePassword()
-      {
+    $(".submitpassword").click(function(event) {
+event.preventDefault();
         var password = $('#password').val();
         var newpassword = $('#newpassword').val();
         var cpassword = $('#cpassword').val();
-        // console.log(newpassword);
-        // if(password==' ' || newpassword==null || cpassword==null )
-        // {
-        //   var msg="please fill all the field";
-        //   $('#error').html(msg);
-        // }
-        if ($('#password').val()=="vivek")
+       $.ajax({
+        method: "POST",
+        url:" <?= base_url() ?>profile/checkpassword", 
+        data: {
+          password:password
+        },
+    success: function(responseObject) {
+       // $('#success').html("username successfully changed");
+       // $('#error_username').hide();
+       // $('#error_match').hide();
+      var obj=JSON.parse(responseObject); 
+      // console.log(obj.clear_text);
+      // console.log(password);
+     if(obj.clear_text!=password)
+     {
+       $('#errordbmatch').html("please write correct password");
+     }
+        else if(newpassword!=cpassword)
         {
-          var msg="please fill all the field";
-          $('#error_username').html(msg);
-          $('#error_username').show();
+          // var msg="please fill all the field";
+          $('#error_match').html("new password and confirm should be same");
+          // $('#error_username').show();
+
         
         }
+        else
+        {
+                     $.ajax({
+                        method: "POST",
+                        url:" <?= base_url() ?>profile/changePassword", 
+                        data: {
+                          newpassword:newpassword,auth_id:<?= $this->session->auth_id ?>
+                        },
+                        success: function(response) {
+                           $('#successpw').html("successfully password changed");
+
+                        }
+                      });
       }
+    }
+      });
+     });
 
     
     </script>
+
+    <!-- script for username -->
     <script>
      
 $(".submit").click(function(event) {
@@ -296,10 +385,10 @@ $.ajax({
        $('#success').html("username successfully changed");
        $('#error_username').hide();
        $('#error_match').hide();
-       // <?php $this->session->username=
+      
      }
 
-    
+  
       
     
 
