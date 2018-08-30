@@ -79,7 +79,7 @@
 
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
+                        <li class="nav-item has-treeview <?php if(($this->uri->segment(1))){ ?> active <?php } ?> ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fa fa-male"></i>
                                 <p>
@@ -87,7 +87,7 @@
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview active">
 
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>employee/add_employee" class="nav-link">

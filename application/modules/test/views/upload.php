@@ -29,3 +29,6 @@
         </div>
 	</div>
 <?php echo form_close(); ?>
+<?= $this->uri->segment(1); ?>
+<?=  
+str_replace("_", "  ", "vivek_chourasiya") ?>

@@ -5,8 +5,8 @@
 	<div class="form-group">
 		<label for="student_name" class="col-md-4 control-label"><span class="text-danger">*</span>Student Name</label>
 		<div class="col-md-5">
-			<input type="text" name="student_name" value="<?= $this->input->post('student_name'); ?>" class="form-control" id="student_name" autofocus />
-			<span class="text-danger"><?= form_error('student_name');?></span>
+			<input type="text" name="student_name" value="<?= $this->input->post('student_name'); ?>" class="form-control" id="student_name"  autofocus />
+			<span id="error" class="text-danger"><?= form_error('student_name');?></span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -119,3 +119,14 @@ $(document).ready(function(e) {
  });
 });
 </script>
+<script>
+
+  $(document).ready(function(){
+    
+    $("#student_name").focusout(function(){
+        // $(this).css("background-color", "red")
+        
+        // $('#error').html("student name can't be empty");
+    });
+});
+  </script>
