@@ -1,10 +1,10 @@
-<h5 style="font-weight:1000px;">Select Class and date For Attendence report</h5>
-<br><br>
+<h5 align="center" style="font-weight:150px;">Select Class and date For Attendance report</h5>
+<br>	
 <div class="row">
 
 <div class="form-group">
 	<label class="col-md-12 control-label">SELECT CLASS</label>
-	<div class="col-md-3">
+	<div class="col-md-5">
 		<select id="classId" name="classId">
 			<?php foreach($classes as $row) { ?>
 				<option value="<?= $row->id ?>"><?= $row->name ?></option>
@@ -73,7 +73,7 @@ for(var i=0;i<obj.report.length;i++)
 		{	
 			
 			tablehead='<tr><th>Serial</th><th>Student Name</th><th>Attendance Status</th></tr>';
-			 table+='<tr><td>'+counter +'</td><td>'+obj.student[j].student_name+'</td><td>'+obj.report[i].attendance_status+'</td></tr>';
+			 table+='<tr><td>'+counter +'</td><td>'+obj.student[j].name+'</td><td>'+obj.report[i].attendance_status+'</td></tr>';
 			  final=tablehead+table;
 			counter++;
 		}

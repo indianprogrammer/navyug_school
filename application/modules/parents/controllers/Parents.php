@@ -12,7 +12,8 @@ class Parents extends MY_Controller{
      * Listing of parents
      */
     function parent_list_bkp()
-    {   $this->load->library('pagination');
+    {   
+        $this->load->library('pagination');
     $params['limit'] = 100; 
     $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
 
@@ -48,6 +49,9 @@ function add()
  $data['ptype'] = $this->Parents_model->fetch_type();
      #validation
  $this->load->library('form_validation');
+  $config['upload_path']          = './uploads/';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $this->load->library('upload', $config);
 
  $this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
  $this->form_validation->set_rules('ptype','parent type','required');
@@ -69,7 +73,12 @@ function add()
         'temporary_address' => $this->input->post('taddress')
        
     );
-
+ if($this->upload->do_upload('profile_image'))
+      {
+      $data['image'] =  $this->upload->data();
+      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+      $params['profile_image']=$image_path;
+    }
 
     $parentId = $this->Parents_model->add_parent($params);
 

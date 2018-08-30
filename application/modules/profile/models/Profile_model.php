@@ -51,13 +51,16 @@ function get_user_info($username,$authenticationId)
     	$this->db->select('password,clear_text');
     	$this->db->from('authentication');
     	$this->db->where('clear_text',$pass);
-      return $this->db->get()->row();
+      return $this->db->get()->result_array();
     }
     function update_profile($params,$user_id,$authorization_id)
     {
     	  $this->db->where('id',$user_id);
     	  switch($authorization_id)
 			{
+                case 1: 
+            return $this->db->update('employees',$params);
+            break;
 			case 2:	
 			return $this->db->update('employees',$params);
 			break;
@@ -70,6 +73,15 @@ function get_user_info($username,$authenticationId)
 			}
         
     }
+   function  get_admin_info($username,$authenticationId)
+   {
+    $this->db->select('*');
+    $this->db->from('authentication');
+    $this->db->where('username',$username);
+    $this->db->where('autorization_id',$authenticationId);
+    $this->db->join('employees','employees.id=authentication.user_id');
+    return $this->db->get()->row();
+   }
 
 
 

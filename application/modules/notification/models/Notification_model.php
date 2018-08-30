@@ -10,7 +10,7 @@ class Notification_model extends CI_Model
     }
 function fetch_student_class_wise($class_id)
 {
-$this->db->select('student.student_name,student.email,student.mobile,student.id');
+$this->db->select('student.name,student.email,student.mobile,student.id');
 $this->db->from('map_student_class');
 $this->db->join('student','student.id=map_student_class.student_id');
 $this->db->where('class_id',$class_id);

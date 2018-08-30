@@ -55,7 +55,8 @@ function updateProfile()
     $config['allowed_types']        = 'gif|jpg|png';
     $this->load->library('upload', $config);
 	 $params = array(
-			  'student_name' => $this->input->post('name'),
+			 
+			  'name' => $this->input->post('name'),
         // 'qualification' => @$this->input->post('qualification'),
         'email' => $this->input->post('email'),
         'mobile' => $this->input->post('mobile'),
@@ -77,6 +78,17 @@ function updateProfile()
      // $this->load->view('profile');
      redirect('profile');
 
+}
+function adminProfile()
+{
+	echo $username=$this->session->username;
+	echo $authenticationId=$this->session->authenticationId;
+	## get details through username
+	 $data['userdata']=$this->load->Profile_model->get_admin_info($username,$authenticationId);
+	 // var_dump($data['userdata']);die
+	 $data['_view'] = 'profile';
+      // $this->load->view('../index',$data);
+	  $this->load->view('index',$data);
 }
 function logout()
 {

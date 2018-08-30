@@ -32,7 +32,7 @@
               <tr>
                 <td><?= $count++  ?></td>
 
-                <td ><?= $row['student_name']; ?></td>
+                <td ><?= $row['name']; ?></td>
                 <td ><?= $row['email']; ?></td>
                            <!--   <td  ><?php 
                             $studentClasses = explode(',', $row['classes']);
@@ -158,8 +158,15 @@
       success:function(data){  
         console.log(data);
         var obj=JSON.parse(data);
-
-        $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>');  
+          if(obj.parent_name)
+          {
+            var parent_name=obj.parent_name;
+          }
+          else
+          {
+            var parent_name='<button><a href="<?= base_url() ?>parents/add_parent" >add </a></button';
+          }
+        $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Parent Name</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+parent_name+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>');  
         $('#dataModal').modal("show");  
       }  
     });  
@@ -263,7 +270,7 @@ $.ajax({
     console.log(data);
     var obj=JSON.parse(data);
                 // $('#page').hide();
-                $('#page').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.student_name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>'); 
+                $('#page').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>'); 
               }
             });
 });

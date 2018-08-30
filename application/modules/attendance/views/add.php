@@ -25,7 +25,7 @@ $this->session->classID=$classid;
          <fieldset>
         <tr>
             <td><?= $count++  ?>  </td>
-            <td><?= $value["student_name"] ?> </td>
+            <td><?= $value["name"] ?> </td>
             <td> 
 
             

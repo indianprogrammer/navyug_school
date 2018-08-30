@@ -112,7 +112,7 @@
     function getpdf($invoice_id)
     {
         $getInvoice = $this->Account_model->get_invoice($invoice_id);
-         // var_dump($getInvoice);die;
+       // var_dump($getInvoice->name);die;
         $get_row_type['params']= $this->Account_model->get_invoiceRow($invoice_id);
           //var_dump($get_row_type['params']);
           //$v='<td></td>';
@@ -124,7 +124,7 @@
         foreach ($get_row_type['params'] as $row) {
 
 
-            $name = $row["name"];
+            $name = $row["particular"];
             $price = $row["price"];
             $subtotal = $subtotal + $price;
             // $percentage=;
@@ -142,7 +142,7 @@
 
         $params=array(
 
-            'student_name'=>$getInvoice->student_name,
+            'student_name'=>$getInvoice->name,
             'school_name'=>$getInvoice->school_name,
             'email'=>$getInvoice->email,
             'contact'=>$getInvoice->mobile,
@@ -248,7 +248,7 @@
         ##get input from reciept form
        $params=array(
 
-        'student_name'=>$getStudentDetails->student_name,
+        'student_name'=>$getStudentDetails->name,
         'school_name'=>$schoolName->organization_name,
         'email'=>$getStudentDetails->email,
         'address'=>$getStudentDetails->temporary_address,
@@ -287,7 +287,7 @@
 function getPdfReciept($reciept_id)
 {
     $getReciept = $this->Account_model->get_reciept($reciept_id);
-     // var_dump($getReciept);
+    // var_dump($getReciept->name);die;
    // $getInformationReciept['params']=$this->Account_model->get_information_reciept_payment($getReciept->id);
     // $getStudentSchool=$this->Account_model->get_student_school($getReciept->student_id);
       //var_dump( $getInformationReciept['params']);die;
@@ -295,7 +295,7 @@ function getPdfReciept($reciept_id)
    $schoolName= $this->Account_model->getSchoolName($this->session->SchoolId) ;
      $params=array(
 
-        'student_name'=>$getReciept->student_name,
+        'student_name'=>$getReciept->name,
         'school_name'=>$schoolName->organization_name,
         'email'=>$getReciept->email,
         'address'=>$getReciept->temporary_address,
@@ -386,7 +386,7 @@ $total=$subtotal+$subtotal*0.18;
    // $schoolInvoice=$this->Account_model->map_invoice($map_invoice);
    $params=array(
 
-    'student_name'=>$studentData->student_name,
+    'student_name'=>$studentData->name,
             // 'total'=>$this->input->post('total'),
     'email'=>$studentData->email,
     'contact'=>$this->input->post('contact'),

@@ -98,7 +98,7 @@
             	var student_data,i;
             	var student_detail='<tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_all" >select all </tr>';
             	for (i = 0; i < obj.length; i++) {
-            		student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" id="student" name="student_details[]" class="checkbox" ></td></tr>';
+            		student_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input type="checkbox" value="'+obj[i]['id']+'" id="student" name="student_details[]" class="checkbox" ></td></tr>';
             		
             	}
             	var student_final=student_detail+student_data;
@@ -160,7 +160,7 @@
             					var i,student_data;
             					var student_detail='<tr><th>Student name</th><th>Email</th><th>Mobile</th><th><input type="checkbox" id="select_all">select all </tr>';
             				for (i = 0; i < obj.length; i++) {
-            				student_data+='<tr><td>'+obj[i].student_name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="student_details[]" class="checkbox" > </td></tr>';
+            				student_data+='<tr><td>'+obj[i].name+'</td><td>'+obj[i].email+'</td><td>'+obj[i].mobile+'</td><td><input 	type="checkbox" value="'+obj[i]['id']+'" name="student_details[]" class="checkbox" > </td></tr>';
             		
             					}
             					var student_final=student_detail+student_data;

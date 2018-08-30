@@ -23,7 +23,7 @@ class Account_model extends CI_Model
     function fetch_students($classes_id)
     {
 
-        $this->db->select('student.student_name,student.id as student_id');
+        $this->db->select('student.name,student.id as student_id');
         $this->db->from('map_student_class');
         $this->db->join('student', 'map_student_class.student_id=student.id', 'Left');
         $this->db->join('classes', 'map_student_class.class_id=classes.id', 'Left');
@@ -52,7 +52,7 @@ class Account_model extends CI_Model
    }
    function get_all_invoice($id,$student_id)
    {
-       $this->db->select('invoices.*,student.student_name');
+       $this->db->select('invoices.*,student.name');
        $this->db->from('invoices');
        $this->db->order_by('invoices.id', 'DESC');
        $this->db->where('invoices.school_id', $id);
@@ -67,7 +67,7 @@ class Account_model extends CI_Model
    }
    function get_invoice($invoice_id)
    {
-       $this->db->select('student.*,invoices.invoice_id as inv,invoices.school_name,master_invoice.name,master_invoice.price');
+       $this->db->select('student.*,invoices.invoice_id as inv,invoices.school_name,master_invoice.name as particular,master_invoice.price');
        $this->db->from('invoices');
        $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
        $this->db->join('master_invoice','master_invoice.invoice_id_mul=invoices.invoice_id', 'Left');
@@ -77,7 +77,7 @@ class Account_model extends CI_Model
    }
    function get_invoiceRow($invoice_id)
    {
-       $this->db->select('master_invoice.name,master_invoice.price');
+       $this->db->select('master_invoice.name as particular,master_invoice.price');
        $this->db->from('master_invoice');
        $this->db->where('invoice_id_mul',$invoice_id);
        return $query = $this->db->get()->result_array();
@@ -133,7 +133,7 @@ function add_reciept($reciept)
 }
 function get_all_reciept($id,$student_id)
 {
-   $this->db->select('reciepts.*,account_transaction.credit,student.student_name');
+   $this->db->select('reciepts.*,account_transaction.credit,student.name');
    $this->db->from('reciepts');
    $this->db->order_by('reciept_id','desc');
 $this->db->where('reciepts.school_id',$id);
@@ -343,7 +343,7 @@ function get_ledger($id)
  function GetRow($query) {        
         // $this->db->order_by('id', 'DESC');
 
-     $this->db->select('student.student_name,student.mobile,authentication.username,student.id as student_id');
+     $this->db->select('student.name,student.mobile,authentication.username,student.id as student_id');
 
     
 
@@ -361,7 +361,7 @@ function get_ledger($id)
 function get_autofill_value($id)
 {
 
-  $this->db->select('student.student_name,student.mobile,authentication.username,student.id as student_id');
+  $this->db->select('student.name,student.mobile,authentication.username,student.id as student_id');
  $this->db->from('student');
      $this->db->join('authentication','student.id=authentication.user_id');
       $this->db->where("student.id",$id);

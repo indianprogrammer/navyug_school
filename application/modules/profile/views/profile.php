@@ -2,6 +2,10 @@
  <!-- Theme style -->
  <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/dist/css/adminlte.min.css">
  <script src="<?= base_url() ;?>assets/admin/plugins/jquery/jquery.min.js"></script>
+ <script src="<?= base_url() ;?>assets/admin/plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- AdminLTE App -->
+
+    <script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
   <?php $this->session->auth_id=$userdata->auth_id ?> 
  <section class="content">
   <div class="container-fluid">
@@ -12,13 +16,13 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-             <?php  if(isset($userdata->profile_image)) { ?>
-              <img class="profile-user-img img-fluid img-circle"
-              src="<?= base_url() ?>/uploads/<?= $userdata->profile_image ?>"
-              alt="">
+             <?php  if($userdata->profile_image) { ?>
+              <img class="img-fluid img-circle"
+              src="<?= base_url()."uploads/".$userdata->profile_image ?>"
+               style="height: 50px;width:50px;" alt="">
             <?php } 
             else  { ?>
-              <img src="<?= base_url() ?>/uploads/model2.png" alt="">
+              <img src="<?= base_url() ?>uploads/model2.png"  style="height: 50px;width:50px;" alt="">
             <?php  } ?>
           </div>
 
@@ -153,7 +157,7 @@
                         </div>
                         <!-- /.card-body -->
 
-                        <div class="card-footer">
+                        <div class="card-footers">
                           <button type="submit" class="btn btn-primary submitpassword">Submit</button>
                         </div>
                       </form>
@@ -177,12 +181,12 @@
                         <div class="card-body">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Enter Username</label>
-                            <input type="text" class="form-control" id="username"  placeholder="Enter current Username" required >
+                            <input type="text" class="form-control" id="username"  placeholder="Enter current Username" requires="required" >
                           </div>
                           <div id="error_username" style="color:red"></div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">New Username</label>
-                            <input type="text" class="form-control" id="newusername" name="newpassword" placeholder="New Username" required>
+                            <input type="text" class="form-control" id="newusername" name="newpassword" placeholder="New Username" requires="required">
                           </div>
                           <div id="error"></div>
                           <div class="form-group">
@@ -209,17 +213,26 @@
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="settings">
+                    <?php if($userdata->name) 
+                    {
+                    $name=$userdata->name;
+                  }
+
+                  else{
+                    $name=$userdata->student_name;
+                  }                  
+                    ?>
                     <!-- <form action="<?= base_url() ?>profile/updateProfile" method="post" > -->
                       <?= form_open_multipart('profile/updateProfile',array("class"=>"form-horizontal")); ?>
                   <div class="form-group">
-    <label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Name</label>
+    <label for="email" class="col-md-4 control-label">Name</label>
     <div class="col-md-5">
-      <input type="text" name="name" maxlength="13" value="<?= ($this->input->post('name') ? $this->input->post('name') : $userdata->student_name); ?>" class="form-control" id="name" />
+      <input type="text" name="name" maxlength="13" value="<?= ($this->input->post('name') ? $this->input->post('name') : $name); ?>" class="form-control" id="name" />
       <span class="text-danger"><?= form_error('email');?></span>
     </div>
   </div>
   <div class="form-group">
-    <label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
+    <label for="email" class="col-md-4 control-label">Email</label>
     <div class="col-md-5">
       <input type="text" name="email" maxlength="13" value="<?= ($this->input->post('email') ? $this->input->post('email') : $userdata->email); ?>" class="form-control" id="email" />
       <span class="text-danger"><?= form_error('email');?></span>
@@ -227,7 +240,7 @@
   </div>
   
   <div class="form-group">
-    <label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Mobile</label>
+    <label for="mobile" class="col-md-4 control-label">Mobile</label>
     <div class="col-md-5">
       <input type="text" name="mobile" value="<?= ($this->input->post('mobile') ? $this->input->post('mobile') : $userdata->mobile); ?>" class="form-control" id="mobile" />
       <span class="text-danger"><?= form_error('mobile');?></span>
@@ -281,10 +294,7 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-    <script src="<?= base_url() ;?>assets/admin/plugins/bootstrap/js/bootstrap.js"></script>
-    <!-- AdminLTE App -->
-
-    <script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
+    
     <script type="text/javascript">
     $(".submitpassword").click(function(event) {
 event.preventDefault();
@@ -302,16 +312,29 @@ event.preventDefault();
        // $('#error_username').hide();
        // $('#error_match').hide();
       var obj=JSON.parse(responseObject); 
-      // console.log(obj.clear_text);
-      // console.log(password);
-     if(obj.clear_text!=password)
+      // console.log(obj);
+      // console.log(obj);
+      if(password=='' || password=null)
+{
+  $('#error_dbmatch').html("password cannot be empty");
+}
+     else if(obj.length==0)
      {
-       $('#errordbmatch').html("please write correct password");
+      $('#error_dbmatch').html("please write correct password");
+     }
+     else if(newpassword=='' || newpassword== null)
+     {
+        $('#error').html("Password field cannot be empty");
+     }
+    else if(obj[0].clear_text!=password)
+     {
+       $('#error_dbmatch').html("please write correct password");
      }
         else if(newpassword!=cpassword)
         {
           // var msg="please fill all the field";
           $('#error_match').html("new password and confirm should be same");
+         
           // $('#error_username').show();
 
         
@@ -325,7 +348,10 @@ event.preventDefault();
                           newpassword:newpassword,auth_id:<?= $this->session->auth_id ?>
                         },
                         success: function(response) {
-                           $('#successpw').html("successfully password changed");
+                           $('#successpw').html("Your password is successfully changed");
+                            $('#error_dbmatch').hide();
+                            $('#error_match').hide();
+                            $('#error').hide();
 
                         }
                       });
@@ -346,7 +372,11 @@ var user_name = $("input#username").val();
 var nuser_name = $("input#newusername").val();
 var cuser_name = $("input#cusername").val();
 var user_name_current= "<?= $this->session->username ?>";
-if(user_name_current!=user_name)
+if(user_name=='' || user_name=null)
+{
+  $('#error_username').html("username cannot be empty");
+}
+else if(user_name_current!=user_name)
 {
   $('#error_username').html("please enter your current username");
 }

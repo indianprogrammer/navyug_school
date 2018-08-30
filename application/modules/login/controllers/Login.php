@@ -86,6 +86,7 @@ class Login extends MX_Controller
                      
                     $this->session->name = $userData['name'];
                     $this->session->profileImage = $userData['profile_image'];
+                     $this->session->authenticationId=$authenticationData['autorization_id'];
                     echo "admin  ". $this->session->username;
                     redirect ('admin');
 

@@ -35,13 +35,13 @@
 			<span class="text-danger"><?php echo form_error('mobile');?></span>
 		</div>
 	</div>
-	<!-- <div class="form-group">
-		<label for="profile_image" class="col-md-4 control-label"><span class="text-danger">*</span>Profile Image</label>
+	<div class="form-group">
+		<label for="profile_image" class="col-md-4 control-label">Profile Image</label>
 		<div class="col-md-5">
 			<input type="file" name="profile_image" value="<?php echo $this->input->post('profile_image'); ?>" class="form-control" id="profile_image" />
 			<span class="text-danger"><?php echo form_error('profile_image');?></span>
 		</div>
-	</div> -->
+	</div>
 	<div class="form-group">
 		<label for="paddress" class="col-md-4 control-label"><span class="text-danger">*</span>Permanent Address</label>
 		<div class="col-md-5">

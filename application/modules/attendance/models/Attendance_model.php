@@ -24,7 +24,7 @@ class Attendance_model extends CI_Model
     function fetch_students($classes_id)
     {
    
-        $this->db->select('student.student_name,student.id as student_id');
+        $this->db->select('student.name,student.id as student_id');
         $this->db->from('map_student_class');
         $this->db->join('student', 'map_student_class.student_id=student.id', 'Left');
         $this->db->join('classes', 'map_student_class.class_id=classes.id', 'Left');
@@ -67,7 +67,7 @@ class Attendance_model extends CI_Model
 
     function fetch_student_name($schoolId)
     {
-        $this->db->select('student.student_name,student.id as ids');
+        $this->db->select('student.name,student.id as ids');
         $this->db->from('student');
          $this->db->where('school_id',$schoolId);
         $this->db->join('map_school_student', 'student.id=map_school_student.student_id', 'Left');

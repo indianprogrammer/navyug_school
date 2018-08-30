@@ -21,7 +21,7 @@
 	    {
 	  if($row['student_id']==$student[$i]['id'])
 	  {
-	  	echo $student[$i]['student_name'];
+	  	echo $student[$i]['name'];
 	  }
 	    	
 	    }

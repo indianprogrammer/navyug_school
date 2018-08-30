@@ -20,7 +20,7 @@
                 alt="">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?=  strtoupper($this->session->name) ?> (<?= $this->session->username ?>)</a>
+                <a href="<?= base_url()?>profile/adminProfile" class="d-block"><?=  strtoupper($this->session->name) ?> (<?= $this->session->username ?>)</a>
             </div>
         </div>
 
@@ -47,8 +47,8 @@
                         </li>
 
 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item has-treeview ">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="student"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-mortar-board"></i>
                                 <p>
                                     STUDENT
@@ -58,7 +58,7 @@
                             <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
-                                    <a href="<?= site_url() ?>student/add_student" class="nav-link">
+                                    <a href="<?= site_url() ?>student/add_student" class="nav-link <?php if($this->uri->segment(2)=="add_student"){ ?> active <?php } ?>">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
                                             ADD STUDENT
@@ -79,8 +79,8 @@
 
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview <?php if(($this->uri->segment(1))){ ?> active <?php } ?> ">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item has-treeview  ">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="employee"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-male"></i>
                                 <p>
                                     EMPLOYEE
@@ -90,7 +90,7 @@
                             <ul class="nav nav-treeview active">
 
                                 <li class="nav-item">
-                                    <a href="<?= site_url() ?>employee/add_employee" class="nav-link">
+                                    <a href="<?= site_url() ?>employee/add_employee" class="nav-link <?php if($this->uri->segment(2)=="add_employee"){ ?> active <?php } ?>">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
                                             ADD EMPLOYEE
@@ -99,7 +99,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= site_url() ?>employee" class="nav-link">
+                                    <a href="<?= site_url() ?>employee" class="nav-link <?php if($this->uri->segment(2)==" "){ ?> active <?php } ?>">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
                                             EMPLOYEE LIST
@@ -361,6 +361,7 @@
                             <p>LOGOUT</p>
                         </a>
                     </li>
+                   <?= $this->uri->segment(1)?>
 
                 </ul>
 
@@ -381,7 +382,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="<?= base_url()?>admin">Home</a></li>
               <li class="breadcrumb-item active"><?= $this->uri->segment(1) ?></li>
               <!-- <li class="breadcrumb-item active"><?= $this->uri->segment(2) ?></li> -->
             </ol>
@@ -426,5 +427,13 @@
 
             <!-- Main Footer -->
             <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+            <script>
+                $(document).ready(function(){
+  $('.mt-2 ul li a').click(function(){
+    $('li a').removeClass("active");
+    $(this).addClass("active");
+});
+});
+</script>
 
             <?php include_once "footer.php"; ?>
