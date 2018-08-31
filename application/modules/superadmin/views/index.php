@@ -15,10 +15,10 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
+            <!-- <div class="image">
                 <img src="<?= base_url('uploads/') . $this->session->profileImage; ?>" class="img-circle elevation-2"
                      alt="<?= $this->session->name ?>">
-            </div>
+            </div> -->
             <div class="info">
                 <a href="#" class="d-block"> <?= $this->session->superusername ?></a>
             </div>
@@ -39,7 +39,7 @@
                          </p>
                        </a>
                        <ul class="nav nav-treeview"> -->
-                    <li class="nav-item has-treeview menu-open">
+                    <li class="nav-item has-treeview">
                         <a href="<?= site_url() ?>superadmin/admin_index" class="nav-link">
                             <i class="fa fa-circle-o nav-icon"></i>
                             <p>Dashboard</p>

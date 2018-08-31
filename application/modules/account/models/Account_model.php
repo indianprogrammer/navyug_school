@@ -349,7 +349,7 @@ function get_ledger($id)
 
      $this->db->from('student');
      $this->db->join('authentication','student.id=authentication.user_id');
-      $this->db->where("student_name like '%$query%'");
+      $this->db->where("name like '%$query%'");
       // $this->db->where("student_name like '%$query%'");
   $this->db->or_where("mobile like '%$query%'");
   $this->db->or_where("username like '%$query%'");

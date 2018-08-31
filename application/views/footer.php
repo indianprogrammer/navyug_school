@@ -19,6 +19,7 @@
 <!-- AdminLTE App -->
 
 <script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
+<!-- <script src="<?= base_url() ;?>assets/admin/build/js/Treeview.js"></script> -->
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="<?= base_url() ;?>assets/admin/dist/js/demo.js"></script>
@@ -26,6 +27,7 @@
 <!-- PAGE PLUGINS -->
 <!-- SparkLine -->
 <script src="<?= base_url() ;?>assets/admin/plugins/sparkline/jquery.sparkline.min.js"></script>
+<!-- <script src="<?= base_url() ;?>assets/admin/plugins/popper/popper.min.js"></script> -->
 <!-- jVectorMap -->
 <script src="<?= base_url() ;?>assets/admin/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="<?= base_url() ;?>assets/admin/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -39,7 +41,7 @@
 <script src="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.js"></script>
  <script src="<?= base_url() ;?>assets/js/common.js"></script>
      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>  -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script> -->
 
 <!--  <script type="text/javascript">

@@ -314,7 +314,7 @@ function select_uname_password($id)
 {
   $this->db->select('username,clear_text,email');
   $this->db->from('authentication');
-  $this->db->where('id',$id);
+  $this->db->where('auth_id',$id);
   return $this->db->get()->row();
 
 }

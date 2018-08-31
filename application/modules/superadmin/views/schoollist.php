@@ -54,7 +54,7 @@
                             <span class="caret"></span>
                           </button>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="<?= site_url('superadmin/getCredentialAdmin/'.$row['id']); ?>" >Enter Admin Panel</a>
+                            <a class="dropdown-item" href="<?= site_url('superadmin/getCredentialAdmin/'.$row['id']); ?>"  target="_blank" >Enter Admin Panel</a>
                             <a class="dropdown-item" href="javascript:void(0)" class="view_ledger" onclick="ledger(<?= $row['id']?>)" id="<?= $row['id']?>" >Ledger</a>
                             <a class="dropdown-item" href="" >Disable</a>
                            

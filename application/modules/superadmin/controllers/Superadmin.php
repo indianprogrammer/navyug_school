@@ -218,7 +218,7 @@ class Superadmin extends Super_Controller{
       $image_path=$data['images']['raw_name'].$data['images']['file_ext'];
       $params['banner']=$image_path;
     }
-    var_dump($params);
+    // var_dump($params);
     			$this->Super_model->update_school($id, $params);
     			redirect('superadmin/');
     		} else {
@@ -265,7 +265,7 @@ class Superadmin extends Super_Controller{
     	$this->form_validation->set_rules('paddress','Address','required');
     	$this->form_validation->set_rules('taddress','Address','required');
 
-    	if($this->form_validation->run() && $this->upload->do_upload('profile_image'))     
+    	if($this->form_validation->run())     
     	{   
       #admin information
     		$params = array(
@@ -277,10 +277,12 @@ class Superadmin extends Super_Controller{
     			'temporary_address' => $this->input->post('taddress')
     			
     		);
+        if($this->upload->do_upload('profile_image'))
+        {
     		$data['image'] =  $this->upload->data();
     		$image_path=$data['image']['raw_name'].$data['image']['file_ext'];
     		$params['profile_image']=$image_path;
-
+      }    
       #insert personal information (employees)
       #get employ id from last insert
     		$employeeId = $this->Employee_model->add_employee($params);

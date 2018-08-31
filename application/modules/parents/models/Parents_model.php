@@ -81,4 +81,15 @@ class Parents_model extends CI_Model
          $this->db->insert('authentication',$authentication);
         return $this->db->insert_id();
      }
+     function add_mapping_student($params)
+     {
+        $this->db->insert('map_parent_student',$params);
+        return $this->db->insert_id();
+     }
+     function update_student_parent_name($id,$student_id)
+     {
+        $this->db->set('parent_name',$id);
+        $this->db->where('id',$student_id);
+        return $this->db->update('student');
+     }
 }

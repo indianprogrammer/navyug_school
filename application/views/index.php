@@ -1,4 +1,4 @@
-<?php include_once "header.php" ?>
+<?php include "header.php" ?>
 
 
 <!-- Main Sidebar Container -->
@@ -40,7 +40,7 @@
                        </a>
                        <ul class="nav nav-treeview"> -->
                         <li class="nav-item has-treeview">
-                            <a href="<?= site_url() ?>admin" class="nav-link">
+                            <a href="<?= site_url() ?>admin" class="nav-link <?php if($this->uri->segment(1)=="admin"){ ?> active <?php } ?>">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>DASHBOARD</p>
                             </a>
@@ -58,7 +58,7 @@
                             <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
-                                    <a href="<?= site_url() ?>student/add_student" class="nav-link <?php if($this->uri->segment(2)=="add_student"){ ?> active <?php } ?>">
+                                    <a href="<?= site_url() ?>student/add_student" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
                                             ADD STUDENT
@@ -79,7 +79,7 @@
 
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview ">
+                        <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="employee"){ ?> menu-open <?php } ?> ">
                             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="employee"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-male"></i>
                                 <p>
@@ -99,7 +99,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= site_url() ?>employee" class="nav-link <?php if($this->uri->segment(2)==" "){ ?> active <?php } ?>">
+                                    <a href="<?= site_url() ?>employee" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
                                             EMPLOYEE LIST
@@ -112,8 +112,8 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="parents"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="parents"){ ?> active <?php } ?>" >
                                 <i class="nav-icon fa fa-group"></i>
                                 <p>
                                     PARENTS
@@ -123,7 +123,7 @@
                             <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
-                                    <a href="<?= site_url() ?>parents/add_parent" class="nav-link">
+                                    <a href="<?= site_url() ?>parents/add_parent" class="nav-link ">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
                                             ADD PARENTS
@@ -144,8 +144,8 @@
 
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="subject"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="subject"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-book"></i>
                                 <p>
                                     SUBJECTS
@@ -176,11 +176,11 @@
 
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="classes"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="classes"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa  fa-sticky-note-o"></i>
                                 <p>
-                                    CLASSESS
+                                    CLASSES
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -209,8 +209,8 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="enquiry"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="enquiry"){ ?> active <?php } ?>">
                                 <i class="nav-icon  fa fa-pencil-square-o"></i>
                                 <p>
                                     ENQUIRY
@@ -241,8 +241,8 @@
 
                             </ul>
                         </li> 
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="attendance"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="attendance"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-check-square-o"></i>
                                 <p>
                                  ATTENDANCE
@@ -273,8 +273,8 @@
 
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview menu-open ">
-                        <a href="#" class="nav-link active">
+                    <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="account"){ ?> menu-open <?php } ?> ">
+                        <a href="#" class="nav-link <?php if($this->uri->segment(1)=="account"){ ?> active <?php } ?>">
                             <i class="nav-icon fa fa-money"></i>
                             <p>
                                 ACCOUNT
@@ -284,7 +284,7 @@
                         <ul class="nav nav-treeview">
 
                             <li class="nav-item ">
-                                <a href="<?= site_url() ?>account/add_invoice" class="nav-link active">
+                                <a href="<?= site_url() ?>account/add_invoice" class="nav-link ">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         ADD INVOICE
@@ -323,8 +323,8 @@
 
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="notification"){ ?> menu-open <?php } ?>">
+                        <a href="#" class="nav-link <?php if($this->uri->segment(1)=="notification"){ ?> active <?php } ?>">
                             <i class="nav-icon fa fa-envelope"></i>
                             <p>
                                 NOTIFICATION
@@ -361,8 +361,7 @@
                             <p>LOGOUT</p>
                         </a>
                     </li>
-                   <?= $this->uri->segment(1)?>
-
+                   
                 </ul>
 
             </nav>
@@ -440,8 +439,8 @@
 });
 });
 </script> -->
-<!-- <script>
-    console.log(window.location);   
+<script>
+     
   $('.mt-2 ul li').find('a').each(function () {
             if (document.location.href == $(this).attr('href')) {
                 $(this).parents().addClass("active");
@@ -449,7 +448,7 @@
                 // add class as you need ul or li or a 
             }
         });
-    </script> -->
+    </script>
  <!-- <script>
                 $(document).ready(function(){
   $('.mt-2 ul li').click(function(){
@@ -459,4 +458,34 @@
 });
 </script>
  -->
-            <?php include_once "footer.php"; ?>
+<!--  <script type="text/javascript">
+    $(document).ready(function(){
+   var url = window.location.pathname.split("/");
+var questions = url[1];
+console.log(questions);
+     var e="<?= $this->uri->segment(1) ?>";
+     console.log(e);
+     $('nav ul li a').click(function(){
+
+         $(this).addClass('menu-open');
+    });
+ });
+ </script> -->
+ <!-- <script type="text/javascript">
+     $('.mt-2 ul li a').click(function(e) {
+    // e.preventDefault();
+    $('.mt-2 ul li.active').removeClass('active');
+    var $this = $(this);
+    $this.addClass('active');
+});
+ </script>
+  <script type="text/javascript">
+     $('.mt-2 ul li ').click(function(e) {
+    e.preventDefault();
+     $('.mt-2 ul li.menu-open').removeClass('active');
+    var $this = $(this);
+    $this.addClass('menu-open');
+});
+ </script> -->
+ 
+            <?php include "footer.php"; ?>

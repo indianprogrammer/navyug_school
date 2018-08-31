@@ -16,7 +16,11 @@ class Student_model extends CI_Model
      */
     function get_student($id)
     {
-      return $this->db->get_where('student',array('id'=>$id))->row_array();
+      $this->db->select('student.*,parents.name as parent_name');
+      $this->db->from('student');
+      $this->db->where('student.id',$id);
+      $this->db->join('parents','student.parent_name=parents.id','left');
+      return $this->db->get()->row_array();
     }
 
     /*
@@ -166,7 +170,7 @@ function select_uname_password($id)
 {
   $this->db->select('username,clear_text,email');
   $this->db->from('authentication');
-  $this->db->where('id',$id);
+  $this->db->where('auth_id',$id);
   return $this->db->get()->row();
 
 }

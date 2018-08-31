@@ -11,94 +11,86 @@ class Parents extends MY_Controller{
     /*
      * Listing of parents
      */
-    function parent_list_bkp()
-    {   
-        $this->load->library('pagination');
-    $params['limit'] = 100; 
-    $params['offset'] = ($this->input->get('per_page')) ? $this->input->get('per_page') : 0;
+  
 
-    $config = $this->config->item('pagination');
-    $config['base_url'] = site_url('parent/index?');
-    $config['total_rows'] = $this->Parents_model->get_all_parents_count();
-    $this->pagination->initialize($config);
-
-    $data['parents'] = $this->Parents_model->get_all_parents($params);
-
-    $data['_view'] = 'parentList';
-    $this->load->view('../index',$data);
-}
-
-function index(){
-    $schoolId=$this->session->SchoolId;
-    $data['parents'] = $this->Parents_model->get_all_parents($schoolId);
-    $data['_view'] = 'parentList';
-    $this->load->view('../index',$data);
-}
+    function index(){
+        $schoolId=$this->session->SchoolId;
+        $data['parents'] = $this->Parents_model->get_all_parents($schoolId);
+        $data['_view'] = 'parentList';
+        $this->load->view('../index',$data);
+    }
 
     /*
      * Adding a new parent
      */
     function add_parent()
-    {   $data['ptype'] = $this->Parents_model->fetch_type();
+    {   
+         if($this->input->post("studentId"))
+         {
+          $student_id=$this->input->post("studentId"); 
+          $this->session->studentID=$student_id;
+         }   
+        $data['ptype'] = $this->Parents_model->fetch_type();
         // var_dump( $data['ptype']);die;
-    $data['_view'] = 'add';
-    $this->load->view('../index',$data);
-}
-function add()
-{   
- $data['ptype'] = $this->Parents_model->fetch_type();
-     #validation
- $this->load->library('form_validation');
-  $config['upload_path']          = './uploads/';
-    $config['allowed_types']        = 'gif|jpg|png';
-    $this->load->library('upload', $config);
-
- $this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
- $this->form_validation->set_rules('ptype','parent type','required');
- $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
- $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
-
- if($this->form_validation->run() )     
- {   
-    $params = array(
-
-        'name' => $this->input->post('parent_Name'),
-        'type' => $this->input->post('ptype'),
-
-
-        'email' => $this->input->post('email'),
-        'mobile' => $this->input->post('mobile'),
-
-        'permanent_address' => $this->input->post('paddress'),
-        'temporary_address' => $this->input->post('taddress')
-       
-    );
- if($this->upload->do_upload('profile_image'))
-      {
-      $data['image'] =  $this->upload->data();
-      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
-      $params['profile_image']=$image_path;
+        $data['_view'] = 'add';
+        $this->load->view('../index',$data);
     }
+    function add()
+    {   
+        // echo $this->session->studentID;die;
+       $data['ptype'] = $this->Parents_model->fetch_type();
+     #validation
+       $this->load->library('form_validation');
+       $config['upload_path']          = './uploads/';
+       $config['allowed_types']        = 'gif|jpg|png';
+       $this->load->library('upload', $config);
 
-    $parentId = $this->Parents_model->add_parent($params);
+       $this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
+       $this->form_validation->set_rules('ptype','parent type','required');
+       $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
+       $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
+
+       if($this->form_validation->run() )     
+       {   
+        $params = array(
+
+            'name' => $this->input->post('parent_Name'),
+            'type' => $this->input->post('ptype'),
+
+
+            'email' => $this->input->post('email'),
+            'mobile' => $this->input->post('mobile'),
+
+            'permanent_address' => $this->input->post('paddress'),
+            'temporary_address' => $this->input->post('taddress')
+
+        );
+        if($this->upload->do_upload('profile_image'))
+        {
+          $data['image'] =  $this->upload->data();
+          $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+          $params['profile_image']=$image_path;
+      }
+
+      $parentId = $this->Parents_model->add_parent($params);
 
 
              $username = 'par'.$this->session->SchoolId.'_'.$parentId; #par+schoolid_parentid
-             $password = rand(1,10000);
+             // $password = rand(1,10000);
              $email = $params['email'];
 
              $userId = $parentId;
              $password=rand(1,100000);
 
              $authentication=array(
-               'username'=> $username,
-               'email'=> $email,
-               'autorization_id'=>3,
-               'password'=>md5($password),
-                'user_id'=> $userId,
-               'clear_text'=>$password
+                 'username'=> $username,
+                 'email'=> $email,
+                 'autorization_id'=>3,
+                 'password'=>md5($password),
+                 'user_id'=> $userId,
+                 'clear_text'=>$password
 
-           );
+             );
              // var_dump($authentication);
              $insertAuthentication  = $this->Parents_model->add_user($authentication);
              $schoolParentMap=array(
@@ -108,11 +100,22 @@ function add()
 
             );  
              $map  = $this->Parents_model->add_mapping($schoolParentMap);
-              $this->session->alerts = array(
-            'severity'=> 'success',
-            'title'=> 'successfully added',
-         'description'=> ''
-     );
+             ## parent student mapping
+             if($this->session->studentID)
+             {
+             $parentStudentMap=array(
+                "parent_id"=>$parentId,
+                "student_id"=> $this->session->studentID
+            );
+             $mappingToStudent  = $this->Parents_model->add_mapping_student($parentStudentMap);
+             ##insert parent id in student table
+             $updateStudent=$this->Parents_model->update_student_parent_name($parentId,$this->session->studentID);
+         }
+             $this->session->alerts = array(
+                'severity'=> 'success',
+                'title'=> 'successfully added',
+                'description'=> ''
+            );
              redirect('parents');
          }
          else
@@ -134,11 +137,11 @@ function add()
         {
             $this->load->library('form_validation');
 
-           
-           $this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
-             $this->form_validation->set_rules('ptype','parent type','required');
-             $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
-             $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
+
+            $this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
+            $this->form_validation->set_rules('ptype','parent type','required');
+            $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
+            $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
 
             if($this->form_validation->run())     
             {   
@@ -147,7 +150,7 @@ function add()
                   'name' => $this->input->post('parent_Name'),
                 // 'type' => $this->input->post('ptype'),
                 // 'qualification' => $this->input->post('qualification'),
-                 
+
                   'email' => $this->input->post('email'),
                   'mobile' => $this->input->post('mobile'),
                  // 'profile_image' => $this->input->post('profile_image'),
