@@ -39,7 +39,7 @@
                          </p>
                        </a>
                        <ul class="nav nav-treeview"> -->
-                        <li class="nav-item has-treeview menu-open">
+                        <li class="nav-item has-treeview">
                             <a href="<?= site_url() ?>admin" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>DASHBOARD</p>
@@ -47,7 +47,7 @@
                         </li>
 
 
-                        <li class="nav-item has-treeview ">
+                        <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="student"){ ?> menu-open <?php } ?> ">
                             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="student"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-mortar-board"></i>
                                 <p>
@@ -79,7 +79,7 @@
 
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview  ">
+                        <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="employee"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-male"></i>
                                 <p>
@@ -87,7 +87,7 @@
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview active">
+                            <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>employee/add_employee" class="nav-link <?php if($this->uri->segment(2)=="add_employee"){ ?> active <?php } ?>">
@@ -273,8 +273,8 @@
 
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item has-treeview menu-open ">
+                        <a href="#" class="nav-link active">
                             <i class="nav-icon fa fa-money"></i>
                             <p>
                                 ACCOUNT
@@ -283,8 +283,8 @@
                         </a>
                         <ul class="nav nav-treeview">
 
-                            <li class="nav-item">
-                                <a href="<?= site_url() ?>account/add_invoice" class="nav-link">
+                            <li class="nav-item ">
+                                <a href="<?= site_url() ?>account/add_invoice" class="nav-link active">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         ADD INVOICE
@@ -427,13 +427,36 @@
 
             <!-- Main Footer -->
             <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-            <script>
+            <!-- <script>
                 $(document).ready(function(){
   $('.mt-2 ul li a').click(function(){
     $('li a').removeClass("active");
     $(this).addClass("active");
+    $('.mt-2 ul li').addClass("menu-open");
+    $(this).addClass("menu-open");
+    $('.mt-2 ul li ul li a').click(function(){
+        $(this).addClass("active");
+});
+});
+});
+</script> -->
+<!-- <script>
+    console.log(window.location);   
+  $('.mt-2 ul li').find('a').each(function () {
+            if (document.location.href == $(this).attr('href')) {
+                $(this).parents().addClass("active");
+                $(this).addClass("active");
+                // add class as you need ul or li or a 
+            }
+        });
+    </script> -->
+ <!-- <script>
+                $(document).ready(function(){
+  $('.mt-2 ul li').click(function(){
+ $('li').addClass("menu-open");
+    $(this).addClass("menu-open");
 });
 });
 </script>
-
+ -->
             <?php include_once "footer.php"; ?>
