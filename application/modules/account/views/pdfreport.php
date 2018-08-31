@@ -66,10 +66,10 @@ echo ' <section class="content">
                   <table class="table table-striped">
                     <thead>
                     <tr>
-                      <th>Qty</th>
-                      <th>classes</th>
+                      <th>No</th>
+                      <th>particular</th>
                      
-                      <th>Subtotal</th>
+                      <th>price</th>
                     </tr>
                     </thead>
                     <tbody>

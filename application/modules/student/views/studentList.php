@@ -51,7 +51,7 @@
 
 
 
-                           <td> <img src="<?=base_url()."uploads/".$row['profile_image']; ?>" alt="" style="width:50px;height:50px";></td>
+                           <td> <img src="<?=base_url()."uploads/".$row['profile_image']; ?>" alt="" class="zoom" style="width:50px;height:50px";></td>
 
                            <!-- <td onload="getBalence(<?= $row['id'] ?>) "id="balance"></td> -->
                            <td>

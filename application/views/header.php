@@ -90,6 +90,13 @@ width:300px;
    
  } 
 }*/
+.zoom:hover {
+    -ms-transform: scale(2.5); /* IE 9 */
+    -webkit-transform: scale(2.5); /* Safari 3-8 */
+    transform: scale(2.5); 
+    transition: .7s;
+    
+}
    </style>
 
   

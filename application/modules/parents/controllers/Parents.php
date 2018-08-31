@@ -71,7 +71,7 @@ class Parents extends MY_Controller{
           $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
           $params['profile_image']=$image_path;
       }
-
+// var_dump($params);die;
       $parentId = $this->Parents_model->add_parent($params);
 
 

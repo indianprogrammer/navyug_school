@@ -7,13 +7,14 @@
                             <label for="serch" class="control-label">Search</label>
                             <div class="form-group">
                               <input type="text" name="search" 
-                              class="form-control" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" />
+                              class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off"  data-toggle="dropdown"  />
 
                             </div>
 
 
+                          <div id="table_dropdown" class=" dropdown-menu customtable"></div> 
                           </div>
-                          <table id="table_dropdown" class="table table-bordered table-responsive table-hover tableRow" ></table>     
+        </div>     
 
 
 
@@ -130,7 +131,7 @@ function enterEvent(e) {
               // console.log(obj[0].student_name);
               for(i=0;i<obj.length;i++)
               {
-                tabledata+='<tr onclick="getRow('+obj[i].student_id+')"><td>'+obj[i].student_name+'</td><td>'+obj[i].username+'</td><td>'+obj[i].mobile+'</td></tr>'
+                tabledata+='<tr onclick="getRow('+obj[i].student_id+')"><td>'+obj[i].name+'</td><td>'+obj[i].username+'</td><td>'+obj[i].mobile+'</td></tr>'
               }
               $('#table_dropdown').show();
               $('#table_dropdown').html(tabledata);

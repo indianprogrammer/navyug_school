@@ -1,4 +1,4 @@
-<?php echo form_open('parents/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open_multipart('parents/add',array("class"=>"form-horizontal")); ?>
                         <div class="form-group">
                         <label for="ptype" class="control-label"><span class="text-danger">*</span>Parent Type</label>
 						<div class="col-md-5 col-sm-12">
@@ -14,7 +14,7 @@
 	<div class="form-group">
 		<label for="parent_Name" class="col-md-4 control-label"><span class="text-danger">*</span>Name</label>
 		<div class="col-md-5">
-			<input type="text" name="parent_Name" value="<?php echo $this->input->post('parent_Name'); ?>" class="form-control" id="parent_Name" />
+			<input type="text" name="parent_Name" value="<?php echo $this->input->post('parent_Name'); ?>" class="form-control" id="parent_Name" required />
 			<span class="text-danger"><?php echo form_error('parent_Name');?></span>
 		</div>
 	</div>

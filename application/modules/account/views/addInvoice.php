@@ -6,17 +6,17 @@
 
 <div class="box-body">
   <div class="row clearfix">
-   <div class="col-md-10 col-sm-12">
+   <div class="col-md-5 col-sm-12">
     <label for="serch" class="control-label">Search</label>
     <div class="form-group">
       <input type="text" name="search" 
-      class="form-control" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" />
+      class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" data-toggle="dropdown"/>
 
+ <div id="table_dropdown" class=" dropdown-menu customtable" style="height:400px;"></div> 
     </div>
 
 
   </div>
-  <table id="table_dropdown" class="table table-bordered table-responsive table-hover tableRow" ></table>
 
  
 </div>
@@ -60,19 +60,19 @@
   </div>
 </div>
 
-<tr>
-  <div class="table-responsive">
-    <table class="table table-bordered  table-responsive table-hover" id="crud_table">
+<div class="col-md-5 col-sm-12">
+  
+    <table class="table  table-responsive " id="crud_table">
      <tr>
       <th width="10%">Particular</th>
-      <th width="10%">Amount</th>
+      <th width="5%">Amount</th>
 
       <th width="5%"></th>
     </tr>
     <tr>
-      <td contenteditable="true" class="item_name" placeholder="Enter name"></td>
+      <td ><input type="text" class="item_name" placeholder="Enter name"></td>
       
-      <td contenteditable="true" class="item_price"></td>
+      <td  ><input type="text" class="item_price" placeholder="Enter price"></td>
       <td></td>
     </tr>
   </table>
@@ -84,6 +84,7 @@
  </div>
  <br />
  <div id="inserted_item_data"></div>
+
 </div>
 
 
@@ -176,7 +177,7 @@
               // console.log(obj[0].student_name);
               for(i=0;i<obj.length;i++)
               {
-                tabledata+='<tr onclick="getRow('+obj[i].student_id+')"><td>'+obj[i].student_name+'</td><td>'+obj[i].username+'</td><td>'+obj[i].mobile+'</td></tr>'
+                tabledata+='<tr onclick="getRow('+obj[i].student_id+')"><td>'+obj[i].name+'</td><td>'+obj[i].username+'</td><td>'+obj[i].mobile+'</td></tr>'
               }
               $('#table_dropdown').show();
               $('#table_dropdown').html(tabledata);
@@ -197,7 +198,7 @@
 
         success: function (data) {
           var obj=JSON.parse(data);
-          $('#stuname').val( obj.student_name );
+          $('#stuname').val( obj.name );
           $('#uname').val( obj.username );
           $('#contact').val( obj.mobile );
           $('#search').val( " " );
@@ -219,9 +220,9 @@
      $('#add').click(function(){
       count = count + 1;
       var html_code = "<tr id='row"+count+"'>";
-      html_code += "<td contenteditable='true' class='item_name'></td>";
+      html_code += " <td ><input type='text' class='item_name' placeholder='Enter name'></td>";
 
-      html_code += "<td contenteditable='true' class='item_price' ></td>";
+      html_code += " <td ><input type='text' class='item_price' placeholder='Enter price'></td>";
       html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";   
       html_code += "</tr>";  
       $('#crud_table').append(html_code);

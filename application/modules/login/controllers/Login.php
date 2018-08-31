@@ -110,6 +110,11 @@ class Login extends MX_Controller
                  $this->session->authenticationId=$authenticationData['autorization_id'];
                  redirect('profile');
                     break;
+                case 5;
+                $this->session->superusername=$authenticationData['username'];
+                $this->session->authenticationId=$authenticationData['autorization_id'];
+                redirect('superadmin/admin_index');
+
             }
             #redirect it to $autorizationData['home']
             echo 'redirect it to '. $autorizationData['home'];

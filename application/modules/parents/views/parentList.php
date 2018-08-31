@@ -16,15 +16,16 @@
     </tr>
     </thead>
     <tbody>
+        <?php $count=1 ?>
     <?php foreach ($parents as $row) { ?>
         <tr>
-            <td><?=$row['id']?></td>
+            <td><?= $count ++ ?></td>
             <td><?=$row['name']?></td>
             <td><?=$row['email']?></td>
             <td><?=$row['mobile']?></td>
             <td data-toggle="tooltip" data-placement="top" title="<?=$row['permanent_address']?>"><?php echo substr($row['permanent_address'],0,10).'...' ?></td>
             <td data-toggle="tooltip" data-placement="top" title="<?=$row['temporary_address']?>"><?php echo substr($row['temporary_address'],0,10).'...' ?></td>
-            <td><img src="<?= base_url() ."uploads/". $row['profile_image'];?>" alt=""></td>
+            <td><img src="<?= base_url() ."uploads/". $row['profile_image'];?>" class="zoom" style="height: 50px;width:50px" alt=""></td>
 
             <td>
                 <a href="<?php echo site_url('parents/edit/' . $row['id']); ?>" class="btn btn-info btn-xs">Edit</a>

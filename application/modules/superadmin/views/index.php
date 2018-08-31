@@ -182,5 +182,15 @@
 
 <!-- Main Footer -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+<script>
+     
+  $('.mt-2 ul li').find('a').each(function () {
+            if (document.location.href == $(this).attr('href')) {
+                $(this).parents().addClass("active");
+                $(this).addClass("active");
+                // add class as you need ul or li or a 
+            }
+        });
+    </script>
 
 <?php include_once "footer.php"; ?>

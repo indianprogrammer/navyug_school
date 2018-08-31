@@ -155,11 +155,14 @@
             'price'=>$rows,
             'subtotal'=>$subtotal,
             'tax'=>$tax,
-            'total'=>$total
+            'total'=>$total,
+            'institute_address'=>$getInvoice->address
+
 
         );
           // var_dump($params);die;
-        $this->load->view('pdfreport', $params);
+        // $this->load->view('pdfreport', $params);
+        $this->load->view('templates/invoice_template/six',$params);
     }
 
 
@@ -361,7 +364,8 @@ $total=$subtotal+$subtotal*0.18;
     'school_id'=>$this->session->SchoolId,
     'school_name'=>$getSchoolInformation->organization_name,
     'student_id'=>$studentData->id,
-     'total_amount'=>$total
+     'total_amount'=>$total,
+     'institute_address'=>$getSchoolInformation->address
 
 
 );
@@ -406,10 +410,12 @@ $total=$subtotal+$subtotal*0.18;
 function checkBalance()
 {
     $student_info=$this->Account_model->searchBalInformatiion($this->input->post('keyword'));
+    // var_dump($student_info);die;
    $credit_info=$this->Account_model->gettingTransactionInfo($this->input->post('keyword'));
    $total_debit=$student_info->debit;
     $total_credit=$credit_info->credit;
      $balance=$total_debit-$total_credit;
+
     echo $balance;
 }
 function testtemplate()

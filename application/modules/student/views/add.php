@@ -28,7 +28,7 @@
 	<div class="form-group" style="width:600px">
 		<label for="class" class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
 		<div class="col-md-5">
-			<select name="classes[]" id="multiselect" class="form-control"  multiple="multiple">
+			<select name="classes[]" id="multiselect" class="form-control"  multiple="multiple" >
 			<?php	foreach($classes as $row){ ?>
 				<option value="<?= $row->id ?>"><?= $row->name ?></option>
 				<?php } ?>
@@ -47,7 +47,7 @@
 	<div class="form-group">
 		<label for="paddress" class="col-md-4 control-label"><span class="text-danger">*</span>Permanent Address</label>
 		<div class="col-md-5">
-			<textarea name="paddress" class="form-control" id="paddress"><?= $this->input->post('paddress'); ?></textarea>
+			<textarea name="paddress" class="form-control" id="paddress" value="<?= $this->input->post('paddress'); ?>" ></textarea>
 			<span class="text-danger"><?= form_error('paddress');?></span>
 		</div>
 	</div>
@@ -59,7 +59,7 @@
 	<div class="form-group">
 		<label for="taddress" class="col-md-4 control-label"><span class="text-danger">*</span>Corresponding Address</label>
 		<div class="col-md-5">
-			<textarea name="taddress" class="form-control" id="taddress"><?= $this->input->post('taddress'); ?></textarea>
+			<textarea name="taddress" class="form-control" id="taddress" value="<?= $this->input->post('taddress'); ?>"></textarea>
 			<span class="text-danger"><?= form_error('taddress');?></span>
 		</div>
 	</div>
