@@ -1,3 +1,12 @@
+ <style type="text/css">
+ #student_detail
+ {
+    overflow-y:scroll;
+    max-height: 500px;
+ }
+</style>
+
+
  <?= form_open('notification/sendNotification') ?> 
 <div class="form-group">
     <label for="notification" class="col-md-4 control-label">Message</label>
