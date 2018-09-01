@@ -131,6 +131,7 @@ class Login extends MX_Controller
 
 public function logout(){
     $this->session->unset_userdata('username');
+    $this->session->unset_userdata('profileImage');
     $this->session->sess_destroy();
     redirect('login');
 }       

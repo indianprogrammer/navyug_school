@@ -13,6 +13,9 @@ function get_user_info($username,$authenticationId)
 	$this->db->where('autorization_id',$authenticationId);
 	switch($authenticationId)
 	{
+//     case 1:
+// $this->db->join('employees','employees.id=authentication.user_id');
+// break;
 	case 2:	
 	$this->db->join('employees','employees.id=authentication.user_id');
 	break;

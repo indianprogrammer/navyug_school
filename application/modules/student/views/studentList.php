@@ -158,9 +158,10 @@
       success:function(data){  
         console.log(data);
         var obj=JSON.parse(data);
-          if(obj.parent_name)
+   
+          if(obj.parent_id)
           {
-            var parent_name=obj.parent_name;
+            var parent_name=obj.parent_id;
           }
           else
           {

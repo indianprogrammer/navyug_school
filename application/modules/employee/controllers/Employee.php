@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 
 class Employee extends MY_Controller{

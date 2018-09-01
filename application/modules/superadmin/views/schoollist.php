@@ -2,7 +2,7 @@
     <div class="col-md-12 col-sm-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">School List</h3>
+                <h3 class="box-title">Organization List</h3>
                 <div class="box-tools pull-right">
                     <a href="<?= site_url('superadmin/add_school'); ?>" class="btn btn-success btn-sm right">Add</a>
                 </div>

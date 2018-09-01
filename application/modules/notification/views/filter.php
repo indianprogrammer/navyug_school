@@ -1,68 +1,68 @@
  <?= form_open('notification/sendNotification') ?> 
 <div class="form-group">
-	<label for="notification" class="col-md-4 control-label">Message</label>
-	<div class="col-md-5">
-		<textarea name="notification" class="form-control" id="notification"><?php echo $this->input->post('notification'); ?></textarea>
-		<span class="text-danger"><?php echo form_error('notification');?></span>
-	</div>
+    <label for="notification" class="col-md-4 control-label">Message</label>
+    <div class="col-md-5">
+        <textarea name="notification" class="form-control" id="notification"><?php echo $this->input->post('notification'); ?></textarea>
+        <span class="text-danger"><?php echo form_error('notification');?></span>
+    </div>
 </div>
 
+<button type="submit" class="btn btn-primary" id="buttonsbm">Send</button>
 <!-- <?php foreach ($schoolName as  $value) {
-	echo ucfirst($value);
+    echo ucfirst($value);
 }  ?> -->
 <div class="row">
-	
+    
  <div class="col-md-6">
 <div class="form-group">
-	<label for="student" class="col-md-6 control-label">Select Student</label>
-	<div class="col-md-4"> 
+    <label for="student" class="col-md-6 control-label">Select Student</label>
+    <div class="col-md-4"> 
 
-		 <select name="student" class="form-control" id="student">
-			<option value="">--select--</option>
-			<option value="all">All</option>
-			<option value="class">Class Wise</option>
+         <select name="student" class="form-control" id="student">
+            <option value="">--select--</option>
+            <option value="all">All</option>
+            <option value="class">Class Wise</option>
 
-		</select> 
-	 	<span class="text-danger"><?php echo form_error('type');?></span>
-	</div>
+        </select> 
+        <span class="text-danger"><?php echo form_error('type');?></span>
+    </div>
 </div> 
  <div class="form-group">
-	
-	<div class="col-md-4" id="classtype">
+    
+    <div class="col-md-4" id="classtype">
 
 
-		
-	</div>
+        
+    </div>
 </div> 
  <table id="student_detail" class="table table-striped  table-responsive"></table>
 </div> 
 
  <div class="col-md-6">
 <div class="form-group">
-	<label for="employee" class="col-md-6 control-label">Select Employee</label>
-	<div class="col-md-4">
+    <label for="employee" class="col-md-6 control-label">Select Employee</label>
+    <div class="col-md-4">
 
-		 <select name="employee" class="form-control" id="employee">
-			<option value="">--select--</option>
-			<option value="all">All</option>
-			<option value="class">Class Wise</option>
+         <select name="employee" class="form-control" id="employee">
+            <option value="">--select--</option>
+            <option value="all">All</option>
+            <option value="class">Class Wise</option>
 
-		</select> 
+        </select> 
             
-	 </div>
+     </div>
 </div>
 <div class="form-group">
-	
-	<div class="col-md-4" id="classtypeemp">
+    
+    <div class="col-md-4" id="classtypeemp">
 
 
-		
-	</div>
+        
+    </div>
  </div> 
 <table id="employee_detail" class="table table-striped  table-responsive"></table>
  </div> 
 <!-- <button id="submit">send</button> -->
-<button type="submit" class="btn btn-primary" id="buttonsbm">Send</button>
 </div>
  <?= form_close(); ?> 
 

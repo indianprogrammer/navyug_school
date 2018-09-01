@@ -12,7 +12,7 @@
                             </div>
 
 
-                          <div id="table_dropdown" class=" dropdown-menu customtable"></div> 
+                          <div id="table_dropdown" class="dropdown-menu customtable"></div> 
                           </div>
         </div>     
 
@@ -128,6 +128,12 @@ function enterEvent(e) {
 
               var obj=JSON.parse(data);
               var i,tabledata;
+               if(obj.length==0)
+              {
+                $('#table_dropdown').hide();
+              }
+              else
+              {
               // console.log(obj[0].student_name);
               for(i=0;i<obj.length;i++)
               {
@@ -135,7 +141,7 @@ function enterEvent(e) {
               }
               $('#table_dropdown').show();
               $('#table_dropdown').html(tabledata);
-              
+              }
 
 
             }
@@ -186,3 +192,8 @@ function submitReciept()
 
 
    </script>
+<script type="text/javascript">
+ $(document).click(function(){
+  $("#table_dropdown").hide();
+});
+</script>

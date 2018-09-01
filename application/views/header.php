@@ -69,6 +69,7 @@
 width:100%;
 max-width: 700px;
 min-width: 300px;
+max-height: 400px;
  border-collapse:collapse; 
   background-color: #f8f8f8;
    overflow-y: scroll;

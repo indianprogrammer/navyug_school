@@ -260,8 +260,8 @@ function add ()
       );
       if($this->upload->do_upload('profile_image'))
       {
-      $data['image'] =  $this->upload->data();
-      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+      var_dump($data['image'] =  $this->upload->data());
+     var_dump( $image_path=rand(1,1000).date('d').$data['image']['raw_name'].$data['image']['file_ext']);
       $params['profile_image']=$image_path;
     }
     if($this->upload->do_upload('profile'))
@@ -337,5 +337,10 @@ function fetch()
      $this->load->view('dashbord');
      $this->load->view('footer');
  }   
+ function checkinvoice()
+ {
+   $data['_view'] = 'checkinvoice';
+     $this->load->view('index',$data);
+ }
 }
 ?>

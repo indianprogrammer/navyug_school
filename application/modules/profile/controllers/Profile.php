@@ -14,7 +14,7 @@ function index()
 	$username=$this->session->username;
 	$authenticationId=$this->session->authenticationId;
 	## get details through username
-	 $data['userdata']=$this->load->Profile_model->get_user_info($username,$authenticationId);
+	 $data['userdata']=$this->Profile_model->get_user_info($username,$authenticationId);
 	 // var_dump($data['userdata']);die
 	  $this->load->view('profile',$data);
 }
@@ -75,9 +75,15 @@ function updateProfile()
     }
     // var_dump($params);
      $profileId = $this->Profile_model->update_profile($params,$user_id,$authorization_id);
+     if($authorization_id==1)
+     {
+     	 redirect('profile/adminProfile');
+     }
+     else
+     {
      // $this->load->view('profile');
      redirect('profile');
-
+ 	}
 }
 function adminProfile()
 {
@@ -85,7 +91,8 @@ function adminProfile()
 	echo $authenticationId=$this->session->authenticationId;
 	## get details through username
 	 $data['userdata']=$this->load->Profile_model->get_admin_info($username,$authenticationId);
-	 // var_dump($data['userdata']);die
+	  // var_dump($data['userdata']);
+	  $this->session->profileImage=$data['userdata']->profile_image;
 	 $data['_view'] = 'profile';
       // $this->load->view('../index',$data);
 	  $this->load->view('index',$data);
@@ -94,6 +101,7 @@ function logout()
 {
 	$this->session->unset_userdata('username');
 	$this->session->unset_userdata('authenticationId');
+	// $this->session->unset_userdata('profileImage');
     $this->session->sess_destroy();
     redirect('login');
 }

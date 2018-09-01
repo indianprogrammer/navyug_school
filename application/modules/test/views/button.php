@@ -12,3 +12,4 @@
                       <a class="dropdown-item" href="#">Separated link</a>
                     </div>
    </div>
+   <input type="text" name="wer" class="trt" >

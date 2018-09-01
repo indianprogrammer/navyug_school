@@ -61,7 +61,7 @@ font-style: bold;
                 <div class="col-sm-4 invoice-col">
                   From
                   <address>
-                    <strong><?= $school_name ?></strong><br>
+                    <strong><?php if($school_name) {echo $school_name ; } ?></strong><br>
                     <?= $institute_address ?>
                     <br>
                     Phone: (804) 123-5432<br>
@@ -158,7 +158,7 @@ font-style: bold;
                  <!--  <button type="button" class="btn btn-success float-right"><i class="fa fa-credit-card"></i> Submit
                     Payment
                   </button> -->
-                  <button type="button" class="btn btn-primary float-right" onclick="printFunction()" id="printpagebutton" style="margin-right: 5px;">
+                  <button type="button" class="btn btn-primary float-right" onclick="printFunction()" id="printpagebutton" target="_blank" style="margin-right: 5px;">
                     <i class="fa fa-download"></i> Generate PDF
                   </button>
                 </div>

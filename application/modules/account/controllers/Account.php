@@ -7,6 +7,7 @@
             parent::__construct();
             $this->load->model('Account_model');
             $this->load->helper('pdf_helper');
+
         } 
 
     /*
@@ -116,7 +117,9 @@
         $get_row_type['params']= $this->Account_model->get_invoiceRow($invoice_id);
           //var_dump($get_row_type['params']);
           //$v='<td></td>';
-
+        $this->load->model('admin/Admin_model');
+       $school_name=$this->Admin_model->get_school_name($getInvoice->school_id);
+       // var_dump($school_name->organization_name);die;
         $rows = "";
         $no =1;
         $subtotal=0;
@@ -143,7 +146,7 @@
         $params=array(
 
             'student_name'=>$getInvoice->name,
-            'school_name'=>$getInvoice->school_name,
+            'school_name'=>$school_name->organization_name,
             'email'=>$getInvoice->email,
             'contact'=>$getInvoice->mobile,
             'class'=>$getInvoice->classes,
@@ -362,10 +365,10 @@ $total=$subtotal+$subtotal*0.18;
    $invoiceprocess=array(
     'invoice_id'=>$incrementedUniqueInvoiceId,
     'school_id'=>$this->session->SchoolId,
-    'school_name'=>$getSchoolInformation->organization_name,
+    // 'school_name'=>$getSchoolInformation->organization_name,
     'student_id'=>$studentData->id,
-     'total_amount'=>$total,
-     'institute_address'=>$getSchoolInformation->address
+     'total_amount'=>$total
+     // 'institute_address'=>$getSchoolInformation->address
 
 
 );
@@ -396,8 +399,8 @@ $total=$subtotal+$subtotal*0.18;
     'contact'=>$this->input->post('contact'),
     'class'=>$this->input->post('class'),
     'title'=>"invoice",
-    'invoice_id'=>$incrementedUniqueInvoiceId,
-    'school_name'=>$getSchoolInformation->organization_name
+    'invoice_id'=>$incrementedUniqueInvoiceId
+    // 'school_name'=>$getSchoolInformation->organization_name
 );
         // var_dump($accountTransaction);
    $transaction = $this->Account_model->add_transaction($accountTransaction);

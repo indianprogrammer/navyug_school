@@ -41,12 +41,12 @@
 		<!-- <td><?php echo $row['remarks']; ?></td> -->
 		
 		<td>
-            <!-- <a href="<?php echo site_url('enquiry/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-             <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a> -->
+            <!-- <a href="<?php echo site_url('enquiry/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a>  -->
+            <!--  <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);"  class="btn btn-danger btn-xs delete-it"><span class="fa fa-trash"></span> Delete</a> -->
               <div class="btn-group" >
                        <!--  <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></a></i></button -->
-                        <!-- <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button> -->
-                        <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
+                        <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                       <!--  <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button> -->
                        
                       </div>
         </td>
@@ -63,4 +63,17 @@
     $(document).ready( function () {
         $('#parent_table').DataTable();
     } );
+</script>
+<script type="text/javascript">
+    var url="<?php echo base_url();?>";
+    function delFunction(id)
+    {
+     
+    // var id = $(this).data('id');
+    bootbox.confirm("Are you sure want to delete ?", function(result) {
+      if(result)
+          window.location = url+'superadmin/removeorder/'+id ;
+   
+  });
+    }
 </script>

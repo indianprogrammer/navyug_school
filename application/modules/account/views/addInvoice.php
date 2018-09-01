@@ -1,5 +1,11 @@
 
-
+<style type="text/css">
+  #crud_table tr td
+  {
+    background-color: white;
+    /*border:1px solid;*/
+  }
+</style>
 
 
 
@@ -12,7 +18,7 @@
       <input type="text" name="search" 
       class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" data-toggle="dropdown"/>
 
- <div id="table_dropdown" class=" dropdown-menu customtable" style="height:400px;"></div> 
+ <div id="table_dropdown" class=" dropdown-menu customtable" ></div> 
     </div>
 
 
@@ -35,7 +41,7 @@
 
 
 <div class="col-md-5 col-sm-12">
-  <label for="email" class="control-label"><span class="text-danger">*</span>Student Name</label>
+  <label for="email" class="control-label"><span class="text-danger">*</span> Name</label>
   <div class="form-group">
     <input type="text" name="stuName" value="<?= $this->input->post('stuName') ?>"
     class="form-control" id="stuname" >
@@ -70,9 +76,10 @@
       <th width="5%"></th>
     </tr>
     <tr>
-      <td ><input type="text" class="item_name" placeholder="Enter name"></td>
-      
-      <td  ><input type="text" class="item_price" placeholder="Enter price"></td>
+      <!-- <td ><input type="text" class="item_name" placeholder="Enter name"></td> -->
+      <td contenteditable="true" class="item_name" style="border-right:1px solid grey"></td>
+      <td contenteditable="true" class="item_price"></td> 
+      <!-- <td  ><input type="text" class="item_price" placeholder="Enter price"></td> -->
       <td></td>
     </tr>
   </table>
@@ -155,8 +162,10 @@
   //   });
 
   //           }
+  
   function enterEvent(e) {
     // $("#country").keyup(function () {
+       
       var seachkeyword = $('#search').val();
          // console.log(keyword);
          // var keyword = $('#search').val();
@@ -170,10 +179,16 @@
            },
            
            success: function (data) {
-              // console.log()
 
               var obj=JSON.parse(data);
+               console.log(obj);
               var i,tabledata;
+              if(obj.length==0)
+              {
+                $('#table_dropdown').hide();
+              }
+              else
+              {
               // console.log(obj[0].student_name);
               for(i=0;i<obj.length;i++)
               {
@@ -182,11 +197,12 @@
               $('#table_dropdown').show();
               $('#table_dropdown').html(tabledata);
               
-
+            }
 
             }
           });
         }
+     
       }         
       function getRow($id) {
        $.ajax({
@@ -220,9 +236,9 @@
      $('#add').click(function(){
       count = count + 1;
       var html_code = "<tr id='row"+count+"'>";
-      html_code += " <td ><input type='text' class='item_name' placeholder='Enter name'></td>";
+      html_code += "<td contenteditable='true' class='item_name'></td>";
 
-      html_code += " <td ><input type='text' class='item_price' placeholder='Enter price'></td>";
+      html_code += "<td contenteditable='true' class='item_price'></td>";
       html_code += "<td><button type='button' name='remove' data-row='row"+count+"' class='btn btn-danger btn-xs remove'>-</button></td>";   
       html_code += "</tr>";  
       $('#crud_table').append(html_code);
@@ -235,7 +251,7 @@
 
      $('#save').click(function(){
       var item_name = [];
-
+     
       var item_price = [];
       $('.item_name').each(function(){
        item_name.push($(this).text());
@@ -244,7 +260,9 @@
       $('.item_price').each(function(){
        item_price.push($(this).text());
      });
+      console.log(item_name);
       var keyword = $('#uname').val();
+      console.log(keyword);
       $.ajax({
        url:"<?= base_url() ?>account/addMultiple",
        method:"POST",
@@ -264,3 +282,8 @@
     });
    });
  </script>
+ <script type="text/javascript">
+ $(document).click(function(){
+  $("#table_dropdown").hide();
+});
+</script>

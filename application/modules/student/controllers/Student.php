@@ -117,7 +117,8 @@
            'user_name'=>$userdata->username,
            'password'=>$userdata->clear_text,
            'student_name'=>$this->input->post('student_name'),
-           'student_id'=>$studentId
+           'student_id'=>$studentId,
+          
 
        );
           // var_dump($smsinfo);die;

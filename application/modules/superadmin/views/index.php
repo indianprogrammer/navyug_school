@@ -70,7 +70,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>superadmin/school_list" class="nav-link">
+                                <a href="<?= site_url() ?>superadmin/organization_list" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         ORGANIZATION LIST
@@ -188,6 +188,16 @@
             if (document.location.href == $(this).attr('href')) {
                 $(this).parents().addClass("active");
                 $(this).addClass("active");
+                // add class as you need ul or li or a 
+            }
+        });
+    </script>
+    <script>
+     
+  $('.mt-2 ul li').find('a').each(function () {
+            if (document.location.href == $(this).attr('href')) {
+                $(this).parents().addClass("menu-open");
+                $(this).addClass("menu-open");
                 // add class as you need ul or li or a 
             }
         });

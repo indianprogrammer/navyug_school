@@ -53,7 +53,7 @@ class Superadmin extends Super_Controller{
 
 		}
 	}
-	function school_list()
+	function organization_list()
 	{   
     $data['title']="School List";
     $data['school'] = $this->Super_model->get_all_school();

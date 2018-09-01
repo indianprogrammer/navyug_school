@@ -67,7 +67,7 @@ class Account_model extends CI_Model
    }
    function get_invoice($invoice_id)
    {
-       $this->db->select('student.*,invoices.invoice_id as inv,invoices.school_name,master_invoice.name as particular,master_invoice.price,school.address');
+       $this->db->select('student.*,invoices.invoice_id as inv,invoices.school_id,master_invoice.name as particular,master_invoice.price,school.address');
        $this->db->from('invoices');
        $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
        $this->db->join('master_invoice','master_invoice.invoice_id_mul=invoices.invoice_id', 'Left');
