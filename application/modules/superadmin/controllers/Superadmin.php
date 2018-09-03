@@ -8,22 +8,19 @@ class Superadmin extends Super_Controller{
 		$this->load->model('Super_model');
 	} 
 
-	function index()
-	{ 
-      // $data['title']="School List";
-        // $data['school'] = $this->Super_model->get_all_school();
-
-        // $data['_view'] = 'login';
-    if(isset($this->session->superuser))
-    {
-      $data['_view'] = 'dashbord';
-    $this->load->view('index', $data);
-    }
-    else
-    {
-		$this->load->view('login');
-  }
-	}
+	// function index()
+	// { 
+     
+ //    if(isset($this->session->superuser))
+ //    {
+ //      $data['_view'] = 'dashbord';
+ //    $this->load->view('index', $data);
+ //    }
+ //    else
+ //    {
+	// 	$this->load->view('login');
+ //  }
+	// }
 
 	function admin_index()
 	{
@@ -31,28 +28,28 @@ class Superadmin extends Super_Controller{
 		$this->load->view('index', $data);
 	}
 
-	function loginProcess()
-	{
+	// function loginProcess()
+	// {
 
 
-		$username = $this->security->xss_clean($this->input->post('username'));
-		$password = $this->security->xss_clean($this->input->post('password'));
-        // var_dump($username);die;
+	// 	$username = $this->security->xss_clean($this->input->post('username'));
+	// 	$password = $this->security->xss_clean($this->input->post('password'));
+ //        // var_dump($username);die;
 
-		$authenticationData = $this->Super_model->getResult($username,$password);
-		if (is_null($authenticationData)) {
-			$data = array(
-				'error_message' => 'Invalid Username or Password'
-			);
-			$this->load->view('login', $data);
-		}else{
-            // $autorizationData = $this->Login_model->getAutorization($authenticationData['autorization_id']);
-			$this->session->superusername = $authenticationData['username'];
-			$this->output->enable_profiler(TRUE);
-			redirect('superadmin/admin_index');
+	// 	$authenticationData = $this->Super_model->getResult($username,$password);
+	// 	if (is_null($authenticationData)) {
+	// 		$data = array(
+	// 			'error_message' => 'Invalid Username or Password'
+	// 		);
+	// 		$this->load->view('login', $data);
+	// 	}else{
+           
+	// 		$this->session->superusername = $authenticationData['username'];
+	// 		$this->output->enable_profiler(TRUE);
+	// 		redirect('superadmin/admin_index');
 
-		}
-	}
+	// 	}
+	// }
 	function organization_list()
 	{   
     $data['title']="School List";
@@ -240,7 +237,7 @@ class Superadmin extends Super_Controller{
         // check if the school exists before trying to delete it
     	if (isset($school['id'])) {
     		$this->Super_model->delete_school($id);
-    		redirect('school/school_list');
+    		redirect('superadmin/organization_list');
     	} else
     	show_error('The school you are trying to delete does not exist.');
     }

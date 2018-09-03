@@ -116,13 +116,12 @@
            'student_id'=>$studentId,
            'user_name'=>$userdata->username,
            'password'=>$userdata->clear_text,
-           'student_name'=>$this->input->post('student_name'),
-           'student_id'=>$studentId,
+           'student_name'=>$this->input->post('student_name')
+          
           
 
        );
-          // var_dump($smsinfo);die;
-          // $insertInfo=$this->Student_model->insert_info($smsinfo);
+         
          modules::run('sms/sms/send_sms',$smsinfo);
 
 

@@ -161,7 +161,7 @@
    
           if(obj.parent_id)
           {
-            var parent_name=obj.parent_id;
+            var parent_name=obj.parent_name;
           }
           else
           {

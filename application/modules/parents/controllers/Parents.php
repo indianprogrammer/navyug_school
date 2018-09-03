@@ -93,6 +93,31 @@ class Parents extends MY_Controller{
              );
              // var_dump($authentication);
              $insertAuthentication  = $this->Parents_model->add_user($authentication);
+             $this->load->model('student/Student_model');
+             $userdata=$this->Student_model->select_uname_password($insertAuthentication);
+              $smsinfo= array(
+           'mobile'=>$this->input->post('mobile'),
+           'school_id'=>$this->session->SchoolId,
+           'module'=>'parents add',
+           
+           'user_name'=> $userdata->username,
+           'password'=>$userdata->clear_text,
+           'student_name'=>$this->input->post('parent_Name'),
+           'student_id'=>$parentId
+          
+
+       );
+         
+         modules::run('sms/sms/send_sms',$smsinfo);
+
+
+          ## for email info
+         $emailinfo=array('email'=>$userdata->email,'subject'=>"user credential",'student_id'=>$parentId,'module'=>'parent add','school_id'=>$this->session->SchoolId, 'user_name'=>$userdata->username,
+           'password'=>$userdata->clear_text,'student_name'=>$this->input->post('parent_Name'));
+         // var_dump($emailinfo);
+          // $insertInfoEmail=$this->Student_model->insert_info_email($emailinfo);
+         modules::run('email/email/send_email',$emailinfo);
+
              $schoolParentMap=array(
 
                 'parent_id'=>$parentId,

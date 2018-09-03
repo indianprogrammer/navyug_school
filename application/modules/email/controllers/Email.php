@@ -8,7 +8,7 @@ class Email extends MY_Controller {
        
     }
   
-    public function send_email($emailinfo) {
+     function send_email($emailinfo) {
          ##fetch data from template
 
     $school_id=$emailinfo['school_id'];
@@ -70,10 +70,7 @@ class Email extends MY_Controller {
      }
 }
 
-function sendarray($data)
-{
-   return $data['a']+$data['b'];
-}
+
 
 function send_notification_email($notification,$notificationStudent,$notificationEmployee)
 {

@@ -31,13 +31,7 @@
    }
 
 
-   function add_attendance()
-   {   
-             $school_id=$this->session->SchoolId;
-             $value=$this->input->post('student');
-             // var_dump($value);
-       
-}  
+ 
 function fetchStudent() 
 {   
 

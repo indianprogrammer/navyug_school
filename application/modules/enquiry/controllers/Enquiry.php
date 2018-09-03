@@ -41,7 +41,7 @@ class Enquiry extends MY_Controller{
        'assign'=> $this->input->post('assign'),
        'ticket_id'=> $this->input->post('ticket_id')
    );
-        var_dump($params);
+        // var_dump($params);
          $data['type']= $this->Enquiry_model->assign_indivisual($params);
 
     }

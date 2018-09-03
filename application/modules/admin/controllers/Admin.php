@@ -39,7 +39,7 @@
        echo (json_encode($data)); 
     }
   
-
+    ##student admission detail counting in a month 
     function studentAdd()
     {
 
@@ -68,7 +68,7 @@
      return $this->Admin_model->get_school_name($school_id);
 
     }
-
+##not use in frontend noe last 2 function
 function getDataPreviousMonth()
 {
   $schoolId=$this->session->SchoolId;

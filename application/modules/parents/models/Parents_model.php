@@ -88,7 +88,7 @@ class Parents_model extends CI_Model
      }
      function update_student_parent_name($id,$student_id)
      {
-        $this->db->set('parent_name',$id);
+        $this->db->set('parent_id',$id);
         $this->db->where('id',$student_id);
         return $this->db->update('student');
      }

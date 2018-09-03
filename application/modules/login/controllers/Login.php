@@ -13,9 +13,9 @@ class Login extends MX_Controller
     public function index($msg = NULL)
     {
         // Load our view to be displayed
-        // if (isset($_SESSION['username'])) {
-        //      redirect('admin');
-        //  }
+        if (isset($this->session->username)) {
+             redirect('admin');
+         }
         // to the user
         $data['msg'] = $msg;
         $this->load->view('login2', $data);
@@ -132,6 +132,7 @@ class Login extends MX_Controller
 public function logout(){
     $this->session->unset_userdata('username');
     $this->session->unset_userdata('profileImage');
+    $this->session->unset_userdata('SchoolId');
     $this->session->sess_destroy();
     redirect('login');
 }       

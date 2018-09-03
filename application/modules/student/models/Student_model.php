@@ -16,7 +16,7 @@ class Student_model extends CI_Model
      */
     function get_student($id)
     {
-      $this->db->select('student.*,parents.id as parent_name');
+      $this->db->select('student.*,parents.name as parent_name');
       $this->db->from('student');
       $this->db->where('student.id',$id);
       $this->db->join('parents','student.parent_id=parents.id','left');

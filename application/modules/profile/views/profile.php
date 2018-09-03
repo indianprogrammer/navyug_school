@@ -75,13 +75,13 @@
 <?php } else { }?>
 
 
-        <strong><i class="fa fa-map-marker mr-1"></i>Email</strong>
+        <strong><i class="fa fa-envelope mr-1"></i>Email</strong>
 
         <p class="text-muted"><?php echo isset($userdata->email) ? $userdata->email : ' ' ; ?></p>
 
         <hr>
         
-        <strong><i class="fa fa-map-marker mr-1"></i>Mobile</strong>
+        <strong><i class="fa fa-mobile mr-1"></i>Mobile</strong>
 
         <p class="text-muted"><?php echo isset($userdata->mobile) ? $userdata->mobile : ' ' ; ?></p>
 
