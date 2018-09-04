@@ -22,8 +22,8 @@
         $data['invoice'] = $this->Account_model->get_all_invoice($schoolId,$student_id);
        }
        else
-       {    $student_id='';
-         $data['invoice'] = $this->Account_model->get_all_invoice($schoolId,$student_id);
+       {    
+         $data['invoice'] = $this->Account_model->get_all_invoice($schoolId);
        }
         // var_dump($data['invoice']);
         $data['_view'] = 'invoiceList';

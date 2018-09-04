@@ -50,15 +50,15 @@ class Account_model extends CI_Model
        $this->db->insert('account_transaction',$accountTransaction);
        return $this->db->insert_id();
    }
-   function get_all_invoice($id,$student_id)
+   function get_all_invoice($id,$student_id = null)
    {
        $this->db->select('invoices.*,student.name');
        $this->db->from('invoices');
        $this->db->order_by('invoices.id', 'DESC');
        $this->db->where('invoices.school_id', $id);
-       if($student_id){
-       $this->db->where('invoices.student_id', $student_id);
-        }
+       if(!is_null($student_id))
+        $this->db->where('invoices.student_id', $student_id);
+   
        // $this->db->join('account_transaction', 'account_transaction.reference_id=invoices.id', 'Left');
        $this->db->join('student', 'student.id=invoices.student_id', 'Left');
        
@@ -293,25 +293,25 @@ function get_information_reciept_payment($id)
        return  $query = $this->db->get()->row();
 }
 
-function get_max(){
+// function get_max(){
 
 
 
 
- $this->db->select_max('invoice_id');
-    $this->db->from('intt');
-    // $this->db->where('school_id',1);       
+//  $this->db->select_max('invoice_id');
+//     $this->db->from('intt');
+       
 
-    $query = $this->db->get()->row();
-    if(is_null($query))
-    {
-    return $query=1;
-  }
-  else{
-   return $query+1;
+//     $query = $this->db->get()->row();
+//     if(is_null($query))
+//     {
+//     return $query=1;
+//   }
+//   else{
+//    return $query+1;
 
-}
-}
+// }
+// }
 function generate_reciept_num()
 {
 

@@ -36,7 +36,7 @@
       // echo $credit;die;
      // var_dump($q);
       // echo (($debit)); 
-       echo (json_encode($data)); 
+       echo json_encode($data); 
     }
   
     ##student admission detail counting in a month 
