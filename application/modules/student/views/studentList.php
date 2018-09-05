@@ -125,7 +125,7 @@
                 </div>
               </div>
             </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script> -->
             <script>
               $(document).ready( function () {
                 $('#student_table').DataTable();

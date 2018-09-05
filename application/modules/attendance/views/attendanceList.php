@@ -1,4 +1,4 @@
-<table id="student_table" class="table table-striped table-bordered table-responsive">
+<table id="student_table" class="table  table-bordered table-responsive">
     <thead>
     <tr>
 		<th>Serial Number</th>

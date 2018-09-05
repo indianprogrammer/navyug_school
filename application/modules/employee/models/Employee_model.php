@@ -16,24 +16,13 @@ class Employee_model extends CI_Model
         return $this->db->get_where('employees',array('id'=>$id))->row_array();
     }
     
-    /*
-     * Get all employees count
-     */
-    function get_all_employees_count($schoolId)
-    {
-        $this->db->from('map_school_employee');
-         $this->db->where('school_id',$schoolId);
-        // $this->db->join('school', 'map_school_employee.school_id=school.id', 'Left');
-        // $this->db->join('employees', 'map_school_employee.employee_id=employees.id', 'Left');
-        return $this->db->count_all_results();
-    }
-        
+    
     /*
      * Get all employees
      */
     function get_all_employees($schoolId)
     {
-        $this->db->select('employees.*');
+        $this->db->select('employees.name,employees.email,employees.mobile,employees.permanent_address,employees.temporary_address,employees.profile_image,employees,employees.id,employees.qualification,employees.created_at');
         $this->db->order_by('id', 'desc');
        
         $this->db->from('map_school_employee');
@@ -91,6 +80,13 @@ class Employee_model extends CI_Model
 
         $this->db->delete('map_school_employee',array('employee_id'=>$id,'school_id'=>$school_id));
     }
-     
+    ##calling by admin module show in dashboard
+     function get_all_employees_count($school_id)
+    {
+      $this->db->where('school_id',$school_id);
+      $query=$this->db->get('map_school_employee')->num_rows();
+      return $query;
+    }   
 
 }
+?>

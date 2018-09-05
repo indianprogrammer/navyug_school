@@ -16,7 +16,7 @@ class Student_model extends CI_Model
      */
     function get_student($id)
     {
-      $this->db->select('student.*,parents.name as parent_name');
+      $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id ,parents.name as parent_name');
       $this->db->from('student');
       $this->db->where('student.id',$id);
       $this->db->join('parents','student.parent_id=parents.id','left');
@@ -35,15 +35,7 @@ class Student_model extends CI_Model
       return $this->db->get()->result_array();
 
 
-       // $this->db->select('student.*');
-       // $this->db->order_by('id', 'desc');
 
-       // $this->db->from('map_school_student');
-       // $this->db->where('school_id',$schoolId);
-       // $this->db->join('school', 'map_school_student.school_id=school.id', 'Left');
-       // $this->db->join('student', 'map_school_student.student_id=student.id', 'Left');
-        // $this->db->join('authentication', 'authentication.student_id=student.id', 'Left');
-       // return $this->db->get()->result_array();
     }
 
 
@@ -51,7 +43,7 @@ class Student_model extends CI_Model
     {
 
 
-     $this->db->select('student.*');
+     $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id');
      $this->db->order_by('id', 'desc');
 
      $this->db->from('map_school_student');
@@ -74,11 +66,11 @@ class Student_model extends CI_Model
     /*
      * function to update student
      */
-      function update_student($id,$params)
-      {
-        $this->db->where('id',$id);
-        return $this->db->update('student',$params);
-      }
+    function update_student($id,$params)
+    {
+      $this->db->where('id',$id);
+      return $this->db->update('student',$params);
+    }
     
     /*
      * function to delete student
@@ -186,7 +178,7 @@ function update_sms_info($id,$school_id)
   $this->db->select('msg');
   $this->db->from('log_outgoing_sms');
   $this->db->where(array('student_id'=>$id ,'school_id'=>$school_id));
-   return $this->db->get()->row();
+  return $this->db->get()->row();
 
 
 }
@@ -194,5 +186,37 @@ function delete_studentClassMap($id)
 {
   $this->db->delete('map_student_class',array('student_id'=>$id));
 }
+##calling by admin module show in dashboard
+function get_all_students_count($school_id)
+{
+ $this->db->where('school_id',$school_id);
+ $query =$this->db->get('map_school_student')->num_rows();
+ return $query;
+}
+    ##calling by attendance module 
+function fetch_student_name($schoolId)
+{
+  $this->db->select('student.name,student.id as ids');
+  $this->db->from('student');
+  $this->db->where('school_id',$schoolId);
+  $this->db->join('map_school_student', 'student.id=map_school_student.student_id', 'Left');
+  return $this->db->get()->result_array();
+}
+## fetch student name by class basis ,calling by attendance module
+ function fetch_students($classes_id)
+    {
+   
+        $this->db->select('student.name,student.id as student_id');
+        $this->db->from('map_student_class');
+        $this->db->join('student', 'map_student_class.student_id=student.id', 'Left');
+        $this->db->join('classes', 'map_student_class.class_id=classes.id', 'Left');
+         $this->db->where('class_id',$classes_id);
+        return $query = $this->db->get()->result_array();
+    }
+    function add_balance_info_default($params)
+    {
+      $this->db->insert('account_balance_information',$params);
+      return $this->db->insert_id();
+    }
 }
 ?>

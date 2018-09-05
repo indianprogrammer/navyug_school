@@ -6,6 +6,8 @@ class Classes extends MY_Controller{
     {
         parent::__construct();
         $this->load->model('Classes_model');
+        $this->load->model('subject/Subject_model');
+        $this->load->model('employee/Employee_model');
         
     } 
 
@@ -28,10 +30,11 @@ class Classes extends MY_Controller{
      * Adding a new class
      */
     function add_class()
-    {              $school_id=$this->session->SchoolId;
-        $data['subject'] = $this->Classes_model->fetch_subject($school_id);
+    {            
+      $school_id=$this->session->SchoolId;
+        $data['subject'] = $this->Subject_model->get_all_subject($school_id);
         // var_dump($data['subject']);die;
-        $data['employee'] = $this->Classes_model->fetch_employee($school_id);
+        $data['employee'] = $this->Employee_model->get_all_employees($school_id);
         // var_dump($data['subject']);die;
         $data['_view'] = 'add';
         $this->load->view('index',$data);
@@ -42,8 +45,8 @@ class Classes extends MY_Controller{
     {   
         $school_id=$this->session->SchoolId;
         $this->load->library('form_validation');
-        $data['subject'] = $this->Classes_model->fetch_subject($school_id);
-        $data['employee'] = $this->Classes_model->fetch_employee($school_id);
+        $data['subject'] = $this->Subject_model->get_all_subject($school_id);
+        $data['employee'] = $this->Employee_model->get_all_employees($school_id);
 
 
 
@@ -117,8 +120,8 @@ class Classes extends MY_Controller{
         // check if the class exists before trying to edit it
        $school_id=$this->session->SchoolId;
        $data['class'] = $this->Classes_model->get_class($id);
-       $data['subject'] = $this->Classes_model->fetch_subject($school_id);
-       $data['employee'] = $this->Classes_model->fetch_employee($school_id);
+       $data['subject'] = $this->Subject_model->get_all_subject($school_id);
+       $data['employee'] = $this->Employee_model->get_all_employees($school_id);
 
        if(isset($data['class']['id']))
        {

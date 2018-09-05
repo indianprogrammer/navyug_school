@@ -61,20 +61,20 @@ font-style: bold;
                 <div class="col-sm-4 invoice-col">
                   From
                   <address>
-                    <strong><?php if($school_name) {echo $school_name ; } ?></strong><br>
-                    <?= $institute_address ?>
+                    <strong><?php if($organization_name) {echo $organization_name ; } ?></strong><br>
+                    <?= $organization_address ?>
                     <br>
-                    Phone: (804) 123-5432<br>
-                    Email: info@almasaeedstudio.com
+                    Phone: <?= $organization_mobile ?> <br>
+                    Email: <?= $organization_email ?>
                   </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
                   To
                   <address>
-                    <strong><?= $student_name ?></strong><br>
-                    <?= $permanent_address ?><br>
-                    Phone:  <?= $contact ?><br>
+                    <strong><?= $customer_name ?></strong><br>
+                    <?= $customer_address ?><br>
+                    Phone:  <?= $mobile ?><br>
                     Email: <?= $email ?>
                   </address>
                 </div>
@@ -104,7 +104,7 @@ font-style: bold;
                     </tr>
                     </thead>
                     <tbody>
-                   <?= $price ?>
+                   <?= $particularlist ?>
                     </tbody>
                   </table>
                 </div>
@@ -133,16 +133,16 @@ font-style: bold;
                     <table class="table">
                       <tr>
                         <th style="width:50%">Subtotal:</th>
-                        <td><?= $subtotal ?></td>
+                        <!-- <td><?= $subtotal ?></td> -->
                       </tr>
                       <tr>
                         <th>Tax (9.3%)</th>
-                        <td><?= $tax ?></td>
+                        <!-- <td><?= $tax ?></td> -->
                       </tr>
                       
                       <tr>
                         <th>Total:</th>
-                        <td><?= $total ?></td>
+                        <td><?= $total_amount ?></td>
                       </tr>
                     </table>
                   </div>

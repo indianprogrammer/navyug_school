@@ -10,10 +10,11 @@
 font-size: 18px;
 
 }
+
 }
 </style>
 
-<table id="invoice_table" class="table table-responsive">
+<table id="invoice_table" class="table table-responsive table-bordered ">
     <thead>
     <tr>
         <th>S. no.</th>
@@ -34,10 +35,10 @@ font-size: 18px;
     <?php foreach ($ledger as $row) { ?>
         <tr>
             <td><?=$count++ ?></td>
-            <td><?=$row['invoice_id'] ?> </td>
-            <td><?=$row['reciept_id'] ?> </td>
-             <td><?=$row['debit'] ?></td>
-             <td><?=$row['credit'] ?></td>
+            <td  data-toggle="tooltip" data-placement="top" title="click to get invoice"><a href="<?= site_url('account/getpdf/'.$row['invoice_id']); ?>"  target="_blank"><?=$row['invoice_id'] ?></a> </td>
+            <td  data-toggle="tooltip" data-placement="top" title="click to get reciept"><a href="<?= site_url('account/getPdfreciept/'.$row['reciept_id']); ?>" target="_blank"> <?=$row['reciept_id'] ?> </a></td>
+             <td><?php if($row['debit']==0){echo " - ";} else {echo $row['debit']; } ?></td>
+             <td><?php if($row['credit']==0){echo " - ";} else {echo $row['credit']; } ?></td>
              <td><?=$row['date'] ?></td>
              <!-- <td><a href="<?= site_url('account/getpdf/'.$row['invoice_id']); ?>" class="btn btn-info btn-xs" target="_blank">Get Pdf</a> 
             </td> -->

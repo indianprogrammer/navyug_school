@@ -58,11 +58,10 @@ function sendNotification()
 
 {
   $notification=$this->input->post("notification");
-  // var_dump(expression)
+ 
   $notificationStudent=$this->input->post('student_details');
   $notificationEmployee=$this->input->post('employee_id');
-  // $notification=$this->input->post();
-  // var_dump($notification);die;
+ 
   if(is_null($notificationEmployee))
   {
     $notificationEmployee=0;

@@ -4,7 +4,7 @@ $obj_pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 // $obj_pdf->SetCreator(PDF_CREATOR);
 // $title = "PDF Report";
 $obj_pdf->SetTitle("reciept");
-$obj_pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, $school_name, PDF_HEADER_STRING);
+$obj_pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, $organization_name, PDF_HEADER_STRING);
 $obj_pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 $obj_pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
 $obj_pdf->SetDefaultMonospacedFont('helvetica');
@@ -31,16 +31,16 @@ ob_start();
                 <div class="col-sm-3 col-md-3 invoice-col" >
                   RECIEVED BY
                   <address>
-                    <strong>'.$student_name.'</strong><br>
+                    <strong>'.$customer_name.'</strong><br>
                     795 Folsom Ave, Suite 600<br>
                     San Francisco, CA 94107<br>
-                    Phone: '.$contact.'<br>
+                    Phone: '.$mobile.'<br>
                     Email:'.$email.'
                   </address>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                  <b>Reciept '.$reciepteId.'</b><br>
+                  <b>Reciept '.$recieptId.'</b><br>
                   <br>
                 
                   // <b>Payment Due:</b> '.$date.'<br>

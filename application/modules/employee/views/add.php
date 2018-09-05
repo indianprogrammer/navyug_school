@@ -76,8 +76,8 @@
 	</div>
 
 <?php echo form_close(); ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<!-- script for checkbox -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ --><!-- script for checkbox -->
 <script>
 $(document).ready(function(e) {
        $('#check').click(function() {

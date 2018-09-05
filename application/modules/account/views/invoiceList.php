@@ -20,7 +20,7 @@
         <tr>
             <td><?=$count++ ?></td>
             <td><?=$row['invoice_id'] ?> </td>
-            <td><?=$row['name'] ?> </td>
+            <td data-toggle="tooltip" data-placement="top" title="click to view" onclick="showView(<?= $row['student_id'] ?>)"><?=$row['customer_name'] ?> </td>
              <td><?=$row['total_amount'] ?></td>
              <td><?=$row['date'] ?></td>
              <td><a href="<?= site_url('account/getpdf/'.$row['invoice_id']); ?>" class="btn btn-info btn-xs" target="_blank">Get Pdf</a> 
@@ -30,12 +30,61 @@
     </tbody>
 </table>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+<div id="dataModal" class="modal fade" role="dialog">
+                              <div class="modal-dialog modal-lg" >
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <!-- <h4 class="modal-title">Modal Header</h4> -->
+                                  </div>
+                                  <div class="modal-body" id="student_detail">
+
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+
+                              </div>
+</div>
 
 
 <script>
     $(document).ready( function () {
         $('#invoice_table').DataTable();
     } );
+</script>
+<script type="text/javascript">
+
+   function showView(student_id) {     
+     $.ajax({  
+      url:"<?= base_url()?>student/fetchStudentView",  
+      method:"post",  
+      data:{id:student_id},  
+      success:function(data){  
+       
+        var obj=JSON.parse(data);
+   
+          if(obj.parent_id)
+          {
+            var parent_name=obj.parent_name;
+          }
+          else
+          {
+            
+            var parent_name='<form method="post" action="<?= base_url() ?>parents/add_parent"><button>add </button><input type="hidden" name="studentId" value='+student_id+' ></form>';
+          
+
+          }
+        $('#student_detail').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Parent Name</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+parent_name+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>');  
+        $('#dataModal').modal("show");  
+      }  
+    });  
+   }
+
+
+
+ 
 </script>

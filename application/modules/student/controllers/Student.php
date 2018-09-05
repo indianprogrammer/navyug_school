@@ -155,6 +155,14 @@
             'student_id'=>$studentId,
             'class_id' =>$row
         );
+           #insert student balance details
+             $balanceTableInfo=array(
+
+            'customer_id'=>$studentId,
+            'school_id'=>$this->session->SchoolId
+
+        );  
+            $addBalanceInfo  = $this->Student_model->add_balance_info_default($balanceTableInfo);
              ##temporary purpose
            $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
        }

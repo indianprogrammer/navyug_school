@@ -68,4 +68,12 @@ class Subject_model extends CI_Model
     {
         $this->db->delete('map_school_subject',array('subject_id'=>$id,'school_id'=>$school_id));
     }
+     ##calling by admin module show in dashboard
+     function get_all_subject_count($school_id)
+    {
+      $this->db->where('school_id',$school_id);
+      $query=$this->db->get('map_school_subject')->num_rows();
+      return $query;
+    }
 }
+?>

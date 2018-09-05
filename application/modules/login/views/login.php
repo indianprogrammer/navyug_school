@@ -1,48 +1,33 @@
-
 <!DOCTYPE html>
-<html lang="zxx">
-<!-- Head -->
-
+<html>
 <head>
-    <title>  Login</title>
-    <!-- Meta-Tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <script>
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>AdminLTE 3 | Log in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
-    <!-- //Meta-Tags -->
-    <!-- Index-Page-CSS -->
-    <link rel="stylesheet" href="<?= base_url()?>assets/login/css/style.css" type="text/css" media="all">
-    <!-- //Custom-Stylesheet-Links -->
-    <!--fonts -->
-    <!-- //fonts -->
-    <link rel="stylesheet" href="<?= base_url()?>assets/login/css/font-awesome.css" type="text/css" media="all">
-    <!-- //Font-Awesome-File-Links -->
-	
-	<!-- Google fonts -->
-	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
-	<!-- Google fonts -->
-
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?= base_url()?>assets/admin/dist/css/adminlte.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?= base_url()?>assets//admin/plugins/iCheck/square/blue.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<!-- //Head -->
-<!-- Body -->
-
-<body>
-    <h1 class="title-agile text-center" style="margin-top: -10px;"> LOGIN</h1>
-
-    <div class="content-w3ls">
-        <div class="content-bottom" style="top: -50px;" >
-            <h2>Sign In Here <i class="fa fa-hand-o-down" aria-hidden="true"></i></h2>
-        <?php
-    if (isset($message_display)) {
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="../../index2.html"><b>LOGIN PAGE</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+<?php  if (isset($message_display)) {
     echo "<div class='message' style='color:green'>";
     echo $message_display;
     echo "</div>";
@@ -52,62 +37,61 @@
     echo $error_message;
     }
     ?>
-            <!-- form action="#" method="post"> -->
-            <?= form_open('login/process') ?>
-                <div class="field-group">
-                    <div class="wthree-field">
-                        <input  id="text1" type="text" value="" placeholder="username" name="username" required  autofocus>
-                    </div>
-                    <span class="fa fa-user" aria-hidden="true"></span>
-                    <div class="text-danger" style="color:red"><?php echo form_error('username'); ?></div>
-                </div>
-                <div class="field-group">
-                    <div class="wthree-field">
-                        <input name="password" id="myInput" type="Password" placeholder="Password">
-                    </div>
-                    <span class="fa fa-lock" aria-hidden="true"></span>
-                </div>
-                    <div class="text-danger" style="color:red"><?php echo form_error('password'); ?></div>
-                <div class="field-group">
-                    <div class="check">
-                        <label class="checkbox w3l">
-                            <input type="checkbox" onclick="myFunction()">
-                            <i> </i>show password</label>
-                    </div>
-                    <!-- script for show password -->
-                    <script>
-                        function myFunction() {
-                            var x = document.getElementById("myInput");
-                            if (x.type === "password") {
-                                x.type = "text";
-                            } else {
-                                x.type = "password";
-                            }
-                        }
-                    </script>
-                    <!-- //script for show password -->
-                </div>
-                <div class="wthree-field">
-                    <input id="saveForm" name="saveForm" type="submit" value="sign in" />
-                </div>
-                <ul class="list-login">
-                    <li class="switch-agileits">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider round"></span>
-                            keep signed in
-                        </label>
-                    </li>
-                    <li>
-                        <a href="#myModal" class="text-right">forgot password?</a>
-                    </li>
-                    <li class="clearfix"></li>
-                </ul>
-            <?= form_close();?>
+       <?= form_open('login/process') ?>
+        <div class="form-group has-feedback">
+          <input type="text" class="form-control" name="username" placeholder="username">
+          <span class="fa fa-envelope form-control-feedback"></span>
         </div>
+        <div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <span class="fa fa-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="checkbox icheck">
+              <label>
+                <input type="checkbox"> Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+       <?= form_close();?>
+
+      
+      <!-- /.social-auth-links -->
+
+     <!--  <p class="mb-1">
+        <a href="#">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+        <a href="#" class="text-center">Register a new membership</a>
+      </p> -->
     </div>
-   
+    <!-- /.login-card-body -->
+  </div>
 </div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="<?= base_url()?>assets/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="<?= base_url()?>assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- iCheck -->
+<script src="<?= base_url()?>assets/admin/plugins/iCheck/icheck.min.js"></script>
+<script>
+  $(function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_square-blue',
+      radioClass   : 'iradio_square-blue',
+      increaseArea : '20%' // optional
+    })
+  })
+</script>
 </body>
-<!-- //Body -->
 </html>
+

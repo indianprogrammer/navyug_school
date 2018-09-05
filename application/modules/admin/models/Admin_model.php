@@ -12,30 +12,10 @@ class Admin_model extends CI_Model
   
    
   ##for counting row
-    function get_all_students_count($school_id)
-    {
-       $this->db->where('school_id',$school_id);
-    $query =$this->db->get('map_school_student')->num_rows();
-      return $query;
-    }
-    function get_all_employees_count($school_id)
-    {
-      $this->db->where('school_id',$school_id);
-      $query=$this->db->get('map_school_employee')->num_rows();
-      return $query;
-    }
-    function get_all_subject_count($school_id)
-    {
-      $this->db->where('school_id',$school_id);
-      $query=$this->db->get('map_school_subject')->num_rows();
-      return $query;
-    }
-    function get_all_class_count($school_id)
-    {
-      $this->db->where('school_id',$school_id);
-      $query=$this->db->get('map_school_class')->num_rows();
-      return $query;
-    }
+   
+   
+   
+   
     function get_amount_count_debit()
     {
         $this->db->select_sum('debit');
@@ -57,16 +37,10 @@ class Admin_model extends CI_Model
 function get_student_details_date($school_id)
 {
 
-  // $this->db->select('id');
- 
-//   $this->db->from('student');
-//    $this->db->order_by('created_at','desc');
-//   $this->db->group_by('MONTH(created_at)');
-
-// return $this->db->count_all_results('id');
+  
   $query = $this->db->query("select MONTHNAME(created_at) as month,count(id) as count from student LEFT JOIN  map_school_student ON map_school_student.student_id = student.id where school_id='$school_id' group by MONTH(created_at),MONTHNAME(created_at) order by MONTH(created_at) asc");
    return $query->result_array();
-   // return result();
+   
 }
 function get_invoice_details_date($school_id)
 {

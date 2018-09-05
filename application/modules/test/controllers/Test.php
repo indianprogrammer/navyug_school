@@ -342,5 +342,10 @@ function fetch()
    $data['_view'] = 'checkinvoice';
      $this->load->view('index',$data);
  }
+ function ba()
+ {
+  $this->load->model('account/Account_model');
+  $this->load->Account_model->update_balance(200,63,1)  ;
+ }
 }
 ?>

@@ -103,65 +103,7 @@
 
 
 <script type="text/javascript">
-  // function  getStudentDetails(){
-  //  $(document).ready(function() {
-
-
-  //       var keyword = $('#uname').val();
-  //        console.log(keyword);
-
-
-
-  //       var keyword = $('#uname').val();
-  //        console.log(keyword);
-
-
-  //       $.ajax({
-  //           method: "POST",
-  //           url:" <?= base_url() ?>account/fetchRecordStudent", 
-  //           data: {
-  //               keyword: keyword
-  //           },
-  //           success: function( responseObject ) {
-
-  //               var data=JSON.parse(responseObject);
-
-  //                 if(data)
-  //               {
-  //               $('#email').val(data.email);
-  //               $('#stuname').val(data.student_name);
-  //               $('#contact').val(data.mobile);
-  //             }
-  //             else
-  //             {
-  //                $('#email').val("");
-  //               $('#stuname').val("");
-  //               $('#contact').val("");
-  //             }
-
-
-  //              if (data.length > 0) {
-  //                   $('#Dropdown').empty();
-  //                   $('#stuname').attr("data-toggle", "dropdown");
-  //                   $('#Dropdown').dropdown('toggle');
-  //               }
-  //               else if (data.length == 0) {
-  //                   $('#stuname').attr("data-toggle", "");
-  //               }
-  //               $.each(data, function (key,value) {
-  //                   if (data.length >= 0)
-  //                       $('#Dropdown').append('<li role="displayCountries" ><a role="menuitem Dropdownli" class="dropdownlivalue">' + value['name'] + '</a></li>');
-  //               });
-  //           }
-  //       });
-
-  //   });
-
-  //   $('ul.txtcountry').on('click', 'li a', function () {
-  //       $('#stuname').val($(this).text());
-  //   });
-
-  //           }
+ 
   
   function enterEvent(e) {
     // $("#country").keyup(function () {
@@ -264,9 +206,9 @@
       var keyword = $('#uname').val();
       console.log(keyword);
       $.ajax({
-       url:"<?= base_url() ?>account/addMultiple",
+       url:"<?= base_url() ?>account/invoiceGenerate",
        method:"POST",
-       data:{item_name:item_name,item_price:item_price,keyword:keyword},
+       data:{particular:item_name,price:item_price,keyword:keyword},
        success:function(data){
     // alert(data);
      // console.log(data);
