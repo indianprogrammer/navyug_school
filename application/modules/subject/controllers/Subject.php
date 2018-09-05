@@ -82,8 +82,8 @@ class Subject extends MY_Controller{
         #set notifications
         $this->session->alerts = array(
             'severity'=> 'success',
-            'title'=> 'successfully added',
-            'description'=> ''
+            'title'=> 'successfully added'
+            // 'description'=> ''
         );
         
         redirect('subject');

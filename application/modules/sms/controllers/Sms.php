@@ -12,19 +12,19 @@ class Sms extends MY_Controller{
 
   function send_notification_sms($notification,$notificationStudent,$notificationEmployee)
   {
-     $this->load->model('student/Student_model');
-     $this->load->model('employee/Employee_model');
-    $notificationMsg= $notification;
-    $school_id=$this->session->SchoolId;
+   $this->load->model('student/Student_model');
+   $this->load->model('employee/Employee_model');
+   $notificationMsg= $notification;
+   $school_id=$this->session->SchoolId;
    $getInfoSmsGateway=$this->Sms_model->get_info_sms($school_id);
 
-  $senderId = $getInfoSmsGateway['sender_id'];
-  $authKey = $getInfoSmsGateway['auth_key'];
-  $url=$getInfoSmsGateway['url'];
-    $stu=[];
+   $senderId = $getInfoSmsGateway['sender_id'];
+   $authKey = $getInfoSmsGateway['auth_key'];
+   $url=$getInfoSmsGateway['url'];
+   $stu=[];
 
-    if($notificationStudent!=0)
-    {
+   if($notificationStudent!=0)
+   {
      for ($i=0;$i<count($notificationStudent);$i++)
      {
 
@@ -78,7 +78,7 @@ class Sms extends MY_Controller{
      array_push($emp,$this->Employee_model->get_employee($notificationEmployee[$i]));
                // return $emp;die;
    }
-    $empCount=count($emp);
+   $empCount=count($emp);
    for($j=0;$j<$empCount;$j++)
    {
     $data=array

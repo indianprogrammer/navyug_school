@@ -149,12 +149,7 @@
 
 
        // }
-
-
-
-
-
-        ##generate random reciept number
+  ##generate random reciept number
        // $recieptId=rand(1,1000).rand(1,100);
     $school_id=$this->session->SchoolId;
     $schoolInfo= $this->Account_model->getSchoolName($school_id) ;
@@ -192,25 +187,11 @@
       'student_id'=>$studentData['id']
 
     );
-        // var_dump($accountTransaction);
+       
     $transaction = $this->Account_model->add_transaction($accountTransaction);
 
-        ##get input from reciept form
-    // $params=array(
-
-    //   'student_name'=>$getStudentDetails->name,
-    //   'school_name'=>$schoolName->organization_name,
-    //   'email'=>$getStudentDetails->email,
-    //   'address'=>$getStudentDetails->temporary_address,
-    //   'contact'=>$getStudentDetails->mobile,
-
-    //   'paid'=>$paid,
-    //   'reciepteId'=>$recieptId,
-    //   'title'=>"reciept",
-    //   'payment_method'=>$payment_method,
-    //   'date'=>date('y/m/d')
-
-    // );
+       
+   
        // $this->load->view('recieptPdf', $params);
       ##update balance information
 
@@ -283,8 +264,7 @@
 function getPdfReciept($reciept_id)
 {
   $getReciept = $this->Account_model->get_reciept($reciept_id);
-// var_dump($getReciept);
-  // $schoolName= $this->Account_model->getSchoolName($this->session->SchoolId) ;
+
   $params=array(
 
     'customer_name'=>$getReciept['customer_name'],
@@ -302,7 +282,7 @@ function getPdfReciept($reciept_id)
     'date'=>$getReciept['date']
 
   );
-// var_dump( $params);die;
+
   $this->load->view('recieptPdf', $params);
 }
 

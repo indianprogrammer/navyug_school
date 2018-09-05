@@ -400,7 +400,7 @@
                         <div class="alert alert-<?= $this->session->alerts['severity'] ?> alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                             <h5><i class="icon fa fa-check"></i> <?= $this->session->alerts['title'] ?>!</h5>
-                            <?= $this->session->alerts['description'] ?>
+                            <?= isset($this->session->alerts['description'])?$this->session->alerts['description']:'' ?>
                         </div>
                         <?php $this->session->alerts = null; } ?>
 

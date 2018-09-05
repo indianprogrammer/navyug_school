@@ -8,6 +8,30 @@ class Email extends MY_Controller {
 
   }
 
+
+  #function to send mail
+  function sendMail($to,$subject,$body,$attachments = null){
+    #collect all data
+
+    #send mail
+
+    #
+  }
+
+  function addStudentMail($studentDetails){
+    #get student details from $studentdetail
+
+    #prepair params 
+    $to = '';
+    $subject = '';
+    $body = '';
+    $attachments = '';
+
+
+    #send mail
+    //sendMail($to,$subject,$body,$attachments)
+  }
+
   function send_email($emailinfo) {
          ##fetch data from template
 
