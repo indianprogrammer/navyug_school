@@ -22,7 +22,7 @@ class Employee_model extends CI_Model
      */
     function get_all_employees($schoolId)
     {
-        $this->db->select('employees.name,employees.email,employees.mobile,employees.permanent_address,employees.temporary_address,employees.profile_image,employees,employees.id,employees.qualification,employees.created_at');
+        $this->db->select('employees.name,employees.email,employees.mobile,employees.permanent_address,employees.temporary_address,employees.profile_image,employees.id,employees.qualification,employees.created_at');
         $this->db->order_by('id', 'desc');
        
         $this->db->from('map_school_employee');

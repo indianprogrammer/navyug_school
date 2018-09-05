@@ -81,22 +81,17 @@ max-height: 400px;
 padding:7px; 
 /*border:#e5e5e5 1px solid;*/
  }
-  /* Extra small devices (phones, 600px and down) */
-/*@media only screen and (max-width: 600px) {
-    .customtable
- {
-width:300px;
- border-collapse:collapse; 
-  background-color: #f8f8f8;
-   
- } 
-}*/
+ 
 .zoom:hover {
     -ms-transform: scale(2.5); /* IE 9 */
     -webkit-transform: scale(2.5); /* Safari 3-8 */
     transform: scale(2.5); 
     transition: .7s;
     
+}
+a
+{
+  color:black;
 }
    </style>
 

@@ -5,7 +5,7 @@
 	<div class="col-md-8">
 		<select id="attendance" name="attendance">
 			<?php foreach($classes as $row) { ?>
-				<option value="<?= $row->id ?>"><?= $row->name ?></option>
+				<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
 
 			<?php } ?>
 		</select>

@@ -181,8 +181,7 @@ class Parents extends MY_Controller{
                  // 'profile_image' => $this->input->post('profile_image'),
             'permanent_address' => $this->input->post('paddress'),
             'temporary_address' => $this->input->post('taddress')
-                  // 'modified_at'=>date('Y-m-d h:i:s')
-                     // 'modified_at'=>date('Y-m-d h:i:s')
+            
           );
 
 
@@ -209,6 +208,7 @@ class Parents extends MY_Controller{
         // check if the parent exists before trying to delete it
       if(isset($parent['id']))
       {
+        ##reamaning some mapping delete if required
         $this->Parents_model->delete_parent($id);
         redirect('parents');
       }

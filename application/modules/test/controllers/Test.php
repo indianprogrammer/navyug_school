@@ -347,5 +347,12 @@ function fetch()
   $this->load->model('account/Account_model');
   $this->load->Account_model->update_balance(200,63,1)  ;
  }
+ function array()
+ {
+  $data['student']=array();
+  $datas=array("aman","swapnil");
+  array_push( $data['student'],$datas);
+  var_dump( $data['student']);
+ }
 }
 ?>

@@ -48,7 +48,7 @@
     var url="<?php echo base_url();?>";
     function delFunction(id)
     {
-       
+     
     // var id = $(this).data('id');
     bootbox.confirm("Are you sure want to delete  ?", function(result) {
       if(result)

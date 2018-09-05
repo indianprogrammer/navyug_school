@@ -6,6 +6,7 @@
       {
         parent::__construct();
         $this->load->model('Account_model');
+        $this->load->model('student/Student_model');
         $this->load->helper('pdf_helper');
 
       } 
@@ -60,7 +61,9 @@
       $price = $row["price"];
       $subtotal = $subtotal + $price;
             // $percentage=;
-      $tax=$subtotal*0.18;
+      ##it comes through database 
+      $tax=0;
+      // $tax=$subtotal*0.18;
       $total=$subtotal+$tax;
       if($name!=""){
         $rows = $rows."<tr><td>".$no."</td><td>".$name."</td><td>".$price."</td></tr>";
@@ -120,7 +123,7 @@
     
         ##get student details by student_id
 
-    $studentData=$this->Account_model->fetchRecordStudents($studId);
+    $studentData=$this->Student_model->fetchRecordStudents($studId);
     // $getStudentDetails=$this->Account_model->get_information_student($studentData['id']);
           // var_dump($getStudentDetails);die;
         ##getting information of invoice payment
@@ -307,13 +310,13 @@ function fetchRecordStudent()
 {   
   $school_id=$this->session->SchoolId;
 
-  echo json_encode($this->Account_model->fetchRecordStudents($this->input->post('keyword')));
+  echo json_encode($this->Student_model->fetchRecordStudents($this->input->post('keyword')));
 }
 ## invoice
 function invoiceGenerate()
 {   
  $input_key=$this->input->post('keyword');
- $studentData=$this->Account_model->fetchRecordStudents($input_key);
+ $studentData=$this->Student_model->fetchRecordStudents($input_key);
 
  $schoolId=$this->session->SchoolId;
  $getSchoolInformation = $this->Account_model->get_school_information($schoolId);
@@ -346,7 +349,7 @@ function invoiceGenerate()
 
 
 
- $data=$this->Account_model->insertMultiple($entries);
+ $data=$this->Account_model->insertMultipleParticular($entries);
    // $totalamount= $this->Account_model->get_total_amount_invoice($incrementedUniqueInvoiceId);
 
  $invoiceprocess=array(

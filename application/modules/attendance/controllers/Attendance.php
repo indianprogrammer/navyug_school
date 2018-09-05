@@ -26,7 +26,7 @@
     function take_attendance()
     { 
       $school_id=$this->session->SchoolId;
-      $data['classes'] = $this->Attendance_model->fetch_classes($school_id);
+      $data['classes'] = $this->Classes_model->fetch_classes($school_id);
       $data['_view'] = 'attendence';
       $this->load->view('index',$data);
     }
@@ -37,7 +37,7 @@
     {   
 
      $data['classID']=$this->input->post('attendance');
-     $data['students'] = $this->Attendance_model->fetch_students($data['classID']);
+     $data['students'] = $this->Student_model->fetch_students($data['classID']);
 
      // var_dump( $data['students'] );die;
      $data['_view'] = 'add';
@@ -80,7 +80,7 @@
   {
 
    $school_id=$this->session->SchoolId;
-   $data['classes'] = $this->Attendance_model->fetch_classes($school_id);
+   $data['classes'] = $this->Classes_model->fetch_classes($school_id);
     // var_dump($data['classes'] );die;
    $data['_view'] = 'selectList';
    $this->load->view('index',$data);

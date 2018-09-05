@@ -1,3 +1,5 @@
+
+
 <h5 align="center" style="font-weight:150px;">Select Class and date For Attendance report</h5>
 <br>	
 <div class="row">
@@ -7,7 +9,7 @@
 		<div class="col-md-5">
 			<select id="classId" name="classId">
 				<?php foreach($classes as $row) { ?>
-					<option value="<?= $row->id ?>"><?= $row->name ?></option>
+					<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
 
 				<?php } ?>
 			</select>
@@ -91,7 +93,7 @@ for(var i=0;i<obj.report.length;i++)
 		{	
 			
 			tablehead='<tr><th>Serial</th><th>Student Name</th><th>Attendance Status</th></tr>';
-			table+='<tr><td>'+counter +'</td><td data-toggle="tooltip" data-placement="top" title="click to get details"><a href="javascript:void(0)"  onclick="showView('+obj.student[j].ids+');" >'+obj.student[j].name+'</a></td><td>'+obj.report[i].attendance_status+'</td></tr>';
+			table+='<tr><td>'+counter +'</td><td data-toggle="tooltip" data-placement="top" title="click to get details"><a href="<?=base_url()?>student/getFullDetails?student_id='+obj.student[j].ids+'" target="_blank" >'+obj.student[j].name+'</a></td><td>'+obj.report[i].attendance_status+'</td></tr>';
 			final=tablehead+table;
 			counter++;
 		}
@@ -107,7 +109,7 @@ $('#displayReport').html(final);
 	});
 
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
    function showView(student_id) {     
      $.ajax({  
@@ -138,4 +140,4 @@ $('#displayReport').html(final);
 
 
  
-</script>
+</script> -->

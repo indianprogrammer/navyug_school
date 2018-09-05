@@ -76,6 +76,7 @@ class Parents_model extends CI_Model
         $this->db->insert('map_school_parent',$ids);
         return $this->db->insert_id();
     }
+    ##remove in future
     function add_user($authentication)
      {
          $this->db->insert('authentication',$authentication);

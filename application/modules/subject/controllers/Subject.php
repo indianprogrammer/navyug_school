@@ -13,21 +13,39 @@ class Subject extends MY_Controller{
      * Listing of subject
      */
     function index()
-    {
-     
+    {   
+
         $schoolId=$this->session->SchoolId;
-        $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
+        if($this->input->get('classId'))
+        {
+            $classId=$this->input->get('classId');
+            $fetchSubjectId=$this->Subject_model->get_all_subject_by_classid($classId);
+            // var_dump($fetchSubjectId[0]['subject_id']);
+            $noOfSubject=count($fetchSubjectId);
+            $data=array();
+                $data['subject']=array();
+            for($i=0;$i<$noOfSubject;$i++)
+            {
+                array_push( $data['subject'],$fetchSubjectId[$i]['subject_id']);
+           
+         }
+             $data['subject'] = $this->Subject_model->get_subject_by_subject_id($data['subject']);
         
-        $data['_view'] = 'subjectList';
-        $this->load->view('index',$data);
-    }
+     }
+     else
+     {
+         $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
+     }
+     $data['_view'] = 'subjectList';
+     $this->load->view('index',$data);
+ }
 
     /*
      * Adding a new subject
      */
     function add_subject()
     {
-        
+
        $data['_view'] = 'add';
        $this->load->view('index',$data);
    }
@@ -45,17 +63,16 @@ class Subject extends MY_Controller{
     if($this->form_validation->run() )     
     {   
         $params = array(
-                // 'password' => $this->input->post('password'),
+                
             'name' => $this->input->post('subject_name')
             
-                //  'created_at'=>date(),
-                // 'modified_at'=>date()
+               
         );
         
         
         $subject_id = $this->Subject_model->add_subject($params);
         $ids=array(
-            
+
             'subject_id'=>$subject_id,
             'school_id'=>$this->session->SchoolId
 
@@ -66,9 +83,9 @@ class Subject extends MY_Controller{
         $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added',
-         'description'=> ''
+            'description'=> ''
         );
-        //$this->output->enable_profiler(TRUE);
+        
         redirect('subject');
     }
     else
@@ -98,10 +115,10 @@ class Subject extends MY_Controller{
             if($this->form_validation->run() )     
             {   
                 $params = array(
-                 
+
                     'name' => $this->input->post('subject_name')
                     
-                    // 'modified_at'=>date()
+                    
                 );
                 
                 $this->Subject_model->update_subject($id,$params);            
@@ -134,8 +151,6 @@ class Subject extends MY_Controller{
         else
             show_error('The subject you are trying to delete does not exist.');
     }
-    function checkBalance()
-    {
-        echo "dasda";
-    }
+    
 }
+?>

@@ -102,7 +102,7 @@ function get_max_invoiceno($school_id)
 }
 
 
-function insertMultiple($entries)
+function insertMultipleParticular($entries)
 {
   $this->db->insert_batch('master_invoice',$entries);
 
@@ -120,11 +120,6 @@ function get_school_information($school_id)
  return $query = $this->db->get()->row_array();
 }
 
-// function add_transaction_reciept($accountTransaction)
-// {
-//  $this->db->insert('account_transaction',$accountTransaction);
-//  return $this->db->insert_id();
-// }
 function add_reciept($reciept)
 { 
 
@@ -159,21 +154,7 @@ function get_reciept($reciept_id)
  return $query = $this->db->get()->row_array();
 }
 
-function fetchRecordStudents($username)
-{
 
- $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address');
- $this->db->from('authentication');
- $this->db->where('username',$username);  
- $this->db->where('autorization_id',4);  
-
-        // $this->db->join('map_school_student', 'map_school_student.student_id=student.id');
-        // $this->db->join('student', 'invoice.student_id=student.id', 'Left');
- $this->db->join('student', 'authentication.user_id=student.id', 'Left');
-        // $this->db->where('school_id',$school_id);
- return  $query = $this->db->get()->row_array();
-
-}
 // function get_information_invoice($invoiceId)
 // {
 //   $this->db->select('invoices.*');
@@ -256,32 +237,31 @@ function sum_of_credit($studentId,$school_id)
 
 }
 ##for get credit information
-function searchCreditBalInformation($studentId)
-{
- $this->db->select('reciepts.id as recieptId');
- $this->db->from('reciepts');
-   // $parameter="student_id=$studentId and school_id=1";
- $this->db->where('student_id',$studentId);  
-    // $this->db->join('student', 'student.id=invoices.student_id');
-    // $this->db->join('student', 'student.id=invoices.student_id');
+// function searchCreditBalInformation($studentId)
+// {
+//  $this->db->select('reciepts.id as recieptId');
+//  $this->db->from('reciepts');
+   
+//  $this->db->where('student_id',$studentId);  
+   
 
 
- return  $query = $this->db->get()->result_array();
+//  return  $query = $this->db->get()->result_array();
 
-}
+// }
 
-function gettingTransactionInfoCredit($keyword)
-{
+// function gettingTransactionInfoCredit($keyword)
+// {
 
- $this->db->select('account_transaction.credit');
- $this->db->from('account_transaction');
-   // $parameter="student_id=$studentId and school_id=1";
- $this->db->where('reference_id',$keyword);  
- $this->db->join('reciepts', 'account_transaction.reference_id=reciepts.id');
- return  $query = $this->db->get()->row();
+//  $this->db->select('account_transaction.credit');
+//  $this->db->from('account_transaction');
+//    // $parameter="student_id=$studentId and school_id=1";
+//  $this->db->where('reference_id',$keyword);  
+//  $this->db->join('reciepts', 'account_transaction.reference_id=reciepts.id');
+//  return  $query = $this->db->get()->row();
 
 
-}
+// }
 function getSchoolName($id)
 {
  $this->db->select('school.organization_name,school.address,school.contact_pri,school.email');

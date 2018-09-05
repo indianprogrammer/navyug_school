@@ -1,10 +1,10 @@
 
 <style type="text/css">
-  #crud_table tr td
-  {
-    background-color: white;
-    /*border:1px solid;*/
-  }
+#crud_table tr td
+{
+  background-color: white;
+  /*border:1px solid;*/
+}
 </style>
 
 
@@ -18,13 +18,13 @@
       <input type="text" name="search" 
       class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" data-toggle="dropdown"/>
 
- <div id="table_dropdown" class=" dropdown-menu customtable" ></div> 
+      <div id="table_dropdown" class=" dropdown-menu customtable" ></div> 
     </div>
 
 
   </div>
 
- 
+
 </div>
 
 <div class="col-md-5 col-sm-12">
@@ -67,30 +67,30 @@
 </div>
 
 <div class="col-md-5 col-sm-12">
-  
-    <table class="table  table-responsive " id="crud_table">
-     <tr>
-      <th width="10%">Particular</th>
-      <th width="5%">Amount</th>
 
-      <th width="5%"></th>
-    </tr>
-    <tr>
-      <!-- <td ><input type="text" class="item_name" placeholder="Enter name"></td> -->
-      <td contenteditable="true" class="item_name" style="border-right:1px solid grey"></td>
-      <td contenteditable="true" class="item_price"></td> 
-      <!-- <td  ><input type="text" class="item_price" placeholder="Enter price"></td> -->
-      <td></td>
-    </tr>
-  </table>
-  <div align="left">
-   <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
- </div>
- <div align="center">
-   <button type="button" name="save" id="save" class="btn btn-info">Generate Invoice</button>
- </div>
- <br />
- <div id="inserted_item_data"></div>
+  <table class="table  table-responsive " id="crud_table">
+   <tr>
+    <th width="10%">Particular</th>
+    <th width="5%">Amount</th>
+
+    <th width="5%"></th>
+  </tr>
+  <tr>
+    <!-- <td ><input type="text" class="item_name" placeholder="Enter name"></td> -->
+    <td contenteditable="true" class="item_name" style="border-right:1px solid grey"></td>
+    <td contenteditable="true" class="item_price"></td> 
+    <!-- <td  ><input type="text" class="item_price" placeholder="Enter price"></td> -->
+    <td></td>
+  </tr>
+</table>
+<div align="left">
+ <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
+</div>
+<div align="center">
+ <button type="button" name="save" id="save" class="btn btn-info">Generate Invoice</button>
+</div>
+<br />
+<div id="inserted_item_data"></div>
 
 </div>
 
@@ -103,15 +103,13 @@
 
 
 <script type="text/javascript">
- 
-  
+
+
   function enterEvent(e) {
     // $("#country").keyup(function () {
-       
+
       var seachkeyword = $('#search').val();
-         // console.log(keyword);
-         // var keyword = $('#search').val();
-         // console.log(keyword);
+       
          if (e.keyCode == 13) {
           $.ajax({
             type: "POST",
@@ -122,16 +120,16 @@
            
            success: function (data) {
 
-              var obj=JSON.parse(data);
-               console.log(obj);
-              var i,tabledata;
-              if(obj.length==0)
-              {
-                $('#table_dropdown').hide();
-              }
-              else
-              {
-              // console.log(obj[0].student_name);
+            var obj=JSON.parse(data);
+          
+            var i,tabledata;
+            if(obj.length==0)
+            {
+              $('#table_dropdown').hide();
+            }
+            else
+            {
+              
               for(i=0;i<obj.length;i++)
               {
                 tabledata+='<tr onclick="getRow('+obj[i].student_id+')"><td>'+obj[i].name+'</td><td>'+obj[i].username+'</td><td>'+obj[i].mobile+'</td></tr>'
@@ -141,10 +139,10 @@
               
             }
 
-            }
-          });
+          }
+        });
         }
-     
+
       }         
       function getRow($id) {
        $.ajax({
@@ -193,7 +191,7 @@
 
      $('#save').click(function(){
       var item_name = [];
-     
+
       var item_price = [];
       $('.item_name').each(function(){
        item_name.push($(this).text());
@@ -204,14 +202,13 @@
      });
       console.log(item_name);
       var keyword = $('#uname').val();
-      console.log(keyword);
+      // console.log(keyword);
       $.ajax({
        url:"<?= base_url() ?>account/invoiceGenerate",
        method:"POST",
        data:{particular:item_name,price:item_price,keyword:keyword},
        success:function(data){
-    // alert(data);
-     // console.log(data);
+    
      $("td[contentEditable='true']").text("");
      for(var i=2; i<= count; i++)
      {
@@ -225,7 +222,7 @@
    });
  </script>
  <script type="text/javascript">
- $(document).click(function(){
-  $("#table_dropdown").hide();
-});
+   $(document).click(function(){
+    $("#table_dropdown").hide();
+  });
 </script>

@@ -6,17 +6,17 @@
 
 class Classes_model extends CI_Model
 {
-    function __construct()
-    {
-        parent::__construct();
-    }
-    
+  function __construct()
+  {
+    parent::__construct();
+  }
+
     /*
      * Get class by id
      */
     function get_class($id)
     {
-        return $this->db->get_where('classes',array('id'=>$id))->row_array();
+      return $this->db->get_where('classes',array('id'=>$id))->row_array();
     }
 
     /*
@@ -33,29 +33,29 @@ class Classes_model extends CI_Model
      $this->db->join('school', 'map_school_class.school_id=school.id', 'Left');
      $this->db->join('classes', 'map_school_class.class_id=classes.id', 'Left');
      return $this->db->get()->result_array();
- }
+   }
 
     /*
      * function to add new class
      */
     function add_class($params)
     {
-        $this->db->insert('classes',$params);
-        return $this->db->insert_id();
+      $this->db->insert('classes',$params);
+      return $this->db->insert_id();
     }
 
     function add_mapping($ids)
     {
-        $this->db->insert('map_school_class',$ids);
-        return $this->db->insert_id();
+      $this->db->insert('map_school_class',$ids);
+      return $this->db->insert_id();
     }
     /*
      * function to update class
      */
     function update_class($id,$params)
     {
-        $this->db->where('id',$id);
-        return $this->db->update('classes',$params);
+      $this->db->where('id',$id);
+      return $this->db->update('classes',$params);
     }
     
     /*
@@ -63,7 +63,7 @@ class Classes_model extends CI_Model
      */
     function delete_class($id)
     {
-        return $this->db->delete('classes',array('id'=>$id));
+      return $this->db->delete('classes',array('id'=>$id));
     }
     // function fetch_subject($school_id)
     // {
@@ -89,51 +89,51 @@ class Classes_model extends CI_Model
     {
 
         ##will improve
-        $this->db->select('*');
+      $this->db->select('student_id,class_id');
       // $this->db->where('class_id',3);
-        $query=$this->db->get('map_student_class')->result_array();
-        return $query;
+      $query=$this->db->get('map_student_class')->result_array();
+      return $query;
     }
     function get_subject_count()
     {
 
             ##will improve
-        $this->db->select('*');
+      $this->db->select('subject_id,class_id');
           // $this->db->where('class_id',3);
-        $query=$this->db->get('map_class_subject')->result_array();
-        return $query;
+      $query=$this->db->get('map_class_subject')->result_array();
+      return $query;
     }
     function add_mapping_subject($ids)
     {
      $this->db->insert('map_class_subject',$ids);
- }
- function delete_classSchoolMap($id,$school_id)
- {
+   }
+   function delete_classSchoolMap($id,$school_id)
+   {
     $this->db->delete('map_school_class',array('class_id'=>$id,'school_id'=>$school_id));
-}
-function add_mapping_employee($ids)
-{
+  }
+  function add_mapping_employee($ids)
+  {
     $this->db->insert('map_class_employee',$ids);
     return $this->db->insert_id();
-}
- ##calling by admin module show in dashboard
-function get_all_class_count($school_id)
-{
-  $this->db->where('school_id',$school_id);
-  $query=$this->db->get('map_school_class')->num_rows();
-  return $query;
-}
-## called by attendance module fetch class by school id
-function fetch_classes($school_id)
-{
- 
+  }
+   ##calling by admin module show in dashboard
+  function get_all_class_count($school_id)
+  {
+    $this->db->where('school_id',$school_id);
+    $query=$this->db->get('map_school_class')->num_rows();
+    return $query;
+  }
+  ## called by attendance module fetch class by school id
+  function fetch_classes($school_id)
+  {
+
     $this->db->select('classes.name,classes.id');
     $this->db->from('map_school_class');
+    $this->db->where('school_id',$school_id);
     $this->db->join('school', 'map_school_class.school_id=school.id', 'Left');
     $this->db->join('classes', 'map_school_class.class_id=classes.id', 'Left');
-    $this->db->where('school_id',$school_id);
-    return $query = $this->db->get()->result();
-} 
+    return $query = $this->db->get()->result_array();
+  } 
 
 
 

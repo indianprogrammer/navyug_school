@@ -19,9 +19,8 @@ class Classes extends MY_Controller{
         $school_id=$this->session->SchoolId;
         $data['studentCount']=$this->Classes_model->get_student_count();
         $data['subjectCount']=$this->Classes_model->get_subject_count();
-          // var_dump($data['subjectCount']);die; 
+         
         $data['class'] = $this->Classes_model->get_all_class($school_id);
-        
         $data['_view'] = 'classList';
         $this->load->view('index',$data);
     }
@@ -33,9 +32,9 @@ class Classes extends MY_Controller{
     {            
       $school_id=$this->session->SchoolId;
         $data['subject'] = $this->Subject_model->get_all_subject($school_id);
-        // var_dump($data['subject']);die;
+       
         $data['employee'] = $this->Employee_model->get_all_employees($school_id);
-        // var_dump($data['subject']);die;
+        
         $data['_view'] = 'add';
         $this->load->view('index',$data);
     }

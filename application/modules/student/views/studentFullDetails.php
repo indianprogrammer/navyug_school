@@ -13,7 +13,7 @@
         <table id="student_table" class="table table-striped table-bordered table-responsive">
           <thead>
             <tr>
-              <th>ID</th>
+              <!-- <th>ID</th> -->
 
               <th>Student Name</th>
               <th>Email</th>
@@ -27,13 +27,13 @@
             </tr>
           </thead>
           <tbody>
-            <?php $count=1; ?>
-            <?php foreach($student as $row){ ?>
-              <tr>
-                <td><?= $count++  ?></td>
 
-                <td ><?= $row['name']; ?></td>
-                <td ><?= $row['email']; ?></td>
+
+            <tr>
+
+
+              <td ><?= $student_info['name']; ?></td>
+              <td ><?= $student_info['email']; ?></td>
                            <!--   <td  ><?php 
                             $studentClasses = explode(',', $row['classes']);
 
@@ -43,15 +43,15 @@
                            } 
                            ?></td> --> 
 
-                           <td><?= $row['mobile']; ?></td>
+                           <td><?= $student_info['mobile']; ?></td>
 
-                           <td data-toggle="tooltip" data-placement="top" title="<?= $row['permanent_address']?>" ><?php echo substr($row['permanent_address'],0,10).'....' ?></td>
-                           <td data-toggle="tooltip" data-placement="top" title="<?= $row['temporary_address']?>" ><?php echo substr($row['temporary_address'],0,10).'....' ?></td>
-
-
+                           <td data-toggle="tooltip" data-placement="top" title="<?= $student_info['permanent_address']?>" ><?php echo substr($student_info['permanent_address'],0,10).'....' ?></td>
+                           <td data-toggle="tooltip" data-placement="top" title="<?= $student_info['temporary_address']?>" ><?php echo substr($student_info['temporary_address'],0,10).'....' ?></td>
 
 
-                           <td> <img src="<?=base_url()."uploads/".$row['profile_image']; ?>" alt="" class="zoom" style="width:50px;height:50px";></td>
+
+
+                           <td> <img src="<?=base_url()."uploads/".$student_info['profile_image']; ?>" alt="" class="zoom" style="width:50px;height:50px";></td>
 
                            <!-- <td onload="getBalence(<?= $row['id'] ?>) "id="balance"></td> -->
                            <td>
@@ -59,17 +59,17 @@
 
 
                              <div class="btn-group" >
-                              <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></i></a></button>
-                              <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                              <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
+                              <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$student_info['id']); ?>" ><i class="fa fa-pencil"></i></a></button>
+                              <!--  <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button> -->
+                              <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $student_info['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
 
                               <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                                 <span class="caret"></span>
                               </button>
                               <div class="dropdown-menu">
-                                <a class="dropdown-item" href="<?=base_url() ?>account/invoice_list?student_id=<?= $row['id'] ?>" >Invoice Report</a>
-                                <a class="dropdown-item" href="<?=base_url() ?>account/reciept_list?student_id=<?= $row['id'] ?>">Reciept Report</a>
-                                <a class="dropdown-item" href="<?=base_url() ?>account/getLedger?student_id=<?= $row['id'] ?>">Ledger Report</a>
+                                <a class="dropdown-item" href="<?=base_url() ?>account/invoice_list?student_id=<?= $student_info['id'] ?>" >Invoice Report</a>
+                                <a class="dropdown-item" href="<?=base_url() ?>account/reciept_list?student_id=<?= $student_info['id'] ?>">Reciept Report</a>
+                                <a class="dropdown-item" href="<?=base_url() ?>account/getLedger?student_id=<?= $student_info['id'] ?>">Ledger Report</a>
                               </div>
                             </div>
                           </td>
@@ -117,25 +117,25 @@
                             </div>
                           </tr>
 
-                        <?php } ?>
-                      </tbody>
-                    </table>
-                    <div class="invoice_information"></div>
+
+                        </tbody>
+                      </table>
+                      <div class="invoice_information"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script> -->
-            <script>
-              $(document).ready( function () {
-                $('#student_table').DataTable();
-              } );
-            </script>
+              <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script> -->
+              <script>
+                $(document).ready( function () {
+                  $('#student_table').DataTable();
+                } );
+              </script>
 
-            <script type="text/javascript">
-              var url="<?php echo base_url();?>";
-              function delFunction(id)
-              {
+              <script type="text/javascript">
+                var url="<?php echo base_url();?>";
+                function delFunction(id)
+                {
     // var id = $(this).data('id');
     bootbox.confirm("Are you sure to delete  record ?", function(result) {
       if(result)
@@ -182,73 +182,18 @@
 </script>
 <script>
 
-//  function getFullDetailsInvoice($id)
-//  {
+
+  function getBalence($id)
+  {
 
 
-//   $.ajax({
-//     method: "post",
-//     url:" <?= base_url() ?>student/studentCompleteInformationInvoice", 
-//     data: {
-//       id: $id
-//     },
-//     success: function( responseObject ) {
-//       console.log(responseObject);
-//       var obj=JSON.parse(responseObject);
-//                         // $("#showBalance").html("your balance = "+responseObject);
-//                          // console.log(obj);
-//                          var maintable,i;
-//                          for (i = 0; i < obj.length; i++) {
-
-//                           maintable+='<tr><td>'+obj[i].invoice_id+'</td><td>'+obj[i].invoice_total+'</td><td>'+obj[i].invoice_date+'</td></tr>';
-//                         // finaltable=table+maintable+'</table>';
-//                         // console.log( finaltable)
-//                         $('#page').html('<table class="table table-striped table-bordered table-responsive"><tr><th>invoice id</th><th>amount</th><th>date</th></tr>'+maintable+'</table>');
-//                         // $('#dataModalinvoice').modal("show");  
-//                       }
-//                     }
-//                   });
-
-// }
-// function getFullDetailsReciept($id)
-// {
-
-
-//   $.ajax({
-//     method: "POST",
-//     url:" <?= base_url() ?>student/studentCompleteInformationReciept", 
-//     data: {
-//       id: $id
-//     },
-//     success: function( responseObject ) {
-//      console.log(responseObject);
-//      var obj=JSON.parse(responseObject);
-//                         // $("#showBalance").html("your balance = "+responseObject);
-//                          // console.log(obj);
-//                          var maintable,i;
-//                          for (i = 0; i < obj.length; i++) {
-
-//                           maintable+='<tr><td>'+obj[i].reciept_id+'</td><td>'+obj[i].reciept_amount+'</td><td>'+obj[i].reciept_date+'</td></tr>';
-//                         // finaltable=table+maintable+'</table>';
-//                         // console.log( finaltable)
-//                         $('#invoice_information').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Reciept id</th><th>amount</th><th>date</th></tr>'+maintable+'</table>');
-//                         $('#dataModalinvoice').modal("show");  
-//                       }
-//                     }
-//                   });
-
-// }
-function getBalence($id)
-{
-
-
-  $.ajax({
-    method: "POST",
-    url:" <?= base_url() ?>account/checkBalance", 
-    data: {
-      keyword: $id
-    },
-    success: function( responseObject ) {
+    $.ajax({
+      method: "POST",
+      url:" <?= base_url() ?>account/checkBalance", 
+      data: {
+        keyword: $id
+      },
+      success: function( responseObject ) {
                          // console.log(responseObject);
 
                         // $('#invoice_information').html('<h4>Your Current Balance Is '+responseObject+'' );
@@ -258,25 +203,7 @@ function getBalence($id)
 
                     });
 
-}
+  }
 
 </script>
 <!-- ##query search -->
-<script>
- $(document).ready( function () {
-  var url = window.location.search;
-url = url.replace("?id=", ''); // remove the ?
-// console.log(url);
-$.ajax({  
-  url:"<?= base_url()?>student/filterStudent",  
-  method:"post",  
-  data:{id:url},  
-  success:function(data){  
-    console.log(data);
-    var obj=JSON.parse(data);
-                // $('#page').hide();
-                $('#page').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>'); 
-              }
-            });
-});
-</script>

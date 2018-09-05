@@ -18,13 +18,17 @@ class Subject_model extends CI_Model
     {
         return $this->db->get_where('subjects',array('id'=>$id))->row_array();
     }
+    function get_recieve_subject($id)
+    {
+         return $this->db->get_where('subjects',array('id'=>$id))->result_array();
+    }
         
     /*
      * Get all subject
      */
     function get_all_subject($schoolId)
     {   
-            $this->db->select('subjects.*');
+            $this->db->select('subjects.id,subjects.name,subjects.date');
             $this->db->order_by('id', 'desc');
             $this->db->from('map_school_subject');
              $this->db->where('school_id',$schoolId);
@@ -74,6 +78,23 @@ class Subject_model extends CI_Model
       $this->db->where('school_id',$school_id);
       $query=$this->db->get('map_school_subject')->num_rows();
       return $query;
+    }
+    ##called by classes module
+    function get_all_subject_by_classid($class_id)
+    {
+        $this->db->select('subject_id');
+        $this->db->from('map_class_subject');
+        $this->db->where('class_id',$class_id);
+        return $this->db->get()->result_array();
+
+
+    }
+    function get_subject_by_subject_id($id)
+    {
+        $this->db->select('name,date,id');
+        $this->db->from('subjects');
+        $this->db->where_in('id',$id);
+        return $this->db->get()->result_array();
     }
 }
 ?>

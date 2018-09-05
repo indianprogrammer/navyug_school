@@ -2,11 +2,12 @@
 
 
     class Student extends MY_Controller{
-        function __construct()
-        {
-            parent::__construct();
-            $this->load->model('Student_model');
-        } 
+      function __construct()
+      {
+        parent::__construct();
+        $this->load->model('Student_model');
+        $this->load->model('classes/Classes_model');
+      } 
 
     /*
      * Listing of student
@@ -14,16 +15,33 @@
     function index()
     {   
         // $data['claasesName']=$this->Student_model->get_class_name();
-        $schoolId=$this->session->SchoolId;
-        $data['student'] = $this->Student_model->get_all_student($schoolId);
-        $data['classes'] = $this->Student_model->getAllClasses($schoolId);
-      // var_dump($data['student']);
-        // var_dump($data['classes']);
-        // die();
+      $schoolId=$this->session->SchoolId;
+      if($this->input->get('classId'))
+      {
+        $classId=$this->input->get('classId');
+        $fetchStudentId=$this->Student_model->get_all_student_by_classid($classId);
+            // var_dump($fetchSubjectId[0]['subject_id']);
+        $noOfStudent=count($fetchStudentId);
+        $data=array();
+        $data['student']=array();
+        for($i=0;$i<$noOfStudent;$i++)
+        {
+          array_push( $data['student'],$fetchStudentId[$i]['student_id']);
 
+        }
+        $data['student'] = $this->Student_model->get_student_by_student_id($data['student']);
+        
+      }
+      else
+      {
 
-        $data['_view'] = 'studentList';
-        $this->load->view('index',$data);
+    $data['student'] = $this->Student_model->get_all_student($schoolId);
+
+      }
+      $data['classes'] = $this->Classes_model->fetch_classes($schoolId);
+
+      $data['_view'] = 'studentList';
+      $this->load->view('index',$data);
     }
 
     /*
@@ -31,10 +49,10 @@
      */
     function add_student()
     {   
-        $school_id=$this->session->SchoolId;
-        $data['classes'] = $this->Student_model->fetch_classes($school_id);
-        $data['_view'] = 'add';
-        $this->load->view('index',$data);
+      $school_id=$this->session->SchoolId;
+      $data['classes'] = $this->Classes_model->fetch_classes($school_id);
+      $data['_view'] = 'add';
+      $this->load->view('index',$data);
     }
 
 
@@ -42,48 +60,48 @@
     {   
 
 
-        $this->load->library('form_validation');
-        $config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $this->load->library('upload', $config);
-        $school_id=$this->session->SchoolId;
-        $data['classes'] = $this->Student_model->fetch_classes($school_id);
+      $this->load->library('form_validation');
+      $config['upload_path']          = './uploads/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $this->load->library('upload', $config);
+      $school_id=$this->session->SchoolId;
+      $data['classes'] = $this->Classes_model->fetch_classes($school_id);
 
-        $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
-        $this->form_validation->set_rules('email','Email','max_length[50]|valid_email');
+      $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
+      $this->form_validation->set_rules('email','Email','max_length[50]|valid_email');
 
         // $this->form_validation->set_rules('mobile','Mobile','required');
     // $this->form_validation->set_rules('classes','class','required');
 
-        $this->form_validation->set_rules('paddress','Permanent Address','required');
-        $this->form_validation->set_rules('taddress','Temporary Address','required');
+      $this->form_validation->set_rules('paddress','Permanent Address','required');
+      $this->form_validation->set_rules('taddress','Temporary Address','required');
 
-        if($this->form_validation->run() )     
-        {   
-           $classes=implode(",",$this->input->post('classes'));
-           $params = array(
+      if($this->form_validation->run() )     
+      {   
+       $classes=implode(",",$this->input->post('classes'));
+       $params = array(
                 // 'password' => $this->input->post('password'),
-            'student_name' => $this->input->post('student_name'),
-            'email' => $this->input->post('email'),
+        'student_name' => $this->input->post('student_name'),
+        'email' => $this->input->post('email'),
 
-            'mobile' => $this->input->post('mobile'),
-            'classes' => $classes,
+        'mobile' => $this->input->post('mobile'),
+        'classes' => $classes,
 
-            'permanent_address' => $this->input->post('paddress'),
-            'temporary_address' => $this->input->post('taddress')
+        'permanent_address' => $this->input->post('paddress'),
+        'temporary_address' => $this->input->post('taddress')
 
 
-        );
+      );
         // var_dump($params);die;
-          
-           if($this->upload->do_upload('profile_image'))
-      {
-      $data['image'] =  $this->upload->data();
-      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
-      $params['profile_image']=$image_path;
-    }
+
+       if($this->upload->do_upload('profile_image'))
+       {
+        $data['image'] =  $this->upload->data();
+        $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+        $params['profile_image']=$image_path;
+      }
         #add student information
-           $studentId = $this->Student_model->add_student($params);
+      $studentId = $this->Student_model->add_student($params);
          $username = 'stu'.$this->session->SchoolId.'_'.$studentId; #stu+schoolid_parentid
          $password = rand(1,10000);
          $email = $params['email'];
@@ -93,13 +111,13 @@
                 // $data['master_authorization'] = $this->Student_model->get_authentication_id();
                 // var_dump($data['master_authorization']);
          $authentication=array(
-             'username'=> $username,
-             'email'=> $email,
+           'username'=> $username,
+           'email'=> $email,
                ##temporary
-             'autorization_id'=>4,
-             'password'=>md5($password),
-             'user_id'=> $studentId,
-             'clear_text'=>$password
+           'autorization_id'=>4,
+           'password'=>md5($password),
+           'user_id'=> $studentId,
+           'clear_text'=>$password
 
          );
              // var_dump($authentication);
@@ -117,10 +135,10 @@
            'user_name'=>$userdata->username,
            'password'=>$userdata->clear_text,
            'student_name'=>$this->input->post('student_name')
-          
-          
 
-       );
+
+
+         );
          
          modules::run('sms/sms/send_sms',$smsinfo);
 
@@ -141,8 +159,8 @@
 
          $schoolStudentMap=array(
 
-            'student_id'=>$studentId,
-            'school_id'=>$this->session->SchoolId
+          'student_id'=>$studentId,
+          'school_id'=>$this->session->SchoolId
 
         );  
          $map  = $this->Student_model->add_mapping($schoolStudentMap);
@@ -154,32 +172,32 @@
            $studentClassMapping=array(
             'student_id'=>$studentId,
             'class_id' =>$row
-        );
+          );
            #insert student balance details
-             $balanceTableInfo=array(
+           $balanceTableInfo=array(
 
             'customer_id'=>$studentId,
             'school_id'=>$this->session->SchoolId
 
-        );  
-            $addBalanceInfo  = $this->Student_model->add_balance_info_default($balanceTableInfo);
+          );  
+           $addBalanceInfo  = $this->Student_model->add_balance_info_default($balanceTableInfo);
              ##temporary purpose
            $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
-       }
-       $this->session->alerts = array(
-        'severity'=> 'success',
-        'title'=> 'successfully added',
-        'description'=> ''
-    );
+         }
+         $this->session->alerts = array(
+          'severity'=> 'success',
+          'title'=> 'successfully added',
+          'description'=> ''
+        );
 
-       redirect('student');
-   }
-   else
-   {            
-    $data['_view'] = 'add';
-    $this->load->view('index',$data);
-}
-}  
+         redirect('student');
+       }
+       else
+       {            
+        $data['_view'] = 'add';
+        $this->load->view('index',$data);
+      }
+    }  
 
     /*
      * Editing a student
@@ -187,77 +205,77 @@
     function edit($id)
     {   
         // check if the student exists before trying to edit it
-        $data['student'] = $this->Student_model->get_student($id);
-        $config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
-         $school_id=$this->session->SchoolId;
-        $this->load->library('upload', $config);
+      $data['student'] = $this->Student_model->get_student($id);
+      $config['upload_path']          = './uploads/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $school_id=$this->session->SchoolId;
+      $this->load->library('upload', $config);
 
-        
-        if(isset($data['student']['id']))
-        {
-            $this->load->library('form_validation');
 
-            $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
+      if(isset($data['student']['id']))
+      {
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
             // $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
-            
+
             // $this->form_validation->set_rules('mobile','Mobile','required');
 
-            $this->form_validation->set_rules('paddress','Permanent Address','required');
-            $this->form_validation->set_rules('taddress','Temporary Address','required');
+        $this->form_validation->set_rules('paddress','Permanent Address','required');
+        $this->form_validation->set_rules('taddress','Temporary Address','required');
 
-            if($this->form_validation->run() )     
-            {   
-                $params = array(
+        if($this->form_validation->run() )     
+        {   
+          $params = array(
 
-                    'student_name' => $this->input->post('student_name'),
-                    'email' => $this->input->post('email'),
+            'name' => $this->input->post('student_name'),
+            'email' => $this->input->post('email'),
 
-                    'mobile' => $this->input->post('mobile'),
+            'mobile' => $this->input->post('mobile'),
                 // 'profile_image' => $this->input->post('profile_image'),
-                    'permanent_address' => $this->input->post('paddress'),
-                    'temporary_address' => $this->input->post('taddress'),
-                    
-                );
+            'permanent_address' => $this->input->post('paddress'),
+            'temporary_address' => $this->input->post('taddress'),
+
+          );
                 // var_dump($params);die;
-              if($this->upload->do_upload('profile_image'))
-      {
-      $data['image'] =  $this->upload->data();
-      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
-      $params['profile_image']=$image_path;
-    }
-                $this->Student_model->update_student($id,$params);      
-                $smsdata=$this->Student_model->update_sms_info($id,$school_id);      
+          if($this->upload->do_upload('profile_image'))
+          {
+            $data['image'] =  $this->upload->data();
+            $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+            $params['profile_image']=$image_path;
+          }
+          $this->Student_model->update_student($id,$params);      
+          $smsdata=$this->Student_model->update_sms_info($id,$school_id);      
               // var_dump($smsdata);die;
-                $smsinfo= array('msg'=> $smsdata->msg,
-                   'mobile'=>$this->input->post('mobile'),
-                   'school_id'=>$school_id,
-                   'module'=>'student edit',
-                   'student_id'=>$id
-               );
-                modules::run('sms/sms/send_sms',$smsinfo);
+          $smsinfo= array('msg'=> $smsdata->msg,
+           'mobile'=>$this->input->post('mobile'),
+           'school_id'=>$school_id,
+           'module'=>'student edit',
+           'student_id'=>$id
+         );
+          modules::run('sms/sms/send_sms',$smsinfo);
 
 
           ## for email info
-                $emailinfo=array('msg'=>$smsdata->msg,'email'=>$this->input->post('email'),'subject'=>"admission credential detail",'student_id'=>$id,'module'=>'student edit','school_id'=>$this->session->SchoolId);
-     
-                modules::run('email/email/send_email',$emailinfo);
+          $emailinfo=array('msg'=>$smsdata->msg,'email'=>$this->input->post('email'),'subject'=>"admission credential detail",'student_id'=>$id,'module'=>'student edit','school_id'=>$this->session->SchoolId);
 
-               
-                $this->session->alerts = array(
-                    'severity'=> 'success',
-                    'title'=> 'successfully edited',
-                    'description'=> ''      );
-                redirect('student');
-            }
-            else
-            {
-                $data['_view'] = 'edit';
-                $this->load->view('index',$data);
-            }
+          modules::run('email/email/send_email',$emailinfo);
+
+
+          $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully edited',
+            'description'=> ''      );
+          redirect('student');
         }
         else
-            show_error('The student you are trying to edit does not exist.');
+        {
+          $data['_view'] = 'edit';
+          $this->load->view('index',$data);
+        }
+      }
+      else
+        show_error('The student you are trying to edit does not exist.');
     } 
 
     /*
@@ -265,52 +283,49 @@
      */
     function remove($id)
     {
-        $student = $this->Student_model->get_student($id);
+      $student = $this->Student_model->get_student($id);
 
-        $schoolId=$this->session->SchoolId;
+      $schoolId=$this->session->SchoolId;
         // check if the student exists before trying to delete it
-        if(isset($student['id']))
-        {
-            $this->Student_model->delete_student($id);
+      if(isset($student['id']))
+      {
+        $this->Student_model->delete_student($id);
 
-            $this->Student_model->delete_studentSchoolMap($id,$schoolId);
-            $this->Student_model->delete_studentClassMap($id);
+        $this->Student_model->delete_studentSchoolMap($id,$schoolId);
+        $this->Student_model->delete_studentClassMap($id);
 
-            
-            redirect('student');
-        }
-        else
-            show_error('The student you are trying to delete does not exist.');
+
+        redirect('student');
+      }
+      else
+        show_error('The student you are trying to delete does not exist.');
     }
+    ##short view in popup
     function fetchStudentView()
     {
-       echo json_encode($student_view= $this->Student_model->get_student($this->input->post('id')));
-   }
-   function filterStudent()
-   {
-       echo json_encode($student_view= $this->Student_model->filter_student($this->input->post('id')));
-   }
-   function studentCompleteInformationInvoice()
-   {
+      $student_id=$this->input->post('id');
+      echo json_encode($student_view= $this->Student_model->get_student($student_id));
+    }
+   ##in get request
+    function filterStudent()
+    {
+      $student_id=$this->input->post('id');
+      echo json_encode($student_view= $this->Student_model->filter_student($student_id));
+    }
 
-    $stuInfo=$this->Student_model->student_complete_info_invoice($this->input->post('id'));
-    echo json_encode($stuInfo);
-
-
-
-}
-function studentCompleteInformationReciept()
-{
-
-    $stuInfo=$this->Student_model->student_complete_info_reciepts($this->input->post('id'));
-    echo json_encode($stuInfo);
+    function getFullDetails()
+    {
+      $student_id=$this->input->get('student_id');
+      $data['student_info']= $this->Student_model->get_student($student_id);
+      // var_dump($data['student_info']);die;
+      $data['_view'] = 'studentFullDetails';
+      $this->load->view('index',$data);
 
 
+    }
 
-}
-
-function crossmoduleadd($param1 =5 ,$param2 = 10){
-    return $param1+$param2;
-}
-}
-?>
+  // function crossmoduleadd($param1 =5 ,$param2 = 10){
+  //   return $param1+$param2;
+  // }
+  }
+  ?>

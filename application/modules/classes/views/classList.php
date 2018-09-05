@@ -36,7 +36,7 @@
             <td><?= $row['name']; ?></td>
             <td><?= $row['description']; ?></td>
 
-            <td><?php 
+            <td> <a href="<?= base_url()?>student?classId=<?= $row['id']?>"><?php 
             $counting=0;
             $noOfStudent=count($studentCount);
                    // var_dump($studentCount);
@@ -50,9 +50,9 @@
             }
             echo $counting;
 
-            ?></td>
+            ?></a></td>
 
-            <td><?php   
+            <td><a href="<?= base_url()?>subject?classId=<?= $row['id']?>" target="_blank"><?php   
             $counting=0;
             $noOfSubject=count($subjectCount);
             for($i=0;$i<$noOfSubject;$i++)
@@ -61,7 +61,7 @@
                 $counting++;
 
             }
-            echo $counting; ?></td>
+            echo $counting; ?></a></td>
 
             <!-- <td><?= $row['start_time']; ?></td> -->
             <!-- <td><?= $row['end_time']; ?></td> -->

@@ -71,7 +71,6 @@
 	</div>
 
 <?= form_close(); ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
 <script>
@@ -119,14 +118,3 @@ $(document).ready(function(e) {
  });
 });
 </script>
-<script>
-
-  $(document).ready(function(){
-    
-    $("#student_name").focusout(function(){
-        // $(this).css("background-color", "red")
-        
-        // $('#error').html("student name can't be empty");
-    });
-});
-  </script>

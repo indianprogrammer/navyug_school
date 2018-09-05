@@ -20,7 +20,7 @@
         <tr>
             <td><?=$count++ ?></td>
             <td><?=$row['invoice_id'] ?> </td>
-            <td data-toggle="tooltip" data-placement="top" title="click to view" onclick="showView(<?= $row['student_id'] ?>)"><?=$row['customer_name'] ?> </td>
+            <td data-toggle="tooltip" data-placement="top" title="click to view" ><a href="<?=base_url()?>student/getFullDetails?student_id=<?=  $row['student_id'] ?>"><?=$row['customer_name'] ?></a> </td>
              <td><?=$row['total_amount'] ?></td>
              <td><?=$row['date'] ?></td>
              <td><a href="<?= site_url('account/getpdf/'.$row['invoice_id']); ?>" class="btn btn-info btn-xs" target="_blank">Get Pdf</a> 

@@ -18,7 +18,7 @@
 
 
      $schoolId=$this->session->SchoolId;
-     $config['total_rows'] = $this->Employee_model->get_all_employees_count($schoolId);
+     // $config['total_rows'] = $this->Employee_model->get_all_employees_count($schoolId);
 
 
      $data['employees'] = $this->Employee_model->get_all_employees($schoolId);
@@ -31,11 +31,13 @@
      * Adding a new employee
      */
     function add_employee()
-    {    $data['emptype'] = $this->Employee_model->get_map_employee();
-    // var_dump($data['emptype']);die;
+    {   
+     $data['emptype'] = $this->Employee_model->get_map_employee();
+    
     $data['_view'] = 'add';
     $this->load->view('../index',$data);
-  }
+    }
+
   function add()
   {   
     #validation part
@@ -113,14 +115,14 @@
        'student_id'=>$employeeId
 
      );
-         
+
       modules::run('sms/sms/send_sms',$smsinfo);
 
 
           ## for email info
       $emailinfo=array('subject'=>'credential of user','module'=>'employee add','school_id'=>$this->session->SchoolId,'email'=>$userdata->email,'student_id'=>$employeeId,'school_id'=>$this->session->SchoolId, 'user_name'=>$userdata->username,
        'password'=>$userdata->clear_text,'student_name'=>$this->input->post('employee_Name'));
-        
+
       modules::run('email/email/send_email',$emailinfo);
 
 
@@ -200,7 +202,7 @@
             $this->load->view('../index',$data);
 
           }
-       // var_dump($params);die;  
+      
           $updated_data= $this->Employee_model->update_employee($id,$params);      
           ##
 

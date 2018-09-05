@@ -12,27 +12,28 @@ class Sms extends MY_Controller{
 
   function send_notification_sms($notification,$notificationStudent,$notificationEmployee)
   {
+     $this->load->model('student/Student_model');
+     $this->load->model('employee/Employee_model');
     $notificationMsg= $notification;
     $school_id=$this->session->SchoolId;
-    $getInfoSmsGateway=$this->Sms_model->get_info_sms($school_id);
-// var_dump($getInfoSmsGateway);die;
-    $senderId = $getInfoSmsGateway->sender_id;
-    $authKey = $getInfoSmsGateway->auth_key;
-    $url=$getInfoSmsGateway->url;
-    $route = $getInfoSmsGateway->route;
+   $getInfoSmsGateway=$this->Sms_model->get_info_sms($school_id);
+
+  $senderId = $getInfoSmsGateway['sender_id'];
+  $authKey = $getInfoSmsGateway['auth_key'];
+  $url=$getInfoSmsGateway['url'];
     $stu=[];
-    
+
     if($notificationStudent!=0)
     {
      for ($i=0;$i<count($notificationStudent);$i++)
      {
 
 
-       array_push($stu,$this->Sms_model->get_all_students($notificationStudent[$i]));
+       array_push($stu,$this->Student_model->get_student($notificationStudent[$i]));
      }
              // return $st[0][0]['mobile'];die;
-     
-     for($j=0;$j<count($stu);$j++)
+     $studentCount=count($stu);
+     for($j=0;$j<$studentCount;$j++)
      {
       $data=array
       (
@@ -43,7 +44,7 @@ class Sms extends MY_Controller{
         'school_id'=>$school_id
       );
       $data['student'] =$this->Sms_model->data_sms($data);
-      
+
       $postData = array(
         'authkey' => $authKey,
         'mobiles' => $stu[$j][0]['mobile'],
@@ -74,11 +75,11 @@ class Sms extends MY_Controller{
     {
 
 
-     array_push($emp,$this->Sms_model->get_all_employees($notificationEmployee[$i]));
+     array_push($emp,$this->Employee_model->get_employee($notificationEmployee[$i]));
                // return $emp;die;
    }
-   
-   for($j=0;$j<count($emp);$j++)
+    $empCount=count($emp);
+   for($j=0;$j<$empCount;$j++)
    {
     $data=array
     (
@@ -89,7 +90,7 @@ class Sms extends MY_Controller{
       'school_id'=>$school_id
     );
     $data['student'] =$this->Sms_model->data_sms($data);
-    
+
     $postData = array(
       'authkey' => $authKey,
       'mobiles' => $emp[$j][0]['mobile'],
@@ -129,7 +130,7 @@ function send_sms($smsinfo)
   $module=$smsinfo['module'];
   $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
     // var_dump($fetchTemplateData);
-  $context=$fetchTemplateData->context;
+  $context=$fetchTemplateData['context'];
   if($smsinfo['invoice_id'] || $smsinfo['reciept_id'])
   {
     @$invoice_id=$smsinfo['invoice_id'];
@@ -164,17 +165,17 @@ function send_sms($smsinfo)
 
   $mobile=$smsinfo['mobile'];
   $message=$msg;
-  
+
 
 ##get authentication key and information for sms gateway
   $getInfoSmsGateway=$this->Sms_model->get_info_sms($school_id);
 
-  $senderId = $getInfoSmsGateway->sender_id;
-  $authKey = $getInfoSmsGateway->auth_key;
-  $url=$getInfoSmsGateway->url;
+  $senderId = $getInfoSmsGateway['sender_id'];
+  $authKey = $getInfoSmsGateway['auth_key'];
+  $url=$getInfoSmsGateway['url'];
 
 
-  $route = $getInfoSmsGateway->route;
+  $route = $getInfoSmsGateway['route'];
   $postData = array(
     'authkey' => $authKey,
     'mobiles' => $mobile,
