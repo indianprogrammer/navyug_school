@@ -13,7 +13,10 @@ class Employee_model extends CI_Model
      */
     function get_employee($id)
     {
-        return $this->db->get_where('employees',array('id'=>$id))->row_array();
+         $this->db->select('employees.name,employees.email,employees.mobile,employees.permanent_address,employees.temporary_address,employees.profile_image,employees.id,employees.qualification,employees.created_at');
+        $this->db->from('employees');
+        $this->db->where('id',$id);
+        return $this->db->get()->row_array();
     }
     
     

@@ -33,13 +33,13 @@
     function add_employee()
     {   
      $data['emptype'] = $this->Employee_model->get_map_employee();
-    
-    $data['_view'] = 'add';
-    $this->load->view('../index',$data);
-    }
 
-  function add()
-  {   
+     $data['_view'] = 'add';
+     $this->load->view('../index',$data);
+   }
+
+   function add()
+   {   
     #validation part
     $this->load->library('form_validation');
     $data['emptype'] = $this->Employee_model->get_map_employee();
@@ -97,33 +97,35 @@
       //insertion code
 
       $insertAuthentication = $this->Employee_model->add_user($authenticationData);
-      // var_dump($insertAuthentication);
+
       $userdata=$this->Student_model->select_uname_password($insertAuthentication);
-         // var_dump($userdata);
+      $school_id=$this->session->SchoolId;
+      $this->load->model('admin/Admin_model');
+      $organization_name=$this->Admin_model->get_school_name($school_id);
 
-      $smsinfo= array(
+
+      $sendDetails= array(
        'mobile'=>$this->input->post('mobile'),
-       'school_id'=>$this->session->SchoolId,
+       'school_id'=>$school_id,
        'module'=>'employee add',
+       'id'=>$employeeId,
+       'user_name'=>$userdata['username'],
+       'password'=>$userdata['clear_text'],
+       'name'=>$this->input->post('employee_Name'),
+       'email'=>$userdata['email'],
+       'organization_name'=>$organization_name['organization_name']
 
 
-
-
-       'user_name'=>$userdata->username,
-       'password'=>$userdata->clear_text,
-       'student_name'=>$this->input->post('employee_Name'),
-       'student_id'=>$employeeId
 
      );
 
-      modules::run('sms/sms/send_sms',$smsinfo);
 
 
-          ## for email info
-      $emailinfo=array('subject'=>'credential of user','module'=>'employee add','school_id'=>$this->session->SchoolId,'email'=>$userdata->email,'student_id'=>$employeeId,'school_id'=>$this->session->SchoolId, 'user_name'=>$userdata->username,
-       'password'=>$userdata->clear_text,'student_name'=>$this->input->post('employee_Name'));
+      modules::run('employee/employee/addSms',$sendDetails);
+          ##for mail
+      modules::run('employee/employee/addMail',$sendDetails);
 
-      modules::run('email/email/send_email',$emailinfo);
+
 
 
       #create relation map (school->employ)
@@ -202,7 +204,7 @@
             $this->load->view('../index',$data);
 
           }
-      
+
           $updated_data= $this->Employee_model->update_employee($id,$params);      
           ##
 
@@ -244,14 +246,69 @@
 
     function fetchEmployeeView()
     {
-
-      echo json_encode($employee_view= $this->Employee_model->get_employee($this->input->post('id')));
+      $id=$this->input->post('id');
+      echo json_encode($employee_view= $this->Employee_model->get_employee($id));
     }
+    function addMail($detailsMail)
+    {
+    #get student details from $studentdetail
+
+    #prepair params 
+     $module=$detailsMail['module'];
+     $username=$detailsMail['user_name'];
+     $password=$detailsMail['password'];
+     $name=$detailsMail['name'];
+     $id=$detailsMail['id'];
+     $school_id=$detailsMail['school_id'];
+     $to=$detailsMail['email'];
+     $school_name=$detailsMail['organization_name'];
+     #get body data  from database
+     $this->load->model('email/Email_model');
+     $fetchTemplateData=$this->Email_model->fetch_template_data($school_id,$module);
+     $context=$fetchTemplateData['context'];
+
+     $contextString=array('{school_name','{username','{password','{name','}');
+     $ReplaceString=array($school_name,$username,$password,$name,'');
+     $body=str_replace($contextString,$ReplaceString,$context);
+     
+     $subject = 'User credential';
+     
+     $attachments = '';
+     modules::run('email/email/sendMail',$to,$subject,$body,$attachments);
+
+    #send mail
+
+   }
+   function addSms($detailsSms)
+   {
+    #get student details from $studentdetail
+
+     $module=$detailsSms['module'];
+     $username=$detailsSms['user_name'];
+     $password=$detailsSms['password'];
+     $name=$detailsSms['name'];
+     $id=$detailsSms['id'];
+     $school_id=$detailsSms['school_id'];
+     $mobile=$detailsSms['mobile'];
+    $school_name=$detailsSms['organization_name'];
+     $this->load->model('sms/Sms_model');
+     $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
+
+     $context=$fetchTemplateData['context'];
+     $contextString=array('{school_name','{username','{password','{name','}');
+
+     $ReplaceString=array($school_name,$username,$password,$name,'');
+     $message=str_replace($contextString,$ReplaceString,$context);
+      #send sms
+     modules::run('sms/sms/sendSms',$mobile,$message);
+
+
+
+   }
 
 
 
 
 
-
-  }
-  ?>
+ }
+ ?>

@@ -80,14 +80,6 @@ function getDataStudentMonth()
 {
   var_dump($this->Admin_model->get_data_bymonth_student(1));
 
-
-
-
-
-
-
-
-
 }
 }
 ?>

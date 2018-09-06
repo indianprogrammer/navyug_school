@@ -13,7 +13,11 @@ class Enquiry_model extends CI_Model
      */
     function get_enquiry($id)
     {
-      return $this->db->get_where('enquiry',array('id'=>$id))->row_array();
+     
+      $this->db->select('enquiry.name,enquiry.username,enquiry.email,enquiry.mobile,enquiry.address,enquiry.comments,enquiry.location,enquiry.type,enquiry.school_id,enquiry.assign_to,enquiry.status,enquiry.created_at');
+        $this->db->from('enquiry');
+        $this->db->where('id',$id);
+        return $this->db->get()->row_array();
     }
     
     /*
@@ -31,7 +35,7 @@ class Enquiry_model extends CI_Model
     function get_all_enquirys($id)
     {
 
-      $this->db->select('*');
+      $this->db->select('enquiry.name,enquiry.username,enquiry.email,enquiry.mobile,enquiry.address,enquiry.comments,enquiry.location,enquiry.type,enquiry.school_id,enquiry.assign_to,enquiry.status,enquiry.created_at');
       $this->db->from('enquiry');
       $this->db->order_by('id','desc');
       $this->db->where('school_id',$id);
@@ -72,14 +76,14 @@ class Enquiry_model extends CI_Model
     }
     function enquiry_type()
     {
-      $this->db->select('*');
+      $this->db->select('id,name');
       $this->db->from('master_enquiry');
       return $this->db->get()->result();
 
     }
     function assign_type()
     {
-      $this->db->select('*');
+      $this->db->select('id,type');
       $this->db->from('assign');
       return $this->db->get()->result();
     }
@@ -118,7 +122,7 @@ class Enquiry_model extends CI_Model
 
    $this->db->from('enquiry');
      // $this->db->join('authentication','student.id=authentication.user_id');
-   if(!is_null($school_id)
+   if(!is_null($school_id))
 
     $this->db->where("school_id",$school_id);
     

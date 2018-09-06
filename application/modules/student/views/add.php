@@ -30,7 +30,7 @@
 		<div class="col-md-5">
 			<select name="classes[]" id="multiselect" class="form-control"  multiple="multiple">
 			<?php	foreach($classes as $row){ ?>
-				<option value="<?= $row->id ?>"><?= $row->name ?></option>
+				<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
 				<?php } ?>
 			</select>
 			<span class="text-danger"><?= form_error('classes');?></span>

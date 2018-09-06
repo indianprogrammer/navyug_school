@@ -22,69 +22,69 @@ class Notification extends MY_Controller
   }
   function fetchStudentClassWise()
   {
+    $id=$this->input->post('id');
+    $data=$this->Notification_model->fetch_student_class_wise($id);
+    echo json_encode($data);
 
-   $data=$this->Notification_model->fetch_student_class_wise($this->input->post('id'));
-   echo json_encode($data);
-
- } 
- function fetchAllStudent() 
- {
-  $school_id=$this->session->SchoolId;
-  $Student=$this->Student_model->get_all_student($school_id);
+  } 
+  function fetchAllStudent() 
+  {
+    $school_id=$this->session->SchoolId;
+    $Student=$this->Student_model->get_all_student($school_id);
   // print_r(($Student));
-  echo json_encode($Student);
-}
-
-function fetchAllEmployee() 
-{
-  $school_id=$this->session->SchoolId;
-  $employee=$this->Employee_model->get_all_employees($school_id);
-  echo json_encode($employee);
-}
-function fetchAllClasses()
-{
-  $school_id=$this->session->SchoolId;
-  $data['class'] = $this->Classes_model->get_all_class($school_id);
-  echo json_encode($data['class']);
-}/**/
-function fetchEmployeeClassWise()
-{
-
- $data=$this->Notification_model->fetch_Employee_class_wise($this->input->post('id'));
- echo json_encode($data);
-
-} 
-function sendNotification()
-
-{
-  $notification=$this->input->post("notification");
- 
-  $notificationStudent=$this->input->post('student_details');
-  $notificationEmployee=$this->input->post('employee_id');
- 
-  if(is_null($notificationEmployee))
-  {
-    $notificationEmployee=0;
+    echo json_encode($Student);
   }
-  if(is_null($notificationStudent))
+
+  function fetchAllEmployee() 
   {
-    $notificationStudent=0;
+    $school_id=$this->session->SchoolId;
+    $employee=$this->Employee_model->get_all_employees($school_id);
+    echo json_encode($employee);
   }
- 
-   modules::run('sms/sms/send_notification_sms',$notification,$notificationStudent,$notificationEmployee);
-   modules::run('email/email/send_notification_email',$notification,$notificationStudent,$notificationEmployee);
-   $this->session->alerts = array(
-            'severity'=> 'success',
-            'title'=> 'successfully sent',
-         'description'=> ''
-       );
-      redirect('notification');
+  function fetchAllClasses()
+  {
+    $school_id=$this->session->SchoolId;
+    $data['class'] = $this->Classes_model->get_all_class($school_id);
+    echo json_encode($data['class']);
+  }/**/
+  function fetchEmployeeClassWise()
+  {
+    $id=$this->input->post('id');
+    $data=$this->Notification_model->fetch_Employee_class_wise($id);
+    echo json_encode($data);
 
-  
+  } 
+  function sendNotification()
+
+  {
+    $notification=$this->input->post("notification");
+    
+    $notificationStudent=$this->input->post('student_details');
+    $notificationEmployee=$this->input->post('employee_id');
+    
+    if(is_null($notificationEmployee))
+    {
+      $notificationEmployee=0;
+    }
+    if(is_null($notificationStudent))
+    {
+      $notificationStudent=0;
+    }
+    
+    modules::run('sms/sms/send_notification_sms',$notification,$notificationStudent,$notificationEmployee);
+   // modules::run('email/email/send_notification_email',$notification,$notificationStudent,$notificationEmployee);
+    $this->session->alerts = array(
+      'severity'=> 'success',
+      'title'=> 'successfully sent',
+      'description'=> ''
+    );
+    redirect('notification');
+
+    
 
 
 
-}
+  }
 
 
 

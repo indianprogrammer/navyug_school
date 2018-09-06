@@ -187,11 +187,11 @@
       'student_id'=>$studentData['id']
 
     );
-       
+
     $transaction = $this->Account_model->add_transaction($accountTransaction);
 
-       
-   
+
+
        // $this->load->view('recieptPdf', $params);
       ##update balance information
 
@@ -204,39 +204,27 @@
     $this->Account_model->update_balance($balance,$customer_id,$school_id);
   ##send sms and email to particular user
 
-    $smsinfo= array(
+    
+    $detailInfo= array(
      'mobile'=>$studentData['mobile'],
      'school_id'=>$this->session->SchoolId,
      'module'=>'reciept add',
      'student_id'=>$studentData['id'],
 
-     'student_name'=>$studentData['name'],
-     'reciept_id'=>$recieptId,
+     
+     'id'=>$recieptId,
      'total_amount'=>$paid,
      'organization_name'=>$schoolInfo['organization_name'],
+     'email'=>$studentData['email'],
 
-     'customer_name'=>$studentData['name'],
+     'name'=>$studentData['name'],
 
 
 
 
    );
-    modules::run('sms/sms/send_sms',$smsinfo);
-
-
-          ## for email info
-    $emailinfo=array('email'=>$studentData['email'],'subject'=>"information of reciept",'school_id'=>$this->session->SchoolId,
-     'module'=>'reciept add',
-     'student_id'=>$studentData['id'],
-
-     'student_name'=>$studentData['name'],
-     'reciept_id'=>$recieptId,
-     'total_amount'=>$paid ,
-     'organization_name'=>$schoolInfo['organization_name'],
-
-     'customer_name'=>$studentData['name'],
-
-   );
+    modules::run('account/account/addSms',$detailInfo);
+    modules::run('account/account/addMail',$detailInfo);
 
     // modules::run('email/email/send_email',$emailinfo);
 
@@ -289,8 +277,8 @@ function getPdfReciept($reciept_id)
 function fetchRecordStudent()
 {   
   $school_id=$this->session->SchoolId;
-
-  echo json_encode($this->Student_model->fetchRecordStudents($this->input->post('keyword')));
+  $username=$this->input->post('keyword');
+  echo json_encode($this->Student_model->fetchRecordStudents($username));
 }
 ## invoice
 function invoiceGenerate()
@@ -379,44 +367,31 @@ function invoiceGenerate()
 
    ##send sms and email to particular user
 
- $smsinfo= array(
+ $detailInfo= array(
    'mobile'=>$studentData['mobile'],
    'school_id'=>$this->session->SchoolId,
    'module'=>'invoice add',
    'student_id'=>$studentData['id'],
 
-   'student_name'=>$studentData['name'],
-   'invoice_id'=>$incrementedUniqueInvoiceId,
+   
+   'id'=>$incrementedUniqueInvoiceId,
    'total_amount'=>$total,
    'organization_name'=>$getSchoolInformation['organization_name'],
+   'email'=>$studentData['email'],
 
-   'customer_name'=>$studentData['name'],
+   'name'=>$studentData['name'],
 
 
 
 
  );
- modules::run('sms/sms/send_sms',$smsinfo);
+ modules::run('account/account/addSms',$detailInfo);
+ modules::run('account/account/addMail',$detailInfo);
+
 
 
           ## for email info
- $emailinfo=array('email'=>$studentData['email'],'subject'=>"information of invoice",'school_id'=>$this->session->SchoolId,
-   'module'=>'invoice add',
-   'student_id'=>$studentData['id'],
-
-   'student_name'=>$studentData['name'],
-   'invoice_id'=>$incrementedUniqueInvoiceId,
-   'total_amount'=>$total,
-   'organization_name'=>$getSchoolInformation['organization_name'],
-
-   'customer_name'=>$studentData['name'],
-
-
- );
-
- // modules::run('email/email/send_email',$emailinfo);
-   // redirect('school/add_school');
-     // $this->load->view('pdfreport', $params);
+ 
 }
 
 ##for check balance of student
@@ -447,8 +422,66 @@ function autosuggest(){
   echo json_encode($data);
 }
 function autofill()
+{ 
+  $id=$this->input->post("id");
+  echo json_encode($this->Account_model->get_autofill_value($id));
+}
+function addMail($detailsMail)
 {
-  echo json_encode($this->Account_model->get_autofill_value($this->input->post("id")));
+    #get student details from $studentdetail
+
+    #prepair params 
+ $module=$detailsMail['module'];
+
+ $name=$detailsMail['name'];
+ $id=$detailsMail['id'];
+ $school_id=$detailsMail['school_id'];
+ $total_amount=$detailsMail['total_amount'];
+ $to=$detailsMail['email'];
+ $school_name=$detailsSms['organization_name'];
+     #get body data  from database
+ $this->load->model('email/Email_model');
+ $fetchTemplateData=$this->Email_model->fetch_template_data($school_id,$module);
+ $context=$fetchTemplateData['context'];
+
+ $contextString=array('{school_name','{id','{name','{total_amount','}');
+
+ $ReplaceString=array($school_name,$id,$name,$total_amount,'');
+ $body=str_replace($contextString,$ReplaceString,$context);
+
+ $subject = 'invoice generate';
+
+ $attachments = '';
+ modules::run('email/email/sendMail',$to,$subject,$body,$attachments);
+
+    #send mail
+
+}
+function addSms($detailsSms)
+{
+    #get student details from $studentdetail
+
+ $module=$detailsSms['module'];
+ 
+ $name=$detailsSms['name'];
+ $id=$detailsSms['id'];
+ $school_id=$detailsSms['school_id'];
+ $total_amount=$detailsSms['total_amount'];
+ $mobile=$detailsSms['mobile'];
+ $school_name=$studentDetailsSms['organization_name'];
+ $this->load->model('sms/Sms_model');
+ $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
+
+ $context=$fetchTemplateData['context'];
+ $contextString=array('{school_name','{id','{name','{total_amount','}');
+
+ $ReplaceString=array($school_name,$id,$name,$total_amount,'');
+ $message=str_replace($contextString,$ReplaceString,$context);
+      #send sms
+ modules::run('sms/sms/sendSms',$mobile,$message);
+
+
+
 }
 
 }

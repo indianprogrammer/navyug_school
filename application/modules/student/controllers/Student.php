@@ -35,7 +35,7 @@
       else
       {
 
-    $data['student'] = $this->Student_model->get_all_student($schoolId);
+        $data['student'] = $this->Student_model->get_all_student($schoolId);
 
       }
       $data['classes'] = $this->Classes_model->fetch_classes($schoolId);
@@ -81,7 +81,7 @@
        $classes=implode(",",$this->input->post('classes'));
        $params = array(
                 // 'password' => $this->input->post('password'),
-        'student_name' => $this->input->post('student_name'),
+        'name' => $this->input->post('student_name'),
         'email' => $this->input->post('email'),
 
         'mobile' => $this->input->post('mobile'),
@@ -125,35 +125,33 @@
 
              ##for sms info 
          $userdata=$this->Student_model->select_uname_password($insertStudentAuthentication);
+          $school_id=$this->session->SchoolId;
+      $this->load->model('admin/Admin_model');
+      $organization_name=$this->Admin_model->get_school_name($school_id);
          // var_dump($userdata);
          // $msg='Your Username='.$userdata->username.' and Password='.$userdata->clear_text.'';
-         $smsinfo= array(
+         $studentDetails= array(
            'mobile'=>$this->input->post('mobile'),
            'school_id'=>$this->session->SchoolId,
            'module'=>'student add',
            'student_id'=>$studentId,
-           'user_name'=>$userdata->username,
-           'password'=>$userdata->clear_text,
-           'student_name'=>$this->input->post('student_name')
+           'user_name'=>$userdata['username'],
+           'password'=>$userdata['clear_text'],
+           'student_name'=>$this->input->post('student_name'),
+           'email'=>$userdata['email'],
+            'organization_name'=>$organization_name['organization_name']
 
 
 
          );
          
-         modules::run('sms/sms/send_sms',$smsinfo);
+        
+         // addStudentSms($studentDetailsSms);
+          modules::run('student/student/addStudentSms',$studentDetails);
+          ##for mail
+          modules::run('student/student/addStudentMail',$studentDetails);
 
 
-          ## for email info
-         $emailinfo=array('email'=>$userdata->email,'subject'=>"admission credential",'student_id'=>$studentId,'module'=>'student add','school_id'=>$this->session->SchoolId, 'user_name'=>$userdata->username,
-           'password'=>$userdata->clear_text,'student_name'=>$this->input->post('student_name'));
-         // var_dump($emailinfo);
-          // $insertInfoEmail=$this->Student_model->insert_info_email($emailinfo);
-         modules::run('email/email/send_email',$emailinfo);
-
-
-
-
-           // $this->session->set_userdata($smsinfo);
 
 
 
@@ -187,7 +185,7 @@
          $this->session->alerts = array(
           'severity'=> 'success',
           'title'=> 'successfully added',
-          'description'=> ''
+
         );
 
          redirect('student');
@@ -245,27 +243,27 @@
             $params['profile_image']=$image_path;
           }
           $this->Student_model->update_student($id,$params);      
-          $smsdata=$this->Student_model->update_sms_info($id,$school_id);      
-              // var_dump($smsdata);die;
-          $smsinfo= array('msg'=> $smsdata->msg,
-           'mobile'=>$this->input->post('mobile'),
-           'school_id'=>$school_id,
-           'module'=>'student edit',
-           'student_id'=>$id
-         );
-          modules::run('sms/sms/send_sms',$smsinfo);
+         //  $smsdata=$this->Student_model->update_sms_info($id,$school_id);      
+         //      // var_dump($smsdata);die;
+         //  $studentDetailsSms= array('msg'=> $smsdata->msg,
+         //   'mobile'=>$this->input->post('mobile'),
+         //   'school_id'=>$school_id,
+         //   'module'=>'student edit',
+         //   'student_id'=>$id
+         // );
+         //  // modules::run('sms/sms/send_sms',$smsinfo);
 
 
-          ## for email info
-          $emailinfo=array('msg'=>$smsdata->msg,'email'=>$this->input->post('email'),'subject'=>"admission credential detail",'student_id'=>$id,'module'=>'student edit','school_id'=>$this->session->SchoolId);
+         //  ## for email info
+         //  $emailinfo=array('msg'=>$smsdata->msg,'email'=>$this->input->post('email'),'subject'=>"admission credential detail",'student_id'=>$id,'module'=>'student edit','school_id'=>$this->session->SchoolId);
 
-          modules::run('email/email/send_email',$emailinfo);
+         //  modules::run('email/email/send_email',$emailinfo);
 
 
           $this->session->alerts = array(
             'severity'=> 'success',
-            'title'=> 'successfully edited',
-            'description'=> ''      );
+            'title'=> 'successfully edited'
+            );
           redirect('student');
         }
         else
@@ -323,9 +321,63 @@
 
 
     }
+    function addStudentMail($studentDetailsMail)
+    {
+    #get student details from $studentdetail
 
-  // function crossmoduleadd($param1 =5 ,$param2 = 10){
-  //   return $param1+$param2;
-  // }
-  }
-  ?>
+    #prepair params 
+     $module=$studentDetailsMail['module'];
+     $username=$studentDetailsMail['user_name'];
+     $password=$studentDetailsMail['password'];
+     $student_name=$studentDetailsMail['student_name'];
+     $student_id=$studentDetailsMail['student_id'];
+     $school_id=$studentDetailsMail['school_id'];
+     $to=$studentDetailsMail['email'];
+     $school_name=$studentDetailsSms['organization_name'];
+     #get body data  from database
+     $this->load->model('email/Email_model');
+     $fetchTemplateData=$this->Email_model->fetch_template_data($school_id,$module);
+     $context=$fetchTemplateData['context'];
+
+     $contextString=array('{school_name','{username','{password','{student_name','}');
+     $ReplaceString=array($school_name,$username,$password,$student_name,'');
+     $body=str_replace($contextString,$ReplaceString,$context);
+     
+     $subject = 'student credential';
+     
+     $attachments = '';
+     modules::run('email/email/sendMail',$to,$subject,$body,$attachments);
+
+    #send mail
+    
+   }
+   function addStudentSms($studentDetailsSms)
+   {
+    #get student details from $studentdetail
+     
+     $module=$studentDetailsSms['module'];
+     $username=$studentDetailsSms['user_name'];
+     $password=$studentDetailsSms['password'];
+     $student_name=$studentDetailsSms['student_name'];
+     $student_id=$studentDetailsSms['student_id'];
+     $school_id=$studentDetailsSms['school_id'];
+     $mobile=$studentDetailsSms['mobile'];
+     $school_name=$studentDetailsSms['organization_name'];
+      $this->load->model('sms/Sms_model');
+     $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
+
+     $context=$fetchTemplateData['context'];
+     $contextString=array('{school_name','{username','{password','{student_name','}');
+    
+     $ReplaceString=array($school_name,$username,$password,$student_name,'');
+     $message=str_replace($contextString,$ReplaceString,$context);
+      #send sms
+     modules::run('sms/sms/sendSms',$mobile,$message);
+
+
+  
+   }
+
+ 
+ }
+ ?>

@@ -225,7 +225,8 @@ function autosuggest(){
 }
 function autofill()
 {
-  echo json_encode($this->Enquiry_model->get_autofill_value($this->input->post("id")));
+    $id=$this->input->post("id");
+  echo json_encode($this->Enquiry_model->get_autofill_value($id));
 }
 
 }

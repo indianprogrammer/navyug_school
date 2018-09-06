@@ -11,7 +11,7 @@
 
 <table id="subject_table" class="table table-striped table-bordered table-responsive table-hover" style="width:100%;">
     <thead>
-    <tr>
+    <tr >
 		<th>ID</th>
 		<!-- <th>Password</th> -->
 		<th>Subject Name</th>
@@ -22,7 +22,7 @@
 <tbody>
     <?php $count=1; ?>
 	<?php foreach($subject as $row){ ?>
-    <tr>
+    <tr id="<?= $row['id'] ?>">
 		<td><?= $count++ ?></td>
 		
 		<td><?= $row['name']; ?></td>
@@ -39,8 +39,8 @@
 </div>
 </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script> -->
  <script>
     $(document).ready( function () {
         $('#subject_table').DataTable();
@@ -52,10 +52,24 @@
     {
      
     // var id = $(this).data('id');
+      
     bootbox.confirm("Are you sure want to delete ?", function(result) {
       if(result)
-          window.location = url+'subject/remove/'+id ;
+
+             $.ajax({  
+              url:"<?= base_url()?>subject/remove",  
+              method:"post",  
+              data:{id:id},  
+              success:function(data){ 
+              if(data){
+                $('#'+id+'').fadeOut();
+                 }else{
+                        bootbox.alert("not deleted");
+                 }
+              }
+          
    
   });
-    }
+    });
+}
 </script>

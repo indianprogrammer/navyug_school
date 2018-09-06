@@ -82,7 +82,7 @@ class Login extends MX_Controller
                 $this->session->SchoolId = $userData['school_id'];
                     // $this->session->organizationName = $userData['organization_name'];
                 $school_name= modules::run('admin/admin/getSchoolName',$this->session->SchoolId);
-                $this->session->SchoolName =$school_name->organization_name;
+                $this->session->SchoolName =$school_name['organization_name'];
 
                 $this->session->name = $userData['name'];
                 $this->session->profileImage = $userData['profile_image'];

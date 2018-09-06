@@ -29,6 +29,7 @@ class Subject extends MY_Controller{
                 array_push( $data['subject'],$fetchSubjectId[$i]['subject_id']);
            
          }
+                echo $data['subject'];die;
              $data['subject'] = $this->Subject_model->get_subject_by_subject_id($data['subject']);
         
      }
@@ -137,8 +138,9 @@ class Subject extends MY_Controller{
     /*
      * Deleting subject
      */
-    function remove($id)
-    {
+    function remove()
+    {   
+        $id=$this->input->post('id');
         $subject = $this->Subject_model->get_subject($id);
         $schoolId=$this->session->SchoolId;
         // check if the subject exists before trying to delete it
@@ -146,7 +148,8 @@ class Subject extends MY_Controller{
         {
             $this->Subject_model->delete_subject($id);
             $this->Subject_model->delete_subjectSchoolMap($id,$schoolId);
-            redirect('subject');
+            echo true;
+            // redirect('subject');
         }
         else
             show_error('The subject you are trying to delete does not exist.');

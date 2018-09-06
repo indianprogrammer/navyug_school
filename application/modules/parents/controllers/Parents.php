@@ -95,28 +95,33 @@ class Parents extends MY_Controller{
              $insertAuthentication  = $this->Parents_model->add_user($authentication);
              $this->load->model('student/Student_model');
              $userdata=$this->Student_model->select_uname_password($insertAuthentication);
-             $smsinfo= array(
+             
+             
+             $school_id=$this->session->SchoolId;
+             $this->load->model('admin/Admin_model');
+             $organization_name=$this->Admin_model->get_school_name($school_id);
+
+
+             $sendDetails= array(
                'mobile'=>$this->input->post('mobile'),
-               'school_id'=>$this->session->SchoolId,
-               'module'=>'parents add',
-               
-               'user_name'=> $userdata->username,
-               'password'=>$userdata->clear_text,
-               'student_name'=>$this->input->post('parent_Name'),
-               'student_id'=>$parentId
-               
+               'school_id'=>$school_id,
+               'module'=>'parent add',
+               'id'=>$parentId,
+               'user_name'=>$userdata['username'],
+               'password'=>$userdata['clear_text'],
+               'name'=>$this->input->post('parent_Name'),
+               'email'=>$userdata['email'],
+               'organization_name'=>$organization_name['organization_name']
+
+
 
              );
-             
-             modules::run('sms/sms/send_sms',$smsinfo);
 
 
-          ## for email info
-             $emailinfo=array('email'=>$userdata->email,'subject'=>"user credential",'student_id'=>$parentId,'module'=>'parent add','school_id'=>$this->session->SchoolId, 'user_name'=>$userdata->username,
-               'password'=>$userdata->clear_text,'student_name'=>$this->input->post('parent_Name'));
-         // var_dump($emailinfo);
-          // $insertInfoEmail=$this->Student_model->insert_info_email($emailinfo);
-             modules::run('email/email/send_email',$emailinfo);
+
+             modules::run('parents/parents/addSms',$sendDetails);
+          ##for mail
+             modules::run('parents/parents/addMail',$sendDetails);
 
              $schoolParentMap=array(
 
@@ -215,6 +220,75 @@ class Parents extends MY_Controller{
       else
         show_error('The parent you are trying to delete does not exist.');
     }
-    
-  }
-  ?>
+
+    function addMail($detailsMail)
+    {
+    #get student details from $studentdetail
+
+    #prepair params 
+     $module=$detailsMail['module'];
+     $username=$detailsMail['user_name'];
+     $password=$detailsMail['password'];
+     $name=$detailsMail['name'];
+     $id=$detailsMail['id'];
+     $school_id=$detailsMail['school_id'];
+     $to=$detailsMail['email'];
+     $school_name=$studentDetailsSms['organoization_name'];
+     #get body data  from database
+     $this->load->model('email/Email_model');
+     $fetchTemplateData=$this->Email_model->fetch_template_data($school_id,$module);
+     $context=$fetchTemplateData['context'];
+
+     $contextString=array('{school_name','{username','{password','{name','}');
+     $ReplaceString=array($school_name,$username,$password,$name,'');
+     $body=str_replace($contextString,$ReplaceString,$context);
+     
+     $subject = 'User credential';
+     
+     $attachments = '';
+     modules::run('email/email/sendMail',$to,$subject,$body,$attachments);
+
+    #send mail
+
+   }
+   function addSms($detailsSms)
+   {
+    #get student details from $studentdetail
+
+     $module=$detailsSms['module'];
+     $username=$detailsSms['user_name'];
+     $password=$detailsSms['password'];
+     $name=$detailsSms['name'];
+     $id=$detailsSms['id'];
+     $school_id=$detailsSms['school_id'];
+     $mobile=$detailsSms['mobile'];
+     $school_name=$studentDetailsSms['organoization_name'];
+     $this->load->model('sms/Sms_model');
+     $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
+
+     $context=$fetchTemplateData['context'];
+     $contextString=array('{school_name','{username','{password','{name','}');
+
+     $ReplaceString=array($school_name,$username,$password,$name,'');
+     $message=str_replace($contextString,$ReplaceString,$context);
+      #send sms
+     modules::run('sms/sms/sendSms',$mobile,$message);
+
+
+
+   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+ }
+ ?>

@@ -156,7 +156,7 @@
       method:"post",  
       data:{id:student_id},  
       success:function(data){  
-        console.log(data);
+        // console.log(data);
         var obj=JSON.parse(data);
 
         if(obj.parent_id)

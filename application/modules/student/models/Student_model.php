@@ -20,20 +20,7 @@ class Student_model extends CI_Model
       return $this->db->get()->row_array();
     }
 
-    /*
-     * Get all student
-     */
-    // function getAllClasses($schoolId)
-    // {
-    //   $this->db->select('classes.name,classes.id');
-    //   $this->db->from('classes');
-    //   $this->db->where('school_id',$schoolId);
-    //   $this->db->join('map_school_class', 'map_school_class.class_id=classes.id', 'Left');
-    //   return $this->db->get()->result_array();
-
-
-
-    // }
+   
 
 
     function get_all_student($schoolId)
@@ -96,11 +83,11 @@ class Student_model extends CI_Model
      return $this->db->insert_id();
    }
 
-  function add_mappingToClass($studentClassMapping)
-  {
-   $this->db->insert('map_student_class',$studentClassMapping);
-   return $this->db->insert_id();
- }
+   function add_mappingToClass($studentClassMapping)
+   {
+     $this->db->insert('map_student_class',$studentClassMapping);
+     return $this->db->insert_id();
+   }
     // function get_class_name()
     // {
     //     $this->db->select('classes.name,classes.id');
@@ -110,59 +97,59 @@ class Student_model extends CI_Model
     //      $this->db->where('school_id',$school_id);
     //     return $query = $this->db->get()->result();
     // }
- function delete_studentSchoolMap($id,$school_id)
+   function delete_studentSchoolMap($id,$school_id)
+   {
+    $this->db->delete('map_school_student',array('student_id'=>$id,'school_id'=>$school_id));
+  }
+
+  function filter_student($id)
+  {
+    $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id');
+    $this->db->from('student');
+    $this->db->where('id',$id);
+    return $this->db->get()->row();
+  }
+  function student_complete_info_invoice($id)
+  {
+
+
+    $this->db->select('invoices.invoice_id,invoices.total_amount as invoice_total,invoices.date as invoice_date,');
+    $this->db->from('invoices');
+    $this->db->where('invoices.student_id',$id);
+    // $this->db->join('reciepts', 'reciepts.student_id =invoices.student_id ');
+
+    return $this->db->get()->result_array();
+
+  }
+  function student_complete_info_reciepts($id)
+  {
+
+
+    $this->db->select('reciepts.total_amount as reciept_amount,reciepts.reciept_id,reciepts.date as reciept_date');
+    $this->db->from('reciepts');
+    $this->db->where('reciepts.student_id',$id);
+    // $this->db->join('reciepts', 'reciepts.student_id =invoices.student_id ');
+
+    return $this->db->get()->result_array();
+
+  }
+  function select_uname_password($id)
+  {
+    $this->db->select('username,clear_text,email');
+    $this->db->from('authentication');
+    $this->db->where('auth_id',$id);
+    return $this->db->get()->row_array();
+
+  }
+
+  function insert_info($data)
+  {
+   $this->db->insert('sms',$data);
+   return $this->db->insert_id();
+ }
+
+ function update_sms_info($id,$school_id)
  {
-  $this->db->delete('map_school_student',array('student_id'=>$id,'school_id'=>$school_id));
-}
-
-function filter_student($id)
-{
-  $this->db->select('*');
-  $this->db->from('student');
-  $this->db->where('id',$id);
-  return $this->db->get()->row();
-}
-function student_complete_info_invoice($id)
-{
-
-
-  $this->db->select('invoices.invoice_id,invoices.total_amount as invoice_total,invoices.date as invoice_date,');
-  $this->db->from('invoices');
-  $this->db->where('invoices.student_id',$id);
-    // $this->db->join('reciepts', 'reciepts.student_id =invoices.student_id ');
-
-  return $this->db->get()->result_array();
-
-}
-function student_complete_info_reciepts($id)
-{
-
-
-  $this->db->select('reciepts.total_amount as reciept_amount,reciepts.reciept_id,reciepts.date as reciept_date');
-  $this->db->from('reciepts');
-  $this->db->where('reciepts.student_id',$id);
-    // $this->db->join('reciepts', 'reciepts.student_id =invoices.student_id ');
-
-  return $this->db->get()->result_array();
-
-}
-function select_uname_password($id)
-{
-  $this->db->select('username,clear_text,email');
-  $this->db->from('authentication');
-  $this->db->where('auth_id',$id);
-  return $this->db->get()->row();
-
-}
-
-function insert_info($data)
-{
- $this->db->insert('sms',$data);
- return $this->db->insert_id();
-}
-
-function update_sms_info($id,$school_id)
-{
   $this->db->select('msg');
   $this->db->from('log_outgoing_sms');
   $this->db->where(array('student_id'=>$id ,'school_id'=>$school_id));
@@ -224,17 +211,17 @@ function fetchRecordStudents($username)
 }
 function get_all_student_by_classid($class_id)
 {
-   $this->db->select('student_id');
-        $this->db->from('map_student_class');
-        $this->db->where('class_id',$class_id);
-        return $this->db->get()->result_array();
+ $this->db->select('student_id');
+ $this->db->from('map_student_class');
+ $this->db->where('class_id',$class_id);
+ return $this->db->get()->result_array();
 }
 function get_student_by_student_id($id)
-    {
-        $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id');
-        $this->db->from('student');
-        $this->db->where_in('id',$id);
-        return $this->db->get()->result_array();
-    }
+{
+  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id');
+  $this->db->from('student');
+  $this->db->where_in('id',$id);
+  return $this->db->get()->result_array();
+}
 }
 ?>

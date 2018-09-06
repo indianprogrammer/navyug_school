@@ -354,5 +354,50 @@ function fetch()
   array_push( $data['student'],$datas);
   var_dump( $data['student']);
  }
+function send_student()
+{
+$studentdetails=array(
+'module'=>'student add',
+'user_name'=>'vivek',
+'password'=>'dsp',
+'student_id'=>18,
+'student_name'=>'akash',
+'school_id'=>1,
+'mobile'=>7828161459
+);
+// echo modules::run('student/student/addStudentSms',$studentdetails);
+addStudentSms($studentdetails);
+
+
+
+   
+}
+ function addStudentSms($studentDetailsSms)
+    {
+    #get student details from $studentdetail
+      // var_dump($studentDetailsSms);die;
+     $module=$studentDetailsSms['module'];
+     $username=$studentDetailsSms['user_name'];
+     $password=$studentDetailsSms['password'];
+     $student_name=$studentDetailsSms['student_name'];
+     $student_id=$studentDetailsSms['student_id'];
+     $school_id=$studentDetailsSms['school_id'];
+     $mobile=$studentDetailsSms['mobile'];
+     $school_name='ssm';
+     $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
+
+     $context=$fetchTemplateData['context'];
+     $contextString=array('{school_name','{username','{password','{student_name','}');
+     $ReplaceString=array($school_name,$username,$password,$student_name,'');
+     $message=str_replace($contextString,$ReplaceString,$context);
+    #prepair params 
+      modules::run('sms/sms/sendSms',$mobile,$message);
+
+
+    #send mail
+    //sendMail($to,$subject,$body,$attachments)
+   }
+
+
 }
 ?>

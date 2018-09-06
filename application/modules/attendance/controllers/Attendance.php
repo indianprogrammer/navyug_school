@@ -128,8 +128,8 @@
     }
     function fetch_student()
     {
-
-      echo json_encode($this->Attendance_model->fetch_students($this->input->post('classes_id')));
+      $classes_id=$this->input->post('classes_id');
+      echo json_encode($this->Attendance_model->fetch_students($classes_id));
     }
     
   }

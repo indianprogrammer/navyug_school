@@ -40,6 +40,7 @@
 <script src="<?= base_url() ;?>assets/admin/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.js"></script>
  <script src="<?= base_url() ;?>assets/js/common.js"></script>
+ <script src="<?= base_url() ;?>assets/admin/dist/js/plugins/bootbox.min.js"></script>
      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>  -->
      
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js"></script> -->
