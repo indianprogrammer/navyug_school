@@ -120,11 +120,14 @@
      );
 
 
-
+      if($sendDetails['mobile'])
+      {
       modules::run('employee/employee/addSms',$sendDetails);
-          ##for mail
+      }
+       if($sendDetails['mail'])  
+       { ##for mail
       modules::run('employee/employee/addMail',$sendDetails);
-
+    }
 
 
 

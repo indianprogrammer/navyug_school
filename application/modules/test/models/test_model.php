@@ -127,5 +127,10 @@ function get_all_employees($ids)
    // $this->db->where("student_name like '%$keyword%'");
         // return $query->result_array();
     }
+    function insert_data($table_name,$params)
+    {
+      $this->db->insert($table_name,$params);
+      return $this->db->insert_id();
+    }
 }
 ?>

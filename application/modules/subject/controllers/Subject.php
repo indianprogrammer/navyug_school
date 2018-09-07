@@ -9,68 +9,68 @@ class Subject extends MY_Controller{
 
     } 
 
-    /*
-     * Listing of subject
-     */
-    function index()
-    {   
+/*
+* Listing of subject
+*/
+function index()
+{   
 
-        $schoolId=$this->session->SchoolId;
-        if($this->input->get('classId'))
-        {
-            $classId=$this->input->get('classId');
-            $fetchSubjectId=$this->Subject_model->get_all_subject_by_classid($classId);
-            // var_dump($fetchSubjectId[0]['subject_id']);
-            $noOfSubject=count($fetchSubjectId);
-            $data=array();
-                $data['subject']=array();
-            for($i=0;$i<$noOfSubject;$i++)
-            {
-                array_push( $data['subject'],$fetchSubjectId[$i]['subject_id']);
-           
-         }
-                echo $data['subject'];die;
-             $data['subject'] = $this->Subject_model->get_subject_by_subject_id($data['subject']);
-        
-     }
-     else
-     {
-         $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
-     }
-     $data['_view'] = 'subjectList';
-     $this->load->view('index',$data);
- }
-
-    /*
-     * Adding a new subject
-     */
-    function add_subject()
+    $schoolId=$this->session->SchoolId;
+    if($this->input->get('classId'))
     {
+        $classId=$this->input->get('classId');
+        $fetchSubjectId=$this->Subject_model->get_all_subject_by_classid($classId);
 
-       $data['_view'] = 'add';
-       $this->load->view('index',$data);
-   }
+        $noOfSubject=count($fetchSubjectId);
+        $data=array();
+        $data['subject']=array();
+        for($i=0;$i<$noOfSubject;$i++)
+        {
+            array_push( $data['subject'],$fetchSubjectId[$i]['subject_id']);
+
+        }
+// echo $data['subject'];
+        $data['subject'] = $this->Subject_model->get_subject_by_subject_id($data['subject']);
+
+    }
+    else
+    {
+        $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
+    }
+    $data['_view'] = 'subjectList';
+    $this->load->view('index',$data);
+}
+
+/*
+* Adding a new subject
+*/
+function add_subject()
+{
+
+    $data['_view'] = 'add';
+    $this->load->view('index',$data);
+}
 
 
-   function add()
-   {   
+function add()
+{   
     $this->load->library('form_validation');
-    
 
-        // $this->form_validation->set_rules('password','Password','required|max_length[20]');
+
+// $this->form_validation->set_rules('password','Password','required|max_length[20]');
     $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]');
-    
-    
+
+
     if($this->form_validation->run() )     
     {   
         $params = array(
-                
+
             'name' => $this->input->post('subject_name')
-            
-               
+
+
         );
-        
-        
+
+
         $subject_id = $this->Subject_model->add_subject($params);
         $ids=array(
 
@@ -80,13 +80,13 @@ class Subject extends MY_Controller{
         );  
         $map = $this->Subject_model->add_mapping($ids);
 
-        #set notifications
+#set notifications
         $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added'
-            // 'description'=> ''
+// 'description'=> ''
         );
-        
+
         redirect('subject');
     }
     else
@@ -96,64 +96,64 @@ class Subject extends MY_Controller{
     }
 }  
 
-    /*
-     * Editing a subject
-     */
-    function edit($id)
-    {   
-        // check if the subject exists before trying to edit it
-        $data['subject'] = $this->Subject_model->get_subject($id);
-        
-        
-        if(isset($data['subject']['id']))
-        {
-            $this->load->library('form_validation');
+/*
+* Editing a subject
+*/
+function edit($id)
+{   
+// check if the subject exists before trying to edit it
+    $data['subject'] = $this->Subject_model->get_subject($id);
 
-            
-            $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]|is_unique[subjects.name]');
-            
-            
-            if($this->form_validation->run() )     
-            {   
-                $params = array(
 
-                    'name' => $this->input->post('subject_name')
-                    
-                    
-                );
-                
-                $this->Subject_model->update_subject($id,$params);            
-                redirect('subject');
-            }
-            else
-            {
-                $data['_view'] = 'edit';
-                $this->load->view('index',$data);
-            }
+    if(isset($data['subject']['id']))
+    {
+        $this->load->library('form_validation');
+
+
+        $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]|is_unique[subjects.name]');
+
+
+        if($this->form_validation->run() )     
+        {   
+            $params = array(
+
+                'name' => $this->input->post('subject_name')
+
+
+            );
+
+            $this->Subject_model->update_subject($id,$params);            
+            redirect('subject');
         }
         else
-            show_error('The subject you are trying to edit does not exist.');
-    } 
-
-    /*
-     * Deleting subject
-     */
-    function remove()
-    {   
-        $id=$this->input->post('id');
-        $subject = $this->Subject_model->get_subject($id);
-        $schoolId=$this->session->SchoolId;
-        // check if the subject exists before trying to delete it
-        if(isset($subject['id']))
         {
-            $this->Subject_model->delete_subject($id);
-            $this->Subject_model->delete_subjectSchoolMap($id,$schoolId);
-            echo true;
-            // redirect('subject');
+            $data['_view'] = 'edit';
+            $this->load->view('index',$data);
         }
-        else
-            show_error('The subject you are trying to delete does not exist.');
     }
-    
+    else
+        show_error('The subject you are trying to edit does not exist.');
+} 
+
+/*
+* Deleting subject
+*/
+function remove()
+{   
+    $id=$this->input->post('id');
+    $subject = $this->Subject_model->get_subject($id);
+    $schoolId=$this->session->SchoolId;
+// check if the subject exists before trying to delete it
+    if(isset($subject['id']))
+    {
+        $this->Subject_model->delete_subject($id);
+        $this->Subject_model->delete_subjectSchoolMap($id,$schoolId);
+        echo true;
+// redirect('subject');
+    }
+    else
+        show_error('The subject you are trying to delete does not exist.');
+}
+
 }
 ?>

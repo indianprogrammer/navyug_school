@@ -19,12 +19,12 @@ class Test extends MY_Controller{
 
     function index()
     {
-      // $data=array('usrname'=>'vivek','pw'=>12345);
-       // $this->load->controller('email/run', $data, $return = true);
-      // modules::run('email/run', $data);
-      // $this->session->set_userdata($datas);
-    // echo  $this->session->userdata('message');
-       // bar();
+      $params=array(
+        'mobile'=>7828161459,
+        'msg'=>'i am great'
+
+      );
+       $q=$this->Test_model->insert_data("test",$params);
     }
 
 
@@ -85,102 +85,7 @@ function ipadd()
   echo $IP = $_SERVER['REMOTE_ADDR'];        // Obtains the IP address
 // echo $computerName = gethostbyaddr($IP); 
 }
-function idtest($notification,$notificationStudent,$notificationEmployee)
-{
-  $notificationMsg= $notification;
- $getInfoSmsGateway=$this->Sms_model->get_info_sms(1);
 
- $senderId = $getInfoSmsGateway->sender_id;
- $authKey = $getInfoSmsGateway->auth_key;
- $url=$getInfoSmsGateway->url;
- $route = $getInfoSmsGateway->route;
- $stu=[];
- 
-        if($notificationStudent!=0)
-        {
-             for ($i=0;$i<count($notificationStudent);$i++)
-             {
-
-
-               array_push($stu,$this->Test_model->get_all_students($notificationStudent[$i]));
-             }
-             // return $st[0][0]['mobile'];die;
-             
-                     for($j=0;$j<count($stu);$j++)
-                     {
-                      $data=array
-                      (
-                        'mobile'=>$stu[$j][0]['mobile'],
-                        'msg'=>$notificationMsg
-                      );
-                       $data['student'] =$this->Test_model->data_sms($data);
-                      
-                      $postData = array(
-                        'authkey' => $authKey,
-                        'mobiles' => $stu[$j][0]['mobile'],
-                        'message' => $notificationMsg,
-                        'sender' => $senderId,
-                        'route' => $route
-                      );
-
-                      $ch = curl_init();
-                      curl_setopt_array($ch, array(
-                        CURLOPT_URL => $url,
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_POST => true,
-                        CURLOPT_POSTFIELDS => $postData
-                        //,CURLOPT_FOLLOWLOCATION => true
-                      ));
-                     $output = curl_exec($ch);
-                      curl_close($ch);
-
-                    }
-                  }
-                    ##for employee
-                     if($notificationEmployee!=0)
-        {   
-          $emp=[];
-          // return $notificationEmployee[0];die;
-             for ($i=0;$i<count($notificationEmployee);$i++)
-             {
-
-
-               array_push($emp,$this->Test_model->get_all_employees($notificationEmployee[$i]));
-               // return $emp;die;
-             }
-             
-                     for($j=0;$j<count($emp);$j++)
-                     {
-                      $data=array
-                      (
-                        'mobile'=>$emp[$j][0]['mobile'],
-                        'msg'=>$notificationMsg
-                      );
-                       $data['student'] =$this->Test_model->data_sms($data);
-                      
-                      $postData = array(
-                        'authkey' => $authKey,
-                        'mobiles' => $emp[$j][0]['mobile'],
-                        'message' => $notificationMsg,
-                        'sender' => $senderId,
-                        'route' => $route
-                      );
-
-                      $ch = curl_init();
-                      curl_setopt_array($ch, array(
-                        CURLOPT_URL => $url,
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_POST => true,
-                        CURLOPT_POSTFIELDS => $postData
-                        //,CURLOPT_FOLLOWLOCATION => true
-                      ));
-                     $output = curl_exec($ch);
-                      curl_close($ch);
-
-                    }
-        }
-echo "fsd";
-}
 function real_ip()
 {
     // $ipaddress = '';

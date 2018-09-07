@@ -17,23 +17,23 @@ class Email_model extends CI_Model
   }
   function get_info_email($schoolId)
   {
-   $this->db->select('*');
-   $this->db->from('configuration_email');
-   $this->db->where('school_id',$schoolId);
+    $this->db->select('*');
+    $this->db->from('configuration_email');
+    $this->db->where('school_id',$schoolId);
 
-   return $this->db->get()->row_array();
- }
- function fetch_template_data($school_id,$module)
- {
+    return $this->db->get()->row_array();
+  }
+  function fetch_template_data($school_id,$module)
+  {
 
-  $this->db->select('context');
-  $this->db->from('template_email');
-  $this->db->where(array('school_id'=>$school_id,'module'=>$module));
+    $this->db->select('context');
+    $this->db->from('template_email');
+    $this->db->where(array('school_id'=>$school_id,'module'=>$module));
 
-  return $this->db->get()->row_array();
+    return $this->db->get()->row_array();
 
 
-}
+  }
 
 
 

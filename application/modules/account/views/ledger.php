@@ -24,7 +24,7 @@
             <th>Credit</th>
             <th>Date</th>
             
-            <!-- <th>Actions</th> -->
+            
         </tr>
     </thead>
     <tbody>

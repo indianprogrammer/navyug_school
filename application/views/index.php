@@ -29,7 +29,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
             data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
-                       with font-awesome or any other icon font library -->
+                     with font-awesome or any other icon font library -->
                     <!--  <li class="nav-item has-treeview menu-open">
                        <a href="#" class="nav-link active">
                          <i class="nav-icon fa fa-dashboard"></i>
@@ -245,11 +245,11 @@
                             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="attendance"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-check-square-o"></i>
                                 <p>
-                                 ATTENDANCE
-                                 <i class="fa fa-angle-left right"></i>
-                             </p>
-                         </a>
-                         <ul class="nav nav-treeview">
+                                   ATTENDANCE
+                                   <i class="fa fa-angle-left right"></i>
+                               </p>
+                           </a>
+                           <ul class="nav nav-treeview">
 
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>attendance/take_attendance" class="nav-link">
@@ -361,71 +361,71 @@
                             <p>LOGOUT</p>
                         </a>
                     </li>
-                   
+                    
                 </ul>
 
             </nav>
-</div>
-            <!-- </div> -->
-            <!-- /.sidebar -->
-        </aside>
-
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-<section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <!-- <h2><?= ucfirst($this->uri->segment(1)) ?></h2> -->
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?= base_url()?>admin">Home</a></li>
-              <li class="breadcrumb-item active"><?= $this->uri->segment(1) ?></li>
-              <!-- <li class="breadcrumb-item active"><?= $this->uri->segment(2) ?></li> -->
-            </ol>
-          </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
-            <!-- /.content-header -->
+        <!-- </div> -->
+        <!-- /.sidebar -->
+    </aside>
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-
-                    <?php if (isset($this->session->alerts)) {
-                        $alert = $this->session->alerts; ?>
-                        <div class="alert alert-<?= $this->session->alerts['severity'] ?> alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fa fa-check"></i> <?= $this->session->alerts['title'] ?>!</h5>
-                            <?= isset($this->session->alerts['description'])?$this->session->alerts['description']:'' ?>
-                        </div>
-                        <?php $this->session->alerts = null; } ?>
-
-
-                        <?php if (isset($_view) && $_view)
-                        $this->load->view($_view);
-                        ?>
-
-
-                        <!-- </div> -->
-                        <!-- /.col -->
-                        <!-- </div> -->
-                        <!-- /.row -->
-                    </div><!--/. container-fluid -->
-                </section>
-                <!-- /.content -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <!-- <h2><?= ucfirst($this->uri->segment(1)) ?></h2> -->
             </div>
-            <!-- /.content-wrapper -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item"><a href="<?= base_url()?>admin">Home</a></li>
+                  <li class="breadcrumb-item active"><?= $this->uri->segment(1) ?></li>
+                  <!-- <li class="breadcrumb-item active"><?= $this->uri->segment(2) ?></li> -->
+              </ol>
+          </div>
+      </div>
+  </div><!-- /.container-fluid -->
+</section>
+<!-- /.content-header -->
 
-            <!-- Control Sidebar -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
 
-            <!-- /.control-sidebar -->
+        <?php if (isset($this->session->alerts)) {
+            $alert = $this->session->alerts; ?>
+            <div class="alert alert-<?= $this->session->alerts['severity'] ?> alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fa fa-check"></i> <?= $this->session->alerts['title'] ?>!</h5>
+                <?= isset($this->session->alerts['description'])?$this->session->alerts['description']:'' ?>
+            </div>
+            <?php $this->session->alerts = null; } ?>
 
-            <!-- Main Footer -->
-            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+            <?php if (isset($_view) && $_view)
+            $this->load->view($_view);
+            ?>
+
+
+            <!-- </div> -->
+            <!-- /.col -->
+            <!-- </div> -->
+            <!-- /.row -->
+        </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<!-- Control Sidebar -->
+
+<!-- /.control-sidebar -->
+
+<!-- Main Footer -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
             <!-- <script>
                 $(document).ready(function(){
   $('.mt-2 ul li a').click(function(){
@@ -440,11 +440,11 @@
 });
 </script> -->
 <script>
-     
+   
   $('.mt-2 ul li').find('a').each(function () {
-            if (document.location.href == $(this).attr('href')) {
-                $(this).parents().addClass("active");
-                $(this).addClass("active");
+    if (document.location.href == $(this).attr('href')) {
+        $(this).parents().addClass("active");
+        $(this).addClass("active");
                 // add class as you need ul or li or a 
             }
         });
@@ -457,7 +457,7 @@
 });
 });
 </script>
- -->
+-->
 <!--  <script type="text/javascript">
     $(document).ready(function(){
    var url = window.location.pathname.split("/");
@@ -470,7 +470,7 @@ console.log(questions);
          $(this).addClass('menu-open');
     });
  });
- </script> -->
+</script> -->
  <!-- <script type="text/javascript">
      $('.mt-2 ul li a').click(function(e) {
     // e.preventDefault();
@@ -486,6 +486,6 @@ console.log(questions);
     var $this = $(this);
     $this.addClass('menu-open');
 });
- </script> -->
- 
-            <?php include "footer.php"; ?>
+</script> -->
+
+<?php include "footer.php"; ?>

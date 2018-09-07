@@ -13,9 +13,9 @@ class Profile extends MY_Controller{
 	{
 		$username=$this->session->username;
 		$authenticationId=$this->session->authenticationId;
-	## get details through username
+## get details through username
 		$data['userdata']=$this->Profile_model->get_user_info($username,$authenticationId);
-	 // var_dump($data['userdata']);die
+// var_dump($data['userdata']);die
 		$this->load->view('profile',$data);
 	}
 
@@ -57,7 +57,7 @@ class Profile extends MY_Controller{
 		$params = array(
 
 			'name' => $this->input->post('name'),
-        // 'qualification' => @$this->input->post('qualification'),
+// 'qualification' => @$this->input->post('qualification'),
 			'email' => $this->input->post('email'),
 			'mobile' => $this->input->post('mobile'),
 			'permanent_address' => $this->input->post('paddress'),
@@ -73,7 +73,7 @@ class Profile extends MY_Controller{
 			$image_path=$data['image']['raw_name'].$data['image']['file_ext'];
 			$params['profile_image']=$image_path;
 		}
-    // var_dump($params);
+// var_dump($params);
 		$profileId = $this->Profile_model->update_profile($params,$user_id,$authorization_id);
 		if($authorization_id==1)
 		{
@@ -81,27 +81,27 @@ class Profile extends MY_Controller{
 		}
 		else
 		{
-     // $this->load->view('profile');
+// $this->load->view('profile');
 			redirect('profile');
 		}
 	}
 	function adminProfile()
 	{
-		 $username=$this->session->username;
-		 $authenticationId=$this->session->authenticationId;
-	## get details through username
+		$username=$this->session->username;
+		$authenticationId=$this->session->authenticationId;
+## get details through username
 		$data['userdata']=$this->load->Profile_model->get_admin_info($username,$authenticationId);
-	   // var_dump($data['userdata']['auth_id']);die;
+// var_dump($data['userdata']['auth_id']);die;
 		$this->session->profileImage=$data['userdata']->profile_image;
 		$data['_view'] = 'profile';
-      // $this->load->view('../index',$data);
+// $this->load->view('../index',$data);
 		$this->load->view('index',$data);
 	}
 	function logout()
 	{
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('authenticationId');
-	// $this->session->unset_userdata('profileImage');
+// $this->session->unset_userdata('profileImage');
 		$this->session->sess_destroy();
 		redirect('login');
 	}
