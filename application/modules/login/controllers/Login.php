@@ -64,7 +64,7 @@ class Login extends MX_Controller
             $data = array(
                 'error_message' => 'Invalid Username or Password'
             );
-            $this->load->view('login2', $data);
+            $this->load->view('login', $data);
         }else{
             $autorizationData = $this->Login_model->getAutorization($authenticationData['autorization_id']);
 

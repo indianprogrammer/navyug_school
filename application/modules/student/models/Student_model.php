@@ -61,7 +61,9 @@ function update_student($id,$params)
 */
 function delete_student($id)
 {
-  return $this->db->delete('student',array('id'=>$id));
+   $this->db->delete('student',array('id'=>$id));
+   $this->db->where(array('user_id'=>$id,'autorization_id'=>4));
+  return $this->db->delete('authentication');
 }
 
 function add_mapping($ids)
