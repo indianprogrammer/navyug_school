@@ -9,17 +9,17 @@
 	</div>
 	
 	<div class="form-group">
-		<label for="description" class="col-md-4  control-label"><span class="text-danger">*</span>Description</label>
+		<label for="description" class="col-md-4  control-label">Description</label>
 		<div class="col-md-4">
 			<textarea name="description" class="form-control" id="description"><?php echo $this->input->post('description'); ?></textarea>
 			<span class="text-danger"><?php echo form_error('description');?></span>
 		</div>
 	</div>
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<label for="subject" class="col-md-4 control-label"><span class="text-danger">*</span>Subject</label>
 		<div class="col-md-5">
 			<select  name="subject[]" class="selectpicker" multiple="multiple" id="multiselectSubject">
-				<!-- <option>SELECT SUBJECT</option> -->
+			
 			<?php	foreach($subject as $row){ ?>
 				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
 			<?php } ?>
@@ -31,14 +31,37 @@
 		<label for="employee" class="col-md-4 control-label"><span class="text-danger">*</span>Employee</label>
 		<div class="col-md-5 col-sm-10">
 			<select  name="employee[]" class="selectpicker" multiple="multiple" id="multiselectEmployee">
-				<!-- <option>SELECT EMPLOYEE</option> -->
+				
 			<?php	foreach($employee as $row){ ?>
 				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
 			<?php } ?>
 			</select>
 			<span class="text-danger"><?php echo form_error('employee');?></span>
 		</div>
-	</div>
+	</div> -->
+	<div class="form-group">
+		<label class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
+	<div class="col-md-4 col-sm-12">
+		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="subject[]"
+		>
+		<?php	foreach($subject as $row){ ?>
+				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
+			<?php } ?>
+			</select>
+      </div>
+  </div>
+      <div class="form-group">
+		<label class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
+	<div class="col-md-4 col-sm-12">
+		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="employee[]"
+		>
+			<?php	foreach($employee as $row){ ?>
+				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
+			<?php } ?>
+			</select>
+      </div>
+     </div>
+     
 	<!-- <div class="form-group">
 		<label for="start_time" class="col-md-4 control-label"><span class="text-danger">*</span>Start Time</label>
 		<div class="col-md-5">
@@ -62,27 +85,14 @@
 	</div>
 
 <?php echo form_close(); ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
- $('#multiselectSubject').multiselect({
-  nonSelectedText: 'Select Subject',
-  enableFiltering: true,
-  enableCaseInsensitiveFiltering: true,
-  buttonWidth:'350px'
- });
-});
-</script>
-<script type="text/javascript">
-	$(document).ready(function(){
- $('#multiselectEmployee').multiselect({
-  nonSelectedText: 'Select Employee',
-  enableFiltering: true,
-  enableCaseInsensitiveFiltering: true,
-  buttonWidth:'350px',
-  buttonContainer: '<div class="col-md-5 col-sm-12" />',
 
- });
+
+ <script type="text/javascript">
+        	$(document).ready(function() {
+    //Initialize Select2 Elements
+    $('.select2').select2();
+
+    //Datemask dd/mm/yyyy
+    
 });
 </script>

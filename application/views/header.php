@@ -21,6 +21,8 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
    <script src="<?= base_url() ;?>assets/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- Select2 -->
+  <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/select2/select2.min.css">
    <style type="text/css">
      /* Extra small devices (phones, 600px and down) */
 /*@media only screen and (max-width: 600px) {*/

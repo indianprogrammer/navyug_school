@@ -217,10 +217,12 @@ $.ajax({
   method:"post",  
   data:{id:url},  
   success:function(data){  
-    console.log(data);
+    // console.log(data);
     var obj=JSON.parse(data);
+    if(obj){
 // $('#page').hide();
 $('#page').html('<table class="table table-striped table-bordered table-responsive"><tr><th>Student name</th><th>classes</th><th>Email</th><th>Mobile</th><th>Permanent Address</th><th>Corresponding Address</th></tr><tr><td>'+obj.name+'</td><td>'+obj.classes+'</td><td>'+obj.email+'</td><td>'+obj.mobile+'</td><td>'+obj.permanent_address+'</td><td>'+obj.temporary_address+'</td><table>'); 
+}
 }
 });
 });

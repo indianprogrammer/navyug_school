@@ -72,7 +72,7 @@ function delete_parent($id)
 function fetch_type()
 {
     $query = $this->db->get("parent_type");
-    return $query->result();
+    return $query->result_array();
 }
 function add_mapping($ids)
 {

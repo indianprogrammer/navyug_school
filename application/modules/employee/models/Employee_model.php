@@ -71,7 +71,7 @@ class Employee_model extends CI_Model
     
     {
       $this->db->from('employee_type');
-        return $this->db->get()->result();
+        return $this->db->get()->result_array();
     }
      function add_user($authentication)
      {

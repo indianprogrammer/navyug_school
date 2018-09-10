@@ -1,5 +1,5 @@
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+  
 <?= form_open_multipart('student/add',array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
@@ -25,7 +25,7 @@
 			<span class="text-danger"><?= form_error('mobile');?></span>
 		</div>
 	</div>
-	<div class="form-group" style="width:600px">
+	<!-- <div class="form-group" style="width:600px">
 		<label for="class" class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
 		<div class="col-md-5">
 			<select name="classes[]" id="multiselect" class="form-control"  multiple="multiple">
@@ -35,6 +35,24 @@
 			</select>
 			<span class="text-danger"><?= form_error('classes');?></span>
 
+		</div>
+	</div> -->
+	<div class="form-group">
+		<label class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
+	<div class="col-md-5 col-sm-12">
+		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes" name="classes[]"
+		>
+		<?php	foreach($classes as $row){ ?>
+				<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+				<?php } ?>
+         </select>
+      </div>
+     </div>
+	<div class="form-group">
+		<label for="mobile" class="col-md-4 control-label">Aadhar Number</label>
+		<div class="col-md-5">
+			<input type="text" name="aadhar" id="aadhar" maxlength="13"	 value="<?= $this->input->post('aadhar'); ?>" class="form-control" id="aadhar" maxlength="13" />
+			<span class="text-danger"><?= form_error('aadhar');?></span>
 		</div>
 	</div>
 	<div class="form-group">
@@ -108,13 +126,12 @@ $(document).ready(function(e) {
     });
     });
 </script>
-<script type="text/javascript">
-	$(document).ready(function(){
- $('#multiselect').multiselect({
-  nonSelectedText: 'Select Classes',
-  enableFiltering: true,
-  enableCaseInsensitiveFiltering: true,
-  buttonWidth:'430px'
- });
+
+ <script type="text/javascript">
+        	$(document).ready(function() {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    
 });
 </script>

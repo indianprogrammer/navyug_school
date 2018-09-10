@@ -379,7 +379,7 @@ function invoiceGenerate()
     'organization_name'=>$getSchoolInformation['organization_name'],
     'email'=>$studentData['email'],
 
-    'name'=>$studentData['name'],
+    'name'=>$studentData['name']
 
 
 
@@ -418,7 +418,7 @@ function getledger()
 }
 function ledgerReportJson()
 {
-   $student_id=$this->input->post('student_id');
+   $student_id=$this->input->post('id');
     echo json_encode($data['ledger']=$this->Account_model->get_ledger($student_id));
 }
 function autosuggest(){
@@ -429,6 +429,16 @@ function autosuggest(){
 function autofill()
 { 
   $id=$this->input->post("id");
+  $balance=$this->Account_model->get_balance_info($id);
+  // if($this->Account_model->get_balance_info($id))
+  // {
+  //   echo json_encode($this->Account_model->get_balance_info($id));
+  // }
+  // else
+  // {
+  //   $balance=0;
+  //   echo json_encode($balance);
+  // }
   echo json_encode($this->Account_model->get_autofill_value($id));
 }
 function addMail($detailsMail)

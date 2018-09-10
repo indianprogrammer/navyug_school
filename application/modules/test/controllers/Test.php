@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -302,6 +303,12 @@ addStudentSms($studentdetails);
     #send mail
     //sendMail($to,$subject,$body,$attachments)
    }
+function select()
+{
+   // $data['_view'] = 'select';
+     // $this->load->view('index',$data);
+     $this->load->view('select');
+ }
 
 
 }

@@ -7,6 +7,7 @@ class Student extends MY_Controller{
     parent::__construct();
     $this->load->model('Student_model');
     $this->load->model('classes/Classes_model');
+    $this->load->library('excel');
   } 
 
 /*
@@ -85,6 +86,7 @@ function add()
       'email' => $this->input->post('email'),
 
       'mobile' => $this->input->post('mobile'),
+      'aadhar' => $this->input->post('aadhar'),
       'classes' => $classes,
 
       'permanent_address' => $this->input->post('paddress'),
@@ -219,7 +221,7 @@ function edit($id)
     $this->load->library('form_validation');
 
     $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
-// $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
+    $this->form_validation->set_rules('email','Email','max_length[50]|valid_email');
 
 // $this->form_validation->set_rules('mobile','Mobile','required');
 
@@ -232,7 +234,7 @@ function edit($id)
 
         'name' => $this->input->post('student_name'),
         'email' => $this->input->post('email'),
-
+        'aadhar' => $this->input->post('aadhar'),
         'mobile' => $this->input->post('mobile'),
 // 'profile_image' => $this->input->post('profile_image'),
         'permanent_address' => $this->input->post('paddress'),
@@ -288,6 +290,52 @@ function remove($id)
   else
     show_error('The student you are trying to delete does not exist.');
 }
+function add_bulk_student()
+{
+
+  $data['_view'] = 'bulkAdd';
+  $this->load->view('index',$data);
+
+
+}
+function import_data() 
+{
+  if(isset($_FILES["file"]["name"]))
+  {
+
+    $path = $_FILES["file"]["tmp_name"];
+    $object = PHPExcel_IOFactory::load($path);
+    foreach($object->getWorksheetIterator() as $worksheet)
+    {
+      $highestRow = $worksheet->getHighestRow();
+      $highestColumn = $worksheet->getHighestColumn();
+      for($row=2; $row<=$highestRow; $row++)
+      {
+        $name = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+        $email = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+        $mobile = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+        $classes = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+        $permanent_address = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+        $temporary_address = $worksheet->getCellByColumnAndRow(5, $row)->getValue();
+
+        $data[] = array(
+          'name'    =>  $name,
+          'email'=>$email,
+          'mobile'   => $mobile,
+          'classes'=>$classes,
+
+          'permanent_address'  =>  $permanent_address,
+          'temporary_address'=>$temporary_address
+// 'parent_id'=>2
+
+        );
+      }
+    }
+// echo json_encode( $data);
+    $this->Student_model->insert_by_excel($data);
+    echo 'Data Imported successfully';
+  } 
+}
 ##short view in popup
 function fetchStudentView()
 {
@@ -307,8 +355,8 @@ function getFullDetails()
   $student_id=$this->input->get('student_id');
   $data['student_info']= $this->Student_model->get_student_full_details($student_id);
   $data['classes'] = $this->Classes_model->fetch_classes($school_id);
- // var_dump($data['student_info']);die;
- // var_dump($data['classes']);die;
+// var_dump($data['student_info']);die;
+// var_dump($data['classes']);die;
   $data['_view'] = 'studentDetails';
   $this->load->view('index',$data);
 

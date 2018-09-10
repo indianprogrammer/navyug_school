@@ -8,7 +8,7 @@
                 <div class="text-center">
                   <img class=" img-fluid img-circle"
                        src="<?= base_url()?>uploads/<?= $student_info['profile_image'] ?>"
-                       alt=" " style="height:50px;width:50px;">
+                        style="height:50px;width:50px;" alt="">
                 </div>
 
                 <h3 class="profile-username text-center"><?= $student_info['name'] ?></h3>
@@ -40,9 +40,7 @@
                              
                            </a>
                   </li>
-                  <li class="list-group-item">
-                    <b>Joining Date</b> <a class="float-right"><?= $student_info['date'] ?></a>
-                  </li>
+                 
                   <li class="list-group-item">
                     <b>Permanent Location</b> <a class="float-right"><?= $student_info['permanent_address'] ?></a>
                   </li>
@@ -60,7 +58,7 @@
             </div>
           </div>
             <!-- /.card -->
-            <div class="col-md-4"><table id="ledger"></table></div>
+            <div class="col-md-5"><table id="ledger" class="table table-border" style="background-color: white"><?php str_replace('null','-','null'); ?></table></div>
             
 </div>
 
@@ -74,16 +72,26 @@ $.ajax({
   method:"post",  
   data:{id:id},  
   success:function(data){
-console.log(data);
+// console.log(data);
 var obj=JSON.parse(data);
 console.log(obj);
-
-                // $('#page').hide();
-                $('#ledger').html('<tr><th>S. no.</th><th>Invoice Number</th><th>Reciept Number</th><th>Debit</th><th>Credit</th><th>Date</th><tr><td>1</td><td>'+obj.invoice_id+'</td><td>'+obj.reciept_id+'</td><td>'+obj.debit+'</td><td>'+obj.credit+'</td></tr>');
+// $('#page').hide();
+                var tabledata,i,count=1;
+               for(i=0;i<obj.length;i++)
+               {
+                  // if(obj[i].invoice_id==null )
+                  // {
+                  //   obj[i].invoice_id="-";
+                tabledata+='<tr><td>'+count+'</td><td>'+obj[i].invoice_id+'</td><td>'+obj[i].reciept_id+'</td><td>'+obj[i].debit+'</td><td>'+obj[i].credit+'</td><td>'+obj[i].date+'</td></tr>';
+                count ++;
+              }
+                
+                $('#ledger').html('<tr><th>S. no.</th><th>Invoice Number</th><th>Reciept Number</th><th>Debit</th><th>Credit</th><th>Date</th>'+tabledata+'');
+               }
             
             
          
-  }  
+    
   });
 
 }

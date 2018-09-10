@@ -14,7 +14,7 @@
 			<select name="type" class="form-control" id="type">
 				<option>--select--</option>
 				<?php foreach($emptype as $row)  {     ?>
-				<option value="<?= $row->id ?>"><?=  $row->type     ?></option>
+				<option value="<?= $row['id'] ?>"><?=  $row['type']     ?></option>
 			<?php } ?>
 		</select>
 			<span class="text-danger"><?php echo form_error('type');?></span>
@@ -29,7 +29,7 @@
 	</div>
 	
 	<div class="form-group">
-		<label for="email" class="col-md-4 control-label"><span class="text-danger">*</span>Email</label>
+		<label for="email" class="col-md-4 control-label">Email</label>
 		<div class="col-md-4">
 			<input type="text" name="email" value="<?php echo $this->input->post('email'); ?>" class="form-control" id="email" />
 			<span class="text-danger"><?php echo form_error('email');?></span>
@@ -37,7 +37,7 @@
 	</div>
 	
 	<div class="form-group">
-		<label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Mobile</label>
+		<label for="mobile" class="col-md-4 control-label">Mobile</label>
 		<div class="col-md-4">
 			<input type="text" name="mobile" maxlength="13" value="<?php echo $this->input->post('mobile'); ?>" class="form-control" id="mobile" />
 			<span class="text-danger"><?php echo form_error('mobile');?></span>

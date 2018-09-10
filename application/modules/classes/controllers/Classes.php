@@ -99,8 +99,8 @@ function add()
 
         $this->session->alerts = array(
             'severity'=> 'success',
-            'title'=> 'successfully added',
-            'description'=> ''
+            'title'=> 'successfully added'
+            
         );
         redirect('classes');
     }
@@ -128,11 +128,7 @@ function edit($id)
 
 // $this->form_validation->set_rules('password','Password','required|max_length[20]')
         $this->form_validation->set_rules('class_name','class Name','required|max_length[100]');
-// $this->form_validation->set_rules('email','Email','required|max_length[50]|valid_email');
-// $this->form_validation->set_rules('username','Username','required|max_length[100]');
-// $this->form_validation->set_rules('mobile','Mobile','required');
-// $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
-// $this->form_validation->set_rules('address','Address','required');
+
 
         if($this->form_validation->run() )     
         {   
@@ -141,20 +137,45 @@ function edit($id)
                 'name' => $this->input->post('class_name'),
 
                 'description' => $this->input->post('description'),
-                'subject_id' => $this->input->post('subject'),
+                // 'subject_id' => $this->input->post('subject'),
 // 'start_time' => $this->input->post('start_time'),
 // 'end_time' => $this->input->post('end_time')
 //  'created_at'=>date(),
 // 'modified_at'=>date()
             );
 
-            $this->Classes_model->update_class($id,$params);     
+            $this->Classes_model->update_class($id,$params);
+            $subjectId=$this->input->post('subject');
+            if($subjectId)
+            {
+        foreach ($subjectId as $row) {
+            $mapping=array(
+                'class_id'=>$id,
+                'subject_id'=>$row
+
+            );
+            $map = $this->Classes_model->add_mapping_subject($mapping);
+        }
+    }
+##map employee class
+        $employeeId=$this->input->post('employee');
+     if($employeeId)
+    {
+        foreach ($employeeId as $row) {
+            $mapping=array(
+                'class_id'=>$id,
+                'employee_id'=>$row
+
+            );
+            $map = $this->Classes_model->add_mapping_employee($mapping);
+        }   
+        }  
             $this->session->alerts = array(
                 'severity'=> 'success',
-                'title'=> 'successfully edited',
-                'description'=> ''
+                'title'=> 'successfully edited'
+               
             );       
-            redirect('classes/index');
+            redirect('classes');
         }
         else
         {

@@ -75,6 +75,15 @@
                                         </p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="<?= site_url() ?>student/add_bulk_student" class="nav-link">
+                                        <i class="nav-icon fa fa-th"></i>
+                                        <p>
+                                            ADD BULK STUDENT
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>
 
 
                             </ul>
@@ -90,7 +99,7 @@
                             <ul class="nav nav-treeview">
 
                                 <li class="nav-item">
-                                    <a href="<?= site_url() ?>employee/add_employee" class="nav-link <?php if($this->uri->segment(2)=="add_employee"){ ?> active <?php } ?>">
+                                    <a href="<?= site_url() ?>employee/add_employee" class="nav-link ">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
                                             ADD EMPLOYEE

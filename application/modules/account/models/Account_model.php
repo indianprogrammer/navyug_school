@@ -295,13 +295,12 @@ class Account_model extends CI_Model
   }
   function get_ledger($id)
   {
-    $this->db->select('*');
+    $this->db->select('debit,credit,date,invoice_id,reciept_id');
     $this->db->from('account_transaction');
-// $this->db->join('invoices','invoices.id=account_transaction.reference_id');
+
     $this->db->where('student_id',$id);
 
-// $this->db->join('reciepts','reciepts.id=account_transaction.reference_id');
-// $this->db->where('student_id',18);
+
     return  $this->db->get()->result_array();
 
   }
@@ -314,6 +313,7 @@ class Account_model extends CI_Model
 
     $this->db->from('student');
     $this->db->join('authentication','student.id=authentication.user_id');
+    // $this->db->join('map','student.id=authentication.user_id');
     $this->db->where("name like '%$query%'");
 // $this->db->where("student_name like '%$query%'");
     $this->db->or_where("mobile like '%$query%'");
@@ -329,10 +329,11 @@ class Account_model extends CI_Model
     $this->db->select('student.name,student.mobile,authentication.username,student.id as student_id');
     $this->db->from('student');
     $this->db->join('authentication','student.id=authentication.user_id');
+    $this->db->where("authentication.autorization_id",4);
     $this->db->where("student.id",$id);
 
 // $query=$this->db->query("select * from student where email like '%$keyword'");
-    return $this->db->get()->row();
+    return $this->db->get()->row_array();
 
   }
   function update_balance($balance,$customer_id,$school_id)
@@ -340,7 +341,16 @@ class Account_model extends CI_Model
     $this->db->where('customer_id',$customer_id);
     $this->db->where('school_id',$school_id);
     $this->db->set('balance',$balance);
-    $this->db->update('account_balance_information');
+    return $this->db->update('account_balance_information');
+  }
+  function get_balance_info($id,$school_id=null)
+  {
+    $this->db->select('balance');
+    $this->db->from('account_balance_information');
+     $this->db->where('school_id',$school_id);
+     $this->db->where('customer_id',$id);
+    return  $this->db->get()->row_array();
+
   }
 }
 ?>

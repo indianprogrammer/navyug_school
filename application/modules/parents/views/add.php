@@ -1,11 +1,11 @@
 <?php echo form_open_multipart('parents/add',array("class"=>"form-horizontal")); ?>
 <div class="form-group">
 	<label for="ptype" class="control-label"><span class="text-danger">*</span>Parent Type</label>
-	<div class="col-md-5 col-sm-12">
+	<div class="col-md-5">
 		<select name="ptype" id="ptype" class="form-control"  autofocus>
 			<option value="">SELECT</option>
 			<?php foreach ($ptype as $row) { ?>
-				<option value="<?= $row->id ?>"> <?=  $row->type ?></option>
+				<option value="<?= $row['id'] ?>"> <?=  $row['type'] ?></option>
 			<?php  } ?>
 		</select>
 		<span class="text-danger"><?= form_error('ptype') ?></span>

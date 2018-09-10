@@ -226,5 +226,9 @@ function get_student_full_details($id)
   $this->db->join('authentication','student.id=authentication.user_id','left');
   return $this->db->get()->row_array();
 }
+function insert_by_excel($data)
+  {
+    $this->db->insert_batch('student', $data);
+  }
 }
 ?>

@@ -153,6 +153,7 @@
         },
 
         success: function (data) {
+          console.log(data);
           var obj=JSON.parse(data);
           $('#stuname').val( obj.name );
           $('#uname').val( obj.username );

@@ -37,7 +37,7 @@ function add_parent()
 }
 function add()
 {   
-// echo $this->session->studentID;die;
+
   $data['ptype'] = $this->Parents_model->fetch_type();
 #validation
   $this->load->library('form_validation');
@@ -47,8 +47,8 @@ function add()
 
   $this->form_validation->set_rules('parent_Name','parent Name','required|max_length[100]');
   $this->form_validation->set_rules('ptype','parent type','required');
-  $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
-  $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
+  $this->form_validation->set_rules('email','Email','max_length[40]|valid_email');
+  $this->form_validation->set_rules('mobile','Mobile','max_length[15]');
 
   if($this->form_validation->run() )     
   {   
