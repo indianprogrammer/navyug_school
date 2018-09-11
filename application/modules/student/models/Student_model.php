@@ -13,7 +13,7 @@ class Student_model extends CI_Model
 */
 function get_student($id)
 {
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id ,parents.name as parent_name');
+  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id ,parents.name as parent_name,student.aadhar');
   $this->db->from('student');
   $this->db->where('student.id',$id);
   $this->db->join('parents','student.parent_id=parents.id','left');
@@ -27,7 +27,7 @@ function get_all_student($schoolId)
 {
 
 
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id');
+  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id,student.aadhar');
   $this->db->order_by('id', 'desc');
 
   $this->db->from('map_school_student');
@@ -98,7 +98,7 @@ function delete_studentSchoolMap($id,$school_id)
 
 function filter_student($id)
 {
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id');
+  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id,student.aadhar');
   $this->db->from('student');
   $this->db->where('id',$id);
   return $this->db->get()->row();
@@ -191,7 +191,7 @@ function add_balance_info_default($params)
 function fetchRecordStudents($username)
 {
 
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address');
+  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.aadhar');
   $this->db->from('authentication');
   $this->db->where('username',$username);  
   $this->db->where('autorization_id',4);  
@@ -211,14 +211,14 @@ function get_all_student_by_classid($class_id)
 }
 function get_student_by_student_id($id)
 {
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id');
+  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id,student.aadhar');
   $this->db->from('student');
   $this->db->where_in('id',$id);
   return $this->db->get()->result_array();
 }
 function get_student_full_details($id)
 {
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,date(student.created_at) as date,student.classes,student.parent_id ,parents.name as parent_name,authentication.username,authentication.clear_text');
+  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,date(student.created_at) as date,student.classes,student.parent_id ,parents.name as parent_name,authentication.username,authentication.clear_text,student.aadhar');
   $this->db->from('student');
   $this->db->where('student.id',$id);
   $this->db->join('parents','student.parent_id=parents.id','left');

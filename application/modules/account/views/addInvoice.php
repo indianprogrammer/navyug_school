@@ -11,9 +11,9 @@
 
 
 <div class="box-body">
-  <div class="row clearfix">
+  <div class="row">
    <div class="col-md-5 col-sm-12">
-    <label for="serch" class="control-label">Search</label>
+    <label for="search" class="control-label">Search</label>
     <div class="form-group">
       <input type="text" name="search" 
       class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" data-toggle="dropdown"/>
@@ -24,6 +24,9 @@
 
   </div>
 
+<div class="col-md-4 col-sm-12" id="balance" style="font-size: 22px;">
+    
+</div>
 
 </div>
 
@@ -31,7 +34,7 @@
   <label for="uname" class="control-label"><span class="text-danger">*</span>Enter Username</label>
   <div class="form-group">
     <input type="text" name="uname" value="<?= $this->input->post('uname') ?>"
-    class="form-control" id="uname"  autofocus  autocomplete="off" />
+    class="form-control" id="uname"  autofocus  autocomplete="off" required />
     <span class="text-danger"><?= form_error('uname') ?></span>
   </div>
 </div>
@@ -132,7 +135,7 @@
               
               for(i=0;i<obj.length;i++)
               {
-                tabledata+='<tr onclick="getRow('+obj[i].student_id+')"><td>'+obj[i].name+'</td><td>'+obj[i].username+'</td><td>'+obj[i].mobile+'</td></tr>'
+                tabledata+='<tr onclick="getRow('+obj[i].student_id+')"><td>'+obj[i].name+'</td><td>'+obj[i].username+'</td><td>'+obj[i].mobile+'</td></tr>';
               }
               $('#table_dropdown').show();
               $('#table_dropdown').html(tabledata);
@@ -153,11 +156,14 @@
         },
 
         success: function (data) {
-          console.log(data);
+          // console.log(data);
           var obj=JSON.parse(data);
-          $('#stuname').val( obj.name );
-          $('#uname').val( obj.username );
-          $('#contact').val( obj.mobile );
+          console.log(obj);
+          console.log(obj.balance.balance);
+          $('#stuname').val( obj.autofill.name );
+          $('#uname').val( obj.autofill.username );
+          $('#contact').val( obj.autofill.mobile );
+          $('#balance').html("Balance : "+obj.balance.balance);
           $('#search').val( " " );
           $('#table_dropdown').hide();
         }
@@ -191,6 +197,8 @@
     });
 
      $('#save').click(function(){
+       bootbox.confirm("click ok to creat invoice  ?", function(result) {
+      if(result)
       var item_name = [];
 
       var item_price = [];
@@ -201,7 +209,7 @@
       $('.item_price').each(function(){
        item_price.push($(this).text());
      });
-      console.log(item_name);
+      
       var keyword = $('#uname').val();
       // console.log(keyword);
       $.ajax({
@@ -219,6 +227,7 @@
 
    }
  });
+    });
     });
    });
  </script>

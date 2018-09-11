@@ -124,31 +124,7 @@ function generate_reciept()
 ##get student details by student_id
 
   $studentData=$this->Student_model->fetchRecordStudents($studId);
-// $getStudentDetails=$this->Account_model->get_information_student($studentData['id']);
-// var_dump($getStudentDetails);die;
-##getting information of invoice payment
-//  $getInformationInvoicePayment['params']=$this->Account_model->get_information_invoice_payment($invoiceId);
 
-//  $rows = "";
-//  $no =1;
-//  $subtotal=0;
-
-//  foreach ($getInformationInvoicePayment['params'] as $row) {
-
-
-//      $name = $row["name"];
-//      $price = $row["price"];
-//      $subtotal = $subtotal + $price;
-//      $percentage=0.18;
-//      $tax=$subtotal*$percentage;
-//      $total=$subtotal+$tax;
-//      if($name!=""){
-//         $rows = $rows."<tr><td>".$no."</td><td>".$name."</td><td>".$price."</td></tr>";
-//     }
-//     $no++;
-
-
-// }
 ##generate random reciept number
 // $recieptId=rand(1,1000).rand(1,100);
   $school_id=$this->session->SchoolId;
@@ -192,7 +168,7 @@ function generate_reciept()
 
 
 
-// $this->load->view('recieptPdf', $params);
+
 ##update balance information
 
   $customer_id=$studentData['id'];
@@ -202,6 +178,7 @@ function generate_reciept()
   $creditSum=$this->Account_model->sum_of_credit($customer_id,$school_id);
   $balance=$debitSum['debit']-$creditSum['credit'];
   $this->Account_model->update_balance($balance,$customer_id,$school_id);
+  $this->Account_model->maintain_status_invoice($school_id,$customer_id,$paid);
 ##send sms and email to particular user
 
 
@@ -407,7 +384,16 @@ function checkBalance()
   echo $balance;
 }
 
+function balance()
+{
+  $this->db->select('balance');
+  $this->db->from('account_balance_information');
+  $this->db->where('customer_id',72);
+  $this->db->where('school_id',1);
+  var_dump($this->db->get()->row_array());
 
+
+}
 function getledger()
 {
   $student_id=$this->input->get('student_id');
@@ -430,16 +416,17 @@ function autofill()
 { 
   $id=$this->input->post("id");
   $balance=$this->Account_model->get_balance_info($id);
-  // if($this->Account_model->get_balance_info($id))
-  // {
-  //   echo json_encode($this->Account_model->get_balance_info($id));
-  // }
-  // else
-  // {
-  //   $balance=0;
-  //   echo json_encode($balance);
-  // }
-  echo json_encode($this->Account_model->get_autofill_value($id));
+  if($this->Account_model->get_balance_info($id))
+  {
+    $data['balance']=$this->Account_model->get_balance_info($id);
+  }
+  else
+  {
+   $data['balance']=array('balance'=>0);
+    // echo json_encode($balance);
+  }
+  $data['autofill']=$this->Account_model->get_autofill_value($id);
+echo json_encode($data);
 }
 function addMail($detailsMail)
 {

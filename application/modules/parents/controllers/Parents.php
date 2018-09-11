@@ -147,8 +147,8 @@ if($this->session->studentID)
 }
 $this->session->alerts = array(
   'severity'=> 'success',
-  'title'=> 'successfully added',
-  'description'=> ''
+  'title'=> 'successfully added'
+ 
 );
 redirect('parents');
 }
@@ -194,7 +194,12 @@ function edit($id)
       );
 
 
-      $this->Parents_model->update_parent($id,$params);            
+      $this->Parents_model->update_parent($id,$params);    
+      $this->session->alerts = array(
+  'severity'=> 'success',
+  'title'=> 'successfully edit'
+ 
+);        
       redirect('parents');
     }   
     else

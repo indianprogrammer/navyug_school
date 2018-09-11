@@ -110,8 +110,7 @@ $email = $params['email'];
 
 $userId = $studentId;
 $password=rand(1,100000);
-// $data['master_authorization'] = $this->Student_model->get_authentication_id();
-// var_dump($data['master_authorization']);
+
 $authentication=array(
   'username'=> $username,
   'email'=> $email,
@@ -177,6 +176,8 @@ foreach ($classArray as $row) {
     'student_id'=>$studentId,
     'class_id' =>$row
   );
+  $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
+}
 #insert student balance details
   $balanceTableInfo=array(
 
@@ -185,9 +186,7 @@ foreach ($classArray as $row) {
 
   );  
   $addBalanceInfo  = $this->Student_model->add_balance_info_default($balanceTableInfo);
-##temporary purpose
-  $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
-}
+
 $this->session->alerts = array(
   'severity'=> 'success',
   'title'=> 'successfully added',
@@ -335,6 +334,132 @@ function import_data()
     $this->Student_model->insert_by_excel($data);
     echo 'Data Imported successfully';
   } 
+}
+function getCsv()
+{
+ 
+$csv = array();
+$filename=$this->input->get('filename');
+$location=base_url()."uploads/".$filename;
+$lines = file($location, FILE_IGNORE_NEW_LINES);
+$file = fopen($location, 'r');
+ $noOfCol =count($line = fgetcsv($file));
+ $noOfRow=count($lines);
+
+foreach ($lines as $key => $value)
+{
+  
+    $csv[$key] = str_getcsv($value);
+   
+}
+
+
+$i=1;
+for($i;$i<$noOfRow;$i++)
+{
+
+ $params = array(
+
+      'name' => $csv[$i][0],
+      'email' => $csv[$i][1],
+
+      'mobile' => $csv[$i][2],
+      'aadhar' => $csv[$i][3],
+      'classes' => $csv[$i][4],
+
+      'permanent_address' =>$csv[$i][5],
+      'temporary_address' => $csv[$i][6]
+
+
+    ); 
+
+$studentId = $this->Student_model->add_student($params);
+$username = 'stu'.$this->session->SchoolId.'_'.$studentId; #stu+schoolid_parentid
+$password = rand(1,10000);
+$email = $params['email'];
+
+$userId = $studentId;
+$password=rand(1,100000);
+
+$authentication=array(
+  'username'=> $username,
+  'email'=> $email,
+##temporary
+  'autorization_id'=>4,
+  'password'=>md5($password),
+  'user_id'=> $studentId,
+  'clear_text'=>$password
+
+);
+// var_dump($authentication);
+$insertStudentAuthentication  = $this->Student_model->add_user($authentication);
+##for sms info 
+$userdata=$this->Student_model->select_uname_password($insertStudentAuthentication);
+$school_id=$this->session->SchoolId;
+$this->load->model('admin/Admin_model');
+$organization_name=$this->Admin_model->get_school_name($school_id);
+// var_dump($userdata);
+// $msg='Your Username='.$userdata->username.' and Password='.$userdata->clear_text.'';
+$studentDetails= array(
+  'mobile'=>$this->input->post('mobile'),
+  'school_id'=>$this->session->SchoolId,
+  'module'=>'student add',
+  'student_id'=>$studentId,
+  'user_name'=>$userdata['username'],
+  'password'=>$userdata['clear_text'],
+  'student_name'=>$this->input->post('student_name'),
+  'email'=>$userdata['email'],
+  'organization_name'=>$organization_name['organization_name']
+
+
+
+);
+
+if($studentDetails['mobile'])
+{
+// addStudentSms($studentDetailsSms);
+  modules::run('student/student/addStudentSms',$studentDetails);
+}
+##for mail
+if($studentDetails['email'])
+{
+  modules::run('student/student/addStudentMail',$studentDetails);
+}
+$schoolStudentMap=array(
+
+  'student_id'=>$studentId,
+  'school_id'=>$this->session->SchoolId
+
+);  
+$map  = $this->Student_model->add_mapping($schoolStudentMap);
+##student class mapping start
+$classArray=array($csv[$i][4]);
+foreach ($classArray as $row) {
+# code...
+
+  $studentClassMapping=array(
+    'student_id'=>$studentId,
+    'class_id' =>$row
+  );
+  $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
+#insert student balance details
+}
+  $balanceTableInfo=array(
+
+    'customer_id'=>$studentId,
+    'school_id'=>$this->session->SchoolId
+
+  );  
+  $addBalanceInfo  = $this->Student_model->add_balance_info_default($balanceTableInfo);
+
+$this->session->alerts = array(
+  'severity'=> 'success',
+  'title'=> 'successfully added',
+
+);
+
+}
+// redirect('student');
 }
 ##short view in popup
 function fetchStudentView()

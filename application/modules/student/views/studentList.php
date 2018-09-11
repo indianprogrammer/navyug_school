@@ -22,6 +22,7 @@
               <th>Permanent Address</th>
               <th>Corresponding Address</th>
               <th>Profile Image</th>
+              <th>Aadhar No.</th>
               <!-- <th>Balance</th> -->
               <th>Actions</th>
             </tr>
@@ -52,6 +53,7 @@ echo rtrim($subject);
 
 
 <td> <img src="<?=base_url()."uploads/".$row['profile_image']; ?>" alt="" class="zoom" style="width:50px;height:50px";></td>
+<td><?= $row['aadhar']; ?></td>
 
 <!-- <td onload="getBalence(<?= $row['id'] ?>) "id="balance"></td> -->
 <td>

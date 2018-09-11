@@ -124,7 +124,7 @@ class Account_model extends CI_Model
   }
   function get_all_reciept($id,$student_id = null)
   {
-    $this->db->select('reciepts.id,reciepts.organization_name,reciepts.organization_address,reciepts.organization_mobile,reciepts.organization_email,reciepts.customer_name,reciepts.email,reciepts.mobile,reciepts.payment_method,reciepts.date,reciepts.total_amount,reciepts.reciept_id,account_transaction.credit,student.name');
+    $this->db->select('reciepts.id,reciepts.organization_name,reciepts.organization_address,reciepts.organization_mobile,reciepts.organization_email,reciepts.customer_name,reciepts.email,reciepts.mobile,reciepts.payment_method,reciepts.date,reciepts.total_amount,reciepts.reciept_id,account_transaction.credit,student.name,student.id as student_id');
     $this->db->from('reciepts');
     $this->db->order_by('reciept_id','desc');
     $this->db->where('reciepts.school_id',$id);
@@ -151,41 +151,6 @@ class Account_model extends CI_Model
   }
 
 
-// function get_information_invoice($invoiceId)
-// {
-//   $this->db->select('invoices.*');
-//   $this->db->from('invoices');
-//   $this->db->where('invoice_id',$invoiceId);  
-//         // $this->db->join('master_invoice', 'master_invoice.invoice_id_mul=invoices.invoice_id');
-//         // $this->db->join('student', 'invoice.student_id=student.id', 'Left');
-//    // $this->db->join('student', 'authentication.user_id=student.id', 'Left');
-//         // $this->db->where('school_id',$school_id);
-//   return  $query = $this->db->get()->row_array();
-// }
-
-// function get_information_student($studentId)
-// {
-//   $this->db->select('student.*');
-//   $this->db->from('invoices');
-//   $this->db->where('student_id',$studentId);  
-//   $this->db->join('student', 'student.id=invoices.student_id');
-
-//   return  $query = $this->db->get()->row_array();
-// }
-
-// function get_total_amount_invoice($invoice_id)
-
-// {
-//  $this->db->select('price');
-//  $this->db->from('master_invoice');
-//  $this->db->where('invoice_id_mul',$invoice_id);
-//  $query = $this->db->get()->result();
-
-
-
-
-
-// }
   function get_information_invoice_payment($invoiceId)
   {
     $this->db->select('master_invoice.*');
@@ -347,9 +312,23 @@ class Account_model extends CI_Model
   {
     $this->db->select('balance');
     $this->db->from('account_balance_information');
-     $this->db->where('school_id',$school_id);
+     $this->db->where('school_id',1);
      $this->db->where('customer_id',$id);
     return  $this->db->get()->row_array();
+
+  }
+
+  function maintain_status_invoice($school_id,$student_id,$paid)
+  {
+    $this->db->where(array('school_id'=>1,'student_id'=>18));
+    $this->db->limit(1);  
+        $this->db->set('paid_amount',$paid);
+
+        // $this->db->set('status',"paid");
+    return $this->db->update('invoice');
+
+
+
 
   }
 }
