@@ -251,7 +251,7 @@ function checkinvoice()
 function ba()
 {
   $this->load->model('account/Account_model');
-  $this->load->Account_model->update_balance(200,63,1)  ;
+  $this->load->Account_model->update_balance(100,63,1)  ;
 }
 function array()
 {
@@ -312,7 +312,7 @@ function select()
 
 function run()
 {
-  $this->maintain_status_invoice(300,1,63);
+  $this->maintain_status_invoice(20,1,63);
   
   
 }
@@ -336,35 +336,40 @@ function maintain_status_invoice($paid,$school_id,$student_id)
    $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
    $this->db->where('status','partially');
    $this->db->limit(1);  
-   $addition=$record['amount_paid']+$paid;
-   $this->db->set('amount_paid', $addition);
-   if($addition==$record['total_amount'])
-   {
-    $this->db->set('status',"paid");
-  }
-  else if($addition>$record['total_amount'])
-  {
-    $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
-    $this->db->where('status=!','paid');
-    $this->db->limit(1);  
-    $this->db->set('status',"paid");
-    $reamaining=$paid-$record['total_amount'];
-    $this->db->set('amount_paid',$record['total_amount']);
-    $this->db->update('invoices');
-    
-    
-    $this->maintain_status_invoice($reamaining,$school_id,$student_id);
-  }
-  
-  else{
-    $this->db->set('status',"partially");
-  }
-  
-}
-return $this->db->update('invoices');
+  echo  $addition=$record['amount_paid']+$paid;
+         if($addition==$record['total_amount'])
+         {
+          $this->db->set('status',"paid");
+          $this->db->set('amount_paid',$record['total_amount']);
+         $this->db->update('invoices');
+        }
+        else if($addition>$record['total_amount'])
+        {
+          $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+          // $this->db->where('status=!','paid');
+          $this->db->limit(1);  
+          $this->db->set('status',"paid");
+          $reamaining=$addition-$record['total_amount'];
+          $this->db->set('amount_paid',$record['total_amount']);
+          $this->db->update('invoices');
+          
+          
+          $this->maintain_status_invoice($reamaining,$school_id,$student_id);
+          echo "hh";
+        }
+        else
+        {
+          $this->db->set('amount_paid', $addition);
+           $this->db->update('invoices');
 
+        }
+        
+ 
+  
 }
-else if($record['total_amount']==$paid)
+
+
+elseif($record['total_amount']==$paid)
 {
 
   $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
@@ -398,11 +403,6 @@ else if($record['total_amount']<$paid)
   $this->maintain_status_invoice($reamaining,$school_id,$student_id);
 }
 
-else if($record['status']=='partially')
-{
-  echo "dd";
-  
-}
 
 
 
