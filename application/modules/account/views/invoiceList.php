@@ -10,6 +10,7 @@
         <th>Student Name</th>
         <th>Total Amount</th>
         <th>Date</th>
+        <th>status</th>
        
         <th>Actions</th>
     </tr>
@@ -23,6 +24,7 @@
             <td data-toggle="tooltip" data-placement="top" title="click to view" ><a href="<?=base_url()?>student/getFullDetails?student_id=<?=  $row['student_id'] ?>"><?=$row['customer_name'] ?></a> </td>
              <td><?=$row['total_amount'] ?></td>
              <td><?=$row['date'] ?></td>
+             <td><?= $row['status'] ?></td>
              <td><a href="<?= site_url('account/getpdf/'.$row['invoice_id']); ?>" class="btn btn-info btn-xs" target="_blank">Get Pdf</a> 
             </td>
         </tr>

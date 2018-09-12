@@ -178,7 +178,7 @@ function generate_reciept()
   $creditSum=$this->Account_model->sum_of_credit($customer_id,$school_id);
   $balance=$debitSum['debit']-$creditSum['credit'];
   $this->Account_model->update_balance($balance,$customer_id,$school_id);
-  $this->Account_model->maintain_status_invoice($school_id,$customer_id,$paid);
+  $this->Account_model->maintain_status_invoice($paid,$school_id,$customer_id);
 ##send sms and email to particular user
 
 

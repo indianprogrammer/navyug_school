@@ -10,7 +10,7 @@ class Sms extends MY_Controller{
   } 
 
 
- /* function sendSms($to,$message)
+  function sendSms($to,$message)
   {
 ##get authentication key and information for sms gateway
     $school_id=$this->session->SchoolId;
@@ -51,7 +51,7 @@ class Sms extends MY_Controller{
     $insertInfo=$this->Sms_model->insertLogInfo($smslog);
     
     return $output;
-  }*/
+  }
 
   function send_notification_sms($notification,$notificationStudent,$notificationEmployee)
   {
@@ -86,7 +86,9 @@ class Sms extends MY_Controller{
 
 
 
-        modules::run('sms/sms/sendSms',$to,$message);
+        // modules::run('sms/sms/sendSms',$to,$message);
+        $this->sendSms($to,$message);
+      
 
 
       }
@@ -114,7 +116,7 @@ class Sms extends MY_Controller{
 
 
 
-        sendSms($to,$message);
+        $this->sendSms($to,$message);
 
       }
     }

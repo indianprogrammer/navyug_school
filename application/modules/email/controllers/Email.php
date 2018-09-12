@@ -90,7 +90,7 @@ class Email extends MY_Controller {
         $body=$notification;
         $subject='notification';
         $attachments='';
-        sendMail($to,$subject,$body,$attachments);
+        $this->sendMail($to,$subject,$body,$attachments);
 
       }
     } 
@@ -121,7 +121,7 @@ class Email extends MY_Controller {
         $body=$notification;
         $subject='notification';
         $attachments='';
-        sendMail($to,$subject,$body,$attachments);
+        $this->sendMail($to,$subject,$body,$attachments);
 
 
       }

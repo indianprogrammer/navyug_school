@@ -122,11 +122,13 @@
 
       if($sendDetails['mobile'])
       {
-      modules::run('employee/employee/addSms',$sendDetails);
+      // modules::run('employee/employee/addSms',$sendDetails);
+      $this->addSms($sendDetails);
       }
        if($sendDetails['mail'])  
        { ##for mail
-      modules::run('employee/employee/addMail',$sendDetails);
+      // modules::run('employee/employee/addMail',$sendDetails);
+        $this->addMail($sendDetails);
     }
 
 
@@ -295,7 +297,7 @@
      $mobile=$detailsSms['mobile'];
     $school_name=$detailsSms['organization_name'];
      $this->load->model('sms/Sms_model');
-     $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
+     $fetchTemplateData=$this->Sms_model->fetch_template_sms($school_id,$module);
 
      $context=$fetchTemplateData['context'];
      $contextString=array('{school_name','{username','{password','{name','}');

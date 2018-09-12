@@ -41,8 +41,8 @@
 	</div> -->
 	<div class="form-group">
 		<label class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
-	<div class="col-md-4 col-sm-12">
-		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="subject[]"
+	<div class="col-md-4">
+		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="subject[]" style="width: 100%;"
 		>
 		<?php	foreach($subject as $row){ ?>
 				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
@@ -53,7 +53,7 @@
       <div class="form-group">
 		<label class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
 	<div class="col-md-4 col-sm-12">
-		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="employee[]"
+		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="employee[]" style="width: 100%;"
 		>
 			<?php	foreach($employee as $row){ ?>
 				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>

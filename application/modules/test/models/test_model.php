@@ -132,5 +132,22 @@ function get_all_employees($ids)
       $this->db->insert($table_name,$params);
       return $this->db->insert_id();
     }
+    function fetch_template_sms($school_id,$module)
+    {
+       $this->db->select('template_sms.context,template_sms.module,template_sms.id,map_school_sms_template.school_id');
+
+    
+
+     $this->db->from('map_school_sms_template');
+      $this->db->where('map_school_sms_template.school_id',$school_id);
+     $this->db->join('template_sms','template_sms.id=map_school_sms_template.template_id');
+       $this->db->where('template_sms.module',"student add");
+     return $query= $this->db->get()->row_array();
+      // var_dump(expression)
+       // $this->db->select('context,module');
+       // $this->db->from($query);
+       //  $this->db->where('module',"add student");
+       //  return  $querys= $this->db->get()->row_array();
+    }
 }
 ?>

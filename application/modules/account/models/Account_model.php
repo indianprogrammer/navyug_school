@@ -52,7 +52,7 @@ class Account_model extends CI_Model
   }
   function get_all_invoice($id,$student_id = null)
   {
-    $this->db->select('invoices.customer_name,invoices.customer_address,invoices.mobile,invoices.email,invoices.organization_name,invoices.organization_email,invoices.organization_mobile,invoices.organization_address,invoices.student_id,invoices.total_amount,invoices.invoice_id,invoices.school_id,invoices.date,student.name');
+    $this->db->select('invoices.customer_name,invoices.customer_address,invoices.mobile,invoices.email,invoices.organization_name,invoices.organization_email,invoices.organization_mobile,invoices.organization_address,invoices.student_id,invoices.total_amount,invoices.invoice_id,invoices.school_id,invoices.date,student.name,invoices.status');
     $this->db->from('invoices');
     $this->db->order_by('invoices.id', 'DESC');
     $this->db->where('invoices.school_id', $id);
@@ -318,18 +318,95 @@ class Account_model extends CI_Model
 
   }
 
-  function maintain_status_invoice($school_id,$student_id,$paid)
+ function maintain_status_invoice($paid,$school_id,$student_id)
+{
+  $this->db->select('total_amount,amount_paid,status');
+
+  $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+ 
+  $this->db->where('status!=','paid');
+  $this->db->limit(1);   
+  $record=$this->db->get('invoices')->row_array();
+  var_dump($record);
+  if(is_null($record))
   {
-    $this->db->where(array('school_id'=>1,'student_id'=>18));
-    $this->db->limit(1);  
-        $this->db->set('paid_amount',$paid);
-
-        // $this->db->set('status',"paid");
-    return $this->db->update('invoice');
-
-
-
-
+    return false;
   }
+  else if($record['status']=='partially')
+  {
+   $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+   $this->db->where('status','partially');
+   $this->db->limit(1);  
+  echo  $addition=$record['amount_paid']+$paid;
+         if($addition==$record['total_amount'])
+         {
+          $this->db->set('status',"paid");
+          $this->db->set('amount_paid',$record['total_amount']);
+         return $this->db->update('invoices');
+        }
+        else if($addition>$record['total_amount'])
+        {
+          $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+          // $this->db->where('status=!','paid');
+          $this->db->limit(1);  
+          $this->db->set('status',"paid");
+          $reamaining=$addition-$record['total_amount'];
+          $this->db->set('amount_paid',$record['total_amount']);
+          $this->db->update('invoices');
+          
+          
+          $this->maintain_status_invoice($reamaining,$school_id,$student_id);
+        
+        }
+        else
+        {
+          $this->db->set('amount_paid', $addition);
+           return $this->db->update('invoices');
+
+        }
+        
+ 
+  
+}
+
+
+elseif($record['total_amount']==$paid)
+{
+
+  $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+  $this->db->where('status=!','paid');
+  $this->db->limit(1);  
+  $this->db->set('status',"paid");
+  $this->db->set('amount_paid',$paid);
+  return $this->db->update('invoices');
+}
+else if($record['total_amount']>$paid)
+{
+  $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+  $this->db->where('status=!','paid');
+  $this->db->limit(1);  
+  $this->db->set('status',"partially");
+  $this->db->set('amount_paid',$paid);
+  return $this->db->update('invoices');
+
+}
+else if($record['total_amount']<$paid)
+{
+  $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+  $this->db->where('status=!','paid');
+  $this->db->limit(1);  
+  $this->db->set('status',"paid");
+  $reamaining=$paid-$record['total_amount'];
+  $this->db->set('amount_paid',$record['total_amount']);
+  $this->db->update('invoices');
+  
+  
+  $this->maintain_status_invoice($reamaining,$school_id,$student_id);
+}
+
+
+
+
+}
 }
 ?>

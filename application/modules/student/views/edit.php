@@ -28,13 +28,11 @@
 		<label>Classes</label>
 		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"
 		>
-		<option>Alabama</option>
-                    <!-- <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option> -->
+		<?php foreach($classes as $row){ ?>
+                <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+        <?php } ?>
+
+
                 </select>
             </div>
         </div>

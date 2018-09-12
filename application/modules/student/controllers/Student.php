@@ -212,6 +212,7 @@ function edit($id)
   $config['upload_path']          = './uploads/';
   $config['allowed_types']        = 'gif|jpg|png';
   $school_id=$this->session->SchoolId;
+  $data['classes'] = $this->Classes_model->fetch_classes($school_id);
   $this->load->library('upload', $config);
 
 
@@ -417,13 +418,14 @@ $studentDetails= array(
 
 if($studentDetails['mobile'])
 {
-// addStudentSms($studentDetailsSms);
-  modules::run('student/student/addStudentSms',$studentDetails);
+
+  $this->addStudentSms($studentDetails);
 }
 ##for mail
 if($studentDetails['email'])
 {
-  modules::run('student/student/addStudentMail',$studentDetails);
+  
+  $this->addStudentMail($studentDetails);
 }
 $schoolStudentMap=array(
 
@@ -454,7 +456,7 @@ foreach ($classArray as $row) {
 
 $this->session->alerts = array(
   'severity'=> 'success',
-  'title'=> 'successfully added',
+  'title'=> 'successfully added'
 
 );
 
@@ -530,7 +532,7 @@ function addStudentSms($studentDetailsSms)
   $mobile=$studentDetailsSms['mobile'];
   $school_name=$studentDetailsSms['organization_name'];
   $this->load->model('sms/Sms_model');
-  $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
+  $fetchTemplateData=$this->Sms_model->fetch_template_sms($school_id,$module);
 
   $context=$fetchTemplateData['context'];
   $contextString=array('{school_name','{username','{password','{student_name','}');

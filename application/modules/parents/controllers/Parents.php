@@ -120,12 +120,14 @@ $sendDetails= array(
 
 if($sendDetails['mobile'])
 {
-  modules::run('parents/parents/addSms',$sendDetails);
+ 
+ $this->addSms($sendDetails);
 }
 ##for mail
 if($sendDetails['email'])
 {
-  modules::run('parents/parents/addMail',$sendDetails);
+  // modules::run('parents/parents/addMail',$sendDetails);
+  $this->addMail($sendDetails);
 }
 $schoolParentMap=array(
 
@@ -273,7 +275,7 @@ function addSms($detailsSms)
   $mobile=$detailsSms['mobile'];
   $school_name=$studentDetailsSms['organoization_name'];
   $this->load->model('sms/Sms_model');
-  $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
+  $fetchTemplateData=$this->Sms_model->fetch_template_sms($school_id,$module);
 
   $context=$fetchTemplateData['context'];
   $contextString=array('{school_name','{username','{password','{name','}');

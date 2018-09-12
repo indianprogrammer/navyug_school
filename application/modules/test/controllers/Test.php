@@ -12,108 +12,108 @@ class Test extends MY_Controller{
   }
 
   function studentcross(){
-        #cross controller function
-      // echo   modules::run('student/Student/crossmoduleadd');   //without argument default value
-      // echo   modules::run('student/Student/crossmoduleadd',2,5);   //with argument
-      echo   modules::run('student/Student/crossmoduleadd',20);   //with argument
-    }
+#cross controller function
+// echo   modules::run('student/Student/crossmoduleadd');   //without argument default value
+// echo   modules::run('student/Student/crossmoduleadd',2,5);   //with argument
+echo   modules::run('student/Student/crossmoduleadd',20);   //with argument
+}
 
-    function index()
-    {
-      $params=array(
-        'mobile'=>7828161459,
-        'msg'=>'i am great'
+function index()
+{
+  $params=array(
+    'mobile'=>7828161459,
+    'msg'=>'i am great'
 
-      );
-      $q=$this->Test_model->insert_data("test",$params);
-    }
-
-
-    function graph()
-    {
-      $q=$this->Test_model->get_student_count();
-     // var_dump($q);
-      print_r(json_encode($q)); 
-    }
-    function bar()
-    {
-     $data['_view'] = 'bar';
-     $this->load->view('index',$data);
-   }
-   function line()
-   {
-     $data['_view'] = 'line';
-     $this->load->view('index',$data);
-   }
+  );
+  $q=$this->Test_model->insert_data("test",$params);
+}
 
 
-   function sendarray()
-   {   
-    $f=array('a'=>3,'b'=>5,'c'=>"tret");
-    echo modules::run('email/email/sendarray',$f);
-  }
-  function tests() 
-  {
-    $emailinfo=array('msg'=>'fsefsf','email'=>null,'subject'=>'admission','student_id'=>2,'module'=>'student','school_id'=>$this->session->SchoolId);
-    echo modules::run('email/email/send_email',$emailinfo);
-  }
-  function smstest()
-  {
-   $smsinfo=array('user_name'=>'vivek123','password'=>12345,'student_name'=>'vivek','mobile'=>9148725074,'student_id'=>2,'module'=>'student add','school_id'=>$this->session->SchoolId);
-   echo modules::run('sms/sms/send_sms',$smsinfo);
- }
- function templatetests()
- {
-   $test=$this->Test_model->templatetest(1,"student");
-   $r=$test->context;
- // echo $r.'<br>';
-   $user="vivek";
-   $school_name="ssm";
-   $password=12345;
-   $templatemsg=array('{school_name','{username','{password','}','email');
-   $phpmsg=array( $school_name,$user,$password,'','email');
-   echo $withoutparam =str_replace($templatemsg, $phpmsg, $r);
- // echo str_replace('%username',  $user, $withoutparam );
+function graph()
+{
+  $q=$this->Test_model->get_student_count();
+// var_dump($q);
+  print_r(json_encode($q)); 
+}
+function bar()
+{
+  $data['_view'] = 'bar';
+  $this->load->view('index',$data);
+}
+function line()
+{
+  $data['_view'] = 'line';
+  $this->load->view('index',$data);
+}
 
- }
- function testschool()
- {
+
+function sendarray()
+{   
+  $f=array('a'=>3,'b'=>5,'c'=>"tret");
+  echo modules::run('email/email/sendarray',$f);
+}
+function tests() 
+{
+  $emailinfo=array('msg'=>'fsefsf','email'=>null,'subject'=>'admission','student_id'=>2,'module'=>'student','school_id'=>$this->session->SchoolId);
+  echo modules::run('email/email/send_email',$emailinfo);
+}
+function smstest()
+{
+  $smsinfo=array('user_name'=>'vivek123','password'=>12345,'student_name'=>'vivek','mobile'=>9148725074,'student_id'=>2,'module'=>'student add','school_id'=>$this->session->SchoolId);
+  echo modules::run('sms/sms/send_sms',$smsinfo);
+}
+function templatetests()
+{
+  $test=$this->Test_model->templatetest(1,"student");
+  $r=$test->context;
+// echo $r.'<br>';
+  $user="vivek";
+  $school_name="ssm";
+  $password=12345;
+  $templatemsg=array('{school_name','{username','{password','}','email');
+  $phpmsg=array( $school_name,$user,$password,'','email');
+  echo $withoutparam =str_replace($templatemsg, $phpmsg, $r);
+// echo str_replace('%username',  $user, $withoutparam );
+
+}
+function testschool()
+{
   $schoolName= modules::run('admin/admin/getSchoolName',$school_id);
   var_dump($var);
 }
 function ipadd()
 {
-  echo $IP = $_SERVER['REMOTE_ADDR'];        // Obtains the IP address
+echo $IP = $_SERVER['REMOTE_ADDR'];        // Obtains the IP address
 // echo $computerName = gethostbyaddr($IP); 
 }
 
 function real_ip()
 {
-    // $ipaddress = '';
+// $ipaddress = '';
 
-    // $_SERVER['HTTP_CLIENT_IP'])
+// $_SERVER['HTTP_CLIENT_IP'])
   $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    // else if($_SERVER['HTTP_X_FORWARDED_FOR'])
-    //     $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    // else if($_SERVER['HTTP_X_FORWARDED'])
-    //     $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    // else if($_SERVER['HTTP_FORWARDED_FOR'])
-    //     $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    // else if($_SERVER['HTTP_FORWARDED'])
-    //     $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    // else if($_SERVER['REMOTE_ADDR'])
-    //     $ipaddress = $_SERVER['REMOTE_ADDR'];
-    // else
-    //     $ipaddress = 'UNKNOWN';
+// else if($_SERVER['HTTP_X_FORWARDED_FOR'])
+//     $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+// else if($_SERVER['HTTP_X_FORWARDED'])
+//     $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+// else if($_SERVER['HTTP_FORWARDED_FOR'])
+//     $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+// else if($_SERVER['HTTP_FORWARDED'])
+//     $ipaddress = $_SERVER['HTTP_FORWARDED'];
+// else if($_SERVER['REMOTE_ADDR'])
+//     $ipaddress = $_SERVER['REMOTE_ADDR'];
+// else
+//     $ipaddress = 'UNKNOWN';
 
   echo $ipaddress;
-  // echo getHostByName(getHostName());
+// echo getHostByName(getHostName());
 }
 function check()
 {
   $data['_view'] = 'checkbox';
   $this->load->view('index',$data);
-  // calling(1,2);
+// calling(1,2);
 }   
 function calling($a,$b)
 {
@@ -151,43 +151,40 @@ function upload()
 function add ()
 {
 
- $this->load->library('form_validation');
- $config['upload_path']          = './uploads/';
- $config['allowed_types']        = 'gif|jpg|png';
- $this->load->library('upload', $config);
- $this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
- if($this->form_validation->run())     
- {   
-      #employ information
-  $params = array(
-    'name' => $this->input->post('employee_Name'),
+  $this->load->library('form_validation');
+  $config['upload_path']          = './uploads/';
+  // $config['allowed_types']        = 'gif|jpg|png';
+  $this->load->library('upload', $config);
+  // $this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
+  // if($this->form_validation->run())     
+  // {   
+#employ information
+    // $params = array(
+    //   'name' => $this->input->post('employee_Name'),
 
 
-  );
-  if($this->upload->do_upload('profile_image'))
-  {
-    var_dump($data['image'] =  $this->upload->data());
-    var_dump( $image_path=rand(1,1000).date('d').$data['image']['raw_name'].$data['image']['file_ext']);
-    $params['profile_image']=$image_path;
+    // );
+    if($this->upload->do_upload('profile_image'))
+    {
+      var_dump($data['image'] =  $this->upload->data());
+      var_dump( $image_path=rand(1,1000).date('d').$data['image']['raw_name'].$data['image']['file_ext']);
+      $params['profile_image']=$image_path;
+    }
+    // if($this->upload->do_upload('profile'))
+    // {
+    //   $data['images'] =  $this->upload->data();
+    //   $image_path=$data['images']['raw_name'].$data['images']['file_ext'];
+    //   $params['profile']=$image_path;
+    // }
+    // var_dump($params);
   }
-  if($this->upload->do_upload('profile'))
-  {
-    $data['images'] =  $this->upload->data();
-    $image_path=$data['images']['raw_name'].$data['images']['file_ext'];
-    $params['profile']=$image_path;
-  }
-  var_dump($params);
-}
-else
-{
-  echo "dd";
-}
-}
+ 
+
 function form()
 {
   $this->load->view('index4');
   $this->load->view('form');
-   // $data['_view'] = 'form';
+// $data['_view'] = 'form';
   $this->load->view('footer');
 }
 function e()
@@ -196,26 +193,26 @@ function e()
 }
 function edit()
 {
-   // $data['_view'] = 'search';
-     // $this->load->view('index',$data);
- $this->load->view('edit');
+// $data['_view'] = 'search';
+// $this->load->view('index',$data);
+  $this->load->view('edit');
 }function search()
 {
-   // $data['_view'] = 'search';
-     // $this->load->view('index',$data);
+// $data['_view'] = 'search';
+// $this->load->view('index',$data);
 
- $this->load->view('search');
+  $this->load->view('search');
 
 }
 function search2()
 {
-   // $data['_view'] = 'search';
-     // $this->load->view('index',$data);
- $this->load->view('autocomplete');
+// $data['_view'] = 'search';
+// $this->load->view('index',$data);
+  $this->load->view('autocomplete');
 }
 function fetch()
 {
- echo $this->Test_model->fetch_data($this->uri->segment(3));
+  echo $this->Test_model->fetch_data($this->uri->segment(3));
 }
 function autocomplete(){
   $keyword=$this->input->post('keyword');
@@ -224,29 +221,29 @@ function autocomplete(){
 }
 function button()
 {
-  // $this->load->view('button');
- $data['_view'] = 'button';
- $this->load->view('index',$data);
+// $this->load->view('button');
+  $data['_view'] = 'button';
+  $this->load->view('index',$data);
 }   
 function templatemain()
 {
-  // $this->load->view('button');
-   // $data['_view'] = 'button';
- $this->load->view('index4');
- $this->load->view('footer');
+// $this->load->view('button');
+// $data['_view'] = 'button';
+  $this->load->view('index4');
+  $this->load->view('footer');
 }  
 function templatemain2()
 {
-  // $this->load->view('button');
-   // $data['_view'] = 'button';
- $this->load->view('index4');
- $this->load->view('dashbord');
- $this->load->view('footer');
+// $this->load->view('button');
+// $data['_view'] = 'button';
+  $this->load->view('index4');
+  $this->load->view('dashbord');
+  $this->load->view('footer');
 }   
 function checkinvoice()
 {
- $data['_view'] = 'checkinvoice';
- $this->load->view('index',$data);
+  $data['_view'] = 'checkinvoice';
+  $this->load->view('index',$data);
 }
 function ba()
 {
@@ -280,49 +277,49 @@ function send_student()
 }
 function addStudentSms($studentDetailsSms)
 {
-    #get student details from $studentdetail
-      // var_dump($studentDetailsSms);die;
- $module=$studentDetailsSms['module'];
- $username=$studentDetailsSms['user_name'];
- $password=$studentDetailsSms['password'];
- $student_name=$studentDetailsSms['student_name'];
- $student_id=$studentDetailsSms['student_id'];
- $school_id=$studentDetailsSms['school_id'];
- $mobile=$studentDetailsSms['mobile'];
- $school_name='ssm';
- $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
+#get student details from $studentdetail
+// var_dump($studentDetailsSms);die;
+  $module=$studentDetailsSms['module'];
+  $username=$studentDetailsSms['user_name'];
+  $password=$studentDetailsSms['password'];
+  $student_name=$studentDetailsSms['student_name'];
+  $student_id=$studentDetailsSms['student_id'];
+  $school_id=$studentDetailsSms['school_id'];
+  $mobile=$studentDetailsSms['mobile'];
+  $school_name='ssm';
+  $fetchTemplateData=$this->Sms_model->fetch_template_data($school_id,$module);
 
- $context=$fetchTemplateData['context'];
- $contextString=array('{school_name','{username','{password','{student_name','}');
- $ReplaceString=array($school_name,$username,$password,$student_name,'');
- $message=str_replace($contextString,$ReplaceString,$context);
-    #prepair params 
- modules::run('sms/sms/sendSms',$mobile,$message);
+  $context=$fetchTemplateData['context'];
+  $contextString=array('{school_name','{username','{password','{student_name','}');
+  $ReplaceString=array($school_name,$username,$password,$student_name,'');
+  $message=str_replace($contextString,$ReplaceString,$context);
+#prepair params 
+  modules::run('sms/sms/sendSms',$mobile,$message);
 
 
-    #send mail
-    //sendMail($to,$subject,$body,$attachments)
+#send mail
+//sendMail($to,$subject,$body,$attachments)
 }
 function select()
 {
-   // $data['_view'] = 'select';
-     // $this->load->view('index',$data);
- $this->load->view('select');
+// $data['_view'] = 'select';
+// $this->load->view('index',$data);
+  $this->load->view('select');
 }
 
 function run()
 {
   $this->maintain_status_invoice(20,1,63);
-  
-  
+
+
 }
 function maintain_status_invoice($paid,$school_id,$student_id)
 {
   $this->db->select('total_amount,amount_paid,status');
 
   $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
-  // $this->db->where(array('status'=>'partially'));
-  // $this->db->or_where('status','pending');
+// $this->db->where(array('status'=>'partially'));
+// $this->db->or_where('status','pending');
   $this->db->where('status!=','paid');
   $this->db->limit(1);   
   $record=$this->db->get('invoices')->row_array();
@@ -333,79 +330,113 @@ function maintain_status_invoice($paid,$school_id,$student_id)
   }
   else if($record['status']=='partially')
   {
-   $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
-   $this->db->where('status','partially');
-   $this->db->limit(1);  
-  echo  $addition=$record['amount_paid']+$paid;
-         if($addition==$record['total_amount'])
-         {
-          $this->db->set('status',"paid");
-          $this->db->set('amount_paid',$record['total_amount']);
-         $this->db->update('invoices');
-        }
-        else if($addition>$record['total_amount'])
-        {
-          $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
-          // $this->db->where('status=!','paid');
-          $this->db->limit(1);  
-          $this->db->set('status',"paid");
-          $reamaining=$addition-$record['total_amount'];
-          $this->db->set('amount_paid',$record['total_amount']);
-          $this->db->update('invoices');
-          
-          
-          $this->maintain_status_invoice($reamaining,$school_id,$student_id);
-          echo "hh";
-        }
-        else
-        {
-          $this->db->set('amount_paid', $addition);
-           $this->db->update('invoices');
+    $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+    $this->db->where('status','partially');
+    $this->db->limit(1);  
+    echo  $addition=$record['amount_paid']+$paid;
+    if($addition==$record['total_amount'])
+    {
+      $this->db->set('status',"paid");
+      $this->db->set('amount_paid',$record['total_amount']);
+      $this->db->update('invoices');
+    }
+    else if($addition>$record['total_amount'])
+    {
+      $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+// $this->db->where('status=!','paid');
+      $this->db->limit(1);  
+      $this->db->set('status',"paid");
+      $reamaining=$addition-$record['total_amount'];
+      $this->db->set('amount_paid',$record['total_amount']);
+      $this->db->update('invoices');
 
-        }
-        
- 
-  
+
+      $this->maintain_status_invoice($reamaining,$school_id,$student_id);
+      echo "hh";
+    }
+    else
+    {
+      $this->db->set('amount_paid', $addition);
+      $this->db->update('invoices');
+
+    }
+
+
+
+  }
+
+
+  elseif($record['total_amount']==$paid)
+  {
+
+    $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+    $this->db->where('status=!','paid');
+    $this->db->limit(1);  
+    $this->db->set('status',"paid");
+    $this->db->set('amount_paid',$paid);
+    return $this->db->update('invoices');
+  }
+  else if($record['total_amount']>$paid)
+  {
+    $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+    $this->db->where('status=!','paid');
+    $this->db->limit(1);  
+    $this->db->set('status',"partially");
+    $this->db->set('amount_paid',$paid);
+    return $this->db->update('invoices');
+
+  }
+  else if($record['total_amount']<$paid)
+  {
+    $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
+    $this->db->where('status=!','paid');
+    $this->db->limit(1);  
+    $this->db->set('status',"paid");
+    $reamaining=$paid-$record['total_amount'];
+    $this->db->set('amount_paid',$record['total_amount']);
+    $this->db->update('invoices');
+
+
+    $this->maintain_status_invoice($reamaining,$school_id,$student_id);
+  }
+
+
+
+
 }
 
 
-elseif($record['total_amount']==$paid)
+
+function templatetest()
 {
-
-  $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
-  $this->db->where('status=!','paid');
-  $this->db->limit(1);  
-  $this->db->set('status',"paid");
-  $this->db->set('amount_paid',$paid);
-  return $this->db->update('invoices');
-}
-else if($record['total_amount']>$paid)
-{
-  $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
-  $this->db->where('status=!','paid');
-  $this->db->limit(1);  
-  $this->db->set('status',"partially");
-  $this->db->set('amount_paid',$paid);
-  return $this->db->update('invoices');
+  // $this->load->model('sms/Sms_model');
+  $module="add student";
+  $fetchTemplateData=$this->Test_model->fetch_template_sms(1,$module);
+  var_dump($fetchTemplateData);
 
 }
-else if($record['total_amount']<$paid)
-{
-  $this->db->where(array('school_id'=>$school_id,'student_id'=>$student_id));
-  $this->db->where('status=!','paid');
-  $this->db->limit(1);  
-  $this->db->set('status',"paid");
-  $reamaining=$paid-$record['total_amount'];
-  $this->db->set('amount_paid',$record['total_amount']);
-  $this->db->update('invoices');
-  
-  
-  $this->maintain_status_invoice($reamaining,$school_id,$student_id);
-}
 
 
 
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>

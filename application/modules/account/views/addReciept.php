@@ -57,6 +57,7 @@
         class="form-control" id="pay"  />
         <span class="text-danger"><?= form_error('pay') ?></span>
       </div>
+      <!-- <button class="btn">same</button>   -->
     </div>
     <div class="col-md-5 col-sm-12">
       <label for="contact_sec" class="control-label">Payer Name</label>
@@ -87,7 +88,7 @@
   <?= form_close() ?>
 
   <script>
-    function  getStudentDetails(){
+ function  getStudentDetails(){
 
 // var min_length = 3;
 var keyword = $('#stuid').val();
@@ -161,7 +162,7 @@ function getRow($id) {
       var obj=JSON.parse(data);
       console.log(obj);
       $('#stuid').val( obj.autofill.username );
-      $('#balance').val( obj.balance.balance );
+       $('#balance').html("Balance : "+obj.balance.balance);
 
       $('#search').val( " " );
       $('#table_dropdown').hide();
@@ -177,6 +178,11 @@ function submitReciept()
   var payer_name = $('#payer_name').val();
   var payer_mobile = $('#payer_mobile').val();
   var pay = $('#pay').val();
+   if(method && username && pay)
+        {
+          bootbox.confirm("click ok to creat invoice  ?", function(result) {
+        if(result)
+        {
   $.ajax({
     url:"<?= base_url() ?>account/generate_reciept",
     method:"POST",
@@ -190,6 +196,9 @@ window.location = "<?= base_url() ?>account/reciept_list";
 
 }
 });
+}
+});
+}
 }
 
 

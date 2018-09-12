@@ -31,6 +31,19 @@ class Sms_model extends CI_Model
 
 
 }
+function fetch_template_sms($school_id,$module)
+    {
+       $this->db->select('template_sms.context,template_sms.module,template_sms.id,map_school_sms_template.school_id');
+
+    
+
+     $this->db->from('map_school_sms_template');
+      $this->db->where('map_school_sms_template.school_id',$school_id);
+     $this->db->join('template_sms','template_sms.id=map_school_sms_template.template_id');
+       $this->db->where('template_sms.module',$module);
+     return $query= $this->db->get()->row_array();
+    
+    }
 
 
 

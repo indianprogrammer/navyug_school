@@ -9,8 +9,8 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 			$('#import_form').on('submit', function(event){
-		event.preventDefault();
-		$.ajax({
+			event.preventDefault();
+			$.ajax({
 			url:"<?= base_url(); ?>student/import_data",
 			method:"POST",
 			data:new FormData(this),
