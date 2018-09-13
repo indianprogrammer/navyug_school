@@ -29,7 +29,7 @@
 		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"
 		>
 		<?php foreach($classes as $row){ ?>
-                <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                <option value="<?= $row['id'] ?>"> <?= $row['name'] ?></option>
         <?php } ?>
 
 

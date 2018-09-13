@@ -26,7 +26,7 @@ class Superadmin extends Super_Controller{
     $this->load->view('index', $data);
   }
 
-  function add_school()
+  function add_organization()
   {
     $data['title']="organization add";
     $data['_view'] = 'schooladd';

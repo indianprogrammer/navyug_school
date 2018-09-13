@@ -20,6 +20,8 @@
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="<?= base_url() ;?>assets/admin/dist/js/demo.js"></script>
+<script src="<?= base_url() ;?>assets/admin/plugins/select2/select2.full.min.js"></script>
+<script src="<?= base_url() ;?>assets/admin/plugins/datatables/jquery.dataTables.js"></script>
 
 <!-- PAGE PLUGINS -->
 <!-- SparkLine -->

@@ -143,11 +143,7 @@ function get_all_employees($ids)
      $this->db->join('template_sms','template_sms.id=map_school_sms_template.template_id');
        $this->db->where('template_sms.module',"student add");
      return $query= $this->db->get()->row_array();
-      // var_dump(expression)
-       // $this->db->select('context,module');
-       // $this->db->from($query);
-       //  $this->db->where('module',"add student");
-       //  return  $querys= $this->db->get()->row_array();
+    
     }
 }
 ?>

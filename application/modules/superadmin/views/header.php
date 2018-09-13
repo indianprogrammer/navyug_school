@@ -12,8 +12,8 @@
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/bootstrap/css/bootstrap.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/dist/css/adminlte.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
+
+  <script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
 
 
     <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.css">
@@ -31,7 +31,8 @@
 @media only screen and (min-width: 600px) {
    canvas  {height:1000px;}
 }
-.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active
+ {
     color: #fff;
     background-color: #007bff;
 }
@@ -61,6 +62,14 @@
 .fa-trash,.fa-eye,.fa-pencil
 {
   color:white;
+}
+.menu-open
+{
+   /*color: #007bff;*/
+}
+.active
+{
+   /*color: #007bff;*/
 }
 
    </style>
