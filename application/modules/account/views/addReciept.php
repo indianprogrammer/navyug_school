@@ -44,7 +44,7 @@
           <option value="cash">cash</option>
           <option value="online">online</option>
           <option value="swipe">swipe</option>
-          <span class="text-danger"><?= form_error('method') ?></span>
+          <span class="text-danger message"></span>
 
         </select>
       </div>
@@ -178,9 +178,11 @@ function submitReciept()
   var payer_name = $('#payer_name').val();
   var payer_mobile = $('#payer_mobile').val();
   var pay = $('#pay').val();
+  
+
    if(method && username && pay)
         {
-          bootbox.confirm("click ok to creat invoice  ?", function(result) {
+          bootbox.confirm("click ok to generate invoice  ?", function(result) {
         if(result)
         {
   $.ajax({

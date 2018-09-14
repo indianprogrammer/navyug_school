@@ -450,9 +450,25 @@ $currentBalance=$this->Account_model->checkPriviousBalance(1,72);
 
 
 
+function citest()
+{
+   $query = $this->db->query("select MONTHNAME(created_at) as month,count(id) as count from student LEFT JOIN  map_school_student ON map_school_student.student_id = student.id where school_id=1 group by MONTH(created_at),MONTHNAME(created_at) order by MONTH(created_at) asc");
+    var_dump($query->result_array());
+}
+
+function citest2()
+{
 
 
-
+  $this->db->select('MONTHNAME(created_at) as month,count(id) as count');
+  $this->db->from('student');
+  $this->db->join('map_school_student','map_school_student.student_id = student.id');
+  $this->db->where('school_id',1);
+  $this->db->group_by('MONTH(created_at),MONTHNAME(created_at)');
+  $this->db->order_by('MONTH(created_at)','asc');
+  $data=$this->db->get()->result_array();
+  var_dump($data);
+}
 
 
 

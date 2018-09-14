@@ -61,7 +61,7 @@ echo rtrim($subject);
 
 
   <div class="btn-group" >
-    <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></i></a></button>
+    <button type="button" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('student/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></i></a></button>
     <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
     <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
 
@@ -229,3 +229,10 @@ $('#page').html('<table class="table table-striped table-bordered table-responsi
 });
 });
 </script>
+<!-- <script type="text/javascript">
+   $(document).ready( function () {
+   $('button .dropdown').click(function(){
+    $('.dropdown-toggle').addClass('show');
+   });
+ });
+</script> -->

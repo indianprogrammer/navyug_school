@@ -59,7 +59,9 @@ class Employee_model extends CI_Model
      */
     function delete_employee($id)
     {
-        return $this->db->delete('employees',array('id'=>$id));
+         $this->db->delete('employees',array('id'=>$id));
+         $this->db->where(array('user_id'=>$id,'autorization_id'=>2));
+         return $this->db->delete('authentication');
     }
      function add_mapping($ids)
     {

@@ -39,6 +39,7 @@ function add()
 {   
 
   $data['ptype'] = $this->Parents_model->fetch_type();
+  $school_id=$this->session->SchoolId;
 #validation
   $this->load->library('form_validation');
   $config['upload_path']          = './uploads/';
@@ -88,7 +89,9 @@ $authentication=array(
   'autorization_id'=>3,
   'password'=>md5($password),
   'user_id'=> $userId,
-  'clear_text'=>$password
+  'clear_text'=>$password,
+  'school_id'=>$school_id
+
 
 );
 // var_dump($authentication);
@@ -97,7 +100,7 @@ $this->load->model('student/Student_model');
 $userdata=$this->Student_model->select_uname_password($insertAuthentication);
 
 
-$school_id=$this->session->SchoolId;
+
 $this->load->model('admin/Admin_model');
 $organization_name=$this->Admin_model->get_school_name($school_id);
 
@@ -150,7 +153,7 @@ if($this->session->studentID)
 $this->session->alerts = array(
   'severity'=> 'success',
   'title'=> 'successfully added'
- 
+  
 );
 redirect('parents');
 }
@@ -184,8 +187,7 @@ function edit($id)
       $params = array(
 // 'password' => $this->input->post('password'),
         'name' => $this->input->post('parent_Name'),
-// 'type' => $this->input->post('ptype'),
-// 'qualification' => $this->input->post('qualification'),
+
 
         'email' => $this->input->post('email'),
         'mobile' => $this->input->post('mobile'),
@@ -198,10 +200,10 @@ function edit($id)
 
       $this->Parents_model->update_parent($id,$params);    
       $this->session->alerts = array(
-  'severity'=> 'success',
-  'title'=> 'successfully edit'
- 
-);        
+        'severity'=> 'success',
+        'title'=> 'successfully edit'
+        
+      );        
       redirect('parents');
     }   
     else

@@ -117,7 +117,7 @@ $password = rand(1,10000);
 $email = $params['email'];
 
 $userId = $studentId;
-$password=rand(1,100000);
+
 
 $authentication=array(
   'username'=> $username,
@@ -126,7 +126,8 @@ $authentication=array(
   'autorization_id'=>4,
   'password'=>md5($password),
   'user_id'=> $studentId,
-  'clear_text'=>$password
+  'clear_text'=>$password,
+  'school_id'=>$school_id
 
 );
 // var_dump($authentication);
@@ -157,12 +158,14 @@ $studentDetails= array(
 if($studentDetails['mobile'])
 {
 // addStudentSms($studentDetailsSms);
-  modules::run('student/student/addStudentSms',$studentDetails);
+  // modules::run('student/student/addStudentSms',$studentDetails);
+  $this->addStudentSms($studentDetails);
 }
 ##for mail
 if($studentDetails['email'])
 {
-  modules::run('student/student/addStudentMail',$studentDetails);
+  // modules::run('student/student/addStudentMail',$studentDetails);
+   $this->addStudentMail($studentDetails);
 }
 
 
@@ -197,7 +200,7 @@ foreach ($classArray as $row) {
 
 $this->session->alerts = array(
   'severity'=> 'success',
-  'title'=> 'successfully added',
+  'title'=> 'successfully added'
 
 );
 

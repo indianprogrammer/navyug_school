@@ -52,7 +52,7 @@
     $this->form_validation->set_rules('mobile','Mobile','max_length[13]');
     $this->form_validation->set_rules('paddress','Address','required');
     $this->form_validation->set_rules('taddress','Address','required');
-
+    $school_id=$this->session->SchoolId;
     if($this->form_validation->run() )     
     {   
       #employ information
@@ -91,7 +91,8 @@
        'email'=> $email,
        'autorization_id'=> $autorizationId,
        'clear_text'=> $password,
-       'user_id'=> $userId
+       'user_id'=> $userId,
+       'school_id'=>$school_id
      );
       #authentication table insert (username,password,email,autorizationid,userid)
       //insertion code
@@ -99,7 +100,7 @@
       $insertAuthentication = $this->Employee_model->add_user($authenticationData);
 
       $userdata=$this->Student_model->select_uname_password($insertAuthentication);
-      $school_id=$this->session->SchoolId;
+      
       $this->load->model('admin/Admin_model');
       $organization_name=$this->Admin_model->get_school_name($school_id);
 

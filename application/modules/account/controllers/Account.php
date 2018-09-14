@@ -391,8 +391,9 @@ $extraBalance=$currentBalance['balance'];
 
 
   );
-  modules::run('account/account/addSms',$detailInfo);
-  modules::run('account/account/addMail',$detailInfo);
+  $this->addSms($detailInfo);
+  $this->addMail($detailInfo);
+  
 
 
 

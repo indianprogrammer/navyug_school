@@ -31,10 +31,14 @@
     else if(getenv('HTTP_FORWARDED'))
        $ipaddress = getenv('HTTP_FORWARDED');
     else if(getenv('REMOTE_ADDR'))
-        $ipaddress = getenv('REMOTE_ADDR');
+        echo $ipaddress = getenv('REMOTE_ADDR');
     else
         $ipaddress = 'UNKNOWN';
-   echo $ipaddress.'<br>';
+   echo $ipaddress.'<br>'; 
    // echo ipconfig();
   echo $localIP = getHostByName(getHostName());
+  echo $ipaddress = getenv('REMOTE_ADDR');
+ echo $ipaddress = $_SERVER['REMOTE_ADDR'].'<br>';
+ echo "Created date is " . date("Y-m-d h:i:s");
+ // echo now();
     ?>

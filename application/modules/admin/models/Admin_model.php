@@ -37,22 +37,43 @@ class Admin_model extends CI_Model
   function get_student_details_date($school_id)
   {
 
+## sql query
+/*    $query = $this->db->query("select MONTHNAME(created_at) as month,count(id) as count from student LEFT JOIN  map_school_student ON map_school_student.student_id = student.id where school_id='$school_id' group by MONTH(created_at),MONTHNAME(created_at) order by MONTH(created_at) asc");
+return $query->result_array();*/
+$this->db->select('MONTHNAME(created_at) as month,count(id) as count');
+$this->db->from('student');
+$this->db->join('map_school_student','map_school_student.student_id = student.id');
+$this->db->where('school_id',$school_id);
+$this->db->group_by('MONTH(created_at),MONTHNAME(created_at)');
+$this->db->order_by('MONTH(created_at)','asc');
+return $data=$this->db->get()->result_array();
 
-    $query = $this->db->query("select MONTHNAME(created_at) as month,count(id) as count from student LEFT JOIN  map_school_student ON map_school_student.student_id = student.id where school_id='$school_id' group by MONTH(created_at),MONTHNAME(created_at) order by MONTH(created_at) asc");
-    return $query->result_array();
+}
+function get_invoice_details_date($school_id)
+{
+    /*$query = $this->db->query("select MONTHNAME(date) as month,sum(total_amount) as total,count(id) as count from invoices where school_id='$school_id' group by MONTH(date),MONTHNAME(date) order by MONTH(date) asc");
+    return $query->result_array();*/
+    $this->db->select('MONTHNAME(date) as month,sum(total_amount) as total,count(id) as count');
+    $this->db->from('invoices');
 
-  }
-  function get_invoice_details_date($school_id)
-  {
-    $query = $this->db->query("select MONTHNAME(date) as month,sum(total_amount) as total,count(id) as count from invoices where school_id='$school_id' group by MONTH(date),MONTHNAME(date) order by MONTH(date) asc");
-    return $query->result_array();
+    $this->db->where('school_id',$school_id);
+    $this->db->group_by('MONTH(date),MONTHNAME(date)');
+    $this->db->order_by('MONTH(date)','asc');
+    return $data=$this->db->get()->result_array();
 
 
   }
   function get_sales_details_date($school_id)
   {
-    $query = $this->db->query("select MONTHNAME(date) as month,sum(debit) as debit,sum(credit) as credit,count(id) as count from account_transaction where school_id='$school_id' group by MONTH(date),MONTHNAME(date) order by MONTH(date) asc ");
-    return $query->result_array();
+    
+    $this->db->select('MONTHNAME(date) as month,sum(debit) as debit,sum(credit) as credit,count(id) as count');
+    $this->db->from('account_transaction');
+
+    $this->db->where('school_id',$school_id);
+    $this->db->group_by('MONTH(date),MONTHNAME(date)');
+    $this->db->order_by('MONTH(date)','asc');
+    return $data=$this->db->get()->result_array();
+
 
   }
   function get_school_name($school_id)

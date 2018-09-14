@@ -67,6 +67,7 @@ function delete_parent($id)
 {
     $this->db->delete('parents',array('id'=>$id));
     $this->db->delete('map_parent_student',array('parent_id'=>$id));
+    $this->db->delete('authentication',array('user_id'=>$id,'autorization_id'=>3));
     return $this->db->delete('map_school_parent',array('parent_id'=>$id));
 }
 function fetch_type()

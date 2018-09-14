@@ -14,7 +14,7 @@
 <!-- <script src="<?= base_url() ;?>assets/admin/plugins/jquery/jquery.min.js"></script> -->
 <!-- Bootstrap -->
 <script src="<?= base_url() ;?>assets/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= base_url() ;?>assets/admin/plugins/bootstrap/js/bootstrap.js"></script>
+<!-- <script src="<?= base_url() ;?>assets/admin/plugins/bootstrap/js/bootstrap.js"></script> -->
 <!-- AdminLTE App -->
 <script src="<?= base_url() ;?>assets/admin/dist/js/adminlte.min.js"></script>
 
