@@ -416,10 +416,37 @@ function templatetest()
 
 }
 
+function baltest()
+{
+  $this->load->model('account/Account_model');
+$currentBalance=$this->Account_model->checkPriviousBalance(1,72);
+  var_dump($currentBalance);
+  if(is_null($currentBalance))
+  {
+    $status='pending';
+  $amount_paid=0;
+  }
+  if($currentBalance<0)
+  {
+  $BalanceExtra=(-($currentBalance['balance']));
+  if($BalanceExtra==$total)
+  {
+    $status="paid";
+    $amount_paid=$total;
+  }
+  if($BalanceExtra<$total)
+  {
+    $status="partially";
+    $amount_paid=$BalanceExtra;
+  }
+  if($BalanceExtra>$total)
+  {
+    $status="partially";
+    $amount_paid=$total;
+  }
+}
 
-
-
-
+}
 
 
 

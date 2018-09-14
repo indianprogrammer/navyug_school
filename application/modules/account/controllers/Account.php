@@ -293,10 +293,37 @@ function invoiceGenerate()
   }
 
 
-
+$customer_id=$studentData['id'];
   $data=$this->Account_model->insertMultipleParticular($entries);
+  $currentBalance=$this->Account_model->checkPriviousBalance($schoolId,$customer_id);
+  
+  if(is_null($currentBalance))
+  {
+    $status='pending';
+  $amount_paid=0;   
+  }
+  if($currentBalance['balance']<0)
+  {
+  $BalanceExtra=(-($currentBalance['balance']));
+  if($BalanceExtra==$total)
+  {
+    $status="paid";
+    $amount_paid=$total;
+  }
+  if($BalanceExtra<$total)
+  {
+    $status="partially";
+    $amount_paid=$BalanceExtra;
+  }
+  if($BalanceExtra>$total)
+  {
+    $status="partially";
+    $amount_paid=$total;
+  }
+}
 // $totalamount= $this->Account_model->get_total_amount_invoice($incrementedUniqueInvoiceId);
 
+$extraBalance=$currentBalance['balance'];                                                                 
   $invoiceprocess=array(
     'invoice_id'=>$incrementedUniqueInvoiceId,
     'school_id'=>$this->session->SchoolId,
@@ -309,7 +336,9 @@ function invoiceGenerate()
     'customer_name'=>$studentData['name'],
     'customer_address'=>$studentData['permanent_address'],
     'email'=>$studentData['email'],
-    'mobile'=>$studentData['mobile']
+    'mobile'=>$studentData['mobile'],
+    'status'=>$status,
+    'amount_paid'=> $amount_paid
 
 
   );
@@ -412,6 +441,7 @@ function autosuggest(){
   $data=$this->Account_model->GetRow($keyword);        
   echo json_encode($data);
 }
+##need improvement
 function autofill()
 { 
   $id=$this->input->post("id");

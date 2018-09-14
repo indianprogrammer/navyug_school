@@ -22,15 +22,23 @@ function index()
         $fetchSubjectId=$this->Subject_model->get_all_subject_by_classid($classId);
 
         $noOfSubject=count($fetchSubjectId);
-        $data=array();
-        $data['subject']=array();
-        for($i=0;$i<$noOfSubject;$i++)
-        {
-            array_push( $data['subject'],$fetchSubjectId[$i]['subject_id']);
+                    if($noOfSubject!=0)
+                    {
+                    
+                    $data=array();
+                    $data['subject']=array();
+                    for($i=0;$i<$noOfSubject;$i++)
+                    {
+                        array_push( $data['subject'],$fetchSubjectId[$i]['subject_id']);
 
-        }
-// echo $data['subject'];
-        $data['subject'] = $this->Subject_model->get_subject_by_subject_id($data['subject']);
+                    }
+            // echo $data['subject'];
+                    $data['subject'] = $this->Subject_model->get_subject_by_subject_id($data['subject']);
+                     }
+                     else
+                     {
+                        $data['subject']=array();
+                     }
 
     }
     else

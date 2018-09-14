@@ -23,6 +23,9 @@ function index()
     $fetchStudentId=$this->Student_model->get_all_student_by_classid($classId);
 // var_dump($fetchSubjectId[0]['subject_id']);
     $noOfStudent=count($fetchStudentId);
+     if($noOfStudent!=0)
+     {
+                    
     $data=array();
     $data['student']=array();
     for($i=0;$i<$noOfStudent;$i++)
@@ -31,6 +34,11 @@ function index()
 
     }
     $data['student'] = $this->Student_model->get_student_by_student_id($data['student']);
+  }
+  else
+  {
+    $data['student'] =array();
+  }
 
   }
   else

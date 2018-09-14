@@ -327,7 +327,7 @@ class Account_model extends CI_Model
   $this->db->where('status!=','paid');
   $this->db->limit(1);   
   $record=$this->db->get('invoices')->row_array();
-  var_dump($record);
+  // var_dump($record);
   if(is_null($record))
   {
     return false;
@@ -406,6 +406,18 @@ else if($record['total_amount']<$paid)
 
 
 
+}
+function checkPriviousBalance($school_id=null,$customer_id)
+{
+$this->db->select('balance');
+    $this->db->from('account_balance_information');
+     $this->db->where('school_id',$school_id);
+     $this->db->where('customer_id',$customer_id);
+     $data=$this->db->get()->row_array();
+    if($data['balance']<0)
+    {
+      return  $data;
+    }
 
 }
 }

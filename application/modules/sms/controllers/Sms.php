@@ -10,7 +10,7 @@ class Sms extends MY_Controller{
   } 
 
 
-  function sendSms($to,$message)
+ /* function sendSms($to,$message)
   {
 ##get authentication key and information for sms gateway
     $school_id=$this->session->SchoolId;
@@ -52,7 +52,7 @@ class Sms extends MY_Controller{
     
     return $output;
   }
-
+*/
   function send_notification_sms($notification,$notificationStudent,$notificationEmployee)
   {
     $this->load->model('student/Student_model');

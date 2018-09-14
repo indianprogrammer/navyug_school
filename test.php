@@ -34,5 +34,7 @@
         $ipaddress = getenv('REMOTE_ADDR');
     else
         $ipaddress = 'UNKNOWN';
-   echo $ipaddress;
+   echo $ipaddress.'<br>';
+   // echo ipconfig();
+  echo $localIP = getHostByName(getHostName());
     ?>
