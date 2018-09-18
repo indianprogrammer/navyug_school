@@ -9,6 +9,8 @@
         <th>Reciept Number</th>
         <th>Customer name</th>
         <th>Paid</th>
+        <th>payment method</th>
+        <th>payer name</th>
         <th>Date</th>
        
         <th>Actions</th>
@@ -23,6 +25,8 @@
             <!-- <td><?=$row['name'] ?> </td> -->
             <td data-toggle="tooltip" data-placement="top" title="click to view" ><a href="<?=base_url()?>student/getFullDetails?student_id=<?= $row['student_id'] ?>"><?= $row['name'] ?> </a> </td>
             <td><?=$row['total_amount'] ?> </td>
+            <td><?=$row['payment_method'] ?> </td>
+            <td><?=$row['payer_name'] ?> </td>
              <td><?=$row['date'] ?></td>
              <td><a href="<?= site_url('account/getPdfreciept/'.$row['reciept_id']); ?>" class="btn btn-info btn-xs" target="_blank">Get Pdf</a> 
             </td>

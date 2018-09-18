@@ -200,8 +200,11 @@ function generate_reciept()
 
 
   );
-  modules::run('account/account/addSms',$detailInfo);
-  modules::run('account/account/addMail',$detailInfo);
+  // modules::run('account/account/addSms',$detailInfo);
+  // modules::run('account/account/addMail',$detailInfo);
+   $this->addSms($detailInfo);
+  $this->addMail($detailInfo);
+  
 
 // modules::run('email/email/send_email',$emailinfo);
 
@@ -516,6 +519,9 @@ function addSms($detailsSms)
 
 
 }
-
+function reciepttemp()
+{
+    $this->load->view('templates/reciept template/one.php');
+}
 }
 ?>

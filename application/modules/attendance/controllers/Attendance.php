@@ -7,6 +7,7 @@ class Attendance extends MY_Controller{
     parent::__construct();
     $this->load->model('Attendance_model');
     $this->load->model('classes/Classes_model');
+    $this->load->model('student/Student_model');
   } 
 
 /*

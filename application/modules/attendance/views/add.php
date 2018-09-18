@@ -10,7 +10,7 @@ $this->session->classID=$classid;
    <h3> <div class="well text-center">Date    <?= date("y-m-d") ;?> </div></h3>
     <div class="panel panel-body">
         <?= form_open('attendance/insertAttendance',array("class"=>"form-horizontal")); ?>
-        <table class="table table-striped">
+        <table class="table table-bordered">
             <tr>
             <th>#serial number</th>
             <th>Student Name</th>

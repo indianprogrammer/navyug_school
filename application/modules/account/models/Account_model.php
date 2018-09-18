@@ -94,7 +94,7 @@ class Account_model extends CI_Model
   }
   function get_all_reciept($id,$student_id = null)
   {
-    $this->db->select('reciepts.id,reciepts.organization_name,reciepts.organization_address,reciepts.organization_mobile,reciepts.organization_email,reciepts.customer_name,reciepts.email,reciepts.mobile,reciepts.payment_method,reciepts.date,reciepts.total_amount,reciepts.reciept_id,account_transaction.credit,student.name,student.id as student_id');
+    $this->db->select('reciepts.id,reciepts.organization_name,reciepts.organization_address,reciepts.organization_mobile,reciepts.organization_email,reciepts.customer_name,reciepts.email,reciepts.mobile,reciepts.payment_method,reciepts.date,reciepts.total_amount,reciepts.reciept_id,account_transaction.credit,student.name,student.id as student_id,reciepts.payer_name');
     $this->db->from('reciepts');
     $this->db->order_by('reciept_id','desc');
     $this->db->where('reciepts.school_id',$id);
@@ -235,22 +235,22 @@ class Account_model extends CI_Model
   }
   function GetRow($query) {        
 
-    $this->db->select('student.name,student.mobile,authentication.username,student.id as student_id');
+      $this->db->select('student.name,student.mobile,authentication.username,student.id as student_id');
 
 
 
-    $this->db->from('student');
-    $this->db->join('authentication','student.id=authentication.user_id');
-    // $this->db->join('map','student.id=authentication.user_id');
-    $this->db->where("name like '%$query%'");
-// $this->db->where("student_name like '%$query%'");
-    $this->db->or_where("mobile like '%$query%'");
-    $this->db->or_where("username like '%$query%'");
-// $query=$this->db->query("select * from student where email like '%$keyword'");
-    return $this->db->get()->result_array();
+      $this->db->from('student');
+      $this->db->join('authentication','student.id=authentication.user_id');
+      // $this->db->join('map','student.id=authentication.user_id');
+      $this->db->where("name like '%$query%'");
+  // $this->db->where("student_name like '%$query%'");
+      $this->db->or_where("mobile like '%$query%'");
+      $this->db->or_where("username like '%$query%'");
+  // $query=$this->db->query("select * from student where email like '%$keyword'");
+      return $this->db->get()->result_array();
 
 
-  }
+    }
   function get_autofill_value($id)
   {
 

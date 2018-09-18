@@ -470,9 +470,74 @@ function citest2()
   var_dump($data);
 }
 
+function reciepttemp()
+{
+    $this->load->view('reciept/one.php');
+}
+
+function acctest($query="e")
+{
+
+$this->db->select('authentication.username,authentication.autorization_id');
+ $this->db->from('authentication');
+ $this->db->where("username like '%$query%'");
+ var_dump($data=$this->db->get()->row_array());
+ switch($data['autorization_id'])
+ {
+case 4:
+
+$this->db->select('student.name,student.mobile,authentication.username,student.id as student_id');
+    $this->db->join('authentication','student.id=authentication.user_id');
+     $this->db->where("username like '%$query%'");
+
+$this->db->from('student');
+echo '<pre>';
+print_r($this->db->get()->result_array());
+echo '</pre>';
+break;
+case 2:
+
+$this->db->select('employees.name,employees.mobile,authentication.username,employees.id as employee_id');
+    $this->db->join('authentication','employees.id=authentication.user_id');
+     $this->db->where("username like '%$query%'");
+
+$this->db->from('employees');
+echo '<pre>';
+print_r($this->db->get()->result_array());
+echo '</pre>';
+break;
+
+}
 
 
 
+ }
+
+
+
+
+
+
+
+
+
+/*$this->db->select('student.name,student.mobile,authentication.username,student.id as student_id');
+
+
+
+    $this->db->from('student');
+    // $this->db->join('map','student.id=authentication.user_id');
+    $this->db->where("name like '%$query%'");
+// $this->db->where("student_name like '%$query%'");
+    $this->db->or_where("mobile like '%$query%'");
+    $this->db->or_where("username like '%$query%'");
+// $query=$this->db->query("select * from student where email like '%$keyword'");
+    return $this->db->get()->result_array();*/
+
+
+//   }
+
+// }
 
 
 

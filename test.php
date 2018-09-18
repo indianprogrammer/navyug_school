@@ -42,3 +42,8 @@
  echo "Created date is " . date("Y-m-d h:i:s");
  // echo now();
     ?>
+    <?php
+
+date_default_timezone_set("Asia/Kolkata");
+echo date_default_timezone_get();
+     echo $d= date("Y-m-d h:i:s"); ?>
