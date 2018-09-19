@@ -102,5 +102,13 @@ function get_subject_by_subject_id($id=null)
     }
     return $this->db->get()->result_array();
 }
+function get_selected_subject($id)
+{
+    $this->db->select('subject_id');
+    $this->db->from('map_class_subject');
+    $this->db->where('class_id',$id);
+    return $this->db->get()->result_array();
+
+}
 }
 ?>

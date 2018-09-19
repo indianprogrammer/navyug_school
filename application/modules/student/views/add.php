@@ -40,7 +40,7 @@
 	<div class="form-group">
 		<label class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
 	<div class="col-md-5 col-sm-12">
-		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes" name="classes[]" style="width: 100%;"
+		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes" name="classes[]" style="width: 100%;" required="required"
 		>
 		<?php	foreach($classes as $row){ ?>
 				<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>

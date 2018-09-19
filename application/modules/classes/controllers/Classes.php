@@ -52,7 +52,7 @@ function add()
 // $this->form_validation->set_rules('password','Password','required|max_length[20]');
     $this->form_validation->set_rules('class_name','class Name','required|max_length[100]');
 
-// $this->form_validation->set_rules('address','Address','required');
+// $this->form_validation->set_rules('subject','Address','required');
 
     if($this->form_validation->run() )     
     {   
@@ -100,7 +100,7 @@ function add()
         $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added'
-            
+
         );
         redirect('classes');
     }
@@ -120,8 +120,9 @@ function edit($id)
     $school_id=$this->session->SchoolId;
     $data['class'] = $this->Classes_model->get_class($id);
     $data['subject'] = $this->Subject_model->get_all_subject($school_id);
+    $data['selected_subject'] = $this->Subject_model->get_selected_subject($id);
     $data['employee'] = $this->Employee_model->get_all_employees($school_id);
-
+// var_dump($data);die;
     if(isset($data['class']['id']))
     {
         $this->load->library('form_validation');
@@ -137,7 +138,7 @@ function edit($id)
                 'name' => $this->input->post('class_name'),
 
                 'description' => $this->input->post('description'),
-                // 'subject_id' => $this->input->post('subject'),
+// 'subject_id' => $this->input->post('subject'),
 // 'start_time' => $this->input->post('start_time'),
 // 'end_time' => $this->input->post('end_time')
 //  'created_at'=>date(),
@@ -148,32 +149,32 @@ function edit($id)
             $subjectId=$this->input->post('subject');
             if($subjectId)
             {
-        foreach ($subjectId as $row) {
-            $mapping=array(
-                'class_id'=>$id,
-                'subject_id'=>$row
+                foreach ($subjectId as $row) {
+                    $mapping=array(
+                        'class_id'=>$id,
+                        'subject_id'=>$row
 
-            );
-            $map = $this->Classes_model->add_mapping_subject($mapping);
-        }
-    }
+                    );
+                    $map = $this->Classes_model->add_mapping_subject($mapping);
+                }
+            }
 ##map employee class
-        $employeeId=$this->input->post('employee');
-     if($employeeId)
-    {
-        foreach ($employeeId as $row) {
-            $mapping=array(
-                'class_id'=>$id,
-                'employee_id'=>$row
+            $employeeId=$this->input->post('employee');
+            if($employeeId)
+            {
+                foreach ($employeeId as $row) {
+                    $mapping=array(
+                        'class_id'=>$id,
+                        'employee_id'=>$row
 
-            );
-            $map = $this->Classes_model->add_mapping_employee($mapping);
-        }   
-        }  
+                    );
+                    $map = $this->Classes_model->add_mapping_employee($mapping);
+                }   
+            }  
             $this->session->alerts = array(
                 'severity'=> 'success',
                 'title'=> 'successfully edited'
-               
+
             );       
             redirect('classes');
         }

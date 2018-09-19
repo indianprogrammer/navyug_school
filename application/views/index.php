@@ -75,16 +75,16 @@
                                         </p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="<?= site_url() ?>student/add_bulk_student" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
                                             ADD BULK STUDENT
-                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                          
                                         </p>
                                     </a>
                                 </li>
-
+ -->
 
                             </ul>
                         </li>

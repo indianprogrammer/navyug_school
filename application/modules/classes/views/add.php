@@ -42,18 +42,19 @@
 	<div class="form-group">
 		<label class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
 	<div class="col-md-4">
-		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="subject[]" style="width: 100%;"
+		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="subject[]" style="width: 100%;" required="required"
 		>
 		<?php	foreach($subject as $row){ ?>
 				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>
 			<?php } ?>
 			</select>
       </div>
+      <!-- <span class="text-danger"><?php echo form_error('subject');?></span> -->
   </div>
       <div class="form-group">
 		<label class="col-md-4 control-label"><span class="text-danger">*</span>Select Classes</label>
 	<div class="col-md-4 col-sm-12">
-		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="employee[]" style="width: 100%;"
+		<select class="form-control select2" multiple="multiple" data-placeholder="Select classes"  name="employee[]" style="width: 100%;" required="required"
 		>
 			<?php	foreach($employee as $row){ ?>
 				<option value="<?= $row['id'] ?>" ><?= $row['name'] ?></option>

@@ -8,6 +8,7 @@ class Account extends MY_Controller{
     $this->load->model('Account_model');
     $this->load->model('student/Student_model');
     $this->load->helper('pdf_helper');
+    date_default_timezone_set("Asia/Kolkata");
 
   } 
 
@@ -341,7 +342,8 @@ $extraBalance=$currentBalance['balance'];
     'email'=>$studentData['email'],
     'mobile'=>$studentData['mobile'],
     'status'=>$status,
-    'amount_paid'=> $amount_paid
+    'amount_paid'=> $amount_paid,
+    'date'=>date("Y-m-d h:i:s")
 
 
   );

@@ -542,9 +542,32 @@ break;
 
 
 
+function attendanceview()
+{
+$this->db->select('*');
+$this->db->from('attendance_record');
+$this->db->where(array('student_id'=>22));
+$this->db->where('date >=',"2018-7-31" );
+$this->db->where('date <=',"2018-8-1" );
+$data=$this->db->get()->result_array();
+var_dump($data);
 
+}
+function totalAdmin()
 
+{
+  $this->db->from('authentication');
+  $this->db->where(array('school_id'=>1,'autorization_id'=>1));
+  echo $this->db->get()->num_rows();
+}
+function totalAdminDetails()
 
+{
+  $this->db->from('authentication');
+  $this->db->where(array('school_id'=>1,'autorization_id'=>1));
+  echo $this->db->get()->num_rows();
+  // echo __class__;
+}
 
 }
 ?>
