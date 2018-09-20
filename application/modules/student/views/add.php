@@ -89,7 +89,6 @@
 	</div>
 
 <?= form_close(); ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
 
 <script>
 $(document).ready(function(e) {
