@@ -622,7 +622,56 @@ function maprun()
 $data['latitude']="21.215831";
 $data['longitude']="81.454086";
 // $data['_view'] = 'search';
-  $this->load->view('search',$data);
+  $this->load->view('pathmap',$data);
+}
+function reversegio()
+{
+   $data['latitude']="21.215831";
+$data['longitude']="81.454086";
+$data['last_seen']="2 hour ago";
+// $data['_view'] = 'search';
+  $this->load->view('location',$data);
+} 
+
+function getCurrentLocation()
+{
+  $this->db->select('date,latitude,longitude');
+  $this->db->from('apigps');
+  $this->db->order_by('date','desc');
+  $this->db->where('device_id',123);
+  
+  $location=$this->db->get()->row_array();
+  $data['latitude']=$location['latitude'];
+  $data['longitude']=$location['longitude'];
+   $this->load->view('search',$data);
+
+  // var_dump($data);
+
+}
+function substractdate()
+{
+//   $delta_time = 7204 ;
+//   // echo $delta_time;
+//  $hours = floor($delta_time / 3600);
+//  // echo $hours;
+// $delta_time %= 3600;
+// $minutes = floor($delta_time / 60);
+// echo $minutes;
+ $strStart = '2013-06-19 18:25'; 
+   $strEnd   = '06/19/13 21:47'; 
+
+
+
+   $dteDiff  = $strStart->diff($strEnd); 
+
+
+
+
+
+   print $dteDiff->format("%H:%I:%S"); 
+// echo "{$hours} hours ago and {$minutes} and minutes";
+  // echo time();
+  // echo date();
 }
 }
 ?>
