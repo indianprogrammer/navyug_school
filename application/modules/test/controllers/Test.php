@@ -657,21 +657,49 @@ function substractdate()
 // $delta_time %= 3600;
 // $minutes = floor($delta_time / 60);
 // echo $minutes;
- $strStart = '2013-06-19 18:25'; 
-   $strEnd   = '06/19/13 21:47'; 
+//  $strStart = '2013-06-19'; 
+//    $strEnd   = '2013-06-22'; 
+// $diff=date_diff($strStart,$strEnd);
+// echo $diff;
+// $start  = date_create('2018-09-20 01:05:25');
+// $end = date_create(); // Current time, 05:40
+// $diff  = date_diff( $end, $start );
+  $this->db->select('date');
+  $this->db->from('invoices');
+  $ab=$this->db->get()->row_array();
+  // echo $ab['date'];die;
+// echo $diff->h; // Result: 1
+$a='2018-01-30 09:05:25';
+date_default_timezone_set('Asia/kolkata');
+$start  = date_create($a);
+$end = date_create(); // Current time, 05:40
+// print_r($end);
+$diff  = date_diff( $end, $start );
+echo $diff->h.'hour ago' ;
+echo $diff->d.'DAYS ago' ;
+   // $dteDiff  = $strStart->diff($strEnd); 
 
 
 
-   $dteDiff  = $strStart->diff($strEnd); 
 
 
-
-
-
-   print $dteDiff->format("%H:%I:%S"); 
+   // print $dteDiff->format("%H:%I:%S"); 
 // echo "{$hours} hours ago and {$minutes} and minutes";
   // echo time();
   // echo date();
 }
+function various()
+{
+
+
+   $this->load->view('track');
+}
+function various2()
+{
+
+
+   $this->load->view('multiple_direction');
+}
+
 }
 ?>
