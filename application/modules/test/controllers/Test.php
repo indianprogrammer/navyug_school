@@ -700,6 +700,19 @@ function various2()
 
    $this->load->view('multiple_direction');
 }
+function various3()
+{
 
+
+   $this->load->view('multiplelocation2');
+}
+function try()
+{
+  $this->load->view('console');
+}
+function waypoints()
+{
+  $this->load->view('waypoints');
+}
 }
 ?>
