@@ -91,7 +91,8 @@ function getpdf($invoice_id)
     'customer_address'=>$getInvoiceDetails['customer_address'],
     'email'=>$getInvoiceDetails['email'],
     'mobile'=>$getInvoiceDetails['mobile'],
-    'particularlist'=>$rows
+    'particularlist'=>$rows,
+    'date'=>$getInvoiceDetails['date']
 
 
 
@@ -201,13 +202,12 @@ function generate_reciept()
 
 
   );
-  // modules::run('account/account/addSms',$detailInfo);
-  // modules::run('account/account/addMail',$detailInfo);
+
    $this->addSms($detailInfo);
   $this->addMail($detailInfo);
   
 
-// modules::run('email/email/send_email',$emailinfo);
+
 
 
 

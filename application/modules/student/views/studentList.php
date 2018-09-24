@@ -72,6 +72,8 @@ echo rtrim($subject);
       <a class="dropdown-item" href="<?=base_url() ?>account/invoice_list?student_id=<?= $row['id'] ?>" >Invoice Report</a>
       <a class="dropdown-item" href="<?=base_url() ?>account/reciept_list?student_id=<?= $row['id'] ?>">Reciept Report</a>
       <a class="dropdown-item" href="<?=base_url() ?>account/getLedger?student_id=<?= $row['id'] ?>">Ledger Report</a>
+      <a class="dropdown-item" href="<?=base_url() ?>account/add_invoice?student_id=<?= $row['id'] ?>">Generate Invoice</a>
+      <a class="dropdown-item" href="<?=base_url() ?>account/add_reciept?student_id=<?= $row['id'] ?>">Generate Reciept</a>
     </div>
   </div>
 </td>

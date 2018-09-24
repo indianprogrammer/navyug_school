@@ -59,7 +59,7 @@
             <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-child"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text ">Student</span>
+              <span class="info-box-text">Student</span>
               <span class="info-box-number student">
                 <div class="ajax_loading">         
                   <div class="col-md-3">
@@ -72,7 +72,8 @@
                     <!-- end loading -->
                   </div>
                   <!-- /.card -->
-                </div></span>
+                </div>
+              </span>
               </div>
               <!-- /.info-box-content -->
             </div>

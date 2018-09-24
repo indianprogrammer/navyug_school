@@ -16,7 +16,7 @@
       <label for="search" class="control-label">Search</label>
       <div class="form-group">
         <input type="text" name="search" 
-        class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" data-toggle="dropdown"/>
+        class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" data-toggle="dropdown" placeholder="search result by press enter" />
 
         <div id="table_dropdown" class=" dropdown-menu customtable" ></div> 
       </div>
@@ -90,7 +90,16 @@
       <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
     </div>
     <div align="center">
-      <button type="button" name="save" id="save" class="btn btn-info">Generate Invoice</button>
+      <button type="button" name="save" id="save" class="btn btn-info">Generate Invoice
+      </button>
+      <div class="ajax_loading">         
+
+
+        <div class="overlay" style="z-index: 200">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+
+      </div>
     </div>
     <br />
     <div id="inserted_item_data"></div>
@@ -102,27 +111,36 @@
 
 
 
+<?php if($this->input->get('student_id'))
+{
+  $id=$this->input->get('student_id');
+  ?>
+
+  <body onload="getRow(<?= $id ?>);" >
+  <?php  }
+
+  ?>
 
 
+  <script type="text/javascript">
 
-<script type="text/javascript">
 
-
-  function enterEvent(e) {
+    function enterEvent(e) {
 // $("#country").keyup(function () {
 
-  var seachkeyword = $('#search').val();
 
   if (e.keyCode == 13) {
+  var searchkeyword = $('#search').val();
+   
     $.ajax({
       type: "POST",
       url: "<?= base_url() ?>account/autosuggest",
       data: {
-        keyword: seachkeyword
+        keyword: searchkeyword
       },
 
       success: function (data) {
-
+          console.log(data);
         var obj=JSON.parse(data);
 
         var i,tabledata;
@@ -147,6 +165,8 @@
   }
 
 }         
+
+
 function getRow($id) {
   $.ajax({
     type: "POST",
@@ -163,7 +183,7 @@ function getRow($id) {
       $('#uname').val( obj.autofill.username );
       $('#contact').val( obj.autofill.mobile );
       $('#balance').html("Balance : "+obj.balance.balance);
-      $('#search').val( " " );
+      $('#search').val("");
       $('#table_dropdown').hide();
     }
 
@@ -178,7 +198,7 @@ function getRow($id) {
 <script>
   $(document).ready(function(){
     var count = 1;
-
+    $(".ajax_loading").hide();
     $('#add').click(function(){
       count = count + 1;
       var html_code = "<tr id='row"+count+"'>";
@@ -197,42 +217,50 @@ function getRow($id) {
 
     $('#save').click(function(){
 
-          var item_name = [];
+      var item_name = [];
 
-        var item_price = [];
-        $('.item_name').each(function(){
-          item_name.push($(this).text());
-        });
+      var item_price = [];
+      $('.item_name').each(function(){
+        item_name.push($(this).text());
+      });
 
-        $('.item_price').each(function(){
-          item_price.push($(this).text());
-        });
+      $('.item_price').each(function(){
+        item_price.push($(this).text());
+      });
 
-        var keyword = $('#uname').val();
-        if(keyword && item_price && item_name)
-        {
-          bootbox.confirm("click ok to creat invoice  ?", function(result) {
-        if(result)
-        {
+      var keyword = $('#uname').val();
+      if(keyword && item_price && item_name)
+      {
+        bootbox.confirm("click ok to generate invoice  ?", function(result) {
+          if(result)
+          {
 // console.log(keyword);
 $.ajax({
   url:"<?= base_url() ?>account/invoiceGenerate",
   method:"POST",
   data:{particular:item_name,price:item_price,keyword:keyword},
-  success:function(data){
-
-    $("td[contentEditable='true']").text("");
-    for(var i=2; i<= count; i++)
-    {
-      $('tr#'+i+'').remove();
-    }
-    window.location = "<?= base_url() ?>account/invoice_list";
-
+  beforeSend: function(){
+// Show image container
+$(".ajax_loading").show();
+},
+success:function(data){
+  $(".ajax_loading").show();
+  $("td[contentEditable='true']").text("");
+  for(var i=2; i<= count; i++)
+  {
+    $('tr#'+i+'').remove();
   }
+  window.location = "<?= base_url() ?>account/invoice_list";
+
+},
+complete:function(data){
+// Hide image container
+$(".ajax_loading").hide();
+}
 });
 }
 });
-        }
+      }
     });
   });
 </script>

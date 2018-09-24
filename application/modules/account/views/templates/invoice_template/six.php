@@ -80,7 +80,8 @@ font-style: bold;
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-3 invoice-col">
-                  <b>Invoice <?= $invoice_id ?></b><br>
+                  <b>Invoice number</b> <?= $invoice_id ?><br>
+                 <b> Date</b> <?= $date ?><br>
                   <br>
                   <!-- <b>Order ID:</b> 4F3S8J<br> -->
                   <!-- <b>Payment Due:</b> 2/22/2014<br> -->
@@ -127,7 +128,7 @@ font-style: bold;
                 </div>
                 <!-- /.col -->
                 <div class="col-6">
-                  <p class="lead">Amount Due 2/22/2014</p>
+                  <!-- <p class="lead">Amount Due 2/22/2014</p> -->
 
                   <div class="table-responsive">
                     <table class="table">

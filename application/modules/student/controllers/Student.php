@@ -45,7 +45,7 @@ function index()
   {
 
     $data['student'] = $this->Student_model->get_all_student($schoolId);
-   echo json_encode($data['student']);die;
+   // echo json_encode($data['student']);die;
 
   }
   $data['classes'] = $this->Classes_model->fetch_classes($schoolId);

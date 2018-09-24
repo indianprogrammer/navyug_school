@@ -1,5 +1,5 @@
 
-<?= form_open('account/generate_reciept') ?>
+
 
 <div class="box-body">
   <div class="row clearfix">
@@ -7,7 +7,7 @@
       <label for="serch" class="control-label">Search</label>
       <div class="form-group">
         <input type="text" name="search" 
-        class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off"  data-toggle="dropdown"  />
+        class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off"  data-toggle="dropdown" placeholder="search result by press enter"  />
 
       </div>
 
@@ -51,7 +51,7 @@
     </div>
     <br>
     <div class="col-md-5 col-sm-12">
-      <label for="pay" class="control-label"><span class="text-danger">*</span>pay</label>
+      <label for="pay" class="control-label"><span class="text-danger">*</span>Pay</label>
       <div class="form-group">
         <input type="text" name="pay" value="<?= $this->input->post('pay') ?>"
         class="form-control" id="pay"  />
@@ -80,13 +80,29 @@
 
 
   </div>
-  <div class="box-footer">
+  <div class="box-footer" >
     <button type="button" class="btn btn-success" onclick="submitReciept()">
-      <i class="fa fa-check"></i> Generate Reciept
+      Generate Reciept
     </button>
-  </div>
-  <?= form_close() ?>
+     <div class="ajax_loading" style="margin-left:50px;z-index: 200;"  >         
 
+
+        <div class="overlay"  style="z-index: 200">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+
+      </div>
+  </div>
+  
+<?php if($this->input->get('student_id'))
+{
+   $id=$this->input->get('student_id');
+ ?>
+
+  <body onload="getRow(<?= $id ?>);" >
+<?php  }
+
+ ?>
   <script>
  function  getStudentDetails(){
 
@@ -113,7 +129,7 @@ $.ajax({
 <script type="text/javascript">
   function enterEvent(e) {
 // $("#country").keyup(function () {
-  var seachkeyword = $('#search').val();
+  var searchkeyword = $('#search').val();
 // console.log(keyword);
 // var keyword = $('#search').val();
 // console.log(keyword);
@@ -122,7 +138,7 @@ if (e.keyCode == 13) {
     type: "POST",
     url: "<?= base_url() ?>account/autosuggest",
     data: {
-      keyword: seachkeyword
+      keyword: searchkeyword
     },
 
     success: function (data) {
@@ -160,11 +176,11 @@ function getRow($id) {
 
     success: function (data) {
       var obj=JSON.parse(data);
-      console.log(obj);
+      // console.log(obj);
       $('#stuid').val( obj.autofill.username );
        $('#balance').html("Balance : "+obj.balance.balance);
 
-      $('#search').val( " " );
+      $('#search').val("");
       $('#table_dropdown').hide();
     }
 
@@ -190,13 +206,22 @@ function submitReciept()
     method:"POST",
     data:{method:method,payer_name:payer_name,payer_mobile:payer_mobile,username:username,pay:pay},
 // console.log(data);
+ beforeSend: function(){
+// Show image container
+$(".ajax_loading").show();
+},
 success:function(data){
 // alert(data);
 // console.log(data);
-
+$(".ajax_loading").show();
 window.location = "<?= base_url() ?>account/reciept_list";
 
+},
+complete:function(data){
+// Hide image container
+$(".ajax_loading").hide();
 }
+
 });
 }
 });
@@ -208,5 +233,12 @@ window.location = "<?= base_url() ?>account/reciept_list";
 <script type="text/javascript">
   $(document).click(function(){
     $("#table_dropdown").hide();
+    
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+  
+    $(".ajax_loading").hide();
   });
 </script>

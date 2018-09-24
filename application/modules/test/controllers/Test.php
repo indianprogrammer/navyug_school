@@ -698,7 +698,7 @@ function various2()
 {
 
 
-   $this->load->view('multiple_direction');
+  $this->load->view('multiple_direction');
 }
 function various3()
 {
@@ -711,8 +711,14 @@ function try()
   $this->load->view('console');
 }
 function waypoints()
-{
-  $this->load->view('waypoints');
+{ 
+$data['device_latitude']=21.7719003;
+$data['device_longitude']=81.3478709;
+$data['destination_latitude']=21.2023567;
+$data['destination_longitude']=81.29218;
+$data['student_location']=array(0=>array('latitude'=>21.2014144,'longitude'=>81.2855603));
+// var_dump($data['student_location']);
+$this->load->view('waypoints',$data);
 }
 }
 ?>

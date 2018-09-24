@@ -33,7 +33,7 @@ class Account_model extends CI_Model
   }
   function get_invoice($invoice_id)
   {
-    $this->db->select('invoices.customer_name,invoices.customer_address,invoices.mobile,invoices.email,invoices.organization_name,invoices.organization_email,invoices.organization_mobile,invoices.organization_address,invoices.student_id,invoices.total_amount,invoices.invoice_id as inv,invoices.school_id,invoices.date');
+    $this->db->select('invoices.customer_name,invoices.customer_address,invoices.mobile,invoices.email,invoices.organization_name,invoices.organization_email,invoices.organization_mobile,invoices.organization_address,invoices.student_id,invoices.total_amount,invoices.invoice_id as inv,invoices.school_id,DATE(invoices.date) as date');
     $this->db->from('invoices');
     $this->db->where('invoices.invoice_id',$invoice_id);
 
