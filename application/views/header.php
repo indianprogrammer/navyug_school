@@ -85,13 +85,20 @@
 
 
       }
+      .customtable tr:hover
+      {
+
+        background-color:#d2d2d2;
+
+
+      }
       .customtable tr
       {
 
         display: block;
 
-
       }
+
 
       .zoom:hover {
         -ms-transform: scale(2.5); /* IE 9 */

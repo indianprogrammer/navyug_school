@@ -28,8 +28,15 @@
 		<td><?= $row['name']; ?></td>
 		
 		<td>
-            <a href="<?= site_url('subject/edit/'.$row['id']); ?>" class="btn btn-info btn-xs">Edit</a> 
-             <a onclick="delFunction(<?php echo $row['id'] ?>);" href="javascript:void(0);" class="btn btn-danger delete-it"><span class="fa fa-trash"></span> Delete</a>
+            
+              <div class="btn-group" >
+                    <button type="button" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('subject/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></i></a></button>
+                    <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                    
+
+   
+                </div>
+
 
         </td>
     </tr>

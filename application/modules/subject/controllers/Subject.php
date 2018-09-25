@@ -14,7 +14,7 @@ class Subject extends MY_Controller{
 */
 function index()
 {   
-
+    $data['title']="Subject List";
     $schoolId=$this->session->SchoolId;
     if($this->input->get('classId'))
     {
@@ -54,7 +54,7 @@ function index()
 */
 function add_subject()
 {
-
+    $data['title']="Add Subject";
     $data['_view'] = 'add';
     $this->load->view('index',$data);
 }
@@ -110,6 +110,7 @@ function add()
 function edit($id)
 {   
 // check if the subject exists before trying to edit it
+    $data['title']="Edit Subject";
     $data['subject'] = $this->Subject_model->get_subject($id);
 
 

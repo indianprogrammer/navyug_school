@@ -13,6 +13,7 @@ class Login extends MX_Controller
     public function index($msg = NULL)
     {
 // Load our view to be displayed
+         $data['title']="login";
         if (isset($this->session->username)) {
             redirect('admin');
         }

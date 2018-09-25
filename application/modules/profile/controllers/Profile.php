@@ -10,7 +10,7 @@ class Profile extends MY_Controller{
 	}
 
 	function index()
-	{
+	{	 $data['title']="User Profile";
 		$username=$this->session->username;
 		$authenticationId=$this->session->authenticationId;
 ## get details through username
@@ -91,10 +91,10 @@ class Profile extends MY_Controller{
 		$authenticationId=$this->session->authenticationId;
 ## get details through username
 		$data['userdata']=$this->load->Profile_model->get_admin_info($username,$authenticationId);
-// var_dump($data['userdata']['auth_id']);die;
+
 		$this->session->profileImage=$data['userdata']->profile_image;
 		$data['_view'] = 'profile';
-// $this->load->view('../index',$data);
+
 		$this->load->view('index',$data);
 	}
 	function logout()

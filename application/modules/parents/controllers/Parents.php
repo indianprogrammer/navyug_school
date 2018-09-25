@@ -14,6 +14,7 @@ class Parents extends MY_Controller{
 
 
 function index(){
+   $data['title']="Parents List";
   $schoolId=$this->session->SchoolId;
   $data['parents'] = $this->Parents_model->get_all_parents($schoolId);
   $data['_view'] = 'parentList';
@@ -25,6 +26,7 @@ function index(){
 */
 function add_parent()
 {   
+   $data['title']="Add parent";
   if($this->input->post("studentId"))
   {
     $student_id=$this->input->post("studentId"); 
@@ -37,7 +39,7 @@ function add_parent()
 }
 function add()
 {   
-
+   $data['title']="Add parent";
   $data['ptype'] = $this->Parents_model->fetch_type();
   $school_id=$this->session->SchoolId;
 #validation
@@ -170,6 +172,7 @@ else
 function edit($id)
 {   
 // check if the parent exists before trying to edit it
+   $data['title']="Edit parent";
   $data['parent'] = $this->Parents_model->get_parent($id);
 
   if(isset($data['parent']['id']))

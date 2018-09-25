@@ -16,6 +16,7 @@ class Student extends MY_Controller{
 function index()
 {   
 // $data['claasesName']=$this->Student_model->get_class_name();
+  $data['title']="Student List";
   $schoolId=$this->session->SchoolId;
   if($this->input->get('classId'))
   {
@@ -59,6 +60,7 @@ function index()
 */
 function add_student()
 {   
+  $data['title']="Add Student";
   $school_id=$this->session->SchoolId;
   $data['classes'] = $this->Classes_model->fetch_classes($school_id);
   $data['_view'] = 'add';
@@ -69,7 +71,7 @@ function add_student()
 function add()
 {   
 
-
+   $data['title']="Add Student";
   $this->load->library('form_validation');
   $config['upload_path']          = './uploads/';
   $config['allowed_types']        = 'gif|jpg|png';
@@ -220,6 +222,7 @@ else
 function edit($id)
 {   
 // check if the student exists before trying to edit it
+   $data['title']="Edit Student";
   $data['student'] = $this->Student_model->get_student($id);
   $config['upload_path']          = './uploads/';
   $config['allowed_types']        = 'gif|jpg|png';
@@ -490,6 +493,7 @@ function filterStudent()
 
 function getFullDetails()
 { 
+   $data['title']="Student Full Details";
   $school_id=$this->session->SchoolId;
   $student_id=$this->input->get('student_id');
   $data['student_info']= $this->Student_model->get_student_full_details($student_id);

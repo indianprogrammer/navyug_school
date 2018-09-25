@@ -16,6 +16,7 @@ class Classes extends MY_Controller{
 */
 function index()
 {
+    $data['title']="Classes list";
     $school_id=$this->session->SchoolId;
     $data['studentCount']=$this->Classes_model->get_student_count();
     $data['subjectCount']=$this->Classes_model->get_subject_count();
@@ -30,6 +31,7 @@ function index()
 */
 function add_class()
 {            
+    $data['title']="Add class";
     $school_id=$this->session->SchoolId;
     $data['subject'] = $this->Subject_model->get_all_subject($school_id);
 
@@ -42,6 +44,7 @@ function add_class()
 
 function add()
 {   
+    $data['title']="Add class";
     $school_id=$this->session->SchoolId;
     $this->load->library('form_validation');
     $data['subject'] = $this->Subject_model->get_all_subject($school_id);
@@ -117,12 +120,13 @@ function add()
 function edit($id)
 {   
 // check if the class exists before trying to edit it
+    $data['title']="Edit Class";
     $school_id=$this->session->SchoolId;
     $data['class'] = $this->Classes_model->get_class($id);
     $data['subject'] = $this->Subject_model->get_all_subject($school_id);
     $data['selected_subject'] = $this->Subject_model->get_selected_subject($id);
     $data['employee'] = $this->Employee_model->get_all_employees($school_id);
-// var_dump($data);die;
+
     if(isset($data['class']['id']))
     {
         $this->load->library('form_validation');

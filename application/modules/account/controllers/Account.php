@@ -17,6 +17,7 @@ class Account extends MY_Controller{
 */
 function invoice_list()
 {   
+  $data['title']="Invoice List";
   $schoolId=$this->session->SchoolId;
   if($this->input->get('student_id'))
   {
@@ -37,6 +38,7 @@ function invoice_list()
 
 function add_invoice()
 {
+  $data['title']="Add Invoice";
   $data['_view'] = 'addInvoice';
   $this->load->view('index',$data);
 }
@@ -106,6 +108,7 @@ function getpdf($invoice_id)
 ##for receipt start
 function add_reciept()
 {
+  $data['title']="Add Reciept";
   $data['_view'] = 'addReciept';
   $this->load->view('index',$data);
 }
@@ -214,6 +217,7 @@ function generate_reciept()
 }
 function reciept_list()
 {
+  $data['title']="Reciept List";
   $schoolId=$this->session->SchoolId;
   if($this->input->get('student_id'))
   {
@@ -419,7 +423,7 @@ function checkBalance()
   echo $balance;
 }
 
-function balance()
+/*function balance()
 {
   $this->db->select('balance');
   $this->db->from('account_balance_information');
@@ -428,9 +432,10 @@ function balance()
   var_dump($this->db->get()->row_array());
 
 
-}
+}*/
 function getledger()
 {
+  $data['title']="ledger";
   $student_id=$this->input->get('student_id');
   $data['ledger']=$this->Account_model->get_ledger($student_id);
   $data['_view'] = 'ledger';
@@ -464,6 +469,7 @@ function autofill()
   $data['autofill']=$this->Account_model->get_autofill_value($id);
 echo json_encode($data);
 }
+
 function addMail($detailsMail)
 {
 #get student details from $studentdetail
@@ -521,9 +527,9 @@ function addSms($detailsSms)
 
 
 }
-function reciepttemp()
+/*function reciepttemp()
 {
     $this->load->view('templates/reciept template/one.php');
-}
+}*/
 }
 ?>

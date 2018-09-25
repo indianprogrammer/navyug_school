@@ -16,7 +16,7 @@
     {  
 
 
-
+      $data['title']="Employee List";
      $schoolId=$this->session->SchoolId;
      // $config['total_rows'] = $this->Employee_model->get_all_employees_count($schoolId);
 
@@ -32,6 +32,7 @@
      */
     function add_employee()
     {   
+      $data['title']="Add Employee";
      $data['emptype'] = $this->Employee_model->get_map_employee();
 
      $data['_view'] = 'add';
@@ -41,6 +42,7 @@
    function add()
    {   
     #validation part
+    $data['title']="Add Employee";
     $this->load->library('form_validation');
     $data['emptype'] = $this->Employee_model->get_map_employee();
     $config['upload_path']          = './uploads/';

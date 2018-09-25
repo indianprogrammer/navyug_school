@@ -20,6 +20,7 @@ class Attendance extends MY_Controller{
 */
 function take_attendance()
 { 
+  $data['title']="Take Attendance";
   $school_id=$this->session->SchoolId;
   $data['classes'] = $this->Classes_model->fetch_classes($school_id);
   $data['_view'] = 'attendence';
@@ -73,7 +74,7 @@ function insertAttendance()
 }
 function attendance_list()
 {
-
+  $data['title']="Attendance list";
   $school_id=$this->session->SchoolId;
   $data['classes'] = $this->Classes_model->fetch_classes($school_id);
 // var_dump($data['classes'] );die;
@@ -84,6 +85,7 @@ function attendance_list()
 
 function show_report()
 {
+  $data['title']="Show Report";
   $school_id=$this->session->SchoolId;
   $classId= $this->input->post('id');
   $date= $this->input->post('date');
@@ -96,13 +98,6 @@ function show_report()
   echo json_encode($data);
 
 }
-
-
-
-
-
-
-
 
 
 /*
