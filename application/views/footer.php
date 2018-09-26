@@ -65,14 +65,6 @@
 
 <!-- PAGE SCRIPTS -->
  <!-- <script src="<?= base_url() ;?><assets/admin/dist/js/pages/dashboard2.js"></script> -->
+ 
 </body>
 </html>
-<?php
-
-if($this->session->username)
-{
-
- /* echo '<script>window.location(<?= base_url()?>login/logout)</script>';*/
-  echo '<script>alert("hii")</script>';
-}
-?>

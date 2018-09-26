@@ -7,6 +7,7 @@ class Login extends MX_Controller
     {
         parent::__construct();
         $this->load->model('Login_model');
+         date_default_timezone_set("Asia/Kolkata");
 
     }
 
@@ -60,6 +61,7 @@ class Login extends MX_Controller
             'status'=>($authenticationData)?1:0
         );
         $log=$this->Login_model->insertLogs($logsData);
+
 ##--##
         if (is_null($authenticationData)) {
             $data = array(
@@ -72,7 +74,9 @@ class Login extends MX_Controller
 #set session data
             $this->session->user_id = $authenticationData['id'];
             $this->session->username = $authenticationData['username']; 
+            $this->session->auto_logout = $authenticationData['auto_logout_status']; 
             $this->session->autorization_id = $autorizationData['type'];
+            $this->session->log_id=$log;
 $this->session->name = ''; #default value
 $this->session->profileImage = ''; #default value
 $userData = '';
@@ -88,7 +92,7 @@ switch ($authenticationData['autorization_id']){
     $this->session->name = $userData['name'];
     $this->session->profileImage = $userData['profile_image'];
     $this->session->authenticationId=$authenticationData['autorization_id'];
-    echo "admin  ". $this->session->username;
+    // echo "admin  ". $this->session->username;
     redirect ('admin');
 
     break;
@@ -124,9 +128,14 @@ echo 'redirect it to '. $autorizationData['home'];
 }
 
 public function logout(){
+    $log_id=$this->session->log_id;
+
+    $logout_time=date("Y-m-d H:i:s");
+    $this->Login_model->set_logout_time($log_id,$logout_time);
     $this->session->unset_userdata('username');
     $this->session->unset_userdata('profileImage');
     $this->session->unset_userdata('SchoolId');
+    $this->session->unset_userdata('log_id');
     $this->session->sess_destroy();
     redirect('login');
 }       
