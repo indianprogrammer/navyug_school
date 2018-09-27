@@ -23,11 +23,13 @@ class Admin extends MY_Controller{
     $this->load->model('employee/Employee_model');                      
     $this->load->model('subject/Subject_model');                      
     $this->load->model('classes/Classes_model');                      
+    $this->load->model('account/Account_model');                      
     $data['students'] = $this->Student_model->get_all_students_count($schoolId); 
 
     $data['employee'] = $this->Employee_model->get_all_employees_count($schoolId);                           
     $data['subject'] = $this->Subject_model->get_all_subject_count($schoolId);                           
     $data['class'] = $this->Classes_model->get_all_class_count($schoolId);   
+    $data['pending_invoice'] = $this->Account_model->get_all_pending_invoice_count($schoolId);   
     echo json_encode ($data);
   }
   function totalAmount()

@@ -383,5 +383,36 @@ $this->db->select('balance');
     }
 
 }
+function get_partial_invoice($school_id)
+{
+$this->db->select('invoices.customer_name,invoices.customer_address,invoices.mobile,invoices.email,invoices.organization_name,invoices.organization_email,invoices.organization_mobile,invoices.organization_address,invoices.student_id,invoices.total_amount,invoices.invoice_id,invoices.school_id,invoices.date,invoices.status');
+    $this->db->from('invoices');
+    $this->db->order_by('invoices.id', 'DESC');
+    $this->db->where('invoices.school_id', $school_id);
+        $this->db->where('status',"partially");
+  
+    return $query = $this->db->get()->result_array();
+
+}
+function get_pending_invoice($school_id)
+{
+$this->db->select('invoices.customer_name,invoices.customer_address,invoices.mobile,invoices.email,invoices.organization_name,invoices.organization_email,invoices.organization_mobile,invoices.organization_address,invoices.student_id,invoices.total_amount,invoices.invoice_id,invoices.school_id,invoices.date,invoices.status');
+    $this->db->from('invoices');
+    $this->db->order_by('invoices.id', 'DESC');
+    $this->db->where('invoices.school_id', $school_id);
+    $this->db->where('status',"pending");
+  
+    return $query = $this->db->get()->result_array();
+
+}
+
+function get_all_pending_invoice_count($schoolId)
+{
+   $this->db->where('school_id',$school_id);
+   $this->db->where('school_id',$school_id);
+    $query =$this->db->get('map_school_student')->num_rows();
+  return $query;
+}
+
 }
 ?>

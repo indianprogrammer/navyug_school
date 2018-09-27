@@ -17,6 +17,7 @@ class Settings extends MX_Controller
     }
     function changeAutoLogoutStatus()
     {   
+       
         $status=$this->input->get('status');
         $username=$this->session->username;
         $this->db->where('username',$username);

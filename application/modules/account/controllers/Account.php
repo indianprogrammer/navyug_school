@@ -33,7 +33,22 @@ function invoice_list()
   $this->load->view('index',$data);
 }
 
+function partialPaidInvoiceList()
+{
+   $schoolId=$this->session->SchoolId;
+  $data['invoice'] = $this->Account_model->get_partial_invoice($schoolId);
+   $data['_view'] = 'invoiceList';
+  $this->load->view('index',$data);
 
+}
+function pendingInvoiceList()
+{
+   $schoolId=$this->session->SchoolId;
+  $data['invoice'] = $this->Account_model->get_pending_invoice($schoolId);
+   $data['_view'] = 'invoiceList';
+  $this->load->view('index',$data);
+
+}
 
 
 function add_invoice()
