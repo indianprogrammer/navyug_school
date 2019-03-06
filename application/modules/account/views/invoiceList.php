@@ -1,8 +1,17 @@
-<div class="pull-right">
-    <a href="<?php echo site_url('account/add_invoice'); ?>" class="btn btn-success">Add</a>
-</div>
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">ADD EMPLOYEE</h3>
+        <div class="card-tools pull-right">
+        <a href="<?php echo site_url('account/add_invoice'); ?>" class="btn btn-success">Add</a>
+        </div>
+      </div>
+      <div class="card-body">
 
-<table id="invoice_table" class="table table-bordered table-striped table-responsive">
+
+        <div class="table-responsive">
+<table id="invoice_table" class="table table-bordered table-hover">
     <thead>
     <tr>
         <th>ID</th>
@@ -50,6 +59,11 @@
                                 </div>
 
                               </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
 

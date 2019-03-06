@@ -2,15 +2,17 @@
 
 <div class="row">
   <div class="col-md-12 col-sm-12">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Student List</h3>
-        <div class="box-tools pull-right">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Student List</h3>
+        <div class="card-tools pull-right">
           <a href="<?= site_url('student/add'); ?>" class="btn btn-success ">Add</a>
         </div>
       </div>
+      <div class="card-body">
       <div id="page">
-        <table id="student_table" class="table table-striped table-bordered table-responsive">
+        <div class="table-responsive">
+        <table id="student_table" class="table  table-bordered table-hover">
           <thead>
             <tr>
               <th>ID</th>
@@ -61,9 +63,10 @@ echo rtrim($subject);
 
 
   <div class="btn-group" >
-    <button type="button" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= base_url() ?>student/edit/<?= $row['id'] ?>" ><i class="fa fa-pencil"></i></a></button>
+   <a href="<?= base_url() ?>student/edit/<?= $row['id'] ?>"  class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
     <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-    <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
+    
+    <a href="#" id="<?= $row['id']?>"  class="btn btn-info view_data" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye"></i></a>
 
     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
       <span class="caret"></span>
@@ -124,12 +127,16 @@ echo rtrim($subject);
 <?php } ?>
 </tbody>
 </table>
+</div>
 <div class="invoice_information"></div>
 </div>
 </div>
 </div>
 </div>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script> -->
+</div>
+
+</div>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootcard.js/4.4.0/bootcard.js"></script> -->
 <script>
   $(document).ready( function () {
     $('#student_table').DataTable();
@@ -141,7 +148,7 @@ echo rtrim($subject);
   function delFunction(id)
   {
 // var id = $(this).data('id');
-bootbox.confirm("Are you sure to delete  record ?", function(result) {
+bootcard.confirm("Are you sure to delete  record ?", function(result) {
   if(result)
     window.location.href = url+'student/remove/'+id
 });

@@ -8,105 +8,116 @@
 </style>
 
 
+<div class="row">
+  <div class="col-md-6">
+
+    <div class="card ">
+      <div class="card-header">
+        <h3 class="card-title">ADD INVOICE</h3>
 
 
-<div class="box-body">
-  <div class="row">
-    <div class="col-md-5 col-sm-12">
-      <label for="search" class="control-label">Search</label>
-      <div class="form-group">
-        <input type="text" name="search" 
-        class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" data-toggle="dropdown" placeholder="search result by press enter" />
-
-        <div id="table_dropdown" class=" dropdown-menu customtable" ></div> 
       </div>
 
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <label for="search" class="control-label">Search</label>
+            <div class="form-group">
+              <input type="text" name="search" 
+              class="form-control dropdown-toggle" id="search"  onkeypress="enterEvent(event)" autofocus  autocomplete="off" data-toggle="dropdown" placeholder="search result by press enter" />
 
-    </div>
-
-    <div class="col-md-4 col-sm-12" id="balance" style="font-size: 22px;">
-
-    </div>
-
-  </div>
-
-  <div class="col-md-5 col-sm-12">
-    <label for="uname" class="control-label"><span class="text-danger">*</span>Enter Username</label>
-    <div class="form-group">
-      <input type="text" name="uname" value="<?= $this->input->post('uname') ?>"
-      class="form-control" id="uname"  autofocus  autocomplete="off" required />
-      <span class="text-danger"><?= form_error('uname') ?></span>
-    </div>
-  </div>
+              <div id="table_dropdown" class=" dropdown-menu customtable" ></div> 
+            </div>
 
 
+          </div>
 
+          <div class="col-md-4 col-sm-12" id="balance" style="font-size: 22px;">
 
+          </div>
 
-  <div class="col-md-5 col-sm-12">
-    <label for="email" class="control-label"><span class="text-danger">*</span> Name</label>
-    <div class="form-group">
-      <input type="text" name="stuName" value="<?= $this->input->post('stuName') ?>"
-      class="form-control" id="stuname" >
-      <span class="text-danger"><?= form_error('stuName') ?></span>
-
-    </div>
-  </div>
-  <div class="col-md-5 col-sm-12">
-    <label for="contact_pri" class="control-label"><span class="text-danger">*</span>Contact Number</label>
-    <div class="form-group">
-      <input type="text" name="contact" maxlength="13" value="<?= $this->input->post('contact') ?>"
-      class="form-control" id="contact" data-toggle="tooltip" data-placement="top" title="+919393939999 or 919393939999 "/>
-      <span class="text-danger"><?= form_error('contact_pri') ?></span>
-    </div>
-  </div>
-  <div class="col-md-5 col-sm-12">
-    <label for="email" class="control-label">Email</label>
-    <div class="form-group">
-      <input type="text" name="email" value="<?= $this->input->post('email') ?>"
-      class="form-control" id="email"/>
-      <span class="text-danger"><?= form_error('email') ?></span>
-    </div>
-  </div>
-
-  <div class="col-md-5 col-sm-12">
-
-    <table class="table  table-responsive " id="crud_table">
-      <tr>
-        <th width="10%">Particular</th>
-        <th width="5%">Amount</th>
-
-        <th width="5%"></th>
-      </tr>
-      <tr>
-        <!-- <td ><input type="text" class="item_name" placeholder="Enter name"></td> -->
-        <td contenteditable="true" class="item_name" style="border-right:1px solid grey"></td>
-        <td contenteditable="true" class="item_price"></td> 
-        <!-- <td  ><input type="text" class="item_price" placeholder="Enter price"></td> -->
-        <td></td>
-      </tr>
-    </table>
-    <div align="left">
-      <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
-    </div>
-    <div align="center">
-      <button type="button" name="save" id="save" class="btn btn-info">Generate Invoice
-      </button>
-      <div class="ajax_loading">         
-
-
-        <div class="overlay" style="z-index: 200">
-          <i class="fa fa-refresh fa-spin"></i>
         </div>
 
+        <div class="col-md-12 col-sm-12">
+          <label for="uname" class="control-label"><span class="text-danger">*</span>Enter Username</label>
+          <div class="form-group">
+            <input type="text" name="uname" value="<?= $this->input->post('uname') ?>"
+            class="form-control" id="uname"  autofocus  autocomplete="off" required />
+            <span class="text-danger"><?= form_error('uname') ?></span>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="col-md-12 col-sm-12">
+          <label for="email" class="control-label"><span class="text-danger">*</span> Name</label>
+          <div class="form-group">
+            <input type="text" name="stuName" value="<?= $this->input->post('stuName') ?>"
+            class="form-control" id="stuname" >
+            <span class="text-danger"><?= form_error('stuName') ?></span>
+
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+          <label for="contact_pri" class="control-label"><span class="text-danger">*</span>Contact Number</label>
+          <div class="form-group">
+            <input type="text" name="contact" maxlength="13" value="<?= $this->input->post('contact') ?>"
+            class="form-control" id="contact" data-toggle="tooltip" data-placement="top" title="+919393939999 or 919393939999 "/>
+            <span class="text-danger"><?= form_error('contact_pri') ?></span>
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12">
+          <label for="email" class="control-label">Email</label>
+          <div class="form-group">
+            <input type="text" name="email" value="<?= $this->input->post('email') ?>"
+            class="form-control" id="email"/>
+            <span class="text-danger"><?= form_error('email') ?></span>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12">
+
+          <table class="table  table-responsive " id="crud_table">
+            <tr>
+              <th width="13%">Particular</th>
+              <th width="12%">Amount</th>
+
+              <th width="12%"></th>
+            </tr>
+            <tr>
+              <!-- <td ><input type="text" class="item_name" placeholder="Enter name"></td> -->
+              <td contenteditable="true" class="item_name" style="border-right:1px solid grey"></td>
+              <td contenteditable="true" class="item_price"></td> 
+              <!-- <td  ><input type="text" class="item_price" placeholder="Enter price"></td> -->
+              <td></td>
+            </tr>
+          </table>
+          <div align="left">
+            <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
+          </div>
+          <div align="center">
+            <button type="button" name="save" id="save" class="btn btn-info">Generate Invoice
+            </button>
+            <div class="ajax_loading">         
+
+
+              <div class="overlay" style="z-index: 200">
+                <i class="fa fa-refresh fa-spin"></i>
+              </div>
+
+            </div>
+          </div>
+          <br />
+          <div id="inserted_item_data"></div>
+
+        </div>
+
+
       </div>
     </div>
-    <br />
-    <div id="inserted_item_data"></div>
-
   </div>
-
-
 </div>
 
 
@@ -130,8 +141,8 @@
 
 
   if (e.keyCode == 13) {
-  var searchkeyword = $('#search').val();
-   
+    var searchkeyword = $('#search').val();
+
     $.ajax({
       type: "POST",
       url: "<?= base_url() ?>account/autosuggest",
@@ -140,7 +151,7 @@
       },
 
       success: function (data) {
-          console.log(data);
+        console.log(data);
         var obj=JSON.parse(data);
 
         var i,tabledata;

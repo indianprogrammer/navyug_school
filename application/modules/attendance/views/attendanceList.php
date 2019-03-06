@@ -1,4 +1,6 @@
-<table id="student_table" class="table  table-bordered table-responsive">
+
+<div class="table-responsive">
+<table id="student_table" class="table  table-bordered ">
     <thead>
     <tr>
 		<th>Serial Number</th>
@@ -40,3 +42,4 @@
 	<?php } ?>
 </tbody>
 </table>
+</div>

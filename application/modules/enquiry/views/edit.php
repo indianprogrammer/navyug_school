@@ -1,3 +1,19 @@
+<div class="row">
+    <div class="col-md-9">
+
+      <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title">ENQUIRY FORM</h3>
+
+
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+
+
+
+
+
 <?php echo form_open('enquiry/edit/'.$enquiry['id'],array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
@@ -54,3 +70,7 @@
 	</div>
 	
 <?php echo form_close(); ?>
+</div>
+</div>
+</div>
+</div>

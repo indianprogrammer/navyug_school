@@ -1,10 +1,20 @@
+  <div class="row">
+    <div class="col-md-9">
 
+      <div class="card card-default">
+        <div class="card-header">
+          <h3 class="card-title">ENQUIRY FORM</h3>
+
+
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
 <form id="formEnquiry" class="horizontal-form" method="post">
 
-    <h3 align="center"> ENQUIRY FORM </h3>
+   <!--  <h3 align="center">  </h3> -->
     <div class="row">
      <div class="col-md-7 col-lg-10" >
-        <label for="search" class="col-md-4 control-label"> Search</label>
+        <label for="search" class="col-md-12 control-label"> Search</label>
         <div class="form-group" >
             <input type="text" name="search"  onkeyup="enterEvent()" class="form-control dropdown-toggle" id="search"  autofocus   autocomplete="off"  data-toggle="dropdown"/>
             <span class="text-danger"><?=form_error('search');?></span>
@@ -12,14 +22,14 @@
         </div>
     </div>
     <div class="col-md-5 col-lg-4" >
-        <label for="username" class="col-md-5 control-label"><span class="text-danger">*</span> User Name</label>
+        <label for="username" class="col-md-12 control-label"><span class="text-danger">*</span> User Name</label>
         <div class="form-group">
             <input type="text" name="username" value="<?=$this->input->post('username'); ?>" class="form-control" id="username"  autofocus />
             <span class="text-danger"><?=form_error('username');?></span>
         </div>
     </div>
     <div class="col-md-5 col-lg-4">
-        <label for="trainer_Name" class="col-md-4 control-label"><span class="text-danger">*</span> Name</label>
+        <label for="trainer_Name" class="col-md-12 control-label"><span class="text-danger">*</span> Name</label>
         <div class="form-group">
            <input type="text" name="name" value="<?=$this->input->post('name'); ?>" class="form-control" id="name"  autofocus />
            <span class="text-danger"><?=form_error('name');?></span>
@@ -29,21 +39,21 @@
 
    <div class="col-md-5 col-lg-4">
     <div class="form-group">
-        <label for="mobile" class="col-md-4 control-label"><span class="text-danger">*</span>Mobile</label>
+        <label for="mobile" class="col-md-12 control-label"><span class="text-danger">*</span>Mobile</label>
         <input type="text" name="mobile" maxlength="13" value="<?=$this->input->post('mobile'); ?>" class="form-control" id="mobile" />
         <span class="text-danger"><?=form_error('mobile');?></span>
     </div>
 </div>
 
 <div class="col-md-5 col-lg-4">
-    <label for="email" class="col-md-4 control-label">Email</label>
+    <label for="email" class="col-md-12 control-label">Email</label>
     <div class="form-group">
        <input type="text" name="email" value="<?=$this->input->post('email'); ?>" class="form-control" id="email" />
        <span class="text-danger"><?=form_error('email');?></span>
    </div>
 </div>
 <div class="col-md-5 col-lg-4">
-    <label for="purpose" class="col-md-4 control-label"><span class="text-danger">*</span>Purpose</label>
+    <label for="purpose" class="col-md-12 control-label"><span class="text-danger">*</span>Purpose</label>
     <div class="form-group">
 
         <select name="type" id="type" class="form-control" >
@@ -73,7 +83,7 @@
         </div>
     </div> -->
     <div class="col-md-5 col-lg-4">
-        <label for="assign" class="col-md-4 control-label">Assign to</label>
+        <label for="assign" class="col-md-12 control-label">Assign to</label>
         <div class="form-group">
 
             <select name="assign" id="assign" class="form-control" >
@@ -89,7 +99,7 @@
         </div>
     </div>     
     <div class="col-md-5 col-lg-4">
-        <label for="purpose" class="col-md-4 control-label"><span class="text-danger">*</span>Attend Type</label>
+        <label for="purpose" class="col-md-12 control-label"><span class="text-danger">*</span>Attend Type</label>
         <div class="form-group">
 
             <select name="attend_type" id="type" class="form-control" >
@@ -107,7 +117,7 @@
         </div>
     </div>               
     <div class="col-md-5 col-lg-4">
-        <label for="comments" class="col-md-4 control-label"><span class="text-danger">*</span>comments</label>
+        <label for="comments" class="col-md-12 control-label"><span class="text-danger">*</span>comments</label>
         <div class="form-group">
             <textarea name="comments" class="form-control" id="comments"><?=$this->input->post('comments'); ?></textarea>
             <span class="text-danger"><?=form_error('comments');?></span>
@@ -134,6 +144,11 @@
                     </div>
                 </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
             <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
             <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 

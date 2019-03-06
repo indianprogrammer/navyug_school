@@ -1,13 +1,22 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Enquiry List</h3>
+       <div class="card-tools pull-right">
+      <a href="<?php echo site_url('enquiry/add_enquiry'); ?>" class="btn btn-success">Add</a> 
+     </div> 
+ </div>
+ <div class="card-body">
+
+
+    <div class="table-responsive">
 
 
 
 
-<h4>Enquiry List</h4>
-<div class="pull-right">
-	<a href="<?php echo site_url('enquiry/add_enquiry'); ?>" class="btn btn-success">Add</a> 
-</div>
 
-<table id ="parent_table" class="table table-striped table-bordered table-responsive">
+<table id ="parent_table" class="table table-hover table-bordered">
 	
 	<thead>
 		<tr>
@@ -55,6 +64,11 @@
 		<?php } ?>
 	</tbody>
 </table>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script> -->

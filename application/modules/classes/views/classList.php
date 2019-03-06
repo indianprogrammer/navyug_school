@@ -1,17 +1,18 @@
 <div class="row">
   <div class="col-md-12 col-sm-12">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Classes List</h3>
-        <div class="box-tools">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Classes List</h3>
+        <div class="card-tools">
           <div class="pull-right">
             <a href="<?= site_url('classes/add_class'); ?>" class="btn btn-success">Add</a> 
           </div> 
 
         </div>
       </div>
-
-      <table id="class_table" class="table table-striped table-bordered table-responsive">
+      <div class="card-body">
+        <div class="table-responsive">
+      <table id="class_table" class="table table-striped table-hover table-bordered ">
         <thead>
           <tr>
             <th>ID</th>
@@ -84,9 +85,9 @@
               <td>
 
                 <div class="btn-group" >
-                  <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('classes/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></i></a></button>
+                  <a href="<?= site_url('classes/edit/'.$row['id']); ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
                   <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                  <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="take attendance"><a href="<?= site_url('attendance/take_attendance') ?>"  ><i class="fa fa-building-o"></i></a></button>
+                  <a href="<?= site_url('attendance/take_attendance') ?>"  class="btn btn-info" data-toggle="tooltip" data-placement="top" title="take attendance" ><i class="fa fa-building-o"></i></a>
 
                 </div>
 
@@ -98,6 +99,8 @@
       </table>
     </div>
   </div>
+</div>
+</div>
 </div>
 
 
@@ -112,7 +115,7 @@
   {
 
 // var id = $(this).data('id');
-bootbox.confirm("Are you sure to delete  ", function(result) {
+bootcard.confirm("Are you sure to delete  ", function(result) {
   if(result)
 
     window.location = url+'classes/remove/'+id ;

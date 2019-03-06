@@ -406,7 +406,7 @@ $this->db->select('invoices.customer_name,invoices.customer_address,invoices.mob
 
 }
 
-function get_all_pending_invoice_count($schoolId)
+function get_all_pending_invoice_count($school_id)
 {
    $this->db->where('school_id',$school_id);
    $this->db->where('school_id',$school_id);

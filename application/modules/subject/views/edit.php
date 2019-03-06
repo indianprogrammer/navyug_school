@@ -1,4 +1,16 @@
-<?php echo form_open('subject/edit/'.$subject['id'],array("class"=>"form-horizontal")); ?>
+
+<div class="row">
+    <div class="col-md-6">
+
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">EDIT SUBJECT</h3>
+
+
+            </div>
+            <!-- /.card-header -->
+<div class="card-body">
+	<?php echo form_open('subject/edit/'.$subject['id'],array("class"=>"form-horizontal")); ?>
 
 	
 	<div class="form-group">
@@ -17,3 +29,7 @@
 	</div>
 	
 <?php echo form_close(); ?>
+</div>
+</div>
+</div>
+</div>

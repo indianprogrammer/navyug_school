@@ -19,6 +19,7 @@ class Admin extends MY_Controller{
   {
 
     $schoolId=$this->session->SchoolId;   
+    // print_r($schoolId);
     $this->load->model('student/Student_model');                      
     $this->load->model('employee/Employee_model');                      
     $this->load->model('subject/Subject_model');                      

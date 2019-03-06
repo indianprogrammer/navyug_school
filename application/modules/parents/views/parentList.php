@@ -1,8 +1,17 @@
-<div class="pull-right">
-    <a href="<?php echo site_url('parents/add'); ?>" class="btn btn-success">Add</a>
-</div>
 
-<table id="parent_table" class="table table-bordered table-striped table-responsive">
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Parent List</h3>
+        <div class="card-tools pull-right">
+          <a href="<?php echo site_url('parents/add'); ?>" class="btn btn-success">Add</a>
+        </div>
+      </div>
+      <div class="card-body">
+
+<div class="table-responsive">
+<table id="parent_table" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>ID</th>
@@ -42,6 +51,11 @@
     </tbody>
 </table>
 
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 <script>

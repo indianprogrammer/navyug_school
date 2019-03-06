@@ -1,15 +1,16 @@
 
 <div class="row">
     <div class="col-md-12 col-sm-12">
-        <div class="box">
-            <div class="box-header">
-                <h3 class="box-title">Subject List</h3>
-                <div class="box-tools pull-right">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Subject List</h3>
+                <div class="card-tools pull-right">
                     <a href="<?= site_url('subject/add'); ?>" class="btn btn-success ">Add</a>
                 </div>
             </div>
-
-<table id="subject_table" class="table table-striped table-bordered table-responsive table-hover" style="width:100%;">
+<div class="card-body">
+  <div class="table-responsive">
+<table id="subject_table" class="table table-striped table-bordered table-hover">
     <thead>
     <tr >
 		<th>ID</th>
@@ -30,7 +31,7 @@
 		<td>
             
               <div class="btn-group" >
-                    <button type="button" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?= site_url('subject/edit/'.$row['id']); ?>" ><i class="fa fa-pencil"></i></a></button>
+                   <a href="<?= site_url('subject/edit/'.$row['id']); ?>" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a>
                     <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                     
 
@@ -46,8 +47,10 @@
 </div>
 </div>
 </div>
+</div>
+</div>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootcard.js/4.4.0/bootcard.js"></script> -->
  <script>
     $(document).ready( function () {
         $('#subject_table').DataTable();
@@ -60,7 +63,7 @@
      
     // var id = $(this).data('id');
       
-    bootbox.confirm("Are you sure want to delete ?", function(result) {
+    bootcard.confirm("Are you sure want to delete ?", function(result) {
       if(result)
 
              $.ajax({  
@@ -71,7 +74,7 @@
               if(data){
                 $('#'+id+'').fadeOut();
                  }else{
-                        bootbox.alert("not deleted");
+                        bootcard.alert("not deleted");
                  }
               }
           

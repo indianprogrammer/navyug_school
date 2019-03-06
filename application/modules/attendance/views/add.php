@@ -3,14 +3,14 @@ $this->session->classID=$classid;
 
   ?> 
 
-<div class="panel panel-default">
-    <div class="panel panel-heading">
+<div class="card card-default">
+    <div class="card card-heading">
         
     </div>
    <h3> <div class="well text-center">Date    <?= date("y-m-d") ;?> </div></h3>
-    <div class="panel panel-body">
+    <div class="card card-body">
         <?= form_open('attendance/insertAttendance',array("class"=>"form-horizontal")); ?>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-hover">
             <tr>
             <th>#serial number</th>
             <th>Student Name</th>

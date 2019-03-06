@@ -126,7 +126,8 @@ function edit($id)
     $data['subject'] = $this->Subject_model->get_all_subject($school_id);
     $data['selected_subject'] = $this->Subject_model->get_selected_subject($id);
     $data['employee'] = $this->Employee_model->get_all_employees($school_id);
-
+    // echo '<pre>';
+    // print_r($data);die;
     if(isset($data['class']['id']))
     {
         $this->load->library('form_validation');

@@ -1,7 +1,12 @@
 
 
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">ADD RECIEPT</h3>
 
-<div class="box-body">
+
+      </div>
+<div class="card-body">
   <div class="row clearfix">
     <div class="col-md-5 col-sm-12">
       <label for="serch" class="control-label">Search</label>
@@ -80,7 +85,7 @@
 
 
   </div>
-  <div class="box-footer" >
+  <div class="card-footer" >
     <button type="button" class="btn btn-success" onclick="submitReciept()">
       Generate Reciept
     </button>
@@ -198,7 +203,7 @@ function submitReciept()
 
    if(method && username && pay)
         {
-          bootbox.confirm("click ok to generate invoice  ?", function(result) {
+          bootcard.confirm("click ok to generate invoice  ?", function(result) {
         if(result)
         {
   $.ajax({
