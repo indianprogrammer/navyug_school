@@ -2,7 +2,7 @@
 
 
 
-class Login_model extends CI_Model{
+class Setting_model extends MY_Model{
     function __construct(){
         parent::__construct();
     }

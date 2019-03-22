@@ -137,25 +137,50 @@ echo rtrim($subject);
 
 </div>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootcard.js/4.4.0/bootcard.js"></script> -->
-<script>
+<script src="<?= base_url() ?>assets/admin/plugins/sweetalert/sweetalert.min.js"></script>
+  
+     <script type="text/javascript">
+        function delFunction(id)
+        {
+     swal({
+      title: "Are you sure?", 
+      text: "Are you sure that you want to delete this id?", 
+      type: "warning",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: "#ec6c62"
+    }, function() {
+      $.ajax({
+        url: "<?= base_url() ?>student/remove/"+id,
+        type: "DELETE"
+      })
+      .done(function(data) {
+        swal("Deleted!", "Your file was successfully deleted!", "success");
+         // $('#'+id+'').fadeOut(300);
+      })
+      .error(function(data) {
+        swal("Oops", "We couldn't connect to the server!", "error");
+      });
+    });
+  }
+
   $(document).ready( function () {
     $('#student_table').DataTable();
   } );
-</script>
 
-<script type="text/javascript">
+
+
   var url="<?php echo base_url();?>";
-  function delFunction(id)
-  {
-// var id = $(this).data('id');
-bootcard.confirm("Are you sure to delete  record ?", function(result) {
-  if(result)
-    window.location.href = url+'student/remove/'+id
-});
-}
-</script>
+//   function delFunction(id)
+//   {
 
-<script>   
+//     bootcard.confirm("Are you sure to delete  record ?", function(result) {
+//   if(result)
+//     window.location.href = url+'student/remove/'+id
+// });
+// }
+ 
 
   $('.view_data').click(function(){  
     var student_id = $(this).attr("id");  
@@ -190,8 +215,7 @@ $('#dataModal').modal("show");
 
 
   });  
-</script>
-<script>
+
 
 
   function getBalence($id)
@@ -216,9 +240,9 @@ $('#balance').html(responseObject);
 
   }
 
-</script>
-<!-- ##query search -->
-<script>
+
+/* ##query search*/
+
   $(document).ready( function () {
     var url = window.location.search;
 url = url.replace("?id=", ''); // remove the ?

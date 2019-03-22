@@ -313,24 +313,24 @@
                 <ul class="nav flex-column">
                   <li class="nav-item">
                     <a href="<?= base_url() ?>account/pendingInvoiceList" class="nav-link">
-                      Pending Invoice<span class="float-right badge bg-primary">31</span>
+                      Pending Invoice<span class="float-right badge bg-primary pending"></span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="<?= base_url() ?>account/partialPaidInvoiceList" class="nav-link">
-                      Partial paid invoice <span class="float-right badge bg-info">5</span>
+                      Partial paid invoice <span class="float-right badge bg-info partial"></span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      Pending Invoice Amount <span class="float-right badge bg-success">12</span>
+                      Pending Invoice Amount <span class="float-right badge bg-success pending"></span>
                     </a>
                   </li>
-                  <li class="nav-item">
+                 <!--  <li class="nav-item">
                     <a href="#" class="nav-link">
                       Followers <span class="float-right badge bg-danger">842</span>
                     </a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>

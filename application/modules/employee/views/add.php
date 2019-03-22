@@ -1,8 +1,10 @@
+<?php $emp_name=ucfirst($this->session->menu_staff ?$this->session->menu_staff:'Staff') ?>
+
 <div class="row">
   <div class="col-md-8 col-sm-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">ADD EMPLOYEE</h3>
+        <h3 class="card-title">ADD <?= $emp_name ?></h3>
        
       </div>
       <div class="card-body">
@@ -16,14 +18,14 @@
 <?php echo form_open_multipart('employee/add',array("class"=>"form-horizontal")); ?>
 	
 	<div class="form-group">
-		<label for="employee_Name" class="col-md-10 control-label"><span class="text-danger">*</span>Employee Name</label>
+		<label for="employee_Name" class="col-md-10 control-label"><span class="text-danger">*</span><?= $emp_name ?> Name</label>
 		<div class="col-md-10">
 			<input type="text" name="employee_Name" value="<?php echo $this->input->post('employee_Name'); ?>" class="form-control" id="employee_Name"  autofocus />
 			<span class="text-danger"><?php echo form_error('employee_Name');?></span>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="type" class="col-md-10 control-label"><span class="text-danger">*</span>Employee type</label>
+		<label for="type" class="col-md-10 control-label"><span class="text-danger">*</span><?= $emp_name ?> type</label>
 		<div class="col-md-10">
 			<!-- <input type="text" name="type" value="<?php echo $this->input->post('type'); ?>" class="form-control" id="type" /> -->
 			<select name="type" class="form-control" id="type">

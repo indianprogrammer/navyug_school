@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title><?php echo isset($title) ? $title : 'Admin Panel' ; ?> </title>
+  <title><?= strtoUpper(isset($title) ? $title : 'Admin Panel') ; ?> </title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/font-awesome/css/font-awesome.min.css">
@@ -27,6 +27,8 @@
   <?php } ?>
   <!-- Select2 -->
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/select2/select2.min.css">
+  <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/sweetalert/sweetalert.css">
+
   <style type="text/css">
   /* Extra small devices (phones, 600px and down) */
   /*@media only screen and (max-width: 600px) {*/
@@ -115,6 +117,17 @@
       {
         color:black;
       }
+      .def
+      {
+        background-color: #fcfcfc;
+      }
+     /* hr
+      {
+
+        height: 50px;
+        color:red;
+
+      }*/
     </style>
      <?php if($this->session->auto_logout==1)
   { ?>

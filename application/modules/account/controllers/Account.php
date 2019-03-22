@@ -542,6 +542,12 @@ function addSms($detailsSms)
 
 
 }
+
+#
+function invoice_counting()
+{
+
+}
 /*function reciepttemp()
 {
     $this->load->view('templates/reciept template/one.php');

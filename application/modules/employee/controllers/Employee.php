@@ -8,15 +8,16 @@
     $this->load->model('Employee_model');
     $this->load->model('student/Student_model');
   } 
-
+  // public 
     /*
      * Listing of employees
      */
+// public $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_staff:'STAFF');
     function index()
     {  
 
-
-      $data['title']="Employee List";
+$staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_staff: 'STAFF' );
+      $data['title']=  $staff_menu_name." LIST";
      $schoolId=$this->session->SchoolId;
      // $config['total_rows'] = $this->Employee_model->get_all_employees_count($schoolId);
 
@@ -32,7 +33,8 @@
      */
     function add_employee()
     {   
-      $data['title']="Add Employee";
+      $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_staff:'STAFF');
+      $data['title']="Add ".$staff_menu_name;
      $data['emptype'] = $this->Employee_model->get_map_employee();
 
      $data['_view'] = 'add';
@@ -42,7 +44,8 @@
    function add()
    {   
     #validation part
-    $data['title']="Add Employee";
+    $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_staff:'STAFF');
+    $data['title']="Add ".$staff_menu_name;
     $this->load->library('form_validation');
     $data['emptype'] = $this->Employee_model->get_map_employee();
     $config['upload_path']          = './uploads/';

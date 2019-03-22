@@ -51,7 +51,7 @@
                             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="student"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-mortar-board"></i>
                                 <p>
-                                    STUDENT
+                                    <?= strtoupper($this->session->menu_student?$this->session->menu_student:'STUDENT') ?>
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -61,7 +61,7 @@
                                     <a href="<?= site_url() ?>student/add_student" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
-                                            ADD STUDENT
+                                            ADD <?= strtoupper($this->session->menu_student?$this->session->menu_student:'STUDENT') ?>
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
@@ -70,7 +70,7 @@
                                     <a href="<?= site_url() ?>student" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
-                                            STUDENT LIST
+                                            <?= strtoupper($this->session->menu_student?$this->session->menu_student:'STUDENT') ?> LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
@@ -92,7 +92,7 @@
                             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="employee"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-male"></i>
                                 <p>
-                                    EMPLOYEE
+                                    <?= strtoupper($this->session->menu_staff?$this->session->menu_staff:'STAFF') ?>
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -102,7 +102,7 @@
                                     <a href="<?= site_url() ?>employee/add_employee" class="nav-link ">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
-                                            ADD EMPLOYEE
+                                            ADD   <?= strtoupper($this->session->menu_staff?$this->session->menu_staff:'STAFF') ?>
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
@@ -111,7 +111,7 @@
                                     <a href="<?= site_url() ?>employee" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
-                                            EMPLOYEE LIST
+                                             <?= strtoupper($this->session->menu_staff?$this->session->menu_staff:'STAFF') ?> LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
@@ -157,7 +157,7 @@
                             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="subject"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa fa-book"></i>
                                 <p>
-                                    SUBJECTS
+                                    <?= strtoupper($this->session->menu_subjects?$this->session->menu_subjects:'SUBJECTS') ?>
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -167,7 +167,7 @@
                                     <a href="<?= site_url() ?>subject/add_subject" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
-                                            ADD SUBJECT
+                                            ADD  <?= strtoupper($this->session->menu_subjects?$this->session->menu_subjects:'SUBJECT') ?>
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
@@ -176,7 +176,7 @@
                                     <a href="<?= site_url() ?>subject" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
-                                            SUBJECT LIST
+                                             <?= strtoupper($this->session->menu_subjects?$this->session->menu_subjects:'SUBJECT') ?> LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
@@ -189,7 +189,7 @@
                             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="classes"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa  fa-sticky-note-o"></i>
                                 <p>
-                                    CLASSES
+                                     <?= strtoupper($this->session->menu_classes?$this->session->menu_classes:'claSSES') ?>
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -199,7 +199,7 @@
                                     <a href="<?= site_url() ?>classes/add_class" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
-                                            ADD CLASSES
+                                            ADD <?= strtoupper($this->session->menu_classes?$this->session->menu_classes:'CLASSES') ?>
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
@@ -208,7 +208,7 @@
                                     <a href="<?= site_url() ?>classes" class="nav-link">
                                         <i class="nav-icon fa fa-th"></i>
                                         <p>
-                                            CLASSES LIST
+                                           <?= strtoupper($this->session->menu_classes?$this->session->menu_classes:'CLASSES') ?> LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
@@ -282,11 +282,43 @@
 
                         </ul>
                     </li>
+                     <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="attendance"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="attendance"){ ?> active <?php } ?>">
+                                <i class="nav-icon fa fa-check-square-o"></i>
+                                <p>
+                                   LIBRARY
+                                   <i class="fa fa-angle-left right"></i>
+                               </p>
+                           </a>
+                           <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>library/add_books" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ADD BOOKS
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>attendance/attendance_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ATTENDANCE LIST
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </li>
                     <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="account"){ ?> menu-open <?php } ?> ">
                         <a href="#" class="nav-link <?php if($this->uri->segment(1)=="account"){ ?> active <?php } ?>">
                             <i class="nav-icon fa fa-money"></i>
                             <p>
-                                ACCOUNT
+                                <?= strtoupper($this->session->menu_account?$this->session->menu_account:'ACCOUNT') ?>
                                 <i class="fa fa-angle-left right"></i>
                             </p>
                         </a>
@@ -360,6 +392,39 @@
                                     </p>
                                 </a>
                             </li> -->
+
+
+                        </ul>
+                    </li>
+                     <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="setting"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="setting"){ ?> active <?php } ?>">
+                                <i class="nav-icon fa fa-check-square-o"></i>
+                                <p>
+                                   SETTING
+                                   <i class="fa fa-angle-left right"></i>
+                               </p>
+                           </a>
+                           <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>settings/organization_profile" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                      <?php if(isset($this->session->organization)?$this->session->organization:'ORGANIZATION') ?>
+                                      PROFILE
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>attendance/attendance_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        ATTENDANCE LIST
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
 
 
                         </ul>

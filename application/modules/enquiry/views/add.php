@@ -16,7 +16,7 @@
      <div class="col-md-7 col-lg-10" >
         <label for="search" class="col-md-12 control-label"> Search</label>
         <div class="form-group" >
-            <input type="text" name="search"  onkeyup="enterEvent()" class="form-control dropdown-toggle" id="search"  autofocus   autocomplete="off"  data-toggle="dropdown"/>
+            <input type="text" name="search"  onkeyup="enterEvent()" placeholder="Search by username,mobile number & name" class="form-control dropdown-toggle" id="search"  autofocus   autocomplete="off"  data-toggle="dropdown"/>
             <span class="text-danger"><?=form_error('search');?></span>
             <div id="table_dropdown" class=" dropdown-menu customtable" style="height:500px;"></div> 
         </div>

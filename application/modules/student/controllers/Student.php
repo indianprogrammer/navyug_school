@@ -93,15 +93,22 @@ function add()
     $classes=implode(",",$this->input->post('classes'));
     $params = array(
 // 'password' => $this->input->post('password'),
-      'name' => $this->input->post('student_name'),
-      'email' => $this->input->post('email'),
+      'name' => strip_tags($this->input->post('student_name',1)),
+      'email' => strip_tags($this->input->post('email',1)),
 
-      'mobile' => $this->input->post('mobile'),
-      'aadhar' => $this->input->post('aadhar'),
+      'mobile' => strip_tags($this->input->post('mobile',1)),
+      'aadhar' => strip_tags($this->input->post('aadhar',1)),
       'classes' => $classes,
 
-      'permanent_address' => $this->input->post('paddress'),
-      'temporary_address' => $this->input->post('taddress')
+      'permanent_address' => strip_tags($this->input->post('paddress',1)),
+      'temporary_address' => strip_tags($this->input->post('taddress',1)),
+        'p_city' =>strip_tags($this->input->post('p_city',1)),
+        't_city' =>strip_tags($this->input->post('t_city',1)),
+        't_pincode' =>strip_tags($this->input->post('t_pincode',1)),
+        'p_pincode' =>strip_tags($this->input->post('p_pincode',1)),
+        'dob' =>strip_tags($this->input->post('dob',1)),
+        'gender' =>strip_tags($this->input->post('gender',1)),
+        'blood_group' =>strip_tags($this->input->post('blood_group',1))
 
 
     );
