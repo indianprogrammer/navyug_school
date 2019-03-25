@@ -569,6 +569,15 @@ function addStudentSms($studentDetailsSms)
 
 }
 
+##used to search student
+function search_student()
+{
+ $search=$this->input->post("search_student",1);
+ $condition=array('school_id'=>$this->session->SchoolId);
+    echo json_encode($this->Student_model->studentSearch('table_map_school_student',$condition,array('*'),$search));
+
+}
+
 
 }
 ?>

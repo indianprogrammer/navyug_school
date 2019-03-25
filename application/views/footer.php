@@ -6,7 +6,31 @@
     <!-- Default to the left -->
     <strong>Copyright &copy; 2017-2018 <a href="https://9yug.net">9YUG.NET</a>.</strong> All rights reserved.
   </footer>
+  <script type="text/javascript">
+function isNumberKey(evt) {
+  var charCode = (evt.which) ? evt.which : evt.keyCode;
+  // Added to allow decimal, period, or delete
+  if (charCode == 110 || charCode == 190 || charCode == 46) 
+    return true;
+  
+  if (charCode > 31 && (charCode < 48 || charCode > 57)) 
+    return false;
+  
+  return true;
+} // isNumberKey
 
+function isAlpha(evt) {
+  var charCode = (evt.which) ? evt.which : event.keyCode
+  if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122))
+    return false;
+
+  return true;
+}
+/*use to make whole project autocomplete off*/
+$(document).ready(function(){ 
+    $("input").attr("autocomplete", "off");
+}); 
+</script>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->

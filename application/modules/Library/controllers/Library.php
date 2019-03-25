@@ -12,49 +12,16 @@ class Library extends MY_Controller{
 /*
 * Listing of subject
 */
-function index()
-{   
-    $data['title']="Subject List";
-    $schoolId=$this->session->SchoolId;
-    if($this->input->get('classId'))
-    {
-        $classId=$this->input->get('classId');
-        $fetchSubjectId=$this->Subject_model->get_all_subject_by_classid($classId);
 
-        $noOfSubject=count($fetchSubjectId);
-                    if($noOfSubject!=0)
-                    {
-                    
-                    $data=array();
-                    $data['subject']=array();
-                    for($i=0;$i<$noOfSubject;$i++)
-                    {
-                        array_push( $data['subject'],$fetchSubjectId[$i]['subject_id']);
-
-                    }
-            // echo $data['subject'];
-                    $data['subject'] = $this->Subject_model->get_subject_by_subject_id($data['subject']);
-                     }
-                     else
-                     {
-                        $data['subject']=array();
-                     }
-
-    }
-    else
-    {
-        $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
-    }
-    $data['_view'] = 'subjectList';
-    $this->load->view('index',$data);
-}
 
 /*
 * Adding a new subject
 */
-function add_book()
+function add_books()
 {
     $data['title']="Add Subject";
+     $condition=array('school_id'=>$this->session->SchoolId);
+    $data['book_category']=$this->Library_model->select('table_book_category',$condition,array('*'));
     $data['_view'] = 'add_books';
     $this->load->view('index',$data);
 }
@@ -62,32 +29,44 @@ function add_book()
 
 function add_book_process()
 {   
+    // print_r($this->input->post());die;
     $this->load->library('form_validation');
 
-        $this->input->post('isbn_number',1);
 
 // $this->form_validation->set_rules('password','Password','required|max_length[20]');
-    $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]');
+    $this->form_validation->set_rules('book_no','book no','required');
+    $this->form_validation->set_rules('title','title','required');
+    $this->form_validation->set_rules('author','author','required');
+    $this->form_validation->set_rules('edition','edition','required');
+    $this->form_validation->set_rules('book_category','Book category','required');
+    $this->form_validation->set_rules('publisher','Publisher','required');
 
 
     if($this->form_validation->run() )     
     {   
         $params = array(
 
-            'name' => $this->input->post('subject_name')
-
+            'title' => strip_tags($this->input->post('title',1)),
+               'book_no'=> strip_tags($this->input->post('book_no',1)),
+               'author'=> strip_tags($this->input->post('author',1)),
+               'edition'=> strip_tags($this->input->post('edition',1)),
+               'book_category'=> strip_tags($this->input->post('book_category',1)),
+               'publisher'=> strip_tags($this->input->post('publisher',1)),
+               'langauge'=> strip_tags($this->input->post('langauge',1)),
+               'shelf_no'=> strip_tags($this->input->post('shelf',1)),
+               'copy'=> strip_tags($this->input->post('copies',1)),
+               'book_position'=> strip_tags($this->input->post('position',1)),
+               'book_condition'=> strip_tags($this->input->post('condition',1)),
+               'book_cost'=> strip_tags($this->input->post('cost',1)),
+               'school_id'=>$this->session->SchoolId,
+               'created_at'=>date('Y-m-d H:i:s'),
+                     'isbn_no' =>      strip_tags($this->input->post('isbn_number',1))
 
         );
 
 
-        $subject_id = $this->Subject_model->add_subject($params);
-        $ids=array(
-
-            'subject_id'=>$subject_id,
-            'school_id'=>$this->session->SchoolId
-
-        );  
-        $map = $this->Subject_model->add_mapping($ids);
+        $subject_id = $this->Library_model->insert('table_books',$params);
+      
 
 #set notifications
         $this->session->alerts = array(
@@ -96,7 +75,7 @@ function add_book_process()
 // 'description'=> ''
         );
 
-        redirect('subject');
+        redirect('library/add_books');
     }
     else
     {            
@@ -105,13 +84,102 @@ function add_book_process()
     }
 }  
 
+function issue_book()
+{
+$data['_view'] = 'issue_book';
+    $this->load->view('index',$data);
+
+}
+function books_list()
+{
+$condition=array('school_id'=>$this->session->SchoolId);
+$data['book_list']=$this->Library_model->select('table_books',$condition,array('*'));
+    $data['_view'] = 'book_list';
+    $this->load->view('index',$data);
+
+}
+function search_books()
+{
+
+    $search=strip_tags($this->input->get('search',1));
+    // print_r( $search);
+    $condition=array('school_id'=>$this->session->SchoolId);
+    $data['book_list']=$this->Library_model->searchBooks('table_books',$condition,array('*'),$search);
+    echo json_encode($data['book_list']);
+   // $this->output->enable_profiler(TRUE);
+
+
+}
+
+##whenever any student or emplyee issue the book from library this will maintain record
+    
+function issue_book_record_insert()
+{
+
+    $book_id=$this->input->post('book_id',1);
+    for($i=0;$i<count($book_id);$i++)
+    {
+
+    $params=array(
+             'user_type' => strip_tags($this->input->post('user_type',1)),
+               'taker_id'=> strip_tags($this->input->post('taker_id',1)),
+               'status'=> 'issue',
+               'issue_date'=>date('Y-m-d H:i:s'),
+               'due_date'=>date('Y-m-d H:i:s'),
+               'school_id'=>$this->session->SchoolId,
+               'staff_id'=>$this->session->staff_id,
+               'book_id'=>$book_id[$i]
+           );
+
+        $this->Library_model->insert('table_book_issue',$params);
+}
+
+}
+
+
+
+
 function add_book_category()
 {
-// $data['book_category']=$this->Library_model->select('table_book_category',$condition,array('*'));
+    $condition=array('school_id'=>$this->session->SchoolId);
+$data['book_category']=$this->Library_model->select('table_book_category',$condition,array('*'));
 
  $data['_view'] = 'add_book_category';
         $this->load->view('index',$data);
 
+}
+function add_book_category_process()
+{
+
+    $category_name = strip_tags($this->input->post('cat_name',1));
+    $categoryParam=array(
+        'school_id'=>$this->session->SchoolId,
+        'created_at'=>date('Y-m-d H:i:s'),
+        'category_name'=>$category_name
+
+    );
+    $result=$this->Library_model->insert('table_book_category',$categoryParam);
+    if($result)
+    {
+    $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added'
+// 'description'=> ''
+        );
+
+        redirect('library/add_book_category');
+    }
+
+}
+
+
+function search_issue_record()
+{
+
+    $id=$this->input->post('id',1);
+    $condition= array('school_id'=>$this->session->SchoolId,'taker_id'=>16,'user_type'=>1);
+     $result=$this->Library_model->select_issued_book('table_book_issue',$condition,array('*'));
+     echo json_encode($result);
 }
 /*
 * Editing a subject

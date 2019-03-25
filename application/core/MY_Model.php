@@ -59,12 +59,15 @@ class MY_Model extends CI_Model
   public $table_item_graph="item_report";
   public $table_service_purchase="service_purchase";
 
-
-    public $table_school='school';
-    public $table_school_setting='school_setting';
+    public $table_map_school_student='map_school_student';
     public $table_master_city="master_city";
     public $table_master_country="master_country";
     public $table_master_state="master_state";
+    public $table_school='school';
+    public $table_school_setting='school_setting';
+    public $table_books='books';
+    public $table_book_category='books_category';
+    public $table_book_issue='book_issue';
 
 
   function __construct()

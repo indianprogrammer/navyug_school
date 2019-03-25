@@ -282,9 +282,9 @@
 
                         </ul>
                     </li>
-                     <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="attendance"){ ?> menu-open <?php } ?>">
-                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="attendance"){ ?> active <?php } ?>">
-                                <i class="nav-icon fa fa-check-square-o"></i>
+                     <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="library"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="library"){ ?> active <?php } ?>">
+                                <i class="nav-icon fa fa-book"></i>
                                 <p>
                                    LIBRARY
                                    <i class="fa fa-angle-left right"></i>
@@ -302,14 +302,42 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>attendance/attendance_list" class="nav-link">
+                                <a href="<?= site_url() ?>library/add_book_category" class="nav-link">
                                     <i class="nav-icon fa fa-th"></i>
                                     <p>
-                                        ATTENDANCE LIST
+                                        ADD BOOK CATEGORY
                                         <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>library/books_list" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                         BOOK LIST
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>library/issue_book" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                         BOOK ISSUE
+                                       
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>library/books_return" class="nav-link">
+                                    <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                         BOOK RETURN
+                                       
+                                    </p>
+                                </a>
+                            </li>
+
 
 
                         </ul>

@@ -1,7 +1,7 @@
 <?php
 
 
-class Student_model extends CI_Model
+class Student_model extends MY_Model
 {
   function __construct()
   {
@@ -61,9 +61,9 @@ function update_student($id,$params)
 */
 function delete_student($id)
 {
-   $this->db->delete('student',array('id'=>$id));
-   $this->db->where(array('user_id'=>$id,'autorization_id'=>4));
-  return $this->db->delete('authentication');
+ $this->db->delete('student',array('id'=>$id));
+ $this->db->where(array('user_id'=>$id,'autorization_id'=>4));
+ return $this->db->delete('authentication');
 }
 
 function add_mapping($ids)
@@ -227,8 +227,32 @@ function get_student_full_details($id)
   return $this->db->get()->row_array();
 }
 function insert_by_excel($data)
-  {
-    $this->db->insert_batch('student', $data);
-  }
+{
+  $this->db->insert_batch('student', $data);
+}
+
+function studentSearch($table_name,$condition=null,$content_display,$search)
+{
+  $this->db->select($content_display);
+
+
+
+  $this->db->from($this->$table_name);  
+
+  $this->db->where($condition);
+  $this->db->join('student','student.id=map_school_student.student_id','left');
+  $this->db->group_start();
+  $this->db->where("name like '$search%' ");
+  $this->db->or_where("mobile like '$search%' ");
+           
+
+  $this->db->group_end();
+
+  $data=$this->db->get()->result_array();
+   // $sql = $this->db->last_query();
+  return $data;
+
+}
+
 }
 ?>

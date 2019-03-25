@@ -3,9 +3,9 @@
     <div class="col-md-12 col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Subject List</h3>
+                <h3 class="card-title">BOOK LIST</h3>
                 <div class="card-tools pull-right">
-                    <a href="<?= site_url('subject/add'); ?>" class="btn btn-success ">Add</a>
+                    <a href="<?= site_url('library/add_books_process'); ?>" class="btn btn-success ">Add</a>
                 </div>
             </div>
 <div class="card-body">
@@ -14,25 +14,35 @@
     <thead>
     <tr >
 		<th>ID</th>
-		<!-- <th>Password</th> -->
-		<th>Subject Name</th>
+    <!-- <th>Password</th> -->
+    <th>ISBN No</th>
+    <th>BOOK NAME</th>
+    <th>BOOK NO</th>
+    <th>BOOK AUTHOR</th>
+    <th>LANGAUGE</th>
+		<th>STATUS</th>
 		
-		<th>Actions</th>
+		<th>ACTION</th>
     </tr>
 </thead>
 <tbody>
     <?php $count=1; ?>
-	<?php foreach($subject as $row){ ?>
+	<?php foreach($book_list as $row){ ?>
     <tr id="<?= $row['id'] ?>">
 		<td><?= $count++ ?></td>
 		
-		<td><?= $row['name']; ?></td>
+    <td><?= $row['isbn_no']; ?></td>
+    <td><?= $row['book_no']; ?></td>
+    <td><?= $row['title']; ?></td>
+    <td><?= $row['author']; ?></td>
+		<td><?= $row['langauge']; ?></td>
+    <td><?= $row['status']; ?></td>
 		
 		<td>
             
               <div class="btn-group" >
-                   <a href="<?= site_url('subject/edit/'.$row['id']); ?>" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a>
-                    <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                   <!-- <a href="<?= site_url('subject/edit/'.$row['id']); ?>" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a> -->
+                    <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-eye"></i></button>
                     
 
    
