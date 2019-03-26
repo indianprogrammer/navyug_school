@@ -317,6 +317,14 @@ $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_st
 
    }
 
+##used to search student
+function search_employee()
+{
+ $search=$this->input->get("search_employee",1);
+ $condition=array('school_id'=>$this->session->SchoolId);
+    echo json_encode($this->Employee_model->employeeSearch('table_map_school_employee',$condition,array('*'),$search));
+
+}
 
 
 

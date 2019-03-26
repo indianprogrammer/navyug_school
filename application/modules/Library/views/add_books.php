@@ -47,8 +47,8 @@
 						<div class="form-group col-sm-6">
 							<label for="reg_input" class="req">Book Category</label>
 							<select class="form-control" name="book_category" id="Librarybooks_bookcategoryid">
-								<?php foreach($book_category as $row) {   ?>
 								<option value="">Select Option</option>
+								<?php foreach($book_category as $row) {   ?>
 								<option value="<?= $row['id'] ?>"><?= $row['category_name'] ?></option>
 								<?php } ?> 
 							</select>                                        <div class="school_val_error" id="Librarybooks_bookcategoryid_em_" style="display:none"></div>                                    </div>

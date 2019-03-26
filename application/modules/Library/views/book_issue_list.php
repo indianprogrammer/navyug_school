@@ -3,23 +3,25 @@
     <div class="col-md-12 col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">BOOK LIST</h3>
-                <div class="card-tools pull-right">
+                <h3 class="card-title">BOOK  ISSUE DETAIL</h3>
+                <!-- <div class="card-tools pull-right">
                     <a href="<?= site_url('library/add_books_process'); ?>" class="btn btn-success ">Add</a>
-                </div>
+                </div> -->
             </div>
 <div class="card-body">
   <div class="table-responsive">
 <table id="subject_table" class="table table-striped table-bordered table-hover">
     <thead>
-    <tr >
+    <tr>
 		<th>ID</th>
     <!-- <th>Password</th> -->
-    <th>ISBN No</th>
-    <th>BOOK NAME</th>
-    <th>BOOK NO</th>
-    <th>BOOK AUTHOR</th>
-    <th>LANGAUGE</th>
+    <th>Name</th>
+    <th>Book Name</th>
+    <th>Book No</th>
+    <th>Author</th>
+    <th>Issue date</th>
+    <th>Due Date</th>
+    <th>Return Date</th>
 		<th>STATUS</th>
 		
 		<th>ACTION</th>
@@ -27,28 +29,20 @@
 </thead>
 <tbody>
     <?php $count=1; ?>
-	<?php foreach($book_list as $row){ ?>
+	<?php foreach($issue_book as $row){ ?>
     <tr id="<?= $row['id'] ?>">
 		<td><?= $count++ ?></td>
 		
-    <td><?= $row['isbn_no']; ?></td>
+    <td><?= $row['name']; ?></td>
     <td><?= $row['title']; ?></td>
     <td><?= $row['book_no']; ?></td>
     <td><?= $row['author']; ?></td>
-		<td><?= $row['langauge']; ?></td>
-    <?php switch( $row['status']){
-
-      case 1:
-      $status='avialable';
-      break;
-      case 2:
-       $status='issued';
-       break;
-    case 3:
- $status='not avilable';
-    }
-?>
-    <td><?= $status ?></td>
+    <td><?= $row['issue_date']; ?></td>
+    <td><?= $row['due_date']; ?></td>
+    <td><?= $row['returning_date']; ?></td>
+		<!-- <td><?= $row['langauge']; ?></td> -->
+   
+    <td><?= $row['status'] ?></td>
 		
 		<td>
             

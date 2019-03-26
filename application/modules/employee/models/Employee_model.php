@@ -1,7 +1,7 @@
 <?php
 
  
-class Employee_model extends CI_Model
+class Employee_model extends MY_Model
 {
     function __construct()
     {
@@ -92,6 +92,28 @@ class Employee_model extends CI_Model
       $query=$this->db->get('map_school_employee')->num_rows();
       return $query;
     }   
+    function employeeSearch($table_name,$condition=null,$content_display,$search)
+        {
+          $this->db->select($content_display);
+
+
+
+          $this->db->from($this->$table_name);  
+
+          $this->db->where($condition);
+          $this->db->join('employees','employees.id=map_school_employee.employee_id','left');
+          $this->db->group_start();
+          $this->db->where("name like '$search%' ");
+          $this->db->or_where("mobile like '$search%' ");
+                   
+
+          $this->db->group_end();
+
+          $data=$this->db->get()->result_array();
+           // $sql = $this->db->last_query();
+          return $data;
+
+        }
 
 }
 ?>

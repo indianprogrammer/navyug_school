@@ -60,6 +60,7 @@ class MY_Model extends CI_Model
   public $table_service_purchase="service_purchase";
 
     public $table_map_school_student='map_school_student';
+    public $table_map_school_employee='map_school_employee';
     public $table_master_city="master_city";
     public $table_master_country="master_country";
     public $table_master_state="master_state";
