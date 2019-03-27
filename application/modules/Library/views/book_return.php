@@ -103,7 +103,7 @@
 										  {
 										  	for(var i=0;i<obj.length;i++)
 										  	{
-										  		newrow+='<tr onclick="get_issue_book('+obj[i]['id']+',2)"><td>'+obj[i].name+'</td>'+
+										  		newrow+='<tr onclick="get_issue_book('+obj[i]['id']+',1)"><td>'+obj[i].name+'</td>'+
 										  		'<td>'+obj[i].mobile+'</td>'+
 										  		// '<td>'+obj[i].book_no+'</td>
 										  		'</tr>';
@@ -143,7 +143,7 @@
 										  {
 										  	for(var i=0;i<obj.length;i++)
 										  	{
-										  		newrow+='<tr onclick="get_issue_book('+obj[i]['id']+',2)"><td>'+obj[i].name+'</td>'+
+										  		newrow+='<tr onclick="get_issue_book('+obj[i]['id']+',1)"><td>'+obj[i].name+'</td>'+
 										  		'<td>'+obj[i].mobile+'</td>'+
 										  		// '<td>'+obj[i].book_no+'</td>
 										  		'</tr>';
@@ -185,12 +185,13 @@
 					}
 					function get_issue_book(id,type)
 					{
-						$('#show_search_result').hide();
+						$('#show_search_result_stu').hide();
+						$('#show_search_result_emp').hide();
 						// alert(id);
 						$.ajax({
 							type: "POST",
 							url: "<?= base_url() ?>library/search_issue_record",
-							data:{search_student:id,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"},
+							data:{search:id,type:type,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"},
 							success: function (data) {
   
 										  // console.log(data);

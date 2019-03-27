@@ -1,7 +1,12 @@
+ <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Select Class and date For Attendance report</h3>
+       
+      </div>
+      <div class="card-body">
 
-
-<h5 align="center" style="font-weight:150px;">Select Class and date For Attendance report</h5>
-<br>	
+<!-- <h5 align="center" style="font-weight:150px;"></h5>
+<br> -->	
 <div class="row">
 
 	<div class="form-group">
@@ -50,6 +55,8 @@
                                 </div>
 
                               </div>
+</div>
+</div>
 </div>
 
 <script>

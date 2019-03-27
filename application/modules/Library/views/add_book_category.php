@@ -6,7 +6,7 @@
 
 			</div>
 			<div class="card-body">
-				<?php echo form_open_multipart('library/add_book_category_process',array("class"=>"form-horizontal")); ?>
+				<?php echo form_open('library/add_book_category_process',array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
 		<label for="subject_name" class="col-md-12 control-label"><span class="text-danger">*</span>Enter Category Name</label>

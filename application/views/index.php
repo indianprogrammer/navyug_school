@@ -59,7 +59,7 @@
 
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>student/add_student" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                        <!--<i class="nav-icon fa fa-th"></i>// -->
                                         <p>
                                             ADD <?= strtoupper($this->session->menu_student?$this->session->menu_student:'STUDENT') ?>
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -68,16 +68,16 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>student" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             <?= strtoupper($this->session->menu_student?$this->session->menu_student:'STUDENT') ?> LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
                                 </li>
-                                <!-- <li class="nav-item">
+                                <!--  <li class="nav-item">
                                     <a href="<?= site_url() ?>student/add_bulk_student" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                     
                                         <p>
                                             ADD BULK STUDENT
                                           
@@ -100,7 +100,7 @@
 
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>employee/add_employee" class="nav-link ">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             ADD   <?= strtoupper($this->session->menu_staff?$this->session->menu_staff:'STAFF') ?>
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -109,7 +109,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>employee" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                              <?= strtoupper($this->session->menu_staff?$this->session->menu_staff:'STAFF') ?> LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -133,7 +133,7 @@
 
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>parents/add_parent" class="nav-link ">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             ADD PARENTS
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -142,7 +142,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>parents" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             PARENT LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -165,7 +165,7 @@
 
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>subject/add_subject" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             ADD  <?= strtoupper($this->session->menu_subjects?$this->session->menu_subjects:'SUBJECT') ?>
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -174,7 +174,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>subject" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                              <?= strtoupper($this->session->menu_subjects?$this->session->menu_subjects:'SUBJECT') ?> LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -194,10 +194,17 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-
-                                <li class="nav-item">
+                                    <li class="nav-item">
+                                    <a href="<?= site_url() ?>classes/add_course" class="nav-link">
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                        <p>
+                                            ADD <?= strtoupper($this->session->menu_courses?$this->session->menu_courses:'COURSES') ?>
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>                                <li class="nav-item">
                                     <a href="<?= site_url() ?>classes/add_class" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             ADD <?= strtoupper($this->session->menu_classes?$this->session->menu_classes:'CLASSES') ?>
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -206,7 +213,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>classes" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                            <?= strtoupper($this->session->menu_classes?$this->session->menu_classes:'CLASSES') ?> LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -230,7 +237,7 @@
 
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>enquiry/add_enquiry" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             ADD ENQUIRY
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -239,7 +246,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>enquiry" class="nav-link">
-                                        <i class="nav-icon fa fa-th"></i>
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             ENQUIRY LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
@@ -262,7 +269,7 @@
 
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>attendance/take_attendance" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                   <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         TAKE ATTENDANCE
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -271,7 +278,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>attendance/attendance_list" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         ATTENDANCE LIST
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -294,7 +301,7 @@
 
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>library/add_books" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         ADD BOOKS
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -303,7 +310,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>library/add_book_category" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         ADD BOOK CATEGORY
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -312,7 +319,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>library/books_list" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                          BOOK LIST
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -321,7 +328,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>library/issue_book" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                          BOOK ISSUE
                                        
@@ -330,10 +337,19 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>library/books_return" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                          BOOK RETURN
                                        
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>library/books_return" class="nav-link">
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
+                                    <p>
+                                         
+                                       Setting
                                     </p>
                                 </a>
                             </li>
@@ -354,7 +370,7 @@
 
                             <li class="nav-item ">
                                 <a href="<?= site_url() ?>account/add_invoice" class="nav-link ">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         ADD INVOICE
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -363,7 +379,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>account/invoice_list" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         LIST INVOICE
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -372,7 +388,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>account/add_reciept" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         ADD RECIEPT
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -381,7 +397,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>account/reciept_list" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         RECIEPT LIST
                                         <!-- <span class="right badge badge-danger">New</span> -->
@@ -404,16 +420,16 @@
 
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>notification/index" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         ADD NOTIFICATION
                                         <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
                             </li>
-                          <!--   <li class="nav-item">
-                                <a href="<?= site_url() ?>employee" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                           <!--  <li class="nav-item">
+                                <a href="<?= site_url() ?>employee" class="nav-link"> -->
+                                  <!-- <i class="nav-icon fa fa-th"></i>
                                     <p>
                                         EMPLOYEE LIST
                                        
@@ -436,7 +452,7 @@
 
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>settings/organization_profile" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                       <?php if(isset($this->session->organization)?$this->session->organization:'ORGANIZATION') ?>
                                       PROFILE
@@ -446,7 +462,7 @@
                             </li>
                             <li class="nav-item">
                                 <a href="<?= site_url() ?>attendance/attendance_list" class="nav-link">
-                                    <i class="nav-icon fa fa-th"></i>
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         ATTENDANCE LIST
                                         <!-- <span class="right badge badge-danger">New</span> -->

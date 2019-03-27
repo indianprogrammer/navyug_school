@@ -322,6 +322,27 @@ class CI_Config {
 		return $base_url.$this->_uri_string($uri);
 	}
 
+	public function date_set($uri = '', $protocol = NULL)
+	{
+		$date_set = $this->slash_item('date_set');
+
+		if (isset($protocol))
+		{
+			// For protocol-relative links
+			if ($protocol === '')
+			{
+				$date_set = substr($date_set, strpos($date_set, '//'));
+			}
+			else
+			{
+				$date_set = $protocol.substr($date_set, strpos($date_set, '://'));
+			}
+		}
+
+		return $date_set.$this->_uri_string($uri);
+	}
+
+
 	// -------------------------------------------------------------
 
 	/**

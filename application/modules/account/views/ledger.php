@@ -13,8 +13,16 @@
 
 }
 </style>
-
-<table id="invoice_table" class="table table-responsive table-bordered ">
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">LEDGER REPORT</h3>
+                
+            </div>
+<div class="card-body">
+    <div class="table-responsive">
+<table id="invoice_table" class="table  table-bordered ">
     <thead>
         <tr>
             <th>S. no.</th>
@@ -61,6 +69,12 @@
         echo $balance ?>
     </div>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 <button onclick="printPage()" id="printpagebutton" target="_blank">Print </button> 
 <button onclick="printPage()" id="exportpagebutton" target="_blank">export in excel </button> 
 

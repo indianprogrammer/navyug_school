@@ -22,7 +22,7 @@ class MY_Model extends CI_Model
   // public $table_plan_time_limit='plan_time_limit';
   // public $table_plan_user='plan_user';
   // public $table_map_frenchise_plan='map_plan_frenchise';
-  public $table_seller_setting='seller_setting';
+  // public $table_school_setting='school_setting';
   // public $table_master_plan_type='master_plan_type';
   // public $table_frenchise='frenchise';
   // public $table_frenchise_tax='tax';
@@ -69,6 +69,7 @@ class MY_Model extends CI_Model
     public $table_books='books';
     public $table_book_category='books_category';
     public $table_book_issue='book_issue';
+    public $table_courses='course';
 
 
   function __construct()

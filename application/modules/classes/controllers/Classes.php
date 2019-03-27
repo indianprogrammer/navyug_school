@@ -41,7 +41,71 @@ function add_class()
     $this->load->view('index',$data);
 }
 
+function add_course()
+{
+    $data['title']="ADD COURSE";
+    // $school_id=$this->session->SchoolId;
+    $condition=array('school_id'=>$this->session->SchoolId);
+    $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
 
+    $data['_view'] = 'add_course';
+    $this->load->view('index',$data);
+
+}
+function test()
+{
+    echo date_set();
+}
+function add_course_process()
+{
+$name=strip_tags($this->input->post('course_name',1));
+$description=strip_tags($this->input->post('description',1));
+$params=array(
+    'course_name'=>$name,
+    'description'=>$description,
+    'school_id'=>$this->session->SchoolId,
+    'created_at'=>Date('Y-m-d H:i:s')
+);
+$result=$this->Classes_model->insert('table_courses',$params);
+if($result)
+{
+     $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added'
+
+        );
+        redirect('classes/add_course');
+}
+
+}
+
+function add_batch()
+{
+    $condition=array('school_id'=>$this->session->SchoolId);
+$data['course']=$this->Classes_model->select('table_courses',$condition,array('id','course_name'));
+ $data['_view'] = 'batch/add_batch';
+    $this->load->view('index',$data);
+
+}
+function add_batch_process()
+{
+        $params=array(
+    'course_id'=>$course,
+    'description'=>$description,
+    'school_id'=>$this->session->SchoolId,
+    'created_at'=>Date('Y-m-d H:i:s')
+);
+    $result=$this->Classes_model->insert('table_batch',$params);
+        if($result)
+        {
+             $this->session->alerts = array(
+                    'severity'=> 'success',
+                    'title'=> 'successfully added'
+
+                );
+                redirect('classes/add_course');
+        }
+}
 function add()
 {   
     $data['title']="Add class";

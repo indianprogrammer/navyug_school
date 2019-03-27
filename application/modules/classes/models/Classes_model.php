@@ -1,7 +1,7 @@
 <?php
 
 
-class Classes_model extends CI_Model
+class Classes_model extends MY_Model
 {
 
 

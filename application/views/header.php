@@ -121,6 +121,20 @@
       {
         background-color: #fcfcfc;
       }
+      .nav-treeview>li
+      {
+        font-size: 11px;
+        /*left:15px; */
+      }
+      .nav-treeview>li>a
+      {
+        /*font-size: 14px;*/
+        margin-left:45px; 
+      }
+      .nav-item>a>p
+      {
+        font-size: 14px;
+      }
      /* hr
       {
 

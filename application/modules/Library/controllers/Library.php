@@ -60,7 +60,7 @@ function add_book_process()
                'book_cost'=> strip_tags($this->input->post('cost',1)),
                'school_id'=>$this->session->SchoolId,
                'created_at'=>date('Y-m-d H:i:s'),
-                     'isbn_no' =>      strip_tags($this->input->post('isbn_number',1))
+                     'isbn_no' =>      strip_tags($this->input->post('isbn_no',1))
 
         );
 
@@ -188,7 +188,7 @@ function add_book_category_process()
     $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added'
-// 'description'=> ''
+
         );
 
         redirect('library/add_book_category');
@@ -203,26 +203,76 @@ function books_return()
 }
 function books_return_record()
 {
-    print_r($this->input->post());
+    // print_r($this->input->post());
     $id=$this->input->post('id',1);
     for($i=0;$i<count($id);$i++)
     {
     $param=array('status'=>'return','returning_date'=>date('Y-m-d H:i:'));
     $condition=array('id'=>$id[$i]);
-    $this->Library_model->update_col('table_book_issue',$condition,$param);
+    $result=$this->Library_model->update_col('table_book_issue',$condition,$param);
+    if($result=='success')
+    {
+
+        $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added'
+
+        );
+
+        redirect('library/book_issue_list');
+    }
     }   
 
 }
 function search_issue_record()
 {
 
-    $id=$this->input->post('search_student',1);
+    $id=$this->input->post('search',1);
+    $type=$this->input->post('type',1);
+    if($type==1)
+    {
+         $condition= array('book_issue.school_id'=>$this->session->SchoolId,'taker_id'=>$id,'user_type'=>1,'book_issue.status'=>'issued');
+     $result=$this->Library_model->select_issued_book_emp('table_book_issue',$condition,array('book_issue.id','title','due_date','issue_date','author','isbn_no','book_no'));
+    }
+    if($type==2)
+       { 
     $condition= array('book_issue.school_id'=>$this->session->SchoolId,'taker_id'=>$id,'user_type'=>2,'book_issue.status'=>'issued');
-     $result=$this->Library_model->select_issued_book('table_book_issue',$condition,array('book_issue.id','title','due_date','issue_date','author','isbn_no','book_no'));
+     $result=$this->Library_model->select_issued_book_stu('table_book_issue',$condition,array('book_issue.id','title','due_date','issue_date','author','isbn_no','book_no'));
+        }
      // echo '<pre>';
      echo json_encode($result);
 }
+function library_setting()
+{
 
+$data['_view'] = 'due_date_setting';
+        $this->load->view('index',$data);
+
+}
+
+function add_library_setting()
+{
+   $due_day= strip_tags($this->input->post('due_day',1));
+   $fine= strip_tags($this->input->post('fine',1));
+   $condition=array('school_id'=>$this->session->SchoolId);
+   $params=array(
+    'library_due_day'=>$due_day,
+    'fine'=>$fine
+
+   );
+   $result=$this->Library_model->update_col('table_school_setting',$condition,$params);
+
+
+}
+// function search_issue_record_stu()
+// {
+
+//     $id=$this->input->post('search_employee',1);
+//     $condition= array('book_issue.school_id'=>$this->session->SchoolId,'taker_id'=>$id,'user_type'=>1,'book_issue.status'=>'issued');
+//      $result=$this->Library_model->select_issued_book_emp('table_book_issue',$condition,array('book_issue.id','title','due_date','issue_date','author','isbn_no','book_no'));
+//      // echo '<pre>';
+//      echo json_encode($result);
+// }
 
 /*
 * Editing a subject
