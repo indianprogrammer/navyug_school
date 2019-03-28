@@ -112,10 +112,18 @@ function fetch_classes($school_id)
   return $query = $this->db->get()->result_array();
 } 
 
-
-
-
-
+function batch_list($table_name,$condition,$content_display)
+{
+$this->db->select($content_display);
+$this->db->from($this->$table_name);  
+$this->db->where($condition);
+  $this->db->join('course', 'course.id='.$this->$table_name.'.course_id', 'Left');
+ 
+ 
+   $data=$this->db->get()->result_array();
+   // $sql = $this->db->last_query();
+   return $data;
+}
 
 }
 ?>

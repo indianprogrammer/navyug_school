@@ -202,7 +202,26 @@
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
-                                </li>                                <li class="nav-item">
+                                </li>  
+                                <li class="nav-item">
+                                    <a href="<?= site_url() ?>classes/add_batch" class="nav-link">
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                        <p>
+                                            ADD <?= strtoupper($this->session->menu_courses?$this->session->menu_courses:'BATCH') ?>
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>    
+                                 <li class="nav-item">
+                                    <a href="<?= site_url() ?>classes/batch_list" class="nav-link">
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                        <p>
+                                           BATCH LIST
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>                            
+                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>classes/add_class" class="nav-link">
                                       <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>

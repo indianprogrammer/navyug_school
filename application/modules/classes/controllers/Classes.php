@@ -81,6 +81,8 @@ if($result)
 
 function add_batch()
 {
+
+
     $condition=array('school_id'=>$this->session->SchoolId);
 $data['course']=$this->Classes_model->select('table_courses',$condition,array('id','course_name'));
  $data['_view'] = 'batch/add_batch';
@@ -89,9 +91,16 @@ $data['course']=$this->Classes_model->select('table_courses',$condition,array('i
 }
 function add_batch_process()
 {
+
+    $course=strip_tags($this->input->post('course',1));
+$batch_name=strip_tags($this->input->post('batch_name',1));
+$start_date=strip_tags($this->input->post('start_date',1));
+$end_date=strip_tags($this->input->post('end_date',1));
         $params=array(
     'course_id'=>$course,
-    'description'=>$description,
+    'batch_name'=>$batch_name,
+    'start_date'=>$start_date,
+    'end_date'=>$end_date,
     'school_id'=>$this->session->SchoolId,
     'created_at'=>Date('Y-m-d H:i:s')
 );
@@ -103,8 +112,18 @@ function add_batch_process()
                     'title'=> 'successfully added'
 
                 );
-                redirect('classes/add_course');
+                redirect('classes/batch_list');
         }
+}
+
+function batch_list()
+{
+ $condition=array('batch.school_id'=>$this->session->SchoolId);
+$data['batch']=$this->Classes_model->batch_list('table_batch',$condition,array('course_name','batch_name','start_date','end_date'));
+ $data['_view'] = 'batch/batch_list';
+        $this->load->view('index',$data);
+
+
 }
 function add()
 {   

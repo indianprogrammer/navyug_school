@@ -117,6 +117,11 @@ function issue_book_record_insert()
 {
     // print_r($this->input->post());die;
     $book_id=$this->input->post('book_id',1);
+     $condition=array('school_id'=>$this->session->SchoolId);
+    $result_date=$this->Library_model->select_id('table_school_setting',$condition,array('library_due_day','fine'));
+    // print_r($due_date['library_due_day']);
+    // $date_due=;
+    $date_due= date('Y-m-d H:i:s', strtotime('+'.$result_date['library_due_day'].' days'));
     for($i=0;$i<count($book_id);$i++)
     {
 
@@ -125,7 +130,7 @@ function issue_book_record_insert()
                'taker_id'=> strip_tags($this->input->post('taker_id',1)),
                'status'=> 'issued',
                'issue_date'=>date('Y-m-d H:i:s'),
-               'due_date'=>date('Y-m-d H:i:s'),
+               'due_date'=>$date_due,
                'school_id'=>$this->session->SchoolId,
                'staff_id'=>$this->session->staff_id,
                'book_id'=>$book_id[$i]
@@ -333,6 +338,27 @@ function remove()
     else
         show_error('The subject you are trying to delete does not exist.');
 }
+
+
+function test()
+{
+
+     $condition=array('school_id'=>$this->session->SchoolId);
+    $result_date=$this->Library_model->select_id('table_school_setting',$condition,array('library_due_day','fine'));
+    // print_r($due_date['library_due_day']);
+    $date_due=$result_date['library_due_day'];
+     echo date('Y-m-d H:i:s', strtotime('+'.$date_due.' days'));
+}
+
+
+
+
+
+
+
+
+
+
 
 }
 ?>
