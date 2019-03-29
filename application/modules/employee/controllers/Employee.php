@@ -66,8 +66,19 @@ $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_st
        'qualification' => $this->input->post('qualification'),
        'email' => $this->input->post('email'),
        'mobile' => $this->input->post('mobile'),
-       'permanent_address' => $this->input->post('paddress'),
-       'temporary_address' => $this->input->post('taddress')
+        
+       'aadhar' => strip_tags($this->input->post('aadhar',1)),
+
+      'permanent_address' => strip_tags($this->input->post('paddress',1)),
+      'temporary_address' => strip_tags($this->input->post('taddress',1)),
+        'p_city' =>strip_tags($this->input->post('p_city',1)),
+        't_city' =>strip_tags($this->input->post('t_city',1)),
+        't_pincode' =>strip_tags($this->input->post('t_pincode',1)),
+        'p_pincode' =>strip_tags($this->input->post('p_pincode',1)),
+        'designation' =>strip_tags($this->input->post('designation',1)),
+        'dob' =>strip_tags($this->input->post('dob',1)),
+        'gender' =>strip_tags($this->input->post('gender',1)),
+        'blood_group' =>strip_tags($this->input->post('blood_group',1))
        
      );
       if($this->upload->do_upload('profile_image'))

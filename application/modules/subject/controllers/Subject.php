@@ -104,6 +104,81 @@ function add()
     }
 }  
 
+
+function assign_subject()
+{
+$condition=array('school_id'=>$this->session->SchoolId);
+$data['course']=$this->Subject_model->select('table_courses',$condition,array('id','course_name'));
+$data['_view'] = 'assign_subject';
+        $this->load->view('index',$data);
+
+}
+
+function fetch_batch_by_course()
+{
+$course_id=$this->input->post('course_id',1);
+$condition=array('school_id'=>$this->session->SchoolId,'id'=>$course_id);
+$data['course']=$this->Subject_model->select('table_batch',$condition,array('id','batch_name'));
+echo json_encode($data['course']);
+
+
+}
+function fetch_subject()
+{
+// $course_id=$this->input->post('course_id');
+$condition=array('school_id'=>$this->session->SchoolId);
+$data['subject']=$this->Subject_model->select('table_subject',$condition,array('id','name'));
+echo json_encode($data['subject']);
+
+
+}
+function assign_subject_add()
+{
+    $this->load->library('form_validation');
+
+
+// $this->form_validation->set_rules('password','Password','required|max_length[20]');
+    $this->form_validation->set_rules('course','Course Name','required');
+    $this->form_validation->set_rules('batch','Batch Name','required');
+    $this->form_validation->set_rules('subject[]','Subject Name','required');
+
+
+    if($this->form_validation->run() )     
+    {   
+
+        $subject=$this->input->post('subject',1);
+        $params = array(
+
+            'course_id' => $this->input->post('course',1),
+            'batch_id' => $this->input->post('batch',1),
+            'subject_ids'=>json_encode($subject),
+            'school_id'=>$this->session->SchoolId
+
+
+        );
+        // print_r($params);die;
+
+        $result = $this->Subject_model->insert('table_assign_subject',$params);
+       
+
+#set notifications
+        $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added'
+// 'description'=> ''
+        );
+
+        redirect('subject/assign_subject');
+    }
+    else
+    {    
+    $condition=array('school_id'=>$this->session->SchoolId);
+    $data['course']=$this->Subject_model->select('table_courses',$condition,array('id','course_name'));        
+        $data['_view'] = 'assign_subject';
+        $this->load->view('index',$data);
+        // $this->assign_subject();
+    }
+}
 /*
 * Editing a subject
 */

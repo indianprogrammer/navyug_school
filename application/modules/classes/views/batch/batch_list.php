@@ -5,7 +5,7 @@
         <h3 class="card-title">Batches List</h3>
         <div class="card-tools">
           <div class="pull-right">
-            <a href="<?= site_url('classes/add_class'); ?>" class="btn btn-success">Add</a> 
+            <a href="<?= site_url('classes/add_batch'); ?>" class="btn btn-success">Add</a> 
           </div> 
 
         </div>

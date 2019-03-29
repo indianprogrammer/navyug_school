@@ -55,7 +55,7 @@
 
 			</div>
 			<div class="card-body">
-				<?php echo form_open_multipart('library/books_return_record',array("class"=>"form-horizontal")); ?>
+				<?php echo form_open('library/books_return_record',array("class"=>"form-horizontal")); ?>
 				<div class="row">
 					<div class="form-group col-md-8">
 						

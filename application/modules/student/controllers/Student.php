@@ -97,8 +97,8 @@ function add()
       'email' => strip_tags($this->input->post('email',1)),
 
       'mobile' => strip_tags($this->input->post('mobile',1)),
-      'aadhar' => strip_tags($this->input->post('aadhar',1)),
       'classes' => $classes,
+      'aadhar' => strip_tags($this->input->post('aadhar',1)),
 
       'permanent_address' => strip_tags($this->input->post('paddress',1)),
       'temporary_address' => strip_tags($this->input->post('taddress',1)),

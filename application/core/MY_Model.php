@@ -71,6 +71,8 @@ class MY_Model extends CI_Model
     public $table_book_issue='book_issue';
     public $table_courses='course';
     public $table_batch='batch';
+    public $table_subject='subjects';
+    public $table_assign_subject='subject_assign';
 
 
   function __construct()

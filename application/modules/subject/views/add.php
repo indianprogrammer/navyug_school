@@ -15,7 +15,7 @@
 
 
 
-<?php echo form_open_multipart('subject/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open('subject/add',array("class"=>"form-horizontal")); ?>
 
 	<div class="form-group">
 		<label for="subject_name" class="col-md-4 control-label"><span class="text-danger">*</span>Enter Subject Name</label>

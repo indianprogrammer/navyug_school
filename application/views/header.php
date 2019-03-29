@@ -135,13 +135,19 @@
       {
         font-size: 14px;
       }
-     /* hr
+      .hr_line
       {
 
-        height: 50px;
-        color:red;
+        /*height: 50px;*/
+        /*width: 40px;*/
+        /*size:5;*/
+        background-color:red;
 
-      }*/
+      }
+      .card-title
+      {
+         text-transform: uppercase;
+      }
     </style>
      <?php if($this->session->auto_logout==1)
   { ?>
