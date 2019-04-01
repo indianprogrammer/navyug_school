@@ -1,4 +1,4 @@
-<div class="row">
+ <div class="row">
 	<div class="col-md-5">
 <div class="card card-default">
 			<div class="card-header def">
@@ -48,7 +48,7 @@
  							<tr>
 								<td><?= $count++ ?></td>
 								<td><?= $row['category_name'] ?></td>
-								<td></td>
+								<td><span class="fa fa-edit"></span></td>
 								<!-- <td></td> -->
 							</tr>
 						<?php } ?>

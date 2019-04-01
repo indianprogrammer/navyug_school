@@ -1,6 +1,7 @@
 <?php include "header.php" ?>
 
 
+
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -71,6 +72,15 @@
                                       <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             <?= strtoupper($this->session->menu_student?$this->session->menu_student:'STUDENT') ?> LIST
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= site_url() ?>student/assign_student" class="nav-link">
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                        <p>
+                                           ASSIGN <?= strtoupper($this->session->menu_student?$this->session->menu_student:'STUDENT') ?> 
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>
@@ -479,16 +489,37 @@
                                     </p>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            
+                             <li class="nav-item">
                                 <a href="<?= site_url() ?>attendance/attendance_list" class="nav-link">
                                   <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
-                                        ATTENDANCE LIST
+                                       SMS
                                         <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>
                             </li>
+                             <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="setting"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="setting"){ ?> active <?php } ?>">
+                                <!-- <i class="nav-icon fa fa-check-square-o"></i> -->
+                                <p>
+                                   EMAIL
+                                   <i class="fa fa-angle-left right"></i>
+                               </p>
+                           </a>
+                                        <ul class="nav nav-treeview">
 
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>settings/email_template_setting" class="nav-link">
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
+                                    <p>
+                                    EMAIL TEMPLATE
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
                         </ul>
                     </li>

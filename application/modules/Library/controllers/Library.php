@@ -179,8 +179,12 @@ $data['book_category']=$this->Library_model->select('table_book_category',$condi
 }
 function add_book_category_process()
 {
-
-    $category_name = strip_tags($this->input->post('cat_name',1));
+     $this->load->library('form_validation');
+    $category_name = strip_tags(strtolower($this->input->post('cat_name',1)));
+    $this->form_validation->set_rules('cat_name', 'Book Category Name', 'required|check_book_category['.$category_name.']');
+     $this->form_validation->set_message('cat_name', 'This {field}  is already exists');
+  if($this->form_validation->run() )     
+    { 
     $categoryParam=array(
         'school_id'=>$this->session->SchoolId,
         'created_at'=>date('Y-m-d H:i:s'),
@@ -198,8 +202,42 @@ function add_book_category_process()
 
         redirect('library/add_book_category');
     }
+}
+else
+{
+ $condition=array('school_id'=>$this->session->SchoolId);
+$data['book_category']=$this->Library_model->select('table_book_category',$condition,array('*'));
+
+ $data['_view'] = 'add_book_category';
+        $this->load->view('index',$data);
 
 }
+
+}
+
+##for book_category is unique or not checking
+function check_book_category($str)
+{
+ $this->load->library('form_validation');
+     $condition=array('school_id'=>$this->session->SchoolId,'category_name'=>$str);
+     $data=$this->Library_model->select_id('table_book_category',$condition,array('category_name'));
+     // print_r($data);
+      if($data)
+      {
+         $this->form_validation->set_message('check_book_category', 'This {field} field is already exists');
+        return false;
+      }
+      else
+      {
+        // $this->form_validation->set_message('check_book_category', 'This {field} field is already exists');
+        return true; 
+      }
+
+
+}
+
+
+
 function books_return()
 {
  $data['_view'] = 'book_return';

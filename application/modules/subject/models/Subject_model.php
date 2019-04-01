@@ -34,7 +34,7 @@ function get_all_subject($schoolId)
     $this->db->select('subjects.id,subjects.name,subjects.date');
     $this->db->order_by('id', 'desc');
     $this->db->from('map_school_subject');
-    $this->db->where('school_id',$schoolId);
+    $this->db->where('map_school_subject.school_id',$schoolId);
     $this->db->join('school', 'map_school_subject.school_id=school.id', 'Left');
     $this->db->join('subjects', 'map_school_subject.subject_id=subjects.id', 'Left');
     return $this->db->get()->result_array();

@@ -312,6 +312,16 @@ function remove($id)
   else
     show_error('The student you are trying to delete does not exist.');
 }
+
+function assign_student()
+{
+   $condition=array('school_id'=>$this->session->SchoolId);
+    $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
+$data['_view'] = 'assign_student';
+      $this->load->view('index',$data);
+
+}
+
 function add_bulk_student()
 {
 
