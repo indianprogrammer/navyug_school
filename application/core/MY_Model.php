@@ -73,6 +73,8 @@ class MY_Model extends CI_Model
     public $table_batch='batch';
     public $table_subject='subjects';
     public $table_assign_subject='subject_assign';
+    public $table_assign_student='map_student_batch';
+    public $table_subject_allocation='subject_allocation';
 
 
   function __construct()

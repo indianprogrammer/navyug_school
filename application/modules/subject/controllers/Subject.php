@@ -12,13 +12,49 @@ class Subject extends MY_Controller{
 /*
 * Listing of subject
 */
+// function index()
+// {   
+//     $data['title']="Subject List";
+//     $schoolId=$this->session->SchoolId;
+//     if($this->input->get('classId'))
+//     {
+//         $classId=$this->input->get('classId');
+//         $fetchSubjectId=$this->Subject_model->get_all_subject_by_classid($classId);
+
+//         $noOfSubject=count($fetchSubjectId);
+//                     if($noOfSubject!=0)
+//                     {
+                    
+//                     $data=array();
+//                     $data['subject']=array();
+//                     for($i=0;$i<$noOfSubject;$i++)
+//                     {
+//                         array_push( $data['subject'],$fetchSubjectId[$i]['subject_id']);
+
+//                     }
+//             // echo $data['subject'];
+//                     $data['subject'] = $this->Subject_model->get_subject_by_subject_id($data['subject']);
+//                      }
+//                      else
+//                      {
+//                         $data['subject']=array();
+//                      }
+
+//     }
+//     else
+//     {
+//         $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
+//     }
+//     $data['_view'] = 'subjectList';
+//     $this->load->view('index',$data);
+// }
 function index()
 {   
     $data['title']="Subject List";
     $schoolId=$this->session->SchoolId;
-    if($this->input->get('classId'))
+    if($this->input->get('batchId'))
     {
-        $classId=$this->input->get('classId');
+        $classId=$this->input->get('batchId');
         $fetchSubjectId=$this->Subject_model->get_all_subject_by_classid($classId);
 
         $noOfSubject=count($fetchSubjectId);
@@ -117,9 +153,10 @@ $data['_view'] = 'assign_subject';
 function fetch_batch_by_course()
 {
 $course_id=$this->input->post('course_id',1);
-$condition=array('school_id'=>$this->session->SchoolId,'id'=>$course_id);
+$condition=array('school_id'=>$this->session->SchoolId,'course_id'=>$course_id);
 $data['course']=$this->Subject_model->select('table_batch',$condition,array('id','batch_name'));
 echo json_encode($data['course']);
+// echo json_encode($course_id);
 
 
 }
@@ -147,11 +184,13 @@ function assign_subject_add()
     {   
 
         $subject=$this->input->post('subject',1);
+        for($i=0;$i<count($subject);$i++)
+        {
         $params = array(
 
             'course_id' => $this->input->post('course',1),
             'batch_id' => $this->input->post('batch',1),
-            'subject_ids'=>json_encode($subject),
+            'subject_ids'=>$subject[$i],
             'school_id'=>$this->session->SchoolId
 
 
@@ -159,7 +198,7 @@ function assign_subject_add()
         // print_r($params);die;
 
         $result = $this->Subject_model->insert('table_assign_subject',$params);
-       
+       }
 
 #set notifications
         $this->session->alerts = array(
@@ -218,6 +257,74 @@ function edit($id)
     else
         show_error('The subject you are trying to edit does not exist.');
 } 
+
+function subject_allocation()
+{
+
+    $condition=array('school_id'=>$this->session->SchoolId);
+$data['course']=$this->Subject_model->select('table_courses',$condition,array('id','course_name'));
+$schoolId=$this->session->SchoolId;
+    $this->load->model('employee/Employee_model');
+    $data['employees'] = $this->Employee_model->get_all_employees($schoolId);
+    $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
+$data['_view'] = 'subject_allocation';
+        $this->load->view('index',$data);
+}
+function allote_subject_add()
+{
+
+     $this->load->library('form_validation');
+
+    $this->form_validation->set_rules('staff','Staff Name','required');
+    $this->form_validation->set_rules('course','Course Name','required');
+    $this->form_validation->set_rules('batch','Batch Name','required');
+    $this->form_validation->set_rules('subject','Subject Name','required');
+
+
+    if($this->form_validation->run() )     
+    {   
+
+        $subject=$this->input->post('subject',1);
+        $staff=$this->input->post('staff',1);
+        
+        $params = array(
+
+            'course_id' => $this->input->post('course',1),
+            'batch_id' => $this->input->post('batch',1),
+            'subject_id'=>$subject,
+            'school_id'=>$this->session->SchoolId,
+            'staff_id'=> $staff
+
+
+        );
+        // print_r($params);die;
+
+        $result = $this->Subject_model->insert('table_subject_allocation',$params);
+      
+
+#set notifications
+        $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added'
+// 'description'=> ''
+        );
+
+        redirect('subject/subject_allocation');
+    }
+    else
+    {    
+//     $condition=array('school_id'=>$this->session->SchoolId);
+// $data['course']=$this->Subject_model->select('table_courses',$condition,array('id','course_name'));
+// $schoolId=$this->session->SchoolId;
+//     $this->load->model('employee/Employee_model');
+//     $data['employees'] = $this->Employee_model->get_all_employees($schoolId);
+// $data['_view'] = 'subject_allocation';
+//         $this->load->view('index',$data);
+        $this->subject_allocation();
+    }
+}
+/*
+}
 
 /*
 * Deleting subject

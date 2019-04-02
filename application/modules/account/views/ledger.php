@@ -30,6 +30,7 @@
             <th>Reciept Number</th>
             <th>Debit</th>
             <th>Credit</th>
+            <th>Balance</th>
             <th>Date</th>
             
             
@@ -40,35 +41,50 @@
        $debit=0;
        $credit=0;
        ?>
-       <?php foreach ($ledger as $row) { ?>
+       <?php 
+       // foreach ($ledger as $row) 
+
+       for($i=0;$i<count($ledger);$i++) { ?>
         <tr>
             <td><?=$count++ ?></td>
-            <td  data-toggle="tooltip" data-placement="top" title="click to get invoice"><a href="<?= site_url('account/getpdf/'.$row['invoice_id']); ?>"  target="_blank"><?=$row['invoice_id'] ?></a> </td>
-            <td  data-toggle="tooltip" data-placement="top" title="click to get reciept"><a href="<?= site_url('account/getPdfreciept/'.$row['reciept_id']); ?>" target="_blank"> <?=$row['reciept_id'] ?> </a></td>
-            <td><?php if($row['debit']==0){echo " - ";} else {echo $row['debit']; } ?></td>
-            <td><?php if($row['credit']==0){echo " - ";} else {echo $row['credit']; } ?></td>
-            <td><?=$row['date'] ?></td>
-             <!-- <td><a href="<?= site_url('account/getpdf/'.$row['invoice_id']); ?>" class="btn btn-info btn-xs" target="_blank">Get Pdf</a> 
-             </td> -->
-             <?php  $debit+=$row['debit'];
+            <td  data-toggle="tooltip" data-placement="top" title="click to get invoice"><a href="<?= site_url('account/getpdf/'.$ledger[$i]['invoice_id']); ?>"  target="_blank"><?= $invoice_prefix ?><?= $ledger[$i]['invoice_id'] ?></a> </td>
+            <td  data-toggle="tooltip" data-placement="top" title="click to get reciept"><a href="<?= site_url('account/getPdfreciept/'.$ledger[$i]['reciept_id']); ?>" target="_blank"> <?=$ledger[$i]['reciept_id'] ?> </a></td>
+            <td><?= $ledger[$i]['debit']  ?><?php    $debit= $debit+$ledger[$i]['debit'] ?></td>
+            <td> <?= $ledger[$i]['credit'] ?><?php  $credit= $credit+$ledger[$i]['credit'] ?></td>
+            <td><?= $debit-$credit; ?></td>
+            <td><?= $ledger[$i]['date'] ?></td>
+           
+             <!-- <?php  $debit+=$row['debit'];
              $credit+=$row['credit'];
              
 
 
-             ?>
+             ?> -->
          </tr>
      <?php } ?>
  </tbody>
+ <tfoot>
+     <tr>
+     <td colspan="3"></td>
+     <td ><b><?= $debit ?></b></td>
+     <td ><b><?= $credit ?></b></td>
+     <td colspan="2" ></td>
+ </tr>
+ <tr>
+     <td colspan="5">Closing Balance</td>
+     <td colspan="5"><b><?php
+        $balance=$debit-$credit;
+        echo $balance ?></b></td>
+ </tr>
+ </tfoot>
 </table>
-<hr>
+<!-- <hr>
 <div class="balance">
     <div class="balance-text">
         Balance -&nbsp
-        <?php
-        $balance=$debit-$credit;
-        echo $balance ?>
+        
     </div>
-</div>
+</div> -->
 </div>
 </div>
 </div>

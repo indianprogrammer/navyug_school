@@ -182,7 +182,7 @@ function add_book_category_process()
      $this->load->library('form_validation');
     $category_name = strip_tags(strtolower($this->input->post('cat_name',1)));
     $this->form_validation->set_rules('cat_name', 'Book Category Name', 'required|check_book_category['.$category_name.']');
-     $this->form_validation->set_message('cat_name', 'This {field}  is already exists');
+     $this->form_validation->set_message('check_book_category', 'This {field}  is already exists');
   if($this->form_validation->run() )     
     { 
     $categoryParam=array(

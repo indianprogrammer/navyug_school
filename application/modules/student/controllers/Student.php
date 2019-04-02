@@ -317,9 +317,51 @@ function assign_student()
 {
    $condition=array('school_id'=>$this->session->SchoolId);
     $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
-$data['_view'] = 'assign_student';
+    $data['student'] = $this->Student_model->get_all_student($this->session->SchoolId);
+    $data['_view'] = 'assign_student';
       $this->load->view('index',$data);
 
+}
+function assign_student_process()
+{
+
+  $student_id=$this->input->post('student',1);
+  $batch_id=$this->input->post('batch',1);
+  $course_id=$this->input->post('course',1);
+  $this->load->library('form_validation');
+   $this->form_validation->set_rules('student','Student','required|trim');
+   $this->form_validation->set_rules('batch','Batch','required|trim');
+   $this->form_validation->set_rules('course','Course','required|trim');
+
+    if($this->form_validation->run() )     
+    {   
+
+      $params=array(
+        'student_id'=> $student_id,
+        'batch_id'=>$batch_id,
+          // 'course_id'=>$course_id,
+          'school_id'=>$this->session->SchoolId
+
+      );
+
+      $insert_id=$this->Student_model->insert('table_assign_student',$params);
+      if($insert_id)
+      {
+        $this->session->alerts = array(
+        'severity'=> 'success',
+        'title'=> 'successfully edited'
+      );
+      redirect('student');
+      }
+    }
+    else
+    {
+       $condition=array('school_id'=>$this->session->SchoolId);
+    $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
+    $data['student'] = $this->Student_model->get_all_student($this->session->SchoolId);
+    $data['_view'] = 'assign_student';
+      $this->load->view('index',$data);
+    }
 }
 
 function add_bulk_student()
@@ -513,10 +555,17 @@ function getFullDetails()
    $data['title']="Student Full Details";
   $school_id=$this->session->SchoolId;
   $student_id=$this->input->get('student_id');
-  $data['student_info']= $this->Student_model->get_student_full_details($student_id);
+  $data['student_info']= $this->Student_model->get_student_full_details($student_id,$school_id);
+  // print_r($data['student_info']);die;
   $data['classes'] = $this->Classes_model->fetch_classes($school_id);
-// var_dump($data['student_info']);die;
+  $condition=array('map_student_batch.school_id'=>$school_id,'student_id'=>$student_id);
+  $data['student_batch']=$this->Student_model->student_batch('table_assign_student',$condition,array('batch_name','course_name','start_date','end_date'));
+  $bookCondition=array('user_type'=>2,'book_issue.school_id'=>$school_id,'taker_id'=> $student_id,'book_issue.status'=>'issued');
+
+  $data['current_issue_book']=$this->Student_model->library_issue_book_student('table_book_issue',$bookCondition,array('issue_date','due_date','title','author','isbn_no','edition'));
+// var_dump($data['current_issue_book']);die;
 // var_dump($data['classes']);die;
+    // print_r($data['student_batch']);die;
   $data['_view'] = 'studentDetails';
   $this->load->view('index',$data);
 

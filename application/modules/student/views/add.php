@@ -44,8 +44,10 @@
   					<div class="form-group">
   						<label for="reg_input_name" class="req">Date of Birth</label>
   						<div data-date-format="yyyy-M-d" class="input-group date">
-  							<input class="form-control pickadate" name="dob" id="Student_student_dob" type="text" maxlength="45" /><div class="school_val_error" id="Student_student_dob_em_" style="display:none"></div>                                    <span class="input-group-addon"><i class="icon-calendar"></i></span>
+  							<input class="form-control pickadate" name="dob" id="Student_student_dob" type="text" maxlength="45" />
+  							                               <span class="input-group-addon"><i class="icon-calendar"></i></span>
   						</div>
+  						<span class="text-danger"><?= form_error('dob');?></span>
   					</div>
   				</div>
   					<div class="col-md-4">
@@ -55,7 +57,9 @@
   							<option value="prompt">Please Select</option>
   							<option value="male">Male</option>
   							<option value="female">Female</option>
-  						</select><div class="school_val_error" id="Student_student_gender_em_" style="display:none"></div>                            </div>
+  						</select>
+  						<span class="text-danger"><?= form_error('gender');?></span>                        
+  						  </div>
   					</div>
   						<div class="col-md-4">
   						<div class="form-group">
@@ -70,7 +74,9 @@
   								<option value="0-">O-</option>
   								<option value="AB+">AB+</option>
   								<option value="AB-">AB-</option>
-  							</select><div class="school_val_error" id="Student_student_bloodgroup_em_" style="display:none"></div>                            </div>
+  							</select>
+  							<span class="text-danger"><?= form_error('blood_group');?></span>                    
+  							        </div>
   						</div>
 
 
@@ -96,6 +102,7 @@
 					<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
 				<?php } ?>
 			</select>
+			<span class="text-danger"><?= form_error('classes[]');?></span>
 		</div>
 	</div>
 </div>
@@ -106,7 +113,9 @@
 			<input type="text" name="aadhar" id="aadhar" maxlength="13"	 value="<?= $this->input->post('aadhar'); ?>" class="form-control" id="aadhar" maxlength="13" />
 			<span class="text-danger"><?= form_error('aadhar');?></span>
 		</div>
+		<span class="text-danger"><?= form_error('aadhar');?></span>
 	</div>
+
 </div>
 <div class="col-md-4">
 	<div class="form-group">

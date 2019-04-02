@@ -119,7 +119,27 @@ $end_date=strip_tags($this->input->post('end_date',1));
 function batch_list()
 {
  $condition=array('batch.school_id'=>$this->session->SchoolId);
-$data['batch']=$this->Classes_model->batch_list('table_batch',$condition,array('course_name','batch_name','start_date','end_date'));
+$data['batch']=$this->Classes_model->batch_list('table_batch',$condition,array('course_name','batch_name','start_date','end_date','batch.id'));
+$data['student_count']=array();
+$data['subject_count']=array();
+##count no of students
+for($i=0;$i<count($data['batch']);$i++)
+{
+$condition=array('school_id'=>$this->session->SchoolId,'batch_id'=>$data['batch'][$i]['id']);
+$student_count=$this->Classes_model->counting('table_assign_student',$condition);
+array_push($data['student_count'],$student_count);
+
+##subject count
+$subjectCondition=array('school_id'=>$this->session->SchoolId,'batch_id'=>$data['batch'][$i]['id']);
+$subject_count=$this->Classes_model->counting('table_assign_subject',$condition);
+array_push($data['subject_count'],$subject_count);
+
+
+}
+// $batch_details=array_merge_recursive($data['batch'],$data['student_count']);
+// print_r($batch_details);
+// print_r(($data['student_count']));
+// die;
  $data['_view'] = 'batch/batch_list';
         $this->load->view('index',$data);
 

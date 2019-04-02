@@ -21,6 +21,8 @@
             <!-- <th>Description</th> -->
             <th>Start Date</th>
             <th>End date</th>
+            <th>No of Students</th>
+            <th>No of Subjects</th>
             <!-- <th>Employee</th> -->
             <!-- <th>Start time</th> -->
             <!-- <th>End time</th> -->
@@ -30,18 +32,19 @@
         </thead>
         <tbody>
           <?php $count=1 ?>
-          <?php foreach($batch as $row){ ?>
+          <?php for($i=0;$i<count($batch);$i++)  { ?>
             <tr>
               <td><?= $count++ ?></td>
 
-              <td><?= $row['course_name']; ?></td>
-              <td><?= $row['batch_name']; ?></td>
+              <td><?= $batch[$i]['course_name']; ?></td>
+              <td><?= $batch[$i]['batch_name']; ?></td>
         
-             
               
 
-              <td><?= $row['start_date']; ?></td>
-               <td><?= $row['end_date']; ?></td> 
+              <td><?= $batch[$i]['start_date']; ?></td>
+               <td><?= $batch[$i]['end_date']; ?></td> 
+             <td><?= $student_count[$i] ?></td>
+             <td data-toggle="tooltip" data-placement="top" title="click to get subject detail"><a href="<?= base_url()?>subject?batchId=<?= $batch[$i]['id']?>" target="_blank"><?= $subject_count[$i] ?></a></td>
               <td>
 
                <!--  <div class="btn-group" >

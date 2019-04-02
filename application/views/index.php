@@ -191,6 +191,25 @@
                                         </p>
                                     </a>
                                 </li>
+                                 <li class="nav-item">
+                                    <a href="<?= site_url() ?>subject/assign_subject" class="nav-link">
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                        <p>
+                                             ASSIGN <?= strtoupper($this->session->menu_subjects?$this->session->menu_subjects:'SUBJECT') ?>
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= site_url() ?>subject/subject_allocation" class="nav-link">
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                        <p>
+                                             <?= strtoupper($this->session->menu_subjects?$this->session->menu_subjects:'SUBJECT') ?> ALLOCATION
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>
+
 
 
                             </ul>

@@ -216,11 +216,11 @@ function get_student_by_student_id($id)
   $this->db->where_in('id',$id);
   return $this->db->get()->result_array();
 }
-function get_student_full_details($id)
+function get_student_full_details($id,$school_id)
 {
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,date(student.created_at) as date,student.classes,student.parent_id ,parents.name as parent_name,authentication.username,authentication.clear_text,student.aadhar');
+  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,date(student.created_at) as date,student.classes,student.parent_id ,parents.name as parent_name,authentication.username,authentication.clear_text,student.aadhar,student.blood_group,student.dob,student.gender');
   $this->db->from('student');
-  $this->db->where('student.id',$id);
+  $this->db->where(array('student.id'=>$id));
   $this->db->join('parents','student.parent_id=parents.id','left');
   $this->db->where('autorization_id',4);
   $this->db->join('authentication','student.id=authentication.user_id','left');
@@ -249,7 +249,30 @@ function studentSearch($table_name,$condition=null,$content_display,$search)
   $this->db->group_end();
 
   $data=$this->db->get()->result_array();
-   // $sql = $this->db->last_query();
+ 
+  return $data;
+
+}
+function student_batch($table_name,$condition=null,$content_display)
+{
+    $this->db->select($content_display);
+  $this->db->from($this->$table_name);  
+  $this->db->where($condition);
+  $this->db->join('batch','batch.id=map_student_batch.batch_id');
+  $this->db->join('course','course.id=batch.course_id');
+  $data=$this->db->get()->result_array();
+ 
+  return $data;
+}
+function library_issue_book_student($table_name,$condition=null,$content_display)
+{
+   $this->db->select($content_display);
+  $this->db->from($this->$table_name);  
+  $this->db->where($condition);
+  $this->db->join('books','books.id=book_issue.book_id');
+  // $this->db->join('course','course.id=batch.course_id');
+  $data=$this->db->get()->result_array();
+ 
   return $data;
 
 }

@@ -1,8 +1,8 @@
 <div class="row">
 	<div class="col-md-6 col-sm-12">
 		<div class="card">
-			<div class="card-header">
-				<h3 class="card-title">Assign Subject</h3>
+			<div class="card-header def">
+				<h3 class="card-title">Subject Allocation</h3>
 
 			</div>
 			<div class="card-body">
@@ -12,7 +12,24 @@
 
 
 
-				<?php echo form_open('subject/assign_subject_add',array("class"=>"form-horizontal")); ?>
+				<?php echo form_open('subject/allote_subject_add',array("class"=>"form-horizontal")); ?>
+				<div class="form-group">
+					<label class="col-md-10 control-label"><span class="text-danger">*</span>Select <?= $this->session->menu_staff?$this->session->menu_staff:'Staff' ?></label>
+					<div class="col-md-10">
+						<select class="form-control"   name="staff" id="staff"  
+						>
+						<option value="" >--Select--- </option>
+						<?php	foreach($employees as $row){ ?>
+							<option value="<?= $row['id'] ?>"  <?=  set_select('staff',  ''.$row['id']).'' ?> ><?= $row['name'] ?></option>
+						<?php } ?>
+					</select>
+				</div>
+				 <span class="text-danger"><?php echo form_error('staff');?></span> 
+			</div>
+
+
+
+
 
 				<div class="form-group">
 					<label class="col-md-10 control-label"><span class="text-danger">*</span>Select Course</label>
@@ -21,7 +38,7 @@
 						>
 						<option value="" >--Select Course--- </option>
 						<?php	foreach($course as $row){ ?>
-							<option value="<?= $row['id'] ?>"  <?=  set_select('course',  ''.$row['course_name']).'',true ?> ><?= $row['course_name'] ?></option>
+							<option value="<?= $row['id'] ?>"  <?=  set_select('course',  ''.$row['id']).'',true ?> ><?= $row['course_name'] ?></option>
 						<?php } ?>
 					</select>
 				</div>
@@ -41,12 +58,15 @@
 			<div class="form-group">
 				<label class="col-md-10 control-label"><span class="text-danger">*</span>Select Subject</label>
 				<div class="col-md-10">
-					<select class="form-control select2" multiple="multiple" data-placeholder="Select classes" id="subject"  name="subject[]" style="width: 100%;"
+					<select class="form-control"  data-placeholder="Select classes" id="subject"  name="subject" style="width: 100%;"
 					>
-					
+					<option value="" >--Select --- </option>
+						<?php	foreach($subject as $row){ ?>
+							<option value="<?= $row['id'] ?>"  <?=  set_select('subject',  ''.$row['id']).'',true ?> ><?= $row['name'] ?></option>
+						<?php } ?>
 				</select>
 			</div>
-			 <span class="text-danger"><?php echo form_error('subject[]');?></span> 
+			 <span class="text-danger"><?php echo form_error('subject');?></span> 
 		</div>
 		
 
@@ -68,13 +88,7 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-    //Initialize Select2 Elements
-    $('.select2').select2();
-subjectSelect()
-    //Datemask dd/mm/yyyy
-    
-});
+	
 
 
 	function batchSelect()

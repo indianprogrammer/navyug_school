@@ -17,6 +17,7 @@ class Account extends MY_Controller{
 */
 function invoice_list()
 {   
+  $data['invoice_prefix']='inv_';
   $data['title']="Invoice List";
   $schoolId=$this->session->SchoolId;
   if($this->input->get('student_id'))
@@ -450,6 +451,7 @@ function checkBalance()
 }*/
 function getledger()
 {
+  $data['invoice_prefix']='inv_';
   $data['title']="ledger";
   $student_id=$this->input->get('student_id');
   $data['ledger']=$this->Account_model->get_ledger($student_id);
@@ -470,8 +472,9 @@ function autosuggest(){
 ##need improvement
 function autofill()
 { 
-  $id=$this->input->post("id");
-  $balance=$this->Account_model->get_balance_info($id);
+   $school_id=$this->session->SchoolId;
+  $id=trim($this->input->post("id",1));
+  $balance=$this->Account_model->get_balance_info($id,$school_id);
   if($this->Account_model->get_balance_info($id))
   {
     $data['balance']=$this->Account_model->get_balance_info($id);

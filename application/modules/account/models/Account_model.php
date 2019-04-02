@@ -275,7 +275,7 @@ class Account_model extends CI_Model
   {
     $this->db->select('balance');
     $this->db->from('account_balance_information');
-     $this->db->where('school_id',1);
+     $this->db->where('school_id',$school_id);
      $this->db->where('customer_id',$id);
     return  $this->db->get()->row_array();
 

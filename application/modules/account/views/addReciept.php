@@ -108,7 +108,9 @@
 <?php  }
 
  ?>
+ <!-- <script src="<?= base_url() ;?>assets/admin/dist/js/plugins/bootbox.min.js"></script> -->
   <script>
+
  function  getStudentDetails(){
 
 // var min_length = 3;
@@ -203,7 +205,7 @@ function submitReciept()
 
    if(method && username && pay)
         {
-          bootcard.confirm("click ok to generate invoice  ?", function(result) {
+          bootbox.confirm("click ok to generate invoice  ?", function(result) {
         if(result)
         {
   $.ajax({
