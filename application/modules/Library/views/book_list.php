@@ -39,13 +39,13 @@
     <?php switch( $row['status']){
 
       case 1:
-      $status='avialable';
+      $status='available';
       break;
       case 2:
        $status='issued';
        break;
     case 3:
- $status='not avilable';
+ $status='not available';
     }
 ?>
     <td><?= $status ?></td>
@@ -85,7 +85,7 @@
      
     // var id = $(this).data('id');
       
-    bootcard.confirm("Are you sure want to delete ?", function(result) {
+    bootbox.confirm("Are you sure want to delete ?", function(result) {
       if(result)
 
              $.ajax({  

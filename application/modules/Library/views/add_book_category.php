@@ -1,3 +1,12 @@
+ <style type="text/css">
+ 	.scroll-table
+ 	{
+ 		overflow-y: scroll;
+ 		max-height: 700px;
+ 		height:500px; 
+ 	}
+ </style>
+
  <div class="row">
 	<div class="col-md-5">
 <div class="card card-default">
@@ -33,8 +42,8 @@
 				BOOK CATEGORY
 			</div>
 			<div class="card-body">
-				<div class="table-responsive">
-					 <table class="table table-bordered">
+				<div class="table-responsive scroll-table">
+					 <table class="table table-bordered ">
 					 	<thead>
 					 	<?php $count=1;  ?>
 					 	<tr>

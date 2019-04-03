@@ -110,5 +110,62 @@ function get_selected_subject($id)
     return $this->db->get()->result_array();
 
 }
+
+
+function select_assign_subject($table_name,$condition,$content_display)
+{
+$this->db->select($content_display);
+$this->db->from($this->$table_name);  
+$this->db->where($condition);
+  $this->db->join('subjects', 'subjects.id='.$this->$table_name.'.subject_ids');
+  $this->db->join('batch', 'batch.id='.$this->$table_name.'.batch_id');
+ 
+   $data=$this->db->get()->result_array();
+   // $sql = $this->db->last_query();
+   return $data;
+
+
+
+}
+function select_allocation_subject($table_name,$condition,$content_display)
+{
+$this->db->select($content_display);
+$this->db->from($this->$table_name);  
+$this->db->where($condition);
+  $this->db->join('subjects', 'subjects.id='.$this->$table_name.'.subject_id');
+  $this->db->join('batch', 'batch.id='.$this->$table_name.'.batch_id');
+  $this->db->join('employees', 'employees.id='.$this->$table_name.'.staff_id');
+ 
+   $data=$this->db->get()->result_array();
+   // $sql = $this->db->last_query();
+   return $data;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>

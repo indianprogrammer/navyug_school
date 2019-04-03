@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-md-6 col-sm-12">
+	<div class="col-md-6">
 		<div class="card">
 			<div class="card-header">
 				<h3 class="card-title">Assign Subject</h3>
@@ -60,11 +60,45 @@
 	</div>
 </div>
 </div>
+<?= form_close(); ?>
 </div>
+<div class="col-md-6">
+	<div class="card">
+			<div class="card-header">
+				<h3 class="card-title">Assign Subject List</h3>
+
+			</div>
+			<div class="card-body">
+
+				 <div class="table-responsive">
+			<table id="subject_table" class="table table-striped table-bordered table-hover">
+   			 <thead>
+    <tr>
+		<th>Batch Name</th>
+		<!-- <th>Password</th> -->
+		<th>Subject Name</th>
+		<th>Action</th>
+		
+		
+    </tr>
+</thead>
+<tbody>
+    <?php $count=1; ?>
+	<?php foreach($assign_subject as $row){ ?>
+    <tr id="<?= $row['id'] ?>">
+		<td><?= $row['batch_name'] ?></td>
+		
+		<td><?= $row['subject_name']; ?></td>
+		<td></td>
+	</tr>
+<?php } ?> 
+			</div>
+		</div>
+
+	</div>
 </div>
 
 
-<?php echo form_close(); ?>
 
 
 <script type="text/javascript">

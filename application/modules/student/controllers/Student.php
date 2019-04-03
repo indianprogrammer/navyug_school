@@ -313,6 +313,13 @@ function remove($id)
     show_error('The student you are trying to delete does not exist.');
 }
 
+function soft_delete_student($id)
+{
+$student = $this->Student_model->get_student($id);
+
+  $schoolId=$this->session->SchoolId;
+}
+
 function assign_student()
 {
    $condition=array('school_id'=>$this->session->SchoolId);

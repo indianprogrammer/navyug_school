@@ -35,11 +35,12 @@ function add_book_process()
 
 // $this->form_validation->set_rules('password','Password','required|max_length[20]');
     $this->form_validation->set_rules('book_no','book no','required');
-    $this->form_validation->set_rules('title','title','required');
-    $this->form_validation->set_rules('author','author','required');
+    $this->form_validation->set_rules('title','title','required|alpha_numeric_spaces');
+    $this->form_validation->set_rules('author','author','required|alpha_numeric_spaces');
     $this->form_validation->set_rules('edition','edition','required');
     $this->form_validation->set_rules('book_category','Book category','required');
     $this->form_validation->set_rules('publisher','Publisher','required');
+    $this->form_validation->set_rules('isbn_no','Isbn Number','required');
 
 
     if($this->form_validation->run() )     
@@ -79,8 +80,9 @@ function add_book_process()
     }
     else
     {            
-        $data['_view'] = 'add';
-        $this->load->view('index',$data);
+        // $data['_view'] = 'add_books';
+        // $this->load->view('index',$data);
+        $this->add_books();
     }
 }  
 
@@ -180,8 +182,9 @@ $data['book_category']=$this->Library_model->select('table_book_category',$condi
 function add_book_category_process()
 {
      $this->load->library('form_validation');
+     $this->form_validation->CI =& $this;
     $category_name = strip_tags(strtolower($this->input->post('cat_name',1)));
-    $this->form_validation->set_rules('cat_name', 'Book Category Name', 'required|check_book_category['.$category_name.']');
+    $this->form_validation->set_rules('cat_name', 'Book Category Name', 'required|callback_check_book_category');
      $this->form_validation->set_message('check_book_category', 'This {field}  is already exists');
   if($this->form_validation->run() )     
     { 
@@ -205,11 +208,7 @@ function add_book_category_process()
 }
 else
 {
- $condition=array('school_id'=>$this->session->SchoolId);
-$data['book_category']=$this->Library_model->select('table_book_category',$condition,array('*'));
-
- $data['_view'] = 'add_book_category';
-        $this->load->view('index',$data);
+ $this->add_book_category();
 
 }
 
@@ -224,12 +223,14 @@ function check_book_category($str)
      // print_r($data);
       if($data)
       {
+        // echo 'yes';
          $this->form_validation->set_message('check_book_category', 'This {field} field is already exists');
         return false;
       }
       else
       {
         // $this->form_validation->set_message('check_book_category', 'This {field} field is already exists');
+        // echo 'no';
         return true; 
       }
 

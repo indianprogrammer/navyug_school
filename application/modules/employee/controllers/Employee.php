@@ -16,17 +16,15 @@
     function index()
     {  
 
-$staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_staff: 'STAFF' );
+      $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_staff: 'STAFF' );
       $data['title']=  $staff_menu_name." LIST";
-     $schoolId=$this->session->SchoolId;
-     // $config['total_rows'] = $this->Employee_model->get_all_employees_count($schoolId);
+      $schoolId=$this->session->SchoolId;
+      
+      $data['employees'] = $this->Employee_model->get_all_employees($schoolId);
 
-
-     $data['employees'] = $this->Employee_model->get_all_employees($schoolId);
-
-     $data['_view'] = 'employeeList';
-     $this->load->view('../index',$data);
-   }
+      $data['_view'] = 'employeeList';
+      $this->load->view('../index',$data);
+    }
 
     /*
      * Adding a new employee
@@ -35,63 +33,63 @@ $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_st
     {   
       $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_staff:'STAFF');
       $data['title']="Add ".$staff_menu_name;
-     $data['emptype'] = $this->Employee_model->get_map_employee();
+      $data['emptype'] = $this->Employee_model->get_map_employee();
 
-     $data['_view'] = 'add';
-     $this->load->view('../index',$data);
-   }
+      $data['_view'] = 'add';
+      $this->load->view('../index',$data);
+    }
 
-   function add()
-   {   
-    #validation part
-    $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_staff:'STAFF');
-    $data['title']="Add ".$staff_menu_name;
-    $this->load->library('form_validation');
-    $data['emptype'] = $this->Employee_model->get_map_employee();
-    $config['upload_path']          = './uploads/';
-    $config['allowed_types']        = 'gif|jpg|png';
-    $this->load->library('upload', $config);
-    $this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
-    // $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
-    $this->form_validation->set_rules('email','Email','max_length[40]|valid_email');
-    $this->form_validation->set_rules('mobile','Mobile','max_length[13]');
-    $this->form_validation->set_rules('paddress','Address','required');
-    $this->form_validation->set_rules('taddress','Address','required');
-    $school_id=$this->session->SchoolId;
-    if($this->form_validation->run() )     
+    function add()
     {   
+    #validation part
+      $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_staff:'STAFF');
+      $data['title']="Add ".$staff_menu_name;
+      $this->load->library('form_validation');
+      $data['emptype'] = $this->Employee_model->get_map_employee();
+      $config['upload_path']          = './uploads/';
+      $config['allowed_types']        = 'gif|jpg|png';
+      $this->load->library('upload', $config);
+      $this->form_validation->set_rules('employee_Name','employee Name','required|max_length[100]');
+    // $this->form_validation->set_rules('qualification','Qualification','required|max_length[50]');
+      $this->form_validation->set_rules('email','Email','max_length[40]|valid_email');
+      $this->form_validation->set_rules('mobile','Mobile','max_length[13]');
+      $this->form_validation->set_rules('paddress','Address','required');
+      $this->form_validation->set_rules('taddress','Address','required');
+      $school_id=$this->session->SchoolId;
+      if($this->form_validation->run() )     
+      {   
       #employ information
-      $params = array(
-       'name' => $this->input->post('employee_Name'),
-       'qualification' => $this->input->post('qualification'),
-       'email' => $this->input->post('email'),
-       'mobile' => $this->input->post('mobile'),
-        
-       'aadhar' => strip_tags($this->input->post('aadhar',1)),
+        $params = array(
+         'name' => $this->input->post('employee_Name'),
+         'qualification' => $this->input->post('qualification'),
+         'email' => $this->input->post('email'),
+         'mobile' => $this->input->post('mobile'),
+         
+         'aadhar' => strip_tags($this->input->post('aadhar',1)),
 
-      'permanent_address' => strip_tags($this->input->post('paddress',1)),
-      'temporary_address' => strip_tags($this->input->post('taddress',1)),
-        'p_city' =>strip_tags($this->input->post('p_city',1)),
-        't_city' =>strip_tags($this->input->post('t_city',1)),
-        't_pincode' =>strip_tags($this->input->post('t_pincode',1)),
-        'p_pincode' =>strip_tags($this->input->post('p_pincode',1)),
-        'designation' =>strip_tags($this->input->post('designation',1)),
-        'dob' =>strip_tags($this->input->post('dob',1)),
-        'gender' =>strip_tags($this->input->post('gender',1)),
-        'blood_group' =>strip_tags($this->input->post('blood_group',1))
-       
-     );
-      if($this->upload->do_upload('profile_image'))
-      {
-        $data['image'] =  $this->upload->data();
-        $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
-        $params['profile_image']=$image_path;
-      }
+         'permanent_address' => strip_tags($this->input->post('paddress',1)),
+         'temporary_address' => strip_tags($this->input->post('taddress',1)),
+         'p_city' =>strip_tags($this->input->post('p_city',1)),
+         't_city' =>strip_tags($this->input->post('t_city',1)),
+         't_pincode' =>strip_tags($this->input->post('t_pincode',1)),
+         'p_pincode' =>strip_tags($this->input->post('p_pincode',1)),
+         'designation' =>strip_tags($this->input->post('designation',1)),
+         'dob' =>strip_tags($this->input->post('dob',1)),
+         'gender' =>strip_tags($this->input->post('gender',1)),
+         'blood_group' =>strip_tags($this->input->post('blood_group',1))
+         
+       );
+        if($this->upload->do_upload('profile_image'))
+        {
+          $data['image'] =  $this->upload->data();
+          $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+          $params['profile_image']=$image_path;
+        }
 
 
       #insert personal information (employees)
       #get employ id from last insert
-      $employeeId = $this->Employee_model->add_employee($params);
+        $employeeId = $this->Employee_model->add_employee($params);
 
 
       #authentication data
@@ -140,13 +138,13 @@ $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_st
       if($sendDetails['mobile'])
       {
       // modules::run('employee/employee/addSms',$sendDetails);
-      $this->addSms($sendDetails);
+        $this->addSms($sendDetails);
       }
-       if($sendDetails['mail'])  
+      if($sendDetails['mail'])  
        { ##for mail
       // modules::run('employee/employee/addMail',$sendDetails);
         $this->addMail($sendDetails);
-    }
+      }
 
 
 
@@ -312,7 +310,7 @@ $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_st
      $id=$detailsSms['id'];
      $school_id=$detailsSms['school_id'];
      $mobile=$detailsSms['mobile'];
-    $school_name=$detailsSms['organization_name'];
+     $school_name=$detailsSms['organization_name'];
      $this->load->model('sms/Sms_model');
      $fetchTemplateData=$this->Sms_model->fetch_template_sms($school_id,$module);
 
@@ -329,13 +327,13 @@ $staff_menu_name=strtoupper($this->session->menu_staff ? $this->session->menu_st
    }
 
 ##used to search student
-function search_employee()
-{
- $search=$this->input->get("search_employee",1);
- $condition=array('school_id'=>$this->session->SchoolId);
-    echo json_encode($this->Employee_model->employeeSearch('table_map_school_employee',$condition,array('*'),$search));
+   function search_employee()
+   {
+     $search=$this->input->get("search_employee",1);
+     $condition=array('school_id'=>$this->session->SchoolId);
+     echo json_encode($this->Employee_model->employeeSearch('table_map_school_employee',$condition,array('*'),$search));
 
-}
+   }
 
 
 

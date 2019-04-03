@@ -88,7 +88,7 @@ function index()
 /*
 * Adding a new subject
 */
-function add_subject()
+public function add_subject()
 {
     $data['title']="Add Subject";
     $data['_view'] = 'add';
@@ -96,13 +96,17 @@ function add_subject()
 }
 
 
-function add()
+public function add()
 {   
     $this->load->library('form_validation');
-
+    $this->form_validation->CI =& $this;
+    // $this->load->library('MY_Form_validation');
+       $subject_name= $this->input->post('subject_name');
 
 // $this->form_validation->set_rules('password','Password','required|max_length[20]');
-    $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]');
+    // $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]|subject_check[sub]');
+    $this->form_validation->set_rules('subject_name','subject Name','callback_subject_check');
+    $this->form_validation->set_message('subject_check', 'already exists');
 
 
     if($this->form_validation->run() )     
@@ -140,11 +144,32 @@ function add()
     }
 }  
 
+public function subject_check($str)
 
+{
+
+    
+ // $this->load->library('form_validation');
+ // $this->form_validation->CI =& $this;
+    if($str=='sub')
+    {
+        // $this->form_validation->set_message('subject_check','hii');
+        return FALSE;
+    }
+    else
+    {
+        // $this->form_validation->set_message('subject_check','hii');
+        return TRUE;
+    }
+}
 function assign_subject()
 {
 $condition=array('school_id'=>$this->session->SchoolId);
 $data['course']=$this->Subject_model->select('table_courses',$condition,array('id','course_name'));
+##assigned subject list
+$subjectCondition=array('subject_assign.school_id'=>$this->session->SchoolId);
+$data['assign_subject']=$this->Subject_model->select_assign_subject('table_assign_subject',$subjectCondition,array('subject_assign.id','batch_name','name as subject_name'));
+// print_r($data['assign_subject']);die;
 $data['_view'] = 'assign_subject';
         $this->load->view('index',$data);
 
@@ -191,7 +216,8 @@ function assign_subject_add()
             'course_id' => $this->input->post('course',1),
             'batch_id' => $this->input->post('batch',1),
             'subject_ids'=>$subject[$i],
-            'school_id'=>$this->session->SchoolId
+            'school_id'=>$this->session->SchoolId,
+            'created_at'=>date('Y-m-d H:i:s')
 
 
         );
@@ -267,6 +293,9 @@ $schoolId=$this->session->SchoolId;
     $this->load->model('employee/Employee_model');
     $data['employees'] = $this->Employee_model->get_all_employees($schoolId);
     $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
+    ##assigned subject list
+    $subjectCondition=array('subject_allocation.school_id'=>$this->session->SchoolId);
+    $data['subject_allocation']=$this->Subject_model->select_allocation_subject('table_subject_allocation',$subjectCondition,array('subject_allocation.id','batch_name','subjects.name as subject_name','employees.name as staff_name'));
 $data['_view'] = 'subject_allocation';
         $this->load->view('index',$data);
 }

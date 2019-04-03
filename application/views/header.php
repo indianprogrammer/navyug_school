@@ -155,6 +155,10 @@
       {
          text-transform: uppercase;
       }
+      .error
+      {
+        color:red;
+      }
     </style>
      <?php if($this->session->auto_logout==1)
   { ?>

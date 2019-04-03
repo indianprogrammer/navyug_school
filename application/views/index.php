@@ -612,20 +612,7 @@
 <!-- /.control-sidebar -->
 
 <!-- Main Footer -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-            <!-- <script>
-                $(document).ready(function(){
-  $('.mt-2 ul li a').click(function(){
-    $('li a').removeClass("active");
-    $(this).addClass("active");
-    $('.mt-2 ul li').addClass("menu-open");
-    $(this).addClass("menu-open");
-    $('.mt-2 ul li ul li a').click(function(){
-        $(this).addClass("active");
-});
-});
-});
-</script> -->
+
 <script>
    
   $('.mt-2 ul li').find('a').each(function () {
@@ -636,43 +623,6 @@
             }
         });
     </script>
- <!-- <script>
-                $(document).ready(function(){
-  $('.mt-2 ul li').click(function(){
- $('li').addClass("menu-open");
-    $(this).addClass("menu-open");
-});
-});
-</script>
--->
-<!--  <script type="text/javascript">
-    $(document).ready(function(){
-   var url = window.location.pathname.split("/");
-var questions = url[1];
-console.log(questions);
-     var e="<?= $this->uri->segment(1) ?>";
-     console.log(e);
-     $('nav ul li a').click(function(){
 
-         $(this).addClass('menu-open');
-    });
- });
-</script> -->
- <!-- <script type="text/javascript">
-     $('.mt-2 ul li a').click(function(e) {
-    // e.preventDefault();
-    $('.mt-2 ul li.active').removeClass('active');
-    var $this = $(this);
-    $this.addClass('active');
-});
- </script>
-  <script type="text/javascript">
-     $('.mt-2 ul li ').click(function(e) {
-    e.preventDefault();
-     $('.mt-2 ul li.menu-open').removeClass('active');
-    var $this = $(this);
-    $this.addClass('menu-open');
-});
-</script> -->
 
 <?php include "footer.php"; ?>

@@ -69,6 +69,7 @@
 <!-- /.card -->
 <div class="col-md-4">
   <div class="row">
+<?php if(count($student_batch)>0) { ?>
     <div class="col-md-12">
       <div class="card card-info card-outline">
         <div class="card-header">
@@ -109,6 +110,8 @@
     <!-- /.card -->
 
   </div>
+<?php } ?>
+<?php if(count($current_issue_book)) { ?>
   <div class="col-md-12">
     <div class="card card-info card-outline">
       <div class="card-header">
@@ -150,6 +153,7 @@
   </div>
 
 </div>
+<?php } ?>
 </div>
 </div>
 <div class="col-md-5">

@@ -22,8 +22,8 @@
 							<option value="<?= $row['id'] ?>" ><?= $row['course_name'] ?></option>
 						<?php } ?>
 					</select>
+                <span class="text-danger"><?php echo form_error('course');?></span>
 				</div>
-				<!-- <span class="text-danger"><?php echo form_error('subject');?></span> -->
 			</div>
 			<div class="form-group">
 				<label for="batch_name" class="col-md-10 control-label"><span class="text-danger">*</span>Batch Name</label>
