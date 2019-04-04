@@ -242,7 +242,7 @@ function studentSearch($table_name,$condition=null,$content_display,$search)
   $this->db->where($condition);
   $this->db->join('student','student.id=map_school_student.student_id','left');
   $this->db->group_start();
-  $this->db->where("name like '$search%' ");
+  $this->db->where("name like '%$search%' ");
   $this->db->or_where("mobile like '$search%' ");
            
 

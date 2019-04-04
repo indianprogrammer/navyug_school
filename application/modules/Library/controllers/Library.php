@@ -117,16 +117,21 @@ function search_books()
     
 function issue_book_record_insert()
 {
+    // echo count($book_id);
     // print_r($this->input->post());die;
-    $book_id=$this->input->post('book_id',1);
      $condition=array('school_id'=>$this->session->SchoolId);
     $result_date=$this->Library_model->select_id('table_school_setting',$condition,array('library_due_day','fine'));
     // print_r($due_date['library_due_day']);
+    $book_id=$this->input->post('book_id',1);
     // $date_due=;
     $date_due= date('Y-m-d H:i:s', strtotime('+'.$result_date['library_due_day'].' days'));
-    for($i=0;$i<count($book_id);$i++)
+    if(count($book_id)>0)
     {
 
+
+    for($i=0;$i<count($book_id);$i++)
+    {
+ 
     $params=array(
              'user_type' => strip_tags($this->input->post('user_type',1)),
                'taker_id'=> strip_tags($this->input->post('taker_id',1)),
@@ -139,18 +144,30 @@ function issue_book_record_insert()
            );
 
         $result=$this->Library_model->insert('table_book_issue',$params);
+}
         if($result)
         {
                 $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added'
-// 'description'=> ''
+
         );
 
         redirect('library/book_issue_list');
 
         }
-}
+    }
+    else
+    {
+          $this->session->alerts = array(
+            'severity'=> 'danger',
+            'title'=> 'not added'
+
+        );
+
+        redirect('library/issue_book');
+
+    }
 
 }
 
@@ -273,6 +290,8 @@ function search_issue_record()
 
     $id=$this->input->post('search',1);
     $type=$this->input->post('type',1);
+    // $type=2;
+    // $id=68;
     if($type==1)
     {
          $condition= array('book_issue.school_id'=>$this->session->SchoolId,'taker_id'=>$id,'user_type'=>1,'book_issue.status'=>'issued');

@@ -46,6 +46,11 @@
   display: block;
 
 }
+ th
+    {
+      background-color: #eff3f9;
+      /*font-size: 15px;*/
+    }
 </style>
 <div class="row">
 	<div class="col-md-8">
@@ -83,16 +88,19 @@
 						<!-- <div class="show_table"></div> -->
 						<!-- <div class="tab" -->
 						</table>
+						<div class="col-md-8" id="error_show"></div>
+						<div class="col-md-8">
 				<button type="submit"> Submit</button>
+			</div>
 				</div>
 				<script type="text/javascript">
 					function search_student()
 					{
 						var search = $('#searchStudent').val();
 						$.ajax({
-							type: "GET",
+							type: "POST",
 							url: "<?= base_url() ?>student/search_student",
-							// data:{search_student:search,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"},
+							data:{search_student:search,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"},
 							success: function (data) {
   
 										  // console.log(data);
@@ -103,7 +111,7 @@
 										  {
 										  	for(var i=0;i<obj.length;i++)
 										  	{
-										  		newrow+='<tr onclick="get_issue_book('+obj[i]['id']+',1)"><td>'+obj[i].name+'</td>'+
+										  		newrow+='<tr onclick="get_issue_book('+obj[i]['id']+',2)"><td>'+obj[i].name+'</td>'+
 										  		'<td>'+obj[i].mobile+'</td>'+
 										  		// '<td>'+obj[i].book_no+'</td>
 										  		'</tr>';
@@ -130,9 +138,9 @@
 					{
 						var search = $('#searchEmployee').val();
 						$.ajax({
-							type: "GET",
+							type: "POST",
 							url: "<?= base_url() ?>employee/search_employee",
-							// data:{search_student:search,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"},
+							data:{search_employee:search,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"},
 							success: function (data) {
   
 										  // console.log(data);
@@ -184,7 +192,9 @@
 
 					}
 					function get_issue_book(id,type)
-					{
+					{	
+						$('#searchEmployee').val('');
+						$('#searchStudent').val('');
 						$('#show_search_result_stu').hide();
 						$('#show_search_result_emp').hide();
 						// alert(id);
@@ -200,6 +210,7 @@
 										  var newrow='';
 										  if(obj.length>0)
 										  {
+										  	$('#error_show').hide();
 												var heading=	'<thead>'+
 																							'<tr class="dynamicRows">'+
 																							'<th>Action</th>'+
@@ -225,7 +236,11 @@
 										  }
 										  else
 										  {
-										  	$('#show_table').hide();
+										  	$('#error_show').show();
+										  	$('#error_show').html("NO BOOK IS ISSUED FORM THIS");
+										  	$('#error_show').css("color","red");
+										  	 $("#error_show").fadeOut(4000);
+										  	// $('#show_table').hide();
 										  }
 
 										},

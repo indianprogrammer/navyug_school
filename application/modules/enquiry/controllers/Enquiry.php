@@ -57,7 +57,7 @@ function add()
 
     $this->form_validation->set_rules('name','enquiry Name','required|max_length[100]');
     $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
-// $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
+$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
 // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
 // $this->form_validation->set_rules('address','Address','required');
 // $this->form_validation->set_rules('latlong','latitude & longitude','required');

@@ -10,14 +10,15 @@
         <!-- /.card-header -->
         <div class="card-body">
 <form id="formEnquiry" class="horizontal-form" method="post">
+    <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash();?>">
 
    <!--  <h3 align="center">  </h3> -->
     <div class="row">
-     <div class="col-md-7 col-lg-10" >
+     <div class="col-md-12" >
         <label for="search" class="col-md-12 control-label"> Search</label>
         <div class="form-group" >
-            <input type="text" name="search"  onkeyup="enterEvent()" placeholder="Search by username,mobile number & name" class="form-control dropdown-toggle" id="search"  autofocus   autocomplete="off"  data-toggle="dropdown"/>
-            <span class="text-danger"><?=form_error('search');?></span>
+            <input type="text" name="search"  onkeyup="enterEvent()" placeholder="Search by username, mobile number & name" class="form-control dropdown-toggle" id="search"  autofocus   autocomplete="off"  data-toggle="dropdown"/>
+            <span class="text-danger"><?= form_error('search');?></span>
             <div id="table_dropdown" class=" dropdown-menu customtable" style="height:500px;"></div> 
         </div>
     </div>
@@ -25,14 +26,14 @@
         <label for="username" class="col-md-12 control-label"><span class="text-danger">*</span> User Name</label>
         <div class="form-group">
             <input type="text" name="username" value="<?=$this->input->post('username'); ?>" class="form-control" id="username"  autofocus />
-            <span class="text-danger"><?=form_error('username');?></span>
+            <span class="text-danger"><?= form_error('username');?></span>
         </div>
     </div>
     <div class="col-md-5 col-lg-4">
         <label for="trainer_Name" class="col-md-12 control-label"><span class="text-danger">*</span> Name</label>
         <div class="form-group">
            <input type="text" name="name" value="<?=$this->input->post('name'); ?>" class="form-control" id="name"  autofocus />
-           <span class="text-danger"><?=form_error('name');?></span>
+           <span class="text-danger"><?= form_error('name');?></span>
        </div>
    </div>
 
@@ -41,7 +42,7 @@
     <div class="form-group">
         <label for="mobile" class="col-md-12 control-label"><span class="text-danger">*</span>Mobile</label>
         <input type="text" name="mobile" maxlength="13" value="<?=$this->input->post('mobile'); ?>" class="form-control" id="mobile" />
-        <span class="text-danger"><?=form_error('mobile');?></span>
+        <span class="text-danger"><?= form_error('mobile');?></span>
     </div>
 </div>
 
@@ -49,7 +50,7 @@
     <label for="email" class="col-md-12 control-label">Email</label>
     <div class="form-group">
        <input type="text" name="email" value="<?=$this->input->post('email'); ?>" class="form-control" id="email" />
-       <span class="text-danger"><?=form_error('email');?></span>
+       <span class="text-danger"><?= form_error('email');?></span>
    </div>
 </div>
 <div class="col-md-5 col-lg-4">
@@ -135,12 +136,12 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-5">
-                        <button type="submit" class="btn btn-success"  onclick="submitForm('<?= base_url() ?>enquiry/add')">Add New</button>
+                        <button type="button" class="btn btn-success"  onclick="submitForm('<?= base_url() ?>enquiry/add')">Add New</button>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-5">
-                        <button type="submit" class="btn btn-success"  onclick="submitForm('<?= base_url() ?>enquiry/existing_add')">Update Existing</button>
+                        <button type="button" class="btn btn-success"  onclick="submitForm('<?= base_url() ?>enquiry/existing_add')">Update Existing</button>
                     </div>
                 </div>
             </form>
@@ -158,8 +159,7 @@
                 form.action = action;
                 form.submit();
             }
-        </script>
-        <script type="text/javascript">
+       
             $(document).ready(function() {
                 $("#mobile").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
@@ -197,7 +197,7 @@
             type: "POST",
             url: "<?= base_url() ?>enquiry/autosuggest",
             data: {
-               keyword: searchkeyword
+               keyword: searchkeyword,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"
            },
            
            success: function (data) {
@@ -226,13 +226,17 @@
     }
 });
       }
+      else
+      {
+         $('#table_dropdown').hide();
+      }
   }
   function getRow($id) {
      $.ajax({
         type: "POST",
         url: "<?= base_url() ?>enquiry/autofill",
         data: {
-          id: $id
+          id: $id,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"
       },
 
       success: function (data) {

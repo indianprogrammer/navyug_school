@@ -103,7 +103,7 @@ class Employee_model extends MY_Model
           $this->db->where($condition);
           $this->db->join('employees','employees.id=map_school_employee.employee_id','left');
           $this->db->group_start();
-          $this->db->where("name like '$search%' ");
+          $this->db->where("name like '%$search%' ");
           $this->db->or_where("mobile like '$search%' ");
                    
 

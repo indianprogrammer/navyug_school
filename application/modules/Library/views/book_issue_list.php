@@ -79,7 +79,7 @@
      
     // var id = $(this).data('id');
       
-    bootcard.confirm("Are you sure want to delete ?", function(result) {
+    bootbox.confirm("Are you sure want to delete ?", function(result) {
       if(result)
 
              $.ajax({  
@@ -90,7 +90,7 @@
               if(data){
                 $('#'+id+'').fadeOut();
                  }else{
-                        bootcard.alert("not deleted");
+                        bootbox.alert("not deleted");
                  }
               }
           

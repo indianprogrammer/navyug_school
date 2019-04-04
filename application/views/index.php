@@ -393,11 +393,11 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="<?= site_url() ?>library/books_return" class="nav-link">
+                                <a href="<?= site_url() ?>library/library_setting" class="nav-link">
                                   <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                          
-                                       Setting
+                                       SETTING
                                     </p>
                                 </a>
                             </li>

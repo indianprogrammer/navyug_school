@@ -10,7 +10,7 @@
             </div>
 <div class="card-body">
   <div class="table-responsive">
-<table id="subject_table" class="table table-striped table-bordered table-hover">
+<table id="subject_table" class="table  table-bordered table-hover">
     <thead>
     <tr >
 		<th>ID</th>
@@ -63,7 +63,7 @@
      
     // var id = $(this).data('id');
       
-    bootcard.confirm("Are you sure want to delete ?", function(result) {
+    bootbox.confirm("Are you sure want to delete ?", function(result) {
       if(result)
 
              $.ajax({  
@@ -74,7 +74,7 @@
               if(data){
                 $('#'+id+'').fadeOut();
                  }else{
-                        bootcard.alert("not deleted");
+                        bootbox.alert("not deleted");
                  }
               }
           

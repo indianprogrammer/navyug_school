@@ -17,7 +17,7 @@
   							<option value="">Please Select</option>
   							<?php foreach($course as $row)  {  ?>
 
-  								<option value="<?= $row['id'] ?>" <?=  set_select('course',  ''.$row['course_name']).'',true ?> ><?= $row['course_name'] ?></option>	
+  								<option value="<?= $row['id'] ?>" <?=  set_select('course',  ''.$row['id']).'',true ?> ><?= $row['course_name'] ?></option>	
   								<?php } ?>
   						</select>
   						<span class="text-danger"><?php echo form_error('course');?></span>
@@ -41,7 +41,7 @@
   								<option value="">Please Select</option>
   								<?php foreach($student as $row)  {  ?>
 
-  								<option value="<?= $row['id'] ?>" <?=  set_select('student',  ''.$row['name']).'',true ?>><?= $row['name'].' ,'.$row['mobile'] ?></option>	
+  								<option value="<?= $row['id'] ?>" <?=  set_select('student',  ''.$row['id']).'',true ?>><?= $row['name'].' ,'.$row['mobile'] ?></option>	
   								<?php } ?>
   							</select>
   							<span class="text-danger"><?php echo form_error('student');?></span>
@@ -67,7 +67,7 @@ function batchSelect()
 		 $.ajax({  
             url:"<?= base_url()?>subject/fetch_batch_by_course",  
             method:"POST",  
-            data:{course_id:course},  
+            data:{course_id:course,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"},  
             success:function(data){  
             	console.log(data);
             	var obj=JSON.parse(data);

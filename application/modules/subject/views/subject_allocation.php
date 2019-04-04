@@ -12,11 +12,11 @@
 
 
 
-				<?php echo form_open('subject/allote_subject_add',array("class"=>"form-horizontal")); ?>
+				<?php echo form_open('subject/allote_subject_add',array("class"=>"form-horizontal","id"=>"form_validation")); ?>
 				<div class="form-group">
 					<label class="col-md-10 control-label"><span class="text-danger">*</span>Select <?= $this->session->menu_staff?$this->session->menu_staff:'Staff' ?></label>
 					<div class="col-md-10">
-						<select class="form-control"   name="staff" id="staff"  
+						<select class="form-control"   name="staff" id="staff"  required
 						>
 						<option value="" >--Select--- </option>
 						<?php	foreach($employees as $row){ ?>
@@ -34,7 +34,7 @@
 			<div class="form-group">
 				<label class="col-md-10 control-label"><span class="text-danger">*</span>Select Course</label>
 				<div class="col-md-10">
-					<select class="form-control"  data-placeholder="Select Courses" onchange="batchSelect()"  name="course" id="course"  
+					<select class="form-control"  data-placeholder="Select Courses" onchange="batchSelect()"  name="course" id="course" required 
 					>
 					<option value="" >--Select Course--- </option>
 					<?php	foreach($course as $row){ ?>
@@ -47,7 +47,7 @@
 		<div class="form-group">
 			<label class="col-md-10 control-label"><span class="text-danger">*</span>Select Batch</label>
 			<div class="col-md-10">
-				<select class="form-control"  data-placeholder="Select Batch"  name="batch" id="batch"  
+				<select class="form-control"  data-placeholder="Select Batch"  name="batch" id="batch" required 
 				>
 
 			</select>
@@ -58,7 +58,7 @@
 	<div class="form-group">
 		<label class="col-md-10 control-label"><span class="text-danger">*</span>Select Subject</label>
 		<div class="col-md-10">
-			<select class="form-control"  data-placeholder="Select classes" id="subject"  name="subject" style="width: 100%;"
+			<select class="form-control"  data-placeholder="Select classes" id="subject"  name="subject" style="width: 100%;" required
 			>
 			<option value="" >--Select --- </option>
 			<?php	foreach($subject as $row){ ?>
@@ -114,6 +114,8 @@
 								<td></td>
 							</tr>
 						<?php } ?> 
+					</tbody>
+				</table>
 					</div>
 				</div>
 
@@ -122,7 +124,7 @@
 	</div>
 
 
-
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
 
 	<script type="text/javascript">
 

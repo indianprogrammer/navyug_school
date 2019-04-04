@@ -22,10 +22,10 @@
           <li class="list-group-item">
             <b>Mobile</b> <a class="float-right"><?= $student_info['mobile'] ?></a>
           </li>
-           <li class="list-group-item">
+          <li class="list-group-item">
             <b>Blood group</b> <a class="float-right"><?= $student_info['blood_group'] ?></a>
           </li>
-           <li class="list-group-item">
+          <li class="list-group-item">
             <b>Dob</b> <a class="float-right"><?= $student_info['dob'] ?></a>
           </li>
           <li class="list-group-item">
@@ -38,7 +38,7 @@
             <b>Password</b> <a class="float-right"><?= $student_info['clear_text'] ?></a>
           </li>
 
-          <li class="list-group-item">
+         <!--  <li class="list-group-item">
             <b>classes Join</b> <a class="float-right">
               <?php  $studentClasses = explode(',', $student_info['classes']);
 
@@ -48,7 +48,7 @@
              }  ?> 
 
            </a>
-         </li>
+         </li> -->
 
          <li class="list-group-item">
           <b>Permanent Location</b> <a class="float-right"><?= $student_info['permanent_address'] ?></a>
@@ -69,11 +69,53 @@
 <!-- /.card -->
 <div class="col-md-4">
   <div class="row">
-<?php if(count($student_batch)>0) { ?>
+    <?php if(count($student_batch)>0) { ?>
+      <div class="col-md-12">
+        <div class="card card-info card-outline">
+          <div class="card-header">
+            <h3 class="card-title">Batch and Cources</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+              </button>
+            </div>
+            <!-- /.card-tools -->
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body" style="display: block;">
+           <table class="table">
+            <thead>
+              <tr>
+                <th>Course name</th>
+                <th>Batch  name</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach($student_batch as $row)
+              { ?>
+
+                <tr>
+                  <td><?= $row['course_name'] ?></td>
+                  <td><?= $row['batch_name'] ?></td>
+                </tr>
+
+
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </div>
+  <?php } ?>
+  <?php if(count($current_issue_book)) { ?>
     <div class="col-md-12">
       <div class="card card-info card-outline">
         <div class="card-header">
-          <h3 class="card-title">Batch and Cources</h3>
+          <h3 class="card-title">Book Issue</h3>
 
           <div class="card-tools">
             <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -86,18 +128,20 @@
          <table class="table">
           <thead>
             <tr>
-              <th>Course name</th>
-              <th>Batch  name</th>
+              <th>title</th>
+              <th>issue date</th>
+              <th>due date</th>
 
             </tr>
           </thead>
           <tbody>
-            <?php foreach($student_batch as $row)
+            <?php foreach($current_issue_book as $row)
             { ?>
 
-              <tr>
-                <td><?= $row['course_name'] ?></td>
-                <td><?= $row['batch_name'] ?></td>
+              <tr  data-toggle="tooltip" title="Author-  <?=$row['author'] ?>,  Edition - <?= $row['edition'] ?>">
+                <td><?= $row['title'] ?></td>
+                <td><?= $row['issue_date'] ?></td>
+                <td><?= $row['due_date'] ?></td>
               </tr>
 
 
@@ -107,56 +151,12 @@
       </div>
       <!-- /.card-body -->
     </div>
-    <!-- /.card -->
 
   </div>
 <?php } ?>
-<?php if(count($current_issue_book)) { ?>
-  <div class="col-md-12">
-    <div class="card card-info card-outline">
-      <div class="card-header">
-        <h3 class="card-title">Book Issue</h3>
-
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-          </button>
-        </div>
-        <!-- /.card-tools -->
-      </div>
-      <!-- /.card-header -->
-      <div class="card-body" style="display: block;">
-       <table class="table">
-        <thead>
-          <tr>
-            <th>title</th>
-            <th>issue date</th>
-            <th>due date</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach($current_issue_book as $row)
-          { ?>
-
-            <tr  data-toggle="tooltip" title="Author-  <?=$row['author'] ?>,  Edition - <?= $row['edition'] ?>">
-              <td><?= $row['title'] ?></td>
-              <td><?= $row['issue_date'] ?></td>
-              <td><?= $row['due_date'] ?></td>
-            </tr>
-
-
-          <?php } ?>
-        </tbody>
-      </table>
-    </div>
-    <!-- /.card-body -->
-  </div>
-
-</div>
-<?php } ?>
 </div>
 </div>
-<div class="col-md-5">
+<div class="col-md-5" id="ledger_box" style="display:none">
 
  <div class="card card-info card-outline">
   <div class="card-header">
@@ -170,7 +170,7 @@
   </div>
   <!-- /.card-header -->
   <div class="card-body" style="display: block;">
-    <table id="ledger" class="table table-borderd" style="background-color: white"><?php str_replace('null','-','null'); ?></table>
+    <table id="ledger" class="table table-bordered" ><?php str_replace('null','-','null'); ?></table>
   </div>
 </div>
 </div>
@@ -191,21 +191,31 @@
 var obj=JSON.parse(data);
 console.log(obj);
 // $('#page').hide();
-var tabledata,i,count=1;
+var tabledata,i,count=1,debit=0,credit=0,balance=0;
+if(obj.length>0)
+{
+  $('#ledger_box').show();
 for(i=0;i<obj.length;i++)
 {
-                  // if(obj[i].invoice_id==null )
-                  // {
-                  //   obj[i].invoice_id="-";
-                  tabledata+='<tr><td>'+count+'</td><td>'+obj[i].invoice_id+'</td><td>'+obj[i].reciept_id+'</td><td>'+obj[i].debit+'</td><td>'+obj[i].credit+'</td><td>'+obj[i].date+'</td></tr>';
+                debit+=parseInt(obj[i].debit);
+                console.log('debit:'+debit);
+                credit+= parseInt(obj[i].credit);
+                 console.log('credit-'+credit);
+                balance=debit-credit;
+                console.log(balance);
+                  tabledata+='<tr><td>'+count+'</td><td>'+obj[i].invoice_id+'</td><td>'+obj[i].reciept_id+'</td><td>'+obj[i].debit+'</td><td>'+obj[i].credit+'</td><td>'+balance+'</td><td>'+obj[i].date+'</td></tr>';
                   count ++;
                 }
-                
-                $('#ledger').html('<tr><th>S. no.</th><th>Invoice Number</th><th>Reciept Number</th><th>Debit</th><th>Credit</th><th>Date</th>'+tabledata+'');
+                var total_balance=debit-credit;
+                $('#ledger').html('<thead><tr><th>S. no.</th><th>Invoice Number</th><th>Reciept Number</th><th>Debit</th><th>Credit</th><th>Balance</th><th>Date</th></thead><tbody>'+tabledata+'</tbody><tfoot><tr><td colspan="5"><b>Closing Balance  :</b></td><td colspan="2">'+total_balance+'</td></tr></tfoot>');
               }
 
 
-
+},
+error:function(data)
+{
+  console.log('error');
+}
 
             });
 

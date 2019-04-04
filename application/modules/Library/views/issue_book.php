@@ -60,7 +60,7 @@
 
 			</div>
 			<div class="card-body">
-				<?php echo form_open_multipart('library/issue_book_record_insert',array("class"=>"form-horizontal")); ?>
+				<?php echo form_open('library/issue_book_record_insert',array("class"=>"form-horizontal")); ?>
 				<div class="row">
 					
 					<div class="form-group col-md-6">
@@ -72,8 +72,8 @@
 						<thead>
 							<tr class="dynamicRows">
 								<th>book title</th>
-								<th>isbn no</th>
 								<th>book no</th>
+								<th>isbn no</th>
 								<th>author</th>
 								<th>action</th>
 
@@ -293,16 +293,22 @@ error:function(data)
 
 		}
 
-
+ $(document).on('click', '.remove', function() {
+            var delete_row = $(this).data("row");
+            $('#' + delete_row).remove();
+        });
 
 		function fill_detail(id,title,book_no,isbn,author)
 		{
+			// search
+			$('#search').val('');
 			$('#show_search_result').hide();
 			var newrow='';
 			 $('.search').val(''); 
-			newrow='<tr><td><input type="hidden" name="book_id[]" value="'+id+'" >'+title+'</td><td>'+book_no+'</td><td>'+isbn+'</td><td>'+author+'</td><td><button type="button" class="btn btn-danger">-</button></tr>';
+			newrow='<tr id="row'+count+'"  ><td><input type="hidden" name="book_id[]" value="'+id+'" >'+title+'</td><td>'+book_no+'</td><td>'+isbn+'</td><td>'+author+'</td><td><button type="button" class="btn btn-danger remove" data-row="row' + count + '">-</button></tr>';
   				$('.table_info').show();
 			 $(newrow).insertAfter($('table tr.dynamicRows:last'));
+			 count++;
 		}
 
 		function student_details(id,name,mobile,image)

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
+  <title>LOGIN</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,14 +14,14 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url()?>assets/admin/dist/css/adminlte.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="<?= base_url()?>assets//admin/plugins/iCheck/square/blue.css">
+  <link rel="stylesheet" href="<?= base_url()?>assets/admin/plugins/iCheck/square/blue.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>LOGIN PAGE</b></a>
+    <a href="#"><b>LOGIN PAGE</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -38,13 +38,17 @@
     }
     ?>
        <?= form_open('login/process') ?>
-        <div class="form-group has-feedback">
-          <input type="text" class="form-control" name="username" placeholder="username">
-          <span class="fa fa-envelope form-control-feedback"></span>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" name="username" placeholder="Username" autofocus>
+          <div class="input-group-append">
+             <span class="fa fa-envelope input-group-text"></span>
         </div>
-        <div class="form-group has-feedback">
+        </div>
+        <div class="input-group mb-3">
           <input type="password" class="form-control" placeholder="Password" name="password">
-          <span class="fa fa-lock form-control-feedback"></span>
+          <div class="input-group-append">
+         <span class="fa fa-lock input-group-text"></span>
+        </div>
         </div>
         <div class="row">
           <div class="col-8">

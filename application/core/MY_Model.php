@@ -58,7 +58,7 @@ class MY_Model extends CI_Model
   public $table_quotation_details="quotation_details";
   public $table_item_graph="item_report";
   public $table_service_purchase="service_purchase";
-
+     public $table_map_school_subject='map_school_subject';
     public $table_map_school_student='map_school_student';
     public $table_map_school_employee='map_school_employee';
     public $table_master_city="master_city";
