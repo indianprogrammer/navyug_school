@@ -12,12 +12,13 @@
 
 
 
-				<?php echo form_open('classes/add_batch_process',array("class"=>"form-horizontal")); ?>
+				<?php echo form_open('classes/add_batch_process',array("class"=>"form-horizontal","id"=>"form_validation")); ?>
 				<div class="form-group">
 					<label class="col-md-10 control-label"><span class="text-danger">*</span>Select Course</label>
 					<div class="col-md-10">
-						<select class="form-control"  data-placeholder="Select Courses"  name="course" style="width: 100%;" required="required"
+						<select class="form-control"  data-placeholder="Select Courses"  name="course" style="width: 100%;" required="required" autofocus
 						>
+                        <option value="">-select-</option>
 						<?php	foreach($course as $row){ ?>
 							<option value="<?= $row['id'] ?>" ><?= $row['course_name'] ?></option>
 						<?php } ?>
@@ -28,7 +29,7 @@
 			<div class="form-group">
 				<label for="batch_name" class="col-md-10 control-label"><span class="text-danger">*</span>Batch Name</label>
 				<div class="col-md-10">
-					<input type="text" name="batch_name" value="<?php echo $this->input->post('batch_name'); ?>" class="form-control" id="batch_name"  autofocus />
+					<input type="text" name="batch_name" value="<?php echo $this->input->post('batch_name'); ?>" class="form-control" id="batch_name" required   />
 					<span class="text-danger"><?php echo form_error('batch_name');?></span>
 				</div>
 			</div>
@@ -40,7 +41,7 @@
                       <!-- <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                     </div> -->
-                    <input type="text" class="form-control datemask" required   name="start_date" id="start_date">
+                    <input type="text" class="form-control datemask" required   name="start_date" id="start_date" >
                 </div>
                 <span class="text-danger"></span>
             </div>
@@ -72,6 +73,8 @@
 <?php echo form_close(); ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="<?= base_url() ?>assets/admin/plugins/jqueryui/jquery-ui.min.js"></script>
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="<?= base_url() ?>assets/admin/js/form_validation.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {

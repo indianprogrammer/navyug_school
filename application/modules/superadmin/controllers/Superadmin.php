@@ -110,6 +110,11 @@ function add()
   }
         // var_dump($params);die;
   $school_id = $this->Super_model->add_school($params);
+##insert school setting
+  $settingParam=array('school_id'=>$school_id);
+    $this->Super_model->insert('table_school_setting',$settingParam);
+
+
   $data=$this->session->set_flashdata('status','Successfully added');
   $this->session->alerts = array(
     'severity'=> 'success',
@@ -230,6 +235,7 @@ function adminAdd()
 	$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
 	$this->form_validation->set_rules('paddress','Address','required');
 	$this->form_validation->set_rules('taddress','Address','required');
+  $this->form_validation->set_rules('school_id','Organization ','required');
 
 	if($this->form_validation->run())     
 	{   
@@ -267,7 +273,8 @@ function adminAdd()
   	'email'=> $email,
   	'autorization_id'=> $autorizationId,
   	'clear_text'=> $password,
-  	'user_id'=> $userId
+  	'user_id'=> $userId,
+    'school_id'=>$this->input->post('school_id',1)
   );
   #authentication table insert (username,password,email,autorizationid,userid)
   //insertion code
@@ -306,18 +313,18 @@ function adminAdd()
 
 
   #create relation map (school->employ)
-  $schoolEmployMap = array(
-    'school_id' => $this->session->SchoolId,
-    'employee_id' => $employeeId,
-  );
-  //insertion code here
-  $map = $this->Employee_model->add_mapping($schoolEmployMap);
+  // $schoolEmployMap = array(
+  //   'school_id' => $this->session->SchoolId,
+  //   'employee_id' => $employeeId,
+  // );
+ 
+  // $map = $this->Employee_model->add_mapping($schoolEmployMap);
   $this->session->alerts = array(
     'severity'=> 'success',
-    'title'=> 'successfully added',
-    'description'=> ''
+    'title'=> 'successfully added'
+    
   );
-  redirect('superadmin/school_list');
+  redirect('superadmin/organization_list');
 
 
 }

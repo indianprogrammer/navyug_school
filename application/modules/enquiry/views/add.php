@@ -9,7 +9,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-<form id="formEnquiry" class="horizontal-form" method="post">
+<form id="form_validation" class="horizontal-form" method="post" >
     <input type="hidden" name="<?= $this->security->get_csrf_token_name();?>" value="<?= $this->security->get_csrf_hash();?>">
 
    <!--  <h3 align="center">  </h3> -->
@@ -32,7 +32,7 @@
     <div class="col-md-5 col-lg-4">
         <label for="trainer_Name" class="col-md-12 control-label"><span class="text-danger">*</span> Name</label>
         <div class="form-group">
-           <input type="text" name="name" value="<?=$this->input->post('name'); ?>" class="form-control" id="name"  autofocus />
+           <input type="text" name="name" value="<?=$this->input->post('name'); ?>" class="form-control" id="name"  autofocus required/>
            <span class="text-danger"><?= form_error('name');?></span>
        </div>
    </div>
@@ -41,7 +41,7 @@
    <div class="col-md-5 col-lg-4">
     <div class="form-group">
         <label for="mobile" class="col-md-12 control-label"><span class="text-danger">*</span>Mobile</label>
-        <input type="text" name="mobile" maxlength="13" value="<?=$this->input->post('mobile'); ?>" class="form-control" id="mobile" />
+        <input type="text" name="mobile" maxlength="13" value="<?=$this->input->post('mobile'); ?>" class="form-control" id="mobile" required />
         <span class="text-danger"><?= form_error('mobile');?></span>
     </div>
 </div>
@@ -87,7 +87,7 @@
         <label for="assign" class="col-md-12 control-label">Assign to</label>
         <div class="form-group">
 
-            <select name="assign" id="assign" class="form-control" >
+            <select name="assign" id="assign" class="form-control" required>
                 <option value="">---select---</option>
                 <option value="0">No one</option>
                 <?php   foreach($assign as $row){ ?>
@@ -103,7 +103,7 @@
         <label for="purpose" class="col-md-12 control-label"><span class="text-danger">*</span>Attend Type</label>
         <div class="form-group">
 
-            <select name="attend_type" id="type" class="form-control" >
+            <select name="attend_type" id="type" class="form-control" required >
                 <option value="">---select---</option>
 
                 <option value="sms">Sms</option>
@@ -120,7 +120,7 @@
     <div class="col-md-5 col-lg-4">
         <label for="comments" class="col-md-12 control-label"><span class="text-danger">*</span>comments</label>
         <div class="form-group">
-            <textarea name="comments" class="form-control" id="comments"><?=$this->input->post('comments'); ?></textarea>
+            <textarea name="comments" class="form-control" id="comments" required ><?=$this->input->post('comments'); ?></textarea>
             <span class="text-danger"><?=form_error('comments');?></span>
         </div>
     </div>
@@ -152,10 +152,11 @@
 
             <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
             <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
-
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="<?= base_url() ?>assets/admin/js/form_validation.js"></script>
             <script type="text/javascript">
               function submitForm(action) {
-                var form = document.getElementById('formEnquiry');
+                var form = document.getElementById('form_validation');
                 form.action = action;
                 form.submit();
             }
@@ -185,7 +186,7 @@
 
     // $("#country").keyup(function () {
       var searchkeyword = $('#search').val();
-      var min_length = 1;
+      var min_length = 2;
 
       if (searchkeyword.length >= min_length) {
          // console.log(keyword);

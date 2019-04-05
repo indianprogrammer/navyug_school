@@ -1,3 +1,21 @@
+<div class="row" >
+    <div class="col-md-12">
+        <div class="card card-info">
+            <div class="card-header with-border">
+                <h2 class="card-title">ADD ADMIN</h2>
+            </div>
+             <div class="card-body">
+
+
+
+
+
+
+
+
+
+
+
 <?php echo form_open_multipart('superadmin/adminAdd',array("class"=>"form-horizontal")); ?>
 	
 	<div class="form-group">
@@ -53,7 +71,7 @@
 	</div>
 	<div class="form-group">
 		<div class="checkbox col-md-5 control-label">
-	      <label><input type="checkbox" name="optradio" id="check"><span style="font-weight: 13;">    If corresponding address is same as permanent address<span></label>
+	      <label><input type="checkbox" name="optradio" id="check"><span style="font-weight: 13;">    If corresponding address is same as permanent address</span></label>
 	    </div>
 	</div>
 	<div class="form-group">
@@ -70,6 +88,11 @@
 	</div>
 
 <?php echo form_close(); ?>
+</div>
+</div>
+</div>
+</div>
+
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <!-- script for checkbox -->
 <script>

@@ -1,7 +1,7 @@
 <?php
 
 
-class Super_model extends CI_Model
+class Super_model extends MY_Model
 {
   function __construct()
   {

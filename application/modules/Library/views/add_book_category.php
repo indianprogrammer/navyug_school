@@ -15,12 +15,12 @@
 
 			</div>
 			<div class="card-body">
-				<?php echo form_open('library/add_book_category_process',array("class"=>"form-horizontal")); ?>
+				<?php echo form_open('library/add_book_category_process',array("class"=>"form-horizontal","id"=>"form_validation")); ?>
 
-	<div class="form-group">
+	<div class="form-group"  data-toggle="tooltip" title="tips- maths,physics,electronic,civil...etc">
 		<label for="subject_name" class="col-md-12 control-label"><span class="text-danger">*</span>Enter Category Name</label>
 		<div class="col-md-12 col-sm-8">
-			<input type="text" name="cat_name" value="<?php echo $this->input->post('cat_name'); ?>" class="form-control"  data-toggle="tooltip" title="tips- maths,physics,electronic,civil...etc" required autofocus/>
+			<input type="text" name="cat_name" value="<?php echo $this->input->post('cat_name'); ?>" class="form-control"  required autofocus/>
 			<span class="text-danger"><?php echo form_error('cat_name');?></span>
 		</div>
 	</div>
@@ -36,6 +36,7 @@
 			</div>
 		</div>
 	</div>
+<?php 	if(count($book_category)>0) { ?>
 <div class="col-md-7">
 <div class="card card-default">
 			<div class="card-header def">
@@ -68,6 +69,7 @@
 			</div>
 		</div>
 	</div>
-
+<?php } ?>
 </div>
-	
+	<script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="<?= base_url() ?>assets/admin/js/form_validation.js"></script>

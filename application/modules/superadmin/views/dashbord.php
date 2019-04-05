@@ -18,12 +18,11 @@
   <!-- /.content-header -->
 
   <!-- Main content -->
-  <section class="content">
-    <div class="container-fluid">
+
       <!-- Info boxes -->
       <div class="row">
         <div class="col-12 col-sm-6 col-md-2">
-         <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
+         <a href="<?= base_url() ?>superadmin/organization_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
           <div class="info-box">
             <span class="info-box-icon bg-success elevation-1"><i class="fa fa-institution"></i></span>
 
@@ -52,7 +51,7 @@
       </div>
       <!-- /.col -->
              <div class="col-12 col-sm-6 col-md-2">
-         <a href="<?= base_url() ?>superadmin/school_list" data-toggle="tooltip" data-placement="top" title="click here for more information of schools">  
+         <a href="#">  
           <div class="info-box">
             <span class="info-box-icon bg-info elevation-1"><i class="fa fa-money"></i></span>
 
@@ -138,8 +137,7 @@
         <!-- /.info-box -->
       </div>
   </div>
-</div>
-  </section>  
+
   <div class="row">
     <div class="col-md-6">
       <div class="card ">

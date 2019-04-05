@@ -241,7 +241,7 @@ function check_book_category($str)
       if($data)
       {
         // echo 'yes';
-         $this->form_validation->set_message('check_book_category', 'This {field} field is already exists');
+         // $this->form_validation->set_message('check_book_category', 'This {field} field is already exists');
         return false;
       }
       else
@@ -307,7 +307,8 @@ function search_issue_record()
 }
 function library_setting()
 {
-
+     $condition=array('school_id'=>$this->session->SchoolId);
+$data['library_setting']=$this->Library_model->select_id('table_school_setting',$condition,array('*'));
 $data['_view'] = 'due_date_setting';
         $this->load->view('index',$data);
 
@@ -324,7 +325,28 @@ function add_library_setting()
 
    );
    $result=$this->Library_model->update_col('table_school_setting',$condition,$params);
+    if($result=='success')
+    {
 
+        $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added'
+
+        );
+
+        redirect('library/library_setting');
+    }
+    else
+    {
+
+        $this->session->alerts = array(
+            'severity'=> 'danger',
+            'title'=> 'not updated'
+
+        );
+
+        redirect('library/library_setting');
+    }
 
 }
 // function search_issue_record_stu()

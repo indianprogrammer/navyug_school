@@ -17,7 +17,7 @@ class Account extends MY_Controller{
 */
 function invoice_list()
 {   
-  $data['invoice_prefix']='inv_';
+  $data['invoice_prefix']='';
   $data['title']="Invoice List";
   $schoolId=$this->session->SchoolId;
   if($this->input->get('student_id'))

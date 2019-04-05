@@ -10,14 +10,14 @@
   			<!-- /.card-header -->
   			<div class="card-body">
   				<div class="col-md-8">
-  					<?= form_open('student/assign_student_process',array("class"=>"form-horizontal")); ?>
+  					<?= form_open('student/assign_student_process',array("class"=>"form-horizontal","id"=>"form_validation")); ?>
   					<div class="form-group">
   						<label for="Gender">COURSE</label>
-  						<select class="form-control"  name="course" id="course"  onchange="batchSelect()">
+  						<select class="form-control"  name="course" id="course" required  onchange="batchSelect()">
   							<option value="">Please Select</option>
   							<?php foreach($course as $row)  {  ?>
 
-  								<option value="<?= $row['id'] ?>" <?=  set_select('course',  ''.$row['id']).'',true ?> ><?= $row['course_name'] ?></option>	
+  								<option value="<?= $row['id'] ?>" <?=  set_select('course',  ''.$row['id'].'') ?> ><?= $row['course_name'] ?></option>	
   								<?php } ?>
   						</select>
   						<span class="text-danger"><?php echo form_error('course');?></span>
@@ -27,7 +27,7 @@
   					<div class="col-md-8">
   						<div class="form-group">
   							<label for="Gender">BATCH</label>
-  							<select class="form-control" data-required="true" name="batch" id="batch">
+  							<select class="form-control"  name="batch" id="batch" required>
 
 
   							</select>
@@ -37,11 +37,11 @@
   					<div class="col-md-8">
   						<div class="form-group">
   							<label for="Gender">Select Student</label>
-  							<select class="form-control" data-required="true" name="student" >
+  							<select class="form-control"  name="student" required >
   								<option value="">Please Select</option>
   								<?php foreach($student as $row)  {  ?>
 
-  								<option value="<?= $row['id'] ?>" <?=  set_select('student',  ''.$row['id']).'',true ?>><?= $row['name'].' ,'.$row['mobile'] ?></option>	
+  								<option value="<?= $row['id'] ?>" <?=  set_select('student',  ''.$row['id'].'') ?> ><?= $row['name'].' ,'.$row['mobile'] ?></option>	
   								<?php } ?>
   							</select>
   							<span class="text-danger"><?php echo form_error('student');?></span>
@@ -57,6 +57,8 @@
   		</div>
   	</div>
   </div>
+  <script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="<?= base_url() ?>assets/admin/js/form_validation.js"></script>
 <script type="text/javascript">
 	
 function batchSelect()
@@ -76,7 +78,7 @@ function batchSelect()
             	{
             	for(var i=0;i<obj.length;i++)
             	{
-            		row+='<option value="'+obj[i].id+'">'+obj[i].batch_name+'</option>'
+            		row+='<option value="'+obj[i].id+'" >'+obj[i].batch_name+'</option>'
 
             	}
             	}

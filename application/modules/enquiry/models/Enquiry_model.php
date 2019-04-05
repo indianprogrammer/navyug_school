@@ -125,11 +125,12 @@ function GetRow($query,$school_id=null)
   if(!is_null($school_id))
 
     $this->db->where("school_id",$school_id);
-
+  $this->db->group_start();
   $this->db->where("name like '%$query%'");
 // $this->db->where("student_name like '%$query%'");
   $this->db->or_where("mobile like '%$query%'");
   $this->db->or_where("username like '%$query%'");
+  $this->db->group_end();
 // $query=$this->db->query("select * from student where email like '%$keyword'");
   return $this->db->get()->result_array();
 

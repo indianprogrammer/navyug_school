@@ -6,7 +6,7 @@
 
 			</div>
 			<div class="card-body">
-				<?= form_open_multipart('library/add_book_process',array("class"=>"form-horizontal","id"=>"form_validation")); ?>
+				<?= form_open('library/add_book_process',array("class"=>"form-horizontal","id"=>"form_validation")); ?>
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<label for="reg_input_name">Purchase Date</label>

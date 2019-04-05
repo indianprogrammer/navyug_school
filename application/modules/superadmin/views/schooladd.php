@@ -1,8 +1,8 @@
 <div class="row" >
     <div class="col-md-12">
-        <div class="box box-info">
-            <div class="box-header with-border">
-                <h2 class="box-title">Add Organization</h2>
+        <div class="card card-info">
+            <div class="card-header with-border">
+                <h2 class="card-title">Add Organization</h2>
             </div>
             <?php if($status=$this->session->flashdata('status')){?>
                <div class="alert alert-success">
@@ -10,7 +10,7 @@
             </div>                 
         <?php } ?> 
         <?= form_open_multipart('superadmin/add') ?>
-        <div class="box-body">
+        <div class="card-body">
             <div class="row clearfix">
                 <div class="col-md-5 col-sm-12">
                     <label for="name" class="control-label"><span class="text-danger">*</span>Organization Name</label>
@@ -116,7 +116,7 @@
         </div>
 
 
-        <div class="box-footer">
+        <div class="card-footer">
             <button type="submit" class="btn btn-success">
                 <i class="fa fa-check"></i> Save
             </button>
@@ -234,29 +234,7 @@
 <!-- dropdown city and state ajax  end -->
 
 <!-- only number allowed validation -->
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#contact_pri,#contact_sec").keydown(function (e) {
-        // Allow: backspace, delete, tab, escape, enter and .
-        if ($.inArray(e.keyCode, [46, 8, 9, 25, 13, 110, 190]) !== -1 ||
-             // Allow: Ctrl/cmd+A
-             (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-             // Allow: Ctrl/cmd+C
-             (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
-             // Allow: Ctrl/cmd+X
-             (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
-             // Allow: home, end, left, right
-             (e.keyCode >= 35 && e.keyCode <= 39)) {
-                 // let it happen, don't do anything
-             return;
-         }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 55)) && (e.keyCode < 96 || e.keyCode > 105)  ) {
-            e.preventDefault();
-        }
-    });
-    });
-</script>
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <script type="text/javascript">

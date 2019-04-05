@@ -1,10 +1,20 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Order List</h3>
+        <div class="card-tools pull-right">
+          <a href="<?= site_url('superadmin/add_organization'); ?>" class="btn btn-success btn-sm right">Add</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
 
 
 
 
-<h4>Order List</h4>
 
-<table id ="parent_table" class="table table-striped table-bordered table-responsive">
+<table id ="parent_table" class="table  table-bordered">
     
     <thead>
     	<tr>
@@ -54,6 +64,10 @@
 	<?php } ?>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+</div>
 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script>

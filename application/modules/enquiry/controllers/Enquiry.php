@@ -20,7 +20,7 @@ function index()
     $data['enquiry'] = $this->Enquiry_model->get_all_enquirys($schoolId);
 
     $data['_view'] = 'enquiryList';
-    $this->load->view('../index',$data);
+    $this->load->view('index',$data);
 }
 
 /*
@@ -57,7 +57,8 @@ function add()
 
     $this->form_validation->set_rules('name','enquiry Name','required|max_length[100]');
     $this->form_validation->set_rules('email','Email','required|max_length[40]|valid_email');
-$this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
+    $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
+    // $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
 // $this->form_validation->set_rules('profile_image','Profile Image','required|max_length[255]');
 // $this->form_validation->set_rules('address','Address','required');
 // $this->form_validation->set_rules('latlong','latitude & longitude','required');
@@ -66,23 +67,23 @@ $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
     {   
         $params = array(
 
-            'name' => $this->input->post('name'),
-            'type'=>$this->input->post('type'),
-            'username'=>$this->input->post('username'),
-            'email' => $this->input->post('email'),
-            'mobile' => $this->input->post('mobile'),
+            'name' => $this->input->post('name',1),
+            'type'=>$this->input->post('type',1),
+            'username'=>$this->input->post('username',1),
+            'email' => $this->input->post('email',1),
+            'mobile' => $this->input->post('mobile',1),
 // 'location' => $this->input->post('latlong'),
-            'address' => $this->input->post('address'),
-            'remarks' => $this->input->post('remarks'),
-            'assign_to'=>$this->input->post('assign'),
-            'comments'=>$this->input->post('comments')
+            'address' => $this->input->post('address',1),
+            'remarks' => $this->input->post('remarks',1),
+            'assign_to'=>$this->input->post('assign',1),
+            'comments'=>$this->input->post('comments',1)
 
 // 'school_id'=>$this->session->SchoolId
 // 'date'=>date('d-m-y/h-m')
 
         );
         $enquiryInfoSms= array(
-            'mobile'=>$this->input->post('mobile'),
+            'mobile'=>$this->input->post('mobile',1),
             'school_id'=>$this->session->SchoolId,
             'module'=>'enquiry',
             'student_name'=>$params['name']
@@ -114,8 +115,7 @@ $this->form_validation->set_rules('mobile','Mobile','required|max_length[15]');
     }
     else
     {            
-        $data['_view'] = 'add';
-        $this->load->view('../index',$data);
+        $this->add_enquiry();
     }
 }  
 function existing_add()
@@ -185,8 +185,7 @@ function existing_add()
     }
     else
     {            
-        $data['_view'] = 'add';
-        $this->load->view('../index',$data);
+        $this->add_enquiry();
     }
 
 

@@ -138,7 +138,16 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-
+<section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <!-- <h2><?= ucfirst($this->uri->segment(1)) ?></h2> -->
+            </div>
+           
+      </div>
+  </div><!-- /.container-fluid -->
+</section>
     <!-- /.content-header -->
 
     <!-- Main content -->

@@ -86,13 +86,13 @@
         <div class="clearfix hidden-md-up"></div>
 
         <div class="col-12 col-sm-6 col-md-3">
-         <a href="<?= base_url() ?>classes" data-toggle="tooltip" data-placement="top" title="click here for more information">  
+         <a href="<?= base_url() ?>classes/batch_list" data-toggle="tooltip" data-placement="top" title="click here for more information">  
           <div class="info-box mb-3">
             <span class="info-box-icon bg-success elevation-1"><i class="fa fa-shopping-cart"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Classes</span>
-              <span class="info-box-number class">
+              <span class="info-box-text">Batches</span>
+              <span class="info-box-number batches">
                 <div class="ajax_loading">         
                   <div class="col-md-3">
 
@@ -144,7 +144,7 @@
     <!-- /.col -->
     
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="card">
           <div class="card-header">
             <h5 class="card-title">Monthly Sales Report</h5>
@@ -207,7 +207,7 @@
   
     <!-- /.row -->
     
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="card ">
           <div class="card-header">
             <h3 class="card-title">Invoice information per month </h3>
@@ -261,9 +261,9 @@
           <!-- /.card-body -->
         </div>
       </div>
-    </div>
-    <div class="row">
-       <div class="col-md-6">
+    <!-- </div>
+    <div class="row"> -->
+       <div class="col-md-4">
       <div class="card ">
         <div class="card-header">
           <h3 class="card-title">Student Addmission per month</h3>
@@ -359,8 +359,13 @@
 
      $('.subject').html(obj.subject);
      $('.employee').html(obj.employee);
-     $('.class').html(obj.class);
+     // $('.class').html(obj.class);
+     $('.batches').html(obj.batches);
      $('.student').html(obj.students);
+     $('.pending').html(obj.pending_invoice);
+     $('.pending_amount').html(obj.pending_amount);
+     // $('.paid').html(obj.paid);
+     $('.partial').html(obj.partial_invoice);
    }});
 
  });

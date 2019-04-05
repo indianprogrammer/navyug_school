@@ -27,6 +27,14 @@ class Settings extends MX_Controller
 }
 function organization_profile()
 {
+
+    if($this->input->post())
+    {
+        $this->input->post('')    
+
+    }
+    else
+    {
     $school_id=$this->session->SchoolId;
         // echo $school_id;
     $condition=array('id'=>$school_id);
@@ -34,6 +42,7 @@ function organization_profile()
         // print_r($data['school_info']);die;
     $data['_view'] = 'organization_profile';
     $this->load->view('index',$data);
+    }
 }
 function menu_setting()
 {

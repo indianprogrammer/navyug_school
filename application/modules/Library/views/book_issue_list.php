@@ -10,7 +10,7 @@
             </div>
 <div class="card-body">
   <div class="table-responsive">
-<table id="subject_table" class="table table-striped table-bordered table-hover">
+<table id="subject_table" class="table  table-bordered table-hover">
     <thead>
     <tr>
 		<th>ID</th>
@@ -33,7 +33,7 @@
     <tr id="<?= $row['id'] ?>">
 		<td><?= $count++ ?></td>
 		
-    <td><?= $row['name']; ?></td>
+    <td><a href="<?= base_url() ?>student/getFullDetails?student_id=<?= $row['name']; ?>"></a><?= $row['name']; ?></td>
     <td><?= $row['title']; ?></td>
     <td><?= $row['book_no']; ?></td>
     <td><?= $row['author']; ?></td>

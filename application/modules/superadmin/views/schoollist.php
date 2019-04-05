@@ -1,14 +1,15 @@
 <div class="row">
   <div class="col-md-12 col-sm-12">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Organization List</h3>
-        <div class="box-tools pull-right">
-          <a href="<?= site_url('superadmin/add_school'); ?>" class="btn btn-success btn-sm right">Add</a>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Organization List</h3>
+        <div class="card-tools pull-right">
+          <a href="<?= site_url('superadmin/add_organization'); ?>" class="btn btn-success btn-sm right">Add</a>
         </div>
       </div>
-      <div class="box-body table-responsive">
-        <table id="school_table" class="table table-striped table-responsive table-sm table-hover">
+      <div class="card-body">
+        <div class="table-responsive">
+        <table id="school_table" class="table table-bordered   table-sm table-hover">
           <thead>
             <tr>
               <th>ID</th>
@@ -47,9 +48,9 @@
                      
                       
                       <div class="btn-group">
-                        <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit"><a href="<?=  site_url('superadmin/edit/' . $row['id']); ?>" ><i class="fa fa-pencil"></a></i></button>
+                        <a href="<?=  site_url('superadmin/edit/' . $row['id']); ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a>
                         <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                        <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
+                        <button type="button" ><a href="#" id="<?= $row['id']?>" class="view_data btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye" ></i></a>
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                           <span class="caret"></span>
                         </button>
@@ -93,7 +94,7 @@
       </div>
       <!-- </div> -->
       <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js"></script> -->
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootcard.js/4.4.0/bootcard.js"></script> -->
       <script>
         $(document).ready( function () {
           $('#school_table').DataTable();
@@ -105,7 +106,7 @@
        {
          
     // var id = $(this).data('id');
-    bootbox.confirm("Are you sure to delete <?= $row['organization_name'] ?> ?", function(result) {
+    bootcard.confirm("Are you sure to delete <?= $row['organization_name'] ?> ?", function(result) {
       if(result)
         
        window.location = url+'school/remove/'+id ;

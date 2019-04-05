@@ -1,11 +1,11 @@
 <div class="row">
 	<div class="col-md-12">
-		<div class="box box-info">
-			<div class="box-header with-border">
-				<h3 class="box-title">School Edit</h3>
+		<div class="card card-info">
+			<div class="card-header with-border">
+				<h3 class="card-title">School Edit</h3>
 			</div>
 			<?= form_open_multipart('superadmin/edit/'.$school['school_id']); ?>
-			<div class="box-body">
+			<div class="card-body">
 				<div class="row clearfix">
 					<div class="col-md-5">
 						<label for="name" class="control-label"><span class="text-danger">*</span>School Name</label>
@@ -127,7 +127,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="box-footer">
+						<div class="card-footer">
 							<button type="submit" class="btn btn-success">
 								<i class="fa fa-check"></i> Save
 							</button>

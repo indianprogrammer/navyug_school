@@ -1,7 +1,7 @@
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
 
         <div class="card card-default">
             <div class="card-header">
@@ -15,12 +15,12 @@
 
 
 
-<?php echo form_open('subject/add',array("class"=>"form-horizontal")); ?>
+<?php echo form_open('subject/add',array("class"=>"form-horizontal","id"=>"form_validation")); ?>
 
-	<div class="form-group">
+	<div class="form-group" data-toggle="tooltip" title="tips- maths,physics...etc">
 		<label for="subject_name" class="col-md-4 control-label"><span class="text-danger">*</span>Enter Subject Name</label>
-		<div class="col-md-4 col-sm-8">
-			<input type="text" name="subject_name" value="<?php echo $this->input->post('subject_name'); ?>" class="form-control" id="student_name" data-toggle="tooltip" title="tips- maths,physics...etc" required autofocus/>
+		<div class="col-md-8 col-sm-8">
+			<input type="text" name="subject_name" value="<?php echo $this->input->post('subject_name'); ?>" class="form-control" id="student_name"  required autofocus/>
 			<span class="text-danger"><?php echo form_error('subject_name');?></span>
 		</div>
 	</div>
@@ -37,3 +37,5 @@
 </div>
 </div>
 </div>
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="<?= base_url() ?>assets/admin/js/form_validation.js"></script>

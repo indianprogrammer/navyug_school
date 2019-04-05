@@ -31,12 +31,12 @@
 					</div>
 					<div class="col-md-4">
 						<label  class="control-label"><span class="text-danger">*</span>DOB</label>
-						<div class="form-group">
+						<div class="form-group"> 
 							<!-- <div class="form-group"> -->
                       <!-- <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                   </div> -->
-                  <input type="text" class="form-control datemask" required   name="dob" id="start_date" required>
+                  <input type="text" class="form-control datemask" required   name="dob" id="dob" required>
             </div>
             <span class="text-danger"></span>
       </div>
@@ -215,8 +215,29 @@
 
 <?php echo form_close(); ?>
 <script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
-<!-- script for checkbox -->
+<script src="<?= base_url() ?>assets/admin/plugins/jqueryui/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <script>
+    $( "#dob" ).datepicker({
+     //    flat: true,
+     //   date: '2008-07-31',
+     // current: '2008-07-31',
+     dateFormat: "dd-mm-yy",
+     changeMonth: true,
+     changeYear: true,
+     yearRange: '1970:2020'
+     // maxDate: "+0d",
+     // shortYearCutoff: 50
+     // minDate: "-2m"
+     // constrainInput: false
+
+
+     
+    //Datemask dd/mm/yyyy
+    
+});
+/* script for checkbox */
 	$(document).ready(function(e) {
 		$('#check').click(function() {
 

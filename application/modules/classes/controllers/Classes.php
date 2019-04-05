@@ -58,34 +58,99 @@ function test()
 }
 function add_course_process()
 {
-$name=strip_tags($this->input->post('course_name',1));
-$description=strip_tags($this->input->post('description',1));
-$params=array(
-    'course_name'=>$name,
-    'description'=>$description,
-    'school_id'=>$this->session->SchoolId,
-    'created_at'=>Date('Y-m-d H:i:s')
-);
-$result=$this->Classes_model->insert('table_courses',$params);
-if($result)
-{
-     $this->session->alerts = array(
+    $name=strip_tags($this->input->post('course_name',1));
+    $description=strip_tags($this->input->post('description',1));
+    $this->load->library('form_validation');
+    $this->form_validation->CI =& $this;
+    $this->form_validation->set_rules('course_name','Course Name','required|callback_course_check');
+     $this->form_validation->set_message('course_check', '{field} already exists');
+
+// $this->form_validation->set_rules('subject','Address','required');
+
+    if($this->form_validation->run() )     
+    {   
+        $params=array(
+            'course_name'=>$name,
+            'description'=>$description,
+            'school_id'=>$this->session->SchoolId,
+            'created_at'=>Date('Y-m-d H:i:s')
+        );
+        $result=$this->Classes_model->insert('table_courses',$params);
+        if($result)
+        {
+           $this->session->alerts = array(
             'severity'=> 'success',
             'title'=> 'successfully added'
 
         );
-        redirect('classes/add_course');
-}
+           redirect('classes/add_course');
+       }
+   }
+   else
+   {
+    $this->add_course();
+   }
 
 }
+
+function course_check($course_name)
+{
+    $condition=array('course_name'=>$course_name,"school_id"=>$this->session->SchoolId);
+        $result=$this->Classes_model->select_id('table_courses',$condition,array('id'));
+        if($result)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+}
+function edit_course()
+{
+$name=strip_tags($this->input->post('course_name',1));
+    $description=strip_tags($this->input->post('description',1));
+    $id=strip_tags($this->input->post('id',1));
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('course_name','Course Name','required');
+
+// $this->form_validation->set_rules('subject','Address','required');
+
+    if($this->form_validation->run() )     
+    {   
+        $params=array(
+            'course_name'=>$name,
+            'description'=>$description,
+            
+            
+        );
+        $condition=array('id'=>$id,'school_id'=>$this->session->SchoolId);
+        $result=$this->Classes_model->update_col('table_courses',$condition,$params);
+        if($result)
+        {
+           $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully added'
+
+        );
+           redirect('classes/add_course');
+       }
+   }
+   else
+   {
+    $this->add_course();
+   }
+
+}
+
 
 function add_batch()
 {
 
 
     $condition=array('school_id'=>$this->session->SchoolId);
-$data['course']=$this->Classes_model->select('table_courses',$condition,array('id','course_name'));
- $data['_view'] = 'batch/add_batch';
+    $data['course']=$this->Classes_model->select('table_courses',$condition,array('id','course_name'));
+    $data['_view'] = 'batch/add_batch';
     $this->load->view('index',$data);
 
 }
@@ -93,46 +158,46 @@ function add_batch_process()
 {
 
     $course=strip_tags($this->input->post('course',1));
-$batch_name=strip_tags($this->input->post('batch_name',1));
-$start_date=strip_tags($this->input->post('start_date',1));
-$end_date=strip_tags($this->input->post('end_date',1));
-        $params=array(
-    'course_id'=>$course,
-    'batch_name'=>$batch_name,
-    'start_date'=>$start_date,
-    'end_date'=>$end_date,
-    'school_id'=>$this->session->SchoolId,
-    'created_at'=>Date('Y-m-d H:i:s')
-);
+    $batch_name=strip_tags($this->input->post('batch_name',1));
+    $start_date=strip_tags($this->input->post('start_date',1));
+    $end_date=strip_tags($this->input->post('end_date',1));
+    $params=array(
+        'course_id'=>$course,
+        'batch_name'=>$batch_name,
+        'start_date'=>$start_date,
+        'end_date'=>$end_date,
+        'school_id'=>$this->session->SchoolId,
+        'created_at'=>Date('Y-m-d H:i:s')
+    );
     $result=$this->Classes_model->insert('table_batch',$params);
-        if($result)
-        {
-             $this->session->alerts = array(
-                    'severity'=> 'success',
-                    'title'=> 'successfully added'
+    if($result)
+    {
+       $this->session->alerts = array(
+        'severity'=> 'success',
+        'title'=> 'successfully added'
 
-                );
-                redirect('classes/batch_list');
-        }
+    );
+       redirect('classes/batch_list');
+   }
 }
 
 function batch_list()
 {
- $condition=array('batch.school_id'=>$this->session->SchoolId);
-$data['batch']=$this->Classes_model->batch_list('table_batch',$condition,array('course_name','batch_name','start_date','end_date','batch.id'));
-$data['student_count']=array();
-$data['subject_count']=array();
+   $condition=array('batch.school_id'=>$this->session->SchoolId);
+   $data['batch']=$this->Classes_model->batch_list('table_batch',$condition,array('course_name','batch_name','start_date','end_date','batch.id'));
+   $data['student_count']=array();
+   $data['subject_count']=array();
 ##count no of students
-for($i=0;$i<count($data['batch']);$i++)
-{
-$condition=array('school_id'=>$this->session->SchoolId,'batch_id'=>$data['batch'][$i]['id']);
-$student_count=$this->Classes_model->counting('table_assign_student',$condition);
-array_push($data['student_count'],$student_count);
+   for($i=0;$i<count($data['batch']);$i++)
+   {
+    $condition=array('school_id'=>$this->session->SchoolId,'batch_id'=>$data['batch'][$i]['id']);
+    $student_count=$this->Classes_model->counting('table_assign_student',$condition);
+    array_push($data['student_count'],$student_count);
 
 ##subject count
-$subjectCondition=array('school_id'=>$this->session->SchoolId,'batch_id'=>$data['batch'][$i]['id']);
-$subject_count=$this->Classes_model->counting('table_assign_subject',$condition);
-array_push($data['subject_count'],$subject_count);
+    $subjectCondition=array('school_id'=>$this->session->SchoolId,'batch_id'=>$data['batch'][$i]['id']);
+    $subject_count=$this->Classes_model->counting('table_assign_subject',$condition);
+    array_push($data['subject_count'],$subject_count);
 
 
 }
@@ -140,8 +205,8 @@ array_push($data['subject_count'],$subject_count);
 // print_r($batch_details);
 // print_r(($data['student_count']));
 // die;
- $data['_view'] = 'batch/batch_list';
-        $this->load->view('index',$data);
+$data['_view'] = 'batch/batch_list';
+$this->load->view('index',$data);
 
 
 }

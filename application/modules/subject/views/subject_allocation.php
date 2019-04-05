@@ -92,13 +92,13 @@
 		<div class="card-body">
 
 			<div class="table-responsive">
-				<table id="subject_table" class="table table-striped table-bordered table-hover">
+				<table id="subject_table" class="table  table-bordered table-hover">
 					<thead>
 						<tr>
 							<th>Batch Name</th>
 							<th><?= $this->session->menu_staff?$this->session->menu_staff:'Staff' ?> Name</th>
 							<th>Subject Name</th>
-							<th>Action</th>
+							<!-- <th>Action</th> -->
 
 
 						</tr>
@@ -111,7 +111,7 @@
 								<td><?= $row['staff_name'] ?></td>
 
 								<td><?= $row['subject_name']; ?></td>
-								<td></td>
+								<!-- <td></td> -->
 							</tr>
 						<?php } ?> 
 					</tbody>
@@ -125,6 +125,9 @@
 
 
 <script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
+
+<script src="<?= base_url() ?>assets/admin/js/form_validation.js"></script>
+
 
 	<script type="text/javascript">
 
@@ -142,11 +145,19 @@
 					console.log(data);
 					var obj=JSON.parse(data);
 					var row='';
+						if(obj.length>0)
+					{
 					for(var i=0;i<obj.length;i++)
 					{
 						row+='<option value="'+obj[i].id+'">'+obj[i].batch_name+'</option>'
 
 					}	
+				}
+					else{
+
+						row='<option value="">No batch is availabel</option>'
+					}	
+
 					$('#batch').html(row) ;  
             	// subjectSelect();
 
@@ -172,18 +183,14 @@
 					console.log(data);
 					var obj=JSON.parse(data);
 					var row='';
-					if(obj.length>0)
-					{
+				
 						for(var i=0;i<obj.length;i++)
 						{
 							row+='<option value="'+obj[i].id+'">'+obj[i].name+'</option>'
 
 						}	
-					}
-					else{
-
-						row='<option value="">No batch is availabel</option>'
-					}	
+					
+					
 					$('#subject').html(row) ;  
 
 				},

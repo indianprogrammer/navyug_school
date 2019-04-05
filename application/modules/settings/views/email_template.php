@@ -11,7 +11,7 @@
                 <div class="bg-danger">
                   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                   <!-- <h5><i class="icon fa fa-ban"></i> Alert!</h5> -->
-                 Code for use {username} ,  {school_name} ,{password}
+                
                 </div>
               </div>
      <?php echo form_open('settings/email_template_setting',array("class"=>"form-horizontal")); ?>

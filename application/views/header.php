@@ -159,6 +159,11 @@
       {
         color:red;
       }
+      th
+    {
+      background-color: #eff3f9;
+      /*font-size: 15px;*/
+    }
     </style>
      <?php if($this->session->auto_logout==1)
   { ?>

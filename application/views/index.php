@@ -250,24 +250,24 @@
                                         </p>
                                     </a>
                                 </li>                            
-                                 <li class="nav-item">
+                                <!--  <li class="nav-item">
                                     <a href="<?= site_url() ?>classes/add_class" class="nav-link">
-                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                      
                                         <p>
                                             ADD <?= strtoupper($this->session->menu_classes?$this->session->menu_classes:'CLASSES') ?>
-                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                         
                                         </p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= site_url() ?>classes" class="nav-link">
-                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                               
                                         <p>
                                            <?= strtoupper($this->session->menu_classes?$this->session->menu_classes:'CLASSES') ?> LIST
-                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        
                                         </p>
                                     </a>
-                                </li>
+                                </li> -->
 
 
                             </ul>
@@ -379,6 +379,15 @@
                                   <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                          BOOK ISSUE
+                                       
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>library/book_issue_list" class="nav-link">
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
+                                    <p>
+                                         BOOK ISSUE LIST
                                        
                                     </p>
                                 </a>
@@ -510,7 +519,7 @@
                             </li>
                             
                              <li class="nav-item">
-                                <a href="<?= site_url() ?>attendance/attendance_list" class="nav-link">
+                                <a href="<?= site_url() ?>settings/sms_template_setting" class="nav-link">
                                   <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                        SMS

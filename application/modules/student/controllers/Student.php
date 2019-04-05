@@ -351,7 +351,7 @@ function assign_student_process()
    $this->form_validation->set_rules('student','Student','required|trim|callback_check_assign_student['.$batch_id.']');
    $this->form_validation->set_rules('batch','Batch','required|trim');
    $this->form_validation->set_rules('course','Course','required|trim');
-   $this->form_validation->set_message('check_assign_student','already assign');
+   $this->form_validation->set_message('check_assign_student','This Student is already assign for this batch & course' );
 
     if($this->form_validation->run() )     
     {   

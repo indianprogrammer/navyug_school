@@ -6,7 +6,7 @@
             <?= strtoUpper($organization) ?> PROFILE SETTING
         </div>
        <div class="card-body">
-        <form enctype="multipart/form-data" id="institution-form" action="/index.php/core/institution/update/id/1" method="post"> 
+        <form enctype="multipart/form-data" id="institution-form" action="<?= base_url() ?>setting/organization_profile_setting" method="post"> 
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
@@ -14,7 +14,8 @@
                         <input size="60" maxlength="256" class="form-control" name="Institution[institution_name]" id="Institution_institution_name" type="text" value="<?= ($this->input->post('organization_name') ? $this->input->post('organization_name') : $school_info['organization_name']); ?>" /><div class="school_val_error" id="Institution_institution_name_em_" style="display:none"></div>                                                    </div>
                         <div class="col-md-6">
                             <label for="reg_input_name" class="req"><?= $organization ?> Address</label>
-                            <textarea class="form-control" name="address" id="Institution_institution_address"><?= ($this->input->post('address') ? $this->input->post('address') : $school_info['address']); ?></textarea><div class="school_val_error" id="Institution_institution_address_em_" style="display:none"></div>                                                    </div>
+                            <textarea class="form-control" name="address" id="Institution_institution_address"><?= ($this->input->post('address') ? $this->input->post('address') : $school_info['address']); ?></textarea>
+                                                                               </div>
                         </div>
                     </div>
 
@@ -43,6 +44,11 @@
                                                         <input size="60" maxlength="256" class="form-control" name="Institution[institution_contactperson]" id="Institution_institution_contactperson" type="text" value="Admin" /><div class="school_val_error" id="Institution_institution_contactperson_em_" style="display:none"></div>                                                    </div> -->
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-8">
+                                                    <button type="submit" class="btn btn-info">Update</button>
+                                                </div>
+
                                             </form>
                                         </div>
 
@@ -51,7 +57,7 @@
                                 <div class="col-md-4">
                                     <div class="card">
                                         <div class="card-body">     
-                                            <img src="<?= base_url() ?>uploads/school/$school_info['logo']  ?>" alt="" >
+                                            <img src="<?= base_url() ?>uploads/school/<?= $school_info['logo']  ?>" alt="" >
                                         </div>
                                     </div>
 

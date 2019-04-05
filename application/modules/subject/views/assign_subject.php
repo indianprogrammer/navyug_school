@@ -12,12 +12,12 @@
 
 
 
-				<?php echo form_open('subject/assign_subject_add',array("class"=>"form-horizontal")); ?>
+				<?php echo form_open('subject/assign_subject_add',array("class"=>"form-horizontal","id"=>"form_validation")); ?>
 
 				<div class="form-group">
 					<label class="col-md-10 control-label"><span class="text-danger">*</span>Select Course</label>
 					<div class="col-md-10">
-						<select class="form-control"  data-placeholder="Select Courses" onchange="batchSelect()"  name="course" id="course"  
+						<select class="form-control"  data-placeholder="Select Courses" onchange="batchSelect()"  name="course" id="course" required  
 						>
 						<option value="" >--Select Course--- </option>
 						<?php	foreach($course as $row){ ?>
@@ -30,7 +30,7 @@
 			<div class="form-group">
 				<label class="col-md-10 control-label"><span class="text-danger">*</span>Select Batch</label>
 				<div class="col-md-10">
-					<select class="form-control"  data-placeholder="Select Batch"  name="batch" id="batch"  
+					<select class="form-control"  data-placeholder="Select Batch"  name="batch" id="batch"  required
 					>
 
 				</select>
@@ -41,7 +41,7 @@
 		<div class="form-group">
 			<label class="col-md-10 control-label"><span class="text-danger">*</span>Select Subject</label>
 			<div class="col-md-10">
-				<select class="form-control select2" multiple="multiple" data-placeholder="Select classes" id="subject"  name="subject[]" style="width: 100%;"
+				<select class="form-control select2" multiple="multiple" data-placeholder="Select classes" id="subject" required name="subject[]" style="width: 100%;"
 				>
 
 			</select>
@@ -74,6 +74,7 @@
 				<table class="table  table-bordered table-hover">
 					<thead>
 						<tr>
+							<th>Course Name</th>
 							<th>Batch Name</th>
 
 							<th>Subject Name</th>
@@ -86,6 +87,7 @@
 						<?php $count=1; ?>
 						<?php foreach($assign_subject as $row){ ?>
 							<tr id="<?= $row['id'] ?>">
+								<td><?= $row['course_name'] ?></td>
 								<td><?= $row['batch_name'] ?></td>
 
 								<td><?= $row['subject_name']; ?></td>
@@ -104,7 +106,8 @@
 
 
 
-
+<script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="<?= base_url() ?>assets/admin/js/form_validation.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -128,11 +131,19 @@
 				console.log(data);
 				var obj=JSON.parse(data);
 				var row='';
+				if(obj.length>0)
+				{
 				for(var i=0;i<obj.length;i++)
 				{
 					row+='<option value="'+obj[i].id+'">'+obj[i].batch_name+'</option>'
 
 				}	
+			}
+
+				else{
+
+            		row='<option value="">No batch is availabel</option>'
+            	}	
 				$('#batch').html(row) ;  
             	// subjectSelect();
 

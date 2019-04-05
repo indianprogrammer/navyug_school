@@ -171,7 +171,7 @@ function assign_subject()
     $data['course']=$this->Subject_model->select('table_courses',$condition,array('id','course_name'));
 ##assigned subject list
     $subjectCondition=array('subject_assign.school_id'=>$this->session->SchoolId);
-    $data['assign_subject']=$this->Subject_model->select_assign_subject('table_assign_subject',$subjectCondition,array('subject_assign.id','batch_name','name as subject_name'));
+    $data['assign_subject']=$this->Subject_model->select_assign_subject('table_assign_subject',$subjectCondition,array('subject_assign.id','batch_name','name as subject_name','course.course_name'));
 // print_r($data['assign_subject']);die;
     $data['_view'] = 'assign_subject';
     $this->load->view('index',$data);
@@ -248,9 +248,10 @@ function assign_subject_add()
 
 function assign_subject_check($str)
 {
-    $this->Subject_model->select_id('');
-   // log_message('error',''+$str+'');
-   return false;
+    // $this->Subject_model->select_id('');
+    $r=print_r($str,true);
+   log_message('error',''+$r+'');
+   // return false;
 
 }
 /*
@@ -317,11 +318,12 @@ function allote_subject_add()
     $subject=$this->input->post('subject',1);
     $staff=$this->input->post('staff',1);
     $batch=$this->input->post('batch',1);
-
+        // $callbackParam=array("batch_id"=>$batch,'staff_id'=>$staff);
+        $callbackParam = ''.$batch . ',' . $staff . ',' ;
    $this->form_validation->set_rules('staff','Staff Name','required');
    $this->form_validation->set_rules('course','Course Name','required');
    $this->form_validation->set_rules('batch','Batch Name','required');
-   $this->form_validation->set_rules('subject','Subject Name','required|callback_check_subject_allocation['.$subject.','.$staff.','.$batch.']');
+   $this->form_validation->set_rules('subject','Subject Name','required|callback_check_subject_allocation['.$callbackParam.']');
     $this->form_validation->set_message('check_subject_allocation', 'This  {field} is already allocated');
 
 
@@ -367,16 +369,24 @@ else
 }
 
 
-function check_subject_allocation($subject_id,$staff_id,$batch_id)
+function check_subject_allocation($subject_id,$param)
 {
-    $condition=array('subject_id'=>$subject_id,'staff_id'=>$staff_id,'batch_id'=>$batch_id,'school_id'=>$this->session->SchoolId);
+    $result=explode(',',''.$param.'');
+    $condition=array('subject_id'=>$subject_id,'staff_id'=>$result[1],'batch_id'=>$result[0],'school_id'=>$this->session->SchoolId);
+     $e=print_r($condition,true);
+    // log_message('error',''.$param.'');
+    // log_message('error',''.$subject_id.'');
+    log_message('error',''.$e.'');
    $result=$this->Subject_model->select_id('table_subject_allocation',$condition,array('id')) ;
+   // print_r($result);
    if($result)
    {
+    // echo "false";
     return false;
    }
    else
    {
+    // echo "true";
     return true;
    }
    // print_r($result);
@@ -401,6 +411,19 @@ function remove()
     else
         show_error('The subject you are trying to delete does not exist.');
 }
+
+
+function test()
+{
+    // $callbackParam=array("batch_id"=>1,'staff_id'=>33);
+    // $subject_id=3;
+    // $e=print_r($callbackParam,true);
+    // echo $e;die;
+    $second_parameter = 'first_arg' . '||' . 'second_arg' . '||' . 'third_arg';
+    list($first_param, $second_param, $third_param) = split('||', $second_parameter);
+    // $this->check_subject_allocation($subject_id,$callbackParam);
+}
+
 
 }
 ?>
