@@ -289,7 +289,7 @@ function invoiceGenerate()
 
   $schoolId=$this->session->SchoolId;
   $getSchoolInformation = $this->Account_model->get_school_information($schoolId);
-
+// print_r($getSchoolInformation);die;
 ##generate random invoice number
 
   $incrementedUniqueInvoiceId=$this->Account_model->get_max_invoiceno($schoolId);
@@ -429,13 +429,17 @@ $extraBalance=$currentBalance['balance'];
 ##for check balance of student
 function checkBalance()
 {
-  $student_info=$this->Account_model->searchBalInformatiion($this->input->post('keyword'));
-// var_dump($student_info);die;
-  $credit_info=$this->Account_model->gettingTransactionInfo($this->input->post('keyword'));
-  $total_debit=$student_info->debit;
-  $total_credit=$credit_info->credit;
-  $balance=$total_debit-$total_credit;
-
+  $student_id=$this->input->post('keyword',1);
+//   $student_info=$this->Account_model->searchBalInformatiion($this->input->post('keyword'));
+// // var_dump($student_info);die;
+//   $credit_info=$this->Account_model->gettingTransactionInfo($this->input->post('keyword'));
+//   $total_debit=$student_info->debit;
+//   $total_credit=$credit_info->credit;
+//   $balance=$total_debit-$total_credit;
+  $condition=array('school_id'=>$this->session->SchoolId,'customer_id'=>$student_id);
+  $result=$this->Account_model->select_id('table_customer_balance',$condition,array('balance'));
+  // print_r($result);
+$balance=$result['balance'];
   echo $balance;
 }
 
@@ -454,7 +458,12 @@ function getledger()
   $data['invoice_prefix']='inv_';
   $data['title']="ledger";
   $student_id=$this->input->get('student_id');
-  $data['ledger']=$this->Account_model->get_ledger($student_id);
+  $school_id=$this->session->SchoolId;
+  $data['school_info']= $this->Account_model->getSchoolName($school_id) ;
+  ##get customer info 
+  $data['customer_info']= $this->Account_model->select_id('table_student',array('id'=>$student_id),array('name','email','mobile'));
+  $condition=array('student_id'=>$student_id,'school_id'=>$this->session->SchoolId);
+  $data['ledger']=$this->Account_model->get_ledger($condition);
   $data['_view'] = 'ledger';
   $this->load->view('index',$data);
 
@@ -475,15 +484,16 @@ function autofill()
    $school_id=$this->session->SchoolId;
   $id=trim($this->input->post("id",1));
   $balance=$this->Account_model->get_balance_info($id,$school_id);
-  if($this->Account_model->get_balance_info($id))
-  {
-    $data['balance']=$this->Account_model->get_balance_info($id);
-  }
-  else
-  {
-   $data['balance']=array('balance'=>0);
-    // echo json_encode($balance);
-  }
+  $data['balance']=$this->Account_model->get_balance_info($id,$school_id);
+  // if($this->Account_model->get_balance_info($id))
+  // {
+  //   $data['balance']=$this->Account_model->get_balance_info($id);
+  // }
+  // else
+  // {
+  //  $data['balance']=array('balance'=>0);
+ 
+  // }
   $data['autofill']=$this->Account_model->get_autofill_value($id);
 echo json_encode($data);
 }

@@ -14,7 +14,7 @@
 <table id="invoice_table" class="table table-bordered table-hover">
     <thead>
     <tr>
-        <th>ID</th>
+        <th>S No</th>
         <th>Invoice Number</th>
         <th>Student Name</th>
         <th>Total Amount</th>
@@ -29,7 +29,7 @@
     <?php foreach ($invoice as $row) { ?>
         <tr>
             <td><?=$count++ ?></td>
-            <td><?= $invoice_prefix ?><?=$row['invoice_id'] ?> </td>
+            <td><?=$row['invoice_id'] ?> </td>
             <td data-toggle="tooltip" data-placement="top" title="click to view" ><a href="<?=base_url()?>student/getFullDetails?student_id=<?=  $row['student_id'] ?>"><?=$row['customer_name'] ?></a> </td>
              <td><?=$row['total_amount'] ?></td>
              <td><?=$row['date'] ?></td>

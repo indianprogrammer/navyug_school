@@ -82,6 +82,7 @@ $this->session->profileImage = ''; #default value
 $userData = '';
 switch ($authenticationData['autorization_id']){
     case 1:
+    case 2:
 #got for admin user at employ table & check for authentication ID and get school id
     $userData = $this->Login_model->getEmployDetails($authenticationData['user_id']);
     $this->session->SchoolId = $userData['school_id'];
@@ -96,7 +97,6 @@ switch ($authenticationData['autorization_id']){
     redirect ('admin');
 
     break;
-    case 2:
 
     case 3:
 #got for parent

@@ -12,7 +12,7 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
-      <table id="class_table" class="table table-striped table-hover table-bordered ">
+      <table id="class_table" class="table  table-hover table-bordered ">
         <thead>
           <tr>
             <th>ID</th>
@@ -43,8 +43,8 @@
 
               <td><?= $batch[$i]['start_date']; ?></td>
                <td><?= $batch[$i]['end_date']; ?></td> 
-             <td><?= $student_count[$i] ?></td>
-             <td data-toggle="tooltip" data-placement="top" title="click to get subject detail"><a href="<?= base_url()?>subject?batchId=<?= $batch[$i]['id']?>" target="_blank"><?= $subject_count[$i] ?></a></td>
+             <td data-toggle="tooltip" data-placement="top" title="click to get students detail"><a href="<?= base_url()?>student/index?batch_id=<?= $batch[$i]['id']?>" target="_blank"><?= $student_count[$i] ?></td>
+             <td data-toggle="tooltip" data-placement="top" title="click to get subject detail"><a href="<?= base_url()?>subject/index?batchId=<?= $batch[$i]['id']?>" target="_blank"><?= $subject_count[$i] ?></a></td>
               <td>
 
                <!--  <div class="btn-group" >

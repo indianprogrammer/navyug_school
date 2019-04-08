@@ -188,6 +188,7 @@ function batch_list()
    $data['student_count']=array();
    $data['subject_count']=array();
 ##count no of students
+   // print_r($data['batch']);
    for($i=0;$i<count($data['batch']);$i++)
    {
     $condition=array('school_id'=>$this->session->SchoolId,'batch_id'=>$data['batch'][$i]['id']);
@@ -197,6 +198,7 @@ function batch_list()
 ##subject count
     $subjectCondition=array('school_id'=>$this->session->SchoolId,'batch_id'=>$data['batch'][$i]['id']);
     $subject_count=$this->Classes_model->counting('table_assign_subject',$condition);
+    // print_r($subject_count); 
     array_push($data['subject_count'],$subject_count);
 
 

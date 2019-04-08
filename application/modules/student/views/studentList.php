@@ -15,7 +15,7 @@
         <table id="student_table" class="table  table-bordered table-hover">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>S no</th>
 
               <th>Student Name</th>
               <th>Email</th>

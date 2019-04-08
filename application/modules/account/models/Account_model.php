@@ -1,7 +1,7 @@
 <?php
 
 
-class Account_model extends CI_Model
+class Account_model extends MY_Model
 {
   function __construct()
   {
@@ -79,10 +79,10 @@ class Account_model extends CI_Model
   function get_school_information($school_id)
   {
     $this->db->select('school.organization_name,school.address,school.contact_pri,school.email,school.logo');
-    $this->db->from('invoices');
-    $this->db->join('school', 'school.id=invoices.school_id', 'Left');
+    $this->db->from('school');
+    // $this->db->join('school', 'school.id=invoices.school_id', 'Left');
 
-    $this->db->where('school_id',$school_id);
+    $this->db->where('id',$school_id);
     return $query = $this->db->get()->row_array();
   }
 
@@ -195,7 +195,7 @@ class Account_model extends CI_Model
 // }
   function getSchoolName($id)
   {
-    $this->db->select('school.organization_name,school.address,school.contact_pri,school.email');
+    $this->db->select('school.organization_name,school.address,school.contact_pri,school.email,school.logo');
     $this->db->from('school');
     $this->db->where('id',$id);  
     return  $query = $this->db->get()->row_array();
@@ -222,12 +222,12 @@ class Account_model extends CI_Model
       return 1;
     }
   }
-  function get_ledger($id)
+  function get_ledger($condition)
   {
     $this->db->select('debit,credit,date,invoice_id,reciept_id');
     $this->db->from('account_transaction');
 
-    $this->db->where('student_id',$id);
+    $this->db->where($condition);
 
 
     return  $this->db->get()->result_array();

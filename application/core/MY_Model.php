@@ -33,7 +33,7 @@ class MY_Model extends CI_Model
   public $table_recharge='recharge_info';
   public $table_account_transaction='account_transaction';
   // public $table_one_time_install='table_one_time_installlation_info';
-  public $table_customer_balance='customer_balance';
+  public $table_customer_balance='account_balance_information';
   // public $table_tax_frenchise_detail='tax_frenchise_count';
   public $table_payment_type='master_payment_type';
   public $table_sms_configuration='sms_configuration';
@@ -65,6 +65,7 @@ class MY_Model extends CI_Model
     public $table_master_country="master_country";
     public $table_master_state="master_state";
     public $table_school='school';
+    // public $table_employee='table_employees';
     public $table_school_setting='school_setting';
     public $table_books='books';
     public $table_book_category='books_category';

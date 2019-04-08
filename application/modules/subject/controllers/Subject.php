@@ -54,9 +54,9 @@ function index()
     $schoolId=$this->session->SchoolId;
     if($this->input->get('batchId'))
     {
-        $classId=$this->input->get('batchId');
-        $fetchSubjectId=$this->Subject_model->get_all_subject_by_classid($classId);
-
+        $batchId=$this->input->get('batchId');
+        $fetchSubjectId=$this->Subject_model->select('table_assign_subject',array('school_id'=>$schoolId,'batch_id'=>$batchId),array('batch_id','subject_ids'));
+        // print_r($fetchSubjectId);die;    
         $noOfSubject=count($fetchSubjectId);
         if($noOfSubject!=0)
         {
@@ -65,7 +65,7 @@ function index()
             $data['subject']=array();
             for($i=0;$i<$noOfSubject;$i++)
             {
-                array_push( $data['subject'],$fetchSubjectId[$i]['subject_id']);
+                array_push( $data['subject'],$fetchSubjectId[$i]['subject_ids']);
 
             }
             // echo $data['subject'];
@@ -205,7 +205,7 @@ function assign_subject_add()
 // $this->form_validation->set_rules('password','Password','required|max_length[20]');
     $this->form_validation->set_rules('course','Course Name','required');
     $this->form_validation->set_rules('batch','Batch Name','required');
-    $this->form_validation->set_rules('subject[]','Subject Name','required|callback_assign_subject_check');
+    $this->form_validation->set_rules('subject[]','Subject Name','required');
     $this->form_validation->set_message('assign_subject_check', 'Subject already exists');
 
 

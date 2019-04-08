@@ -262,7 +262,29 @@
         show_error('The employee you are trying to delete does not exist.');
     }
 
+    function employee_details($staff_id)
+    {
 
+      $employee_id=$staff_id;
+      $school_id=$this->session->SchoolId;
+      $condition=array('map_school_employee.employee_id'=>$employee_id,'map_school_employee.school_id'=>$school_id); 
+      $data['staff_info']=$this->Employee_model->get_full_employee_details('table_map_school_employee',$condition,array('*')); 
+       ## subject allocation
+       $allocationCondition=array('staff_id'=>$employee_id,'subject_allocation.school_id'=>$school_id);
+       $data['staff_allocation']=$this->Employee_model->employee_subject_allocation('table_subject_allocation',$allocationCondition,array('course_name','batch_name','subjects.name as subject_name')); 
+       // print_r($staff_allocation);
+       $data['_view'] = 'employee_full_details';
+          $this->load->view('index',$data);
+
+
+
+
+
+
+
+
+
+    }
 
     function fetchEmployeeView()
     {

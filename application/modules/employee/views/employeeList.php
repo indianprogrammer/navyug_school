@@ -48,7 +48,8 @@
                           <div class="btn-group" >
                        <a href="<?= base_url() ?>/employee/edit/<?= $row['id'] ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a>
                         <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                        <a href="#" id="<?= $row['id']?>" class="btn btn-info view_data" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye"></i></a>
+                        <!-- <a href="#" id="<?= $row['id']?>" class="btn btn-info view_data" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye"></i></a> -->
+                        <a href="<?= base_url() ?>employee/employee_details/<?= $row['id'] ?>" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View" target="_blank"><i class="fa fa-eye"></i></a>
                     </div>
         </td>
          <!-- modal class start -->

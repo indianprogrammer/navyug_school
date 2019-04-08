@@ -114,6 +114,40 @@ class Employee_model extends MY_Model
           return $data;
 
         }
+        function employee_subject_allocation($table_name,$condition=null,$content_display)
+        {
+
+             $this->db->select($content_display);
+             $this->db->from($this->$table_name);  
+             $this->db->where($condition);
+          $this->db->join('course',''.$this->$table_name.'.course_id=course.id');
+          $this->db->join('batch',''.$this->$table_name.'.batch_id=batch.id');
+          $this->db->join('subjects',''.$this->$table_name.'.subject_id=subjects.id');
+         
+
+          $data=$this->db->get()->result_array();
+           // $sql = $this->db->last_query();
+          return $data;
+
+        }
+         function get_full_employee_details($table_name,$condition=null,$content_display)
+        {
+
+             $this->db->select($content_display);
+             $this->db->from($this->$table_name);  
+
+          $this->db->where($condition);
+          $this->db->join('employees',''.$this->$table_name.'.employee_id=employees.id');
+          $this->db->join('authentication',''.$this->$table_name.'.employee_id=authentication.user_id or autorization_id=2');
+          // $this->db->join('batch',''.$this->$table_name.'.batch_id=batch.id');
+          // $this->db->join('subjects',''.$this->$table_name.'.subject_id=subjects.id');
+         
+
+          $data=$this->db->get()->row_array();
+           // $sql = $this->db->last_query();
+          return $data;
+
+        }
 
 }
 ?>

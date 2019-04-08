@@ -1,6 +1,6 @@
 
 
-<div class="card">
+<div class="card col-md-8">
     <div class="card-header">
         <h3 class="card-title">ADD RECIEPT</h3>
 
@@ -8,7 +8,7 @@
       </div>
 <div class="card-body">
   <div class="row clearfix">
-    <div class="col-md-5 col-sm-12">
+    <div class="col-md-12 col-sm-12">
       <label for="serch" class="control-label">Search</label>
       <div class="form-group">
         <input type="text" name="search" 
@@ -19,8 +19,8 @@
 
       <div id="table_dropdown" class="dropdown-menu customtable"></div> 
     </div>
-    <div class="col-md-4 col-sm-12" id="balance" style="font-size: 22px;">
-    </div>     
+   <!--  <div class="col-md-4 col-sm-12" id="balance" style="font-size: 22px;">
+    </div> -->     
 
 
 
@@ -31,7 +31,7 @@
 
 
 
-    <div class="col-md-5 col-sm-12">
+    <div class="col-md-6 col-sm-12">
       <label for="name" class="control-label"><span class="text-danger">*</span>Enter Username</label>
       <div class="form-group">
         <input type="text" name="stuid" value="<?= $this->input->post('name') ?>"
@@ -39,9 +39,17 @@
         <span class="text-danger"><?= form_error('name') ?></span>
       </div>
     </div>
-    <div class="col-md-5 col-sm-12 form-group" id="showBalance" style="font-size: 25;">
+    <div class="col-md-6 col-sm-12">
+      <label for="pay" class="control-label"><span class="text-danger">*</span>Pay</label>
+      <div class="form-group">
+        <input type="text" name="pay" value="<?= $this->input->post('pay') ?>"
+        class="form-control" id="pay"  />
+        <span class="text-danger"><?= form_error('pay') ?></span>
+      </div>
+     
     </div>
-    <div class="col-md-5 col-sm-12 ">
+   
+    <div class="col-md-6 col-sm-12 ">
       <label for="method" class="control-label"><span class="text-danger">*</span>Select payment method </label>
       <div class="form-group">
         <select name="method" class="form-control" id="method">
@@ -49,22 +57,26 @@
           <option value="cash">cash</option>
           <option value="online">online</option>
           <option value="swipe">swipe</option>
+          <span class="text-danger message"><?= form_error('method') ?></span>
+
+        </select>
+      </div>
+    </div>
+     <div class="col-md-6 col-sm-12 ">
+      <label for="method" class="control-label"><span class="text-danger">*</span>Select Attend type </label>
+      <div class="form-group">
+        <select name="attend_type" class="form-control" id="attend_type">
+          <option value="">select</option>
+          <option value="office">office</option>
+          <option value="call">call</option>
+          <option value="sms">sms</option>
           <span class="text-danger message"></span>
 
         </select>
       </div>
     </div>
     <br>
-    <div class="col-md-5 col-sm-12">
-      <label for="pay" class="control-label"><span class="text-danger">*</span>Pay</label>
-      <div class="form-group">
-        <input type="text" name="pay" value="<?= $this->input->post('pay') ?>"
-        class="form-control" id="pay"  />
-        <span class="text-danger"><?= form_error('pay') ?></span>
-      </div>
-      <!-- <button class="btn">same</button>   -->
-    </div>
-    <div class="col-md-5 col-sm-12">
+    <div class="col-md-6 col-sm-12">
       <label for="contact_sec" class="control-label">Payer Name</label>
       <div class="form-group">
         <input type="text" name="contact_sec"  maxlength="13" value="<?= $this->input->post('contact_sec') ?>"
@@ -72,7 +84,7 @@
         <span class="text-danger"><?= form_error('contact_sec') ?></span>
       </div>
     </div>
-    <div class="col-md-5 col-sm-12">
+    <div class="col-md-6 col-sm-12">
       <label for="contact_sec" class="control-label">Payer Mobile</label>
       <div class="form-group">
         <input type="text" name="contact_sec"  maxlength="13" value="<?= $this->input->post('contact_sec') ?>"
@@ -85,7 +97,7 @@
 
 
   </div>
-  <div class="card-footer" >
+ <div class="col-md-12" align="center">
     <button type="button" class="btn btn-success" onclick="submitReciept()">
       Generate Reciept
     </button>
@@ -98,6 +110,14 @@
 
       </div>
   </div>
+</div>
+</div>
+<div class="card col-md-4">
+  <div class="card-body">
+   <div class="col-md-5 col-sm-12 form-group" id="showBalance" style="font-size: 25;">
+    </div>
+  </div>
+</div>
   
 <?php if($this->input->get('student_id'))
 {
@@ -132,8 +152,7 @@ $.ajax({
 });
 
 }
-</script>
-<script type="text/javascript">
+
   function enterEvent(e) {
 // $("#country").keyup(function () {
   var searchkeyword = $('#search').val();
@@ -201,7 +220,7 @@ function submitReciept()
   var payer_name = $('#payer_name').val();
   var payer_mobile = $('#payer_mobile').val();
   var pay = $('#pay').val();
-  
+  var attend_type=$('#attend_type').val();
 
    if(method && username && pay)
         {
@@ -211,7 +230,7 @@ function submitReciept()
   $.ajax({
     url:"<?= base_url() ?>account/generate_reciept",
     method:"POST",
-    data:{method:method,payer_name:payer_name,payer_mobile:payer_mobile,username:username,pay:pay},
+    data:{method:method,payer_name:payer_name,payer_mobile:payer_mobile,username:username,pay:pay,attend_type:attend_type},
 // console.log(data);
  beforeSend: function(){
 // Show image container
@@ -236,14 +255,12 @@ $(".ajax_loading").hide();
 }
 
 
-</script>
-<script type="text/javascript">
+
   $(document).click(function(){
     $("#table_dropdown").hide();
     
   });
-</script>
-<script type="text/javascript">
+
   $(document).ready(function(){
   
     $(".ajax_loading").hide();

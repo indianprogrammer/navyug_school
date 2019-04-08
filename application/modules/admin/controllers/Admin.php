@@ -32,7 +32,9 @@ class Admin extends MY_Controller{
     $data['batches']=  $this->Subject_model->counting('table_batch',array('school_id'=>$schoolId));                         
     // $data['class'] = $this->Classes_model->get_all_class_count($schoolId);   
     $data['pending_invoice'] = $this->Admin_model->counting('table_invoices',array('school_id'=>$schoolId,'status'=>'pending'));   
-    $data['partial_invoice'] = $this->Admin_model->counting('table_invoices',array('school_id'=>$schoolId,'status'=>'partial'));   
+    $data['partial_invoice'] = $this->Admin_model->counting('table_invoices',array('school_id'=>$schoolId,'status'=>'partially'));   
+    $pending_amount=$this->Admin_model->select_id('table_invoices',array('school_id'=>$schoolId,'status!='=>'paid'),array('sum(total_amount-amount_paid) as pending'));   
+    $data['pending_amount']=$pending_amount['pending'];
     echo json_encode ($data);
   }
   function totalAmount()

@@ -18,11 +18,11 @@ function index()
 // $data['claasesName']=$this->Student_model->get_class_name();
   $data['title']="Student List";
   $schoolId=$this->session->SchoolId;
-  if($this->input->get('classId'))
+  if($this->input->get('batch_id'))
   {
-    $classId=$this->input->get('classId');
-    $fetchStudentId=$this->Student_model->get_all_student_by_classid($classId);
-// var_dump($fetchSubjectId[0]['subject_id']);
+    $batchId=$this->input->get('batch_id');
+    $fetchStudentId=$this->Student_model->select('table_assign_student',array('batch_id'=>$batchId),array('student_id'));
+// var_dump($fetchSubjectId);die;
     $noOfStudent=count($fetchStudentId);
      if($noOfStudent!=0)
      {

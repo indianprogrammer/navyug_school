@@ -323,7 +323,7 @@
                   </li>
                   <li class="nav-item">
                     <a href="#" class="nav-link">
-                      Pending Invoice Amount <span class="float-right badge bg-success pending"></span>
+                      Pending Invoice Amount <span class="float-right badge bg-success pending_amount"></span>
                     </a>
                   </li>
                  <!--  <li class="nav-item">
