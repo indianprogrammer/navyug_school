@@ -15,7 +15,7 @@ class MY_Model extends CI_Model
   public $table_task='task';
   public $table_map_group='map_group_member';
   public $table_map_ticket_assign='ticket_assign_map';
-  public $table_login='user_authentication';
+  public $table_login='authentication';
  
   public $table_master_id='master_id_proof';
  
@@ -76,6 +76,7 @@ class MY_Model extends CI_Model
     public $table_assign_subject='subject_assign';
     public $table_assign_student='map_student_batch';
     public $table_subject_allocation='subject_allocation';
+    public $table_attendance='attendance_record';
 
 
   function __construct()

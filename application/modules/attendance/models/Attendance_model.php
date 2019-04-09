@@ -1,7 +1,7 @@
 <?php
 
 
-class Attendance_model extends CI_Model
+class Attendance_model extends MY_Model
 {
   function __construct()
   {
@@ -37,6 +37,19 @@ class Attendance_model extends CI_Model
 
   }
 
+function fetch_students_by_batch($table_name,$condition,$content_display)
+{
+
+$this->db->select($content_display);
+$this->db->from($this->$table_name);  
+$this->db->where($condition);
+  $this->db->join('student', 'student.id='.$this->$table_name.'.student_id');
+ 
+ 
+   $data=$this->db->get()->result_array();
+   // $sql = $this->db->last_query();
+   return $data;
+}
 
 
 }

@@ -529,7 +529,7 @@ $.ajax({url: "<?= base_url()?>admin/salesChart",method:"get", success: function(
      var obj=JSON.parse(result);
 
 
-     console.log(obj);
+     // console.log(obj);
      var credit=[];
      var month =[];
      var debit =[];
@@ -540,9 +540,9 @@ $.ajax({url: "<?= base_url()?>admin/salesChart",method:"get", success: function(
       credit.push(obj[i].credit);
 
     }
-console.log(debit);
-console.log(month);
-console.log(credit);
+// console.log(debit);
+// console.log(month);
+// console.log(credit);
     var areaChartCanvas = $('#line-charts').get(0).getContext('2d')
     // This will get the first returned node in the jQuery collection.
     var areaChart       = new Chart(areaChartCanvas)

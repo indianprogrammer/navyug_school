@@ -21,7 +21,7 @@
                 alt="">
             </div>
             <div class="info">
-                <a href="<?= base_url()?>profile/adminProfile" class="d-block"><?=  strtoupper($this->session->name) ?> (<?= $this->session->username ?>)</a>
+                <a href="<?= base_url()?>profile/my_profile" class="d-block"><?=  strtoupper($this->session->name) ?> (<?= $this->session->username ?>)</a>
             </div>
         </div>
 

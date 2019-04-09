@@ -1,7 +1,7 @@
   <?php
 
 
-  class Profile_model extends CI_Model
+  class Profile_model extends MY_Model
   {
 
 
@@ -76,11 +76,11 @@
   }
 
 }
-function get_admin_info($username,$authenticationId)
+function get_admin_info($auth_id,$authenticationId)
 {
   $this->db->select('*');
   $this->db->from('authentication');
-  $this->db->where('username',$username);
+  $this->db->where('auth_id',$auth_id);
   $this->db->where('autorization_id',$authenticationId);
   $this->db->join('employees','employees.id=authentication.user_id');
   return $this->db->get()->row();

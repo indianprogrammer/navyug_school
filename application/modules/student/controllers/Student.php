@@ -49,7 +49,7 @@ function index()
    // echo json_encode($data['student']);die;
 
   }
-  $data['classes'] = $this->Classes_model->fetch_classes($schoolId);
+  // $data['classes'] = $this->Classes_model->fetch_classes($schoolId);
 
   $data['_view'] = 'studentList';
   $this->load->view('index',$data);

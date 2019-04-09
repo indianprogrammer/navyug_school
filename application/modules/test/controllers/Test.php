@@ -222,8 +222,8 @@ function autocomplete(){
 function button()
 {
 // $this->load->view('button');
-  $data['_view'] = 'button';
-  $this->load->view('index',$data);
+    $data['_view'] = 'button';
+    $this->load->view('index',$data);
 }   
 function templatemain()
 {
@@ -720,5 +720,30 @@ $data['student_location']=array(0=>array('latitude'=>21.2014144,'longitude'=>81.
 // var_dump($data['student_location']);
 $this->load->view('waypoints',$data);
 }
+
+function check_attendance_table()
+{
+// $days=31;
+// for($i=0;$i<25;$i++)
+// {
+
+// }
+// "<table><th>student<th><th></th></table>";
+// $this->load->view('track');
+
+$data['e']=$this->Test_model->select('table_attendance',array('school_id'=>1,'month(date)'=>4),array('*'));
+
+
+ $data['_view'] = 'add';
+  $this->load->view('index',$data);
+
+}
+
+
+
+
+
+
+
 }
 ?>

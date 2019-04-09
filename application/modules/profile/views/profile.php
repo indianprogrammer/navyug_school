@@ -134,7 +134,7 @@
                     <!-- Post -->
                     <div class="post">
 <!-- action="<?= base_url() ?>profile/changePassword" -->
-                      <form >
+                     
                         <div class="card-body">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Enter Password</label>
@@ -160,7 +160,7 @@
                         <div class="card-footers">
                           <button type="submit" class="btn btn-primary submitpassword">Submit</button>
                         </div>
-                      </form>
+                     
                        <div id="successpw" style="color:green"></div>
 
 
@@ -176,8 +176,7 @@
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="timeline">
                    <div class="post">
-<!-- action="<?= base_url() ?>profile/changePassword" -->
-                      <form >
+
                         <div class="card-body">
                           <div class="form-group">
                             <label for="exampleInputEmail1">Enter Username</label>
@@ -186,25 +185,26 @@
                           <div id="error_username" style="color:red"></div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">New Username</label>
-                            <input type="text" class="form-control" id="newusername" name="newpassword" placeholder="New Username" requires="required">
+                            <input type="text" class="form-control" id="newusername" name="newpassword" placeholder="New Username" onkeyup="checkUsername()" requires="required">
                           </div>
-                          <div id="error"></div>
+                          <div id="username_check"></div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">Confirm Username</label>
                             <input type="ctext" class="form-control" id="cusername" placeholder="Confirm Username" required>
                           </div>
-                          <div id="error_match" style="color:red"></div>
+                          <div id="error_match_un" style="color:red"></div>
+                          <div id="error_un" style="color:red"></div>
                           <!-- <input type="hidden" name="user_id" value="<?= $userdata->auth_id ?>"> -->
                           
                           
                         </div>
                         <!-- /.card-body -->
 
-                        <div class="card-footer">
-                          <button type="submit" class="btn btn-primary submit">Submit</button>
-                        </div>
-                      </form>
-                        <div id="success" style="color:green"></div>
+                        
+                          <button type="submit" class="btn btn-primary username_submit">Submit</button>
+                        
+                     
+                        <div id="success_un" style="color:green"></div>
 
                       
                     </div>
@@ -294,87 +294,106 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-    
+    <script src="<?= base_url() ?>/assets/admin/plugins/sweetalert/sweetalert.min.js"></script>
     <script type="text/javascript">
-    $(".submitpassword").click(function(event) {
-event.preventDefault();
-        var password = $('#password').val();
-        var newpassword = $('#newpassword').val();
-        var cpassword = $('#cpassword').val();
-       $.ajax({
+  $(".submitpassword").click(function(event) {
+    // event.preventDefault();
+    var password = $('#password').val();
+    var newpassword = $('#newpassword').val();
+    var cpassword = $('#cpassword').val();
+    $.ajax({
         method: "POST",
         url:" <?= base_url() ?>profile/checkpassword", 
         data: {
-          password:password
+            password:password,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"
         },
-    success: function(responseObject) {
-       // $('#success').html("username successfully changed");
-       // $('#error_username').hide();
-       // $('#error_match').hide();
-      var obj=JSON.parse(responseObject); 
+        success: function(responseObject) {
+                  // console.log(responseObject);   
+                  var obj=JSON.parse(responseObject); 
+                  console.log(obj);
       // console.log(obj);
-      // console.log(obj);
-      if(password=='' || password=null)
-{
-  $('#error_dbmatch').html("password cannot be empty");
-}
-     else if(obj.length==0)
-     {
-      $('#error_dbmatch').html("please write correct password");
-     }
-     else if(newpassword=='' || newpassword== null)
-     {
+      if(password=='')
+      {
+        $('#error_dbmatch').html("password cannot be empty");
+    }
+    else if(obj.length==0)
+    {
+        $('#error_dbmatch').html("please write correct password");
+    }
+    else if(newpassword=='' || newpassword== null)
+    {
+        $('#error_dbmatch').hide();
         $('#error').html("Password field cannot be empty");
-     }
-    else if(obj[0].clear_text!=password)
-     {
-       $('#error_dbmatch').html("please write correct password");
-     }
-        else if(newpassword!=cpassword)
-        {
+    }
+      // else if(obj!=password)
+      // {
+      //   $('#error_dbmatch').html("please write correct password");
+      // }
+      else if(newpassword!=cpassword)
+      {
+        $('#error_dbmatch').hide();
           // var msg="please fill all the field";
-          $('#error_match').html("new password and confirm should be same");
-         
+          $('#error_match_pw').html("new password and confirm should be same");
+
           // $('#error_username').show();
 
-        
-        }
-        else
-        {
-                     $.ajax({
-                        method: "POST",
-                        url:" <?= base_url() ?>profile/changePassword", 
-                        data: {
-                          newpassword:newpassword,auth_id:<?= $this->session->auth_id ?>
-                        },
-                        success: function(response) {
-                           $('#successpw').html("Your password is successfully changed");
-                            $('#error_dbmatch').hide();
-                            $('#error_match').hide();
-                            $('#error').hide();
-
-                        }
-                      });
       }
-    },
-      });
-     });
+      else
+      {
+        $.ajax({
+            method: "POST",
+            url:" <?= base_url() ?>profile/changePassword", 
+            data: {
+                newpassword:newpassword,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"
+            },
+            success: function(response) {
+                console.log(response);
+                if(response)
+                {
 
-    
-    </script>
+                    // $("#successpw").notify("Hello Box");
+                    $('#successpw').html("Your password is successfully changed");
+                    $('#successpw').css("color","green");
 
-    <!-- script for username -->
-    <script>
-     
-$(".submit").click(function(event) {
-event.preventDefault();
-var user_name = $("input#username").val();
-var nuser_name = $("input#newusername").val();
-var cuser_name = $("input#cusername").val();
-var user_name_current= "<?= $this->session->username ?>";
-if(user_name=='' || user_name=null)
+                    $('#error_dbmatch').hide();
+                    $('#error_match_pw').hide();
+                    $('#error').hide();
+                    $('#oldPassword').val('');
+                    $('#newPassword').val('');
+                    $('#newPasswordConfirm').val('');
+                }
+                else
+                {
+                   $('#error_dbmatch').hide();
+                   $('#error_match').hide();
+                   $('#successpw').html("Your password is not updated");
+                   $('#successpw').css("color","red");
+               }
+
+
+           }
+       });
+    }
+}
+});
+});
+
+  $(".username_submit").click(function(event) {
+      event.preventDefault();
+      var user_name = $("#username").val();
+      var nuser_name = $("#newusername").val();
+      var cuser_name = $("#cusername").val();
+      var user_name_current= "<?= $this->session->username ?>";
+      var user_id= "<?= $this->session->user_id ?>";
+// console.log(user_name);
+if(user_name=='' || user_name==null)
 {
   $('#error_username').html("username cannot be empty");
+}
+else if(nuser_name=='' || nuser_name==null || cuser_name=='' || cuser_name==null )
+{
+   $('#error_username').html('');
+   $('#error_un').html("fill every mendatory fields");
 }
 else if(user_name_current!=user_name)
 {
@@ -382,49 +401,76 @@ else if(user_name_current!=user_name)
 }
 else if(nuser_name!=cuser_name)
 {
-  $('#error_match').html("new username and confirm username is not matched");
+  $('#error_un').html('');
+  $('#error_username').html('');
+  $('#error_match_un').html("new username and confirm username is not matched");
 }
-//  $.ajax({
-//     method: "POST",
-//     url:" <?= base_url() ?>profile/checkUserName", 
-//     data: {
-//       username:user_name
-//     },
-//     success: function(responseObject) {
 
-       
-//       var obj=JSON.parse(responseObject);
-      
-//       if(obj==null)
-//      {
-//        $('#error_username').html("username not in database");
-//      }
-
-//     }
-// });
 else
 {
-$.ajax({
+  $('#error_username').html('');
+  $('#error_match_un').html('');
+  $('#error_username').html('');
+
+  $.ajax({
     method: "POST",
-    url:" <?= base_url() ?>profile/changeUserName", 
+    url:" <?= base_url() ?>profile/change_username", 
     data: {
-      username:nuser_name,auth_id:<?= $this->session->auth_id ?>
-    },
-    success: function(responseObject) {
-      
-       $('#success').html("username successfully changed");
-       $('#error_username').hide();
-       $('#error_match').hide();
-      
+      username:nuser_name,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"
+  },
+  success: function(responseObject) {
+      console.log(responseObject);
+      if(responseObject==1)
+      {
+         // $('#success_un').html("username successfully changed");
+         // $('#error_username').hide();
+         // $('#error_match').hide();
+         // alert('please logout and login again for change');
+         swal('username successfully changed,   please logout and login again for change');
      }
+     else
+     {
+       swal('username not change,sorry');
+     }
+ }
 
-  
-      
-    
 
-    });
+
+});
 }
 });
+  function checkUsername()
+  {
+      var nuser_name = $("#newusername").val();
+      if(nuser_name.length>1)
+      {
+         $.ajax({
+            method: "POST",
+            url:" <?= base_url() ?>profile/check_username", 
+            data: {
+              username:nuser_name,<?= $this->security->get_csrf_token_name();?>:"<?= $this->security->get_csrf_hash();?>"
+          },
+          success: function(responseObject) {
+           console.log(responseObject);
+           var obj=JSON.parse(responseObject);
+
+           if(obj.length==0)
+           {
+             $('#username_check').html("username is available");
+             $('#username_check').css('color','green');
+             $('.username_submit').prop("disabled",false);
+
+         }
+         else
+         {
+          $('.username_submit').prop("disabled",true);
+          $('#username_check').html("username is already exist");
+          $('#username_check').css('color','red');
+      }
+  }
+});
+     }
+ }
 
 
     </script>

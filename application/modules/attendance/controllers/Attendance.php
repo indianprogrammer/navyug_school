@@ -22,7 +22,8 @@ function take_attendance()
 { 
   $data['title']="Take Attendance";
   $school_id=$this->session->SchoolId;
-  $data['classes'] = $this->Classes_model->fetch_classes($school_id);
+  $condition=array('school_id'=>$school_id);
+  $data['classes'] = $this->Attendance_model->select('table_courses',$condition,array('*'));
   $data['_view'] = 'attendence';
   $this->load->view('index',$data);
 }
@@ -32,9 +33,12 @@ function take_attendance()
 function fetchStudent() 
 {   
 
-  $data['classID']=$this->input->post('attendance');
-  $data['students'] = $this->Student_model->fetch_students($data['classID']);
-
+  // $data['classID']=$this->input->post('attendance');
+  $course_id=$this->input->post('course_id');
+  $batch_id=$this->input->post('batch_id');
+  $condition=array('batch_id'=>$batch_id,'school_id'=>$this->session->SchoolId);
+  // $data['students'] = $this->Student_model->fetch_students($data['classID']);
+  $data['students'] = $this->Attendance_model->fetch_students_by_batch('table_assign_student',$condition,array('student.id','student.name'));
 // var_dump( $data['students'] );die;
   $data['_view'] = 'add';
   $this->load->view('index',$data);
@@ -76,7 +80,10 @@ function attendance_list()
 {
   $data['title']="Attendance list";
   $school_id=$this->session->SchoolId;
-  $data['classes'] = $this->Classes_model->fetch_classes($school_id);
+   $school_id=$this->session->SchoolId;
+  $condition=array('school_id'=>$school_id);
+  $data['classes'] = $this->Attendance_model->select('table_courses',$condition,array('*'));
+  // $data['classes'] = $this->Classes_model->fetch_classes($school_id);
 // var_dump($data['classes'] );die;
   $data['_view'] = 'selectList';
   $this->load->view('index',$data);
@@ -89,9 +96,12 @@ function show_report()
   $school_id=$this->session->SchoolId;
   $classId= $this->input->post('id');
   $date= $this->input->post('date');
+   $this->load->helper('user_helper');
+   // $date_range = explode(' - ',$date);
+    $start_date = date_change_db($date);
+    // echo json_encode($start_date);
 
-
-  $data['report'] = $this->Attendance_model->fetch_report($school_id,$classId,$date);
+  $data['report'] = $this->Attendance_model->fetch_report($school_id,$classId,$start_date);
 
   $this->load->model('student/Student_model');
   $data['student']=$this->Student_model->fetch_student_name($school_id);
@@ -121,5 +131,32 @@ function fetch_student()
   $classes_id=$this->input->post('classes_id');
   echo json_encode($this->Attendance_model->fetch_students($classes_id));
 }
+
+
+function test()
+{
+  $this->load->helper('user_helper');
+    $date='09-04-2019';
+   $start_date = date_change_db($date);
+    echo ($start_date);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -72,7 +72,8 @@ class Login extends MX_Controller
             $autorizationData = $this->Login_model->getAutorization($authenticationData['autorization_id']);
 
 #set session data
-            $this->session->user_id = $authenticationData['id'];
+          
+            $this->session->user_id = $authenticationData['auth_id'];
             $this->session->username = $authenticationData['username']; 
             $this->session->auto_logout = $authenticationData['auto_logout_status']; 
             $this->session->autorization_id = $autorizationData['type'];
