@@ -376,6 +376,9 @@ function reloadPage () {
     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
       <span class="dropdown-item dropdown-header"><?= $this->session->name ?></span>
       <div class="dropdown-divider"></div>
+       <a href="<?= site_url() ?>profile/my_profile" class="dropdown-item">
+        <i class="fa fa-sign-out mr-2"></i> Profile
+      </a>
       <a href="<?= site_url() ?>login/logout" class="dropdown-item">
         <i class="fa fa-sign-out mr-2"></i> Log out
       </a>

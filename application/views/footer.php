@@ -4,7 +4,7 @@
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2017-2018 <a href="https://9yug.net">9YUG.NET</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2014-<?= date('Y') ?> <a href="https://9yug.net">9YUG.NET</a>.</strong> All rights reserved.
   </footer>
   <script type="text/javascript">
 function isNumberKey(evt) {

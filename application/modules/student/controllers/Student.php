@@ -326,9 +326,10 @@ function remove($id)
 
 function soft_delete_student($id)
 {
-$student = $this->Student_model->get_student($id);
-
+// $student = $this->Student_model->get_student($id);
   $schoolId=$this->session->SchoolId;
+
+$this->Student_model->delete('table_map_student_school',array('school_id'=>$schoolId,'student_id'=>$id));
 }
 
 function assign_student()

@@ -77,7 +77,7 @@ class MY_Model extends CI_Model
     public $table_assign_student='map_student_batch';
     public $table_subject_allocation='subject_allocation';
     public $table_attendance='attendance_record';
-
+    public $table_map_student_school='map_school_student';
 
   function __construct()
   {

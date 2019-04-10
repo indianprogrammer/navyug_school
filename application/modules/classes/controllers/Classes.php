@@ -45,7 +45,7 @@ function add_course()
 {
     $data['title']="ADD COURSE";
     // $school_id=$this->session->SchoolId;
-    $condition=array('school_id'=>$this->session->SchoolId);
+    $condition=array('school_id'=>$this->session->SchoolId,'del_status'=>1);
     $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
 
     $data['_view'] = 'add_course';
@@ -381,6 +381,72 @@ function remove($id)
     else
         show_error('The class you are trying to delete does not exist.');
 }
+
+
+function remove_cource($id)
+{
+    $schoolId=$this->session->SchoolId;
+$condition=array('school_id'=>$schoolId,'id'=>$id);
+echo $this->Classes_model->update_col('table_courses',$condition,array('del_status'=>0));
+
+}
+
+function course_update($id)
+{
+$data['title']="Edit Course";
+
+  
+  $school_id=$this->session->SchoolId;
+  // $data['classes'] = $this->Classes_model->fetch_classes($school_id);
+  $data['course']=$this->Classes_model->select_id('table_courses',array('school_id'=>$school_id,'id'=>$id),array('*'));
+
+
+  if(isset($id))
+  {
+    $name=strip_tags($this->input->post('course_name',1));
+    $description=strip_tags($this->input->post('description',1));
+    $this->load->library('form_validation');
+    $this->form_validation->CI =& $this;
+    $this->form_validation->set_rules('course_name','Course Name','required');
+     // $this->form_validation->set_message('course_check', '{field} already exists');
+
+// $this->form_validation->set_rules('subject','Address','required');
+
+    if($this->form_validation->run() )     
+    {   
+        $params=array(
+            'course_name'=>$name,
+            'description'=>$description,
+            
+        );
+        $condition=array('id'=>$id,'school_id'=>$school_id);
+        $result=$this->Classes_model->update_col('table_courses',$condition,$params);
+        if($result)
+        {
+           $this->session->alerts = array(
+            'severity'=> 'success',
+            'title'=> 'successfully updated'
+
+        );
+           redirect('classes/add_course');
+       }
+   }
+   else
+   {
+     $data['_view'] = 'edit_course';
+            $this->load->view('index',$data);
+   }
+  }
+  else
+    show_error('The student you are trying to edit does not exist.');
+} 
+
+
+
+
+
+
+
 
 
 

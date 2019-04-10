@@ -152,7 +152,7 @@ echo rtrim($subject);
       confirmButtonColor: "#ec6c62"
     }, function() {
       $.ajax({
-        url: "<?= base_url() ?>student/remove/"+id,
+        url: "<?= base_url() ?>student/soft_delete_student/"+id,
         type: "DELETE"
       })
       .done(function(data) {
@@ -182,7 +182,8 @@ echo rtrim($subject);
 // }
  
 
-  $('.view_data').click(function(){  
+  $('.view_data').click(function()
+  {  
     var student_id = $(this).attr("id");  
     console.log(student_id);
     viewStudent();

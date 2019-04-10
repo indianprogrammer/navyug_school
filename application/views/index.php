@@ -333,6 +333,15 @@
                                     </p>
                                 </a>
                             </li>
+                             <li class="nav-item">
+                                <a href="<?= site_url() ?>attendance/attendance_report" class="nav-link">
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
+                                    <p>
+                                        ATTENDANCE REPORT
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
 
 
                         </ul>

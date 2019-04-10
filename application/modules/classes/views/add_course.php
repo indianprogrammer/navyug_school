@@ -55,8 +55,8 @@
                <thead>
                   <tr>
                      <th>S.No</th>
-                     <th>course name</th>
-                     <th>action</th>
+                     <th>Course name</th>
+                     <th>Action</th>
                  </tr>
 
              </thead>
@@ -68,7 +68,9 @@
                   <tr>
                      <td><?= $count++ ?></td>
                      <td><?= $row['course_name'] ?></td>
-                     <td><a href="javascript:void(0)" class="btn btn-success" data-toggle="modal" data-target="#dataModal" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a></td>
+                     <td><a href="<?= base_url() ?>classes/course_update/<?= $row['id'] ?>" class="btn btn-success"  data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a>
+                        <a href="javascript:void(0)" class="btn btn-danger" onclick="delFunction(<?= $row['id'] ?>)" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-trash"></i></a>
+                     </td>
                  </tr>
 
 
@@ -135,13 +137,30 @@
 
 <script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
 <script src="<?= base_url() ?>assets/admin/js/form_validation.js"></script>
-
+<script src="<?= base_url() ?>assets/admin/plugins/sweetalert/sweetalert.min.js"></script>
 <script type="text/javascript">
-   $(document).ready(function() {
-    //Initialize Select2 Elements
-    $('.select2').select2();
-
-    //Datemask dd/mm/yyyy
-    
-});
+    function delFunction(id)
+        {
+     swal({
+      title: "Are you sure?", 
+      text: "Are you sure that you want to delete this id?", 
+      type: "warning",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      confirmButtonText: "Yes, delete it!",
+      confirmButtonColor: "#ec6c62"
+    }, function() {
+      $.ajax({
+        url: "<?= base_url() ?>classes/remove_cource/"+id,
+        type: "POST"
+      })
+      .done(function(data) {
+        swal("Deleted!", "Your file was successfully deleted!", "success");
+         // $('#'+id+'').fadeOut(300);
+      })
+      .error(function(data) {
+        swal("Oops", "We couldn't connect to the server!", "error");
+      });
+    });
+  }
 </script>

@@ -52,6 +52,43 @@ $this->db->where($condition);
 }
 
 
+
+
+function fetch_students_by_batchs($table_name,$condition,$content_display)
+{
+
+$this->db->select($content_display);
+$this->db->from($this->$table_name);  
+$this->db->where($condition);
+  $this->db->join('student', 'student.id='.$this->$table_name.'.student_id');
+ $this->db->group_by('DAY(date),student_id');
+ 
+   $data=$this->db->get()->result_array();
+   // $sql = $this->db->last_query();
+   return $data;
+}
+
+
+function fetch_name_batch($table_name,$condition,$content_display)
+{
+
+$this->db->select($content_display);
+$this->db->from($this->$table_name);  
+$this->db->where($condition);
+  $this->db->join('course', 'course.id='.$this->$table_name.'.course_id');
+
+ 
+   $data=$this->db->get()->row_array();
+   // $sql = $this->db->last_query();
+   return $data;
+
+}
+
+
+
+
+
+
 }
 
 ?>

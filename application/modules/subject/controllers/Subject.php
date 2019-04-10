@@ -306,7 +306,7 @@ function subject_allocation()
     $data['subject'] = $this->Subject_model->get_all_subject($schoolId);
     ##assigned subject list
     $subjectCondition=array('subject_allocation.school_id'=>$this->session->SchoolId);
-    $data['subject_allocation']=$this->Subject_model->select_allocation_subject('table_subject_allocation',$subjectCondition,array('subject_allocation.id','batch_name','subjects.name as subject_name','employees.name as staff_name'));
+    $data['subject_allocation']=$this->Subject_model->select_allocation_subject('table_subject_allocation',$subjectCondition,array('subject_allocation.id','batch_name','subjects.name as subject_name','employees.name as staff_name','course.course_name'));
     $data['_view'] = 'subject_allocation';
     $this->load->view('index',$data);
 }

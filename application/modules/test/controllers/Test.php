@@ -708,7 +708,8 @@ function various3()
 }
 function try()
 {
-  $this->load->view('console');
+ $d=cal_days_in_month(CAL_GREGORIAN,2,21);
+ echo $d;
 }
 function waypoints()
 { 
@@ -731,7 +732,7 @@ function check_attendance_table()
 // "<table><th>student<th><th></th></table>";
 // $this->load->view('track');
 
-$data['e']=$this->Test_model->select('table_attendance',array('school_id'=>1,'month(date)'=>4),array('*'));
+$data['e']=$this->Test_model->select('table_attendance',array('school_id'=>1,'month(date)'=>4,'year(date)'=>2019,'class_id'=>2),array('*'));
 
 
  $data['_view'] = 'add';

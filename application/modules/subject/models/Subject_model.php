@@ -135,6 +135,7 @@ $this->db->from($this->$table_name);
 $this->db->where($condition);
   $this->db->join('subjects', 'subjects.id='.$this->$table_name.'.subject_id');
   $this->db->join('batch', 'batch.id='.$this->$table_name.'.batch_id');
+  $this->db->join('course', 'course.id='.$this->$table_name.'.course_id');
   $this->db->join('employees', 'employees.id='.$this->$table_name.'.staff_id');
  
    $data=$this->db->get()->result_array();

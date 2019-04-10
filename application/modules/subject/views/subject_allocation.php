@@ -95,6 +95,7 @@
 				<table id="subject_table" class="table  table-bordered table-hover">
 					<thead>
 						<tr>
+							<th>Course Name</th>
 							<th>Batch Name</th>
 							<th><?= $this->session->menu_staff?$this->session->menu_staff:'Staff' ?> Name</th>
 							<th>Subject Name</th>
@@ -107,6 +108,7 @@
 						<?php $count=1; ?>
 						<?php foreach($subject_allocation as $row){ ?>
 							<tr id="<?= $row['id'] ?>">
+								<td><?= $row['course_name'] ?></td>
 								<td><?= $row['batch_name'] ?></td>
 								<td><?= $row['staff_name'] ?></td>
 
