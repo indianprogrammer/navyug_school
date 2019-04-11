@@ -413,6 +413,16 @@ function remove()
 }
 
 
+function fetch_subject_by_batch()
+{
+    $batch_id=trim($this->input->post('batch_id',1));
+    $condition=array('subject_assign.school_id'=>$this->session->SchoolId,'batch_id'=>$batch_id);
+    $result=$this->Subject_model->fetchSubjectByBatch('table_assign_subject',$condition,array('subjects.name','subjects.id'));            
+    echo json_encode($result);
+
+
+}
+
 function test()
 {
     // $callbackParam=array("batch_id"=>1,'staff_id'=>33);

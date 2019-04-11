@@ -1,4 +1,4 @@
-<?php print_r($e); ?>
+<!-- <?php print_r($e); ?>
 <?php $attendance='p';
 	$date=3;
  ?>
@@ -22,4 +22,5 @@
 	<td></td>
 </tr>
 <?php } ?>
-</table>
+</table> -->
+<a href="<?= base_url() ?>/uploads/a.pdf">download</a>

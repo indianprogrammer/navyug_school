@@ -111,7 +111,7 @@ function real_ip()
 }
 function check()
 {
-  $data['_view'] = 'checkbox';
+  $data['_view'] = 'add';
   $this->load->view('index',$data);
 // calling(1,2);
 }   

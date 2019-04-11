@@ -55,17 +55,27 @@ $this->db->where($condition);
 
 
 function fetch_students_by_batchs($table_name,$condition,$content_display)
-{
-
+{ 
+$temp=[];
 $this->db->select($content_display);
 $this->db->from($this->$table_name);  
 $this->db->where($condition);
-  $this->db->join('student', 'student.id='.$this->$table_name.'.student_id');
- $this->db->group_by('DAY(date),student_id');
+  // $this->db->join('student', 'student.id='.$this->$table_name.'.student_id');
+ // $this->db->group_by('student_id');
  
    $data=$this->db->get()->result_array();
-   // $sql = $this->db->last_query();
-   return $data;
+   for($i=0;$i<count($data);$i++)
+   {
+      $this->db->select('date,attendance_status,student_id');
+$this->db->from($this->$table_name);  
+$this->db->where('student_id',2);
+$data1=$this->db->get()->result_array();
+array_push($temp,$data1);
+   }
+   // $data[]
+  
+   // return $temp;
+   return $data1;
 }
 
 

@@ -87,6 +87,7 @@ switch ($authenticationData['autorization_id']){
 #got for admin user at employ table & check for authentication ID and get school id
     $userData = $this->Login_model->getEmployDetails($authenticationData['user_id']);
     $this->session->SchoolId = $userData['school_id'];
+     $this->session->StaffId = $userData['id'];
 // $this->session->organizationName = $userData['organization_name'];
     $school_name= modules::run('admin/admin/getSchoolName',$this->session->SchoolId);
     $this->session->SchoolName =$school_name['organization_name'];

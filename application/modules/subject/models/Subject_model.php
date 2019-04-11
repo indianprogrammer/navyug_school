@@ -161,7 +161,20 @@ function get_all_subject_check($table_name,$condition,$content_display)
 
 
 
+ function fetchSubjectByBatch($table_name,$condition,$content_display)
+ {
+    $this->db->select($content_display);
+    // $this->db->order_by('id', 'desc');
+    $this->db->from($this->$table_name);
+    $this->db->where($condition);
+   
+     $this->db->join('subjects', 'subjects.id='.$this->$table_name.'.subject_ids');
+    return $this->db->get()->result_array();
 
+
+
+
+ }
 
 
 

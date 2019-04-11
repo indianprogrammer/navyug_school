@@ -218,7 +218,7 @@
                             <a href="#" class="nav-link <?php if($this->uri->segment(1)=="classes"){ ?> active <?php } ?>">
                                 <i class="nav-icon fa  fa-sticky-note-o"></i>
                                 <p>
-                                     <?= strtoupper($this->session->menu_classes?$this->session->menu_classes:'claSSES') ?>
+                                     ACEDEMICS
                                     <i class="fa fa-angle-left right"></i>
                                 </p>
                             </a>
@@ -297,6 +297,38 @@
                                       <!-- <i class="nav-icon fa fa-th"></i> -->
                                         <p>
                                             ENQUIRY LIST
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li> 
+                        <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="homework"){ ?> menu-open <?php } ?>">
+                            <a href="#" class="nav-link <?php if($this->uri->segment(1)=="homework"){ ?> active <?php } ?>">
+                                <i class="nav-icon  fa fa-pencil-square-o"></i>
+                                <p>
+                                    HOMEWORK
+                                    <i class="fa fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+
+                                <li class="nav-item">
+                                    <a href="<?= site_url() ?>homework/add_homework" class="nav-link">
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                        <p>
+                                            ADD HOMEWORK
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= site_url() ?>homework" class="nav-link">
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                        <p>
+                                            HOMEWORK LIST
                                             <!-- <span class="right badge badge-danger">New</span> -->
                                         </p>
                                     </a>

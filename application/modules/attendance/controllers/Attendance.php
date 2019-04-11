@@ -153,7 +153,7 @@ function test()
   echo ($start_date);
 }
 
-
+ // array('student_id','student.name','attendance_status','attendance_record.date'));
 function attendance_report()
 {
   $data['title']="Attendance Report";
@@ -165,13 +165,21 @@ function attendance_report()
     $year=$this->input->post('year',1);
     $batch_id=$this->input->post('batch_id',1);
     $data['no_of_days']=cal_days_in_month(CAL_GREGORIAN,$month,$year);
-    $data['attendance_report']=$this->Attendance_model->fetch_students_by_batchs('table_attendance',array('school_id'=>$school_id,'month(date)'=>$month,'year(date)'=>$year,'batch_id'=>$batch_id),array('student_id','student.name','attendance_status','attendance_record.date'));
+    $data['attendance_report']=$this->Attendance_model->fetch_students_by_batchs('table_attendance',array('school_id'=>$school_id,'month(date)'=>$month,'year(date)'=>$year,'batch_id'=>$batch_id),       array('*'));
     echo '<pre>';
     print_r( $data['attendance_report']);
     die;
-
+    $s=[];
+    for($i=0;$i<count($data['attendance_report']);$i++)
+    {
+          if($data['attendance_report'][$i]['student_id']==2)
+          {
+            array_merge($s,$data['attendance_report']);
+          }
+    }
+    print_r($s);
+    die;
   }
-
   else
   {
     $data['attendance_report']=[];
