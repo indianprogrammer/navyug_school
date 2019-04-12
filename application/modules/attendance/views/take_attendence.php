@@ -41,10 +41,13 @@
 						</div>
 					
 					<div class="col-md-4">
-					<div class="form-group">
+					<div class="input-group">
+						<!-- <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div> -->
 				<label class="col-md-12 control-label">Select Date</label>
 				<input type="text" name="date_select" id="date" class="form-control">
-				<span class="input-group-addon"><i class="icon-calendar"></i></span>
+				<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
 			</div>
 					</div>
 					</div>

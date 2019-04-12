@@ -19,6 +19,19 @@ function isNumberKey(evt) {
   return true;
 } // isNumberKey
 
+
+function autoLogout()
+{
+
+alert("hii2");
+  // if(isset(session_id())
+  // {
+  //   alert("hii");
+  // }
+}
+
+
+
 function isAlpha(evt) {
   var charCode = (evt.which) ? evt.which : event.keyCode
   if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122))

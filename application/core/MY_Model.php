@@ -79,6 +79,8 @@ class MY_Model extends CI_Model
     public $table_attendance='attendance_record';
     public $table_map_student_school='map_school_student';
     public $table_homework='homework';
+    public $table_vehicle="vehicle";
+    public $table_driver="bus_driver";
 
   function __construct()
   {

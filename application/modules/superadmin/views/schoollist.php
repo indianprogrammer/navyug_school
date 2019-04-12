@@ -50,7 +50,7 @@
                       <div class="btn-group">
                         <a href="<?=  site_url('superadmin/edit/' . $row['id']); ?>" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a>
                         <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
-                        <button type="button" ><a href="#" id="<?= $row['id']?>" class="view_data btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye" ></i></a>
+                        <a href="#" id="<?= $row['id']?>" class="view_data btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye" ></i></a>
                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
                           <span class="caret"></span>
                         </button>

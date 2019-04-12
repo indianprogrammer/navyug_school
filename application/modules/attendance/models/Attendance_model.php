@@ -28,9 +28,9 @@ class Attendance_model extends MY_Model
   }
   function fetch_report($school_id,$class_id,$date)
   {
-    $this->db->select('id,student_id,class_id,school_id,attendance_status,date');
+    $this->db->select('id,student_id,batch_id,school_id,attendance_status,date');
     $this->db->from('attendance_record');
-    $this->db->where(array('school_id'=>$school_id,'class_id'=>$class_id,'date'=>$date));
+    $this->db->where(array('school_id'=>$school_id,'batch_id'=>$class_id,'date'=>$date));
         // $this->dv->join('student','student.id=attendance_record.student_id','Left');
     return $query = $this->db->get()->result_array();
     
@@ -70,7 +70,7 @@ $this->db->where($condition);
 $this->db->from($this->$table_name);  
 $this->db->where('student_id',2);
 $data1=$this->db->get()->result_array();
-array_push($temp,$data1);
+// array_push($temp,$data1);
    }
    // $data[]
   

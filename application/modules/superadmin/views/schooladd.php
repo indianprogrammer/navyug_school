@@ -49,9 +49,9 @@
                     <div class="form-group">
                         <select name="country" id="country" class="form-control">
                             <option value="">Select Country</option>
-                            <?php foreach ($country as $row) {
-                                echo '<option value="' . $row['id'] . '">' . $row['country_name'] . '</option>';
-                            } ?>
+                            <?php foreach ($country as $row) {  ?>
+                            <option value="<?= $row['id'] ?>"   <?=set_select('country',  ''.$row['id']).'',true?> ><?= $row['country_name'] ?> </option>
+                           <?php  } ?>
                         </select>
                         <span class="text-danger"><?= form_error('country') ?></span>
                     </div>

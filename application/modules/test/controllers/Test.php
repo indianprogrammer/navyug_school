@@ -708,8 +708,8 @@ function various3()
 }
 function try()
 {
- $d=cal_days_in_month(CAL_GREGORIAN,2,21);
- echo $d;
+ // echo session_id();
+ $this->output->enable_profiler(TRUE);
 }
 function waypoints()
 { 

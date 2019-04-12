@@ -9,7 +9,7 @@
         <img src="<?= base_url(); ?>assets/admin/dist/img/AdminLTELogo.png" alt=" "
         class="brand-image img-circle elevation-3" 
         style="opacity: .8" >
-        <span class="brand-text font-weight-light" style="font-size: 17px"><?= $this->session->SchoolName ?></span>
+        <span class="brand-text font-weight-light" style="font-size: 15px"><?= $this->session->SchoolName ?></span>
     </a>
 
     <!-- Sidebar <-->
@@ -333,6 +333,15 @@
                                         </p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="<?= site_url() ?>homework/student_homework" class="nav-link">
+                                      <!-- <i class="nav-icon fa fa-th"></i> -->
+                                        <p>
+                                           MY HOMEWORK
+                                            <!-- <span class="right badge badge-danger">New</span> -->
+                                        </p>
+                                    </a>
+                                </li>
 
 
                             </ul>
@@ -521,6 +530,47 @@
                                   <!-- <i class="nav-icon fa fa-th"></i> -->
                                     <p>
                                         ADD NOTIFICATION
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                           <!--  <li class="nav-item">
+                                <a href="<?= site_url() ?>employee" class="nav-link"> -->
+                                  <!-- <i class="nav-icon fa fa-th"></i>
+                                    <p>
+                                        EMPLOYEE LIST
+                                       
+                                    </p>
+                                </a>
+                            </li> -->
+
+
+                        </ul>
+                    </li>
+                     <li class="nav-item has-treeview <?php if($this->uri->segment(1)=="transport"){ ?> menu-open <?php } ?>">
+                        <a href="#" class="nav-link <?php if($this->uri->segment(1)==""){ ?> active <?php } ?>">
+                            <i class="nav-icon fa fa-envelope"></i>
+                            <p>
+                                TRANSPORT
+                                <i class="fa fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="<?= site_url() ?>transport/add_vehicle" class="nav-link">
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
+                                    <p>
+                                        ADD VEHICLE
+                                        <!-- <span class="right badge badge-danger">New</span> -->
+                                    </p>
+                                </a>
+                            </li>
+                             <li class="nav-item">
+                                <a href="<?= site_url() ?>transport/add_driver" class="nav-link">
+                                  <!-- <i class="nav-icon fa fa-th"></i> -->
+                                    <p>
+                                        ADD DRIVER
                                         <!-- <span class="right badge badge-danger">New</span> -->
                                     </p>
                                 </a>

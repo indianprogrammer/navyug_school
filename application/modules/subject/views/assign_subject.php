@@ -32,7 +32,7 @@
 				<div class="col-md-10">
 					<select class="form-control"  data-placeholder="Select Batch"  name="batch" id="batch"  required
 					>
-
+						<option value="">--select-- </option>
 				</select>
 			</div>
 			<span class="text-danger"><?php echo form_error('batch');?></span> 
@@ -62,6 +62,7 @@
 <?= form_close(); ?>
 </div>
 </div>
+<?php if(count($assign_subject)>0) { ?>
 <div class="col-md-6">
 	<div class="card">
 		<div class="card-header">
@@ -101,6 +102,7 @@
 	</div>
 
 </div>
+<?php } ?>
 </div>
 
 
@@ -136,6 +138,7 @@
 				for(var i=0;i<obj.length;i++)
 				{
 					row+='<option value="'+obj[i].id+'">'+obj[i].batch_name+'</option>'
+					$('#batch').html('<option value="">--select--</option>'+row) ; 
 
 				}	
 			}
@@ -143,8 +146,8 @@
 				else{
 
             		row='<option value="">No batch is availabel</option>'
-            	}	
 				$('#batch').html(row) ;  
+            	}	
             	// subjectSelect();
 
             },
@@ -174,14 +177,14 @@
 					for(var i=0;i<obj.length;i++)
 					{
 						row+='<option value="'+obj[i].id+'">'+obj[i].name+'</option>'
-
+						$('#subject').html('<option value="">--select--</option>'+row) ;  
 					}	
 				}
 				else{
 
 					row='<option value="">No batch is availabel</option>'
-				}	
 				$('#subject').html(row) ;  
+				}	
 
 			},
 			error:function(data)

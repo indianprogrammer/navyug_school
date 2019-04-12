@@ -35,7 +35,7 @@ function get_all_enquirys_count()
 function get_all_enquirys($id)
 {
 
-  $this->db->select('enquiry.name,enquiry.username,enquiry.email,enquiry.mobile,enquiry.address,enquiry.comments,enquiry.location,enquiry.type,enquiry.school_id,enquiry.assign_to,enquiry.status,enquiry.created_at,enquiry.id');
+  $this->db->select('enquiry.name,enquiry.username,enquiry.email,enquiry.mobile,enquiry.address,enquiry.comments,enquiry.location,enquiry.type,enquiry.school_id,enquiry.assign_to,enquiry.status,enquiry.created_at,enquiry.id,enquiry.category');
   $this->db->from('enquiry');
   $this->db->order_by('id','desc');
   $this->db->where('school_id',$id);

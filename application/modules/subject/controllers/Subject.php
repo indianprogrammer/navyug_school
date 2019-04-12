@@ -101,7 +101,7 @@ public function add()
     $this->load->library('form_validation');
     $this->form_validation->CI =& $this;
     // $this->load->library('MY_Form_validation');
-    $subject_name= $this->input->post('subject_name');
+    $subject_name= strip_tags($this->input->post('subject_name',1));
 
 // $this->form_validation->set_rules('password','Password','required|max_length[20]');
     // $this->form_validation->set_rules('subject_name','subject Name','required|max_length[100]|subject_check[sub]');
@@ -113,7 +113,7 @@ public function add()
     {   
         $params = array(
 
-            'name' => $this->input->post('subject_name')
+            'name' =>  $subject_name
 
 
         );

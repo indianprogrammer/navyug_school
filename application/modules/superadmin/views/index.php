@@ -6,8 +6,8 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
         <img src="<?= base_url(); ?>assets/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-             class="brand-image img-circle elevation-3" 
-             style="opacity: .8" >
+        class="brand-image img-circle elevation-3" 
+        style="opacity: .8" >
         <span class="brand-text font-weight-light">9yug</span>
     </a>
 
@@ -18,18 +18,18 @@
             <!-- <div class="image">
                 <img src="<?= base_url('uploads/') . $this->session->profileImage; ?>" class="img-circle elevation-2"
                      alt="<?= $this->session->name ?>">
-            </div> -->
-            <div class="info">
-                <a href="#" class="d-block"> <?= $this->session->superusername ?></a>
+                 </div> -->
+                 <div class="info">
+                    <a href="#" class="d-block"> <?= $this->session->superusername ?></a>
+                </div>
             </div>
-        </div>
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
+                data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
+                       with font-awesome or any other icon font library -->
                     <!--  <li class="nav-item has-treeview menu-open">
                        <a href="#" class="nav-link active">
                          <i class="nav-icon fa fa-dashboard"></i>
@@ -39,12 +39,12 @@
                          </p>
                        </a>
                        <ul class="nav nav-treeview"> -->
-                    <li class="nav-item has-treeview">
-                        <a href="<?= site_url() ?>superadmin/admin_index" class="nav-link">
-                            <i class="fa fa-circle-o nav-icon"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
+                        <li class="nav-item has-treeview">
+                            <a href="<?= site_url() ?>superadmin/admin_index" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
 
                     <!--  </ul>
                     </li> -->
@@ -120,7 +120,7 @@
                             <p>CREATE ADMIN</p>
                         </a>
                     </li>
-                   
+
                     <li class="nav-item">
                         <a href="<?= site_url() ?>login/logout" class="nav-link">
                             <i class="fa fa-sign-out nav-icon"></i>
@@ -128,45 +128,45 @@
                         </a>
                     </li>
 
-</ul>
-</nav>
+                </ul>
+            </nav>
 
         </div>
         <!-- /.sidebar -->
     </aside>
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-<section class="content-header">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
                 <!-- <h2><?= ucfirst($this->uri->segment(1)) ?></h2> -->
             </div>
-           
-      </div>
-  </div><!-- /.container-fluid -->
+
+        </div>
+    </div><!-- /.container-fluid -->
 </section>
-    <!-- /.content-header -->
+<!-- /.content-header -->
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <!-- Info boxes -->
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-12">
-
-                
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Info boxes -->
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-12">
 
 
-                    <?php if (isset($this->session->alerts)) {
-                        $alert = $this->session->alerts; ?>
-                        <div class="alert alert-<?= $this->session->alerts['severity'] ?> alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h5><i class="icon fa fa-check"></i> <?= $this->session->alerts['title'] ?>!</h5>
-                            <?= $this->session->alerts['description'] ?>
-                        </div>
+
+
+                <?php if (isset($this->session->alerts)) {
+                    $alert = $this->session->alerts; ?>
+                    <div class="alert alert-<?= $this->session->alerts['severity'] ?> alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h5><i class="icon fa fa-check"></i> <?= $this->session->alerts['title'] ?>!</h5>
+                      
+                    </div>
                     <?php $this->session->alerts = null; } ?>
 
 
@@ -192,26 +192,26 @@
 <!-- Main Footer -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 <script>
-     
+
   $('.mt-2 ul li ul li').find('a').each(function () {
-            if (document.location.href == $(this).attr('href')) {
-                $(this).parents().addClass("active");
-                $(this).addClass("active");
+    if (document.location.href == $(this).attr('href')) {
+        $(this).parents().addClass("active");
+        $(this).addClass("active");
                 // add class as you need ul or li or a 
             }   
         });
     </script>
     
     <script>
-     
-  $('.mt-2 ul li').find('a').each(function () {
-            if (document.location.href == $(this).attr('href')) {
-                $(this).parents().addClass("menu-open");
-                $(this).addClass("menu-open");
+
+      $('.mt-2 ul li').find('a').each(function () {
+        if (document.location.href == $(this).attr('href')) {
+            $(this).parents().addClass("menu-open");
+            $(this).addClass("menu-open");
 
                 // add class as you need ul or li or a 
             }
         });
     </script>
 
-<?php include_once "footer.php"; ?>
+    <?php include_once "footer.php"; ?>

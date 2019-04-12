@@ -82,7 +82,7 @@
             	<label  class="control-label"><span class="text-danger">*</span>Description</label>
             	<div class="form-group">
             		
-            		<textarea class="form-control" name="description"><?= $this->input->post('description')?$this->input->post('description'):$homework['description']  ?></textarea>
+            		<textarea class="form-control" name="description"><?= $this->input->post('description') ?></textarea>
             	</div>
             	<span class="text-danger"></span>
             </div>

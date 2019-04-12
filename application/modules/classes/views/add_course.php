@@ -42,7 +42,7 @@
  </div>
 </div>
 </div>
-
+<?php if(count($course)>0) { ?>
 <div class="col-md-6 col-sm-12">
     <div class="card">
         <div class="card-header">
@@ -133,6 +133,7 @@
 </div>
 </div>
 </div>
+<?php } ?>
 </div>
 
 <script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>

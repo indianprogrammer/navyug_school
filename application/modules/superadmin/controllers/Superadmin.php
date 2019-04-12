@@ -118,15 +118,14 @@ function add()
   $data=$this->session->set_flashdata('status','Successfully added');
   $this->session->alerts = array(
     'severity'=> 'success',
-    'title'=> 'successfully added',
-    'description'=> ''
+    'title'=> 'successfully added'
+
   );
   redirect('superadmin/createAdmin');
          // header('location:successmodal.php');
 } else {
          // $this->session->set_flashdata('status','Failed to added');
-	$data['_view'] = 'add';
-	$this->load->view('index', $data);
+	$this->add_organization();
 	
 }
 }
@@ -528,6 +527,16 @@ function getLedgerSchool()
 {
   $ledgerData=$this->Super_model->get_ledger_details($this->input->post('school_id'));
   echo json_encode($ledgerData);
+}
+
+function test()
+
+{
+echo session_id();
+echo '<br>';
+echo $this->input->user_agent();
+echo '<br>';
+echo $_SERVER['REMOTE_ADDR'];
 }
 
 

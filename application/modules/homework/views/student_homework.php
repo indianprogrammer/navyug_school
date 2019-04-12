@@ -1,11 +1,14 @@
 
+
+
+
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Homework List</h3>
                 <div class="card-tools pull-right">
-                    <a href="<?= site_url('homework/add_homework'); ?>" class="btn btn-success ">Add</a>
+                    <a href="<?= site_url('homework/homework_add'); ?>" class="btn btn-success ">Add</a>
                 </div>
             </div>
 <div class="card-body">
@@ -23,12 +26,13 @@
     <th>Description</th>
     <th>uploaded by</th>
 		<th>file</th>
-		<th>Actions</th>
+		
     </tr>
 </thead>
 <tbody>
     <?php $count=1; ?>
-	<?php foreach($homework as $row){ ?>
+	<?php foreach($homework as $row1){ 
+		foreach ($row1 as $row) {   ?>
     <tr id="<?= $row['id'] ?>">
 		<!-- <td><?= $count++ ?></td> -->
 		
@@ -41,22 +45,11 @@
     <td><?= $row['staff_name']; ?></td>
 		
         <td><a href="<?= base_url() ?>uploads/homework/<?= $row['file_name'] ?>">download</a></td>
-		<td>
-            
-              <div class="btn-group" >
-                  <!--  <a href="<?= site_url('subject/edit/'.$row['id']); ?>" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a>
-                    <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button> -->
-                    
-
-   
-                </div>
-
-
-        </td>
+		
     </tr>
 
-    <?php } ?>
-</tbody>
+    <?php } }  ?>
+</tbody> 
 </table>
 </div>
 </div>

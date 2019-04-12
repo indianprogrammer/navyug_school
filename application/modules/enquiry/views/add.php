@@ -22,14 +22,14 @@
             <div id="table_dropdown" class=" dropdown-menu customtable" style="height:500px;"></div> 
         </div>
     </div>
-    <div class="col-md-5 col-lg-4" >
+    <div class="col-md-5" >
         <label for="username" class="col-md-12 control-label"><span class="text-danger">*</span> User Name</label>
         <div class="form-group">
             <input type="text" name="username" value="<?=$this->input->post('username'); ?>" class="form-control" id="username"  autofocus />
             <span class="text-danger"><?= form_error('username');?></span>
         </div>
     </div>
-    <div class="col-md-5 col-lg-4">
+    <div class="col-md-5">
         <label for="trainer_Name" class="col-md-12 control-label"><span class="text-danger">*</span> Name</label>
         <div class="form-group">
            <input type="text" name="name" value="<?=$this->input->post('name'); ?>" class="form-control" id="name"  autofocus required/>
@@ -38,7 +38,7 @@
    </div>
 
 
-   <div class="col-md-5 col-lg-4">
+   <div class="col-md-5">
     <div class="form-group">
         <label for="mobile" class="col-md-12 control-label"><span class="text-danger">*</span>Mobile</label>
         <input type="text" name="mobile" maxlength="13" value="<?=$this->input->post('mobile'); ?>" class="form-control" id="mobile" required />
@@ -46,18 +46,18 @@
     </div>
 </div>
 
-<div class="col-md-5 col-lg-4">
+<div class="col-md-5">
     <label for="email" class="col-md-12 control-label">Email</label>
     <div class="form-group">
        <input type="text" name="email" value="<?=$this->input->post('email'); ?>" class="form-control" id="email" />
        <span class="text-danger"><?= form_error('email');?></span>
    </div>
 </div>
-<div class="col-md-5 col-lg-4">
+<div class="col-md-5">
     <label for="purpose" class="col-md-12 control-label"><span class="text-danger">*</span>Purpose</label>
     <div class="form-group">
 
-        <select name="type" id="type" class="form-control" >
+        <select name="purpose" id="type" class="form-control" >
             <option value="">---select---</option>
             <?php   foreach($type as $row){ ?>
                 <option value="<?= $row->id ?>"><?= $row->name ?></option>
@@ -83,7 +83,7 @@
             <span class="text-danger"><?=form_error('address');?></span>
         </div>
     </div> -->
-    <div class="col-md-5 col-lg-4">
+    <div class="col-md-5">
         <label for="assign" class="col-md-12 control-label">Assign to</label>
         <div class="form-group">
 
@@ -99,7 +99,7 @@
 
         </div>
     </div>     
-    <div class="col-md-5 col-lg-4">
+    <div class="col-md-5">
         <label for="purpose" class="col-md-12 control-label"><span class="text-danger">*</span>Attend Type</label>
         <div class="form-group">
 
@@ -116,8 +116,26 @@
 
 
         </div>
-    </div>               
-    <div class="col-md-5 col-lg-4">
+    </div>        
+     <div class="col-md-5">
+        <label for="purpose" class="col-md-12 control-label"><span class="text-danger">*</span>Category</label>
+        <div class="form-group">
+
+            <select name="category" id="type" class="form-control" required >
+                <option value="">---select---</option>
+
+                <option value="1">Software</option>
+                <option value="2">Internet</option>
+                <option value="3  ">Accounting</option>
+                <!-- <option value="office">Office</option> -->
+
+            </select>
+            <span class="text-danger"><?= form_error('attend_type');?></span>
+
+
+        </div>
+    </div>                     
+    <div class="col-md-10">
         <label for="comments" class="col-md-12 control-label"><span class="text-danger">*</span>comments</label>
         <div class="form-group">
             <textarea name="comments" class="form-control" id="comments" required ><?=$this->input->post('comments'); ?></textarea>
@@ -133,16 +151,17 @@
                         </div>
                     </div> -->
 
-                </div>
+                    <div class="col-sm-offset-4 col-md-5">
                 <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-5">
                         <button type="button" class="btn btn-success"  onclick="submitForm('<?= base_url() ?>enquiry/add')">Add New</button>
                     </div>
                 </div>
+                <div class="col-sm-offset-4 col-md-5">
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-5">
                         <button type="button" class="btn btn-success"  onclick="submitForm('<?= base_url() ?>enquiry/existing_add')">Update Existing</button>
                     </div>
+                </div>
                 </div>
             </form>
           </div>

@@ -58,8 +58,9 @@ function insertAttendance()
   // $batch_id= $this->input->post('batch_id');
   $attendenceData = $this->input->post();
   // echo '<pre>';
-print_r($attendanceDate);
-die;
+// print_r($attendanceDate);
+// print_r($batch_id);
+// die;
 
 #collect data for insertion into insertionData
   $insertionData = array();
@@ -72,7 +73,8 @@ die;
       'attendance_status'=>$status,
       'batch_id'=>$batch_id,
       'school_id'=>$this->session->SchoolId,
-      'date'=>$attendance_date
+      'date'=>$attendanceDate,
+      'staff_id'=> $this->session->StaffId
 
 
     );

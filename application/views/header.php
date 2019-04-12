@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/datatables/dataTables.bootstrap4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" /> -->
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  -->
   <script src="<?= base_url() ;?>assets/admin/plugins/jquery/jquery.min.js"></script>
  
@@ -46,7 +46,7 @@
     /*@media only screen and (min-width: 600px) {*/
       /*canvas  {height:1000px;}*/
       /*}*/
-      .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
+     /* .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active {
         color: #fff;
         background-color: #007bff;
       }
@@ -72,7 +72,7 @@
       .navbar-dark .navbar-nav .nav-link.show,
       .navbar-dark .navbar-nav .nav-link.active {
         color: #ffffff;
-      }
+      }*/
       .fa-trash,.fa-eye,.fa-pencil,.fa-building-o
       {
         color:white;
@@ -165,11 +165,11 @@
       /*font-size: 15px;*/
     }
     </style>
-     <?php if($this->session->auto_logout==1)
+     <?php if(1==0)
   { ?>
 <script type="text/javascript">
   var base_url="<?= base_url() ?>";
-var refresh_rate = 2223; //<-- In seconds, change to your needs
+var refresh_rate = 20; //<-- In seconds, change to your needs
 var last_user_action = 0;
 var lost_focus = true;
 var focus_margin = 10; // If we lose focus more then the margin we want to refresh
@@ -187,27 +187,27 @@ function keydown(evt) {
 function toggle_on_off() {
     if (can_i_refresh) {
         allow_refresh = false;
-        // console.log("Auto Refresh Off");
+        console.log("Auto Refresh Off");
     } else {
         allow_refresh = true;
-        // console.log("Auto Refresh On");
+        console.log("Auto Refresh On");
        
     }
 }
 
 function reset() {
     last_user_action = 0;
-    // console.log("Reset");
+    console.log("Reset");
 }
 
 function windowHasFocus() {
     lost_focus = false;
-    // console.log(" <~ Has Focus");
+    console.log(" <~ Has Focus");
 }
 
 function windowLostFocus() {
     lost_focus = true;
-    // console.log(" <~ Lost Focus");
+    console.log(" <~ Lost Focus");
 }
 
 setInterval(function () {
@@ -221,7 +221,10 @@ function can_i_refresh() {
     }
     return false;
 }
-
+$(document).ready(function(){
+   // setInterval("autoLogout()", 1000);
+   // alert("set");
+});
 function refreshCheck() {
     var focus = window.onfocus;
 
@@ -230,14 +233,15 @@ function refreshCheck() {
         // reset(); // We want to reset just to make sure the location reload is not called.
        
          
-        window.location.href=base_url+"login/logout";
+        // window.location.href=base_url+"login/logout";
+        alert("logout");
         
     } else {
         // console.log("Timer");
     }
 
 }
-window.addEventListener("focus", windowHasFocus, false);
+window.addEventListener("focus", reloadPage, false);
 window.addEventListener("blur", windowLostFocus, false);
 window.addEventListener("click", reset, false);
 window.addEventListener("mousemove", reset, false);
@@ -246,17 +250,21 @@ window.onkeyup = keydown;
 </script>
 <?php } ?>
 <script language="javascript" type="text/javascript">
+  window.addEventListener("click",reloadPage, false);
 var base_url="<?= base_url() ?>";
-var timeout = setInterval(reloadPage, 5000);    
+var timeout = setInterval(reloadPage(), 1000);    
 function reloadPage () {
-
+// console.log("hii");
+var user="<?= $this->session->username ?>"
+// console.log(user);
    <?php 
  // $username=$this->session->username;
-   if( (!(isset($_SESSION['username'])))  )
+   if(!$this->session->username)
    { ?>
-   // redirect('login');
+  
+console.log("hii2");
 
-  window.location.href=base_url+"login/logout";
+  // window.location.href=base_url+"login/logout";
     
 
 
@@ -266,6 +274,11 @@ function reloadPage () {
 
 
   
+}
+
+function test()
+{
+  alert("test");
 }
 </script> 
   </head>

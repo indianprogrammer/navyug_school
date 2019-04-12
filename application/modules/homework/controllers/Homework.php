@@ -10,27 +10,27 @@ class Homework extends MY_Controller{
     } 
 
 
-function index()
-{   
-    $data['title']="homework List";
-    $condition=array('homework.school_id'=>$this->session->SchoolId);
-     $data['homework']=$this->Homework_model->fetch_homework('table_homework',$condition,array('homework.id','course.course_name','batch.batch_name','subjects.name as subject_name','homework.start_date','homework.submission_date','homework.file_name','homework.description','employees.name as staff_name'));
+    function index()
+    {   
+        $data['title']="homework List";
+        $condition=array('homework.school_id'=>$this->session->SchoolId);
+        $data['homework']=$this->Homework_model->fetch_homework('table_homework',$condition,array('homework.id','course.course_name','batch.batch_name','subjects.name as subject_name','homework.start_date','homework.submission_date','homework.file_name','homework.description','employees.name as staff_name'));
      // print_r($data['homework']);die;
-    $data['_view'] = 'homework_list';
-    $this->load->view('index',$data);
-}
+        $data['_view'] = 'homework_list';
+        $this->load->view('index',$data);
+    }
 
 /*
 * Adding a new homework
 */
 public function add_homework()
 {
-   $schoolId=$this->session->SchoolId;
-   $condition=array('school_id'=>$this->session->SchoolId);
-   $data['course']=$this->Homework_model->select('table_courses',$condition,array('id','course_name'));
-   $data['title']="Add homework";
-   $data['_view'] = 'add';
-   $this->load->view('index',$data);
+ $schoolId=$this->session->SchoolId;
+ $condition=array('school_id'=>$this->session->SchoolId);
+ $data['course']=$this->Homework_model->select('table_courses',$condition,array('id','course_name'));
+ $data['title']="Add homework";
+ $data['_view'] = 'add';
+ $this->load->view('index',$data);
 }
 
 
@@ -163,23 +163,25 @@ function remove()
 
 function student_homework()
 {
- $student_id=1;
- $schoolId=$this->session->SchoolId;
+   $student_id=2;
+   $schoolId=$this->session->SchoolId;
  ##fetch batch id through student id
- $condition=array('student_id'=>$student_id,'school_id'=>$schoolId);
- $result=$this->Homework_model->select('table_assign_student',$condition,array('batch_id'));
+   $condition=array('student_id'=>$student_id,'school_id'=>$schoolId);
+   $result=$this->Homework_model->select('table_assign_student',$condition,array('batch_id'));
  // print_r($result);
- $data['homework']=[];
- for($i=0;$i<count($result);$i++)
+   $data['homework']=[];
+   for($i=0;$i<count($result);$i++)
    { 
- $homeworkCondition=array('homework.school_id'=>$schoolId,'batch_id'=>$result[$i]['batch_id']);
-  $homework=$this->Homework_model->fetch_homework('table_homework',$homeworkCondition,array('homework.id','course.course_name','batch.batch_name','subjects.name as subject_name','homework.start_date','homework.submission_date','homework.file_name','homework.description','employees.name as staff_name'));
+       $homeworkCondition=array('homework.school_id'=>$schoolId,'batch_id'=>$result[$i]['batch_id']);
+       $homework=$this->Homework_model->fetch_homework('table_homework',$homeworkCondition,array('homework.id','course.course_name','batch.batch_name','subjects.name as subject_name','homework.start_date','homework.submission_date','homework.file_name','homework.description','employees.name as staff_name'));
 
-        array_push($data['homework'],$homework);
-}
-echo '<pre>';
-print_r($data['homework']);
-print_r($homework);
+       array_push($data['homework'],$homework);
+   }
+// echo '<pre>';
+// print_r($data['homework']);
+   $data['_view'] = 'student_homework';
+   $this->load->view('index',$data);
+// print_r($homework);
 }
 
 

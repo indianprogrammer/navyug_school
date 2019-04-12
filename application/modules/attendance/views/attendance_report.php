@@ -124,7 +124,7 @@
 		<?php for($k=0;$k<count($attendance_report);$k++) {
 $present=0;
 		  ?>
-
+   $attendance_report[$k]['student_id']
 <tr>
 	<td>
 		<a href="<?= base_url() ?>student/getFullDetails?student_id=<?= $attendance_report[$k]['student_id'] ?>" target="_blank"> <?= $attendance_report[$k]['name']  ?> </a>

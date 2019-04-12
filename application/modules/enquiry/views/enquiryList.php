@@ -4,7 +4,7 @@
       <div class="card-header">
         <h3 class="card-title">Enquiry List</h3>
        <div class="card-tools pull-right">
-      <a href="<?php echo site_url('enquiry/add_enquiry'); ?>" class="btn btn-success">Add</a> 
+      <a href="<?= site_url('enquiry/add_enquiry'); ?>" class="btn btn-success">Add</a> 
      </div> 
  </div>
  <div class="card-body">
@@ -29,6 +29,7 @@
 			<th>Mobile</th>
 			<th>Address</th>
 			<th>purpose</th>
+			<th>category</th>
 
 			
 			<th>Comments</th>
@@ -42,20 +43,22 @@
 			<tr>
 				<td><?= $count++ ?></td>
 				
-				<td><?php echo $row['name']; ?></td>
+				<td><?= $row['name']; ?></td>
+				<!-- <td><?= $row['name']; ?></td> -->
 				
 				
-				<td><?php echo $row['email']; ?></td>
-				<td><?php echo $row['mobile']; ?></td>
-				<td><?php echo $row['address']; ?></td>
-				<td><?php echo $row['type']; ?></td>
-				<!-- <td><?php echo $row['location']; ?></td> -->
-				<td><?php echo $row['comments']; ?></td>
+				<td><?= $row['email']; ?></td>
+				<td><?= $row['mobile']; ?></td>
+				<td><?= $row['address']; ?></td>
+				<td><?= $row['type']; ?></td>
+				<td><?= $row['category']; ?></td>
+				<!-- <td><?= $row['location']; ?></td> -->
+				<td><?= $row['comments']; ?></td>
 				
 				<td>
 					<div class="btn-group" >
 						
-						<button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+						<button type="button" class="btn btn-danger" onclick="delFunction(<?= $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
 						<button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top" title="View"><a href="#" id="<?= $row['id']?>" class="view_data"><i class="fa fa-eye"></i></a></button>
 						
 					</div>
@@ -79,7 +82,7 @@
 		} );
 	</script>
 	<script type="text/javascript">
-		var url="<?php echo base_url();?>";
+		var url="<?= base_url();?>";
 		function delFunction()
 		{
 			
