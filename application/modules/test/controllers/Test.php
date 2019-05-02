@@ -741,6 +741,43 @@ $data['e']=$this->Test_model->select('table_attendance',array('school_id'=>1,'mo
 }
 
 
+function session_test()
+{
+
+  $newdata = array(
+        // 'username'  => 'johndoe',
+        'emails'     => 'johndoe@some-site.com',
+        'logged_in' => TRUE
+);
+
+$this->session->set_userdata($newdata);
+$this->load->view('add');
+// redirect('test/session_view');
+}
+
+function session_view()
+{
+$this->load->view('add');
+
+}
+
+function session_test2()
+
+{
+
+  $newdatas = array(
+        // 'username'  => 'johndoe',
+        'emails'     => 'vivek@some-site.com',
+        'logged_in' => TRUE
+);
+
+$this->session->set_userdata($newdatas);
+// redirect('test/session_view');
+$this->load->view('add');
+}
+
+
+
 
 
 
