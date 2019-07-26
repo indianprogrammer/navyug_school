@@ -81,7 +81,7 @@ $db['default'] = array(
 	// 'username' => 'root',
 	  'password' => 'school99',
 	// 'password' => '',
-
+// 
 	 
 
 	'database' => 'school',

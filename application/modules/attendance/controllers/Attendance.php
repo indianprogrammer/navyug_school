@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 
 class Attendance extends MY_Controller{

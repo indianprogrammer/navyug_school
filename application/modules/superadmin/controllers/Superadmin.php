@@ -409,7 +409,7 @@ function getCredentialAdmin($id)
   echo $this->session->SchoolName =$school_name->organization_name;
 
   echo  $this->session->name = $userData['name'];
-  echo $this->session->username =$username;
+  echo $this->session->school_username =$username;
   echo   $this->session->profileImage = $userData['profile_image'];
 // $this->output->enable_profiler(TRUE);
 

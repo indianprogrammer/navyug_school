@@ -23,7 +23,7 @@
     <th>Description</th>
     <th>uploaded by</th>
 		<th>file</th>
-		<th>Actions</th>
+		<!-- <th>Actions</th> -->
     </tr>
 </thead>
 <tbody>
@@ -41,18 +41,18 @@
     <td><?= $row['staff_name']; ?></td>
 		
         <td><a href="<?= base_url() ?>uploads/homework/<?= $row['file_name'] ?>">download</a></td>
-		<td>
+		<!-- <td>
             
               <div class="btn-group" >
-                  <!--  <a href="<?= site_url('subject/edit/'.$row['id']); ?>" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a>
-                    <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button> -->
+                   <a href="<?= site_url('subject/edit/'.$row['id']); ?>" class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit" ><i class="fa fa-pencil"></i></a>
+                    <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                     
 
    
                 </div>
 
 
-        </td>
+        </td> -->
     </tr>
 
     <?php } ?>

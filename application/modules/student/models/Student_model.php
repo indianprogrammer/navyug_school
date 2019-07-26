@@ -211,7 +211,7 @@ function get_all_student_by_classid($class_id)
 }
 function get_student_by_student_id($id)
 {
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id,student.aadhar');
+  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at  ,student.parent_id,student.aadhar');
   $this->db->from('student');
   $this->db->where_in('id',$id);
   return $this->db->get()->result_array();

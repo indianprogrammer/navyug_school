@@ -12,12 +12,12 @@ class Homework_model extends MY_Model
   {
 
     $this->db->select($content_display);
-    $this->db->from($this->$table_name);  
+    $this->db->from(''.$this->$table_name.' as t1');  
     $this->db->where($condition);
-    $this->db->join('subjects', 'subjects.id='.$this->$table_name.'.subject_id');
-    $this->db->join('batch', 'batch.id='.$this->$table_name.'.batch_id');
-    $this->db->join('course', 'course.id='.$this->$table_name.'.course_id');
-    $this->db->join('employees', 'employees.id='.$this->$table_name.'.staff_id');
+    $this->db->join('subjects as t2', 't2.id=t1.subject_id');
+    $this->db->join('batch as t3', 't3.id=t1.batch_id');
+    $this->db->join('course as t4', 't4.id=t1.course_id');
+    $this->db->join('employees as t5', 't5.id=t1.staff_id');
     
     $data=$this->db->get()->result_array();
    // $sql = $this->db->last_query();

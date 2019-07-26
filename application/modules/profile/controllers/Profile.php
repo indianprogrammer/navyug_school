@@ -11,11 +11,11 @@ class Profile extends MY_Controller{
 
 	function index()
 	{	 $data['title']="User Profile";
-	$username=$this->session->username;
+	$username=$this->session->school_username;
 	$authenticationId=$this->session->authenticationId;
 ## get details through username
 	$data['userdata']=$this->Profile_model->get_user_info($username,$authenticationId);
-	var_dump($data['userdata']);die;
+	// var_dump($data['userdata']);die;
 	$this->load->view('profile',$data);
 }
 
@@ -129,7 +129,7 @@ function updateProfile()
 }
 function my_profile()
 {
-	$username=$this->session->username;
+	$username=$this->session->school_username;
 	$authenticationId=$this->session->authenticationId;
 	$user_id=$this->session->user_id;
 ## get details through username

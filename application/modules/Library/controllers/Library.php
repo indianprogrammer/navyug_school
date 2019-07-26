@@ -420,15 +420,7 @@ function remove()
 }
 
 
-function test()
-{
 
-     $condition=array('school_id'=>$this->session->SchoolId);
-    $result_date=$this->Library_model->select_id('table_school_setting',$condition,array('library_due_day','fine'));
-    // print_r($due_date['library_due_day']);
-    $date_due=$result_date['library_due_day'];
-     echo date('Y-m-d H:i:s', strtotime('+'.$date_due.' days'));
-}
 
 
 

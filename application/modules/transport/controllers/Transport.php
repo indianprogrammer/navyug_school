@@ -1,7 +1,7 @@
 <?php
 
 
-class Transport extends MY_Controller{
+class Transport extends MY_Controller {
     function __construct()
     {
         parent::__construct();
@@ -154,23 +154,6 @@ else
     $this->add_driver();
 }
 }  
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

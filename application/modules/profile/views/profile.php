@@ -16,6 +16,7 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
+              <!-- <?php print_r($userdata->profile_image); ?> -->
              <?php  if($userdata->profile_image) { ?>
               <img class="img-fluid img-circle"
               src="<?= base_url()."uploads/".$userdata->profile_image ?>"
@@ -383,7 +384,7 @@
       var user_name = $("#username").val();
       var nuser_name = $("#newusername").val();
       var cuser_name = $("#cusername").val();
-      var user_name_current= "<?= $this->session->username ?>";
+      var user_name_current= "<?= $this->session->school_username ?>";
       var user_id= "<?= $this->session->user_id ?>";
 // console.log(user_name);
 if(user_name=='' || user_name==null)

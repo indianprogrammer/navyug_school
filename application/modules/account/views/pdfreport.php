@@ -31,7 +31,7 @@ echo ' <section class="content">
                 <div class="col-sm-3 invoice-col">
                   From
                   <address>
-                    <strong>' .$this->session->username.' .</strong><br>
+                    <strong>' .$this->session->school_username.' .</strong><br>
                     795 Folsom Ave, Suite 600<br>
                     San Francisco, CA 94107<br>
                     Phone: (804) 123-5432<br>

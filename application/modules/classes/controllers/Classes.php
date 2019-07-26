@@ -52,10 +52,7 @@ function add_course()
     $this->load->view('index',$data);
 
 }
-function test()
-{
-    echo date_set();
-}
+
 function add_course_process()
 {
     $name=strip_tags($this->input->post('course_name',1));
@@ -108,6 +105,7 @@ function course_check($course_name)
 }
 function edit_course()
 {
+
 $name=strip_tags($this->input->post('course_name',1));
     $description=strip_tags($this->input->post('description',1));
     $id=strip_tags($this->input->post('id',1));
@@ -188,7 +186,7 @@ function batch_list()
    $data['student_count']=array();
    $data['subject_count']=array();
 ##count no of students
-   // print_r($data['batch']);
+    
    for($i=0;$i<count($data['batch']);$i++)
    {
     $condition=array('school_id'=>$this->session->SchoolId,'batch_id'=>$data['batch'][$i]['id']);
@@ -203,10 +201,7 @@ function batch_list()
 
 
 }
-// $batch_details=array_merge_recursive($data['batch'],$data['student_count']);
-// print_r($batch_details);
-// print_r(($data['student_count']));
-// die;
+
 $data['_view'] = 'batch/batch_list';
 $this->load->view('index',$data);
 
@@ -222,7 +217,7 @@ function add()
 
 
 
-// $this->form_validation->set_rules('password','Password','required|max_length[20]');
+
     $this->form_validation->set_rules('class_name','class Name','required|max_length[100]');
 
 // $this->form_validation->set_rules('subject','Address','required');
@@ -230,13 +225,11 @@ function add()
     if($this->form_validation->run() )     
     {   
         $params = array(
-// 'password' => $this->input->post('password'),
+
             'name' => $this->input->post('class_name'),
 
             'description' => $this->input->post('description')
-// 'subject_id' => implode(',', $this->input->post('subject')),
-// 'start_time' => $this->input->post('start_time'),
-// 'end_time' => $this->input->post('end_time')
+
 
         );
 
@@ -313,11 +306,7 @@ function edit($id)
                 'name' => $this->input->post('class_name'),
 
                 'description' => $this->input->post('description'),
-// 'subject_id' => $this->input->post('subject'),
-// 'start_time' => $this->input->post('start_time'),
-// 'end_time' => $this->input->post('end_time')
-//  'created_at'=>date(),
-// 'modified_at'=>date()
+
             );
 
             $this->Classes_model->update_class($id,$params);

@@ -29,7 +29,7 @@ date_default_timezone_set('Asia/Kolkata');
   $config['base_url'] = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
 // $config['base_url'] = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST']."/navyug_school/";
 
-$config['date_set']='dd';
+// $config['date_set']='dd';
 // $config['date_set']=date('Y-m-d H:i:s');
 $config['modules_locations'] = array(APPPATH.'modules/' => '../modules/');
 

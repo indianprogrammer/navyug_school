@@ -125,6 +125,8 @@ function add()
     }
 #add student information
     $studentId = $this->Student_model->add_student($params);
+
+    ##add batch or assign student for particular batch
  $batchAssignParams=array(
         'student_id'=> $studentId,
         'batch_id'=>$batch_id,
@@ -134,6 +136,8 @@ function add()
       );
 
       $assign_batch_student=$this->Student_model->insert('table_assign_student',$batchAssignParams);
+##------##
+
 $username = 'stu'.$this->session->SchoolId.'_'.$studentId; #stu+schoolid_parentid
 $password = rand(1,10000);
 $email = $params['email'];
@@ -152,7 +156,7 @@ $authentication=array(
   'school_id'=>$school_id
 
 );
-// var_dump($authentication);
+
 $insertStudentAuthentication  = $this->Student_model->add_user($authentication);
 
 ##for sms info 
@@ -201,7 +205,7 @@ $schoolStudentMap=array(
 );  
 $map  = $this->Student_model->add_mapping($schoolStudentMap);
 ##student class mapping start
-$classArray=$this->input->post('classes');
+/*$classArray=$this->input->post('classes');
 foreach ($classArray as $row) {
 # code...
 
@@ -210,7 +214,7 @@ foreach ($classArray as $row) {
     'class_id' =>$row
   );
   $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
-}
+}*/
 #insert student balance details
   $balanceTableInfo=array(
 
@@ -241,7 +245,7 @@ function edit($id)
 {   
 // check if the student exists before trying to edit it
    $data['title']="Edit Student";
-  $data['student'] = $this->Student_model->get_student($id);
+  $data['student'] = $this->Student_model->select_id('table_student',array('id'=>$id),array('*'));
   $config['upload_path']          = './uploads/';
   $config['allowed_types']        = 'gif|jpg|png';
   $school_id=$this->session->SchoolId;
@@ -602,9 +606,7 @@ function getFullDetails()
   $bookCondition=array('user_type'=>2,'book_issue.school_id'=>$school_id,'taker_id'=> $student_id,'book_issue.status'=>'issued');
 
   $data['current_issue_book']=$this->Student_model->library_issue_book_student('table_book_issue',$bookCondition,array('issue_date','due_date','title','author','isbn_no','edition'));
-// var_dump($data['current_issue_book']);die;
-// var_dump($data['classes']);die;
-    // print_r($data['student_batch']);die;
+
   $data['_view'] = 'studentDetails';
   $this->load->view('index',$data);
 

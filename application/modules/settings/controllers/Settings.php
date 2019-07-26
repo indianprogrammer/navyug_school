@@ -12,36 +12,36 @@ class Settings extends MX_Controller
     }
     function settingView()
     {
-     $data['_view'] = 'setting';
-     $this->load->view('index',$data);
- }
- function changeAutoLogoutStatus()
- {   
+       $data['_view'] = 'setting';
+       $this->load->view('index',$data);
+   }
+   function changeAutoLogoutStatus()
+   {   
 
     $status=$this->input->get('status');
-    $username=$this->session->username;
+    $username=$this->session->school_username;
     $this->db->where('username',$username);
     $this->db->set('auto_logout_status',$status);
     return $this->db->update('authentication');
 
-}
+    }
 function organization_profile()
 {
 
     if($this->input->post())
     {
-        $this->input->post('')    
+        $this->input->post('')    ;
 
     }
     else
     {
-    $school_id=$this->session->SchoolId;
+        $school_id=$this->session->SchoolId;
         // echo $school_id;
-    $condition=array('id'=>$school_id);
-    $data['school_info']=$this->Setting_model->select_id('table_school',$condition,array('*'));
+        $condition=array('id'=>$school_id);
+        $data['school_info']=$this->Setting_model->select_id('table_school',$condition,array('*'));
         // print_r($data['school_info']);die;
-    $data['_view'] = 'organization_profile';
-    $this->load->view('index',$data);
+        $data['_view'] = 'organization_profile';
+        $this->load->view('index',$data);
     }
 }
 function menu_setting()
@@ -61,10 +61,10 @@ function menu_setting()
 function update_menu_setting()
 {
 
- $school_id=$this->session->SchoolId;
+   $school_id=$this->session->SchoolId;
          ##fetch school setting
- $condition=array('school_id'=>$school_id);
- $params=array( 
+   $condition=array('school_id'=>$school_id);
+   $params=array( 
     'student'=>  strip_tags($this->input->post('student',1)),
     'dashboard'=> strip_tags($this->input->post('dashboard',1)), 
     'account'=> strip_tags($this->input->post('account',1)), 
@@ -76,10 +76,10 @@ function update_menu_setting()
 
 
 );
- $jsonParams=array('menu'=>json_encode($params));
- $menu=$this->Setting_model->update_col('table_school_setting',$condition,$jsonParams);
- if($menu=='success')
- {
+   $jsonParams=array('menu'=>json_encode($params));
+   $menu=$this->Setting_model->update_col('table_school_setting',$condition,$jsonParams);
+   if($menu=='success')
+   {
     $this->session->alerts = array(
       'severity'=> 'success',
       'title'=> 'successfully updated'
@@ -88,11 +88,11 @@ function update_menu_setting()
 }
 else
 {
- $this->session->alerts = array(
-  'severity'=> 'danger',
-  'title'=> 'not updated'
+   $this->session->alerts = array(
+      'severity'=> 'danger',
+      'title'=> 'not updated'
 
-);
+  );
 }
 redirect('settings/menu_setting');
 
@@ -110,23 +110,23 @@ function email_template_setting()
     {
 
 
-     $template=$this->input->post('template');   
-     $module=$this->input->post('module');
-     $id=$this->input->post('id');
-     $subject=$this->input->post('subject',1);
-     $condition=array('school_id'=>$school_id);
-     $length=count($id);
-     for($i=0;$i<$length;$i++)
-     {
-         $templateparam=array(
-             'context'=>$template[$i],
-             'subject'=>$subject[$i]
-         );   
+       $template=$this->input->post('template');   
+       $module=$this->input->post('module');
+       $id=$this->input->post('id');
+       $subject=$this->input->post('subject',1);
+       $condition=array('school_id'=>$school_id);
+       $length=count($id);
+       for($i=0;$i<$length;$i++)
+       {
+           $templateparam=array(
+               'context'=>$template[$i],
+               'subject'=>$subject[$i]
+           );   
 
-         $condition=array('school_id'=>$school_id,'id'=>$id[$i]);
-         $menu=$this->Setting_model->update_col('table_email_template',$condition,$templateparam);
-         if($menu=='success')
-         {
+           $condition=array('school_id'=>$school_id,'id'=>$id[$i]);
+           $menu=$this->Setting_model->update_col('table_email_template',$condition,$templateparam);
+           if($menu=='success')
+           {
             $this->session->alerts = array(
               'severity'=> 'success',
               'title'=> 'successfully updated'
@@ -165,30 +165,30 @@ else
 function sms_template_setting()
 {
     $school_id=$this->session->SchoolId;
-   
+
     // $data['externl_css']=11;
          ##fetch school setting
     if($this->input->post())
     {
 
 
-     $template=$this->input->post('template');   
-     $module=$this->input->post('module');
-     $id=$this->input->post('id');
-     
-     $condition=array('school_id'=>$school_id);
-     $length=count($id);
-     for($i=0;$i<$length;$i++)
-     {
-         $templateparam=array(
-             'context'=>$template[$i],
-             'subject'=>$subject[$i]
-         );   
+       $template=$this->input->post('template');   
+       $module=$this->input->post('module');
+       $id=$this->input->post('id');
 
-         $condition=array('school_id'=>$school_id,'id'=>$id[$i]);
-         $menu=$this->Setting_model->update_col('table_sms_template',$condition,$templateparam);
-         if($menu=='success')
-         {
+       $condition=array('school_id'=>$school_id);
+       $length=count($id);
+       for($i=0;$i<$length;$i++)
+       {
+           $templateparam=array(
+               'context'=>$template[$i],
+               'subject'=>$subject[$i]
+           );   
+
+           $condition=array('school_id'=>$school_id,'id'=>$id[$i]);
+           $menu=$this->Setting_model->update_col('table_sms_template',$condition,$templateparam);
+           if($menu=='success')
+           {
             $this->session->alerts = array(
               'severity'=> 'success',
               'title'=> 'successfully updated'
@@ -224,12 +224,7 @@ else
 
 }
 
-function test()
-{
-    $data['external_css']=11;
-    $data['_view'] = 'email_template';
-    $this->load->view('index',$data);
-}
+
 
 
 }

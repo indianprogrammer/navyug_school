@@ -37,14 +37,7 @@
 
                 <td ><?= $row['name']; ?></td>
                 <td ><?= $row['email']; ?></td>
-<!--   <td  ><?php 
-$studentClasses = explode(',', $row['classes']);
 
-foreach ($studentClasses as $studentClass) {
-$subject=($classes[$studentClass]['name']. "&nbsp&nbsp&nbsp");
-echo rtrim($subject);
-} 
-?></td> --> 
 
 <td><?= $row['mobile']; ?></td>
 
@@ -57,13 +50,13 @@ echo rtrim($subject);
 <td> <img src="<?=base_url()."uploads/".$row['profile_image']; ?>" alt="" class="zoom" style="width:50px;height:50px";></td>
 <td><?= $row['aadhar']; ?></td>
 
-<!-- <td onload="getBalence(<?= $row['id'] ?>) "id="balance"></td> -->
+
 <td>
 
 
 
   <div class="btn-group" >
-   <a href="<?= base_url() ?>student/edit/<?= $row['id'] ?>"  class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a>
+   <!-- <a href="<?= base_url() ?>student/edit/<?= $row['id'] ?>"  class="btn btn-success " data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil"></i></a> -->
     <button type="button" class="btn btn-danger" onclick="delFunction(<?php echo $row['id'] ?>);" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
     
     <a href="#" id="<?= $row['id']?>"  class="btn btn-info view_data" data-toggle="tooltip" data-placement="top" title="View"><i class="fa fa-eye"></i></a>

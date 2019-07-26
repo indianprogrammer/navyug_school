@@ -16,8 +16,11 @@ class Homework extends MY_Controller{
 function index()
 {   
     $data['title']="homework List";
-   
-    $data['_view'] = 'add';
+    $schoolId=$this->session->SchoolId;
+    $condition=array('t1.school_id'=>$schoolId);
+    $data['homework']=$this->Homework_model->fetch_homework('table_homework',$condition,array('t1.id','t1.file_name','t1.description','t1.start_date','t1.submission_date','t1.created_at','t2.name','t2.name as subject_name','t3.batch_name','t4.course_name','t5.name as staff_name'));
+    // print_r($data['homework']);die;
+    $data['_view'] = 'homework_list';
     $this->load->view('index',$data);
 }
 
@@ -40,10 +43,7 @@ public function add()
     $this->load->library('form_validation');
     $this->form_validation->CI =& $this;
     // $this->load->library('MY_Form_validation');
-    $homework_name= $this->input->post('homework_name');
-
-// $this->form_validation->set_rules('password','Password','required|max_length[20]');
-    // $this->form_validation->set_rules('homework_name','homework Name','required|max_length[100]|homework_check[sub]');
+    $homework_name= $this->input->post('homework_name',1);
     $this->form_validation->set_rules('homework_name','homework Name','required');
     $this->form_validation->set_message('homework_check', 'homework already exists');
 

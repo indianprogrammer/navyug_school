@@ -15,7 +15,7 @@ class Login extends MX_Controller
     {
 // Load our view to be displayed
          $data['title']="login";
-        if (isset($this->session->username)) {
+        if (isset($this->session->school_username)) {
             redirect('admin');
         }
 // to the user
@@ -74,7 +74,7 @@ class Login extends MX_Controller
 #set session data
           
             $this->session->user_id = $authenticationData['auth_id'];
-            $this->session->username = $authenticationData['username']; 
+            $this->session->school_username = $authenticationData['username']; 
             $this->session->auto_logout = $authenticationData['auto_logout_status']; 
             $this->session->autorization_id = $autorizationData['type'];
             $this->session->log_id=$log;
@@ -95,7 +95,7 @@ switch ($authenticationData['autorization_id']){
     $this->session->name = $userData['name'];
     $this->session->profileImage = $userData['profile_image'];
     $this->session->authenticationId=$authenticationData['autorization_id'];
-    // echo "admin  ". $this->session->username;
+    // echo "admin  ". $this->session->school_username;
     redirect ('admin');
 
     break;
@@ -104,8 +104,8 @@ switch ($authenticationData['autorization_id']){
 #got for parent
     case 4:
 #got for student
-    $this->session->username;
-// $this->session->username
+    $this->session->school_username;
+// $this->session->school_username
     $this->session->authenticationId=$authenticationData['autorization_id'];
     redirect('profile');
     break;
@@ -134,7 +134,7 @@ public function logout(){
 
     $logout_time=date("Y-m-d H:i:s");
     $this->Login_model->set_logout_time($log_id,$logout_time);
-    $this->session->unset_userdata('username');
+    $this->session->unset_userdata('school_username');
     $this->session->unset_userdata('profileImage');
     $this->session->unset_userdata('SchoolId');
     $this->session->unset_userdata('log_id');

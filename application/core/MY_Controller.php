@@ -6,7 +6,7 @@
 		{
 			parent::__construct();
 			// $this->load->model('Trainer_model');
-			// if (!isset($this->session->username)) {
+			// if (!isset($this->session->school_username)) {
 	  //            redirect('login');
 	  //       }
 
