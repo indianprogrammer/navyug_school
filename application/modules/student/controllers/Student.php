@@ -24,22 +24,22 @@ function index()
     $fetchStudentId=$this->Student_model->select('table_assign_student',array('batch_id'=>$batchId),array('student_id'));
 // var_dump($fetchSubjectId);die;
     $noOfStudent=count($fetchStudentId);
-     if($noOfStudent!=0)
-     {
-                    
-    $data=array();
-    $data['student']=array();
-    for($i=0;$i<$noOfStudent;$i++)
+    if($noOfStudent!=0)
     {
-      array_push( $data['student'],$fetchStudentId[$i]['student_id']);
 
+      $data=array();
+      $data['student']=array();
+      for($i=0;$i<$noOfStudent;$i++)
+      {
+        array_push( $data['student'],$fetchStudentId[$i]['student_id']);
+
+      }
+      $data['student'] = $this->Student_model->get_student_by_student_id($data['student']);
     }
-    $data['student'] = $this->Student_model->get_student_by_student_id($data['student']);
-  }
-  else
-  {
-    $data['student'] =array();
-  }
+    else
+    {
+      $data['student'] =array();
+    }
 
   }
   else
@@ -64,7 +64,7 @@ function add_student()
   $school_id=$this->session->SchoolId;
   // $data['classes'] = $this->Classes_model->fetch_classes($school_id);
   $condition=array('school_id'=>$this->session->SchoolId);
-    $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
+  $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
   $data['_view'] = 'add';
   $this->load->view('index',$data);
 }
@@ -73,73 +73,73 @@ function add_student()
 function add()
 {   
 
-   $data['title']="Add Student";
-  $this->load->library('form_validation');
-  $config['upload_path']          = './uploads/';
-  $config['allowed_types']        = 'gif|jpg|png';
-  $this->load->library('upload', $config);
-  $school_id=$this->session->SchoolId;
-  $data['classes'] = $this->Classes_model->fetch_classes($school_id);
+ $data['title']="Add Student";
+ $this->load->library('form_validation');
+ $config['upload_path']          = './uploads/';
+ $config['allowed_types']        = 'gif|jpg|png';
+ $this->load->library('upload', $config);
+ $school_id=$this->session->SchoolId;
+ $data['classes'] = $this->Classes_model->fetch_classes($school_id);
 
-  $batch_id=$this->input->post('batch',1);
-  $course_id=$this->input->post('course',1);
-  $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
-  $this->form_validation->set_rules('email','Email','max_length[50]|valid_email');
+ $batch_id=$this->input->post('batch',1);
+ $course_id=$this->input->post('course',1);
+ $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
+ $this->form_validation->set_rules('email','Email','max_length[50]|valid_email');
 
 // $this->form_validation->set_rules('mobile','Mobile','required');
 // $this->form_validation->set_rules('classes','class','required');
 
-  $this->form_validation->set_rules('paddress','Permanent Address','required');
-  $this->form_validation->set_rules('taddress','Temporary Address','required');
+ $this->form_validation->set_rules('paddress','Permanent Address','required');
+ $this->form_validation->set_rules('taddress','Temporary Address','required');
 
-  if($this->form_validation->run() )     
-  {   
+ if($this->form_validation->run() )     
+ {   
     // $classes=implode(",",$this->input->post('classes'));
-    $params = array(
+  $params = array(
 // 'password' => $this->input->post('password'),
-      'name' => strip_tags($this->input->post('student_name',1)),
-      'email' => strip_tags($this->input->post('email',1)),
+    'name' => strip_tags($this->input->post('student_name',1)),
+    'email' => strip_tags($this->input->post('email',1)),
 
-      'mobile' => strip_tags($this->input->post('mobile',1)),
-      'classes' => 1,
-      'aadhar' => strip_tags($this->input->post('aadhar',1)),
+    'mobile' => strip_tags($this->input->post('mobile',1)),
+    'classes' => 1,
+    'aadhar' => strip_tags($this->input->post('aadhar',1)),
 
-      'permanent_address' => strip_tags($this->input->post('paddress',1)),
-      'temporary_address' => strip_tags($this->input->post('taddress',1)),
-        'p_city' =>strip_tags($this->input->post('p_city',1)),
-        't_city' =>strip_tags($this->input->post('t_city',1)),
-        't_pincode' =>strip_tags($this->input->post('t_pincode',1)),
-        'p_pincode' =>strip_tags($this->input->post('p_pincode',1)),
-        'dob' =>strip_tags($this->input->post('dob',1)),
-        'gender' =>strip_tags($this->input->post('gender',1)),
-        'blood_group' =>strip_tags($this->input->post('blood_group',1))
+    'permanent_address' => strip_tags($this->input->post('paddress',1)),
+    'temporary_address' => strip_tags($this->input->post('taddress',1)),
+    'p_city' =>strip_tags($this->input->post('p_city',1)),
+    't_city' =>strip_tags($this->input->post('t_city',1)),
+    't_pincode' =>strip_tags($this->input->post('t_pincode',1)),
+    'p_pincode' =>strip_tags($this->input->post('p_pincode',1)),
+    'dob' =>strip_tags($this->input->post('dob',1)),
+    'gender' =>strip_tags($this->input->post('gender',1)),
+    'blood_group' =>strip_tags($this->input->post('blood_group',1))
 
 
-    );
+  );
 // var_dump($params);die;
-    if($this->upload->do_upload('profile_image'))
-    {
-      $data['image'] =  $this->upload->data();
-      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
-      $params['profile_image']=$image_path;
-    }
+  if($this->upload->do_upload('profile_image'))
+  {
+    $data['image'] =  $this->upload->data();
+    $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+    $params['profile_image']=$image_path;
+  }
 #add student information
-    $studentId = $this->Student_model->add_student($params);
+  $studentId = $this->Student_model->add_student($params);
 
     ##add batch or assign student for particular batch
- $batchAssignParams=array(
-        'student_id'=> $studentId,
-        'batch_id'=>$batch_id,
+  $batchAssignParams=array(
+    'student_id'=> $studentId,
+    'batch_id'=>$batch_id,
           // 'course_id'=>$course_id,
-          'school_id'=>$this->session->SchoolId
+    'school_id'=>$this->session->SchoolId
 
-      );
+  );
 
-      $assign_batch_student=$this->Student_model->insert('table_assign_student',$batchAssignParams);
+  $assign_batch_student=$this->Student_model->insert('table_assign_student',$batchAssignParams);
 ##------##
 
 $username = 'stu'.$this->session->SchoolId.'_'.$studentId; #stu+schoolid_parentid
-$password = rand(1,10000);
+$password = rand(1000,10000);
 $email = $params['email'];
 
 $userId = $studentId;
@@ -191,7 +191,7 @@ if($studentDetails['mobile'])
 if($studentDetails['email'])
 {
   // modules::run('student/student/addStudentMail',$studentDetails);
-   $this->addStudentMail($studentDetails);
+ $this->addStudentMail($studentDetails);
 }
 
 
@@ -216,13 +216,13 @@ foreach ($classArray as $row) {
   $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
 }*/
 #insert student balance details
-  $balanceTableInfo=array(
+$balanceTableInfo=array(
 
-    'customer_id'=>$studentId,
-    'school_id'=>$this->session->SchoolId
+  'customer_id'=>$studentId,
+  'school_id'=>$this->session->SchoolId
 
-  );  
-  $addBalanceInfo  = $this->Student_model->add_balance_info_default($balanceTableInfo);
+);  
+$addBalanceInfo  = $this->Student_model->add_balance_info_default($balanceTableInfo);
 
 $this->session->alerts = array(
   'severity'=> 'success',
@@ -244,65 +244,81 @@ else
 function edit($id)
 {   
 // check if the student exists before trying to edit it
-   $data['title']="Edit Student";
-  $data['student'] = $this->Student_model->select_id('table_student',array('id'=>$id),array('*'));
-  $config['upload_path']          = './uploads/';
-  $config['allowed_types']        = 'gif|jpg|png';
-  $school_id=$this->session->SchoolId;
-  $data['classes'] = $this->Classes_model->fetch_classes($school_id);
-  $this->load->library('upload', $config);
+ $data['title']="Edit Student";
+ $school_id=$this->session->SchoolId;
+ $data['student'] = $this->Student_model->get_student($id,$school_id);
+ // echo '<pre>';
+ // print_r($data['student']);
+ // die;
+ $config['upload_path']          = './uploads/';
+ $config['allowed_types']        = 'gif|jpg|png';
+ $school_id=$this->session->SchoolId;
+ $conditionCourse=array('school_id'=>$school_id);
+ $data['course']=$this->Classes_model->select('table_courses',$conditionCourse,array('*'));
+ $data['classes'] = $this->Classes_model->fetch_classes($school_id);
+ $this->load->library('upload', $config);
 
 
-  if(isset($data['student']['id']))
-  {
-    $this->load->library('form_validation');
+ if(isset($data['student']['id']))
+ {
+  $this->load->library('form_validation');
 
-    $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
-    $this->form_validation->set_rules('email','Email','max_length[50]|valid_email');
+  $this->form_validation->set_rules('student_name','Student Name','required|max_length[100]');
+  $this->form_validation->set_rules('email','Email','max_length[50]|valid_email');
+
 
 // $this->form_validation->set_rules('mobile','Mobile','required');
 
-    $this->form_validation->set_rules('paddress','Permanent Address','required');
-    $this->form_validation->set_rules('taddress','Temporary Address','required');
+  $this->form_validation->set_rules('paddress','Permanent Address','required');
+  $this->form_validation->set_rules('taddress','Temporary Address','required');
 
-    if($this->form_validation->run() )     
-    {   
-      $params = array(
+  if($this->form_validation->run() )     
+  {   
+    $params = array(
 
-        'name' => $this->input->post('student_name'),
-        'email' => $this->input->post('email'),
-        'aadhar' => $this->input->post('aadhar'),
-        'mobile' => $this->input->post('mobile'),
-// 'profile_image' => $this->input->post('profile_image'),
-        'permanent_address' => $this->input->post('paddress'),
-        'temporary_address' => $this->input->post('taddress'),
+      'name' => strip_tags($this->input->post('student_name',1)),
+      'email' => strip_tags($this->input->post('email',1)),
 
-      );
+      'mobile' => strip_tags($this->input->post('mobile',1)),
+      'classes' => 1,
+      'aadhar' => strip_tags($this->input->post('aadhar',1)),
+
+      'permanent_address' => strip_tags($this->input->post('paddress',1)),
+      'temporary_address' => strip_tags($this->input->post('taddress',1)),
+      'p_city' =>strip_tags($this->input->post('p_city',1)),
+      't_city' =>strip_tags($this->input->post('t_city',1)),
+      't_pincode' =>strip_tags($this->input->post('t_pincode',1)),
+      'p_pincode' =>strip_tags($this->input->post('p_pincode',1)),
+      'dob' =>strip_tags($this->input->post('dob',1)),
+      'gender' =>strip_tags($this->input->post('gender',1)),
+      'blood_group' =>strip_tags($this->input->post('blood_group',1))
+
+    );
 // var_dump($params);die;
-      if($this->upload->do_upload('profile_image'))
-      {
-        $data['image'] =  $this->upload->data();
-        $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
-        $params['profile_image']=$image_path;
-      }
-      $this->Student_model->update_student($id,$params);      
-
-
-
-      $this->session->alerts = array(
-        'severity'=> 'success',
-        'title'=> 'successfully edited'
-      );
-      redirect('student');
-    }
-    else
+    if($this->upload->do_upload('profile_image'))
     {
-      $data['_view'] = 'edit';
-      $this->load->view('index',$data);
+      $data['image'] =  $this->upload->data();
+      $image_path=$data['image']['raw_name'].$data['image']['file_ext'];
+      $params['profile_image']=$image_path;
     }
+    $this->Student_model->update_student($id,$params);      
+
+
+
+    $this->session->alerts = array(
+      'severity'=> 'success',
+      'title'=> 'successfully updated'
+    );
+    redirect('student');
   }
   else
-    show_error('The student you are trying to edit does not exist.');
+  {
+    $data['_view'] = 'edit';
+    $this->load->view('index',$data);
+  }
+}
+else
+  show_error('The student you are trying to edit does not exist.');
 } 
 
 /*
@@ -310,9 +326,9 @@ function edit($id)
 */
 function remove($id)
 {
-  $student = $this->Student_model->get_student($id);
-
   $schoolId=$this->session->SchoolId;
+  $student = $this->Student_model->get_student($id,$schoolId);
+
 // check if the student exists before trying to delete it
   if(isset($student['id']))
   {
@@ -333,16 +349,25 @@ function soft_delete_student($id)
 // $student = $this->Student_model->get_student($id);
   $schoolId=$this->session->SchoolId;
 
-$this->Student_model->delete('table_map_student_school',array('school_id'=>$schoolId,'student_id'=>$id));
+  $this->Student_model->delete('table_map_student_school',array('school_id'=>$schoolId,'student_id'=>$id));
 }
 
 function assign_student()
 {
-   $condition=array('school_id'=>$this->session->SchoolId);
-    $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
-    $data['student'] = $this->Student_model->get_all_student($this->session->SchoolId);
-    $data['_view'] = 'assign_student';
-      $this->load->view('index',$data);
+ $condition=array('school_id'=>$this->session->SchoolId);
+ ##fetch coursess
+ $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
+ ##fetch students
+ $data['student'] = $this->Student_model->get_all_student($this->session->SchoolId);
+
+ ## fetch assigned student batch
+ $conditionStudentAssignBatch=array('t1.school_id'=>$this->session->SchoolId);
+$data['student_assign_batch'] = $this->Student_model->fetch_assigned_student_batch('table_assign_student',$conditionStudentAssignBatch,array('t2.name as student_name','t3.batch_name','t4.course_name','t1.id'));
+// echo '<pre>';
+// print_r($data['student_assign_batch']);die;
+
+ $data['_view'] = 'assign_student';
+ $this->load->view('index',$data);
 
 }
 function assign_student_process()
@@ -352,41 +377,41 @@ function assign_student_process()
   $batch_id=$this->input->post('batch',1);
   $course_id=$this->input->post('course',1);
   $this->load->library('form_validation');
-   $this->form_validation->CI =& $this;
-   $this->form_validation->set_rules('student','Student','required|trim|callback_check_assign_student['.$batch_id.']');
-   $this->form_validation->set_rules('batch','Batch','required|trim');
-   $this->form_validation->set_rules('course','Course','required|trim');
-   $this->form_validation->set_message('check_assign_student','This Student is already assign for this batch & course' );
+  $this->form_validation->CI =& $this;
+  $this->form_validation->set_rules('student','Student','required|trim|callback_check_assign_student['.$batch_id.']');
+  $this->form_validation->set_rules('batch','Batch','required|trim');
+  $this->form_validation->set_rules('course','Course','required|trim');
+  $this->form_validation->set_message('check_assign_student','This Student is already assign for this batch & course' );
 
-    if($this->form_validation->run() )     
-    {   
+  if($this->form_validation->run() )     
+  {   
 
-      $params=array(
-        'student_id'=> $student_id,
-        'batch_id'=>$batch_id,
+    $params=array(
+      'student_id'=> $student_id,
+      'batch_id'=>$batch_id,
           // 'course_id'=>$course_id,
-          'school_id'=>$this->session->SchoolId
+      'school_id'=>$this->session->SchoolId
 
-      );
+    );
 
-      $insert_id=$this->Student_model->insert('table_assign_student',$params);
-      if($insert_id)
-      {
-        $this->session->alerts = array(
+    $insert_id=$this->Student_model->insert('table_assign_student',$params);
+    if($insert_id)
+    {
+      $this->session->alerts = array(
         'severity'=> 'success',
         'title'=> 'successfully Assigned'
       );
       redirect('student/assign_student');
-      }
     }
-    else
-    {
-       $condition=array('school_id'=>$this->session->SchoolId);
-    $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
-    $data['student'] = $this->Student_model->get_all_student($this->session->SchoolId);
-    $data['_view'] = 'assign_student';
-      $this->load->view('index',$data);
-    }
+  }
+  else
+  {
+   $condition=array('school_id'=>$this->session->SchoolId);
+   $data['course']=$this->Classes_model->select('table_courses',$condition,array('*'));
+   $data['student'] = $this->Student_model->get_all_student($this->session->SchoolId);
+   $data['_view'] = 'assign_student';
+   $this->load->view('index',$data);
+ }
 }
 
 
@@ -395,16 +420,16 @@ function check_assign_student($student_id,$batch_id)
    // $batch_id=$this->input->post('batch',1);
  log_message('error',''.$student_id.'');
  log_message('error','batch id=>'.$batch_id.'');
-  $condition=array('student_id'=>$student_id,'batch_id'=>$batch_id,'school_id'=>$this->session->SchoolId);
+ $condition=array('student_id'=>$student_id,'batch_id'=>$batch_id,'school_id'=>$this->session->SchoolId);
  $result=$this->Student_model->select_id('table_assign_student',$condition,array('id'));
  if($result)
  {
   return false;
- }
- else
- {
+}
+else
+{
   return true;
- }
+}
  // print_r($result);
 }
 function add_bulk_student()
@@ -455,43 +480,43 @@ function import_data()
 }
 function getCsv()
 {
- 
-$csv = array();
-$filename=$this->input->get('filename');
-$location=base_url()."uploads/".$filename;
-$lines = file($location, FILE_IGNORE_NEW_LINES);
-$file = fopen($location, 'r');
- $noOfCol =count($line = fgetcsv($file));
- $noOfRow=count($lines);
 
-foreach ($lines as $key => $value)
-{
-  
+  $csv = array();
+  $filename=$this->input->get('filename');
+  $location=base_url()."uploads/".$filename;
+  $lines = file($location, FILE_IGNORE_NEW_LINES);
+  $file = fopen($location, 'r');
+  $noOfCol =count($line = fgetcsv($file));
+  $noOfRow=count($lines);
+
+  foreach ($lines as $key => $value)
+  {
+
     $csv[$key] = str_getcsv($value);
-   
-}
+
+  }
 
 
-$i=1;
-for($i;$i<$noOfRow;$i++)
-{
+  $i=1;
+  for($i;$i<$noOfRow;$i++)
+  {
 
- $params = array(
+   $params = array(
 
-      'name' => $csv[$i][0],
-      'email' => $csv[$i][1],
+    'name' => $csv[$i][0],
+    'email' => $csv[$i][1],
 
-      'mobile' => $csv[$i][2],
-      'aadhar' => $csv[$i][3],
-      'classes' => $csv[$i][4],
+    'mobile' => $csv[$i][2],
+    'aadhar' => $csv[$i][3],
+    'classes' => $csv[$i][4],
 
-      'permanent_address' =>$csv[$i][5],
-      'temporary_address' => $csv[$i][6]
+    'permanent_address' =>$csv[$i][5],
+    'temporary_address' => $csv[$i][6]
 
 
-    ); 
+  ); 
 
-$studentId = $this->Student_model->add_student($params);
+   $studentId = $this->Student_model->add_student($params);
 $username = 'stu'.$this->session->SchoolId.'_'.$studentId; #stu+schoolid_parentid
 $password = rand(1,10000);
 $email = $params['email'];
@@ -541,7 +566,7 @@ if($studentDetails['mobile'])
 ##for mail
 if($studentDetails['email'])
 {
-  
+
   $this->addStudentMail($studentDetails);
 }
 $schoolStudentMap=array(
@@ -563,13 +588,13 @@ foreach ($classArray as $row) {
   $mapStuClass  = $this->Student_model->add_mappingtoClass($studentClassMapping);
 #insert student balance details
 }
-  $balanceTableInfo=array(
+$balanceTableInfo=array(
 
-    'customer_id'=>$studentId,
-    'school_id'=>$this->session->SchoolId
+  'customer_id'=>$studentId,
+  'school_id'=>$this->session->SchoolId
 
-  );  
-  $addBalanceInfo  = $this->Student_model->add_balance_info_default($balanceTableInfo);
+);  
+$addBalanceInfo  = $this->Student_model->add_balance_info_default($balanceTableInfo);
 
 $this->session->alerts = array(
   'severity'=> 'success',
@@ -595,20 +620,21 @@ function filterStudent()
 
 function getFullDetails()
 { 
-   $data['title']="Student Full Details";
-  $school_id=$this->session->SchoolId;
-  $student_id=$this->input->get('student_id');
-  $data['student_info']= $this->Student_model->get_student_full_details($student_id,$school_id);
+ $data['title']="Student Full Details";
+ $school_id=$this->session->SchoolId;
+ $student_id=$this->input->get('student_id');
+ $data['student_info']= $this->Student_model->get_student_full_details($student_id,$school_id);
   // print_r($data['student_info']);die;
-  $data['classes'] = $this->Classes_model->fetch_classes($school_id);
-  $condition=array('map_student_batch.school_id'=>$school_id,'student_id'=>$student_id);
-  $data['student_batch']=$this->Student_model->student_batch('table_assign_student',$condition,array('batch_name','course_name','start_date','end_date'));
-  $bookCondition=array('user_type'=>2,'book_issue.school_id'=>$school_id,'taker_id'=> $student_id,'book_issue.status'=>'issued');
+ $data['classes'] = $this->Classes_model->fetch_classes($school_id);
+ $condition=array('map_student_batch.school_id'=>$school_id,'student_id'=>$student_id);
+ $data['student_batch']=$this->Student_model->student_batch('table_assign_student',$condition,array('batch_name','course_name','start_date','end_date'));
+ ## user type 2 indicate students
+ $bookCondition=array('user_type'=>2,'book_issue.school_id'=>$school_id,'taker_id'=> $student_id,'book_issue.status'=>'issued');
 
-  $data['current_issue_book']=$this->Student_model->library_issue_book_student('table_book_issue',$bookCondition,array('issue_date','due_date','title','author','isbn_no','edition'));
+ $data['current_issue_book']=$this->Student_model->library_issue_book_student('table_book_issue',$bookCondition,array('issue_date','due_date','title','author','isbn_no','edition'));
 
-  $data['_view'] = 'studentDetails';
-  $this->load->view('index',$data);
+ $data['_view'] = 'studentDetails';
+ $this->load->view('index',$data);
 
 
 }
@@ -675,7 +701,7 @@ function search_student()
  $search=$this->input->post("search_student",1);
  $condition=array('school_id'=>$this->session->SchoolId);
  // echo '<pre>';
-    echo json_encode($this->Student_model->studentSearch('table_map_school_student',$condition,array('*'),$search));
+ echo json_encode($this->Student_model->studentSearch('table_map_school_student',$condition,array('*'),$search));
     // print_r($this->Student_model->studentSearch('table_map_school_student',$condition,array('*'),$search));
 
 }

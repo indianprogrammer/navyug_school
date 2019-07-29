@@ -20,7 +20,7 @@
                 <img src="<?= base_url('uploads/') . $this->session->profileImage; ?>" class="img-circle elevation-2"
                 alt="">
             </div>
-            <div class="info">
+            <div class="info" data-toggle="tooltip" title="click to view your profile details">
                 <a href="<?= base_url()?>profile/my_profile" class="d-block"><?=  strtoupper($this->session->name) ?> (<?= $this->session->school_username ?>)</a>
             </div>
         </div>

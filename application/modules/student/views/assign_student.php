@@ -55,12 +55,69 @@
   				</div>
   			</div>
   		</div>
+      <di
+      v class="col-md-6 col-sm-12">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Assign Subject List</h3>
+
+    </div>
+    <div class="card-body">
+
+      <div class="table-responsive">
+        <table id="subject_table" class="table  table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Course Name</th>
+              <th>Batch Name</th>
+             
+              <!-- <th>Action</th> -->
+
+
+            </tr>
+          </thead>
+          <tbody>
+            <?php $count=1; ?>
+            <?php foreach($student_assign_batch as $row){ ?>
+              <tr id="<?= $row['id'] ?>">
+                <td><?= $row['student_name']; ?></td>
+                <td><?= $row['course_name'] ?></td>
+                <td><?= $row['batch_name'] ?></td>
+               
+              </tr>
+            <?php } ?> 
+          </tbody>
+        </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
   	</div>
-  </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
   <script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
 <script src="<?= base_url() ?>assets/admin/js/form_validation.js"></script>
 <script type="text/javascript">
-	
+	$(document).ready( function () {
+      $('#subject_table').DataTable();
+    } );
 function batchSelect()
 	{
 

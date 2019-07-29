@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title><?= strtoUpper(isset($title) ? $title : 'Admin Panel') ; ?> </title>
+  <title><?= ucwords(isset($title) ? $title : 'Admin Panel') ; ?> </title>
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<?= base_url() ;?>assets/admin/plugins/font-awesome/css/font-awesome.min.css">
@@ -84,7 +84,8 @@
         width:100%;
         max-width: 700px;
         min-width: 300px;
-        max-height: 400px;
+        max-height: 600px;
+        /*height:400px;*/
         border-collapse:collapse; 
         background-color: #f8f8f8;
         overflow-y: scroll;
@@ -373,7 +374,7 @@ console.log("hii2");
 
   <!-- user section-->
 
-  <li class="nav-item dropdown">
+  <li class="nav-item dropdown" data-toggle="tooltip" title="click to view logout options">
     <a class="nav-link" data-toggle="dropdown" href="#">
       <i class="fa fa-user-o"></i>
 

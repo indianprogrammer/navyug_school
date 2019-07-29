@@ -11,12 +11,23 @@ class Student_model extends MY_Model
 /*
 * Get student by id
 */
-function get_student($id)
+
+##before take for if some error occured
+// function get_student($id)
+// {
+//   $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id ,parents.name as parent_name,student.aadhar');
+//   $this->db->from('map_student_school');
+//   $this->db->where('student.id',$id);
+//   $this->db->join('parents','student.parent_id=parents.id','left');
+//   return $this->db->get()->row_array();
+// }
+function get_student($id,$school_id)
 {
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,student.created_at,student.classes,student.parent_id ,parents.name as parent_name,student.aadhar');
-  $this->db->from('student');
-  $this->db->where('student.id',$id);
-  $this->db->join('parents','student.parent_id=parents.id','left');
+  $this->db->select('t2.id,t2.name,t2.email,t2.mobile,t2.permanent_address,t2.temporary_address,t2.profile_image,t2.created_at,t2.classes,t2.parent_id ,parents.name as parent_name,t2.aadhar,t2.blood_group,t2.dob,t2.gender,t2.p_city,t2.p_pincode,t2.t_city,t2.t_pincode');
+  $this->db->from('map_school_student as t1');
+  $this->db->where(array('t2.id'=>$id,'school_id'=>$school_id));
+  $this->db->join('student as t2','t1.student_id=t2.id','left');
+  $this->db->join('parents','t2.parent_id=parents.id','left');
   return $this->db->get()->row_array();
 }
 
@@ -218,12 +229,12 @@ function get_student_by_student_id($id)
 }
 function get_student_full_details($id,$school_id)
 {
-  $this->db->select('student.id,student.name,student.email,student.mobile,student.permanent_address,student.temporary_address,student.profile_image,date(student.created_at) as date,student.classes,student.parent_id ,parents.name as parent_name,authentication.username,authentication.clear_text,student.aadhar,student.blood_group,student.dob,student.gender');
-  $this->db->from('student');
-  $this->db->where(array('student.id'=>$id));
-  $this->db->join('parents','student.parent_id=parents.id','left');
+  $this->db->select('t1.id,t1.name,t1.email,t1.mobile,t1.permanent_address,t1.temporary_address,t1.profile_image,date(t1.created_at) as date,t1.classes,t1.parent_id ,parents.name as parent_name,authentication.username,authentication.clear_text,t1.aadhar,t1.blood_group,t1.dob,t1.gender,t1.p_city,t1.p_pincode,t1.t_city,t1.t_pincode');
+  $this->db->from('student as t1');
+  $this->db->where(array('t1.id'=>$id));
+  $this->db->join('parents','t1.parent_id=parents.id','left');
   $this->db->where('autorization_id',4);
-  $this->db->join('authentication','student.id=authentication.user_id','left');
+  $this->db->join('authentication','t1.id=authentication.user_id','left');
   return $this->db->get()->row_array();
 }
 function insert_by_excel($data)
@@ -274,6 +285,22 @@ function library_issue_book_student($table_name,$condition=null,$content_display
   $data=$this->db->get()->result_array();
  
   return $data;
+
+}
+
+function fetch_assigned_student_batch($table_name,$condition=null,$content_display)
+{
+
+$this->db->select($content_display);
+  $this->db->from(''.$this->$table_name.' as t1');  
+  $this->db->where($condition);
+  $this->db->join('student as t2 ','t1.student_id=t2.id');
+  $this->db->join('batch as t3','t1.batch_id=t3.id');
+  $this->db->join('course as t4','t4.id=t3.course_id');
+  $data=$this->db->get()->result_array();
+ 
+  return $data;
+
 
 }
 

@@ -81,8 +81,7 @@ function add()
             'school_id'=>$this->session->SchoolId,
             'category'=>$this->input->post('category',1)
 
-// 'school_id'=>$this->session->SchoolId
-// 'date'=>date('d-m-y/h-m')
+
 
         );
         $enquiryInfoSms= array(

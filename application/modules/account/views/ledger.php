@@ -27,7 +27,7 @@
                     <tr style="  border-color: white;">
                         <td width="20%" style="  border-color: white;">
                             <div >
-                                &nbsp;&nbsp;<img src="<?= base_url()?>uploads/school/<?= $school_info['logo'] ?>" height="110" width="200" alt="">
+                                &nbsp;&nbsp;<img src="<?= base_url()?>uploads/school/<?= $school_info['logo'] ?>" height="110" width="150" alt="">
                             </div>
                         </td>
                         <td width="40%" style="  border-color: white;">

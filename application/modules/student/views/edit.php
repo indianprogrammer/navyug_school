@@ -3,7 +3,7 @@
 
       <div class="card card-default ">
         <div class="card-header def">
-          <h3 class="card-title">ADD STUDENT</h3>
+          <h3 class="card-title">EDIT STUDENT</h3>
 
 
         </div>
@@ -55,8 +55,8 @@
                 <label for="Gender">Gender<span class="text-danger">*</span></label>
                 <select class="form-control" data-required="true" name="gender"  required>
                   <option value="">Please Select</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value="male" <?php if($student['gender']=='male') { echo 'selected';      } ?> >Male</option>
+                  <option value="female" <?php if($student['gender']=='female') { echo 'selected';      } ?>  >Female</option>
                 </select>
                 <span class="text-danger"><?= form_error('gender');?></span>                        
               </div>
@@ -66,14 +66,14 @@
                 <label for="Blood_Group" >Blood Group</label>
                 <select class="form-control" name="blood_group" id="Student_student_bloodgroup">
                   <option value="">Please Select</option>
-                  <option value="A+" >A+</option>
-                  <option value="A-">A-</option>
-                  <option value="B+">B+</option>
-                  <option value="B-">B-</option>
-                  <option value="0+">O+</option>
-                  <option value="0-">O-</option>
-                  <option value="AB+">AB+</option>
-                  <option value="AB-">AB-</option>
+                  <option value="A+" <?php if($student['blood_group']=='A+') { echo 'selected';      } ?>  >A+</option>
+                  <option value="A-"  <?php if($student['blood_group']=='A-') { echo 'selected';      } ?>           >A-</option>
+                  <option value="B+" <?php if($student['blood_group']=='B+') { echo 'selected';      } ?>>B+</option>
+                  <option value="B-" <?php if($student['blood_group']=='B-') { echo 'selected';      } ?>>B-</option>
+                  <option value="0+" <?php if($student['blood_group']=='0-') { echo 'selected';      } ?>>O+</option>
+                  <option value="0-" <?php if($student['blood_group']=='0-') { echo 'selected';      } ?>>O-</option>
+                  <option value="AB+" <?php if($student['blood_group']=='AB+') { echo 'selected';      } ?>>AB+</option>
+                  <option value="AB-" <?php if($student['blood_group']=='AB-') { echo 'selected';      } ?>>AB-</option>
                 </select>
                 <span class="text-danger"><?= form_error('blood_group');?></span>                    
               </div>
@@ -106,7 +106,7 @@
     </div>
   </div>
 </div> -->
-<div class="col-md-4">
+<!-- <div class="col-md-4">
 <div class="form-group">
           <label class="col-md-10 control-label"><span class="text-danger">*</span>Select Course</label>
           
@@ -132,7 +132,7 @@
       
       <span class="text-danger"><?php echo form_error('batch');?></span> 
     </div>
-  </div>
+  </div> -->
 <div class="col-md-4">
   <div class="form-group">
     <label for="mobile" class="col-md-4 control-label">Aadhar Number</label>
@@ -150,6 +150,14 @@
     <div class="col-md-12">
       <input type="file" name="profile_image" value="<?= $this->input->post('profile_image'); ?>" class="form-control" id="profile_image" />
       <span class="text-danger"><?= form_error('profile_image');?></span>
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-group">
+    <label for="profile_image" class="col-md-4 control-label">Profile Image</label>
+    <div class="col-md-12">
+      <img src="<?= base_url () ?>uploads/<?= $student['profile_image'] ?>"  class="image-thumbnail"  width="50px" height="50px">
     </div>
   </div>
 </div>

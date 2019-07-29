@@ -65,14 +65,14 @@ class Email extends MY_Controller {
     $this->load->model('student/Student_model');
     $this->load->model('employee/Employee_model');
     $stu=[];
-
+  $schoolId=$this->session->SchoolId;   
     if($notificationStudent!=0)
     {
       for ($i=0;$i<count($notificationStudent);$i++)
       {
 
 
-        array_push($stu,$this->Student_model->get_student($notificationStudent[$i]));
+        array_push($stu,$this->Student_model->get_student($notificationStudent[$i],$schoolId));
       }
 // return $st[0][0]['mobile'];die;
       $studentCount=count($stu);
@@ -119,7 +119,7 @@ class Email extends MY_Controller {
 //   'school_id'=>$school_id );
         $to=$emp[$j]['email'];
         $body=$notification;
-        $subject='notification';
+        $subject='Notification';
         $attachments='';
         $this->sendMail($to,$subject,$body,$attachments);
 

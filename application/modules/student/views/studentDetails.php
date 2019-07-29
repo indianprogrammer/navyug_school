@@ -51,7 +51,7 @@
          </li> -->
 
          <li class="list-group-item">
-          <b>Permanent Location</b> <a class="float-right"><?= $student_info['permanent_address'] ?></a>
+          <b>Permanent Location</b> <a class="float-right"><?= $student_info['permanent_address'].','.$student_info['p_city'].','.$student_info['p_pincode'] ?></a>
         </li>
         <li class="list-group-item">
           <b>Temporary Location</b> <a class="float-right"><?= $student_info['temporary_address'] ?></a>

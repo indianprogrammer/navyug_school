@@ -28,9 +28,9 @@
 			<th>Email</th>
 			<th>Mobile</th>
 			<th>Address</th>
-			<th>purpose</th>
-			<th>category</th>
-
+			<th>Purpose</th>
+			<th>Category</th>
+			<th>Created at</th>
 			
 			<th>Comments</th>
 			<th>Actions</th>
@@ -52,6 +52,7 @@
 				<td><?= $row['address']; ?></td>
 				<td><?= $row['type']; ?></td>
 				<td><?= $row['category']; ?></td>
+				<td><?= $row['created_at']; ?></td>
 				<!-- <td><?= $row['location']; ?></td> -->
 				<td><?= $row['comments']; ?></td>
 				
