@@ -134,7 +134,7 @@
 
 				</div>
 			</div>
-			<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		 <link rel="stylesheet" href="<?= base_url() ?>assets/admin/plugins/jqueryui/jquery-ui.css"> 
 <script src="<?= base_url() ?>assets/admin/plugins/jqueryui/jquery-ui.min.js"></script>
 <script src="<?= base_url() ?>assets/admin/plugins/jquery-validation/jquery.validate.js"></script>
 

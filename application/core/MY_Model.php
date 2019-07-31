@@ -44,7 +44,7 @@ class MY_Model extends CI_Model
   protected $table_driver="bus_driver";
 
 ##sms and email
-  protected $table_sms_configuration='sms_configuration';
+  protected $table_sms_configuration='configuration_sms';
   protected $table_sms_log='log_outgoing_sms';
   protected $table_sms_template='template_sms';
   protected $table_email_configuration='email_configuration';

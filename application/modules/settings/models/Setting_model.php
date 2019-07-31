@@ -7,18 +7,7 @@ class Setting_model extends MY_Model{
         parent::__construct();
     }
 
-    function getResult($username, $password){
-        $this->db->where('username', $username);
-        $this->db->where('password', md5($password));
-        $query = $this->db->get('authentication');
-        return $query->row_array();
-    }
-
-    function getAutorization($autorizationId){
-        $this->db->where('id', $autorizationId);
-        $query = $this->db->get('master_authorization');
-        return $query->row_array();
-    }
+    
 
     function getEmployDetails($authenticationId){
         $this->db->select('*');
@@ -41,13 +30,7 @@ class Setting_model extends MY_Model{
         $this->db->insert('log_login',$data);
         return $this->db->insert_id();
     }
-    function set_logout_time($log_id,$logout_time)
-    {
-        $this->db->where('id',$log_id);
-        
-        $this->db->set('logout_time',$logout_time);
-        return $this->db->update('log_login');
-    }
+    
 }
 
 ?>
